@@ -1,0 +1,326 @@
+Learn HVAC server build via Slicehost
+=====================================
+
+TODO
+----
+
+* (none!)
+
+Create or rebuild Slicehost slice
+---------------------------------
+
+* Login to [Slicehost](https://manage.slicehost.com/login)
+* Create a new slice, or navigate to the slice named `learnhvac` and click `Rebuild`
+* Select 'Ubuntu 8.10 (intrepid)' as the `Image` and input `learnhvac` as the `Name`
+* Building may take a while
+* Ensure that you copy down the root password.
+
+Create and configure users
+--------------------------
+
+Log in to a command line terminal:
+
+		(local)$ ssh root@67.207.144.140
+		
+The above IP address will be used throughout this guide--use the actual IP address of your slice instead.
+
+If you encounter the following error:
+
+		@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+		@    WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!     @
+		@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+		IT IS POSSIBLE THAT SOMEONE IS DOING SOMETHING NASTY!
+		Someone could be eavesdropping on you right now (man-in-the-middle attack)!
+		It is also possible that the RSA host key has just been changed.
+		The fingerprint for the RSA key sent by the remote host is
+		b0:d1:0a:69:23:07:b4:44:3d:83:41:85:11:f1:49:ab.
+		Please contact your system administrator.
+		Add correct host key in /Users/someuser/.ssh/known_hosts to get rid of this message.
+		Offending key in /Users/someuser/.ssh/known_hosts:3
+		RSA host key for 67.207.144.140 has changed and you have requested strict checking.
+		Host key verification failed.
+
+simply remove any entries in your `~/.ssh/known_hosts` that contain `67.207.144.140` (change to the IP of your slice):
+
+		(local)$ mate ~/.ssh/known_hosts 
+
+Note: Any text editor, such as vim or pico, could be used instead of TextMate (`mate`) here.
+
+When prompted, input the password you copied down earlier.
+
+		(local)$ ssh root@67.207.144.140
+		The authenticity of host '67.207.144.140 (67.207.144.140)' can't be established.
+		RSA key fingerprint is b0:d1:0a:69:23:07:b4:44:3d:83:41:85:11:f1:49:ab.
+		Are you sure you want to continue connecting (yes/no)? yes
+		Warning: Permanently added '67.207.144.140' (RSA) to the list of known hosts.
+		root@67.207.144.140's password: 
+
+
+After logging in, change the root user's password to something more secure:
+		
+		(server) root$ passwd
+
+Tip: From the root of a Rails app, you can run `rake secret` to generate a secure password.
+
+Now set up the deployment user:
+
+		(server) root$ adduser deploy
+
+Set a secure password for the user. All other fields can be left blank ("Full Name", "Room Number", etc).
+
+Make the `deploy` user a "sudoer":
+
+		(server) root$ visudo
+		
+At the end of the file, add the following line:
+
+		deploy	ALL=(ALL) ALL
+
+If you don't already have an ssh keypair that you'd like to use for ssh authentication, open a new terminal prompt and locally execute the following:
+		
+		(local)$ ssh-keygen -t rsa
+		
+Upload your existing or newly created ssh public key to the server:
+
+		(local)$ scp ~/.ssh/id_rsa.pub deploy@67.207.144.140:/home/deploy
+
+Add your public key to the `authorized_keys` file.
+
+		(server) root$ mkdir -p /home/deploy/.ssh
+		(server) root$ mv /home/deploy/id_rsa.pub /home/deploy/.ssh/authorized_keys
+
+Ensure that the permissions are correct for the ssh keys:
+
+		(server) root$ chown -R deploy:deploy .ssh
+		(server) root$ chmod 700 .ssh
+		(server) root$ chmod 600 .ssh/authorized_keys
+
+Log out of the ssh session:
+		
+		(server) root$  exit
+		
+Log back in as the `deploy` user. In all likelihood, you will never log in as the `root` user directly again.
+
+		(local)$ ssh deploy@67.207.144.140
+
+If your ssh keys are configured correctly, you should not be prompted for your password in order to log in. Verify that you set the permissions correctly if you are prompted for your password.
+
+Start a session as super-user (input the `deploy` user's password when prompted):
+
+		(server) deploy$ sudo -s
+		
+Install Ubuntu updates
+----------------------
+
+		(server) root$ aptitude update
+		(server) root$ aptitude safe-upgrade
+		(server) root$ aptitude full-upgrade
+
+When prompted for options, use the defaults.
+
+Install Ruby
+------------
+
+		(server) root$ aptitude install ruby1.8-dev ruby1.8 ri1.8 rdoc1.8 irb1.8 libreadline-ruby1.8 libruby1.8 libopenssl-ruby sqlite3 libsqlite3-ruby1.8
+
+		(server) root$ ln -s /usr/bin/ruby1.8 /usr/bin/ruby
+		(server) root$ ln -s /usr/bin/ri1.8 /usr/bin/ri
+		(server) root$ ln -s /usr/bin/rdoc1.8 /usr/bin/rdoc
+		(server) root$ ln -s /usr/bin/irb1.8 /usr/bin/irb
+		(server) root$ ruby -v
+		ruby 1.8.7 (2008-08-11 patchlevel 72) [x86_64-linux]
+		
+Install RubyGems
+----------------
+		
+		(server) root$ mkdir ~/sources
+		(server) root$ cd ~/sources
+		(server) root$ wget http://rubyforge.org/frs/download.php/45905/rubygems-1.3.1.tgz
+		(server) root$ tar xzvf rubygems-1.3.1.tgz
+		(server) root$ cd rubygems-1.3.1
+		(server) root$ ruby setup.rb
+		
+(Wait while RubyGems is compiled and installed...it takes a while.)
+		
+		(server) root$ ln -s /usr/bin/gem1.8 /usr/bin/gem
+		(server) root$ gem update --system
+		Updating RubyGems
+		Nothing to update
+		
+This previous line shouldn't do anything; it's just insurance. If there is a newer version than 1.3.1 of RubyGems, then this will update to the latest version. However, if there is a newer version of RubyGems available it would probably be better to just install the latest in the first place.
+
+Install Rails
+-------------
+
+		(server) root$ gem install rails --no-rdoc --no-ri
+
+(Another wait...)
+		
+		(server) root$ aptitude install postfix subversion -y
+
+As usual, the default settings work fine.
+
+Install Git and SVN
+-------------------
+
+Subversion is probably already installed. To ensure that it is, run the following:
+
+		(server) root$ apt-get install subversion
+
+Install Git:
+
+		(server) root$ apt-get install git git-svn
+
+Installing Apache
+-----------------
+
+		(server) root$ aptitude install apache2 apache2.2-common apache2-mpm-prefork apache2-utils libexpat1 ssl-cert
+
+The following warning is expected and easily fixed:
+
+		apache2: Could not reliably determine the server's fully qualified domain name, using 127.0.0.1 for ServerName
+		
+Set the `ServerName` as follows (to fix the above warning):
+
+		(server) root$ echo "ServerName learnhvac" >> /etc/apache2/apache2.conf
+
+Restart apache:
+
+		(server) root$ apache2ctl graceful
+
+Open the following URL to verify that you can reach Apache on the server through the Internet: http://67.207.144.140/
+
+Install php5
+------------
+
+		(server) root$ aptitude install libapache2-mod-php5 php5 php5-common php5-curl php5-dev php5-gd \
+			php5-imagick php5-mcrypt php5-memcache php5-mhash php5-mysql php5-pspell php5-snmp \
+			php5-sqlite php5-xmlrpc php5-xsl
+
+Install Passenger and its buddies
+---------------------------------
+
+		(server) root$ apt-get install build-essential
+		(server) root$ gem install passenger --no-rdoc --no-ri
+		(server) root$ apt-get install apache2-prefork-dev
+		(server) root$ passenger-install-apache2-module
+		
+The installer will spit out a prompt to edit your apache configuration file.  It will look something like the following:
+   
+		Please edit your Apache configuration file, and add these lines:
+
+		LoadModule passenger_module /usr/lib/ruby/gems/1.8/gems/passenger-2.0.6/ext/apache2/mod_passenger.so
+		PassengerRoot /usr/lib/ruby/gems/1.8/gems/passenger-2.0.6
+		PassengerRuby /usr/bin/ruby1.8
+
+Use the output from your terminal rather than the above (it may be different). Paste the configuration block from `passenger-install-apache2-module`anywhere you wish in the following file:
+
+		(server) root$ nano /etc/apache2/apache2.conf
+
+and restart Apache:
+
+		(server) root$ /etc/init.d/apache2 restart
+		
+(The above is in this instance effectively the same as `apache2ctl graceful`.)
+
+Install MySQL
+-------------
+
+		(server) root$ aptitude install mysql-server mysql-client libmysqlclient15-dev
+		
+When prompted, enter a secure password for the root user of mysql (and store it in a safe place).
+		
+		(server) root$ aptitude install libmysql-ruby1.8
+		
+Creating a Rails test app
+-------------------------
+
+		(server) root$ mkdir /home/deploy/webapps
+		(server) root$ chown -R deploy:deploy /home/deploy/webapps
+		(server) root$ cd /home/deploy/webapps/
+		(server) root$ rails testapp -d mysql
+		(server) root$ chown -R deploy:deploy testapp
+		(server) root$ nano /etc/apache2/sites-available/testapp
+		
+Copy and paste the following into the editor:
+		
+		<VirtualHost *:80>
+		  ServerName  testapp.galenohanlon.com
+		  DocumentRoot /home/deploy/webapps/testapp/public
+		</VirtualHost>
+		
+Note: Before moving forward, configure DNS such that `testapp.galenohanlon.com` (or the domain that you are using) points at the IP of this server.
+
+		(server) root$ a2ensite testapp
+		(server) root$ /etc/init.d/apache2 reload
+		
+Confirm that you can see the default home page of the testapp:
+
+		http://testapp.galenohanlon.com/
+		
+The above confirms that Apache is correctly serving static content from the `testapp/public` folder (as it should). To confirm that Passenger is serving dynamic Rails content, more steps are necessary.
+
+		(server) root$ cd testapp
+		(server) root$ script/generate controller hello
+		(server) root$ vim app/controllers/hello_controller.rb
+
+Add the `index` action/method to the newly created controller:
+
+		class HelloController < ApplicationController
+		  def index
+		    render :text => "hello from controller"
+		  end
+		end
+
+The Rails application will fail to initialize if you don't set the mysql root password for the `production` environment in the `config/database.yml` file. And finally, create the database (the app won't initialize if the database doesn't exist):
+
+		(server) root$ RAILS_ENV=production rake db:create
+	
+For good measure, restart the application (while still in the root directory of the application):
+
+		(server) root$ touch tmp/restart.txt
+
+Confirm that you can see the page corresponding to the new controller and action we added to testapp:
+
+		http://testapp.galenohanlon.com/hello
+
+
+Create a test app in PHP
+------------------------
+
+		(server) root$ mkdir -p /home/deploy/webapps/phptest
+		(server) root$ cd /home/deploy/webapps/phptest
+		(server) root$ chown -R deploy:deploy /home/deploy/webapps/phptest
+		(server) root$ nano /home/deploy/webapps/phptest/index.php
+
+Paste in the following:
+
+		<html>
+		<body>
+
+		<?php
+		echo "Good old PHP";
+		?>
+
+		</body>
+		</html>
+
+Create the vhost configuration for the phptest app:
+		
+		(server) root$ nano /etc/apache2/sites-available/phptest
+
+Paste in the following:
+
+		<VirtualHost *:80>
+		  ServerName  phptest.galenohanlon.com
+		  DocumentRoot /home/deploy/webapps/phptest
+		</VirtualHost>
+		
+Note: Before moving forward, configure DNS such that `phptest.galenohanlon.com` (or the domain that you are using) points at the IP of this server.
+		
+		(server) root$	a2ensite phptest
+		(server) root$ /etc/init.d/apache2 reload
+
+Confirm that you can see the PHP page added to the test php app:
+
+		http://phptest.galenohanlon.com/

@@ -1,0 +1,24 @@
+
+<table border="0" cellpadding="0" cellspacing="0">
+	<tr >
+		<td valign="middle"><img src="/images/icon_scenarios_45.png" alt = "Scenarios Icon"/></td>
+		<td width="10">&nbsp;</td>
+		<td valign="bottom"><h1>Editing scenario</h1></td>
+	</tr>
+</table>
+
+
+<% form_for (@scenario, :method=>:put) do |f| %>
+
+  <br/>
+	
+	<br/>
+  	<%= render :partial => 'form', :locals => { :f => f} %>
+ 	<br/>
+
+    <%= f.submit "Update", :class=>'submitButton' %>
+ 
+<% end %>
+
+
+<br/><br/><br/><br/>

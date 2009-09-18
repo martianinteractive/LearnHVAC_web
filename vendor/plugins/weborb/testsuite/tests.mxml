@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" backgroundColor="#ffffff"
+	creationComplete="onCreationComplete()" viewSourceURL="srcview/index.html">
+	<mx:Script>
+    <![CDATA[
+    	import mx.rpc.remoting.RemoteObject;
+    	import mx.controls.Alert;
+    	import mx.utils.*;
+        import mx.rpc.events.ResultEvent
+        import mx.rpc.events.FaultEvent
+        import tests.*;
+
+		private var remoteObject:RemoteObject;
+		private var primitiveTest:PrimitiveTest;
+		private var stringsTest:StringTest;
+		private var primitiveArrayTest:ArrayOfPrimitivesTest;
+		private var complexTypesTest:ComplexTypeTest;
+		private var multipleArgsTest:MultipleArgsTest;
+		
+		private var byteLength:Number = 0;
+		private var currentIndex:Number = 0;
+		private var echoTestRunning:Boolean;
+		
+    	public function onCreationComplete():void
+   		{
+   			remoteObject = new RemoteObject();
+   			remoteObject.destination = "FlexRemotingTest";
+   			remoteObject.echoInt.addEventListener("result", onEchoInt);
+   			remoteObject.echoIntStringValue.addEventListener("result", onEchoInt);
+   			remoteObject.echoBytes.addEventListener("result", onEchoBytes);
+   			remoteObject.bytes2double.addEventListener("result", onEchoBytes);
+   			remoteObject.echoProxy.addEventListener("result", onEchoProxy);
+   			remoteObject.getTimes.addEventListener("result", onGetTimes);
+   			
+   			remoteObject.addEventListener("fault", onFault);
+   			
+   			primitiveTest = new PrimitiveTest(new Array(), this);
+   			stringsTest = new StringTest(this);
+   			primitiveArrayTest = new ArrayOfPrimitivesTest(this);
+   			complexTypesTest = new ComplexTypeTest(this);
+   			multipleArgsTest = new MultipleArgsTest(this);
+   		}
+   		
+   		public function onGetTimes(event:ResultEvent):void 
+        {
+        	var message:String = "time: " + event.result.time.toString() + "\ndate: " + event.result.date.toString() + "\ndate time: " + event.result.datetime.toString();
+        	Alert.show( message, "Get Times Result"); 
+        }
+        
+        
+        public function onEchoBytes(event:ResultEvent):void 
+        {
+        	var pi:Number = event.result as Number;
+        	var correctBytes:Boolean = pi == Math.PI
+            Alert.show( "received correct number of bytes? " + correctBytes , "Echo Bytes Result"); 
+        }
+
+        public function onFault (event:FaultEvent):void 
+        {
+            Alert.show(event.fault.faultString, 'Error');
+        }
+        
+        public function onEchoProxy(event:ResultEvent):void 
+        {
+        	var person:Object = event.result;
+        	var nameCorrect:Boolean = person.name ==  "Tyler";
+        	var ageCorrect:Boolean = person.age ==  5;
+        	var ssnCorrect:Boolean = person.ssnum ==  "555-55-5555";
+        	var isCorrect:Boolean = nameCorrect && ageCorrect && ssnCorrect
+            Alert.show( "received correct object back from proxy? " + isCorrect , "Echo Proxy Result"); 
+        }
+
+		public function onEchoClick():void
+		{
+			currentIndex = 0;
+			echoLabel.text = "Current Integer in Echo Test: " + currentIndex.toString();
+			remoteObject.echoInt(currentIndex);
+		}
+		
+		public function onEchoInt(event:ResultEvent):void 
+        {
+            Alert.show( event.result.toString() , "Echo Int Result"); 
+        }
+
+		public function runSimpleTest():void
+		{
+			remoteObject.echoInt(1);
+		}
+		
+		public function runPrimitiveTests():void
+		{
+			summary.dataProvider = new Array();
+			primitiveTest.runPrimitiveTests();
+		}
+		
+		public function runStringsTests():void
+		{
+			summary.dataProvider = new Array();
+			stringsTest.runStringTests();
+		}
+		
+		public function runPrimitiveArraysTests():void
+		{
+			summary.dataProvider = new Array();
+			primitiveArrayTest.runPrimitiveArraysTests();
+		}
+		
+		public function runComplexTypesTests():void
+		{
+			summary.dataProvider = new Array();
+			complexTypesTest.runComplexTypeTests();
+		}
+		
+		public function runMultipleArgsTests():void
+		{
+			summary.dataProvider = new Array();
+			multipleArgsTest.runMultipleArgsTests();
+		}
+		
+		public function setSummary(array:Array):void
+		{
+			summary.dataProvider = array;
+		}
+   		
+    ]]>
+    </mx:Script>
+	<mx:Button x="61" y="117" label="Run Simple Test" click="runSimpleTest()" />
+	<mx:Button x="61" y="147" label="Run Primitive Tests" click="runPrimitiveTests()"  width="183" id="primitiveTestButton"/>
+	<mx:Button x="61" y="177" label="Run Strings Tests" click="runStringsTests()"  width="183" id="primitiveTestButton0"/>
+	<mx:Button x="61" y="207" label="Run Primitive Array Tests" click="runPrimitiveArraysTests()"  width="183" id="primitiveTestButton1"/>
+	<mx:Button x="61" y="237" label="Run Complex Type Tests" click="runComplexTypesTests()"  width="183" id="primitiveTestButton2"/>
+	<mx:Button x="61" y="267" label="Run Multiple Args Tests" click="runMultipleArgsTests()"  width="183" id="primitiveTestButton3"/>
+	<mx:List  x="252" y="117" width="467" height="299" id="summary"></mx:List>
+	<mx:Button x="61" y="297" label="Start Echo Test" width="183" click="onEchoClick()"/>
+	<mx:Label x="61" y="327" text="ECHO_LABEL" id="echoLabel" />
+	
+    
+</mx:Application>
+

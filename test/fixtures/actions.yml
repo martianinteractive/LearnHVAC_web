@@ -1,0 +1,13 @@
+--- 
+actions_001: 
+  name: ServerLogin
+  id: "1"
+  description: User logged into Instructor site.
+actions_002: 
+  name: FlashClientLogin
+  id: "2"
+  description: User logged into flash client.
+actions_003: 
+  name: LoadScenario
+  id: "3"
+  description: User loaded a scenario into the client.

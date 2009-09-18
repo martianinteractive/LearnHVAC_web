@@ -1,0 +1,180 @@
+<%= error_messages_for 'scenario' %>
+
+<%= hidden_field :scenario, :lock_version %>
+
+<script src="/javascripts/prototype.js" type="text/javascript"></script>
+
+<!--[form:scenario]-->
+
+<br/>
+<% if current_user.role.name="superadmin" %>
+	SuperAdmin: set institution: <br/><br/>
+	<%= collection_select(:scenario, :institution_id, Institution.find(:all, :order=>:name), :id, :name) %>  
+	<br/><br/>
+<% end %>
+
+<table style="width:100%">
+<tr>
+    <td valign="top">
+	
+        <p>Scenario ID<br/>
+        <%= f.text_field :scenID  %>
+        <br/>
+        <span class="info">255 characters max.</span>
+        </p>
+        
+        <p>Display Name<br/>
+        <%= f.text_field :name %>
+        <br/>
+        <span class="info">Name shown to student (255 characters max.)</span>
+        </p>
+
+        <p>Movie url<br/>
+        <%= f.text_field :movie_URL  %>
+        <br/>
+        <span class="info">Fully qualified URL of movie location on website</span>
+        </p>
+        
+        <p>Thumbnail url<br/>
+        <%= f.text_field :thumbnail_URL %>
+        <br/>
+        <span class="info">Fully qualified URL of image location on website</span>
+        </p>
+		
+        <p>Level<br/>
+        <%= f.text_field :level, :size=>2 %>
+        <br/>
+        <span class="info">Integer value for difficulty level (1 to 5)</span>
+        </p>
+		<!--		
+				<p><img src="/images/weather_icon.png" alt="weather icon"/>&nbsp;Weather File:&nbsp;&nbsp;	
+				<%= collection_select(:scenario, :weatherfile_id, Weatherfile.find(:all, :order=>"name"), :id, :name) %>
+				<br/>
+        		<span class="info">Include weather file in simulation</span>
+			</p>
+		-->	
+				
+        <br/>
+				<p><b>Options:</b></p>
+				<p>
+					
+	
+		<div style="width:150px;border-bottom:1px dotted #AAA;"><i>Long-term simulation</i></div>
+	
+		<!--
+        <%= f.check_box :force_long_term_sim %> Force Long-term simulation
+        <br/>
+        <span class="info">Force the student to complete the long-term simulation before running the short-term simulation.</span>
+        </p>
+		-->
+	
+		<p>Start date<br/>
+        <%= f.date_select :longterm_start_date, :discard_year=>true %>
+        <br/>
+        <span class="info">The date and time the real-time simulation should start at.</span>
+        </p>
+
+		<p>Stop date<br/>
+        <%= f.date_select :longterm_stop_date, :discard_year=>true%>
+        <br/>
+        <span class="info">The date and time the real-time simulation should start at.</span>
+        </p>
+
+		<p>
+		<%= f.check_box :allow_longterm_date_change %> Allow date/time change
+        <br/>
+        <span class="info">Allow the student to change the start and stop time and date for the long-term simulation.</span>
+        </p>
+		
+		
+		<div style="width:150px;border-bottom:1px dotted #AAA;"><i>Real-time simulation</i></div>
+	
+		<p>Real-time simulation start date/time<br/>
+        <%= f.datetime_select :realtime_start_datetime, :discard_year=>true%>
+        <br/>
+        <span class="info">The date and time the real-time simulation should start at.</span>
+        </p>
+		<p>
+		<%= f.check_box :allow_realtime_datetime_change %> Allow date/time change
+        <br/>
+        <span class="info">Allow the student to change the start time and date for the short-term simulation.</span>
+        </p>
+
+		<div style="width:150px;border-bottom:1px dotted #AAA;"><i>Input Area</i></div>
+		<br/>
+		<%= f.check_box :inputs_visible %> Inputs visible
+        <br/>
+
+		
+        <span class="info">Allow student to see PUBLIC input values during simulation</span>
+        </p>
+        <p> <%= f.check_box :inputs_enabled %> Inputs enabled
+        <br/>
+        <span class="info">Allow student to enter PUBLIC input values during simulation</span>
+        </p>
+				
+        <p> <%= f.check_box :faults_visible %> Faults visible
+        <br/>
+        <span class="info">Allow student to see PUBLIC fault values during simulation</span>
+        </p>
+        <p> <%= f.check_box :faults_enabled %> Faults enabled
+        <br/>
+        <span class="info">Allow student to enter PUBLIC fault values during simulation</span>
+        </p>
+        
+		<p>
+		<div style="width:150px;border-bottom:1px dotted #AAA;"><i>Visualization Area</i></div>
+		<!--
+		<br/><%= check_box :scenario, :drag_sensor_enabled %> Drag sensor enabled
+        <br/>
+        <span class="info">Display drag sensor for use during simulation</span>
+        </p>--> 
+        <p> <%= f.check_box :valve_info_enabled %> Valve info enabled
+        <br/>
+        <span class="info">Allow student to view Heating Coil and Cooling Coil valve information</span>
+        </p>
+
+		<!--
+			<p>
+			<div style="width:150px;border-bottom:1px dotted #AAA;"><i>Output Area</i></div>
+			<br/> <%= check_box :scenario, :use_custom_output_graphs %> Use Custom Output Graphs
+        
+
+				<br/>
+        		<span class="info">Manually select variables for the output window graphs in the table below.<br/>
+				Otherwise, show the default output graphs for each component.</span>
+        	</p>
+		-->
+				
+    </td>
+
+    <td valign="top">
+
+        <p>Short description<br/>
+        <span class="info">Description shown when student views available scenarios</span><br/>
+        <%= f.text_area :short_description, :rows=>3 %>
+        <br/>
+        </p>
+
+        
+        <br/>
+        <p>Description<br/>
+        <span class="info">A longer description describing scenario in detail</span><br/>
+        <%= f.text_area :description, :rows=>10  %>
+        <br/>
+        </p>
+        
+        <br/>
+        <p>Goal<br/>
+        <span class="info">The pedalogical goal for this scenario</span><br/>
+        <%= f.text_area :goal, :rows=>10  %>
+        <br/>
+        </p>
+
+    </td>
+    
+</tr>
+</table>
+
+</table>
+<!--[eoform:scenario]-->

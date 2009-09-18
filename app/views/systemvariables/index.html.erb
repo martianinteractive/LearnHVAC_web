@@ -1,0 +1,129 @@
+
+
+<div>
+	<div id="section_icon">
+		<img src="/images/icon_sysvars_45.png" alt = "System Variable Icon"/>
+	</div>
+	<div id="section_title">
+		<h1>Manage System Variables</h1>
+	</div>
+	<div style="float:right;text-align:right;padding-top:4px">
+	<% if current_user.role.name=="superadmin" || current_user.role.name=="administrator" %>
+		<%= button_to 'Create New System Variable', {:action => 'new'}, :class=>"createButton" %>
+	<% end %>
+	</div>
+	<div style="clear:both"></div>
+</div>	
+
+
+
+<br/>
+
+
+<style>
+	form{
+		margin-bottom:2px;
+	}
+</style>
+
+
+
+<table id="listTable"  cellpadding="2" cellspacing="0" >
+	
+	<tr>
+	
+
+	<td colspan="16" valign="top" style="background-color:#777; color:white" align="right">
+		<div style="margin-top:0xp;margin-bottom:0px;">
+			<%= form_tag ( {:action => 'index'}, :method=>:get) %>
+				Component:&nbsp;<%= select :component, :id, @componentFilter %>
+				<%= submit_tag "Filter" %>		
+			</form>
+	
+			<script language="javascript">
+			//this god-awful hack is because I couldn't get rails to select the current filtering component
+			
+			dd = document.getElementById("component_id");
+			for (i=0;i<dd.length;i++) {
+				if (dd.options[i].value == "<%= @componentFilterID %>"){
+					dd.selectedIndex=i;
+				}
+			}
+			
+		</script>
+	
+		</div>
+	 </td>
+	</tr>
+
+  <tr id="listHeader">
+    <td width="20" align="center">Comp.</th>
+	<td align="center">Fault</th>
+    <td align="left">Name</th>
+    <td align="left">Display&nbsp;Name</th>
+    <td align="left" >Description</th>
+	<td align="left" >Type</th>
+	<td align="right" >Min</th>
+	<td align="right" >Default</th>
+	<td align="right" >Max</th>
+    <td align="center">Unit&nbsp;SI</th>
+    <td align="center">Unit&nbsp;IP</th>
+    <td align="center">SI&nbsp;to&nbsp;IP</th>
+	<td align="center">Disabled</th>
+    <td colspan="3" align="center" width="150">Action</th>
+  </tr>
+  
+  
+  
+<% rowClass = "lightRow"%>
+
+<% for systemvariable in @systemvariables 
+
+    if rowClass == "lightRow"
+        rowClass = "darkRow"
+    else
+        rowClass = "lightRow"
+    end
+    
+%>
+  <tr class="<%=rowClass%>" style="height:30px;">  
+  
+
+    <td width="20" align="center" style="color:#999"  valign="top"><%= systemvariable.component.component_id %></td>
+	<td width="30" align="center" valign="top">
+		<% if systemvariable.is_fault %>
+            <img src="/images/check.png"/>
+        <% end%>
+    </td>
+    <td width="150" valign="top" align="left"><%= systemvariable.name %></td>
+    <td width="150" valign="top" align="left"><%= systemvariable.display_name %></td>
+    <td width="250" valign="top" align="left"><div style="padding-bottom:5px;"><%= systemvariable.description %></div></td>
+	<td width="50" valign="top" align="left" ><%= systemvariable.typeID %></td>
+	<td width="50" valign="top" align="right" ><%= systemvariable.min_value %></td>
+	<td width="50" valign="top" align="right" ><%= systemvariable.default_value %></td>
+	<td width="50" valign="top" align="right" >&nbsp;&nbsp;<%= systemvariable.max_value %></td>
+    <td width="50" valign="top" align="center"><%= systemvariable.unit_si %></td>
+    <td width="50" valign="top" align="center"><%= systemvariable.unit_ip %></td>
+    <td width="50" valign="top" align="center"><%= systemvariable.si_to_ip %></td>
+	<td width="50" valign="top" align="center">
+		<%= systemvariable.global_disable %>
+	</td>
+    
+    <td  valign="top"><%= link_to 'Show', :action => 'show', :id => systemvariable %></td>
+
+	<% if current_user.role.name != "instructor" %>
+    	<td  valign="top"><%= link_to 'Edit', :action => 'edit', :id => systemvariable %></td>
+    	<td width="75" valign="top"><%= link_to 'Destroy', systemvariable, :confirm => 'This will remove the system variable from the System Variable library AND all scenarios it appears in. Are you sure you want to delete?', :method => :delete %></td>
+	<% else %>
+		<td colspan="2">&nbsp;</td>
+	<% end %>
+
+	</tr>
+  
+<% end %>
+
+</table>
+
+
+
+

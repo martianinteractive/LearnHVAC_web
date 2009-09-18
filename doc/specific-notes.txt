@@ -1,0 +1,11 @@
+initial root password:
+learnhvacnFuWgx
+
+secured root password:
+9f4d03df5c46f0d978aec7d188f8033aac25cbfb350dfc04938013852d9bc9ea8bd1cb9aecd8f5310b1612403d40db713137c9214e5c3c26959ef1cadc0d03e3
+
+deploy password:
+8p3ox9C7N12c4e
+
+mysql root user:
+2o187nSc3kyQHD

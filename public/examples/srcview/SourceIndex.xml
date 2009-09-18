@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<index>
+	<title>Source of FlexRemoting</title>
+	<nodes>
+		<node selected="true" label="main.mxml" icon="mxmlAppIcon" url="source/main.mxml.html"/>
+	</nodes>
+	<zipfile label="Download source (ZIP, 2K)" url="FlexRemoting.zip"/>
+	<sdklink label="Download Flex 2 SDK" url="http://www.adobe.com/go/flex2_sdk"/>
+</index>

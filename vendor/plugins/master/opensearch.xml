@@ -1,0 +1,520 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <title>adzap's date_time_text_field_helpers at master &mdash; GitHub</title>
+    <link rel="search" type="application/opensearchdescription+xml" href="/opensearch.xml" title="GitHub" />
+    <link rel="fluid-icon" href="http://github.com/fluidicon.png" title="GitHub" />
+
+    
+      <link href="/stylesheets/bundle.css?67996ad334292e989965d721bfb0c0abd6f9efdb" media="screen" rel="stylesheet" type="text/css" />
+    
+
+    
+      
+        <script src="/javascripts/bundle.js?67996ad334292e989965d721bfb0c0abd6f9efdb" type="text/javascript"></script>
+      
+    
+    
+  
+    
+  
+
+
+  <link href="http://github.com/feeds/adzap/commits/date_time_text_field_helpers/master" rel="alternate" title="Recent Commits to date_time_text_field_helpers:master" type="application/atom+xml" />
+
+
+    
+  </head>
+
+  
+
+  <body>
+    
+    
+    <div id="main">
+      <div id="header" class="">
+        <div class="site">
+          <div class="logo">
+            <a href="/"><img src="/images/modules/header/logo.png" alt="git-hub" /></a>
+          </div>
+          
+            <div class="actions">
+              <a href="/">Home</a>
+              <a href="/plans"><b><u>Pricing and Signup</u></b></a>
+              <a href="/repositories">Repositories</a>
+              <a href="/news">News</a>
+              <a href="/login">Login</a>
+            </div>
+          
+        </div>
+      </div>
+      
+      
+        
+  <div id="repo_menu">
+    <div class="site">
+      <ul>
+        
+          <li class="active"><a href="/adzap/date_time_text_field_helpers/tree/master">Source</a></li>
+
+          <li class=""><a href="/adzap/date_time_text_field_helpers/commits/master">Commits</a></li>
+
+          <li class=""><a href="/adzap/date_time_text_field_helpers/info/feed">Info</a></li>
+
+          <li class=""><a href="/adzap/date_time_text_field_helpers/wikis">Wiki (1)</a></li>
+
+          <li class=""><a href="/adzap/date_time_text_field_helpers/network">Network (1)</a></li>
+
+          
+
+        
+      </ul>
+    </div>
+  </div>
+
+  <div id="repo_sub_menu">
+    <div class="site">
+      <div class="joiner"></div>
+      
+
+      
+
+      
+        <ul>
+          <li>
+            <a class="active" href="/adzap/date_time_text_field_helpers/tree/c84d0e726368579f8f9a5e5ac4c6711d02268c70">master</a>
+          </li>
+          <li>
+            <a href="#">all branches</a>
+            <ul>
+              
+                <li><a href="/adzap/date_time_text_field_helpers/tree/master">master</a></li>
+              
+            </ul>
+          </li>
+          <li>
+            <a href="#">all tags</a>
+            
+          </li>
+        </ul>
+
+      
+    </div>
+  </div>
+
+  <div class="site">
+    
+
+<div id="repos">
+  
+
+
+<div class="repo public">
+  <div class="title">
+    <div class="path">
+      <a href="/adzap">adzap</a> / <b><a href="/adzap/date_time_text_field_helpers/tree">date_time_text_field_helpers</a></b>
+
+      
+
+        
+
+        
+          
+
+          
+            
+            <a href="/signup"><img alt="fork" class="button" src="/images/modules/repos/fork_button.png?67996ad334292e989965d721bfb0c0abd6f9efdb" /></a> 
+          
+        
+
+        <a href="/signup" class="toggle_watch"><img alt="watch" class="button" src="/images/modules/repos/watch_button.png?67996ad334292e989965d721bfb0c0abd6f9efdb" /></a><a href="/signup" class="toggle_watch" style="display:none;"><img alt="watch" class="button" src="/images/modules/repos/unwatch_button.png?67996ad334292e989965d721bfb0c0abd6f9efdb" /></a>
+
+        
+          <a href="/adzap/date_time_text_field_helpers/tarball/master" id="download_button" rel="/adzap/date_time_text_field_helpers/downloads/master"><img alt="download tarball" class="button" src="/images/modules/repos/download_button.png?67996ad334292e989965d721bfb0c0abd6f9efdb" /></a> 
+        
+      
+    </div>
+
+    <div class="security private_security" style="display:none">
+      <a href="#private_repo" rel="facebox"><img src="/images/icons/private.png" alt="private" /></a>
+    </div>
+
+    <div id="private_repo" class="hidden">
+      This repository is private.  
+      All pages are served over SSL and all pushing and pulling is done over SSH.
+      No one may fork, clone, or view it unless they are added as a <a href="/adzap/date_time_text_field_helpers/edit/collaborators">member</a>.
+
+      <br/>
+      <br/>
+      Every repository with this icon (<img src="/images/icons/private.png" alt="private" />) is private.
+    </div>
+
+    <div class="security public_security" style="">
+      <a href="#public_repo" rel="facebox"><img src="/images/icons/public.png" alt="public" /></a>
+    </div>
+
+    <div id="public_repo" class="hidden">
+      This repository is public.
+      Anyone may fork, clone, or view it.
+
+      <br/>
+      <br/>
+      Every repository with this icon (<img src="/images/icons/public.png" alt="public" />) is public.
+    </div>
+
+    
+
+    
+  </div>
+  <div class="meta">
+    <table>
+      
+      
+        <tr>
+          <td class="label">Description:</td>
+          <td>
+            <span id="repository_description" rel="/adzap/date_time_text_field_helpers/edit/update" class="">Rails form helpers for dates and times to be entered in text input fields rather than using the standard select lists</span> 
+            
+          </td>
+        </tr>
+      
+      
+      
+        <tr>
+          <td class="label">Clone&nbsp;URL:</td>
+          
+          <td>
+            <a href="git://github.com/adzap/date_time_text_field_helpers.git" class="git_url_facebox" rel="#git-clone">git://github.com/adzap/date_time_text_field_helpers.git</a>
+            <div id="git-clone" style="display:none;">
+              Give this clone URL to anyone.
+              <br/>
+              <code>git clone git://github.com/adzap/date_time_text_field_helpers.git </code>
+            </div>
+          </td>
+        </tr>
+      
+      
+      
+      <tr>
+        <td class="label">Search Repo:</td>
+        <td>
+          <form action="/adzap/date_time_text_field_helpers/search" method="get">
+            <input type="text" name="q" value="" /> <select name="choice"><option value="code">Code</option><option value="grep">Commit Messages</option><option value="author">Author</option><option value="committer">Committer</option></select>
+            <input type="submit" value="Go" />
+          </form>
+        </td>
+      </tr>
+    </table>
+    
+      </div>
+</div>
+
+</div>
+
+<div id="commit">
+  <div class="group">
+    <div class="envelope commit">
+  <div class="human">
+    
+      <div class="message"><pre><a href="/adzap/date_time_text_field_helpers/commit/c84d0e726368579f8f9a5e5ac4c6711d02268c70">moved examples into seperate spec files per module</a> </pre></div>
+    
+
+    <div class="actor">
+      <div class="gravatar">
+        
+        <img alt="" height="30" src="http://www.gravatar.com/avatar/21126416f8a3de608f82069ab943a336?s=30&amp;d=http%3A%2F%2Fgithub.com%2Fimages%2Fgravatars%2Fgravatar-30.png" width="30" />
+      </div>
+      <div class="name"><a href="/adzap">adzap</a> <span>(author)</span></div>
+        <div class="date">
+          <abbr class="relatize" title="2008-07-11 23:01:17">Fri Jul 11 23:01:17 -0700 2008</abbr> 
+        </div>
+    </div>
+
+    
+
+  </div>
+  <div class="machine">
+    <span>c</span>ommit&nbsp;&nbsp;<a href="/adzap/date_time_text_field_helpers/commit/c84d0e726368579f8f9a5e5ac4c6711d02268c70" hotkey="c">c84d0e726368579f8f9a5e5ac4c6711d02268c70</a><br />
+    <span>t</span>ree&nbsp;&nbsp;&nbsp;&nbsp;<a href="/adzap/date_time_text_field_helpers/tree/c84d0e726368579f8f9a5e5ac4c6711d02268c70" hotkey="t">c731fc294dc617b3d7e81b6dd96a58eb7fb7457f</a><br />
+
+    
+      <span>p</span>arent&nbsp;
+      
+      <a href="/adzap/date_time_text_field_helpers/tree/2e11dbf1211e5b55af5401f45f41f2dd485dea40" hotkey="p">2e11dbf1211e5b55af5401f45f41f2dd485dea40</a>
+    
+
+  </div>
+</div>
+
+  </div>
+</div>
+
+
+
+  
+    <div id="path">
+      <b><a href="/adzap/date_time_text_field_helpers/tree">date_time_text_field_helpers</a></b> / 
+    </div>
+
+    
+      
+<div id="browser"> 
+  <table cellpadding="0" cellspacing="0">
+    <tr>
+      <th></th>
+      <th>name</th>
+      <th>age</th>
+      <th>
+        <div class="history">
+          <a href="/adzap/date_time_text_field_helpers/commits/master/">history</a>
+        </div>
+        message
+      </th>
+    </tr>
+
+    
+
+    
+      <tr class="alt">
+        <td class="icon"> <img alt="folder" src="/images/icons/txt.png?67996ad334292e989965d721bfb0c0abd6f9efdb" /> </td>
+        <td> <a href="/adzap/date_time_text_field_helpers/tree/master/CHANGELOG">CHANGELOG</a> </td>
+        <td> <span class="relatize">Fri Jul 11 23:00:17 -0700 2008</span> </td>
+        <td> <a href="/adzap/date_time_text_field_helpers/commit/2e11dbf1211e5b55af5401f45f41f2dd485dea40" class="message">refactored into modules to better plugin design...</a> [<a href="/adzap">adzap</a>] </td>
+      </tr>
+    
+      <tr class="">
+        <td class="icon"> <img alt="folder" src="/images/icons/txt.png?67996ad334292e989965d721bfb0c0abd6f9efdb" /> </td>
+        <td> <a href="/adzap/date_time_text_field_helpers/tree/master/MIT-LICENSE">MIT-LICENSE</a> </td>
+        <td> <span class="relatize">Wed Feb 20 21:05:53 -0800 2008</span> </td>
+        <td> <a href="/adzap/date_time_text_field_helpers/commit/fb6f38c26b82a24db7f92dbfd0b6d135586e1e1f" class="message">initial import of file</a> [adam.meehan] </td>
+      </tr>
+    
+      <tr class="alt">
+        <td class="icon"> <img alt="folder" src="/images/icons/txt.png?67996ad334292e989965d721bfb0c0abd6f9efdb" /> </td>
+        <td> <a href="/adzap/date_time_text_field_helpers/tree/master/README">README</a> </td>
+        <td> <span class="relatize">Tue Jun 17 04:28:29 -0700 2008</span> </td>
+        <td> <a href="/adzap/date_time_text_field_helpers/commit/16723e740ea75c93803d40b029b6610c4a06467a" class="message">updated README for move to github</a> [<a href="/adzap">adzap</a>] </td>
+      </tr>
+    
+      <tr class="">
+        <td class="icon"> <img alt="folder" src="/images/icons/txt.png?67996ad334292e989965d721bfb0c0abd6f9efdb" /> </td>
+        <td> <a href="/adzap/date_time_text_field_helpers/tree/master/Rakefile">Rakefile</a> </td>
+        <td> <span class="relatize">Fri Jul 11 23:00:17 -0700 2008</span> </td>
+        <td> <a href="/adzap/date_time_text_field_helpers/commit/2e11dbf1211e5b55af5401f45f41f2dd485dea40" class="message">refactored into modules to better plugin design...</a> [<a href="/adzap">adzap</a>] </td>
+      </tr>
+    
+      <tr class="alt">
+        <td class="icon"> <img alt="folder" src="/images/icons/txt.png?67996ad334292e989965d721bfb0c0abd6f9efdb" /> </td>
+        <td> <a href="/adzap/date_time_text_field_helpers/tree/master/init.rb">init.rb</a> </td>
+        <td> <span class="relatize">Fri Jul 11 23:00:17 -0700 2008</span> </td>
+        <td> <a href="/adzap/date_time_text_field_helpers/commit/2e11dbf1211e5b55af5401f45f41f2dd485dea40" class="message">refactored into modules to better plugin design...</a> [<a href="/adzap">adzap</a>] </td>
+      </tr>
+    
+      <tr class="">
+        <td class="icon"> <img alt="folder" src="/images/icons/dir.png?67996ad334292e989965d721bfb0c0abd6f9efdb" /> </td>
+        <td> <a href="/adzap/date_time_text_field_helpers/tree/master/javascripts">javascripts/</a> </td>
+        <td> <span class="relatize">Sun May 25 03:59:17 -0700 2008</span> </td>
+        <td> <a href="/adzap/date_time_text_field_helpers/commit/cc8b8eb500988a9638fabff64699827924c7e1e9" class="message">fixed specs for FormBuilder class instance meth...</a> [adam.meehan] </td>
+      </tr>
+    
+      <tr class="alt">
+        <td class="icon"> <img alt="folder" src="/images/icons/dir.png?67996ad334292e989965d721bfb0c0abd6f9efdb" /> </td>
+        <td> <a href="/adzap/date_time_text_field_helpers/tree/master/lib">lib/</a> </td>
+        <td> <span class="relatize">Fri Jul 11 23:00:17 -0700 2008</span> </td>
+        <td> <a href="/adzap/date_time_text_field_helpers/commit/2e11dbf1211e5b55af5401f45f41f2dd485dea40" class="message">refactored into modules to better plugin design...</a> [<a href="/adzap">adzap</a>] </td>
+      </tr>
+    
+      <tr class="">
+        <td class="icon"> <img alt="folder" src="/images/icons/dir.png?67996ad334292e989965d721bfb0c0abd6f9efdb" /> </td>
+        <td> <a href="/adzap/date_time_text_field_helpers/tree/master/spec">spec/</a> </td>
+        <td> <span class="relatize">Fri Jul 11 23:01:17 -0700 2008</span> </td>
+        <td> <a href="/adzap/date_time_text_field_helpers/commit/c84d0e726368579f8f9a5e5ac4c6711d02268c70" class="message">moved examples into seperate spec files per module</a> [<a href="/adzap">adzap</a>] </td>
+      </tr>
+    
+  </table>
+</div>
+
+<div id="readme"><span class="name">README</span><div class="plain"><pre>= date_time_text_field_helpers
+
+Apart from possibly the longest plugin name ever, these are a set of form helpers 
+that use text fields instead of select dropdowns the standard Rails date form 
+helpers use. Each date/time component gets its own text field which enables 
+quicker entry using the keyboard while still using the built in Rails 
+multi-parameter field handling.
+
+Something I like about this plugin (coz I wanted the feature) is that it always 
+returns the user entered values when a form is redisplayed. This means that if
+the user enters garbage or an invalid date (requires date validation with 
+something like validates_date_time plugin), when form is redisplayed the values
+are as the user entered. This is so they can understand what they stuffed up 
+rather than just blank or a shifted date value which you get when you enter 30th
+February and have a date in March returned when using date_select. The shifted 
+date is particularly dangerous if the user just clicks save again and doesn't 
+pay attention.
+
+
+== Features
+
+* Allows easier keyboard entry of dates but with some constraint versus the open
+  single text field approach.
+
+* Easily add javascript behaviours to enable auto tabbing between fields (see 
+  javascripts folder in this plugin).
+
+* Returns user entered values if form redisplayed due to invalid date to aid 
+  user correction.
+
+* Harnesses the power of Ruby on Rails to maximize your potential to be the
+  person you really want to be.
+
+
+== Usage
+
+So instead of:
+  
+  date_select :person, :date_of_birth
+  
+  or 
+  
+  time_select :person, :time_of_birth
+  
+  or
+  
+  datetime_select :person, :date_and_time_of_birth
+
+use:
+  
+  date_text_field :person, :date_of_birth
+  
+  or
+  
+  time_text_field :person, :time_of_birth
+  
+  or
+  
+  datetime_text_field :person, :date_and_time_of_birth
+
+
+== Example
+
+The helper return the date parts as text fields i.e.
+
+  date_text_field :person, :date_of_birth, :order =&gt; [:day, :month, :year], :blank =&gt; true
+  
+returns this for a new person record
+
+  &lt;span id=&quot;person_date_of_birth&quot; class=&quot;date_time_field&quot;&gt;
+    &lt;input id=&quot;person_date_of_birth_3i&quot; class=&quot;day_field&quot; type=&quot;text&quot; value=&quot;&quot; size=&quot;1&quot; 
+    name=&quot;person[date_of_birth(3i)]&quot;/&gt;
+    -
+    &lt;input id=&quot;person_date_of_birth_2i&quot; class=&quot;month_field&quot; type=&quot;text&quot; value=&quot;&quot; size=&quot;1&quot; 
+    name=&quot;person[date_of_birth(2i)]&quot;/&gt;
+    -
+    &lt;input id=&quot;person_date_of_birth_1i&quot; class=&quot;year_field&quot; type=&quot;text&quot; value=&quot;&quot; size=&quot;3&quot; 
+    name=&quot;person[date_of_birth(1i)]&quot;/&gt;
+  &lt;/span&gt;  
+
+
+== Options
+
+Most of the options which can be used with the standard Rails date helpers apply
+including :order, :default, :include_seconds and so on.
+
+A few new options are:
+
+  :date_separator - Sets the character displayed between the date components
+                    
+  :time_separator - guess
+  
+  :date_time_separator - the separator between the date and the time parts
+                
+  :blank - acts like :include_blank option to use blank fields rather than the
+           default current date/time if the column has no value yet.
+
+
+== Resources
+
+* javascripts/date_time_field_autotab.js 
+    copy over to your apps javascripts folder or copy/paste into application.js
+
+
+== Info
+
+Site for the plugin is just the googlecode site
+  <a href="http://github.com/adzap/date_time_text_field_helpers/">http://github.com/adzap/date_time_text_field_helpers/</a>
+
+
+== Test/Specs
+
+Only Rspec specs are included and can be run standalone outside a rails app
+
+  rake spec
+
+
+== Credits
+
+* It is mostly adapted from the Rails source so props to DHH et al.
+* Adam Meehan (adam.meehan at gmail.com)
+  
+== Copyright/License
+
+Copyright (c) 2008 Adam Meehan, released under the MIT license
+</pre></div></div>
+
+    
+  
+
+
+  </div>
+
+      
+      
+      <div class="push"></div>
+    </div>
+    
+    <div id="footer">
+      <div class="site">
+        <div class="info">
+          <div class="links">
+            <a href="http://github.com/blog"><strong>Blog</strong></a> |
+            <a href="http://groups.google.com/group/github/">Google Group</a> | 
+            <a href="http://logicalawesome.lighthouseapp.com/projects/8570/home">Report a Bug</a> |
+            <a href="http://logicalawesome.lighthouseapp.com/projects/8570/home">Request a Feature</a> |
+            <a href="mailto:support@github.com">Contact</a> | 
+            <a href="http://github.wordpress.com">Status</a>
+          </div>
+          <div class="company">
+            <span id="_rrt" title="0.51929s from github.com">GitHub</span>
+            is <a href="http://logicalawesome.com/">Logical Awesome</a> | &copy;2008 | <a href="/site/terms">Terms of Service</a> | <a href="/site/privacy">Privacy Policy</a>
+          </div>
+        </div>
+        <div class="sponsor">
+          <a href="http://engineyard.com">Hosting provided by</a>&nbsp;
+          <a href="http://engineyard.com">
+            <img src="/images/modules/footer/engine_yard_logo.gif" alt="Hosted by Engine Yard" />
+          </a>
+        </div>
+      </div>
+    </div>
+    
+    <div id="coming_soon" style="display:none;">
+      This feature is coming soon.  Sit tight!
+    </div>
+        <script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+    var pageTracker = _gat._getTracker("UA-3769691-2");
+    pageTracker._initData();
+    pageTracker._trackPageview();
+    </script>
+
+  </body>
+</html>
+

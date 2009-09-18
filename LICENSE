@@ -1,0 +1,17 @@
+Copyright 2007 - 2009 The Institute for Sustainable Building Performance (SuPerB). Licensed under the Open Software License version 3.0.
+
+Credits:  Software concept and direction, Joseph J. Deringer.  Downloadable client-component software development, McQuillen Interactive LLC.  3D graphics in client software by Killer3D.  Web-based administrative / instructor component software development, McQuillen Interactive LLC with assistance from GoHalon.com LCC and from Martian Interactive LLC. SPARK and EnergyPLus Simulations, HVAC component simulation models and related software development by Lawrence Berkeley National Laboratory (LBNL), directed by Philip Haves, PhD, development by Brian Coffey.
+Adobe's library, Cairngorm, is used within Learn HVAC as a framework. Cairngorm’s license and disclaimer are included immediately below.
+
+
+Cairngorm License
+Copyright (c) 2007 - 2009 Adobe  All rights reserved.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
+Exemptions: The SPARK program and the SPARK-based simulation models are owned by LBNL and are excluded from this license.  The EnergyPlus program is owned by the US Department of Energy and is excluded from license. The prototype model input file to EnergyPlus for a large office building has been developed by two national laboratories and is excluded from this license.

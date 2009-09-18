@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<weborbConfig>
+	
+	<classMappings>
+        <classMapping>
+            <clientClass>flex.messaging.messages.CommandMessage</clientClass>
+            <serverClass>ReqMessage</serverClass>
+            <source>weborb.v3types.ReqMessage</source>
+        </classMapping>
+        <classMapping>
+            <clientClass>flex.messaging.messages.RemotingMessage</clientClass>
+            <serverClass>ReqMessage</serverClass>
+            <source>weborb.v3types.ReqMessage</source>
+        </classMapping>
+        <classMapping>
+            <clientClass>flex.messaging.messages.AcknowledgeMessage</clientClass>
+            <serverClass>AckMessage</serverClass>
+            <source>weborb.v3types.AckMessage</source>
+        </classMapping>
+        <classMapping>
+            <clientClass>flex.messaging.messages.ErrorMessage</clientClass>
+            <serverClass>ErrMessage</serverClass>
+            <source>weborb.v3types.ErrMessage</source>
+        </classMapping>
+        <classMapping>
+            <clientClass>weborb.tests.Employee</clientClass>
+            <serverClass>Employee</serverClass>
+            <source>weborb.tests.Employee</source>
+        </classMapping>
+        <classMapping>
+          <clientClass>flex.messaging.io.ObjectProxy</clientClass>
+          <serverClass>ObjectProxy</serverClass>
+          <source>weborb.v3types.ObjectProxy</source>
+        </classMapping> 
+ 	</classMappings>
+ 	
+    <security>
+    	<authenticationHandler>weborb.security.WebORBAuthenticationHandler</authenticationHandler>
+    	<!-- 
+    	<secureResources>
+        	<secureResource destinationId="FlexRemotingTest">
+         		<constraintName>authentication</constraintName>
+      		</secureResource>
+    	</secureResources>
+    	 -->
+    </security>
+ 	
+ 	<acl>
+	  <user>
+		<name>admin</name>
+		<password>changeme</password>
+		<role>administrator</role>
+	  </user>
+    </acl>
+ 	
+</weborbConfig>

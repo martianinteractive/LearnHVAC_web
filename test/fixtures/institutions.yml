@@ -1,0 +1,20 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+# The "all" institution is used to provide superadmin with full functions on the instructor site.
+# It also provides a base mapping for systemvariables and scenarios, such that they can be copied
+# into a new institution when it is created
+
+administration:
+    name: Administration
+    description: Holds reference information for data (e.g. system variables, scenarios, etc)   
+
+laney:
+    name: Laney College
+
+cec:
+    name: CEC
+  
+public:
+    name: Public Access
+    description: Public access is provided by giving accounts in this directory
+

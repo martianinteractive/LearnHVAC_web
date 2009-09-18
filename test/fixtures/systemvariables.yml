@@ -1,0 +1,6269 @@
+
+
+VAVHCTp: 
+  
+  max_value: "200"
+  name: VAVHCTp
+  global_disable: "0"
+  default_value: "20"
+  is_fault: "0"
+  si_to_ip: SI*1.8+32
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "-100"
+  notes: ""
+  subsection: ""
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: F
+  description: Value of the room temperature sensor 
+  component_id: "5"
+  node_sequence: "100"
+  display_name: Room Temperature Sensor
+  zone_position: ""
+  left_label: ""
+  unit_si: C
+  
+HCTLiqEntValve:
+  
+  max_value: "100"
+  name: HCTLiqEntValve
+  global_disable: "1"
+  default_value: "0"
+  is_fault: "0"
+  si_to_ip: SI*1.8+32
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "-100"
+  notes: ""
+  subsection: ""
+  id: "12"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: F
+  description: Water Temperature entering 3-way valve (returning from Heating Coil)
+  component: HC
+  node_sequence: "100"
+  display_name: Water Temp entering Valve
+  zone_position: ""
+  left_label: ""
+  unit_si: C
+  
+VAVHCq: 
+  
+  max_value: 1e+10
+  name: VAVHCq
+  global_disable: "0"
+  default_value: "0"
+  is_fault: "0"
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: -1e+10
+  notes: ""
+  subsection: ""
+  id: "207"
+  fault_widget_type: ""
+  right_label: ""
+  description: Rate of heat transfer from water to air in the reheat coil
+  component_id: "5"
+  node_sequence: "100"
+  display_name: Reheat Coil Duty
+  zone_position: ""
+  left_label: ""
+  unit_si: W
+  si_to_ip: SI*0.2931
+  unit_ip: Btu/h
+  
+
+  
+MXRAPosDamperReal: 
+  
+  max_value: "1"
+  name: MXRAPosDamperReal
+  global_disable: "0"
+  default_value: "0"
+  is_fault: "0"
+  si_to_ip: 
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "0"
+  notes: ""
+  subsection: ""
+  id: "120"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: ""
+  description: Actual position of the outside air damper in the mixing box (0-1)
+  component_id: "4"
+  node_sequence: "100"
+  display_name: Return Air Damper Position (Actual)
+  zone_position: ""
+  left_label: ""
+  unit_si: ""
+  
+systemvariables_202: 
+  
+  max_value: "1"
+  name: VAVHCpos
+  global_disable: "0"
+  default_value: "0"
+  is_fault: "0"
+  si_to_ip: 
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "0"
+  notes: ""
+  subsection: ""
+  id: "208"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: ""
+  description: Demanded position of reheat coil control valve actuator, in the range 0-1.
+  component_id: "5"
+  node_sequence: "100"
+  display_name: Reheat Coil Control Signal (0-1)
+  zone_position: ""
+  left_label: ""
+  unit_si: ""
+  
+
+systemvariables_040:
+   
+  max_value: "200"
+  name: CCTAirEnt
+  global_disable: "0"
+  default_value: "0"
+  is_fault: "0"
+  si_to_ip: SI*1.8+32
+  unit_ip: F
+  unit_si: C
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "-100"
+  notes: ""
+  subsection: ""
+  id: "40"
+  fault_widget_type: ""
+  right_label: ""
+  description: Dry bulb temperature of the air entering the cooling coil
+  component_id: "2"
+  node_sequence: "100"
+  display_name: Cooling Coil Entering Air Temperature
+  zone_position: ""
+  left_label: ""
+  
+systemvariables_121:
+   
+  max_value: "1"
+  name: MXEAPosDamperReal
+  global_disable: "0"
+  default_value: "0.2"
+  is_fault: "0"
+  si_to_ip: 
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "0"
+  notes: ""
+  subsection: ""
+  id: "121"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: ""
+  description: Actual position of the exhaust air damper in the mixing box, in the range 0-1
+  component_id: "4"
+  node_sequence: "100"
+  display_name: Exhaust Air Damper Position (Actual)
+  zone_position: ""
+  left_label: ""
+  unit_si: ""
+  
+systemvariables_203:
+   
+  max_value: "1"
+  name: VAVHCposReal
+  global_disable: "0"
+  default_value: "0"
+  is_fault: "0"
+  si_to_ip: 
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "0"
+  notes: ""
+  subsection: ""
+  id: "209"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: ""
+  description: |
+    Actual position of the reheat coil control valve, in the range 0-1
+
+  component_id: "5"
+  node_sequence: "100"
+  display_name: Reheat Coil Valve Position (0-1)
+  zone_position: ""
+  left_label: ""
+  unit_si: ""
+  
+
+systemvariables_041: 
+  
+  max_value: "200"
+  name: CCTwAirEnt
+  global_disable: "0"
+  default_value: "0"
+  is_fault: "0"
+  si_to_ip: SI*1.8+32
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "-100"
+  notes: ""
+  subsection: ""
+  id: "41"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: F
+  description: Wet bulb temperature of air entering cooling coil
+  component_id: "2"
+  node_sequence: "100"
+  display_name: Cooling Coil Entering Air Wet Bulb Temperature
+  zone_position: ""
+  left_label: ""
+  unit_si: C
+  
+systemvariables_122:
+   
+  max_value: "200"
+  name: MXTMixReal
+  global_disable: "0"
+  default_value: "15"
+  is_fault: "0"
+  si_to_ip: SI*1.8+32
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "-100"
+  notes: ""
+  subsection: ""
+  id: "122"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: F
+  description: Actual value of the mixed air temperature
+  component_id: "4"
+  node_sequence: "100"
+  display_name: Mixed Air Temperature (Actual)
+  zone_position: ""
+  left_label: ""
+  unit_si: C
+  
+systemvariables_230: 
+  
+  max_value: "20000"
+  name: RmQSENS
+  global_disable: "0"
+  default_value: 1000
+  is_fault: "0"
+  si_to_ip: SI*0.2931
+  typeID: INPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "-10000"
+  notes: New default value set by Deringer on 14Sep07 based on value specified by Peng.
+  subsection: ""
+  id: "237"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: Btu/h
+  description: Room heating due to solar heat gain and internal gains from equipment, people, lights etc.
+  component_id: "8"
+  node_sequence: "6"
+  display_name: Room Heat Gain
+  zone_position: ""
+  left_label: ""
+  unit_si: W
+  
+systemvariables_204:
+   
+  max_value: "100000"
+  name: VAVHCUA
+  global_disable: "0"
+  default_value: "300"
+  is_fault: "0"
+  si_to_ip: SI*1.895
+  typeID: INPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "0"
+  notes: New default value of 300.0 set by Deringer on 14Sep07 based on value specified by Peng.
+  subsection: ""
+  id: "210"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: Btu/hr.oF
+  description: Reheat coil overall heat transfer coefficient (U) x reheat coil area (A) - determined from rated duty and rated log mean temperature difference from manufacturer's data
+  component_id: "5"
+  node_sequence: "100"
+  display_name: Reheat Coil UA
+  zone_position: ""
+  left_label: ""
+  unit_si: W/oC
+
+
+systemvariables_042: 
+  
+  max_value: "1"
+  name: CCwTAirEnt
+  global_disable: "1"
+  default_value: "0"
+  is_fault: "0"
+  si_to_ip: 
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "0"
+  notes: ""
+  subsection: ""
+  id: "42"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: ""
+  description: Air absolute humidity ratio Entering
+  component_id: "2"
+  node_sequence: "100"
+  display_name: Air absolute humidity ratio Entering
+  zone_position: ""
+  left_label: ""
+  unit_si: ""
+  
+systemvariables_123: 
+  
+  max_value: "200"
+  name: MXTp
+  global_disable: "0"
+  default_value: "15"
+  is_fault: "0"
+  si_to_ip: SI*1.8+32
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "-100"
+  notes: ""
+  subsection: ""
+  id: "123"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: F
+  description: Value of mixed air temperature sensor reading
+  component_id: "4"
+  node_sequence: "100"
+  display_name: Mixed Air Temperature Sensor
+  zone_position: ""
+  left_label: ""
+  unit_si: C
+  
+systemvariables_231: 
+  
+  max_value: "1"
+  name: Fanbias
+  global_disable: "0"
+  default_value: "0"
+  is_fault: "0"
+  si_to_ip: 
+  typeID: INPUT
+  lock_version: "1"
+  is_percentage: "0"
+  min_value: "0"
+  notes: New variable and default set by Haves 06Oct07.
+  subsection: ""
+  id: "238"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: ""
+  description: Controller output to the fan in manual override or at start-up.
+  component_id: "3"
+  node_sequence: "100"
+  display_name: Fan Speed Controller Output Bias
+  zone_position: ""
+  left_label: ""
+  unit_si: ""
+
+  
+systemvariables_043: 
+  
+  max_value: "200"
+  name: CCTAirLvg
+  global_disable: "0"
+  default_value: "0"
+  is_fault: "0"
+  si_to_ip: SI*1.8+32
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "-100"
+  notes: ""
+  subsection: ""
+  id: "43"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: F
+  description: Dry bulb temperature of the air leaving the cooling coil
+  component_id: "2"
+  node_sequence: "100"
+  display_name: Cooling Coil Leaving Air Temperature
+  zone_position: ""
+  left_label: ""
+  unit_si: C
+  
+systemvariables_124: 
+  
+  max_value: "1"
+  name: MXPos
+  global_disable: "0"
+  default_value: "0.2"
+  is_fault: "0"
+  si_to_ip: 
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "0"
+  notes: ""
+  subsection: ""
+  id: "124"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: ""
+  description: Output of the economizer controller (0-1) - used to determine the demanded positions of the mixing box dampers.
+  component_id: "4"
+  node_sequence: "100"
+  display_name: Economiser Control Signal
+  zone_position: ""
+  left_label: ""
+  unit_si: ""
+  
+systemvariables_150: 
+  
+  max_value: "100"
+  name: VAVDAMPTr
+  global_disable: "0"
+  default_value: "1"
+  is_fault: "0"
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "0"
+  notes: ""
+  subsection: ""
+  id: "156"
+  fault_widget_type: ""
+  right_label: ""
+  description: Air flow rate through the VAV box
+  component_id: "5"
+  node_sequence: "100"
+  display_name: VAV Box Air Flow Rate
+  zone_position: ""
+  left_label: ""
+  unit_si: kg/s
+  si_to_ip: SI*1765.7
+  unit_ip: CFM
+  
+systemvariables_232: 
+  
+  max_value: "50"
+  name: TRoomSPDB
+  global_disable: "1"
+  default_value: "4"
+  is_fault: "0"
+  si_to_ip: SI*1.895
+  typeID: INPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "-20"
+  notes: Changed per suggestions by P. Haves [jjd; 6Oct07]
+  subsection: ""
+  id: "239"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: F
+  description: Room Temp SetPoint DeadBand (Not currently used)
+  component_id: "8"
+  node_sequence: "5"
+  display_name: Room Temp SetPoint Deadband
+  zone_position: ""
+  left_label: ""
+  unit_si: C
+  
+systemvariables_044: 
+  
+  max_value: "200"
+  name: CCTwAirLvg
+  global_disable: "0"
+  default_value: "0"
+  is_fault: "0"
+  si_to_ip: SI*1.8+32
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "-100"
+  notes: ""
+  subsection: ""
+  id: "44"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: F
+  description: Wet bulb temperature of the air leaving the cooling coil
+  component_id: "2"
+  node_sequence: "100"
+  display_name: Cooling Coil Leaving Air Wet Bulb Temperature
+  zone_position: ""
+  left_label: ""
+  unit_si: C
+  
+systemvariables_070:
+   
+  max_value: 1e+10
+  name: CCqTot
+  global_disable: "0"
+  default_value: "0"
+  is_fault: "0"
+  si_to_ip: SI*0.2931
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: -1e+10
+  notes: ""
+  subsection: ""
+  id: "70"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: Btu/h
+  description: Rate of total heat transfer from water to air in the coil - sensible + latent, equals rate at which heat added to the water
+  component_id: "2"
+  node_sequence: "100"
+  display_name: Cooling Coil Total Duty
+  zone_position: ""
+  left_label: ""
+  unit_si: W
+  
+systemvariables_125: 
+  
+  max_value: "200"
+  name: MXTs
+  global_disable: "0"
+  default_value: "15"
+  is_fault: "0"
+  si_to_ip: SI*1.8+32
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "-100"
+  notes: ""
+  subsection: ""
+  id: "125"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: F
+  description: Set-point for the economizer controller, which controls the temperature of the air leaving the mixing box.
+  component_id: "4"
+  node_sequence: "100"
+  display_name: Mixed Air Set-point Temperature
+  zone_position: ""
+  left_label: ""
+  unit_si: C
+  
+systemvariables_151: 
+  
+  max_value: "100"
+  name: VAVDAMPTp
+  global_disable: "0"
+  default_value: "1"
+  is_fault: "0"
+  si_to_ip: SI*1765.7
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "0"
+  notes: ""
+  subsection: ""
+  id: "157"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: CFM
+  description: Reading of the VAV box air flow rate sensor
+  component_id: "5"
+  node_sequence: "100"
+  display_name: VAV Box Air Flow Rate Sensor
+  zone_position: ""
+  left_label: ""
+  unit_si: kg/s
+  
+systemvariables_205: 
+  
+  max_value: "1"
+  name: VAVHCStatus
+  global_disable: "0"
+  default_value: "1"
+  is_fault: "0"
+  si_to_ip: 
+  typeID: INPUT
+  lock_version: "1"
+  is_percentage: "0"
+  min_value: "0"
+  notes: Haves 11/24/07
+  subsection: ""
+  id: "211"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: ""
+  description: Reaheat coil is enabled (1) or disabled (0)
+  component_id: "5"
+  node_sequence: "100"
+  display_name: Reheat Coil Enable/Disable
+  zone_position: ""
+  left_label: ""
+  unit_si: ""
+  
+systemvariables_233:
+   
+  max_value: "30"
+  name: TSupSensorOffset
+  global_disable: "0"
+  default_value: "0"
+  is_fault: "0"
+  si_to_ip: SI*1.8
+  typeID: INPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "-30"
+  notes: ""
+  subsection: ""
+  id: "240"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: F
+  description: Calibration error in the supply air temperature sensor
+  component_id: "8"
+  node_sequence: "100"
+  display_name: Supply Air Temperature Sensor Offset
+  zone_position: ""
+  left_label: ""
+  unit_si: C
+  
+
+systemvariables_045: 
+  
+  max_value: "1"
+  name: CCwAirLvg
+  global_disable: "0"
+  default_value: "0.005"
+  is_fault: "0"
+  si_to_ip: 
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "0"
+  notes: ""
+  subsection: ""
+  id: "45"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: ""
+  description: Humidity ratio of air leaving cooling coil
+  component_id: "2"
+  node_sequence: "100"
+  display_name: Cooling Coil Leaving Air Humidity Ratio
+  zone_position: ""
+  left_label: ""
+  unit_si: ""
+  
+systemvariables_071: 
+  
+  max_value: "100000"
+  name: CCUA
+  global_disable: "0"
+  default_value: "8000"
+  is_fault: "0"
+  si_to_ip: SI*1.895
+  typeID: INPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "0"
+  notes: Set to new default value on 14Sep07 by Deringer, as specified by Peng's email.
+  subsection: ""
+  id: "71"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: Btu/hr.oF
+  description: Cooling coil overall heat transfer coefficient (U) x cooling coil area (A)
+  component_id: "2"
+  node_sequence: "4"
+  display_name: Cooling Coil UA
+  zone_position: ""
+  left_label: ""
+  unit_si: W/oC
+  
+
+  
+systemvariables_152: 
+  
+  max_value: "1"
+  name: VAVDAMPos
+  global_disable: "0"
+  default_value: "0"
+  is_fault: "0"
+  si_to_ip: 
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "0"
+  notes: ""
+  subsection: ""
+  id: "158"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: ""
+  description: Demanded position of the VAV box damper(0=closed, 1=fully open)
+  component_id: "5"
+  node_sequence: "100"
+  display_name: VAV Damper Control Signal
+  zone_position: ""
+  left_label: ""
+  unit_si: ""
+  
+systemvariables_206: 
+  
+  max_value: "1000"
+  name: FltmAirEnt
+  global_disable: "0"
+  default_value: "0"
+  is_fault: "0"
+  si_to_ip: SI*1765.7
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "0"
+  notes: 
+  subsection: 
+  id: "213"
+  fault_widget_type: 
+  right_label: 
+  unit_ip: CFM
+  description: Air mass flow rate
+  component_id: "6"
+  node_sequence: "100"
+  display_name: Air mass flow rate Leaving
+  zone_position: 
+  left_label: 
+  unit_si: kg/s
+  
+
+  
+systemvariables_046: 
+  
+  max_value: "1000"
+  name: CCmAirEnt
+  global_disable: "0"
+  default_value: "0"
+  is_fault: "0"
+  si_to_ip: SI*1765.7
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "0"
+  notes: ""
+  subsection: ""
+  id: "46"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: CFM
+  description: Air flow rate through the cooling coil
+  component_id: "2"
+  node_sequence: "100"
+  display_name: Cooling Coil Air Flow Rate
+  zone_position: ""
+  left_label: ""
+  unit_si: kg/s
+  
+systemvariables_072: 
+  
+  max_value: "1"
+  name: CCStuckValve
+  global_disable: "0"
+  default_value: "-999"
+  is_fault: "1"
+  si_to_ip: 
+  typeID: INPUT
+  lock_version: "0"
+  is_percentage: "1"
+  min_value: "0"
+  notes: ""
+  subsection: VALVE
+  id: "72"
+  fault_widget_type: SLIDER
+  right_label: Stuck 100%
+  unit_ip: ""
+  description: The position at which the control valve stem is stuck
+  component_id: "2"
+  node_sequence: "100"
+  display_name: Stuck Cooling Coil Valve
+  zone_position: NO_GRADIENT
+  left_label: Stuck 0%
+  unit_si: ""
+
+  
+systemvariables_153: 
+  
+  max_value: "1"
+  name: VAVposMin
+  global_disable: "0"
+  default_value: "0.1"
+  is_fault: "0"
+  si_to_ip: 
+  typeID: INPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "0"
+  notes: ""
+  subsection: ""
+  id: "159"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: ""
+  description: Minimum position of the VAV box damper to provide the minimum flow rate required for the room.
+  component_id: "5"
+  node_sequence: "100"
+  display_name: VAV Box Damper Minium Position
+  zone_position: ""
+  left_label: ""
+  unit_si: ""
+  
+systemvariables_207: 
+  
+  max_value: 1e+10
+  name: FltpreDrop
+  global_disable: "0"
+  default_value: "0"
+  is_fault: "0"
+  si_to_ip: SI/249.1
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: -1e+10
+  notes: 
+  subsection: 
+  id: "214"
+  fault_widget_type: 
+  right_label: 
+  unit_ip: In.W
+  description: air pressure drop across the filter
+  component_id: "6"
+  node_sequence: "100"
+  display_name: Air pressure drop
+  zone_position: 
+  left_label: 
+  unit_si: Pa
+  
+systemvariables_047: 
+  
+  max_value: "1000"
+  name: CCmAirLvg
+  global_disable: "1"
+  default_value: "0"
+  is_fault: "0"
+  si_to_ip: SI*1765.7
+  typeID: OUTPUT
+  lock_version: "1"
+  is_percentage: "0"
+  min_value: "0"
+  notes: ""
+  subsection: ""
+  id: "47"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: CFM
+  description: Air Flow Rate Leaving Cooling Coil
+  component_id: "2"
+  node_sequence: "100"
+  display_name: Air Flow Rate Leaving CC
+  zone_position: ""
+  left_label: ""
+  unit_si: kg/s
+  
+systemvariables_073: 
+  
+  max_value: "1"
+  name: CCBootLeakage
+  global_disable: "0"
+  default_value: "-999"
+  is_fault: "1"
+  si_to_ip: 
+  typeID: INPUT
+  lock_version: "3"
+  is_percentage: "1"
+  min_value: "0"
+  notes: ""
+  subsection: BOOT
+  id: "73"
+  fault_widget_type: SLIDER
+  right_label: 100% Leakage
+  unit_ip: ""
+  description: Percent of air pressure loss for pneumatic control valve, valve is normally open
+  component_id: "2"
+  node_sequence: "100"
+  display_name: Boot Leakage
+  zone_position: LEFT
+  left_label: 0% Leakage
+  unit_si: ""
+  
+systemvariables_154: 
+  
+  max_value: "1"
+  name: VAVStuckDamper
+  global_disable: "0"
+  default_value: "-999"
+  is_fault: "1"
+  si_to_ip: 
+  typeID: INPUT
+  lock_version: "0"
+  is_percentage: "1"
+  min_value: "0"
+  notes: ""
+  subsection: Damper
+  id: "160"
+  fault_widget_type: SLIDER
+  right_label: 100% Stuck
+  unit_ip: ""
+  description: Position at which the VAV box damper is stuck (0-1, 0=closed, 1=fully open)
+  component_id: "5"
+  node_sequence: "100"
+  display_name: VAV Box Damper / Actuator Stuck
+  zone_position: LEFT
+  left_label: 0% Stuck
+  unit_si: ""
+  
+systemvariables_180: 
+  
+  max_value: "1000"
+  name: VAVHCmLiqLvg
+  global_disable: "1"
+  default_value: "0"
+  is_fault: "0"
+  si_to_ip: SI*15.847861
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "0"
+  notes: ""
+  subsection: ""
+  id: "186"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: GPM
+  description: Water flow rate leaving the Heating Coil (and before reaching the 3-way valve)
+  component_id: "5"
+  node_sequence: "100"
+  display_name: Water flow rate leaving HC
+  zone_position: ""
+  left_label: ""
+  unit_si: kg/s
+  
+systemvariables_208: 
+  
+  max_value: "10"
+  name: FltPartlyClogged
+  global_disable: "1"
+  default_value: "-999"
+  is_fault: "1"
+  si_to_ip: 
+  typeID: INPUT
+  lock_version: "1"
+  is_percentage: "0"
+  min_value: "1"
+  notes: ""
+  subsection: Filter
+  id: "215"
+  fault_widget_type: SLIDER
+  right_label: Dirty
+  unit_ip: ""
+  description: Partially clogged
+  component_id: "6"
+  node_sequence: "100"
+  display_name: Partially clogged
+  zone_position: LEFT
+  left_label: Clean
+  unit_si: ""
+  
+systemvariables_048: 
+  
+  max_value: "200"
+  name: CCTLiqEnt
+  global_disable: "0"
+  default_value: "5"
+  is_fault: "0"
+  typeID: INPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "-100"
+  notes: ""
+  subsection: ""
+  id: "48"
+  fault_widget_type: ""
+  right_label: ""
+  description: Temperature of water entering the cooling coil
+  component_id: "2"
+  node_sequence: "2"
+  display_name: Cooling Coil Entering Water Temperature
+  zone_position: ""
+  left_label: ""
+  unit_si: C
+  si_to_ip: SI*1.8+32
+  unit_ip: F
+  
+systemvariables_074: 
+  
+  max_value: "10"
+  name: CCOversizedValve
+  global_disable: "0"
+  default_value: "-999"
+  is_fault: "1"
+  si_to_ip: 
+  typeID: INPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "1"
+  notes: ""
+  subsection: VALVE
+  id: "74"
+  fault_widget_type: SLIDER
+  right_label: 10X Oversized
+  unit_ip: ""
+  description: Ratio of the Cv (or Kv) of the oversized valve to the Cv (or Kv) of a correctly sized valve
+  component_id: "2"
+  node_sequence: "100"
+  display_name: Oversized Cooling Coil Valve
+  zone_position: LEFT
+  left_label: Normal
+  unit_si: ""
+  
+
+systemvariables_155: 
+  
+  max_value: "1"
+  name: VAVLeakyDamper
+  global_disable: "0"
+  default_value: "-999"
+  is_fault: "1"
+  si_to_ip: 
+  typeID: INPUT
+  lock_version: "1"
+  is_percentage: "1"
+  min_value: "0"
+  notes: ""
+  subsection: Damper
+  id: "161"
+  fault_widget_type: SLIDER
+  right_label: 100% Leakage
+  unit_ip: ""
+  description: Damper leakage
+  component_id: "5"
+  node_sequence: "100"
+  display_name: Damper leakage
+  zone_position: LEFT
+  left_label: 0% Leakage
+  unit_si: ""
+  
+systemvariables_181: 
+  
+  max_value: "100"
+  name: VAVHCmLiqbypass
+  global_disable: "0"
+  default_value: "0"
+  is_fault: "0"
+  si_to_ip: SI*15.847861
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "0"
+  notes: ""
+  subsection: ""
+  id: "187"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: GPM
+  description: Water flow rate that bypasses the reheat coil rather than flowing through it.
+  component_id: "5"
+  node_sequence: "100"
+  display_name: Reheat Coil Bypass Water Flow Rate
+  zone_position: ""
+  left_label: ""
+  unit_si: kg/s
+  
+systemvariables_209: 
+  
+  max_value: "200"
+  name: FltBadDPSensor
+  global_disable: "1"
+  default_value: "-999"
+  is_fault: "1"
+  si_to_ip: 
+  typeID: INPUT
+  lock_version: "1"
+  is_percentage: "0"
+  min_value: "-200"
+  notes: ""
+  subsection: Sensor
+  id: "216"
+  fault_widget_type: SLIDER
+  right_label: "200"
+  unit_ip: ""
+  description: Incorrect/mal functioning DP sensor
+  component_id: "6"
+  node_sequence: "100"
+  display_name: Incorrect/mal functioning DP sensor
+  zone_position: CENTER
+  left_label: "-200"
+  unit_si: ""
+  
+systemvariables_049:
+   
+  max_value: "200"
+  name: CCTLiqLvg
+  global_disable: "0"
+  default_value: "0"
+  is_fault: "0"
+  si_to_ip: SI*1.8+32
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "-100"
+  notes: ""
+  subsection: ""
+  id: "49"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: F
+  description: Temperature of water leaving the cooling coil (after the coil and before the 3-way valve)
+  component_id: "2"
+  node_sequence: "100"
+  display_name: Cooling Coil Leaving Water Temperature
+  zone_position: ""
+  left_label: ""
+  unit_si: C
+  
+systemvariables_075:
+   
+  max_value: "1"
+  name: CCLeakyValve
+  global_disable: "0"
+  default_value: "-999"
+  is_fault: "1"
+  si_to_ip: 
+  typeID: INPUT
+  lock_version: "0"
+  is_percentage: "1"
+  min_value: "0"
+  notes: ""
+  subsection: VALVE
+  id: "75"
+  fault_widget_type: SLIDER
+  right_label: 20% Leaky
+  unit_ip: ""
+  description: Effective valve stem position (percent open) due to leakage when commanded fully closed
+  component_id: "2"
+  node_sequence: "100"
+  display_name: Cooling Coil Valve Leakage
+  zone_position: LEFT
+  left_label: Normal
+  unit_si: ""
+
+  
+systemvariables_156: 
+  
+  max_value: "1"
+  name: VAVBadDmprPosSignal
+  global_disable: "1"
+  default_value: "-999"
+  is_fault: "1"
+  si_to_ip: 
+  typeID: INPUT
+  lock_version: "0"
+  is_percentage: "1"
+  min_value: "0"
+  notes: 
+  subsection: Damper
+  id: "162"
+  fault_widget_type: SLIDER
+  right_label: 100% Bad
+  unit_ip: 
+  description: Fault indicator of damper position
+  component_id: "5"
+  node_sequence: "100"
+  display_name: Bad Damper Pos. Signal
+  zone_position: LEFT
+  left_label: 0% Bad
+  unit_si: 
+      
+systemvariables_182: 
+  
+  max_value: "100"
+  name: VAVHCmLiqEntValve
+  global_disable: "0"
+  default_value: "0"
+  is_fault: "0"
+  si_to_ip: SI*15.847861
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "0"
+  notes: ""
+  subsection: ""
+  id: "188"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: GPM
+  description: Water flow rate through the common port of the reheat coil three port control valve, equal to the sum of the coil water flow rate and the bypass water flow rate
+  component_id: "5"
+  node_sequence: "100"
+  display_name: Reheat Coil Primary Water Flow Rate
+  zone_position: ""
+  left_label: ""
+  unit_si: kg/s
+  
+systemvariables_076: 
+  
+  max_value: "100"
+  name: CCObstructedPipe
+  global_disable: "0"
+  default_value: "-999"
+  is_fault: "1"
+  si_to_ip: 
+  typeID: INPUT
+  lock_version: "2"
+  is_percentage: "1"
+  min_value: "0"
+  notes: ""
+  subsection: COIL
+  id: "76"
+  fault_widget_type: SLIDER
+  right_label: 100% Obstructed
+  unit_ip: ""
+  description: Percent of the open valve water flow reduced by the obstructed pipe.  The obstruction is in between the pump and the control valve
+  component_id: "2"
+  node_sequence: "100"
+  display_name: Obstructed Pipe
+  zone_position: LEFT
+  left_label: Normal
+  unit_si: ""
+  
+systemvariables_157: 
+  
+  max_value: "0.3"
+  name: VAVBadFlowerMeas
+  global_disable: "0"
+  default_value: "-999"
+  is_fault: "1"
+  si_to_ip: 
+  typeID: INPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "-0.3"
+  notes: ""
+  subsection: Flow
+  id: "163"
+  fault_widget_type: SLIDER
+  right_label: "1000"
+  unit_ip: ""
+  description: Calibration offset error in fraction for the air flow rate sensor in the VAV box
+  component_id: "5"
+  node_sequence: "100"
+  display_name: VAV Box Air Flow Calibration Error
+  zone_position: CENTER
+  left_label: "-1000"
+  unit_si: ""
+  
+systemvariables_183: 
+  
+  max_value: "100"
+  name: VAVHCmLiqLvgValve
+  global_disable: "0"
+  default_value: "1"
+  is_fault: "0"
+  si_to_ip: SI*15.847861
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "0"
+  notes: ""
+  subsection: ""
+  id: "189"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: GPM
+  description: Water flow rate leaving the reheat coil 3-way valve (and returning back to the hot water system)
+  component_id: "5"
+  node_sequence: "100"
+  display_name: Reheat Coil Water Flow Rate Leaving Valve
+  zone_position: ""
+  left_label: ""
+  unit_si: kg/s
+  
+systemvariables_077: 
+  
+  max_value: "1"
+  name: CCUndersizedCoil
+  global_disable: "0"
+  default_value: "-999"
+  is_fault: "1"
+  si_to_ip: 
+  typeID: INPUT
+  lock_version: "3"
+  is_percentage: "1"
+  min_value: "0"
+  notes: ""
+  subsection: COIL
+  id: "77"
+  fault_widget_type: SLIDER
+  right_label: Undersized
+  unit_ip: ""
+  description: Undersized Cooling Coil
+  component_id: "2"
+  node_sequence: "100"
+  display_name: Undersized Coil
+  zone_position: LEFT
+  left_label: Normal
+  unit_si: ""
+  
+systemvariables_158: 
+  
+  max_value: "10"
+  name: VAVBadZoneMeas
+  global_disable: "0"
+  default_value: "0"
+  is_fault: "1"
+  si_to_ip: 
+  typeID: INPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "-10"
+  notes: ""
+  subsection: Zone
+  id: "164"
+  fault_widget_type: SLIDER
+  right_label: "10"
+  unit_ip: ""
+  description: Offset in room temperature sensor reading due to calibration error
+  component_id: "5"
+  node_sequence: "100"
+  display_name: Room Temperature Sensor Error
+  zone_position: CENTER
+  left_label: "-10"
+  unit_si: ""
+  
+systemvariables_184:
+   
+  max_value: "100"
+  name: VAVHCmLiqEnt
+  global_disable: "0"
+  default_value: "0"
+  is_fault: "0"
+  si_to_ip: SI*15.847861
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "0"
+  notes: ""
+  subsection: ""
+  id: "190"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: GPM
+  description: Water flow rate through the reheat coil
+  component_id: "5"
+  node_sequence: "100"
+  display_name: Reheat Coil Water Flow Rate
+  zone_position: ""
+  left_label: ""
+  unit_si: kg/s
+  
+systemvariables_078: 
+  
+  max_value: "1"
+  name: CCFouledCoil
+  global_disable: "0"
+  default_value: "-999"
+  is_fault: "1"
+  si_to_ip: 
+  typeID: INPUT
+  lock_version: "1"
+  is_percentage: "1"
+  min_value: "0"
+  notes: ""
+  subsection: COIL
+  id: "78"
+  fault_widget_type: SLIDER
+  right_label: Fouled
+  unit_ip: ""
+  description: Percent of cooling exchange capacity reduced by coil fouling
+  component_id: "2"
+  node_sequence: "100"
+  display_name: Fouled Coil
+  zone_position: LEFT
+  left_label: Normal
+  unit_si: ""
+  
+systemvariables_159: 
+  
+  max_value: "1"
+  name: VAVDeafActuator
+  global_disable: "0"
+  default_value: "-999"
+  is_fault: "1"
+  si_to_ip: 
+  typeID: INPUT
+  lock_version: "1"
+  is_percentage: "1"
+  min_value: "0"
+  notes: ""
+  subsection: Actuator
+  id: "165"
+  fault_widget_type: SLIDER
+  right_label: Failed 100% open
+  unit_ip: ""
+  description: Actuators fail to respond to changing control signal - failed in position indicated by slider.
+  component_id: "5"
+  node_sequence: "100"
+  display_name: Failed Actuator
+  zone_position: LEFT
+  left_label: Failed fully closed
+  unit_si: ""
+  
+systemvariables_185: 
+  
+  max_value: "1"
+  name: VAVHCStuckValve
+  global_disable: "0"
+  default_value: "-999"
+  is_fault: "1"
+  si_to_ip: 
+  typeID: INPUT
+  lock_version: "0"
+  is_percentage: "1"
+  min_value: "0"
+  notes: ""
+  subsection: VALVE
+  id: "191"
+  fault_widget_type: SLIDER
+  right_label: Stuck 100%
+  unit_ip: ""
+  description: The position at which valve is stuck.
+  component_id: "5"
+  node_sequence: "100"
+  display_name: Stuck Reheat Coil Valve
+  zone_position: NO_GRADIENT
+  left_label: Stuck 0%
+  unit_si: ""
+  
+systemvariables_079:
+   
+  max_value: "1"
+  name: CCStatus
+  global_disable: "0"
+  default_value: "1"
+  is_fault: "0"
+  si_to_ip: 
+  typeID: INPUT
+  lock_version: "4"
+  is_percentage: "0"
+  min_value: "0"
+  notes: Haves 11/24/07
+  subsection: ""
+  id: "79"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: ""
+  description: Cooling coil is enabled (1) or disabled (0)
+  component_id: "2"
+  node_sequence: "1"
+  display_name: Cooling Coil Enable/Disable
+  zone_position: ""
+  left_label: ""
+  unit_si: ""
+  
+systemvariables_186: 
+  
+  max_value: "10"
+  name: VAVHCDriftedsensor
+  global_disable: "1"
+  default_value: "-999"
+  is_fault: "1"
+  si_to_ip: SI*1.8
+  typeID: INPUT
+  lock_version: "1"
+  is_percentage: "1"
+  min_value: "-10"
+  notes: ""
+  subsection: SENSOR
+  id: "192"
+  fault_widget_type: SLIDER
+  right_label: =+ Drifted
+  unit_ip: F
+  description: Sensor has drifted some number of degress
+  component_id: "5"
+  node_sequence: "100"
+  display_name: Drifted Sensor
+  zone_position: CENTER
+  left_label: =- Drifted
+  unit_si: K
+  
+systemvariables_187: 
+  
+  max_value: "1"
+  name: VAVHCBootLeakage
+  global_disable: "0"
+  default_value: "-999"
+  is_fault: "1"
+  si_to_ip: 
+  typeID: INPUT
+  lock_version: "1"
+  is_percentage: "1"
+  min_value: "0"
+  notes: ""
+  subsection: BOOT
+  id: "193"
+  fault_widget_type: SLIDER
+  right_label: 100% Leakage
+  unit_ip: ""
+  description: Percent of air pressure loss for pneumatic control valve, valve is normally open
+  component_id: "5"
+  node_sequence: "100"
+  display_name: Boot Leakage
+  zone_position: LEFT
+  left_label: 0% Leakage
+  unit_si: ""
+  
+systemvariables_188: 
+  
+  max_value: "10"
+  name: VAVHCOversizedValve
+  global_disable: "0"
+  default_value: "-999"
+  is_fault: "1"
+  si_to_ip: 
+  typeID: INPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "1"
+  notes: ""
+  subsection: VALVE
+  id: "194"
+  fault_widget_type: SLIDER
+  right_label: 10X Oversized
+  unit_ip: ""
+  description: Ratio of the Cv (or Kv) of the oversized valve to the Cv (or Kv) of a correctly sized valve.
+  component_id: "5"
+  node_sequence: "100"
+  display_name: Oversized Reheat Coil Valve
+  zone_position: LEFT
+  left_label: Normal
+  unit_si: ""
+  
+systemvariables_189:
+   
+  max_value: "1"
+  name: VAVHCUndersizedCoil
+  global_disable: "0"
+  default_value: "-999"
+  is_fault: "1"
+  si_to_ip: 
+  typeID: INPUT
+  lock_version: "1"
+  is_percentage: "1"
+  min_value: "0"
+  notes: ""
+  subsection: COIL
+  id: "195"
+  fault_widget_type: SLIDER
+  right_label: Undersized
+  unit_ip: ""
+  description: Undersized Coil
+  component_id: "5"
+  node_sequence: "100"
+  display_name: Undersized Coil
+  zone_position: LEFT
+  left_label: Normal
+  unit_si: ""
+  
+
+  
+
+
+systemvariables_110: 
+  
+  max_value: "100"
+  name: MXTOut
+  global_disable: "0"
+  default_value: "10"
+  is_fault: "0"
+  si_to_ip: SI*1.8+32
+  typeID: OUTPUT
+  lock_version: "2"
+  is_percentage: "0"
+  min_value: "-100"
+  notes: ""
+  subsection: ""
+  id: "110"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: F
+  description: The temperature of the air entering the outside air intake, including the effects of exhaust air short circuiting
+  component_id: "4"
+  node_sequence: "100"
+  display_name: Temperature of air in outside air inlet
+  zone_position: ""
+  left_label: ""
+  unit_si: C
+  
+
+  
+systemvariables_111: 
+  
+  max_value: "200"
+  name: MXTwOut
+  global_disable: "0"
+  default_value: "0"
+  is_fault: "0"
+  si_to_ip: SI*1.8+32
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "-100"
+  notes: ""
+  subsection: ""
+  id: "111"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: F
+  description: Wet bulb temperature of the outside air entering the mixing box
+  component_id: "4"
+  node_sequence: "100"
+  display_name: Outside Air Wet Bulb Temperature
+  zone_position: ""
+  left_label: ""
+  unit_si: C
+  
+
+  
+systemvariables_112: 
+  
+  max_value: "200"
+  name: MXTRet
+  global_disable: "0"
+  default_value: "20"
+  is_fault: "0"
+  si_to_ip: SI*1.8+32
+  typeID: INPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "-100"
+  notes: ""
+  subsection: ""
+  id: "112"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: F
+  description: Actual value of the temperature of the return air from the rooms
+  component_id: "4"
+  node_sequence: "100"
+  display_name: Return Air Temperature (Actual)
+  zone_position: ""
+  left_label: ""
+  unit_si: C
+  
+
+
+  
+systemvariables_113: 
+  
+  max_value: "200"
+  name: MXTwRet
+  global_disable: "0"
+  default_value: "15"
+  is_fault: "0"
+  si_to_ip: SI*1.8+32
+  typeID: INPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "-100"
+  notes: ""
+  subsection: ""
+  id: "113"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: F
+  description: Wet bulb temperature of the return air entering the mixing box
+  component_id: "4"
+  node_sequence: "100"
+  display_name: Return Air Wet Bulb Temperature
+  zone_position: ""
+  left_label: ""
+  unit_si: C
+  
+
+
+  
+systemvariables_114: 
+  
+  max_value: "200"
+  name: MXTmix
+  global_disable: "1"
+  default_value: "15"
+  is_fault: "0"
+  si_to_ip: SI*1.8+32
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "-100"
+  notes: ""
+  subsection: ""
+  id: "114"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: F
+  description: Mixed air temperature sensor reading - includes sensor drift and time lag.
+  component_id: "4"
+  node_sequence: "100"
+  display_name: Mixed AirTemperature Sensor Reading
+  zone_position: ""
+  left_label: ""
+  unit_si: C
+  
+systemvariables_140:
+   
+  max_value: "1"
+  name: VAVPos
+  global_disable: "0"
+  default_value: "1"
+  is_fault: "0"
+  si_to_ip: 
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "0"
+  notes: ""
+  subsection: ""
+  id: "140"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: ""
+  description: Position of the damper in the VAV box (0=closed, 1=fully open).
+  component_id: "5"
+  node_sequence: "100"
+  display_name: VAV Box Damper Position
+  zone_position: ""
+  left_label: ""
+  unit_si: ""
+  
+
+      
+
+  
+systemvariables_115: 
+  
+  max_value: "200"
+  name: MXTwmix
+  global_disable: "0"
+  default_value: "10"
+  is_fault: "0"
+  si_to_ip: SI*1.8+32
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "-100"
+  notes: ""
+  subsection: ""
+  id: "115"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: F
+  description: Wet bulb temperature of the air leaving the mixing box
+  component_id: "4"
+  node_sequence: "100"
+  display_name: Mixed Air Wet Bulb Temperature
+  zone_position: ""
+  left_label: ""
+  unit_si: C
+  
+systemvariables_141: 
+  
+  max_value: 1e+10
+  name: VAVpre
+  global_disable: "1"
+  default_value: "0"
+  is_fault: "0"
+  si_to_ip: SI/249.1
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: -1e+10
+  notes: ""
+  subsection: ""
+  id: "141"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: In.W
+  description: Air pressure in front of the VAV box
+  component_id: "5"
+  node_sequence: "100"
+  display_name: Air pressure in front of the VAV box
+  zone_position: ""
+  left_label: ""
+  unit_si: Pa
+  
+
+  
+
+systemvariables_223:
+   
+  max_value: "200"
+  name: RmTRoomW
+  global_disable: "0"
+  default_value: "15"
+  is_fault: "0"
+  si_to_ip: SI*1.8+32
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "-100"
+  notes: ""
+  subsection: ""
+  id: "230"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: F
+  description: ""
+  component_id: "8"
+  node_sequence: "100"
+  display_name: Room Air Wet Bulb Temperature
+  zone_position: ""
+  left_label: ""
+  unit_si: C
+  
+
+  
+systemvariables_116: 
+  
+  max_value: "1"
+  name: MXOAPosDamper
+  global_disable: "0"
+  default_value: "0.2"
+  is_fault: "0"
+  si_to_ip: 
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "0"
+  notes: ""
+  subsection: ""
+  id: "116"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: ""
+  description: Demanded position of outside air damper in mixing box
+  component_id: "4"
+  node_sequence: "100"
+  display_name: Outside Air Damper Control Signal
+  zone_position: ""
+  left_label: ""
+  unit_si: ""
+  
+systemvariables_142: 
+  
+  max_value: "100"
+  name: VAVDAMPKp
+  global_disable: "0"
+  default_value: "0.1"
+  is_fault: "0"
+  si_to_ip: 
+  typeID: INPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "0"
+  notes: ""
+  subsection: ""
+  id: "147"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: ""
+  description: Proportional gain determines the size of the immediate response of the control signal to a difference between the set-point and the actual value of the VAV box air flow rate. The larger the Proportional Gain, the larger the change in the control signal.
+  component_id: "5"
+  node_sequence: "100"
+  display_name: VAV Airflow Controller Proportional Gain
+  zone_position: ""
+  left_label: ""
+  unit_si: ""
+
+
+systemvariables_224: 
+  
+  max_value: "1000"
+  name: FltmAirLvg
+  global_disable: "0"
+  default_value: "0"
+  is_fault: "0"
+  si_to_ip: SI*1765.7
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "0"
+  notes: 
+  subsection: 
+  id: "231"
+  fault_widget_type: 
+  right_label: 
+  unit_ip: CFM
+  description: Air filter mass flow rate leaving filter
+  component_id: "6"
+  node_sequence: "100"
+  display_name: Air mass flow rate leaving
+  zone_position: 
+  left_label: 
+  unit_si: kg/s
+  
+
+systemvariables_143: 
+  
+  max_value: "100"
+  name: VAVDAMPKi
+  global_disable: "0"
+  default_value: "0.01"
+  is_fault: "0"
+  si_to_ip: 
+  typeID: INPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "0"
+  notes: ""
+  subsection: ""
+  id: "148"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: ""
+  description: Determines how quickly the control signal to the VAV damper changes in response to a persistent difference between the set-point and the actual value of the VAV box air flow rate. The larger the Integral Gain, the faster the control signal changes.
+  component_id: "5"
+  node_sequence: "100"
+  display_name: VAV Airflow Controller Intergal Gain
+  zone_position: ""
+  left_label: ""
+  unit_si: ""
+
+
+systemvariables_225:
+   
+  max_value: "200"
+  name: TRoom
+  global_disable: "0"
+  default_value: "20"
+  is_fault: "0"
+  si_to_ip: SI*1.8+32
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "-100"
+  notes: ""
+  subsection: ""
+  id: "232"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: F
+  description: Room air dry bulb temperature
+  component_id: "8"
+  node_sequence: "100"
+  display_name: Room Air Temperature
+  zone_position: ""
+  left_label: ""
+  unit_si: C
+  
+systemvariables_063: 
+  
+  max_value: "200"
+  name: CCTs
+  global_disable: "0"
+  default_value: "0"
+  is_fault: "0"
+  si_to_ip: SI*1.8+32
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "-100"
+  notes: ""
+  subsection: ""
+  id: "63"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: F
+  description: Supply air temperature set-point, applied to cooling coil control loop
+  component_id: "2"
+  node_sequence: "100"
+  display_name: Cooling Coil Set Point Temperature
+  zone_position: ""
+  left_label: ""
+  unit_si: C
+  
+systemvariables_117: 
+  
+  max_value: "1"
+  name: MXRAPosDamper
+  global_disable: "0"
+  default_value: "0.8"
+  is_fault: "0"
+  si_to_ip: 
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "0"
+  notes: ""
+  subsection: ""
+  id: "117"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: ""
+  description: Demanded position of return air damper in mixing box, in the range 0-1.
+  component_id: "4"
+  node_sequence: "100"
+  display_name: Return Air Damper Control Signal
+  zone_position: ""
+  left_label: ""
+  unit_si: ""
+  
+systemvariables_144: 
+  
+  max_value: 1e+10
+  name: VAVDAMPKd
+  global_disable: "1"
+  default_value: "0"
+  is_fault: "0"
+  si_to_ip: 
+  typeID: INPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "0"
+  notes: ""
+  subsection: ""
+  id: "149"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: ""
+  description: VAV damper derivative gain
+  component_id: "5"
+  node_sequence: "100"
+  display_name: VAV damper derivative gain
+  zone_position: ""
+  left_label: ""
+  unit_si: ""
+  
+systemvariables_170: 
+  
+  max_value: "1000"
+  name: VAVHCmAirEnt
+  global_disable: "0"
+  default_value: "1"
+  is_fault: "0"
+  si_to_ip: SI*1765.7
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "0"
+  notes: ""
+  subsection: ""
+  id: "176"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: CFM
+  description: Air flow rate through the reheat coil
+  component_id: "5"
+  node_sequence: "100"
+  display_name: Reheat Coil Air Flow Rate
+  zone_position: ""
+  left_label: ""
+  unit_si: kg/s
+  
+
+systemvariables_226: 
+  
+  max_value: "1"
+  name: CCwAirEnt
+  global_disable: "0"
+  default_value: "0.005"
+  is_fault: "0"
+  si_to_ip: 
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "0"
+  notes: ""
+  subsection: ""
+  id: "233"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: ""
+  description: Humidity ratio of air entering cooling coil
+  component_id: "2"
+  node_sequence: "100"
+  display_name: Cooling Coil Entering Air Humidity Ratio
+  zone_position: ""
+  left_label: ""
+  unit_si: ""
+  
+systemvariables_090: 
+  
+  max_value: "2"
+  name: FannCon
+  global_disable: "0"
+  default_value: "1"
+  is_fault: "0"
+  si_to_ip: 
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "0"
+  notes: ""
+  subsection: ""
+  id: "90"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: ""
+  description: Demanded fan speed as a fraction of maximum speed (1000 rpm)
+  component_id: "3"
+  node_sequence: "100"
+  display_name: Fan Speed Control Signal (0-1)
+  zone_position: ""
+  left_label: ""
+  unit_si: ""
+  
+systemvariables_118: 
+  
+  max_value: "1"
+  name: MXEAPosDamper
+  global_disable: "0"
+  default_value: "0.2"
+  is_fault: "0"
+  si_to_ip: 
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "0"
+  notes: ""
+  subsection: ""
+  id: "118"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: ""
+  description: Demanded position of exhaust air damper in mixing box
+  component_id: "4"
+  node_sequence: "100"
+  display_name: Exhaust Air Damper Control Signal
+  zone_position: ""
+  left_label: ""
+  unit_si: ""
+  
+systemvariables_145: 
+  
+  max_value: "1"
+  name: VAVDAMPbias
+  global_disable: "0"
+  default_value: "0"
+  is_fault: "0"
+  si_to_ip: 
+  typeID: INPUT
+  lock_version: "1"
+  is_percentage: "0"
+  min_value: "0"
+  notes: ""
+  subsection: ""
+  id: "150"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: ""
+  description: Controller output to the VAV box damper actuator in manual override or at start-up.
+  component_id: "5"
+  node_sequence: "100"
+  display_name: VAV Airflow Controller Bias
+  zone_position: ""
+  left_label: ""
+  unit_si: ""
+  
+systemvariables_171: 
+  
+  max_value: "200"
+  name: VAVHCTAirLvg
+  global_disable: "0"
+  default_value: "0"
+  is_fault: "0"
+  si_to_ip: SI*1.8+32
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "-100"
+  notes: ""
+  subsection: ""
+  id: "177"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: F
+  description: Dry bulb temperature of the air leaving the reheat coil
+  component_id: "5"
+  node_sequence: "100"
+  display_name: Reheat Coil Leaving Air Temperature
+  zone_position: ""
+  left_label: ""
+  unit_si: C
+
+  
+systemvariables_064: 
+  
+  max_value: "200"
+  name: CCTp
+  global_disable: "0"
+  default_value: "0"
+  is_fault: "0"
+  si_to_ip: SI*1.8+32
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "-100"
+  notes: ""
+  subsection: ""
+  id: "64"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: F
+  description: Supply air temperature sensor reading
+  component_id: "2"
+  node_sequence: "100"
+  display_name: Supply Air Temperature Sensor
+  zone_position: ""
+  left_label: ""
+  unit_si: C
+  
+systemvariables_091: 
+  
+  max_value: 1e+10
+  name: FanpStatReal
+  global_disable: "0"
+  default_value: "500"
+  is_fault: "0"
+  si_to_ip: SI/249.1
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "0"
+  notes: ""
+  subsection: ""
+  id: "91"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: In.W
+  description: Actual value of the static pressure in the supply duct
+  component_id: "3"
+  node_sequence: "100"
+  display_name: Fan Static Pressure (Actual)
+  zone_position: ""
+  left_label: ""
+  unit_si: Pa
+  
+systemvariables_119: 
+  
+  max_value: "1"
+  name: MXOAPosDamperReal
+  global_disable: "0"
+  default_value: "0.2"
+  is_fault: "0"
+  si_to_ip: 
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "0"
+  notes: ""
+  subsection: ""
+  id: "119"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: ""
+  description: Actual position of the outside air damper in the mixing box (0-1)
+  component_id: "4"
+  node_sequence: "100"
+  display_name: Outside Air Damper Position (Actual)
+  zone_position: ""
+  left_label: ""
+  unit_si: ""
+  
+systemvariables_146: 
+  
+  max_value: "1"
+  name: VAVDAMPfr
+  global_disable: "0"
+  default_value: "-1"
+  is_fault: "0"
+  si_to_ip: 
+  typeID: INPUT
+  lock_version: "5"
+  is_percentage: "0"
+  min_value: "-1"
+  notes: Haves 12/02/07
+  subsection: ""
+  id: "151"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: ""
+  description: Specifies whether the VAV damper controller is forward acting (+1, correct) or reverse acting (-1, incorrect) or overriden (0). If the control is forward acting, the VAV damper opens when the air flow rate needs to increase.
+  component_id: "5"
+  node_sequence: "100"
+  display_name: VAV Damper Override/Forward/Reverse Acting
+  zone_position: ""
+  left_label: ""
+  unit_si: ""
+  
+systemvariables_172:
+   
+  max_value: "1"
+  name: VAVHCwAirLvg
+  global_disable: "0"
+  default_value: "0.005"
+  is_fault: "0"
+  si_to_ip: 
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "0"
+  notes: ""
+  subsection: ""
+  id: "178"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: ""
+  description: Humidity ratio of air leaving reheat coil
+  component_id: "5"
+  node_sequence: "100"
+  display_name: Reheat Coil Leaving Air Humidity Ratio
+  zone_position: ""
+  left_label: ""
+  unit_si: ""
+
+systemvariables_065: 
+  
+  max_value: "1"
+  name: CCpos
+  global_disable: "0"
+  default_value: "0"
+  is_fault: "0"
+  si_to_ip: 
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "1"
+  min_value: "0"
+  notes: ""
+  subsection: ""
+  id: "65"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: ""
+  description: Demanded position of cooling coil control valve actuator, in the range 0-1.
+  component_id: "2"
+  node_sequence: "100"
+  display_name: Cooling Coil Control Signal (0-1)
+  zone_position: ""
+  left_label: ""
+  unit_si: ""
+  
+systemvariables_227: 
+  
+  max_value: "200"
+  name: TsupMea
+  global_disable: "0"
+  default_value: "20"
+  is_fault: "0"
+  si_to_ip: SI*1.8+32
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "-100"
+  notes: ""
+  subsection: ""
+  id: "234"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: F
+  description: Reading of the supply air temperature sensor (downstream of supply fan)
+  component_id: "8"
+  node_sequence: "100"
+  display_name: Supply Air Temperature Sensor
+  zone_position: ""
+  left_label: ""
+  unit_si: C
+  
+systemvariables_147: 
+  
+  max_value: "100"
+  name: VAVm
+  global_disable: "0"
+  default_value: "1"
+  is_fault: "0"
+  si_to_ip: SI*1765.7
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "0"
+  notes: ""
+  subsection: ""
+  id: "152"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: CFM
+  description: Air flow rate into the room from the VAV box
+  component_id: "5"
+  node_sequence: "100"
+  display_name: VAV Box Air Flow Rate
+  zone_position: ""
+  left_label: ""
+  unit_si: kg/s
+  
+systemvariables_173: 
+  
+  max_value: "200"
+  name: VAVHCTwAirLvg
+  global_disable: "0"
+  default_value: "10"
+  is_fault: "0"
+  si_to_ip: SI*1.8+32
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "-100"
+  notes: ""
+  subsection: ""
+  id: "179"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: F
+  description: Wet bulb temperature of air leaving reheat coil
+  component_id: "5"
+  node_sequence: "100"
+  display_name: Reheat Coil Leaving Air Wet Bulb Temperature
+  zone_position: ""
+  left_label: ""
+  unit_si: C
+  
+systemvariables_066: 
+  
+  max_value: "1"
+  name: CCposReal
+  global_disable: "0"
+  default_value: "0"
+  is_fault: "0"
+  si_to_ip: 
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "1"
+  min_value: "1"
+  notes: ""
+  subsection: ""
+  id: "66"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: ""
+  description: Cooling Coil Valve Position (0-1). Actual position of the cooling coil control valve, in the range 0-1
+  component_id: "2"
+  node_sequence: "100"
+  display_name: Cooling Coil Valve Position (0-1)
+  zone_position: ""
+  left_label: ""
+  unit_si: ""
+  
+systemvariables_092: 
+  
+  max_value: 1e+10
+  name: FanpStatMea
+  global_disable: "1"
+  default_value: "500"
+  is_fault: "0"
+  si_to_ip: SI/249.1
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "0"
+  notes: ""
+  subsection: ""
+  id: "92"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: In.W
+  description: Output of the static pressure sensor in the supply duct, including the effect of calibration error and time lag.
+  component_id: "3"
+  node_sequence: "100"
+  display_name: Fan Static Pressure Sensor Reading
+  zone_position: ""
+  left_label: ""
+  unit_si: Pa
+  
+systemvariables_228: 
+  
+  max_value: "200"
+  name: TsupReal
+  global_disable: "0"
+  default_value: "20"
+  is_fault: "0"
+  si_to_ip: SI*1.8+32
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "-100"
+  notes: ""
+  subsection: ""
+  id: "235"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: F
+  description: "Actual supply air dry bulb temperature"
+  component_id: "8"
+  node_sequence: "100"
+  display_name: Supply Air Temperature (Actual)
+  zone_position: ""
+  left_label: ""
+  unit_si: C
+  
+systemvariables_148: 
+  
+  max_value: "100"
+  name: VAVCFMTp
+  global_disable: "1"
+  default_value: "1"
+  is_fault: "0"
+  si_to_ip: SI*1765.7
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "0"
+  notes: ""
+  subsection: ""
+  id: "154"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: CFM
+  description: ""
+  component_id: "5"
+  node_sequence: "100"
+  display_name: ""
+  zone_position: ""
+  left_label: ""
+  unit_si: kg/s
+  
+systemvariables_174: 
+  
+  max_value: "1000"
+  name: VAVHCmAirLvg
+  global_disable: "1"
+  default_value: "0"
+  is_fault: "0"
+  si_to_ip: SI*1765.7
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "0"
+  notes: ""
+  subsection: ""
+  id: "180"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: CFM
+  description: Air flow rate leaving the Heating Coil
+  component_id: "5"
+  node_sequence: "100"
+  display_name: Air flow rate leaving HC
+  zone_position: ""
+  left_label: ""
+  unit_si: kg/s
+  
+systemvariables_067: 
+  
+  max_value: "1000"
+  name: CCmLiqOpen
+  global_disable: "0"
+  default_value: "1"
+  is_fault: "0"
+  si_to_ip: SI*15.88
+  typeID: INPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "0"
+  notes: "Set by Haves on 08Oct07. "
+  subsection: ""
+  id: "67"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: GPM
+  description: Water flow rate through the cooling coil when the control valve is fully open
+  component_id: "2"
+  node_sequence: "3"
+  display_name: Cooling Coil Maximum Water Flow Rate
+  zone_position: ""
+  left_label: ""
+  unit_si: kg/s
+  
+systemvariables_093: 
+  
+  max_value: "2"
+  name: FannReal
+  global_disable: "1"
+  default_value: "1"
+  is_fault: "0"
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "0"
+  notes: ""
+  subsection: ""
+  id: "93"
+  fault_widget_type: ""
+  right_label: ""
+  description: Actual fan speed as a fraction of maximum speed (1000 rpm)
+  component_id: "3"
+  node_sequence: "100"
+  display_name: Fan Rotation Speed
+  zone_position: ""
+  left_label: ""
+  unit_si: "rpm"
+  unit_ip: "rpm"
+  si_to_ip: 
+  
+systemvariables_229:
+   
+  max_value: "120"
+  name: TRoomSP
+  global_disable: "0"
+  default_value: "21"
+  is_fault: "0"
+  si_to_ip: SI*1.8+32
+  typeID: INPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "-100"
+  notes: ""
+  subsection: ""
+  id: "236"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: F
+  description: "'Thermostat' temperature for heating and cooling"
+  component_id: "8"
+  node_sequence: "4"
+  display_name: Room Temperature Set-point
+  zone_position: ""
+  left_label: ""
+  unit_si: C
+  
+systemvariables_149: 
+  
+  max_value: "100"
+  name: VAVDAMPTs
+  global_disable: "0"
+  default_value: "1"
+  is_fault: "0"
+  si_to_ip: SI*1765.7
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "0"
+  notes: ""
+  subsection: ""
+  id: "155"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: CFM
+  description: Set-point for the VAV damper controller, which varies the damper position in order to maintain the air flow rate at the set-point.  THIS VALUE IS GENERATED BY THE ROOM TEMPERATURE CONTROLLER AND CANNOT BE SET BY THE USER.
+  component_id: "5"
+  node_sequence: "100"
+  display_name: VAV Flow Rate Set-point
+  zone_position: ""
+  left_label: ""
+  unit_si: kg/s
+  
+systemvariables_175: 
+  
+  max_value: "100"
+  name: VAVHCTLiqEnt
+  global_disable: "0"
+  default_value: "80"
+  is_fault: "0"
+  si_to_ip: SI*1.8+32
+  typeID: INPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "-100"
+  notes: New default value of 80 set by Haves 07Oct07.
+  subsection: ""
+  id: "181"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: F
+  description: Temperature of water entering the reheat coil
+  component_id: "5"
+  node_sequence: "100"
+  display_name: Reheat Coil Entering Water Temperature
+  zone_position: ""
+  left_label: ""
+  unit_si: C
+  
+systemvariables_068: 
+  
+  max_value: 1e+10
+  name: CCqSen
+  global_disable: "0"
+  default_value: "0"
+  is_fault: "0"
+  si_to_ip: SI*0.2931
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: -1e+10
+  notes: ""
+  subsection: ""
+  id: "68"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: Btu/h
+  description: Rate of sensible heat transfer from water to air in the coil - heat removed from the air to reduce its temperature
+  component_id: "2"
+  node_sequence: "100"
+  display_name: Cooling Coil Sensible Duty
+  zone_position: ""
+  left_label: ""
+  unit_si: W
+  
+systemvariables_094: 
+  
+  max_value: 1e+10
+  name: FanpStat
+  global_disable: "0"
+  default_value: "500"
+  is_fault: "0"
+  si_to_ip: SI/249.1
+  typeID: INPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "0"
+  notes: New default value set by Haves 07Oct07.
+  subsection: ""
+  id: "94"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: In.W
+  description: Supply fan static pressure set-point
+  component_id: "3"
+  node_sequence: "100"
+  display_name: Fan Static Pressure Set-point
+  zone_position: ""
+  left_label: ""
+  unit_si: Pa
+  
+systemvariables_176: 
+  
+  max_value: "100"
+  name: VAVHCTLiqLvg
+  global_disable: "0"
+  default_value: "20"
+  is_fault: "0"
+  si_to_ip: SI*1.8+32
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "-100"
+  notes: ""
+  subsection: ""
+  id: "182"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: F
+  description: Temperature of water leaving the reheat coil (after the coil and before the 3-way valve)
+  component_id: "5"
+  node_sequence: "100"
+  display_name: Reheat Coil Leaving Water Temperature
+  zone_position: ""
+  left_label: ""
+  unit_si: C
+  
+systemvariables_069: 
+  
+  max_value: 1e+10
+  name: CCqLat
+  global_disable: "0"
+  default_value: "0"
+  is_fault: "0"
+  si_to_ip: SI*0.2931
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: -1e+10
+  notes: ""
+  subsection: ""
+  id: "69"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: Btu/h
+  description: Rate of latent heat transfer from water to air in the coil - heat removed from the air to dehumidify it.
+  component_id: "2"
+  node_sequence: "100"
+  display_name: Cooling Coil Latent Duty
+  zone_position: ""
+  left_label: ""
+  unit_si: W
+  
+systemvariables_095: 
+  
+  max_value: "10000"
+  name: Fanp
+  global_disable: "0"
+  default_value: "250"
+  is_fault: "0"
+  si_to_ip: SI/249.1
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "0"
+  notes: ""
+  subsection: ""
+  id: "95"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: In.W
+  description: Total pressure rise across supply fan
+  component_id: "3"
+  node_sequence: "100"
+  display_name: Fan Pressure Rise
+  zone_position: ""
+  left_label: ""
+  unit_si: Pa
+  
+systemvariables_177: 
+  
+  max_value: "100"
+  name: VAVHCTLiqbypass
+  global_disable: "0"
+  default_value: "0"
+  is_fault: "0"
+  si_to_ip: SI*1.8+32
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "-100"
+  notes: ""
+  subsection: ""
+  id: "183"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: F
+  description: Temperature of water by-passing the reheat coil
+  component_id: "5"
+  node_sequence: "100"
+  display_name: Reheat Coil By-pass Water Temp
+  zone_position: ""
+  left_label: ""
+  unit_si: C
+  
+systemvariables_096: 
+  
+  max_value: "1"
+  name: FaneffShaft
+  global_disable: "0"
+  default_value: "0.6"
+  is_fault: "0"
+  si_to_ip:
+  typeID: OUTPUT
+  lock_version: "1"
+  is_percentage: "0"
+  min_value: "0"
+  notes: ""
+  subsection: ""
+  id: "96"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: ""
+  description: Supply Fan efficiency
+  component_id: "3"
+  node_sequence: "100"
+  display_name: Fan Efficiency
+  zone_position: ""
+  left_label: ""
+  unit_si: ""
+  
+systemvariables_097: 
+  
+  max_value: 1e+10
+  name: FanKp
+  global_disable: "0"
+  default_value: "0.01"
+  is_fault: "0"
+  si_to_ip: 
+  typeID: INPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "0"
+  notes: ""
+  subsection: ""
+  id: "97"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: ""
+  description: Proportional gain determines the size of the immediate response of the control signal to a difference between the set-point and the actual value of the supply air static pressure. The larger the Proportional Gain, the larger the change in the control sign
+  component_id: "3"
+  node_sequence: "100"
+  display_name: Fan Speed Controller Proportional Gain
+  zone_position: ""
+  left_label: ""
+  unit_si: ""
+  
+systemvariables_178: 
+  
+  max_value: "100"
+  name: VAVHCTLiqEntValve
+  global_disable: "1"
+  default_value: "0"
+  is_fault: "0"
+  si_to_ip: SI*1.8+32
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "-100"
+  notes: ""
+  subsection: ""
+  id: "184"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: F
+  description: Water Temperature entering 3-way valve (returning from Heating Coil)
+  component_id: "5"
+  node_sequence: "100"
+  display_name: Water Temp entering Valve
+  zone_position: ""
+  left_label: ""
+  unit_si: C
+  
+systemvariables_098: 
+  
+  max_value: 1e+10
+  name: FanKi
+  global_disable: "0"
+  default_value: "0.001"
+  is_fault: "0"
+  si_to_ip: 
+  typeID: INPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "0"
+  notes: ""
+  subsection: ""
+  id: "98"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: ""
+  description: Determines how quickly the control signal changes in response to a persistent difference between the set-point and the actual value of the supply air temperature. The larger the Integral gain, the faster the control signal changes.
+  component_id: "3"
+  node_sequence: "100"
+  display_name: Fan Speed Controller Integral Gain
+  zone_position: ""
+  left_label: ""
+  unit_si: ""
+  
+systemvariables_179: 
+  
+  max_value: "100"
+  name: VAVHCTLiqLvgValve
+  global_disable: "0"
+  default_value: "20"
+  is_fault: "0"
+  si_to_ip: SI*1.8+32
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "-100"
+  notes: ""
+  subsection: ""
+  id: "185"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: F
+  description: Reheat Coil Valve Leaving Water Temperature. Temperature of water leaving 3-port control valve and returning to hot water system
+  component_id: "5"
+  node_sequence: "100"
+  display_name: Reheat Coil Valve Leaving Water Temperature
+  zone_position: ""
+  left_label: ""
+  unit_si: C
+  
+systemvariables_099: 
+  
+  max_value: 1e+10
+  name: FanKd
+  global_disable: "1"
+  default_value: "0"
+  is_fault: "0"
+  si_to_ip: 
+  typeID: INPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "0"
+  notes: ""
+  subsection: ""
+  id: "99"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: ""
+  description: derivative constant
+  component_id: "3"
+  node_sequence: "100"
+  display_name: derivative constant
+  zone_position: ""
+  left_label: ""
+  unit_si: ""
+  
+systemvariables_100: 
+  
+  max_value: "1"
+  name: Fanfr
+  global_disable: "0"
+  default_value: "1"
+  is_fault: "0"
+  si_to_ip: 
+  typeID: INPUT
+  lock_version: "4"
+  is_percentage: "0"
+  min_value: "-1"
+  notes: ""
+  subsection: ""
+  id: "100"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: ""
+  description: Specifies whether the supply fan control is forward acting (1, correct) or reverse acting (-1, incorrect) or overriden (o).  If the control is forward acting, the fan speed increases when the supply air pressure needs to increase.
+  component_id: "3"
+  node_sequence: "100"
+  display_name: Fan Speed Control Override/Forward/Reverse Acting
+  zone_position: ""
+  left_label: ""
+  unit_si: ""
+
+  
+systemvariables_101: 
+  
+  max_value: "10000"
+  name: FanTp
+  global_disable: "0"
+  default_value: "250"
+  is_fault: "0"
+  si_to_ip: SI/249.1
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "0"
+  notes: ""
+  subsection: ""
+  id: "101"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: In.W
+  description: Static pressure sensor reading
+  component_id: "3"
+  node_sequence: "100"
+  display_name: Supply Duct Static Pressure Sensor
+  zone_position: ""
+  left_label: ""
+  unit_si: Pa
+  
+
+  
+systemvariables_102:
+   
+  max_value: "1"
+  name: FanRangeErrorVFD
+  global_disable: "1"
+  default_value: "-999"
+  is_fault: "1"
+  si_to_ip: 
+  typeID: INPUT
+  lock_version: "2"
+  is_percentage: "1"
+  min_value: "0"
+  notes: ""
+  subsection: VFD
+  id: "102"
+  fault_widget_type: SLIDER
+  right_label: 100% Range Error
+  unit_ip: ""
+  description: Range error in variable-frequency drive
+  component_id: "3"
+  node_sequence: "100"
+  display_name: Fan Range Error VFD
+  zone_position: LEFT
+  left_label: No Error
+  unit_si: ""
+  
+
+  
+systemvariables_103: 
+  
+  max_value: "1"
+  name: FanTotFanFailure
+  global_disable: "1"
+  default_value: "-999"
+  is_fault: "1"
+  si_to_ip: 
+  typeID: INPUT
+  lock_version: "1"
+  is_percentage: "1"
+  min_value: "0"
+  notes: ""
+  subsection: Fan
+  id: "103"
+  fault_widget_type: CHECKBOX
+  right_label: ""
+  unit_ip: ""
+  description: Complete failure e.g. seized, broken belt, power tripped
+  component_id: "3"
+  node_sequence: "100"
+  display_name: Total Fan Failure
+  zone_position: left
+  left_label: ""
+  unit_si: ""
+  
+systemvariables_210: 
+  
+  max_value: "1"
+  name: FltLeakyFilter
+  global_disable: "1"
+  default_value: "-999"
+  is_fault: "1"
+  si_to_ip: 
+  typeID: INPUT
+  lock_version: "0"
+  is_percentage: "1"
+  min_value: "0"
+  notes: 
+  subsection: Filter
+  id: "217"
+  fault_widget_type: SLIDER
+  right_label: 100% Leakage
+  unit_ip: 
+  description: Leakage through or around
+  component_id: "6"
+  node_sequence: "100"
+  display_name: Leakage through or around
+  zone_position: LEFT
+  left_label: 0% Leakage
+  unit_si: 
+      
+
+  
+systemvariables_104:
+   
+  max_value: "1"
+  name: FanWrongFanType
+  global_disable: "1"
+  default_value: "-999"
+  is_fault: "1"
+  si_to_ip: 
+  typeID: INPUT
+  lock_version: "3"
+  is_percentage: "1"
+  min_value: "0"
+  notes: ""
+  subsection: Fan
+  id: "104"
+  fault_widget_type: CHECKBOX
+  right_label: ""
+  unit_ip: ""
+  description: Wrong type of fan
+  component_id: "3"
+  node_sequence: "100"
+  display_name: Wrong Fan Type
+  zone_position: left
+  left_label: ""
+  unit_si: ""
+
+  
+systemvariables_211: 
+  
+  max_value: 1e+06
+  name: PAtm
+  global_disable: "1"
+  default_value: 101325
+  is_fault: "0"
+  si_to_ip: SI*1.45e-4
+  typeID: INPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "0"
+  notes: ""
+  subsection: ""
+  id: "218"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: PSI
+  description: Atmospheric pressure - varies with height above sea level
+  component_id: "8"
+  node_sequence: "101"
+  display_name: Atmospheric Pressure
+  zone_position: ""
+  left_label: ""
+  unit_si: Pa
+
+  
+systemvariables_050: 
+  
+  max_value: "200"
+  name: CCTLiqbypass
+  global_disable: "1"
+  default_value: "0"
+  is_fault: "0"
+  si_to_ip: SI*1.8+32
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "-100"
+  notes: ""
+  subsection: ""
+  id: "50"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: F
+  description: Water Temperature in By Pass to 3-way valve of Cooling Coil
+  component_id: "2"
+  node_sequence: "100"
+  display_name: Water Temp in CC By Pass
+  zone_position: ""
+  left_label: ""
+  unit_si: C
+  
+systemvariables_105: 
+  
+  max_value: "1"
+  name: FanFanTooSmall
+  global_disable: "1"
+  default_value: "-999"
+  is_fault: "1"
+  si_to_ip: 
+  typeID: INPUT
+  lock_version: "3"
+  is_percentage: "1"
+  min_value: "0"
+  notes: ""
+  subsection: Fan
+  id: "105"
+  fault_widget_type: SLIDER
+  right_label: 100% undersized
+  unit_ip: ""
+  description: Undersized fan
+  component_id: "3"
+  node_sequence: "100"
+  display_name: Undersized Fan
+  zone_position: LEFT
+  left_label: 0% undersized
+  unit_si: ""
+  
+systemvariables_131: 
+  
+  max_value: "1"
+  name: MXLeakOADamper
+  global_disable: "0"
+  default_value: "-999"
+  is_fault: "1"
+  si_to_ip: 
+  typeID: INPUT
+  lock_version: "1"
+  is_percentage: "1"
+  min_value: "0"
+  notes: ""
+  subsection: Outside Damper
+  id: "131"
+  fault_widget_type: SLIDER
+  right_label: 100% Leakage
+  unit_ip: ""
+  description: Outside air fraction when outside air damper is commanded closed
+  component_id: "4"
+  node_sequence: "100"
+  display_name: Leaking Outside Air Damper
+  zone_position: LEFT
+  left_label: 0% Leakage
+  unit_si: ""
+  
+systemvariables_212: 
+  
+  max_value: "200"
+  name: TSupS
+  global_disable: "0"
+  default_value: "15"
+  is_fault: "0"
+  si_to_ip: SI*1.8+32
+  typeID: INPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "-100"
+  notes: New default value set by Deringer on 14Sep07 based on value specified by Peng.
+  subsection: ""
+  id: "219"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: F
+  description: Supply air temperature set-point
+  component_id: "8"
+  node_sequence: "3"
+  display_name: Supply Air Temperature Set-point
+  zone_position: ""
+  left_label: ""
+  unit_si: C
+  
+
+systemvariables_051:
+   
+  max_value: "200"
+  name: CCTLiqEntValve
+  global_disable: "1"
+  default_value: "0"
+  is_fault: "0"
+  si_to_ip: SI*1.8+32
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "-100"
+  notes: ""
+  subsection: ""
+  id: "51"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: F
+  description: Water Temperature entering Valve after leaving the Coiling Coil
+  component_id: "2"
+  node_sequence: "100"
+  display_name: Water Temp entering CC Valve
+  zone_position: ""
+  left_label: ""
+  unit_si: C
+  
+systemvariables_132: 
+  
+  max_value: "1"
+  name: MXBadPosOADamper
+  global_disable: "1"
+  default_value: "-999"
+  is_fault: "1"
+  si_to_ip: 
+  typeID: INPUT
+  lock_version: "2"
+  is_percentage: "1"
+  min_value: "0"
+  notes: ""
+  subsection: Outside Damper
+  id: "132"
+  fault_widget_type: CHECKBOX
+  right_label: 100% Bad
+  unit_ip: ""
+  description: Incorrect minimum position of outdoor air damper
+  component_id: "4"
+  node_sequence: "100"
+  display_name: Bad Pos. OA Damper
+  zone_position: LEFT
+  left_label: 0% Bad
+  unit_si: ""
+  
+systemvariables_213: 
+  
+  max_value: "200"
+  name: TAirSup
+  global_disable: "1"
+  default_value: "15"
+  is_fault: "0"
+  si_to_ip: SI*1.8+32
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "-100"
+  notes: ""
+  subsection: ""
+  id: "220"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: F
+  description: Actual supply air dry bulb temperature
+  component_id: "8"
+  node_sequence: "100"
+  display_name: Supply Air Temperature (Actual)
+  zone_position: ""
+  left_label: ""
+  unit_si: C
+
+systemvariables_052: 
+  
+  max_value: "200"
+  name: CCTLiqLvgValve
+  global_disable: "0"
+  default_value: "0"
+  is_fault: "0"
+  si_to_ip: SI*1.8+32
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "-100"
+  notes: ""
+  subsection: ""
+  id: "52"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: F
+  description: Temperature of water leaving 3-port control valve and returning to chilled water system
+  component_id: "2"
+  node_sequence: "100"
+  display_name: Cooling Coil Valve Leaving Water Temperature
+  zone_position: ""
+  left_label: ""
+  unit_si: C
+  
+systemvariables_106: 
+  
+  max_value: "1"
+  name: FanStuckFanSpeed
+  global_disable: "1"
+  default_value: "-999"
+  is_fault: "1"
+  si_to_ip: 
+  typeID: INPUT
+  lock_version: "1"
+  is_percentage: "1"
+  min_value: "0"
+  notes: ""
+  subsection: Fan
+  id: "106"
+  fault_widget_type: SLIDER
+  right_label: 100% Stuck Speed
+  unit_ip: ""
+  description: Fan speed stuck at specified intermediate value
+  component_id: "3"
+  node_sequence: "100"
+  display_name: Stuck Fan Speed
+  zone_position: LEFT
+  left_label: 0% Stuck Speed
+  unit_si: ""
+  
+systemvariables_133: 
+  
+  max_value: "1"
+  name: MXStuckOADamper
+  global_disable: "1"
+  default_value: "-999"
+  is_fault: "1"
+  si_to_ip: 
+  typeID: INPUT
+  lock_version: "0"
+  is_percentage: "1"
+  min_value: "0"
+  notes: ""
+  subsection: Outside Damper
+  id: "133"
+  fault_widget_type: CHECKBOX
+  right_label: 100% Stuck
+  unit_ip: ""
+  description: Outside or exhaust dampers stuck
+  component_id: "4"
+  node_sequence: "100"
+  display_name: Outside or Exhaust Dampers Stuck
+  zone_position: CENTER
+  left_label: 0% Stuck
+  unit_si: ""
+  
+systemvariables_214: 
+  
+  max_value: "1000"
+  name: MAirsup
+  global_disable: "0"
+  default_value: "1"
+  is_fault: "0"
+  si_to_ip: SI*1765.7
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "0"
+  notes: ""
+  subsection: ""
+  id: "221"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: CFM
+  description: Supply fan air flow rate
+  component_id: "8"
+  node_sequence: "100"
+  display_name: Supply Fan Air Flow Rate
+  zone_position: ""
+  left_label: ""
+  unit_si: kg/s
+  
+
+  
+systemvariables_053: 
+  
+  max_value: "1000"
+  name: CCmLiqEnt
+  global_disable: "0"
+  default_value: "0"
+  is_fault: "0"
+  si_to_ip: SI*15.847861
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "0"
+  notes: ""
+  subsection: ""
+  id: "53"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: GPM
+  description: Water flow rate through the cooling coil
+  component_id: "2"
+  node_sequence: "100"
+  display_name: Cooling Coil Water Flow Rate
+  zone_position: ""
+  left_label: ""
+  unit_si: kg/s
+  
+systemvariables_107:
+   
+  max_value: "1"
+  name: FanDeafVFDorIGV
+  global_disable: "1"
+  default_value: "-999"
+  is_fault: "1"
+  si_to_ip: 
+  typeID: INPUT
+  lock_version: "4"
+  is_percentage: "1"
+  min_value: "0"
+  notes: ""
+  subsection: Control
+  id: "107"
+  fault_widget_type: CHECKBOX
+  right_label: Stuck at 100% speed
+  unit_ip: ""
+  description: VFD or inlet guide vanes fail to respond to changing control signal - stuck at value indcated by slider
+  component_id: "3"
+  node_sequence: "100"
+  display_name: Non-responsive VFD or inlet guide vanes
+  zone_position: left
+  left_label: Stuck at 0% speed
+  unit_si: ""
+  
+systemvariables_134: 
+  
+  max_value: "1"
+  name: MXLeakRetDamper
+  global_disable: "0"
+  default_value: "-999"
+  is_fault: "1"
+  si_to_ip: 
+  typeID: INPUT
+  lock_version: "2"
+  is_percentage: "1"
+  min_value: "0"
+  notes: ""
+  subsection: Return Air Damper
+  id: "134"
+  fault_widget_type: SLIDER
+  right_label: 100% Leakage
+  unit_ip: ""
+  description: Return air fraction when recirculation damper is commanded closed
+  component_id: "4"
+  node_sequence: "100"
+  display_name: Leaking return air damper
+  zone_position: LEFT
+  left_label: 0% Leakage
+  unit_si: ""
+  
+systemvariables_160: 
+  
+  max_value: "1"
+  name: VAVBadLoopTune
+  global_disable: "1"
+  default_value: "-999"
+  is_fault: "1"
+  si_to_ip: 
+  typeID: INPUT
+  lock_version: "0"
+  is_percentage: "1"
+  min_value: "0"
+  notes: 
+  subsection: Loop
+  id: "166"
+  fault_widget_type: SLIDER
+  right_label: 100% Bad
+  unit_ip: 
+  description: Poor loop tuning of VAV box controller
+  component_id: "5"
+  node_sequence: "100"
+  display_name: Bad Loop Tune
+  zone_position: LEFT
+  left_label: 0% Bad
+  unit_si: 
+      
+systemvariables_215: 
+  
+  name: TAirOut
+  global_disable: "0"
+  is_fault: "0"
+  si_to_ip: SI*1.8+32
+  typeID: INPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "-100"
+  default_value: "25"
+  max_value: "200"
+  notes: New default value set by Deringer on 14Sep07 based on his own best judgment for a winter day.
+  subsection: ""
+  id: "222"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: F
+  description: Outside air temperature
+  component_id: "8"
+  node_sequence: "1"
+  display_name: Outside Air Temperature (Actual)
+  zone_position: ""
+  left_label: ""
+  unit_si: C
+  
+
+systemvariables_054:
+   
+  max_value: "1000"
+  name: CCmLiqLvg
+  global_disable: "1"
+  default_value: "0"
+  is_fault: "0"
+  si_to_ip: SI*15.847861
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "0"
+  notes: ""
+  subsection: ""
+  id: "54"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: GPM
+  description: Water flow rate leaving the Cooling Coil (and before reaching the Cooling Coil Valve)
+  component_id: "2"
+  node_sequence: "100"
+  display_name: Water flow rate leaving CC
+  zone_position: ""
+  left_label: ""
+  unit_si: kg/s
+  
+systemvariables_080: 
+  
+  max_value: "200"
+  name: FanTAirEnt
+  global_disable: "0"
+  default_value: "15"
+  is_fault: "0"
+  si_to_ip: SI*1.8+32
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "-100"
+  notes: ""
+  subsection: ""
+  id: "80"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: F
+  description: Dry bulb temperature of air entering the supply fan
+  component_id: "3"
+  node_sequence: "100"
+  display_name: Fan Entering Air Temperature
+  zone_position: ""
+  left_label: ""
+  unit_si: C
+  
+systemvariables_108: 
+  
+  max_value: "2"
+  name: FanFailedFanSensor
+  global_disable: "0"
+  default_value: "-999"
+  is_fault: "1"
+  si_to_ip: SI/249.1
+  typeID: INPUT
+  lock_version: "5"
+  is_percentage: "0"
+  min_value: "-2"
+  notes: Definition changed to offset from fixed output - Haves 12/2/07
+  subsection: Sensor
+  id: "108"
+  fault_widget_type: SLIDER
+  right_label: Reads high by 2 in
+  unit_ip: Inches of water
+  description: Calibration error in static pressure sensor in supply duct used to control supply fan speed or inlet guide vane position.
+  component_id: "3"
+  node_sequence: "100"
+  display_name: Supply Duct Static Pressure Sensor Offset
+  zone_position: CENTER
+  left_label: Reads low by 2 in
+  unit_si: Pa
+  
+systemvariables_135: 
+  
+  max_value: "1"
+  name: MXStuckActuator
+  global_disable: "0"
+  default_value: "-999"
+  is_fault: "1"
+  si_to_ip: 
+  typeID: INPUT
+  lock_version: "0"
+  is_percentage: "1"
+  min_value: "0"
+  notes: ""
+  subsection: Damper/Actuator
+  id: "135"
+  fault_widget_type: SLIDER
+  right_label: Stuck 100%
+  unit_ip: ""
+  description: Outside air and exhaust air dampers fixed in the specified position (X%) and the return air damper fixed at (100-X)%. Most commonly due to a single actuator being used for all three dampers and the actuator or one of the dampers being stuck.
+  component_id: "4"
+  node_sequence: "100"
+  display_name: Dampers or Actuator(s) Stuck
+  zone_position: NO_GRADIENT
+  left_label: Stuck 0%
+  unit_si: ""
+  
+systemvariables_161: 
+  
+  max_value: "1"
+  name: VAVBadReheatCoil
+  global_disable: "1"
+  default_value: "-999"
+  is_fault: "1"
+  si_to_ip: 
+  typeID: INPUT
+  lock_version: "0"
+  is_percentage: "1"
+  min_value: "0"
+  notes: 
+  subsection: Reheating Coil
+  id: "167"
+  fault_widget_type: SLIDER
+  right_label: 100% Bad
+  unit_ip: 
+  description: Faulty reheating coil (same as coil section above)
+  component_id: "5"
+  node_sequence: "100"
+  display_name: Bad Reheat Coil
+  zone_position: LEFT
+  left_label: 0% Bad
+  unit_si: 
+      
+systemvariables_055: 
+  
+  max_value: "1000"
+  name: CCmLiqbypass
+  global_disable: "0"
+  default_value: "0"
+  is_fault: "0"
+  si_to_ip: SI*15.847861
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "0"
+  notes: ""
+  subsection: ""
+  id: "55"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: GPM
+  description: Water flow rate that bypasses the cooling coil rather than flowing through it
+  component_id: "2"
+  node_sequence: "100"
+  display_name: Cooling Coil Bypass Water Flow Rate
+  zone_position: ""
+  left_label: ""
+  unit_si: kg/s
+  
+systemvariables_081: 
+  
+  max_value: "200"
+  name: FanTAirLvg
+  global_disable: "0"
+  default_value: "15"
+  is_fault: "0"
+  si_to_ip: SI*1.8+32
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "-100"
+  notes: New default value set by Haves 07Oct07.
+  subsection: ""
+  id: "81"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: F
+  description: Dry bulb temperature of air leaving the supply fan
+  component_id: "3"
+  node_sequence: "100"
+  display_name: Fan Leaving Air Temperature
+  zone_position: ""
+  left_label: ""
+  unit_si: C
+  
+systemvariables_109: 
+  
+  max_value: "1"
+  name: FanBadFanRotationDir
+  global_disable: "1"
+  default_value: "-999"
+  is_fault: "1"
+  si_to_ip: 
+  typeID: INPUT
+  lock_version: "2"
+  is_percentage: "1"
+  min_value: "0"
+  notes: ""
+  subsection: Fan
+  id: "109"
+  fault_widget_type: CHECKBOX
+  right_label: ""
+  unit_ip: ""
+  description: Incorrect rotation direction or wrong fan installed
+  component_id: "3"
+  node_sequence: "100"
+  display_name: Bad Fan Rotation Direction
+  zone_position: LEFT
+  left_label: ""
+  unit_si: ""
+  
+systemvariables_136: 
+  
+  max_value: "1"
+  name: MXDeafActuator
+  global_disable: "1"
+  default_value: "-999"
+  is_fault: "1"
+  si_to_ip: 
+  typeID: INPUT
+  lock_version: "0"
+  is_percentage: "1"
+  min_value: "0"
+  notes: 
+  subsection: Actuators
+  id: "136"
+  fault_widget_type: SLIDER
+  right_label: 100% Deaf
+  unit_ip: 
+  description: Actuators fail to respond to changing control signal
+  component_id: "4"
+  node_sequence: "100"
+  display_name: Deaf Actuator MB
+  zone_position: LEFT
+  left_label: 0% Deaf
+  unit_si: 
+      
+systemvariables_162: 
+  
+  max_value: "1"
+  name: VAVTooHighInletAirSP
+  global_disable: "1"
+  default_value: "-999"
+  is_fault: "1"
+  si_to_ip: 
+  typeID: INPUT
+  lock_version: "0"
+  is_percentage: "1"
+  min_value: "0"
+  notes: 
+  subsection: Inlet
+  id: "168"
+  fault_widget_type: SLIDER
+  right_label: 100% High
+  unit_ip: 
+  description: Inlet air static pressure too high
+  component_id: "5"
+  node_sequence: "100"
+  display_name: Too High Inlet Air SP
+  zone_position: LEFT
+  left_label: 0% High
+  unit_si: 
+      
+systemvariables_216:
+   
+  name: TwAirOut
+  min_value: "-100"
+  default_value: "20"
+  max_value: "200"
+  global_disable: "0"
+  is_fault: "0"
+  si_to_ip: SI*1.8+32
+  typeID: INPUT
+  lock_version: "0"
+  is_percentage: "0"
+  notes: New default value set by Deringer on 14Sep07 based on his own best judgement for a winter day.
+  subsection: ""
+  id: "223"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: F
+  description: Outside air wet bulb temperature
+  component_id: "8"
+  node_sequence: "2"
+  display_name: Outside Air Wet Bulb Temperature
+  zone_position: ""
+  left_label: ""
+  unit_si: C
+  
+
+systemvariables_056:
+   
+  max_value: "1000"
+  name: CCmLiqEntValve
+  global_disable: "1"
+  default_value: "0"
+  is_fault: "0"
+  si_to_ip: SI*15.847861
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "0"
+  notes: ""
+  subsection: ""
+  id: "56"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: GPM
+  description: Water Flow Rate Entering Cooling Coil Valve, as it returns from the Cooling Coil
+  component_id: "2"
+  node_sequence: "100"
+  display_name: Water Flow Rate Entering CC Valve
+  zone_position: ""
+  left_label: ""
+  unit_si: kg/s
+  
+systemvariables_082: 
+  
+  max_value: "200"
+  name: FanTwAirEnt
+  global_disable: "1"
+  default_value: "0"
+  is_fault: "0"
+  si_to_ip: SI*1.8+32
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "-100"
+  notes: ""
+  subsection: ""
+  id: "82"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: F
+  description: Air Wet Bulb Temperature Entering the Supply Fan
+  component_id: "3"
+  node_sequence: "100"
+  display_name: Air WB Temp Entering Fan
+  zone_position: ""
+  left_label: ""
+  unit_si: C
+  
+systemvariables_137:
+   
+  max_value: "1"
+  name: MXBadSensor
+  global_disable: "1"
+  default_value: "-999"
+  is_fault: "1"
+  si_to_ip: 
+  typeID: INPUT
+  lock_version: "0"
+  is_percentage: "1"
+  min_value: "0"
+  notes: 
+  subsection: Sensor
+  id: "137"
+  fault_widget_type: SLIDER
+  right_label: 100% Bad
+  unit_ip: 
+  description: Sensor offset/failure
+  component_id: "4"
+  node_sequence: "100"
+  display_name: Bad Sensor MB
+  zone_position: LEFT
+  left_label: 0% Bad
+  unit_si: 
+      
+systemvariables_163:
+   
+  max_value: "1"
+  name: VAVTooLowInletAirSP
+  global_disable: "1"
+  default_value: "-999"
+  is_fault: "1"
+  si_to_ip: 
+  typeID: INPUT
+  lock_version: "0"
+  is_percentage: "1"
+  min_value: "0"
+  notes: 
+  subsection: Inlet
+  id: "169"
+  fault_widget_type: SLIDER
+  right_label: 100% Low
+  unit_ip: 
+  description: Inlet air static pressure too low
+  component_id: "5"
+  node_sequence: "100"
+  display_name: Inlet air static pressure too low
+  zone_position: LEFT
+  left_label: 0% Low
+  unit_si: 
+      
+
+systemvariables_057:
+   
+  max_value: "1000"
+  name: CCmLiqLvgValve
+  global_disable: "0"
+  default_value: "0"
+  is_fault: "0"
+  si_to_ip: SI*15.847861
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "0"
+  notes: ""
+  subsection: ""
+  id: "57"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: GPM
+  description: Water flow rate through the common port of the three port control valve, equal to the sum of the coil water flow rate and the bypass water flow rate
+  component_id: "2"
+  node_sequence: "100"
+  display_name: Cooling Coil Primary Water Flow Rate
+  zone_position: ""
+  left_label: ""
+  unit_si: kg/s
+  
+systemvariables_083: 
+  
+  max_value: "200"
+  name: FanTwAirLvg
+  global_disable: "1"
+  default_value: "0"
+  is_fault: "0"
+  si_to_ip: SI*1.8+32
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "-100"
+  notes: ""
+  subsection: ""
+  id: "83"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: F
+  description: Air Wet Bulb Temperature Leaving the Supply Fan
+  component_id: "3"
+  node_sequence: "100"
+  display_name: Air WB Temp Leaving Fan
+  zone_position: ""
+  left_label: ""
+  unit_si: C
+  
+systemvariables_138: 
+  
+  max_value: "1"
+  name: MXMismatchDampAct
+  global_disable: "1"
+  default_value: "-999"
+  is_fault: "1"
+  si_to_ip: 
+  typeID: INPUT
+  lock_version: "0"
+  is_percentage: "1"
+  min_value: "0"
+  notes: 
+  subsection: Sensor
+  id: "138"
+  fault_widget_type: SLIDER
+  right_label: 100% Hysteresis
+  unit_ip: 
+  description: Hysteresis in actuator(s) or damper linkage(s)
+  component_id: "4"
+  node_sequence: "100"
+  display_name: Hystersis Damper MB
+  zone_position: LEFT
+  left_label: 0% Hysteresis
+  unit_si: 
+      
+systemvariables_164: 
+  
+  max_value: "1"
+  name: VAVBoxTooBig
+  global_disable: "1"
+  default_value: "-999"
+  is_fault: "1"
+  si_to_ip: 
+  typeID: INPUT
+  lock_version: "0"
+  is_percentage: "1"
+  min_value: "0"
+  notes: 
+  subsection: VAV Box
+  id: "170"
+  fault_widget_type: SLIDER
+  right_label: 100% Oversized
+  unit_ip: 
+  description: Oversized VAV box
+  component_id: "5"
+  node_sequence: "100"
+  display_name: Oversized VAV box
+  zone_position: LEFT
+  left_label: 0% Oversized
+  unit_si: 
+      
+systemvariables_190: 
+  
+  max_value: "1"
+  name: VAVHCLeakyValve
+  global_disable: "0"
+  default_value: "-999"
+  is_fault: "1"
+  si_to_ip:
+  typeID: INPUT
+  lock_version: "0"
+  is_percentage: "1"
+  min_value: "0"
+  notes: ""
+  subsection: VALVE
+  id: "196"
+  fault_widget_type: SLIDER
+  right_label: 20% Leaky
+  unit_ip: ""
+  description: Effective valve stem position (percent open) due to leakage when commanded fully closed
+  component_id: "5"
+  node_sequence: "100"
+  display_name: Leaking Reheat Coil Valve
+  zone_position: LEFT
+  left_label: Normal
+  unit_si: ""
+  
+
+FanwAirEnt: 
+  
+  max_value: "1"
+  name: FanwAirEnt
+  global_disable: "1"
+  default_value: "0"
+  is_fault: "0"
+  si_to_ip:
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "0"
+  notes: ""
+  subsection: ""
+  id: "84"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: ""
+  description: Humidity ratio of air entering fan
+  component_id: "3"
+  node_sequence: "100"
+  display_name: Humidity Ratio of Air Entering Fan
+  zone_position: ""
+  left_label: ""
+  unit_si: ""
+  
+systemvariables_165: 
+  
+  max_value: "1"
+  name: VAVBoxTooSmall
+  global_disable: "1"
+  default_value: "-999"
+  is_fault: "1"
+  si_to_ip: 
+  typeID: INPUT
+  lock_version: "0"
+  is_percentage: "1"
+  min_value: "0"
+  notes: 
+  subsection: VAV Box
+  id: "171"
+  fault_widget_type: SLIDER
+  right_label: 100% Undersized
+  unit_ip: 
+  description: Undersized VAV box
+  component_id: "5"
+  node_sequence: "100"
+  display_name: Undersized VAV box
+  zone_position: LEFT
+  left_label: 0% Undersized
+  unit_si: 
+      
+systemvariables_191:
+   
+  max_value: "1"
+  name: VAVHCObstructedPipe
+  global_disable: "0"
+  default_value: "-999"
+  is_fault: "1"
+  si_to_ip: 
+  typeID: INPUT
+  lock_version: "1"
+  is_percentage: "1"
+  min_value: "0"
+  notes: ""
+  subsection: COIL
+  id: "197"
+  fault_widget_type: SLIDER
+  right_label: Obstructed
+  unit_ip: ""
+  description: Percent of the open valve water flow reduced by the obstructed pipe.  The obstruction is in between the pump and the control valve
+  component_id: "5"
+  node_sequence: "100"
+  display_name: Obstructed Pipe
+  zone_position: LEFT
+  left_label: Normal
+  unit_si: ""
+  
+
+
+  
+systemvariables_085:
+   
+  max_value: "1"
+  name: FanwAirLvg
+  global_disable: "1"
+  default_value: "0"
+  is_fault: "0"
+  si_to_ip: 
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "0"
+  notes: ""
+  subsection: ""
+  id: "85"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: ""
+  description: Humidity ratio of air leaving fan
+  component_id: "3"
+  node_sequence: "100"
+  display_name: Humidity Ratio of Air Leaving Fan
+  zone_position: ""
+  left_label: ""
+  unit_si: ""
+  
+systemvariables_139: 
+  
+  max_value: "1"
+  name: MXReverseActionAct
+  global_disable: "0"
+  default_value: "-999"
+  is_fault: "1"
+  si_to_ip: 
+  typeID: INPUT
+  lock_version: "2"
+  is_percentage: "0"
+  min_value: "0"
+  notes: ""
+  subsection: Damper/Actuator
+  id: "139"
+  fault_widget_type: CHECKBOX
+  right_label: ""
+  unit_ip: ""
+  description: Dampers move in the opposite direction, i.e. outside air damper is fully closed and recirculation damper is fully open when controller calls for 100% outside air.
+  component_id: "4"
+  node_sequence: "100"
+  display_name: Reverse Acting Dampers
+  zone_position: LEFT
+  left_label: ""
+  unit_si: ""
+  
+systemvariables_166: 
+  
+  max_value: "1"
+  name: VAVBadMinPosDamper
+  global_disable: "0"
+  default_value: "-999"
+  is_fault: "1"
+  si_to_ip: 
+  typeID: INPUT
+  lock_version: "1"
+  is_percentage: "1"
+  min_value: "0"
+  notes: ""
+  subsection: Damper
+  id: "172"
+  fault_widget_type: SLIDER
+  right_label: 100% Bad
+  unit_ip: ""
+  description: Incorrect minimum position of air damper
+  component_id: "5"
+  node_sequence: "100"
+  display_name: Bad Min. Pos. of Damper
+  zone_position: LEFT
+  left_label: 0% Bad
+  unit_si: ""
+  
+systemvariables_192: 
+  
+  max_value: "1"
+  name: VAVHCFouledCoil
+  global_disable: "0"
+  default_value: "-999"
+  is_fault: "1"
+  si_to_ip: 
+  typeID: INPUT
+  lock_version: "1"
+  is_percentage: "1"
+  min_value: "0"
+  notes: ""
+  subsection: COIL
+  id: "198"
+  fault_widget_type: SLIDER
+  right_label: Fouled
+  unit_ip: ""
+  description: Percent of heat exchange capacity reduced by coil fouling
+  component_id: "5"
+  node_sequence: "100"
+  display_name: Fouled Coil
+  zone_position: LEFT
+  left_label: Normal
+  unit_si: ""
+  
+systemvariables_086: 
+  
+  max_value: "1000"
+  name: FanmAirEnt
+  global_disable: "0"
+  default_value: "0"
+  is_fault: "0"
+  si_to_ip: SI*1765.7
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "0"
+  notes: ""
+  subsection: ""
+  id: "86"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: CFM
+  description: Air flow rate entering the supply fan
+  component_id: "3"
+  node_sequence: "100"
+  display_name: Fan Air Flow Rate
+  zone_position: ""
+  left_label: ""
+  unit_si: kg/s
+  
+systemvariables_167: 
+  
+  max_value: "200"
+  name: VAVHCTAirEnt
+  global_disable: "0"
+  default_value: "0"
+  is_fault: "0"
+  si_to_ip: SI*1.8+32
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "-100"
+  notes: ""
+  subsection: ""
+  id: "173"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: F
+  description: Dry bulb temperature of the air entering the reheat coil
+  component_id: "5"
+  node_sequence: "100"
+  display_name: Reheat Coil Entering Air Temperature
+  zone_position: ""
+  left_label: ""
+  unit_si: C
+  
+systemvariables_193: 
+  
+  max_value: "1000"
+  name: VAVHCmLiqOpen
+  global_disable: "0"
+  default_value: "1"
+  is_fault: "0"
+  si_to_ip: SI*15.88
+  typeID: INPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "0"
+  notes: New default value of 1 set by Haves on 07Oct07
+  subsection: ""
+  id: "199"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: GPM
+  description: Water flow rate through the reheat coil when the control valve is fully open
+  component_id: "5"
+  node_sequence: "100"
+  display_name: Reheat Coil Maximum Water Flow Rate
+  zone_position: ""
+  left_label: ""
+  unit_si: kg/s
+  
+systemvariables_087: 
+  
+  max_value: "1000"
+  name: FanmAirLvg
+  global_disable: "1"
+  default_value: "1"
+  is_fault: "0"
+  si_to_ip: SI*1765.7
+  typeID: INPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "0"
+  notes: New default set by Deringer on 14Sep07 based on value specified by Peng
+  subsection: ""
+  id: "87"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: CFM
+  description: Air flow rate leaving the supply fan
+  component_id: "3"
+  node_sequence: "100"
+  display_name: Air flow rate leaving fan
+  zone_position: ""
+  left_label: ""
+  unit_si: kg/s
+  
+systemvariables_168: 
+  
+  max_value: "200"
+  name: VAVHCTwAirEnt
+  global_disable: "0"
+  default_value: "10"
+  is_fault: "0"
+  si_to_ip: SI*1.8+32
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "-100"
+  notes: ""
+  subsection: ""
+  id: "174"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: F
+  description: Wet bulb temperature of air entering reheat coil
+  component_id: "5"
+  node_sequence: "100"
+  display_name: Reheat Coil Entering Air Wet Bulb Temperature
+  zone_position: ""
+  left_label: ""
+  unit_si: C
+  
+systemvariables_194: 
+  
+  max_value: "100"
+  name: VAVKp
+  global_disable: "0"
+  default_value: "0.1"
+  is_fault: "0"
+  si_to_ip: 
+  typeID: INPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "0"
+  notes: ""
+  subsection: ""
+  id: "200"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: ""
+  description: Proportional gain determines the size of the immediate response of the control signal to a difference between the set-point and the actual value of the room temperature. The larger the Proportional Gain, the larger the change in the control signal.
+  component_id: "5"
+  node_sequence: "100"
+  display_name: Room Temperature Controller Proportional Gain
+  zone_position: ""
+  left_label: ""
+  unit_si: no unit
+  
+systemvariables_088: 
+  
+  max_value: "1000"
+  name: FanmAirMax
+  global_disable: "0"
+  default_value: .8
+  is_fault: "0"
+  si_to_ip: SI*1765.7
+  typeID: INPUT
+  lock_version: "1"
+  is_percentage: "0"
+  min_value: "0"
+  notes: Haves 11/18/07.  Model (fan.cc) does not implement dependence of efficiency on speed correctly.
+  subsection: ""
+  id: "88"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: CFM
+  description: Air flow rate at which fan has maximum efficiency at design rotation speed
+  component_id: "3"
+  node_sequence: "100"
+  display_name: Fan  Air Flow Rate at Max Efficiency
+  zone_position: ""
+  left_label: ""
+  unit_si: kg/s
+  
+systemvariables_169: 
+  
+  max_value: "1"
+  name: VAVHCwAirEnt
+  global_disable: "0"
+  default_value: "0.005"
+  is_fault: "0"
+  si_to_ip: 
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "0"
+  notes: ""
+  subsection: ""
+  id: "175"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: ""
+  description: Humidity ratio of air entering reheat coil
+  component_id: "5"
+  node_sequence: "100"
+  display_name: Reheat Coil Entering Air Humidity Ratio
+  zone_position: ""
+  left_label: ""
+  unit_si: ""
+  
+systemvariables_195: 
+  
+  max_value: "100"
+  name: VAVKi
+  global_disable: "0"
+  default_value: "0.01"
+  is_fault: "0"
+  si_to_ip: 
+  typeID: INPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "0"
+  notes: ""
+  subsection: ""
+  id: "201"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: ""
+  description: "Determines how quickly the control signal to the VAV box changes in response to a persistent difference between the set-point and the actual value of the room temperature. The larger the Integral Gain, the faster the control signal changes."
+  component_id: "5"
+  node_sequence: "100"
+  display_name: Room Temperature Controller Intergal Gain
+  zone_position: ""
+  left_label: ""
+  unit_si: ""
+  
+systemvariables_089: 
+  
+  max_value: 1e+10
+  name: FanpowerTot
+  global_disable: "0"
+  default_value: "0"
+  is_fault: "0"
+  si_to_ip: 
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "0"
+  notes: ""
+  subsection: ""
+  id: "89"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: W
+  description: Supply fan motor electric power consumption
+  component_id: "3"
+  node_sequence: "100"
+  display_name: Fan Electric Power Consumption
+  zone_position: ""
+  left_label: ""
+  unit_si: W
+  
+systemvariables_196: 
+  
+  max_value: 1e+10
+  name: VAVKd
+  global_disable: "1"
+  default_value: "0"
+  is_fault: "0"
+  si_to_ip: 
+  typeID: INPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "0"
+  notes: ""
+  subsection: ""
+  id: "202"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: ""
+  description: Derivative gain
+  component_id: "5"
+  node_sequence: "100"
+  display_name: Derivative gain
+  zone_position: ""
+  left_label: ""
+  unit_si: ""
+  
+systemvariables_197: 
+  
+  max_value: "1"
+  name: VAVbias
+  global_disable: "0"
+  default_value: "0"
+  is_fault: "0"
+  si_to_ip: 
+  typeID: INPUT
+  lock_version: "2"
+  is_percentage: "0"
+  min_value: "0"
+  notes: ""
+  subsection: ""
+  id: "203"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: ""
+  description: Controller output to reheat coil valve in manual override or at start-up.
+  component_id: "5"
+  node_sequence: "100"
+  display_name: Room Temp Controller Output Bias
+  zone_position: ""
+  left_label: ""
+  unit_si: ""
+  
+systemvariables_198: 
+  
+  max_value: "1"
+  name: VAVfr
+  global_disable: "0"
+  default_value: "1"
+  is_fault: "0"
+  si_to_ip: 
+  typeID: INPUT
+  lock_version: "4"
+  is_percentage: "0"
+  min_value: "-1"
+  notes: Haves 11/24/07
+  subsection: ""
+  id: "204"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: ""
+  description: Specifies whether the room temperature controller is forward acting (+1, correct) or reverse acting (-1, incorrect) or overriden (0). If the control is forward acting, the reheat coil valve opens when the room air temperature needs to increase.
+  component_id: "5"
+  node_sequence: "100"
+  display_name: Room Temp Controller Override/Forward/Reverse Acting
+  zone_position: ""
+  left_label: ""
+  unit_si: ""
+  
+systemvariables_199: 
+  
+  max_value: "200"
+  name: VAVHCTs
+  global_disable: "0"
+  default_value: "20"
+  is_fault: "0"
+  si_to_ip: SI*1.8+32
+  typeID: INPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "-100"
+  notes: New default value of 20 set by Haves 07Oct07.
+  subsection: ""
+  id: "205"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: F
+  description: Room temperature set-point, applied to reheat coil control loop
+  component_id: "5"
+  node_sequence: "100"
+  display_name: Reheat Coil Set-point Temperature
+  zone_position: ""
+  left_label: ""
+  unit_si: C
+  
+
+##################
+# HEATING COIL
+##################  
+ 
+HCTLiqLvgValve: 
+  
+  max_value: "100"
+  name: HCTLiqLvgValve
+  global_disable: "0"
+  default_value: "80"
+  is_fault: "0"
+  si_to_ip: SI*1.8+32
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "-100"
+  notes: ""
+  subsection: ""
+  id: "13"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: F
+  description: Temperature of water leaving 3-port control valve and returning to hot water system
+  component: HC
+  node_sequence: "100"
+  display_name: Heating Coil Valve Leaving Water Temperature
+  zone_position: ""
+  left_label: ""
+  unit_si: C
+ 
+ 
+HCmLiqLvg:
+   
+  max_value: "1000"
+  name: HCmLiqLvg
+  global_disable: "1"
+  default_value: "0"
+  is_fault: "0"
+  si_to_ip: SI*15.847861
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "0"
+  notes: ""
+  subsection: ""
+  id: "14"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: GPM
+  description: Water flow rate leaving the Heating Coil (and before reaching the 3-way valve)
+  component: HC
+  node_sequence: "100"
+  display_name: Water flow rate leaving HC
+  zone_position: ""
+  left_label: ""
+  unit_si: kg/s
+   
+ 
+HCmLiqbypass: 
+  
+  max_value: "1000"
+  name: HCmLiqbypass
+  global_disable: "0"
+  default_value: "1"
+  is_fault: "0"
+  si_to_ip: SI*15.847861
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "0"
+  notes: ""
+  subsection: ""
+  id: "15"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: GPM
+  description: Water flow rate that bypasses the heating coil rather than flowing through it
+  component: HC
+  node_sequence: "100"
+  display_name: Heating Coil Bypass Water Flow Rate
+  zone_position: ""
+  left_label: ""
+  unit_si: kg/s
+  
+  
+HCmLiqEntValve:
+   
+  max_value: "1000"
+  name: HCmLiqEntValve
+  global_disable: "0"
+  default_value: "0"
+  is_fault: "0"
+  si_to_ip: SI*15.847861
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "0"
+  notes: ""
+  subsection: ""
+  id: "16"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: GPM
+  description: Water flow rate through the common port of the three port control valve, equal to the sum of the coil water flow rate and the bypass water flow rate
+  component: HC
+  node_sequence: "100"
+  display_name: Heating Coil Primary Water Flow Rate
+  zone_position: ""
+  left_label: ""
+  unit_si: kg/s
+  
+  
+HCmLiqLvgValve: 
+  
+  max_value: "1000"
+  name: HCmLiqLvgValve
+  global_disable: "1"
+  default_value: "0"
+  is_fault: "0"
+  si_to_ip: SI*15.847861
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "0"
+  notes: ""
+  subsection: ""
+  id: "17"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: GPM
+  description: Water flow rate leaving the Heating Coil 3-way valve (and returning back to the hot  water system)
+  component: HC
+  node_sequence: "100"
+  display_name: Water flow rate leaving valve
+  zone_position: ""
+  left_label: ""
+  unit_si: kg/s
+
+
+HCmLiqEnt: 
+  
+  max_value: "1000"
+  name: HCmLiqEnt
+  global_disable: "0"
+  default_value: "0"
+  is_fault: "0"
+  si_to_ip: SI*15.847861
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "0"
+  notes: ""
+  subsection: ""
+  id: "18"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: GPM
+  description: Water flow rate through the heating coil
+  component: HC
+  node_sequence: "100"
+  display_name: Heating Coil Water Flow Rate
+  zone_position: ""
+  left_label: ""
+  unit_si: kg/s
+  
+
+HCStuckValve:
+   
+  max_value: "1"
+  name: HCStuckValve
+  global_disable: "0"
+  default_value: "-999"
+  is_fault: "1"
+  si_to_ip: 
+  typeID: INPUT
+  lock_version: "1"
+  is_percentage: "1"
+  min_value: "0"
+  notes: ""
+  subsection: VALVE
+  id: "19"
+  fault_widget_type: SLIDER
+  right_label: Stuck 100%
+  unit_ip: ""
+  description: The position at which the control valve stem is stuck.
+  component: HC
+  node_sequence: "100"
+  display_name: Stuck Heating Coil Valve
+  zone_position: NO_GRADIENT
+  left_label: Stuck 0%
+  unit_si: ""
+
+HCTAirEnt: 
+  
+  max_value: "200"
+  name: HCTAirEnt
+  global_disable: "0"
+  default_value: "10"
+  is_fault: "0"
+  si_to_ip: SI*1.8+32
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "-100"
+  notes: ""
+  subsection: ""
+  id: "1"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: F
+  description: Dry bulb temperature of the air entering the heating coil
+  component: HC
+  node_sequence: "100"
+  display_name: Heating Coil Entering Air Temperature
+  zone_position: ""
+  left_label: ""
+  unit_si: C
+
+HCTwAirEnt: 
+  
+  max_value: "200"
+  name: HCTwAirEnt
+  global_disable: "1"
+  default_value: "10"
+  is_fault: "0"
+  si_to_ip: SI*1.8+32
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "-100"
+  notes: ""
+  subsection: ""
+  id: "2"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: F
+  description: Wet bulb temperature of air entering heating coil
+  component: HC
+  node_sequence: "100"
+  display_name: Heating Coil Entering Air Wet Bulb Temperature
+  zone_position: ""
+  left_label: ""
+  unit_si: C  
+  
+HCwAirEnt: 
+  
+  max_value: "1"
+  name: HCwAirEnt
+  global_disable: "0"
+  default_value: "0.005"
+  is_fault: "0"
+  si_to_ip: 
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "0"
+  notes: ""
+  subsection: ""
+  id: "3"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: ""
+  description: Humidity ratio of air entering heating coil
+  component: HC
+  node_sequence: "100"
+  display_name: Heating Coil Entering Air Humidity Ratio
+  zone_position: ""
+  left_label: ""
+  unit_si: ""
+  
+
+HCmAirEnt: 
+  
+  max_value: "1000"
+  name: HCmAirEnt
+  global_disable: "0"
+  default_value: "1"
+  is_fault: "0"
+  si_to_ip: SI*1765.7
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "0"
+  notes: ""
+  subsection: ""
+  id: "4"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: CFM
+  description: Air flow rate through the heating coil
+  component: HC
+  node_sequence: "100"
+  display_name: Heating Coil Air Flow Rate
+  zone_position: ""
+  left_label: ""
+  unit_si: kg/s
+  
+
+
+HCTAirLvg: 
+  
+  max_value: "200"
+  name: HCTAirLvg
+  global_disable: "0"
+  default_value: "0"
+  is_fault: "0"
+  si_to_ip: SI*1.8+32
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "-100"
+  notes: ""
+  subsection: ""
+  id: "5"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: F
+  description: Dry bulb temperature of the air leaving the heating coil
+  component: HC
+  node_sequence: "100"
+  display_name: Heating Coil Leaving Air Temperature
+  zone_position: ""
+  left_label: ""
+  unit_si: C
+  
+
+HCwAirLvg: 
+  
+  max_value: "1"
+  name: HCwAirLvg
+  global_disable: "0"
+  default_value: "0.005"
+  is_fault: "0"
+  si_to_ip: 
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "0"
+  notes: ""
+  subsection: ""
+  id: "6"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: ""
+  description: Humidity ratio of air leaving heating coil
+  component: HC
+  node_sequence: "100"
+  display_name: Heating Coil Leaving Air Humidity Ratio
+  zone_position: ""
+  left_label: ""
+  unit_si: ""
+  
+
+HCTs: 
+  
+  max_value: "200"
+  name: HCTs
+  global_disable: "1"
+  default_value: "15"
+  is_fault: "0"
+  si_to_ip: SI*1.8+32
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "-100"
+  notes: ""
+  subsection: ""
+  id: "33"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: F
+  description: Supply air temperature set-point, applied to heating coil control loop
+  component: HC
+  node_sequence: "100"
+  display_name: Heating Coil Set Point Temperature
+  zone_position: ""
+  left_label: ""
+  unit_si: C
+
+HCTp: 
+  
+  max_value: "200"
+  name: HCTp
+  global_disable: "0"
+  default_value: "15"
+  is_fault: "0"
+  si_to_ip: SI*1.8+32
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "-100"
+  notes: ""
+  subsection: ""
+  id: "34"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: F
+  description: Supply air temperature sensor reading
+  component: HC
+  node_sequence: "100"
+  display_name: Supply Air Temperature Sensor
+  zone_position: ""
+  left_label: ""
+  unit_si: C
+  
+
+
+
+HCSensorOffset: 
+  
+  max_value: "10"
+  name: HCSensorOffset
+  global_disable: "1"
+  default_value: "-999"
+  is_fault: "1"
+  si_to_ip: SI*1.8
+  typeID: INPUT
+  lock_version: "3"
+  is_percentage: "0"
+  min_value: "-10"
+  notes: Use Supply Air Temperature Offset
+  subsection: SENSOR
+  id: "229"
+  fault_widget_type: SLIDER
+  right_label: +10 Offset
+  unit_ip: F
+  description: Supply air temp. sensor offset
+  component: HC
+  node_sequence: "100"
+  display_name: Supply Air Temperature Sensor Offset
+  zone_position: CENTER
+  left_label: -10 Offset
+  unit_si: K
+
+HCTwAirLvg:
+   
+  max_value: "1"
+  name: HCTwAirLvg
+  global_disable: "1"
+  default_value: "20"
+  is_fault: "0"
+  si_to_ip: SI*1.8+32
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "0"
+  notes: ""
+  subsection: ""
+  id: "7"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: F
+  description: Wet bulb temperature of the air leaving the heating coil
+  component: HC
+  node_sequence: "100"
+  display_name: Heating Coil Leaving  Air Wet Bulb Temperature
+  zone_position: ""
+  left_label: ""
+  unit_si: C
+  
+
+HCq: 
+  
+  max_value: 1e+07
+  name: HCq
+  global_disable: "0"
+  default_value: "0"
+  is_fault: "0"
+  si_to_ip: SI*0.2931
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: -1e+07
+  notes: ""
+  subsection: ""
+  id: "35"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: Btu/h
+  description: Rate of heat transfer from water to air in the coil
+  component: HC
+  node_sequence: "100"
+  display_name: Heating Coil Duty
+  zone_position: ""
+  left_label: ""
+  unit_si: W
+  
+HCmAirLvg:
+   
+  max_value: "1000"
+  name: HCmAirLvg
+  global_disable: "1"
+  default_value: "0"
+  is_fault: "0"
+  si_to_ip: SI*1765.7
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "0"
+  notes: ""
+  subsection: ""
+  id: "8"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: CFM
+  description: Air flow rate leaving the Heating Coil
+  component: HC
+  node_sequence: "100"
+  display_name: Air flow rate leaving HC
+  zone_position: ""
+  left_label: ""
+  unit_si: kg/s
+  
+  
+HCTLiqEnt: 
+  
+  max_value: "100"
+  name: HCTLiqEnt
+  global_disable: "0"
+  default_value: "60"
+  is_fault: "0"
+  si_to_ip: SI*1.8+32
+  typeID: INPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "-100"
+  notes: "Default set by Haves on 06Oct07 "
+  subsection: ""
+  id: "9"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: F
+  description: Temperature of water entering the heating coil
+  component: HC
+  node_sequence: "2"
+  display_name: Heating Coil Entering Water Temperature
+  zone_position: ""
+  left_label: ""
+  unit_si: C
+  
+
+HCpos: 
+  
+  max_value: "1"
+  name: HCpos
+  global_disable: "0"
+  default_value: "0"
+  is_fault: "0"
+  si_to_ip: 
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "0"
+  notes: ""
+  subsection: ""
+  id: "36"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: ""
+  description: Demanded position of heating coil control valve actuator, in the range 0-1.
+  component: HC
+  node_sequence: "100"
+  display_name: Heating Coil Control Signal (0-1)
+  zone_position: ""
+  left_label: ""
+  unit_si: ""
+  
+
+HCposReal: 
+  
+  max_value: "1"
+  name: HCposReal
+  global_disable: "0"
+  default_value: "0"
+  is_fault: "0"
+  si_to_ip: 
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "0"
+  notes: ""
+  subsection: ""
+  id: "37"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: ""
+  description: Actual position of the heating coil control valve, in the range 0-1
+  component: HC
+  node_sequence: "100"
+  display_name: Heating Coil Valve Position (0-1)
+  zone_position: ""
+  left_label: ""
+  unit_si: ""
+  
+  
+HCUA:
+   
+  max_value: "10000"
+  name: HCUA
+  global_disable: "0"
+  default_value: "300"
+  is_fault: "0"
+  si_to_ip: SI*1.895
+  typeID: INPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "0"
+  notes: Default value set by Haves on 06Oct07
+  subsection: ""
+  id: "38"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: Btu/hr.oF
+  description: Heating coil overall heat transfer coefficient (U) x heating coil area (A) - determined from rated duty and rated log mean temperature difference from manufacturer's data
+  component: HC
+  node_sequence: "4"
+  display_name: Heating Coil UA
+  zone_position: ""
+  left_label: ""
+  unit_si: W/oC
+    
+HCStatus: 
+  
+  max_value: "1"
+  name: HCStatus
+  global_disable: "0"
+  default_value: "0"
+  is_fault: "0"
+  si_to_ip: 
+  typeID: INPUT
+  lock_version: "2"
+  is_percentage: "0"
+  min_value: "0"
+  notes: Haves 11/24/07
+  subsection: ""
+  id: "39"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: ""
+  description: Heating coil is enabled (1) or disabled (0)
+  component: HC
+  node_sequence: "1"
+  display_name: Heating Coil Enable/Disable
+  zone_position: ""
+  left_label: ""
+  unit_si: ""
+  
+  
+HCDriftedsensor: 
+  
+  max_value: "10"
+  name: HCDriftedsensor
+  global_disable: "1"
+  default_value: "-999"
+  is_fault: "1"
+  si_to_ip: SI*1.8
+  typeID: INPUT
+  lock_version: "4"
+  is_percentage: "0"
+  min_value: "-10"
+  notes: Use Supply Air Temperature Offset
+  subsection: SENSOR
+  id: "20"
+  fault_widget_type: SLIDER
+  right_label: =+ Drifted
+  unit_ip: F
+  description: Calibration error in supply air temperature sensor
+  component: HC
+  node_sequence: "100"
+  display_name: Supply Air Temperature Sensor Out of Calibration
+  zone_position: CENTER
+  left_label: =- Drifted
+  unit_si: K  
+  
+HCBootLeakage: 
+  
+  max_value: "1"
+  name: HCBootLeakage
+  global_disable: "0"
+  default_value: "-999"
+  is_fault: "1"
+  si_to_ip: 
+  typeID: INPUT
+  lock_version: "3"
+  is_percentage: "1"
+  min_value: "0"
+  notes: ""
+  subsection: BOOT
+  id: "21"
+  fault_widget_type: SLIDER
+  right_label: 100% Leakage
+  unit_ip: ""
+  description: Percentage of air pressure lost for pneumatic control valve.  Valve is normally open, so the boot leakage percentage is the minimum possible valve position.
+  component: HC
+  node_sequence: "100"
+  display_name: Heating Coil Valve Boot Leakage
+  zone_position: LEFT
+  left_label: 0% Leakage
+  unit_si: ""  
+  
+HCOversizedValve: 
+  
+  max_value: "10"
+  name: HCOversizedValve
+  global_disable: "0"
+  default_value: "-999"
+  is_fault: "1"
+  si_to_ip: 
+  typeID: INPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "1"
+  notes: ""
+  subsection: VALVE
+  id: "22"
+  fault_widget_type: SLIDER
+  right_label: 10X Oversized
+  unit_ip: ""
+  description: Ratio of the Cv (or Kv) of the oversized valve to the Cv (or Kv) of a correctly sized valve.
+  component: HC
+  node_sequence: "100"
+  display_name: Oversized Heating Coil Valve
+  zone_position: LEFT
+  left_label: Normal
+  unit_si: ""  
+  
+HCUndersizedCoil:
+   
+  max_value: "1"
+  name: HCUndersizedCoil
+  global_disable: "0"
+  default_value: "-999"
+  is_fault: "1"
+  si_to_ip: 
+  typeID: INPUT
+  lock_version: "1"
+  is_percentage: "1"
+  min_value: "0"
+  notes: ""
+  subsection: COIL
+  id: "23"
+  fault_widget_type: SLIDER
+  right_label: Undersized
+  unit_ip: ""
+  description: Undersized Coil
+  component: HC
+  node_sequence: "100"
+  display_name: Undersized Heating Coil
+  zone_position: LEFT
+  left_label: Normal
+  unit_si: ""  
+  
+HCLeakyValve:
+   
+  max_value: "1"
+  name: HCLeakyValve
+  global_disable: "0"
+  default_value: "-999"
+  is_fault: "1"
+  si_to_ip: 
+  typeID: INPUT
+  lock_version: "2"
+  is_percentage: "1"
+  min_value: "0"
+  notes: ""
+  subsection: VALVE
+  id: "24"
+  fault_widget_type: SLIDER
+  right_label: 100% Leak
+  unit_ip: ""
+  description: Effective valve stem position (percent open) due to leakage when commanded fully closed
+  component: HC
+  node_sequence: "100"
+  display_name: Heating Coil Valve Leakage
+  zone_position: LEFT
+  left_label: Normal
+  unit_si: ""
+  
+HCObstructedPipe: 
+  
+  max_value: "1"
+  name: HCObstructedPipe
+  global_disable: "0"
+  default_value: "-999"
+  is_fault: "1"
+  si_to_ip: 
+  typeID: INPUT
+  lock_version: "1"
+  is_percentage: "1"
+  min_value: "0"
+  notes: ""
+  subsection: COIL
+  id: "25"
+  fault_widget_type: SLIDER
+  right_label: Obstructed
+  unit_ip: ""
+  description: Percentage reduction of the open valve water flow due to the obstruction.  The obstruction is in series with the pump, not  in the coil branch or the bypass branch.
+  component: HC
+  node_sequence: "100"
+  display_name: Obstructed Pipe in Heating Coil Circuit
+  zone_position: LEFT
+  left_label: Normal
+  unit_si: ""
+  
+
+  
+HCFouledCoil: 
+  
+  max_value: "1"
+  name: HCFouledCoil
+  global_disable: "0"
+  default_value: "-999"
+  is_fault: "1"
+  si_to_ip: 
+  typeID: INPUT
+  lock_version: "1"
+  is_percentage: "1"
+  min_value: "0"
+  notes: ""
+  subsection: COIL
+  id: "26"
+  fault_widget_type: SLIDER
+  right_label: Fouled
+  unit_ip: ""
+  description: Percentage of heat exchange capacity reduced by coil fouling
+  component: HC
+  node_sequence: "100"
+  display_name: Fouled Heating Coil
+  zone_position: LEFT
+  left_label: Normal
+  unit_si: ""
+  
+
+HCmLiqOpen: 
+  
+  max_value: "1000"
+  name: HCmLiqOpen
+  global_disable: "0"
+  default_value: "1"
+  is_fault: "0"
+  si_to_ip: SI*15.88
+  typeID: INPUT
+  lock_version: "0"
+  is_percentage: "1"
+  min_value: "0"
+  notes: New default set by Haves on 06Oct07
+  subsection: ""
+  id: "27"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: GPM
+  description: Water flow rate through the heating coil when the control valve is fully open
+  component: HC
+  node_sequence: "3"
+  display_name: Heating Coil Maximum Water Flow Rate
+  zone_position: ""
+  left_label: ""
+  unit_si: kg/s
+  
+HCTLiqLvg: 
+  
+  max_value: "100"
+  name: HCTLiqLvg
+  global_disable: "0"
+  default_value: "80"
+  is_fault: "0"
+  si_to_ip: SI*1.8+32
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "-100"
+  notes: ""
+  subsection: ""
+  id: "10"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: F
+  description: Temperature of water leaving the heating coil (after the coil and before the 3-way valve)
+  component: HC
+  node_sequence: "100"
+  display_name: Heating Coil Leaving Water Temperature
+  zone_position: ""
+  left_label: ""
+  unit_si: C
+  
+HCTLiqbypass: 
+  
+  max_value: "100"
+  name: HCTLiqbypass
+  global_disable: "1"
+  default_value: "80"
+  is_fault: "0"
+  si_to_ip: SI*1.8+32
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "-100"
+  notes: ""
+  subsection: ""
+  id: "11"
+  fault_widget_type: ""
+  right_label: ""
+  unit_ip: F
+  description: Temperature of water by-passing the heating coil
+  component: HC
+  node_sequence: "100"
+  display_name: Heating Coil By-pass Water Temp
+  zone_position: ""
+  left_label: ""
+  unit_si: C
+
+
+
+
+##################
+# BOILER
+##################
+
+
+BOIwaterflow:
+  
+  name: BOIwaterflow
+  display_name: Boiler Flow Rate
+  description: Flow rate of the water entering the boiler
+  global_disable: false
+  default_value: 
+  is_fault: false
+  typeID: OUTPUT
+  component: BOI
+  node_sequence: 1
+  unit_si: kg/s
+  si_to_ip: SI*1765.7
+  unit_ip: CFM
+  
+    
+BOItin:
+  
+  name: BOItin
+  display_name: Boiler Inlet Temperature
+  description: Temperature of the water entering the boiler
+  global_disable: false
+  default_value: 80
+  is_fault: false
+  typeID: OUTPUT
+  component: BOI
+  node_sequence: 2
+  si_to_ip: SI*1.8+32
+  unit_ip: F
+  unit_si: C
+    
+BOItset:
+  
+  name: BOItset
+  display_name: Boiler Outlet Temperature Setpoint
+  description: Temperature setpoint for the water exiting the boiler
+  global_disable: false
+  default_value: 90
+  is_fault: false
+  typeID: INPUT
+  component: BOI
+  default_value: 60
+  min_value: 30
+  max_value: 90 
+  node_sequence: 3
+  si_to_ip: SI*1.8+32
+  unit_ip: F
+  unit_si: C
+    
+BOItout:
+  
+  name: BOItout
+  display_name: Boiler Outlet Temperature 
+  description:  Actual temperature of the water exiting the boiler
+  global_disable: false
+  default_value: 90
+  is_fault: false
+  typeID: OUTPUT
+  component: BOI
+  node_sequence: 
+  si_to_ip: SI*1.8+32
+  unit_ip: F
+  unit_si: C
+
+BOIfuel:
+  
+  name: BOIfuel
+  display_name: Boiler Fuel Consumed
+  description: Fuel consumption by the boiler (in Watts)
+  global_disable: false
+  default_value: 
+  is_fault: false
+  typeID: OUTPUT
+  component: BOI
+  node_sequence: 
+  unit_si: W
+  si_to_ip: SI*0.2931
+  unit_ip: Btu/h
+
+BOIqdot:
+  
+  name: BOIqdot
+  display_name: Boiler Heat Transfer Rate
+  description: Heat added to the boiler water loop
+  global_disable: false
+  default_value: 
+  is_fault: false
+  typeID: OUTPUT
+  component: BOI
+  node_sequence: 
+  unit_si: W
+  si_to_ip: SI*0.2931
+  unit_ip: Btu/h
+
+BOIcap:
+  
+  name: BOIcap
+  display_name: Boiler Capacity
+  description: Maximum output of the boiler at rated conditions
+  global_disable: false
+  default_value: 25000
+  min_value: 10000
+  max_value: 50000
+  is_fault: false
+  typeID: INPUT
+  component: BOI
+  node_sequence:  
+  unit_si: W
+  si_to_ip: SI*0.2931
+  unit_ip: Btu/h
+    
+    
+################
+# CHILLER
+################    
+    
+CHLevapflow:
+  
+  name: CHLevapflow
+  display_name: Chilled Water Flow Rate
+  description: Flow rate of the chilled water loop
+  global_disable: false
+  default_value: 
+  is_fault: false
+  typeID: OUTPUT
+  component: CHL
+  node_sequence: 1
+  unit_si: kg/s
+  si_to_ip: SI*1765.7
+  unit_ip: CFM
+    
+   
+CHLevapin:
+  
+  name: CHLevapin
+  display_name: Chilled Water Return Temperature
+  description: Temperature of the water entering the evaporator
+  global_disable: false
+  default_value: 12
+  is_fault: false
+  typeID: OUTPUT
+  component: CHL
+  node_sequence: 2
+  unit_si: C
+  si_to_ip: SI*1.8+32
+  unit_ip: F
+    
+
+CHLevapset:
+  
+  name: CHLevapset
+  display_name: Chilled Water Supply Temperature Setpoint
+  description: Temperature setpoint of the water leaving the evaporator
+  global_disable: false
+  min_value: 2
+  default_value: 6.5
+  max_value: 15
+  is_fault: false
+  typeID: INPUT
+  component: CHL
+  node_sequence: 3
+  unit_si: C
+  si_to_ip: SI*1.8+32
+  unit_ip: F
+    
+CHLcondflow:
+  
+  name: CHLcondflow
+  display_name: Condensor Water Flow Rate
+  description: Flow rate of the condensor water loop
+  global_disable: false
+  default_value: 29.5
+  is_fault: false
+  typeID: INPUT
+  component: CHL
+  node_sequence: 4
+  unit_si: kg/s
+  si_to_ip: SI*1765.7
+  unit_ip: CFM
+  default_value: 1
+  min_value: .01
+  max_value: 20
+
+CHLcondin:
+  
+  name: CHLcondin
+  display_name: Condensor Inlet Temperature
+  description: Temperature of the water entering the condensor
+  global_disable: false
+  default_value: 29.5
+  is_fault: false
+  typeID: INPUT
+  component: CHL
+  node_sequence: 5
+  unit_si: C
+  si_to_ip: SI*1.8+32
+  unit_ip: F
+  default_value: 35
+  min_value: 20
+  max_value: 50
+  
+CHLevapout:
+  
+  name: CHLevapout
+  display_name: Chilled Water Supply Temperature
+  description: Actual temperature of the water exiting the evaporator
+  global_disable: false
+  default_value: 
+  is_fault: false
+  typeID: OUTPUT
+  component: CHL
+  unit_si: C
+  si_to_ip: SI*1.8+32
+  unit_ip: F
+  node_sequence: 6
+
+CHLcondout:
+  
+  name: CHLcondout
+  display_name: Condensor Outlet Temperature
+  description: Temperature of the water leaving the condensor
+  global_disable: false
+  default_value: 
+  is_fault: false
+  typeID: OUTPUT
+  component: CHL
+  unit_si: C
+  si_to_ip: SI*1.8+32
+  unit_ip: F
+  node_sequence: 7
+    
+CHLcomppow:
+  
+  name: CHLcomppow
+  display_name: Chiller Compressor Power
+  description: Power consumption of the compressor
+  global_disable: false
+  default_value: 
+  is_fault: false
+  typeID: OUTPUT
+  component: CHL
+  node_sequence: 8
+  unit_si: W
+  si_to_ip: SI*0.2931
+  unit_ip: Btu/h
+    
+CHLpumppow:
+  
+  name: CHLpumppow
+  display_name: Chiller Pumping Power
+  description: Power consumption of the pumps for the chilled water and condensor water loops
+  global_disable: false
+  default_value: 
+  is_fault: false
+  typeID: OUTPUT
+  component: CHL
+  node_sequence: 9 
+  unit_si: W
+  si_to_ip: SI*0.2931
+  unit_ip: Btu/h
+
+CHLqdot:
+  
+  name: CHLqdot
+  display_name: Chiller Heat Transfer Rate
+  description: Heat removed from the condensor loop
+  global_disable: false
+  default_value: 
+  is_fault: false
+  typeID: OUTPUT
+  component: CHL
+  node_sequence: 10
+  unit_si: W
+  si_to_ip: SI*0.2931
+  unit_ip: Btu/h
+ 
+
+CHLcap:
+  
+  name: CHLcap
+  display_name: Chiller Capacity
+  description: Maximum output of the chiller at rated conditions
+  global_disable: false
+  default_value:
+  is_fault: false
+  typeID: INPUT
+  component: CHL
+  node_sequence: 11
+  unit_si: W
+  si_to_ip: SI*0.2931
+  unit_ip: Btu/h
+  min_value: 1000
+  default_value: 100000
+  max_value: 200000
+
+
+####################
+# COOLING TOWER
+####################
+
+CTWwaterflow:
+  
+  name: CTWwaterflow
+  display_name: Cooling Tower Inlet Water Flow Rate
+  description: "Flow rate of the water entering the cooling tower (note: equals the Condensor Water Flow Rate)"
+  global_disable: false
+  default_value: 
+  is_fault: false
+  typeID: INPUT
+  component: CTW
+  node_sequence: 1
+
+CTWtin:
+  
+  name: CTWtin
+  display_name: Cooling Tower Inlet Water Temperature
+  description: Temperature of the water entering the cooling tower
+  global_disable: false
+  default_value: 35
+  is_fault: false
+  typeID: INPUT
+  component: CTW
+  node_sequence: 2
+    
+CTWmakeuptemp:
+  
+  name: CTWmakeuptemp
+  display_name: Cooling Tower Make-Up Water Temperature
+  description: Temperature of the make-up water for the cooling tower
+  global_disable: false
+  default_value: 18
+  is_fault: false
+  typeID: INPUT
+  component: CTW
+  node_sequence: 3
+
+CTWtout:
+  
+  name: CTWtout
+  display_name: Cooling Tower Outlet Water Temperature
+  description: Temperature of the water exiting the cooling tower
+  global_disable: false
+  default_value: 
+  is_fault: false
+  typeID: OUTPUT
+  component: CTW
+  node_sequence: 
+        
+CTWmakeuprate:
+  
+  name: CTWmakeuprate
+  display_name: Cooling Tower Make-Up Water Flow Rate
+  description: Flow rate of the make-up water for the cooling tower
+  global_disable: false
+  default_value: 
+  is_fault: false
+  typeID: OUTPUT
+  component: CTW
+  node_sequence: 
+
+
+
+
+
+##################
+# SPARK
+##################
+
+Pause:
+   
+  max_value: "1"
+  name: Pause
+  global_disable: "0"
+  default_value: "0"
+  is_fault: "0"
+  si_to_ip: 
+  typeID: INPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "0"
+  notes: 
+  subsection: 
+  id: "226"
+  fault_widget_type: 
+  right_label: 
+  unit_ip: 
+  description: 
+  component: SPK
+  node_sequence: "100"
+  display_name: Pause
+  zone_position: 
+  left_label: 
+  unit_si: 
+
+calcInterval: 
+  
+  max_value: "1000"
+  name: calcInterval
+  global_disable: "0"
+  default_value: "1"
+  is_fault: "0"
+  si_to_ip: 
+  typeID: INPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "1"
+  notes: 
+  subsection: 
+  id: "225"
+  fault_widget_type: 
+  right_label: 
+  unit_ip: 
+  description: 
+  component: SPK
+  node_sequence: "100"
+  display_name: calcInterval
+  zone_position: 
+  left_label: 
+  unit_si: 
+
+
+timeScale:
+   
+  max_value: "1000"
+  name: timeScale
+  global_disable: "0"
+  default_value: "1"
+  is_fault: "0"
+  si_to_ip: 
+  typeID: INPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "1"
+  notes: 
+  subsection: 
+  id: "224"
+  fault_widget_type: 
+  right_label: 
+  unit_ip: 
+  description: 
+  component: SPK
+  node_sequence: "100"
+  display_name: timeScale
+  zone_position: 
+  left_label: 
+  unit_si: 
+      
+
+timestep:
+   
+  max_value: "1"
+  name: timestep
+  global_disable: "0"
+  default_value: "0"
+  is_fault: "0"
+  si_to_ip: 
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "0"
+  notes: 
+  subsection: 
+  id: "228"
+  fault_widget_type: 
+  right_label: 
+  unit_ip: 
+  description: 
+  component: SPK
+  node_sequence: "100"
+  display_name: timestep
+  zone_position: 
+  left_label: 
+  unit_si: 
+
+
+Tstep: 
+  
+  max_value: "1"
+  name: Tstep
+  global_disable: "0"
+  default_value: "0"
+  is_fault: "0"
+  si_to_ip: 
+  typeID: OUTPUT
+  lock_version: "0"
+  is_percentage: "0"
+  min_value: "0"
+  notes: 
+  subsection: 
+  id: "227"
+  fault_widget_type: 
+  right_label: 
+  unit_ip: 
+  description: 
+  component: SPK
+  node_sequence: "100"
+  display_name: Tstep
+  zone_position: 
+  left_label: 
+  unit_si: 
+      
+COu:
+  
+  name: COu
+  display_name: Split range controller output
+  description: "COu description: Control signal output (between 0-1, values lower than the lower split range value apply to the heating coil, values higher than the higher split range value apply to the cooling coil, and the mixing box acts in between the two ranges)."
+  default_value:  
+  is_fault: false
+  typeID: OUTPUT
+  global_disable: false
+  component: SPK
+  node_sequence: 
+      
+
+CObias:
+  
+  name: CObias
+  display_name: Supply Air Controller Output Bias
+  description: Controller output in manual override or at start-up.
+  default_value: .3
+  min_value: 0
+  max_value: 1
+  is_fault: false
+  typeID: INPUT
+  global_disable: false
+  component: SPK
+  node_sequence: 
+      
+COfr:
+  
+  name: COfr
+  display_name: Supply Air Controller Override/Forward/Reverse Acting 
+  description: "Specifies whether the cooling coil control is reverse acting (-1, correct) or forward acting (1, incorrect) or overriden (0). If the control is reverse acting, the valve opens when the supply air temperature needs to decrease"
+  default_value: -1
+  min_value: -1
+  max_value: 1
+  is_fault: false
+  typeID: INPUT
+  global_disable: false
+  component: SPK
+  node_sequence: 
+      
+COkd:
+  
+  name: COKd
+  display_name: Supply Air Controller Derivative gain 
+  description: Derivative gain
+  default_value: 1
+  min_value: 0
+  max_value: 10000000000
+  is_fault: false
+  typeID: INPUT
+  global_disable: false
+  component: SPK
+  node_sequence: 
+      
+      
+COki:
+  
+  name: COki
+  display_name: Supply Air Controller Integral Gain 
+  description: "Determines how quickly the control signal changes in response to a persistent difference between the set-point and the actual value of the supply air temperature. The larger the Integral Gain, the faster the control signal changes."
+  default_value: .3 
+  min_value: 0
+  max_value: 1000
+  is_fault: false
+  typeID: INPUT
+  global_disable: false
+  component: SPK
+  node_sequence: 
+      
+COKp:
+  
+  name: COKp
+  display_name: Supply Air Controller Proportional Gain 
+  description: "Proportional gain determines the size of the immediate response of the control signal to a difference between the set-point and the actual value of the supply air temperature. The larger the Proportional Gain, the larger the change in the control signal."
+  default_value: 10
+  min_value: 0
+  max_value: 1000
+  is_fault: false
+  typeID: INPUT
+  global_disable: false
+  component: SPK
+  node_sequence: 
+      
+COs1:
+  
+  name: COs1
+  display_name: Supply Air Controller Split Range Upper Split (between Cooling Coil and Mixing Box)
+  description: "Outputs from the controller that are higher than this value affect the Cooling Coil, otherwise the Cooling Coil is off and the outputs affect the Mixing Box or Heating Coil"
+  default_value: .67
+  min_value: 0
+  max_value: 1
+  is_fault: false
+  typeID: INPUT
+  global_disable: false
+  component: SPK
+  node_sequence: 
+
+COs2:
+  
+  name: COs2
+  display_name: Supply Air Controller Split Range Lower Split (between Mixing Box and Heating Coil)
+  description: "Outputs from the controller that are lower than this value affect the Heating Coil, otherwise the Heating Coil is off and the outputs affect the Mixing Box or Cooling Coil"
+  default_value: .33
+  min_value: 0
+  max_value: 1
+  is_fault: false
+  typeID: INPUT
+  global_disable: false
+  component: SPK
+  node_sequence: 
+      
+      
+      
+MXminOAfrac: 
+  
+  max_value: 1
+  name: MXminOAfrac
+  global_disable: "0"
+  default_value: .2
+  typeID: INPUT
+  min_value: 0
+  description: "The minimum fraction of supply air that must be outside air in order for the building to meet its minimum outside air requirement for ventilation."
+  component_id: 4
+  node_sequence: 100
+  display_name: Outside Air Damper Position (Actual)
+  zone_position: ""
+  left_label: ""
+  unit_si: ""
+     

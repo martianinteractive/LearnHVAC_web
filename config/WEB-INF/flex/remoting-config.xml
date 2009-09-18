@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service id="remoting-service"
+    class="flex.messaging.services.RemotingService"
+    messageTypes="flex.messaging.messages.RemotingMessage">
+
+    <default-channels>
+        <channel ref="my-amf"/>
+    </default-channels>
+    
+    <destination id="DataService">
+        <properties>
+            <source>weborb/data/DataService</source>
+        </properties>
+    </destination>
+    
+    <destination id="InfoService">
+        <properties>
+            <source>InfoService</source>
+        </properties>
+    </destination>
+    
+    <destination id="FlexRemotingTest">
+        <properties>
+            <source>weborb/tests/FlexRemotingTest</source>
+        </properties>
+    </destination>
+    
+    <destination id="PrimitiveTest">
+        <properties>
+            <source>weborb/tests/PrimitiveTest</source>
+        </properties>
+    </destination>
+    
+    <destination id="StringsTest">
+        <properties>
+            <source>weborb/tests/StringsTest</source>
+        </properties>
+    </destination>    
+    
+    <destination id="PrimitiveArrayTest">
+        <properties>
+            <source>weborb/tests/PrimitiveArrayTest</source>
+        </properties>
+    </destination>
+    
+    <destination id="ComplexTypesTest">
+        <properties>
+            <source>weborb/tests/ComplexTypesTest</source>
+        </properties>
+    </destination>
+    
+    <destination id="MultipleArgsTest">
+        <properties>
+            <source>weborb/tests/MultipleArgsTest</source>
+        </properties>
+    </destination>    
+</service>

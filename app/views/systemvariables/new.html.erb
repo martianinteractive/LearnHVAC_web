@@ -1,0 +1,30 @@
+<div>
+	<div id="section_icon">
+		<img src="/images/icon_scenarios_45.png" alt = "Scenarios Icon"/>
+	</div>
+	<div id="section_title">
+		<h1>New System Variable</h1>
+	</div>
+	<div id="section_description">
+		Create a new System Variable. Note: System Variables are directly related to SPARK, so a good
+		understanding of how Learn HVAC works with SPARK is required before adding or changing System Variables.
+	</div>
+	<div style="clear:both"></div>
+</div>
+
+
+
+<% form_for (@systemvariable) do |f| %>
+  <%= render :partial => 'form', :locals => { :f => f } %>
+  	<table>
+	<tr>
+	<td width="100">
+		<%= button_to 'Cancel', {:action => 'list'}, :class=>"cancelButton"%>
+	</td>
+	<td>
+		<input class="createButton" name="commit" type="submit" value="Create System Variable" />
+	</td>
+	</tr>
+	</table>
+<% end %>
+

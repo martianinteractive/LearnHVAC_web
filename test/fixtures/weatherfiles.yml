@@ -1,0 +1,13 @@
+--- 
+weatherfiles_001: 
+  name: (none)
+  id: "1"
+  description: No weather file
+weatherfiles_002: 
+  name: Chicago
+  id: "2"
+  description: (no description)
+weatherfiles_003: 
+  name: Phoenix
+  id: "3"
+  description: (no description)

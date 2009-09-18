@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute"
+	creationComplete="onCreationComplete()">
+	
+	<mx:Script>
+    <![CDATA[
+    	import mx.rpc.remoting.*;
+    	import mx.controls.*;
+        import mx.rpc.events.*
+
+		private var remoteObject:RemoteObject;
+		
+    	public function onCreationComplete():void
+   		{
+   			remoteObject = new RemoteObject();
+   			remoteObject.destination = "InfoService";
+   			remoteObject.getComputerInfo.addEventListener("result", onResult);
+   			remoteObject.addEventListener("fault", onFault);
+   		}
+   		
+   		public static function onFault(event:FaultEvent):void 
+        {
+            Alert.show(event.fault.faultString, 'Error');
+        }
+        
+        private function onResult(event:ResultEvent):void 
+    	{
+    		var computerInfo:Object = event.result;
+    		serverInfoText.text = computerInfo.serverName;
+    		requestIdText.text = computerInfo.requestId;
+    		osText.text = computerInfo.os;
+    		timeText.text = computerInfo.currentTime.toString();
+    		invokeButton.enabled = true;
+    	}
+    	
+    	private function getInfo():void 
+    	{
+    		invokeButton.enabled = false;
+    		serverInfoText.text = "";
+    		requestIdText.text = "";
+    		osText.text = "";
+    		timeText.text = "";
+    		remoteObject.getComputerInfo("ABC123");
+    	}
+	]]>
+    </mx:Script>
+	<mx:Panel x="10" y="10" width="329" height="189" layout="absolute" title="Info Service Example">
+		<mx:Label x="10" y="10" text="Web Server:"/>
+		<mx:Label x="10" y="36" text="Request Id:"/>
+		<mx:Label x="10" y="62" text="OS/Architecture:"/>
+		<mx:Label x="10" y="88" text="Current Time:"/>
+		<mx:TextInput x="113" y="8" width="186" editable="false" id="serverInfoText"/>
+		<mx:TextInput x="113" y="34" width="186" editable="false" id="requestIdText"/>
+		<mx:TextInput x="113" y="60" width="186" editable="false" id="osText"/>
+		<mx:TextInput x="113" y="86" width="186" editable="false" id="timeText"/>
+		<mx:Button id="invokeButton" x="166" y="116" label="Get Computer Info" click="getInfo()" />
+	</mx:Panel>
+	
+</mx:Application>

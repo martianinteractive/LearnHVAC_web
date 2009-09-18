@@ -1,0 +1,83 @@
+
+
+<div>
+	<div id="section_icon">
+		<img src="/images/icon_users_45.png" alt = "Users Icon"/>
+	</div>
+	<div id="section_title">
+		<h1>Manage Users</h1>
+	</div	
+	<div style="text-align:right;float:right;padding-top:4px;">
+		<%= button_to 'Create New User', {:action => 'new'}, :class=>"createButton" %>
+	</div>
+	<div style="clear:both"></div>
+</div>	
+
+
+<p><span style="color:green;font-face:bold;font-size:16pt;"></span>(your user is highlighted yellow)</p>
+<table id="listTable" cellpadding="2" cellspacing="0" >
+  
+  <tr id="listHeader" >
+		<th>&nbsp;</th>
+		<% if current_user.role.name=="superadmin"%>
+			<th align="left">Institution</th>
+		<% end %>
+		<th align="left">Last&nbsp;Name</th>
+		<th align="left">First&nbsp;Name</th>
+		<th align="left">Login</th>
+		<th align="left">Role</th>
+		<th align="left">e-Mail</th>
+		<th colspan="4">&nbsp;</th>
+  </tr>
+  
+<% rowClass = "lightRow"%>
+
+<% for user in @users 
+   if rowClass == "lightRow"
+        rowClass = "darkRow"
+    else
+        rowClass = "lightRow"
+    end
+
+%>
+
+  <tr class="<%= rowClass %>" style="height:30px;	
+		<% if current_user.id == user.id %>
+	 		background:#FFFFCC;
+		<% end %>">
+	<td></td>	
+	<% if current_user.role.name=="superadmin"%>
+		<td>
+			<% if !user.institution.nil? %>
+				<%= user.institution.name %>
+			<% end %>
+		</td>
+	<% end %>
+	
+	 <td align="left"><%=h user.last_name %></td>
+     <td align="left"><%=h user.first_name %></td>
+     <td align="left"><b style="color:#CC0000;"><%=h user.login %></b></td>
+	 <td align="left"><%=h user.role.name %></td>
+     <td align="left"><%=h user.email %></td>
+	 <% if current_user.role.name == "instructor" && current_user.login != user.login && ( user.role.name=="administrator" or user.role.name=="instructor")%>
+	 	<td><%= link_to 'Show', :action => 'show', :id => user %></td>
+		<td colspan="3">&nbsp;</td>
+	 <% else %>
+     	<td><%= link_to 'Show', :action => 'show', :id => user %></td>
+     	<td><%= link_to 'Edit', :action => 'edit', :id => user %></td>
+     	<td><%= link_to 'Change Pwd', :action => 'change_password', :id => user %></td>
+     	<td>
+			<% if current_user.id == user.id %>
+				&nbsp;
+			<% else %>
+				<%= link_to 'Destroy', { :action => 'destroy', :id => user }, :confirm => 'Are you sure you want to destroy this user?', :method=>:delete %>
+			<% end %>
+		</td>
+  	 <% end %>
+	</tr>
+<% end %>
+</table>
+
+
+<br />
+

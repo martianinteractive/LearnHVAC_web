@@ -1,0 +1,178 @@
+<%= error_messages_for 'systemvariable' %>
+
+
+<%= hidden_field :systemvariable, :lock_version %>
+
+<!--[form:systemvariable]-->
+
+
+<table cellspacing="0" cellpadding="2">
+<tr  border="1">
+<td valign="top" width="400px;">
+
+<br/>
+<p>Name:<br/>
+<%= f.text_field 'name'  %>
+<br/>
+<span class="info">System variable name (100 characters max.)</span>
+</p>
+
+<p>Display Name:<br/>
+<%= f.text_field 'display_name'  %>
+<br/>
+<span class="info">Variable name as displayed to student in ePrimer</span>
+</p>
+
+
+<p>Description:<br/>
+<%= f.text_area 'description', :rows=>3  %>
+<br/>
+<span class="info">Description of system variable</span>
+</p>
+
+<p>Component:&nbsp;&nbsp;
+<%= collection_select(:systemvariable, :component_id, Component.find(:all, :order=>"name"), :id, :name, options ={:prompt => "-- Select a component --"}) %>
+<br/>
+<span class="info">Component this variable belongs to (use SYSTEM for global variables)</span>
+</p>
+
+
+<br/>
+<p>Globally Disabled:<br/>
+<%= f.check_box :global_disable %>&nbsp;Variable is disabled in all Scenarios
+<br/>
+<span class="info"></span>
+</p>
+
+<br/>
+<p>Type:<br/>
+<%= f.text_field 'typeID'  %>
+<br/>
+<span class="info">Variable type: INPUT or OUTPUT</span>
+</p>
+
+<br/>
+<p>Units SI:<br/>
+<%= f.text_field 'unit_si'  %>
+<br/>
+<span class="info">SI units.</span>
+</p>
+
+<p>Units IP:<br/>
+<%= f.text_field 'unit_ip'  %>
+<br/>
+<span class="info">IP units.</span>
+</p>
+<p>SI to IP:<br/>
+<script language="JavaScript">
+	function showValidConversions()
+	{
+		if (document.getElementById)
+		{
+			elem = document.getElementById("validConversions")
+			d = "block"
+			if (elem.style.display=="block")
+			{
+				d = "none"
+			}
+			elem.style.display = d
+		}
+	}
+</script>
+<%= f.text_field  'si_to_ip'  %>&nbsp;<a href="javascript:showValidConversions()" class="info">show valid values</a>
+
+<br/>
+<div id="validConversions" style="display:none; background:#E1E1E1;padding:5px;" class="info">
+	<b>Valid conversions include the following<br/>(must be type exactly as shown):</b><br/>
+	<br/>SI*1.8+32<br/>SI*1.8<br/>SI*1765.7<br/>SI*15.847861<br/> SI*15.88 <br/>SI*0.2931 <br/>SI*1.895<br/>SI/249.1<br/>SI*1.45e-4<br/>SI*1.47e-4
+</div>
+</p>	
+
+<br/>
+<p>Minimum Value:<br/>
+<%= f.text_field 'min_value'  %>
+<br/>
+<span class="info">Minimum input value allowed stated in SI UNITS</span>
+</p>
+
+<p>Maximum Value:<br/>
+<%= f.text_field 'max_value'  %>
+<br/>
+<span class="info">Maximum input value allowed stated in SI UNITS</span>
+</p>
+
+<p>Default Value:<br/>
+<%= f.text_field 'default_value'  %>
+<br/>
+<span class="info">Value that is pre-filled when user creates scenario stated in SI UNITS</span>
+</p>
+
+
+<p>Notes:<br/>
+<%= f.text_area 'notes', :rows=>3  %>
+<br/>
+<span class="info">Notes are meant for instructors (not for students) and only appear on this site.
+Use notes to help instructors understand what variable does when editing scenarios.</span>
+</p>
+
+</td>
+
+
+
+<td valign="top" align="left">
+<br/>
+<b>FAULT Information:</b><br/>
+<%= f.check_box :is_fault %>&nbsp;System Variable is Fault
+<br/>
+<span class="info">Mark if system variable is a fault, then fill out the fields below.</span>
+</p>
+<br/>
+<div style="border:1px solid #CCC; padding:20px">
+
+<p>Fill in the following fields if this variable is a fault.
+(If the fault checkbox is not checked, these values will be ignored.)
+</p>
+
+<p>Fault widget type<br/>
+<%= f.text_field  'fault_widget_type'  %>
+<br/>
+<span class="info">Type of interface widget : SLIDER or CHECKBOX</span>
+</p>
+
+<p>Subsection:<br/>
+<%= f.text_field 'subsection'  %>
+<br/>
+<span class="info">Group name that fault should appear in (case sensitive)</span>
+</p>
+
+
+<p>Left Label:<br/>
+<%= f.text_field 'left_label'  %>
+<br/>
+<span class="info">Label on left side of slider (if fault uses slider)</span>
+</p>
+
+<p>Right Label:<br/>
+<%= f.text_field 'right_label'  %>
+<br/>
+<span class="info">Label on right side of slider (if fault uses slider)</span>
+</p>
+
+<p>Zone position:<br/>
+<%= f.text_field 'zone_position'  %>
+<br/>
+<span class="info">Position of zone in slider (LEFT, RIGHT, or CENTER)</span>
+</p>
+
+<p><%= f.check_box :is_percentage %> Fault is percentage
+<br/>
+<span class="info">Slider should show values as percentage (e.g. 0% blocked <-> 100% blocked)</span>
+</p>
+
+
+</td>
+</tr>
+</table>
+<br/>
+<!--[eoform:systemvariable]-->
+
