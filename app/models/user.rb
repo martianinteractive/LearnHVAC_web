@@ -1,7 +1,7 @@
 require 'digest/sha1'
 
 class User < ActiveRecord::Base
-	
+	include SavageBeast::UserInit
 	belongs_to :institution
   belongs_to :role
   has_many :activities

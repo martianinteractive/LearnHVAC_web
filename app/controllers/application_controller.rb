@@ -3,6 +3,7 @@
 class ApplicationController < ActionController::Base
 
   helper :all # include all helpers, all the time
+  include SavageBeast::AuthenticationSystem
   helper_method :current_user
 
   # See ActionController::RequestForgeryProtection for details
