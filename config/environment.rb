@@ -24,6 +24,7 @@ Rails::Initializer.run do |config|
   # They can then be installed with "rake gems:install" on new installations.
   config.gem "fastercsv", :version => '1.2.3'
   config.gem "rack", :version => '1.0.1'
+  config.gem "RedCloth"
   # config.gem "hpricot", :version => '0.6', :source => "http://code.whytheluckystiff.net"
   # config.gem "aws-s3", :lib => "aws/s3"
 
