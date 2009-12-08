@@ -1,0 +1,57 @@
+<div>
+	<p class="subtitle">
+	  <%= feed_icon_tag "Recent Posts", all_posts_path(:format => 'rss') %>
+	  <%= pluralize(Topic.count, "Topic") %>, 
+	  <%= pluralize(Post.count, "Post") %>, <%= pluralize(User.count(:conditions => "posts_count > 0"), "Voice") %>
+	</p>
+	
+	<div id="section_icon">
+	  <%= image_tag "icon_scenarios_45.png", :alt => "Scenarios Icon" %>
+	</div>
+	<div id="section_title">
+		<h1>Forums</h1>
+	</div>
+	
+	<% if admin? %>
+	  <div style="text-align: right;">
+		<%= button_to 'Create New Forum', new_forum_path, :class=>'createButton' %>
+	  </div>
+	<% end %>
+	<div style="clear: both;"/>
+</div>
+
+
+<table  id="listTable"  cellpadding="2" cellspacing="0"  class="forums">
+  <tr id="listHeader" >
+	<th width="15%" align="left">&nbsp;&nbsp;Forum</th>
+    <th width="35%" align="left">Description</th>
+    <th width="50%" align="left" width="30">Last Post</th>
+  </tr>
+
+  <% for forum in @forums %>
+    <tr class="<%= cycle("lightRow", "darkRow") -%> c2 vat" style="height: 30px;">
+      <td> 
+		<%= link_to h(forum.name), forum_path(forum), :class => "title" %> 
+		<div class="posts">
+		  <%= pluralize(forum.topics.size, "Topic" ) %>, <%= pluralize(forum.posts.size, "Post")%>
+		  <%= link_to 'Edit', edit_forum_path(forum), :class => "tiny", :rel => "directory", :style => "float:right" if admin? %>
+        </div>
+	  </td>
+	  
+	  <td><p class="desc"><%= forum.description_html %></p>
+	
+	  <td>
+      <% if forum.recent_post %>
+        <%= time_ago_in_words(forum.recent_post.created_at) %><br />
+        <%= "by <strong>#{h(forum.recent_post.user.display_name)}</strong>" %>
+        <span>(<%= link_to 'view', forum_topic_path(:forum_id => forum, :id => forum.recent_post.topic_id, :page => forum.recent_post.topic.last_page, :anchor => forum.recent_post.dom_id) %>)</span>
+      <% else %>
+		<p> There are no recent post on this forum </p>
+	  <% end %>
+    </td>
+	
+    </tr>
+
+  <% end %>
+
+</table>
