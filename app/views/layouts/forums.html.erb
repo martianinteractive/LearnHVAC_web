@@ -1,0 +1,17 @@
+<%= render :partial => "layouts/head" %>
+<div id="content">
+  <%= render :partial => "layouts/notice" %>
+  <%= yield %>
+</div>
+
+<div id="right">
+  <%= yield :right %>
+</div>
+
+<br style="clear:both;" />
+
+</div>
+
+<%= render(:partial=>"shared/footer")%>
+</body>
+</html>

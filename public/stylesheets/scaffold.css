@@ -398,9 +398,20 @@ div.progressBar div.background {
         padding: 0px;
 }
 
+/* NOTICE */
+div.notice {
+  border: 1px solid green;
+  color: green;
+  padding: 10px; 
+  margin-bottom: 10px;
+}
 
+div.message {
+  border: 1px solid #009900;
+  color: #009900;
+}
 
-
-
-
-
+div.warning { 
+  background-color: #CC0000;
+  color: white;
+}
