@@ -42,6 +42,6 @@ module SavageBeast::AuthenticationSystem
     end
     
     def admin?
-      #logged_in? && current_user.admin?
+      logged_in? && current_user.role.name == "superadmin"
     end
 end
