@@ -1,8 +1,8 @@
-<%= render :partial => "layouts/head" %>
+<%= render :partial => "layouts/forum_head" %>
 
 <div id="container">
 
-<div id="content">
+<div id="forum_content">
   
 <%= content_tag 'p', h(flash[:notice]), :class => 'notice' if flash[:notice] %>
 <%= content_tag 'p', h(flash[:error]), :class => 'notice error' if flash[:error] %>
@@ -18,12 +18,6 @@
 
 </div>
 
-<div id="footer">
-<p class="disclaim">
-<strong>
-  </strong>
-</p>
-<br style="clear:both;" />
-</div>
+<%= render(:partial=>"shared/footer") %>
 </body>
 </html>
