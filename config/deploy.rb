@@ -14,7 +14,6 @@ role :app, "rentcloud.com"
 role :web, "rentcloud.com"
 role :db,  "rentcloud.com", :primary => true
 
-after "deploy:symlink", "deploy:update_crontab"
 after "deploy", "deploy:cleanup"
 
 task :production do
