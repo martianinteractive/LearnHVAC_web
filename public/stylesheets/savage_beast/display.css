@@ -1,10 +1,4 @@
-body
-{
-	margin:0;
-	padding:0;
-	background:#d7d7d7;
-	font-family:Arial, Helvetica, sans-serif;
-}
+
 
 a { color: #24b; }
 
@@ -15,7 +9,7 @@ a { color: #24b; }
 	min-width:760px;
 }
 
-#content
+#forum_content
 {
 	margin:1em 0;
 	width:70%;
@@ -68,23 +62,16 @@ a { color: #24b; }
 }
 
 
-#content form {margin-bottom:0;}
+#forum_content form {margin-bottom:0;}
 
-#content p.subtle { 
+#forum_content p.subtle { 
 	margin:0 0 0.5em; 
 	float:right;
 	}
-#content .subtle a
+#forum_content .subtle a
 {
 	color:#999;
 	font-size:0.7em;
-}
-
-#header
-{
-	background:#111;
-	padding:10px 4%;
-	border-bottom:3px solid #999;
 }
 
 #search_box {
@@ -339,14 +326,14 @@ input.submit
 }
 
 p.private,
-#content .legend
+#forum_content .legend
 {
 	margin-top:0;
 	color:#999;
 	font-size:0.8em;
 }
-#content .legend span strong { color: black; }
-#content .legend span
+#forum_content .legend span strong { color: black; }
+#forum_content .legend span
 {
 	margin-right:5em;
 }
@@ -421,76 +408,7 @@ p
 #news p {margin:0;}
 
 
-#header img
-{
-	vertical-align:bottom;
-	margin-right:0.25em;
-}
 
-#header h1,
-#header h1 a
-{
-	font-weight:normal;
-	margin:0;
-	color:#cf4;
-	border:0;
-	text-decoration:none;
-}
-
-#header h1 .count
-{
-	color:#ddd;
-	font-size:0.6em;
-	font-weight:normal;
-	padding-left:1em;
-}
-
-#header ul#nav
-{
-	float:right;
-	list-style-type:none;
-	margin:0;
-	margin-top:0.4em;
-}
-
-#header ul#nav li
-{
-	color:gold;
-	font-family:'Lucida Grande', Verdana, Arial, Helvetica, sans-serif;
-	font-size:0.7em;
-	float:left;
-	margin-left:2em;
-}
-
-#header ul#nav li a
-{
-	display:block;
-	float:left;
-	xcolor:#a86;
-	color:#9c6;
-	xpadding:3px 1em;
-}
-
-#header ul#nav li.login a {
-	color:gold;
-	text-decoration: none;
-}
-
-#header ul#nav li.active a
-{
-	font-weight:bold;
-	xbackground:#222;
-	color:#ca8;
-}
-
-#header ul#nav li.hot a
-{
-	color:orange;
-}
-#header ul#nav li.logout a
-{
-	color:#666;
-}
 
 .line_numbers,
 .lineNumbers
@@ -540,23 +458,16 @@ label
 
 /* tables */
 
-table.noborder td
-{
-  border:0;
-}
+table.noborder td { border:0; }
 
-table.nopad td
-{
-  padding-left:0;
-}
+table.nopad td { padding-left:0; }
 
-table
-{
-	border-collapse:collapse;
-	font-family: 'Lucida Grande', Tahoma, Arial, Helvetica, sans-serif;
+table.savage { 
+  border-collapse:collapse;
+  font-family: 'Lucida Grande', Tahoma, Arial, Helvetica, sans-serif;
 }
-table.wide {	width:100%; }
-table tr th
+table.wide { width:100%; }
+table.savage tr th
 {
 	background:#333;
 	color:white;
@@ -564,7 +475,7 @@ table tr th
 	padding:3px 10px;
 	border:1px solid #222;
 }
-table tr td
+table.savage tr td
 {
 	padding:7px;
 	border:1px solid #ddd;
