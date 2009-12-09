@@ -46,22 +46,6 @@ a { color: #24b; }
 	font-size:0.75em;
 }
 
-#footer
-{
-	margin:0 auto;
-	margin-bottom:1em;
-	font-family:'Lucida Grande', Tahoma, Arial, Helvetica, sans-serif;
-	font-size:0.75em;
-	color:#333;
-	
-	margin-left:3%;
-	width:67%;
-	min-width:545px;
-	padding:0px 15px;
-	margin-bottom:3.5em;
-}
-
-
 #forum_content form {margin-bottom:0;}
 
 #forum_content p.subtle { 
@@ -201,31 +185,6 @@ hr
 }
 #monitor_topic .icon { 
   background-image:none; 
-}
-
-/* footer */
-
-#footer p
-{margin:0}
-#footer p.credit
-{
-	float:right;
-	text-align:right;
-}
-#footer p.credit a.subtle
-{
-	color:#333;
-}
-#footer p.legal
-{
-	float:left;
-	margin-right:1.5em;
-}
-
-#footer p.disclaim
-{
-	float:left;
-	color:#080;
 }
 
 ul.quotes,

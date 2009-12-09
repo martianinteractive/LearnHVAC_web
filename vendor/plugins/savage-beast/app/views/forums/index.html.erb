@@ -1,8 +1,8 @@
 <% content_for :right do %>
 
 <% if admin? %>
-<h6><%= 'Admin'[:admin_title] %></h6>
-<p><%= link_to 'Create New Forum'[:create_new_forum], new_forum_path, :class => "utility" %></p>
+<h2><%= 'Admin'[:admin_title] %></h2>
+<%= button_to 'Create New Forum', new_forum_path, :class=>'createButton' %>
 <% end %>
 
 <% end %>
