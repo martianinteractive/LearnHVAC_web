@@ -733,9 +733,8 @@ img.green { background-color:#0c0;}
 
 /* reply */
 
-div.editbox
-{
-	background:url(/plugin_assets/savage_beast/images/reply_background.png);
+div.editbox {
+	background:url(/images/savage_beast/reply_background.png);
 	border:2px solid #333;
 	border-width:2px 0;
 	position:fixed;
