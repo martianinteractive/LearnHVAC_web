@@ -6,7 +6,9 @@ class TopicsController < ApplicationController
 	# sure what analogous place to put it in this plugin.  It don't work in the init.rb  
   #caches_formatted_page :rss, :show
   cache_sweeper :posts_sweeper, :only => [:create, :update, :destroy]
-
+  
+  layout "forums"
+  
   def index
     respond_to do |format|
       format.html { redirect_to forum_path(params[:forum_id]) }

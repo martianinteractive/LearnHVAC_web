@@ -59,6 +59,10 @@ class User < ActiveRecord::Base
     self.save
     Notifications.deliver_forgot_password(self.email, self.login, new_pass)
   end
+  
+  def display_name
+    "#{first_name.capitalize} #{last_name.capitalize}"
+  end
 
   protected
 

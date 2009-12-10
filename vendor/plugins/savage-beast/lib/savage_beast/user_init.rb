@@ -13,11 +13,6 @@ module SavageBeast
 				has_many :topics
 				has_many :monitorships
 				has_many :monitored_topics, :through => :monitorships, :conditions => ["#{Monitorship.table_name}.active = ?", true], :order => "#{Topic.table_name}.replied_at desc", :source => :topic
-
-				#implement in your user model 
-				def display_name
-					"Foo Diddly"
-				end
 				
 				#implement in your user model 
 				def admin?
