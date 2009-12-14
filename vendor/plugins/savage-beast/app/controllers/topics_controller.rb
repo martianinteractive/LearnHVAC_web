@@ -74,10 +74,10 @@ class TopicsController < ApplicationController
   def update
     @topic.attributes = params[:topic]
     assign_protected
-    @topic.save!
-    respond_to do |format|
-      format.html { redirect_to forum_topic_path(@forum, @topic) }
-      format.xml  { head 200 }
+    if @topic.save
+      redirect_to forum_topic_path(@forum, @topic)
+    else
+      render :action => 'edit'
     end
   end
   
