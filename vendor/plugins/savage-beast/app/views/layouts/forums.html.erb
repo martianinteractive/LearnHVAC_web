@@ -6,7 +6,7 @@
   
 <%= content_tag 'p', h(flash[:notice]), :class => 'notice' if flash[:notice] %>
 <%= content_tag 'p', h(flash[:error]), :class => 'notice error' if flash[:error] %>
-  
+
 <%= yield %>
 </div>
 
@@ -18,6 +18,6 @@
 
 </div>
 
-<%= render(:partial=>"shared/footer") %>
+<%= render :partial=>"shared/footer" %>
 </body>
 </html>
