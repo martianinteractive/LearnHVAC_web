@@ -3,7 +3,6 @@ set :application, "learnhvac"
 set :keep_releases, 5
 set :deploy_via, :remote_cache
 set :repository,  "git@github.com:martianinteractive/LearnHVAC_web.git"
-set :branch, "forum_style"
 set :scm_username, "learnhvac"
 set :scm, "git"
 set :user, "learnhvac"
