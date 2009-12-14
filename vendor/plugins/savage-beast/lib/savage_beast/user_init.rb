@@ -7,12 +7,19 @@ module SavageBeast
       base.class_eval do
 
 				has_many :moderatorships, :dependent => :destroy
-				has_many :forums, :through => :moderatorships, :order => "#{Forum.table_name}.name"
-
+				
+				has_many :forums, :through => :moderatorships, :source => :forum do
+          def moderatable
+            find :all, :select => "#{Forum.table_name}.*, #{Moderatorship.table_name}.id as moderatorship_id"
+          end
+        end
+        
 				has_many :posts
 				has_many :topics
 				has_many :monitorships
 				has_many :monitored_topics, :through => :monitorships, :conditions => ["#{Monitorship.table_name}.active = ?", true], :order => "#{Topic.table_name}.replied_at desc", :source => :topic
+				
+				accepts_nested_attributes_for :moderatorships
 				
 				#implement in your user model 
 				def admin?
@@ -27,6 +34,11 @@ module SavageBeast
           options[:except] ||= []
           super
         end
+        
+        def available_forums
+          Forum.all - forums
+        end
+        
       end
       base.extend(ClassMethods)
     end
