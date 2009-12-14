@@ -1,6 +1,6 @@
 class ForumsController < ApplicationController
 	before_filter :login_required
-  before_filter :find_or_initialize_forum, :except => :index
+  before_filter :find_or_initialize_forum, :except => [:index, :create]
 	before_filter :admin?, :except => [:show, :index]
 
   cache_sweeper :posts_sweeper, :only => [:create, :update, :destroy]
@@ -31,19 +31,22 @@ class ForumsController < ApplicationController
 
   # new renders new.html.erb  
   def create
-    @forum.attributes = params[:forum]
-    @forum.save!
-    respond_to do |format|
-      format.html { redirect_to @forum }
-      format.xml  { head :created, :location => forum_url(@forum, :format => :xml) }
+    @forum = Forum.new(params[:forum])
+    
+    if @forum.save
+      flash[:notice] = 'Forum was succesfully created.'
+      redirect_to @forum 
+    else
+      render :action => 'new'
     end
   end
 
   def update
-    @forum.update_attributes!(params[:forum])
-    respond_to do |format|
-      format.html { redirect_to @forum }
-      format.xml  { head 200 }
+    if @forum.update_attributes(params[:forum])
+      flash[:notice] = 'Forum was succesfully updated.'
+      redirect_to @forum
+    else
+      render :action => 'edit'
     end
   end
   
