@@ -415,3 +415,10 @@ div.warning {
   background-color: #CC0000;
   color: white;
 }
+
+/* MODERATORSHIPS */
+
+#moderatorships {
+  float: left;
+  margin-left: 50px;
+}
