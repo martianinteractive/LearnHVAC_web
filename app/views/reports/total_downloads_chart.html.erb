@@ -1,0 +1,6 @@
+
+<b>Total Downloads by Scenario</b>
+<br/>
+
+<%= ziya_chart( url_for( :controller => 'reports', :action => 'total_downloads_chart_refresh' ),
+                :id => 'my_chart', :bgcolor => "transparent", :width => 800, :height => 600 ) %>

@@ -1,0 +1,106 @@
+<!-- saved from url=(0014)about:internet -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>main.mxml</title>
+<link rel="stylesheet" type="text/css" href="../SourceStyles.css"/>
+</head>
+
+<body><pre><span class="mxmlCdata">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
+<span class="mxmlComponent">&lt;mx:Application</span> xmlns:mx=&quot;<span class="mxmlString">http://www.adobe.com/2006/mxml</span>&quot; layout=&quot;<span class="mxmlString">absolute</span>&quot; backgroundColor=&quot;<span class="mxmlString">#ffffff</span>&quot;
+    creationComplete=&quot;onCreationComplete<span class="asBracket">()</span>&quot;<span class="mxmlComponent">&gt;</span>
+    <span class="mxmlTag">&lt;mx:Script&gt;</span>
+    <span class="asOperator">&lt;!</span><span class="asBracket">[</span>CDATA<span class="asBracket">[</span>
+        <span class="asReserved">import</span> mx.rpc.remoting.RemoteObject;
+        <span class="asReserved">import</span> mx.controls.Alert;
+        <span class="asReserved">import</span> mx.rpc.events.ResultEvent
+        <span class="asReserved">import</span> mx.rpc.events.FaultEvent
+        <span class="asReserved">import</span> tests.<span class="asOperator">*</span>;
+
+        <span class="asReserved">private</span> <span class="asVar">var</span> remoteObject<span class="asOperator">:</span>RemoteObject;
+        <span class="asReserved">private</span> <span class="asVar">var</span> primitiveTest<span class="asOperator">:</span>PrimitiveTest;
+        <span class="asReserved">private</span> <span class="asVar">var</span> stringsTest<span class="asOperator">:</span>StringTest;
+        <span class="asReserved">private</span> <span class="asVar">var</span> primitiveArrayTest<span class="asOperator">:</span>ArrayOfPrimitivesTest;
+        <span class="asReserved">private</span> <span class="asVar">var</span> complexTypesTest<span class="asOperator">:</span>ComplexTypeTest;
+        <span class="asReserved">private</span> <span class="asVar">var</span> multipleArgsTest<span class="asOperator">:</span>MultipleArgsTest;
+        
+        <span class="asComment">//[Bindable]
+</span>        <span class="asComment">//private var summaryList:Array = new Array();
+</span>        
+        <span class="asReserved">public</span> <span class="asFunction">function</span> onCreationComplete<span class="asBracket">()</span><span class="asOperator">:</span><span class="asReserved">void</span>
+           <span class="asBracket">{</span>
+               remoteObject <span class="asOperator">=</span> <span class="asReserved">new</span> RemoteObject<span class="asBracket">()</span>;
+               remoteObject.destination <span class="asOperator">=</span> <span class="asString">&quot;FlexRemotingTest&quot;</span>;
+               remoteObject.echoInt.addEventListener<span class="asBracket">(</span><span class="asString">&quot;result&quot;</span>, onEchoInt<span class="asBracket">)</span>;
+               remoteObject.addEventListener<span class="asBracket">(</span><span class="asString">&quot;fault&quot;</span>, onFault<span class="asBracket">)</span>;
+               
+               primitiveTest <span class="asOperator">=</span> <span class="asReserved">new</span> PrimitiveTest<span class="asBracket">(</span><span class="asReserved">new</span> Array<span class="asBracket">()</span>, <span class="asReserved">this</span><span class="asBracket">)</span>;
+               stringsTest <span class="asOperator">=</span> <span class="asReserved">new</span> StringTest<span class="asBracket">(</span><span class="asReserved">this</span><span class="asBracket">)</span>;
+               primitiveArrayTest <span class="asOperator">=</span> <span class="asReserved">new</span> ArrayOfPrimitivesTest<span class="asBracket">(</span><span class="asReserved">this</span><span class="asBracket">)</span>;
+               complexTypesTest <span class="asOperator">=</span> <span class="asReserved">new</span> ComplexTypeTest<span class="asBracket">(</span><span class="asReserved">this</span><span class="asBracket">)</span>;
+               multipleArgsTest <span class="asOperator">=</span> <span class="asReserved">new</span> MultipleArgsTest<span class="asBracket">(</span><span class="asReserved">this</span><span class="asBracket">)</span>;
+           <span class="asBracket">}</span>
+           
+        <span class="asReserved">public</span> <span class="asFunction">function</span> onEchoInt<span class="asBracket">(</span>event<span class="asOperator">:</span>ResultEvent<span class="asBracket">)</span><span class="asOperator">:</span><span class="asReserved">void</span> 
+        <span class="asBracket">{</span>
+            Alert.show<span class="asBracket">(</span> event.result.toString<span class="asBracket">()</span> , <span class="asString">&quot;Echo Int Result&quot;</span><span class="asBracket">)</span>; 
+        <span class="asBracket">}</span>
+
+        <span class="asReserved">public</span> <span class="asFunction">function</span> onFault <span class="asBracket">(</span>event<span class="asOperator">:</span>FaultEvent<span class="asBracket">)</span><span class="asOperator">:</span><span class="asReserved">void</span> 
+        <span class="asBracket">{</span>
+            Alert.show<span class="asBracket">(</span>event.fault.faultString, <span class="asString">&apos;Error&apos;</span><span class="asBracket">)</span>;
+        <span class="asBracket">}</span>
+
+        <span class="asReserved">public</span> <span class="asFunction">function</span> onClick<span class="asBracket">()</span><span class="asOperator">:</span><span class="asReserved">void</span>
+        <span class="asBracket">{</span>
+            remoteObject.echoInt<span class="asBracket">(</span>1<span class="asBracket">)</span>;
+        <span class="asBracket">}</span>
+        
+        <span class="asReserved">public</span> <span class="asFunction">function</span> runPrimitiveTests<span class="asBracket">()</span><span class="asOperator">:</span><span class="asReserved">void</span>
+        <span class="asBracket">{</span>
+            summary.dataProvider <span class="asOperator">=</span> <span class="asReserved">new</span> Array<span class="asBracket">()</span>;
+            primitiveTest.runPrimitiveTests<span class="asBracket">()</span>;
+        <span class="asBracket">}</span>
+        
+        <span class="asReserved">public</span> <span class="asFunction">function</span> runStringsTests<span class="asBracket">()</span><span class="asOperator">:</span><span class="asReserved">void</span>
+        <span class="asBracket">{</span>
+            summary.dataProvider <span class="asOperator">=</span> <span class="asReserved">new</span> Array<span class="asBracket">()</span>;
+            stringsTest.runStringTests<span class="asBracket">()</span>;
+        <span class="asBracket">}</span>
+        
+        <span class="asReserved">public</span> <span class="asFunction">function</span> runPrimitiveArraysTests<span class="asBracket">()</span><span class="asOperator">:</span><span class="asReserved">void</span>
+        <span class="asBracket">{</span>
+            summary.dataProvider <span class="asOperator">=</span> <span class="asReserved">new</span> Array<span class="asBracket">()</span>;
+            primitiveArrayTest.runPrimitiveArraysTests<span class="asBracket">()</span>;
+        <span class="asBracket">}</span>
+        
+        <span class="asReserved">public</span> <span class="asFunction">function</span> runComplexTypesTests<span class="asBracket">()</span><span class="asOperator">:</span><span class="asReserved">void</span>
+        <span class="asBracket">{</span>
+            summary.dataProvider <span class="asOperator">=</span> <span class="asReserved">new</span> Array<span class="asBracket">()</span>;
+            complexTypesTest.runComplexTypeTests<span class="asBracket">()</span>;
+        <span class="asBracket">}</span>
+        
+        <span class="asReserved">public</span> <span class="asFunction">function</span> runMultipleArgsTests<span class="asBracket">()</span><span class="asOperator">:</span><span class="asReserved">void</span>
+        <span class="asBracket">{</span>
+            summary.dataProvider <span class="asOperator">=</span> <span class="asReserved">new</span> Array<span class="asBracket">()</span>;
+            multipleArgsTest.runMultipleArgsTests<span class="asBracket">()</span>;
+        <span class="asBracket">}</span>
+        
+        <span class="asReserved">public</span> <span class="asFunction">function</span> setSummary<span class="asBracket">(</span>array<span class="asOperator">:</span>Array<span class="asBracket">)</span><span class="asOperator">:</span><span class="asReserved">void</span>
+        <span class="asBracket">{</span>
+            summary.dataProvider <span class="asOperator">=</span> array;
+        <span class="asBracket">}</span>
+           
+    <span class="asBracket">]]</span><span class="asOperator">&gt;</span>
+    <span class="mxmlTag">&lt;/mx:Script&gt;</span>
+    <span class="mxmlComponent">&lt;mx:Button</span> x=&quot;<span class="mxmlString">61</span>&quot; y=&quot;<span class="mxmlString">117</span>&quot; label=&quot;<span class="mxmlString">Run Remoting Test for Rails</span>&quot; click=&quot;onClick<span class="asBracket">()</span>&quot; <span class="mxmlComponent">/&gt;</span>
+    <span class="mxmlComponent">&lt;mx:Button</span> x=&quot;<span class="mxmlString">61</span>&quot; y=&quot;<span class="mxmlString">147</span>&quot; label=&quot;<span class="mxmlString">Run Primitive Tests</span>&quot; click=&quot;runPrimitiveTests<span class="asBracket">()</span>&quot;  width=&quot;<span class="mxmlString">183</span>&quot; id=&quot;<span class="mxmlString">primitiveTestButton</span>&quot;<span class="mxmlComponent">/&gt;</span>
+    <span class="mxmlComponent">&lt;mx:Button</span> x=&quot;<span class="mxmlString">61</span>&quot; y=&quot;<span class="mxmlString">177</span>&quot; label=&quot;<span class="mxmlString">Run Strings Tests</span>&quot; click=&quot;runStringsTests<span class="asBracket">()</span>&quot;  width=&quot;<span class="mxmlString">183</span>&quot; id=&quot;<span class="mxmlString">primitiveTestButton0</span>&quot;<span class="mxmlComponent">/&gt;</span>
+    <span class="mxmlComponent">&lt;mx:Button</span> x=&quot;<span class="mxmlString">61</span>&quot; y=&quot;<span class="mxmlString">207</span>&quot; label=&quot;<span class="mxmlString">Run Primitive Array Tests</span>&quot; click=&quot;runPrimitiveArraysTests<span class="asBracket">()</span>&quot;  width=&quot;<span class="mxmlString">183</span>&quot; id=&quot;<span class="mxmlString">primitiveTestButton1</span>&quot;<span class="mxmlComponent">/&gt;</span>
+    <span class="mxmlComponent">&lt;mx:Button</span> x=&quot;<span class="mxmlString">61</span>&quot; y=&quot;<span class="mxmlString">237</span>&quot; label=&quot;<span class="mxmlString">Run Complex Type Tests</span>&quot; click=&quot;runComplexTypesTests<span class="asBracket">()</span>&quot;  width=&quot;<span class="mxmlString">183</span>&quot; id=&quot;<span class="mxmlString">primitiveTestButton2</span>&quot;<span class="mxmlComponent">/&gt;</span>
+    <span class="mxmlComponent">&lt;mx:Button</span> x=&quot;<span class="mxmlString">61</span>&quot; y=&quot;<span class="mxmlString">267</span>&quot; label=&quot;<span class="mxmlString">Run Multiple Args Tests</span>&quot; click=&quot;runMultipleArgsTests<span class="asBracket">()</span>&quot;  width=&quot;<span class="mxmlString">183</span>&quot; id=&quot;<span class="mxmlString">primitiveTestButton3</span>&quot;<span class="mxmlComponent">/&gt;</span>
+    <span class="mxmlComponent">&lt;mx:List</span>  x=&quot;<span class="mxmlString">252</span>&quot; y=&quot;<span class="mxmlString">117</span>&quot; width=&quot;<span class="mxmlString">467</span>&quot; height=&quot;<span class="mxmlString">299</span>&quot; id=&quot;<span class="mxmlString">summary</span>&quot;<span class="mxmlComponent">&gt;</span><span class="mxmlComponent">&lt;/mx:List&gt;</span>
+    
+<span class="mxmlComponent">&lt;/mx:Application&gt;</span></pre></body>
+</html>

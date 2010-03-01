@@ -1,0 +1,85 @@
+Weborb for Ruby on Rails
+========================
+
+Current release: 1.1.3
+
+Release history is available at the bottom of this document and:
+http://www.themidnightcoders.com/weborb/rubyonrails/releaseHistory.htm
+
+What is WebORB for Rails:
+-------------------------
+WebORB for Rails is server-side technology enabling connectivity 
+between Flex and Flash Remoting clients and Ruby on Rails applications.
+WebORB for Rails can be installed as a plugin into any Rails 
+application to expose Ruby classes as remote services. The product 
+provides a complete implementation of the Adobe's AMF0 and AMF3 
+messaging protocols and thus supports any Flash Remoting or Flex 
+client.
+
+
+Getting Started:
+------------------------
+Detailed 'Quick Start' guide is available at:
+http://www.themidnightcoders.com/weborb/rubyonrails/gettingstarted.htm
+
+
+Suport
+-----------------------
+Product discussion forums are available at:
+http://www.themidnightcoders.com/forum/default.aspx?g=forum&c=1
+
+Consider purchasing professional support from Midnight Coders.
+We offer guaranteed support as well as product training and
+assistance with deployment. For details visit:
+http://www.themidnightcoders.com/licensing/
+
+
+Change History
+-----------------------
+
+1.1.3
+ - Fixed bug when reading and writing UTF strings that include non-ascii characters
+ - Added support for writing out attributes of ActiveRecord instances that are inlcluded
+   via tha attr_accessor method
+
+1.1.2
+ - added support writing back xml documents that are returned from remote service methods; these
+   documents must be of time REXML::Document.
+
+1.1.1
+ - added support for including 'Reloadable' in service classes so that changes are
+   reloaded when in development mode.
+
+1.1
+ - added support for basic security including handling RemoteObject.setCredentials; use the
+   simple WebORB security system by adding the appropriate configuration to the security
+   and acl sections of weborb-config.xml; to use your own authentication system provide a class
+   that implements a "check_credentials( userid, password )" method and add that class to
+   the the security/authenticationHandler section of weborb-config.xml.
+ - added a Log.error call if there is an error during service processing.
+ - removed 'include REML' method call from configuration code
+
+1.0.9
+ - added ability to map ActiveRecord instances to type classes on the client (tagged with [RemoteClass])
+ - added support for invoking class methods (instead of only object instance methods)
+ - added support for invoking "dynamic" active record class methods via method_missing
+
+1.0.8
+ - fixed bug in RequestContext class wherein the wrong class-level session variable was being set.
+
+1.0.7
+ - experimental authentication API (after calling remoteObject.setCredentials on the client
+   the user name and password are available on the server via RequestContext.get_user_name
+   and RequestContext.get_password calls respectively).
+
+1.0.6
+ - fixed support for Date and DateTime objects
+
+1.0.5
+ - added support for single table inheritance of active record models
+
+1.0.4
+ - added support for externalizable client-side objects
+
+1.0.3
+ - added support for serializing associations of active record models

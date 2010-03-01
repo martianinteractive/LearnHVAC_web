@@ -1,0 +1,22 @@
+<%= error_messages_for 'scenario_variables' %>
+
+<!--[form:scenario_variables]-->
+<p><label for="scenario_variables_disabled">Disabled</label><br/>
+<select id="scenario_variables_disabled" name="scenario_variables[disabled]"><option value="false" selected>False</option><option value="true">True</option></select></p>
+
+<p><label for="scenario_variables_min_value">Min value</label><br/>
+<%= text_field 'scenario_variables', 'min_value'  %></p>
+
+<p><label for="scenario_variables_low_value">Low value</label><br/>
+<%= text_field 'scenario_variables', 'low_value'  %></p>
+
+<p><label for="scenario_variables_initial_value">Initial value</label><br/>
+<%= text_field 'scenario_variables', 'initial_value'  %></p>
+
+<p><label for="scenario_variables_high_value">High value</label><br/>
+<%= text_field 'scenario_variables', 'high_value'  %></p>
+
+<p><label for="scenario_variables_max_value">Max value</label><br/>
+<%= text_field 'scenario_variables', 'max_value'  %></p>
+<!--[eoform:scenario_variables]-->
+

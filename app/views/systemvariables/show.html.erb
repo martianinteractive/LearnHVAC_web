@@ -1,0 +1,9 @@
+<% for column in Systemvariable.content_columns %>
+<p>
+  <b><%= column.human_name %>:</b> <%=h @systemvariable.send(column.name) %>
+</p>
+<% end %>
+
+<p><b>Component</b> <%=h @systemvariable.component.name %>
+<%= link_to 'Edit Again', :action => 'edit', :id => @systemvariable %> |
+<%= link_to 'List', :action => 'list' %>

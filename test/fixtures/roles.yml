@@ -1,0 +1,16 @@
+--- 
+superadmin: 
+  name: superadmin
+  description: Has access to all functions across all institutions
+administrator: 
+  name: administrator
+  description: Has access to admin functions within assigned institution
+instructor: 
+  name: instructor
+  description: Has access to instructor functions within assigned institution
+student: 
+  name: student
+  description: No site access, can only login via LH client
+guest: 
+  name: guest
+  description: No site access, can only login via LH client
