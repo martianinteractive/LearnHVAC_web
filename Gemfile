@@ -21,4 +21,6 @@ gem "sqlite3-ruby", :require => "sqlite3"
 # gem "rspec", :group => :test
 group :test do
   gem "rspec-rails", ">= 2.0.0.a9"
+  gem "shoulda"
+  gem "factory_girl"
 end
