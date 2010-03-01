@@ -19,6 +19,6 @@ gem "sqlite3-ruby", :require => "sqlite3"
 
 ## Bundle gems used only in certain environments:
 # gem "rspec", :group => :test
-# group :test do
-#   gem "webrat"
-# end
+group :test do
+  gem "rspec-rails", ">= 2.0.0.a9"
+end
