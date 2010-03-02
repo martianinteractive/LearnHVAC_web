@@ -1,0 +1,13 @@
+%html
+  %head
+    %title
+      ePrimer Management Console:
+      = controller.action_name
+    %meta{ "http-equiv" => "cache-control", :content => "no-cache" }
+    = stylesheet_link_tag 'scaffold'
+  %body
+    #wrapper
+      = render :partial => "shared/header"
+      = render :partial => "layouts/navigation"
+      #navDropShadow
+        %img{ :src => "/images/nav_drop_shadow.png" }
