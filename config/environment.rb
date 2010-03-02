@@ -68,15 +68,3 @@ Rails::Initializer.run do |config|
   # Activate observers that should always be running
   # config.active_record.observers = :cacher, :garbage_collector
 end
-
-
-class Logger
-  def format_message(severity, timestamp, progname, msg)
-    "[#{timestamp.strftime("%Y-%m-%d %H:%M:%S")}] #{severity} #{msg}\n"
-  end
-end
-
-
-APPLOG = Logger.new("#{RAILS_ROOT}/log/learnhvac.log")
-APPLOG.level = Logger::DEBUG
-

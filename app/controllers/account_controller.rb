@@ -9,7 +9,6 @@ class AccountController < ApplicationController
       if user
         if user.role.name == "superadmin" || user.role.name == "administrator" || user.role.name =="instructor"
           session[:loggedInUserID] = user.id
-          APPLOG.info("Login successful by login: " + user.login)
           redirect_to :action=>"welcome" and return
         end
       end
