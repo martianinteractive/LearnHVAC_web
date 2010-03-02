@@ -13,13 +13,13 @@
         \&nbsp;
     #content
       - if flash[:notice]
-        %div{ :style => "border:1px solid green; color:green; padding:10px;margin-bottom:10px;" }
+        %div.notice
           = flash[:notice]
       - if flash[:message]
-        %div{ :style => "border:1px solid #009900; color:#009900; padding:10px;margin-bottom:10px;" }
+        %div.notice.message
           = flash[:message]
       - if flash[:warning]
-        %div{ :style => "background-color:#CC0000;color:white; padding:10px; margin-bottom:10px;" }
+        %div.notice.warning
           = flash[:warning]
       %br
       = yield
