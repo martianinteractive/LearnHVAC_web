@@ -4,6 +4,11 @@
       ePrimer Management Console:
       = controller.action_name
     %meta{ "http-equiv" => "cache-control", :content => "no-cache" }
+    = stylesheet_link_tag 'screen.css', :media => 'screen, projection'
+    = stylesheet_link_tag 'print.css', :media => 'print'
+    /[if lt IE 8]
+      = stylesheet_link_tag 'ie.css', :media => 'screen, projection'
+
     = stylesheet_link_tag 'scaffold'
   %body
     #wrapper
