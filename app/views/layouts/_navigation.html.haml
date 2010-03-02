@@ -12,24 +12,21 @@
       %td
         %a{ :href => "/users" }
           %img{ :src => "/images/btn_users.png", :alt => "Add/Modify Users", :border => "0" }
-      - if current_user.role.name == "superadmin"
-      %td
-        %a{ :href => "/institutions" }
-          %img{ :src => "/images/btn_institutions.png", :alt => "View Reports", :border => "0" }
-      - end
+      - if current_user #current_user.role.name == "superadmin"
+        %td
+          %a{ :href => "/institutions" }
+            %img{ :src => "/images/btn_institutions.png", :alt => "View Reports", :border => "0" }
       %td
         %a{ :href => "/reports" }
           %img{ :src => "/images/btn_reports.png", :alt => "View Reports", :border => "0" }
       /
         <td><a href="/app_configs/"><img src="/images/btn_config.png" alt="HVAC ePrimer Configuration" border="0"/></a></td>
       - if @forums_template
-      - form_tag search_all_posts_url, :method => :get do
-      %td
-        = text_field_tag :q, params[:q], :size => 15, :id => :search_box
-      %td
-        = submit_tag 'Forums Search'[:search_title], :id => "search_box_button"
-      - end
-      - end
+        - form_tag search_all_posts_url, :method => :get do
+          %td
+            = text_field_tag :q, params[:q], :size => 15, :id => :search_box
+          %td
+            = submit_tag 'Forums Search'[:search_title], :id => "search_box_button"
       %td{ :width => "100%" }
         \&nbsp;
       %td{ :align => "right" }
