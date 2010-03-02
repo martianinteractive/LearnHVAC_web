@@ -1,97 +1,44 @@
-.pageTitle
-  Instructor Main Menu
-#menuPanel
-  %table.menuTable{ :border => "0" }
-    %tr
-      %td
-        .icon
-          %div{ :style => "float:left;" }
-            %a{ :href => "/scenarios/" }
-              %img{ :src => "/images/btn_scenarios_large.png", :border => "0", :alt => "Manage Scenarios", :align => "middle" }
-              %span
-                Scenarios
-      %td{ :width => "10" }
-        \&nbsp;
-      %td{ :valign => "top" }
-        Create and manage Scenarios, the unique SPARK configurations for student use with Learn HVAC.
+- form_for @user_session do |f|
+  %center
+    #loginContent
+      #loginWelcome
+        %p{ :style => "font-size:18px; font-family:Verdana, Arial;" }
+          Welcome to the Learn HVAC Instructor Site
+        %p
+          This site provides management functions for the Learn HVAC suite of tools. It allows instructors
+          to manage student access to Learn HVAC and the scenarios provided within the tool.
+      #loginArea
+        #loginForm.form{ :style => "text-align:left;" }
+          %div{ :style => "background-color:#fef782;color:#555; padding:5px;" }
+            %table{ :border => "0" }
+              %tr
+                %td
+                  %img{ :src => "/images/user.png" } &nbsp;&nbsp;
+                %td
+                  %b Instructor login
+          %div{ :style => "padding:20px;" }
+            %table{ :cellspacing => "0", :border => "0", :cellpadding => "0" }
+              %tr
+                %td{ :valign => "top", :align => "left" }
+                  = f.label :login
+                %td{ :valign => "top", :align => "left" }
+                  = f.text_field :login, :size=>15
+                  %br
+                  %br
+              %tr
+                %td{ :valign => "top", :align => "left" }
+                  = f.label :password, "Password:", :style => "margin-right:10px;"
+                  %br
+                %td{ :valign => "top", :s => "s", :align => "left" }
+                  = f.password_field :password, :size=>15
+                  %br
+                  %br
+              %tr
+                %td
+                %td{ :align => "left" }= submit_tag "Log In"
+            %p{ :style => "color:#666666" }
+              If you do not have an account and would like to have one set up, please
+              %a{ :href => "mailto:jjd@deringergroup.com" }
+              contact us
         %br
-    %tr
-      %td
-        .icon
-          %a{ :href => "/systemvariables/" }
-            %img{ :src => "/images/btn_sysvars_large.png", :border => "0", :alt => "Manage System Variables", :align => "middle" }
-            %span
-              System Variables
-      %td{ :width => "10" }
-        \&nbsp;
-      %td{ :valign => "top" }
-        Create and manage the core System Variables that form the basis of all Scenarios
         %br
-    %tr
-      %td
-        .icon
-          %a{ :href => "/users/" }
-            %img{ :src => "/images/btn_users_large.png", :border => "0", :alt => "Manage Users", :align => "middle" }
-            %span
-              Users
-      %td{ :width => "10" }
-        \&nbsp;
-      %td{ :valign => "top" }
-        Manage users: administrators, instructors and students
-        %br
-    %tr
-      %td
-        .icon
-          %a{ :href => "/reports/" }
-            %img{ :src => "/images/btn_reports_large.png", :border => "0", :alt => "View Reports", :align => "middle" }
-            %span
-              Reports
-      %td{ :width => "10" }
-        \&nbsp;
-      %td{ :valign => "top" }
-        View information on logins, usage time, scenario selection, etc.
-        %br
-    %tr
-      %td
-        .icon
-          %a{ :href => "/app_configs/" }
-            %img{ :src => "/images/btn_config_large.png", :border => "0", :alt => "Config system", :align => "middle" }
-            %span
-              Configure
-      %td{ :width => "10" }
-        \&nbsp;
-      %td{ :valign => "top" }
-        Configure Learn HVAC Application
-        %br
-#menuInfo
-  %b
-    About Learn HVAC Instructor Site
-  %br
-  %p
-    This site allows you to configure
-    and manage Learn HVAC. You can manage Scenarios, view System Variables, and create and manage the users who will have access to the Learn HVAC client.
-  %p
-    You might want to read the short introduction in the help
-    section before starting. Otherwise, use the buttons at left
-    to manage Learn HVAC.
-  %ul
-    %li
-      %b
-        System Variables
-      are the SPARK variables that are used within
-      to the Learn HVAC client to communicate with SPARK and report SPARK output.
-    %li
-      %b
-        Scenarios
-      are unique configurations of system variables that
-      present a specific HVAC situation to a student.
-    %li
-      %b
-        Users
-      are students, administrators or guests. Use this section
-      to manage users of Learn HVAC.
-    %li
-      %b
-        Reports
-      provide information on Learn HVAC usage.
-
