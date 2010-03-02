@@ -8,6 +8,7 @@ class CreateUsers < ActiveRecord::Migration
       t.integer   :student_id
       
       #authlogic
+      t.string    :login
       t.string    :email
       t.string    :crypted_password
       t.string    :password_salt

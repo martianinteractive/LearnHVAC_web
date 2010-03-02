@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(:version => 20100302150214) do
     t.integer  "institution_id"
     t.boolean  "active",            :default => true
     t.integer  "student_id"
+    t.string   "login"
     t.string   "email"
     t.string   "crypted_password"
     t.string   "password_salt"

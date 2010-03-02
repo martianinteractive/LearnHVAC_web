@@ -1,0 +1,44 @@
+%table{ :cellspacing => "0", :border => "0", :cellpadding => "0" }
+  %tr
+    %td{ :valign => "middle" }
+      %img{ :src => "/images/icon_users_45.png", :alt => "Users Icon" }
+    %td{ :width => "10" }
+    %td{ :valign => "bottom" }
+      %h1 New user
+= error_messages_for 'user'
+- form_for @user do |f|
+  %p
+    = f.label :login
+    %br
+    = f.text_field :login
+  %p
+    = f.label :first_name, "First Name"
+    %br
+    = f.text_field :first_name
+  %p
+    = f.label :last_name, "Last Name"
+    %br
+    = f.text_field :last_name
+  %p
+    = f.label :email
+    %br
+    = f.text_field :email
+  %p
+    = f.label :password
+    %br
+    = f.password_field :password, :size=>20,  :value=>""
+  %p
+    = f.label :password_confirmation, "Password Confirmation"	
+    %br
+    = f.password_field :password_confirmation, :size=>20,  :value=>""
+  %p
+    Role:
+    %br
+    =# collection_select(:user, :role_id, @userRoles, :id, :name)
+    -# if current_user.role.name="superadmin"
+      %p
+        Institution:
+      %br
+      =# collection_select(:user, :institution_id, Institution.find(:all), :id, :name)
+  = submit_tag "Create", :class=>'submitButton'
+= link_to 'Back', :action => 'list'
