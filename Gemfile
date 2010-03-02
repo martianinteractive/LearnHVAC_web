@@ -7,6 +7,7 @@ gem "compass"
 
 group :test do
   gem "rspec-rails", ">= 2.0.0.a9"
-  gem "shoulda"
+  gem "shoulda", :git => "git://github.com/thoughtbot/shoulda.git", :branch => "rails3"
   gem "factory_girl"
+  gem "mocha"
 end
