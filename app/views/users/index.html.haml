@@ -1,0 +1,68 @@
+%div
+  #section_icon
+    %img{ :src => "/images/icon_users_45.png", :alt => "Users Icon" }
+  #section_title
+    %h1
+      Manage Users
+  %div{ :style => "text-align:right;float:right;padding-top:4px;" }
+    = button_to 'Create New User', new_user_path, :class=>"createButton"
+  %div{ :style => "clear:both" }
+%p
+  %span{ :style => "color:green;font-face:bold;font-size:16pt;" }
+  (your user is highlighted yellow)
+%table#listTable{ :cellspacing => "0", :cellpadding => "2" }
+  %tr#listHeader
+    %th
+    - if 1  #current_user.role.name=="superadmin"
+      %th{ :align => "left" }
+        Institution
+    %th{ :align => "left" }
+      Last Name
+    %th{ :align => "left" }
+      First Name
+    %th{ :align => "left" }
+      Login
+    %th{ :align => "left" }
+      Role
+    %th{ :align => "left" }
+      e-Mail
+    %th{ :colspan => "4" }
+
+    - rowClass = "lightRow"
+    - for user in @users
+      - if rowClass == "lightRow"
+        - rowClass = "darkRow"
+      - else
+        - rowClass = "lightRow"
+    %tr{ :class => rowClass, :style => "height:30px;\t\r\n\t\t<haml:silent> if current_user.id == user.id </haml:silent>\r\n\t \t\tbackground:#FFFFCC;\r\n\t\t<haml:silent> end </haml:silent>" }
+      %td
+        - if 1 #current_user.role.name=="superadmin"
+        %td
+          - if false #!user.institution.nil?
+            = user.institution.name
+        %td{ :align => "left" }
+          = h user.last_name
+        %td{ :align => "left" }
+          = h user.first_name
+        %td{ :align => "left" }
+          %b{ :style => "color:#CC0000;" }
+            = h user.login
+        %td{ :align => "left" }
+          = h user.role.name
+        %td{ :align => "left" }
+          = h user.email
+        - if 0 #current_user.role.name == "instructor" && current_user.login != user.login && ( user.role.name=="administrator" or user.role.name=="instructor")
+          %td
+            = link_to 'Show', :action => 'show', :id => user
+          %td{ :colspan => "3" }
+        %td
+          = link_to 'Show', :action => 'show', :id => user
+        %td
+          = link_to 'Edit', :action => 'edit', :id => user
+        %td
+          = link_to 'Change Pwd', :action => 'change_password', :id => user
+        %td
+          - if current_user.id == user.id
+            nbsp;
+          - else
+            = link_to 'Destroy', { :action => 'destroy', :id => user }, :confirm => 'Are you sure you want to destroy this user?', :method=>:delete
