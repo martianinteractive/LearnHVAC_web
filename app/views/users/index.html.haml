@@ -28,7 +28,7 @@
     %th{ :colspan => "4" }
 
     - for user in @users
-      %tr{ :class => cycle("lightRow", "darkRow"), :style => "background-color:#{'yellow' if current_user == user};" }
+      %tr{ :class => cycle("lightRow", "darkRow"), :style => "background-color:#{'#FFFFCC' if current_user == user};" }
         %td
         %td= "Institution" #user.institution.name
         %td{ :align => "left" }= h user.last_name

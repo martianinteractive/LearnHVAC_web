@@ -1,26 +1,13 @@
 #navigation
   %table{ :border => "0", :cellspacing => "0", :cellpadding => "0" }
     %tr
-      %td
-        \&nbsp;&nbsp;&nbsp;&nbsp;
-      %td
-        %a{ :href => "/scenarios" }
-          %img{ :src => "/images/btn_scenarios.png", :alt => "Add/Modify Scenarios", :border => "0" }
-      %td
-        %a{ :href => "/systemvariables" }
-          %img{ :src => "/images/btn_sysvars.png", :alt => "Add/Modify System Variables", :border => "0" }
-      %td
-        %a{ :href => "/users" }
-          %img{ :src => "/images/btn_users.png", :alt => "Add/Modify Users", :border => "0" }
+      %td{ :width => "5%" }
+      %td= link_to image_tag("btn_scenarios.png", :border => "0"), "/scenarios"
+      %td= link_to image_tag("btn_sysvars.png", :border => "0", :alt => "Add/Modify System Variables"), "/system_variables"
+      %td= link_to image_tag("btn_users.png", :border => "0", :alt => "Add/Modify Users")
       - if current_user #current_user.role.name == "superadmin"
-        %td
-          %a{ :href => "/institutions" }
-            %img{ :src => "/images/btn_institutions.png", :alt => "View Reports", :border => "0" }
-      %td
-        %a{ :href => "/reports" }
-          %img{ :src => "/images/btn_reports.png", :alt => "View Reports", :border => "0" }
-      /
-        <td><a href="/app_configs/"><img src="/images/btn_config.png" alt="HVAC ePrimer Configuration" border="0"/></a></td>
+        %td= link_to image_tag("btn_institutions.png", :alt => "View Reports", :border => "0"), "/institutions"
+      %td= link_to image_tag("btn_reports.png", :alt => "View Reports", :border => "0"), "/reports"
       - if @forums_template
         - form_tag search_all_posts_url, :method => :get do
           %td
@@ -28,10 +15,7 @@
           %td
             = submit_tag 'Forums Search'[:search_title], :id => "search_box_button"
       %td{ :width => "100%" }
-        \&nbsp;
       %td{ :align => "right" }
-        %a{ :href => "/account/help" }
-          %img{ :src => "/images/btn_help.png", :alt => "Help", :border => "0" }
+        = link_to image_tag("btn_help.png", :alt => "help", :border => "0"), "/help"
       %td{ :align => "right" }
-        %a{ :href => "/account/logout" }
-          %img{ :src => "/images/btn_logout.png", :alt => "Logout", :border => "0" }
+        = link_to image_tag("btn_logout.png", :alt => "logout", :border => "0"), "/logout"
