@@ -1,6 +1,6 @@
 %div
   #section_icon
-    %img{ :src => "/images/icon_users_45.png", :alt => "Users Icon" }
+    = image_tag("icon_users_45.png", :alt => "Users Icon")
   #section_title
     %h1
       Manage Users
@@ -27,31 +27,17 @@
       e-Mail
     %th{ :colspan => "4" }
 
-    - rowClass = "lightRow"
     - for user in @users
-      - if rowClass == "lightRow"
-        - rowClass = "darkRow"
-      - else
-        - rowClass = "lightRow"
-    %tr{ :class => rowClass, :style => "height:30px;\t\r\n\t\t<haml:silent> if current_user.id == user.id </haml:silent>\r\n\t \t\tbackground:#FFFFCC;\r\n\t\t<haml:silent> end </haml:silent>" }
-      %td
-      %td
-        = "Institution" #user.institution.name
-      %td{ :align => "left" }
-        = h user.last_name
-      %td{ :align => "left" }
-        = h user.first_name
-      %td{ :align => "left" }
-        %b{ :style => "color:#CC0000;" }= h user.login
-      %td{ :align => "left" }
-        = h user.role.capitalize
-      %td{ :align => "left" }
-        = h user.email
-      %td
-        = link_to 'Show', :action => 'show', :id => user
-      %td
-        = link_to 'Edit', :action => 'edit', :id => user
-      %td
-        = link_to 'Change Pwd', '#', :id => user
-      %td
-        = link_to 'Destroy', { :action => 'destroy', :id => user }, :confirm => 'Are you sure you want to destroy this user?', :method=>:delete
+      %tr{ :class => cycle("lightRow", "darkRow"), :style => "background-color:#{'yellow' if current_user == user};" }
+        %td
+        %td= "Institution" #user.institution.name
+        %td{ :align => "left" }= h user.last_name
+        %td{ :align => "left" }= h user.first_name
+        %td{ :align => "left" }
+          %b{ :style => "color:#CC0000;" }= h user.login
+        %td{ :align => "left" }= h user.role.capitalize
+        %td{ :align => "left" }= h user.email
+        %td= link_to 'Show', user_path(user)
+        %td= link_to 'Edit', edit_user_path(user)
+        %td= link_to 'Change Pwd', '#', :id => user
+        %td= link_to 'Destroy', user_path(user), :confirm => 'Are you sure you want to destroy this user?', :method=>:delete
