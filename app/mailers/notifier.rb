@@ -1,5 +1,7 @@
 class Notifier < ActionMailer::Base
-  default :from => "from@example.com"
+  default :from => "from@lhvac.com"
+  # default :host => "lhvac.com" #doesn't seem to work like default :from
+  default_url_options[:host] = "lhvac.com"
   
   def password_reset_instructions(user)  
     subject       "Password Reset Instructions"  

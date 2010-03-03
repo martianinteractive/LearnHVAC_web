@@ -2,6 +2,7 @@ Learnhvac::Application.routes.draw do |map|
   
   resources :users
   resources :user_sessions
+  map.resources :password_resets
   
   match 'login'   => 'user_sessions#new'
   match 'logout'  => 'user_sessions#destroy'
