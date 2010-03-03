@@ -1,4 +1,4 @@
-%div{ :style => "float: left;" }
+%div
   %p
     %b
       Login:
@@ -20,7 +20,7 @@
       E-Mail:
     = h @user.email
 
-%div{ :style => "clear: both;" }
+%div
   = link_to 'Edit', edit_user_path(@user)
   |
   = link_to 'Back', users_path

@@ -4,11 +4,11 @@
   #section_title
     %h1
       Manage Users
-  %div{ :style => "text-align:right;float:right;padding-top:4px;" }
-    = button_to 'Create New User', new_user_path, :class=>"createButton"
+  %div
+    = button_to 'Create New User', new_user_path, :class=>"createButton", :method => :get
   %div{ :style => "clear:both" }
 %p
-  %span{ :style => "color:green;font-face:bold;font-size:16pt;" }
+  %span
   (your user is highlighted yellow)
 %table#listTable{ :cellspacing => "0", :cellpadding => "2" }
   %tr#listHeader
@@ -28,7 +28,7 @@
     %th{ :colspan => "4" }
 
     - for user in @users
-      %tr{ :class => cycle("lightRow", "darkRow"), :style => "background-color:#{'yellow' if current_user == user};" }
+      %tr{ :class => cycle("lightRow", "darkRow") }
         %td
         %td= "Institution" #user.institution.name
         %td{ :align => "left" }= h user.last_name

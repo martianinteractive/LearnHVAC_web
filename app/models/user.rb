@@ -5,4 +5,10 @@ class User < ActiveRecord::Base
   def role
     ROLES.index(read_attribute(:role_code))
   end
+  
+  def deliver_password_reset_instructions!  
+    reset_perishable_token!  
+    Notifier.deliver_password_reset_instructions(self)  
+  end
+  
 end
