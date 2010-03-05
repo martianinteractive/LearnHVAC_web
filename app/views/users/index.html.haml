@@ -6,12 +6,12 @@
       Manage Users
   %div
     = button_to 'Create New User', new_user_path, :class=>"createButton", :method => :get
-  %div{ :style => "clear:both" }
+  %div
 %p
   %span
   (your user is highlighted yellow)
-%table#listing
-  %tr
+%table#listTable
+  %tr#listHeader
     %th
     %th
       Institution
