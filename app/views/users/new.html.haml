@@ -1,8 +1,8 @@
-%table{ :cellspacing => "0", :border => "0", :cellpadding => "0" }
+%table
   %tr
-    %td{ :valign => "middle" }=image_tag("icon_users_45.png", :alt => "Users Icon")
-    %td{ :width => "10" }
-    %td{ :valign => "bottom" }
+    %td=image_tag("icon_users_45.png", :alt => "Users Icon")
+    %td
+    %td
       %h1 New user
 = error_messages_for 'user'
 - form_for @user do |f|

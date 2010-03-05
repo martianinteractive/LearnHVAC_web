@@ -6,24 +6,24 @@
       Manage Users
   %div
     = button_to 'Create New User', new_user_path, :class=>"createButton", :method => :get
-  %div{ :style => "clear:both" }
+  %div
 %p
   %span
   (your user is highlighted yellow)
-%table#listTable{ :cellspacing => "0", :cellpadding => "2" }
+%table#listTable
   %tr#listHeader
     %th
-    %th{ :align => "left" }
+    %th
       Institution
-    %th{ :align => "left" }
+    %th
       Last Name
-    %th{ :align => "left" }
+    %th
       First Name
-    %th{ :align => "left" }
+    %th
       Login
-    %th{ :align => "left" }
+    %th
       Role
-    %th{ :align => "left" }
+    %th
       e-Mail
     %th{ :colspan => "4" }
 
@@ -31,12 +31,12 @@
       %tr{ :class => cycle("lightRow", "darkRow") }
         %td
         %td= "Institution" #user.institution.name
-        %td{ :align => "left" }= h user.last_name
-        %td{ :align => "left" }= h user.first_name
-        %td{ :align => "left" }
-          %b{ :style => "color:#CC0000;" }= h user.login
-        %td{ :align => "left" }= h user.role.capitalize
-        %td{ :align => "left" }= h user.email
+        %td= h user.last_name
+        %td= h user.first_name
+        %td
+          %b= h user.login
+        %td= h user.role.capitalize
+        %td= h user.email
         %td= link_to 'Show', user_path(user)
         %td= link_to 'Edit', edit_user_path(user)
         %td= link_to 'Change Pwd', '#', :id => user

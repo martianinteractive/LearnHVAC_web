@@ -2,41 +2,41 @@
   %center
     #loginContent
       #loginWelcome
-        %p{ :style => "font-size:18px; font-family:Verdana, Arial;" }
+        %p
           Welcome to the Learn HVAC Instructor Site
         %p
           This site provides management functions for the Learn HVAC suite of tools. It allows instructors
           to manage student access to Learn HVAC and the scenarios provided within the tool.
       #loginArea
-        #loginForm.form{ :style => "text-align:left;" }
-          %div{ :style => "background-color:#fef782;color:#555; padding:5px;" }
-            %table{ :border => "0" }
+        #loginForm.form
+          %div
+            %table
               %tr
                 %td
                   %img{ :src => "/images/user.png" } &nbsp;&nbsp;
                 %td
                   %b Instructor login
-          %div{ :style => "padding:20px;" }
-            %table{ :cellspacing => "0", :border => "0", :cellpadding => "0" }
+          %div
+            %table
               %tr
-                %td{ :valign => "top", :align => "left" }
-                  = f.label :login, "Login:"
-                %td{ :valign => "top", :align => "left" }
+                %td
+                  = f.label :login
+                %td
                   = f.text_field :login, :size=>15
                   %br
                   %br
               %tr
-                %td{ :valign => "top", :align => "left" }
-                  = f.label :password, "Password:", :style => "margin-right:10px;"
+                %td
+                  = f.label :password
                   %br
-                %td{ :valign => "top", :s => "s", :align => "left" }
+                %td
                   = f.password_field :password, :size=>15
                   %br
                   %br
               %tr
                 %td
-                %td{ :align => "left" }= submit_tag "Log In"
-            %p{ :style => "color:#666666" }
+                %td= submit_tag "Log In"
+            %p
               If you do not have an account and would like to have one set up, please
               %a{ :href => "mailto:jjd@deringergroup.com" }
               contact us
