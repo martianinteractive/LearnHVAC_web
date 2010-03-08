@@ -1,4 +1,6 @@
 class InstitutionsController < ApplicationController
+  before_filter :require_superadmin
+  
   # GET /institutions
   # GET /institutions.xml
   def index
