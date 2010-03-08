@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   ROLES = { :guest => 0, :student => 1, :instructor => 2, :administrator => 3, :superadmin => 4 }
-  validates_presence_of :first_name, :last_name
+  validates :first_name, :last_name, :presence => true, :length => { :maximum => 200 }, :format => { :with => /^\w+$/i }
   acts_as_authentic
   
   
