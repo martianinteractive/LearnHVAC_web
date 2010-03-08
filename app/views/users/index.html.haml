@@ -35,7 +35,7 @@
         %td= h user.first_name
         %td
           %b= h user.login
-        %td= h user.role.capitalize
+        %td= h user.role.to_s.capitalize
         %td= h user.email
         %td= link_to 'Show', user_path(user)
         %td= link_to 'Edit', edit_user_path(user)
