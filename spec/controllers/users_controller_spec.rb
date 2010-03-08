@@ -6,7 +6,7 @@ describe UsersController do
     @admin = Factory(:user, :login => "joedoe", :email => "jdoe@lhvac.com")
     login_as(@admin)
   end
-    
+      
   describe "GET index" do
     it "assigns all users as @users" do
       User.expects(:all).returns([mock_user])
@@ -112,6 +112,24 @@ describe UsersController do
     it "destroys the requested user" do
       proc { delete :destroy, :id => @user.id }.should change(User, :count).by(-1)
       response.should redirect_to(users_path)
+    end
+  end
+  
+  describe "Authentication" do
+    before(:each) do
+      user_logout
+    end
+    
+    it "should require an authenticated user for all actions" do
+      [:get => [:index, :show, :new, :edit],  :post => [ :create ], :put => [ :update ], :delete => [ :destroy ]].each {|request| 
+        method = request.keys.first
+        actions = request.values.first
+        actions.each { |action| 
+          send(method, action)
+          response.should redirect_to(new_user_session_url)
+          flash[:notice].should == "You must be logged in to access this page"
+        }
+      }
     end
   end
   
