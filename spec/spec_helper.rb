@@ -57,3 +57,20 @@ Rspec.configure do |config|
   #
   # For more information take a look at Rspec::Core::Configuration
 end
+
+module AuthlogicTestHelper 
+ def login_as(user)
+   @user_session = mock('user_session')
+   @user_session.stubs(:user).returns(user)
+   @user_session.stubs(:record).returns(user)
+   @user_session.stubs(:destroy)
+   UserSession.stubs(:find).returns(@user_session) 
+ end 
+ 
+ def user_logout
+   @user_session = nil 
+   UserSession.stubs(:find).returns(nil) 
+ end
+end
+
+include AuthlogicTestHelper
