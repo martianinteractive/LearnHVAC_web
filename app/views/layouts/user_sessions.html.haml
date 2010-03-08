@@ -1,5 +1,9 @@
 %html
   %head
+    = csrf_meta_tag
+    = javascript_include_tag 'jquery-1.4.min'
+    = javascript_include_tag 'rails'
+    = javascript_include_tag 'jquery-ujs/rails'
     %title
       LearnHVAC Management Console:
       = controller.action_name
