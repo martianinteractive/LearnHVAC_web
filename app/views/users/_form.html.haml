@@ -29,4 +29,4 @@
 %p
   Institution:
   %br
-  =# collection_select(:user, :institution_id, Institution.find(:all), :id, :name)
+  = f.collection_select(:institution_id, Institution.all, :id, :name)
