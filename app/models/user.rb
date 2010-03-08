@@ -3,6 +3,8 @@ class User < ActiveRecord::Base
   validates :first_name, :last_name, :presence => true, :length => { :maximum => 200 }, :format => { :with => /^\w+$/i }
   acts_as_authentic
   
+  belongs_to :institution
+  
   
   def role
     ROLES.index(read_attribute(:role_code))
