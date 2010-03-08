@@ -4,7 +4,7 @@
       %td{ :width => "5%" }
       %td= link_to image_tag("btn_scenarios.png", :border => "0"), "/scenarios"
       %td= link_to image_tag("btn_sysvars.png", :border => "0", :alt => "Add/Modify System Variables"), "/system_variables"
-      %td= link_to image_tag("btn_users.png", :border => "0", :alt => "Add/Modify Users")
+      %td= link_to image_tag("btn_users.png", :border => "0", :alt => "Add/Modify Users"), users_path
       - if current_user #current_user.role.name == "superadmin"
         %td= link_to image_tag("btn_institutions.png", :alt => "View Reports", :border => "0"), "/institutions"
       %td= link_to image_tag("btn_reports.png", :alt => "View Reports", :border => "0"), "/reports"
