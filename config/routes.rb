@@ -1,4 +1,6 @@
 Learnhvac::Application.routes.draw do |map|
+  resources :institutions
+
   
   resources :users
   resources :user_sessions
