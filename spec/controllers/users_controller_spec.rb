@@ -121,13 +121,10 @@ describe UsersController do
     end
     
     it "should require an authenticated user for all actions" do
-      {:get => [:index, :show, :new, :edit],  :post => [ :create ], :put => [ :update ], :delete => [ :destroy ]}.each {|method, actions| 
-        actions.each { |action| 
-          send(method, action)
-          response.should redirect_to(new_user_session_url)
-          flash[:notice].should == "You must be logged in to access this page"
-        }
-      }
+      authorize_actions do
+        response.should redirect_to(new_user_session_url)
+        flash[:notice].should == "You must be logged in to access this page"
+      end
     end
   end
   

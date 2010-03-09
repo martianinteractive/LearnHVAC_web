@@ -73,4 +73,20 @@ module AuthlogicTestHelper
  end
 end
 
+module AuthorizationTestHelper  
+  def authorize_actions(method_actions= default_actions)
+    method_actions.each { |method, actions|
+      actions.each { |action| 
+        send(method, action)
+        yield
+      }
+    }
+  end
+  
+  def default_actions
+    {:get => [:index, :show, :new, :edit],  :post => [ :create ], :put => [ :update ], :delete => [ :destroy ]}
+  end
+end
+
 include AuthlogicTestHelper
+include AuthorizationTestHelper

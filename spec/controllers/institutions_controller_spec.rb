@@ -128,13 +128,10 @@ describe InstitutionsController do
     end
     
     it "should require a superadmin user for all actions" do
-      {:get => [:index, :show, :new, :edit],  :post => [ :create ], :put => [ :update ], :delete => [ :destroy ]}.each {|method, actions| 
-        actions.each { |action| 
-          send(method, action)
-          response.should redirect_to(root_path)
-          flash[:notice].should == "You don't have the privileges to access this page"
-        }
-      }
+      authorize_actions do
+        response.should redirect_to(root_path)
+        flash[:notice].should == "You don't have the privileges to access this page"
+      end
     end
   end
   
