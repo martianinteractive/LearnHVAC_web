@@ -1,8 +1,12 @@
-source 'http://gemcutter.org'
+source "http://gemcutter.org"
 gem "rails", "3.0.0.beta"
 gem "haml"
 gem "compass", "0.10.0.rc1"
 gem "mysql"
+gem "will_paginate"
+gem "mongo", "0.19.1"
+gem "mongo_ext", "0.19.1"
+gem "mongoid", :git => "git://github.com/durran/mongoid.git", :branch => "prerelease"
 
 group :test do
   gem "rspec-rails", ">= 2.0.0.beta.1"
@@ -12,5 +16,5 @@ group :test do
 end
 
 group :development do
-  gem "ruby-debug"
+  # gem "ruby-debug"
 end

@@ -1,0 +1,13 @@
+defaults: &defaults
+  host: localhost
+
+development:
+  <<: *defaults
+  database: lhvac_developmen
+
+# production:
+#   <<: *defaults
+#   host: db.mongohq.com
+#   username: user
+#   password: pass
+#   database: fanboy
