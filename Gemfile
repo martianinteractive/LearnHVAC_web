@@ -16,5 +16,6 @@ group :test do
 end
 
 group :development do
-  # gem "ruby-debug"
+  gem "ruby-debug" if RUBY_VERSION == "1.8.7"
+  gem "ruby-debug19" if RUBY_VERSION == "1.9.1"
 end
