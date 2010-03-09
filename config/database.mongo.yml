@@ -5,6 +5,10 @@ development:
   <<: *defaults
   database: lhvac_developmen
 
+test:
+  <<: *defaults
+  database: lhvac_test
+
 # production:
 #   <<: *defaults
 #   host: db.mongohq.com
