@@ -10,17 +10,11 @@
     %th
     %th
   - @institutions.each do |institution|
-  %tr
-    %td
-      = institution.name
-    %td
-      = institution.description
-    %td
-      = link_to 'Show', institution
-    %td
-      = link_to 'Edit', edit_institution_path(institution)
-    %td
-      = link_to 'Destroy', institution, :confirm => 'Are you sure?', :method => :delete
-  - end
+    %tr
+      %td= institution.name
+      %td= institution.description
+      %td= link_to 'Show', institution
+      %td= link_to 'Edit', edit_institution_path(institution)
+      %td= link_to 'Destroy', institution, :confirm => 'Are you sure?', :method => :delete
 %br
 = link_to 'New institution', new_institution_path

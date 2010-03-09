@@ -34,9 +34,8 @@ class ApplicationController < ActionController::Base
   
   def require_superadmin
     if current_user.try(:role) != :superadmin
-      store_location
       flash[:notice] = "You don't have the privileges to access this page"
-      redirect_back_or_default(root_path)
+      redirect_to root_path
       return false
     end
   end

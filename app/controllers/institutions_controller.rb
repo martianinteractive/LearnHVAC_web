@@ -1,8 +1,6 @@
 class InstitutionsController < ApplicationController
   before_filter :require_superadmin
   
-  # GET /institutions
-  # GET /institutions.xml
   def index
     @institutions = Institution.all
 
@@ -12,8 +10,6 @@ class InstitutionsController < ApplicationController
     end
   end
 
-  # GET /institutions/1
-  # GET /institutions/1.xml
   def show
     @institution = Institution.find(params[:id])
 
@@ -23,8 +19,6 @@ class InstitutionsController < ApplicationController
     end
   end
 
-  # GET /institutions/new
-  # GET /institutions/new.xml
   def new
     @institution = Institution.new
 
@@ -34,13 +28,10 @@ class InstitutionsController < ApplicationController
     end
   end
 
-  # GET /institutions/1/edit
   def edit
     @institution = Institution.find(params[:id])
   end
 
-  # POST /institutions
-  # POST /institutions.xml
   def create
     @institution = Institution.new(params[:institution])
 
@@ -55,8 +46,7 @@ class InstitutionsController < ApplicationController
     end
   end
 
-  # PUT /institutions/1
-  # PUT /institutions/1.xml
+
   def update
     @institution = Institution.find(params[:id])
 
@@ -71,8 +61,7 @@ class InstitutionsController < ApplicationController
     end
   end
 
-  # DELETE /institutions/1
-  # DELETE /institutions/1.xml
+
   def destroy
     @institution = Institution.find(params[:id])
     @institution.destroy
