@@ -10,7 +10,6 @@ ben:
   email: bjohnson@binarylogic.com
   first_name: Ben
   last_name: Johnson
-  role_code: 4
   
 zack:
   company: logic_over_data
@@ -23,4 +22,3 @@ zack:
   email: zham@ziggityzack.com
   first_name: Zack
   last_name: Ham
-  role_code: 4
