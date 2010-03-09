@@ -1,125 +1,145 @@
-require 'spec_helper'
+require File.dirname(__FILE__) + "/../spec_helper"
 
 describe InstitutionsController do
-
-  def mock_institution(stubs={})
-    @mock_institution ||= mock_model(Institution, stubs).as_null_object
+  
+  before(:each) do
+    @superadmin = Factory.build(:user, :login => "joedoe", :email => "jdoe@lhvac.com")
+    @superadmin.role_code = User::ROLES[:superadmin]
+    @superadmin.save
+    login_as(@superadmin)
   end
-
+  
   describe "GET index" do
-    it "assigns all institutions as @institutions" do
-      Institution.stub(:all) { [mock_institution] }
+    it "" do
+      Institution.expects(:all).returns([mock_institution])
       get :index
+      response.should render_template(:index)
       assigns(:institutions).should eq([mock_institution])
     end
   end
-
+  
   describe "GET show" do
-    it "assigns the requested institution as @institution" do
-      Institution.stub(:find).with("37") { mock_institution }
+    it "" do
+      Institution.expects(:find).with("37").returns(mock_institution)
       get :show, :id => "37"
+      response.should render_template(:show)
       assigns(:institution).should be(mock_institution)
     end
   end
-
+  
+  
   describe "GET new" do
-    it "assigns a new institution as @institution" do
-      Institution.stub(:new) { mock_institution }
+    it "" do
       get :new
-      assigns(:institution).should be(mock_institution)
+      response.should render_template(:new)
+      assigns(:institution).should be_instance_of(Institution)
     end
   end
-
+  
+  
   describe "GET edit" do
-    it "assigns the requested institution as @institution" do
-      Institution.stub(:find).with("37") { mock_institution }
+    it "" do
+      Institution.expects(:find).with("37").returns(mock_institution)
       get :edit, :id => "37"
+      response.should render_template(:edit)
       assigns(:institution).should be(mock_institution)
     end
   end
-
+  
+  
   describe "POST create" do
-
     describe "with valid params" do
-      it "assigns a newly created institution as @institution" do
-        Institution.stub(:new).with({'these' => 'params'}) { mock_institution(:save => true) }
-        post :create, :institution => {'these' => 'params'}
-        assigns(:institution).should be(mock_institution)
+      it "should change the Institutions count" do
+        proc{ post :create, :institution => Factory.attributes_for(:institution) }.should change(Institution, :count).by(1)
       end
-
+  
       it "redirects to the created institution" do
-        Institution.stub(:new) { mock_institution(:save => true) }
-        post :create, :institution => {}
-        response.should redirect_to(institution_url(mock_institution))
+        post :create, :institution => Factory.attributes_for(:institution)
+        response.should redirect_to(institution_url(assigns(:institution)))
       end
     end
-
+  
     describe "with invalid params" do
-      it "assigns a newly created but unsaved institution as @institution" do
-        Institution.stub(:new).with({'these' => 'params'}) { mock_institution(:save => false) }
-        post :create, :institution => {'these' => 'params'}
-        assigns(:institution).should be(mock_institution)
+      it "should not change the Institution count" do
+        proc{ post :create, :institution => Factory.attributes_for(:institution).merge(:name => "") }.should_not change(Institution, :count)
       end
-
+      
       it "re-renders the 'new' template" do
-        Institution.stub(:new) { mock_institution(:save => false) }
-        post :create, :institution => {}
+        post :create, :institution => Factory.attributes_for(:institution).merge(:name => "")
         response.should render_template('new')
       end
     end
-
   end
-
+  
   describe "PUT update" do
-
-    describe "with valid params" do
+    
+    before(:each) do
+      @institution = Factory(:institution)
+    end
+    
+    describe "with valid params" do      
       it "updates the requested institution" do
-        Institution.should_receive(:find).with("37") { mock_institution }
-        mock_institution.should_receive(:update_attributes).with({'these' => 'params'})
-        put :update, :id => "37", :institution => {'these' => 'params'}
+        put :update, :id => @institution.id, :institution => { :name => "Joe's Bar" }
+        assigns(:institution).should == @institution.reload
+        @institution.name.should == "Joe's Bar"
       end
-
-      it "assigns the requested institution as @institution" do
-        Institution.stub(:find) { mock_institution(:update_attributes => true) }
-        put :update, :id => "1"
-        assigns(:institution).should be(mock_institution)
-      end
-
-      it "redirects to the institution" do
-        Institution.stub(:find) { mock_institution(:update_attributes => true) }
-        put :update, :id => "1"
-        response.should redirect_to(institution_url(mock_institution))
+      
+      it "redirects to the Institution" do
+        put :update, :id => @institution.id, :institution => { :name => "Joe's Bar" }
+        response.should redirect_to(institution_url(@institution))
       end
     end
-
-    describe "with invalid params" do
-      it "assigns the institution as @institution" do
-        Institution.stub(:find) { mock_institution(:update_attributes => false) }
-        put :update, :id => "1"
-        assigns(:institution).should be(mock_institution)
+      
+    describe "with invalid params" do  
+      it "not update the institution" do
+        put :update, :id => @institution.id, :institution => { :name => "" }
+        assigns(:institution).should_not equal(@institution.reload)
       end
-
+      
       it "re-renders the 'edit' template" do
-        Institution.stub(:find) { mock_institution(:update_attributes => false) }
-        put :update, :id => "1"
+        put :update, :id => @institution.id, :institution => { :name => "" }
         response.should render_template('edit')
       end
     end
-
   end
-
+  
+  
   describe "DELETE destroy" do
-    it "destroys the requested institution" do
-      Institution.should_receive(:find).with("37") { mock_institution }
-      mock_institution.should_receive(:destroy)
-      delete :destroy, :id => "37"
+    
+    before(:each) do
+      @institution = Factory(:institution)
     end
-
+    
+    it "destroys the requested institution" do
+      proc { delete :destroy, :id => @institution.id }.should change(Institution, :count).by(-1)
+    end
+  
     it "redirects to the institutions list" do
-      Institution.stub(:find) { mock_institution(:destroy => true) }
-      delete :destroy, :id => "1"
+      delete :destroy, :id => @institution.id
       response.should redirect_to(institutions_url)
     end
+  end
+  
+  
+  describe "Authentication" do
+    before(:each) do
+      @superadmin.role_code = User::ROLES[:guest]
+      @superadmin.save
+    end
+    
+    it "should require a superadmin user for all actions" do
+      {:get => [:index, :show, :new, :edit],  :post => [ :create ], :put => [ :update ], :delete => [ :destroy ]}.each {|method, actions| 
+        actions.each { |action| 
+          send(method, action)
+          response.should redirect_to(root_path)
+          flash[:notice].should == "You don't have the privileges to access this page"
+        }
+      }
+    end
+  end
+  
+  def mock_institution(attrs = {})
+    @mock_institution ||= Factory(:institution, attrs)
   end
 
 end
