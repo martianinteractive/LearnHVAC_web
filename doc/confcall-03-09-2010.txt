@@ -1,0 +1,5 @@
+variables: change at any time during the simulation.
+parameters: are set at the beginning of the simulation.
+AMF for transport mechanism. find out more.
+export to excel spread sheet.
+editing of system variables can only be done by administrators.

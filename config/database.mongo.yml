@@ -3,7 +3,7 @@ defaults: &defaults
 
 development:
   <<: *defaults
-  database: lhvac_developmen
+  database: lhvac_development
 
 test:
   <<: *defaults
