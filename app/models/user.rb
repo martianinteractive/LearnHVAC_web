@@ -29,13 +29,8 @@ class User < ActiveRecord::Base
     active
   end
   
-  def activate
-    self.active = true
-  end
-  
   def activate!
-    activate
+    self.active = true
     save
-  end
-  
+  end  
 end
