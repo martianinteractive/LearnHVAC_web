@@ -1,5 +1,5 @@
 %h1 Change My Password
-- form_for @user, :url => password_reset_path, :html => {:method => :put} do |f|
+- form_for @user, :url => {:controller => :password_resets, :action => :create }, :html => {:method => :put } do |f|
   = f.error_messages
   = f.label :password
   %br

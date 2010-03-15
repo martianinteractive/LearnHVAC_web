@@ -47,9 +47,9 @@ describe PasswordResetsController do
   describe "GET :edit" do
     describe "with valid perishable_token" do
       it "" do
-        # User.stubs(:find_using_perishable_token).with(@user.id.to_s).returns(@user)
-        # get :edit, :id => @user.id
-        # response.should render_template(:edit) # Doesn't  recognize form path.
+        User.stubs(:find_using_perishable_token).with(@user.id.to_s).returns(@user)
+        get :edit, :id => @user.id
+        response.should render_template(:edit)
       end
     end
     
@@ -76,10 +76,9 @@ describe PasswordResetsController do
     
     describe "with invalid password" do
       it "should not update the password" do
-        # put :update, :id => @user.id, :user => { :password => "newpassword", :password_confirmation => "newnewpassword" }
+        put :update, :id => @user.id, :user => { :password => "newpassword", :password_confirmation => "newnewpassword" }
+         response.should render_template(:edit)
       end
-      
-      # response.should render_template(:edit) #doesn't recognize form path.
     end
   end
   
