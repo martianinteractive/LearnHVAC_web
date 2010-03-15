@@ -6,9 +6,11 @@ Learnhvac::Application.routes.draw do |map|
   resources :user_sessions
   map.resources :password_resets
   
-  match 'login'   => 'user_sessions#new'
-  match 'logout'  => 'user_sessions#destroy'
-  match 'sign_up' => 'accounts#new'
+  match 'login'   => 'user_sessions#new', :as => "login"
+  match 'logout'  => 'user_sessions#destroy', :as => "logout"
+  match 'sign_up' => 'accounts#new', :as => "sign_up"
+  match 'register/:activation_code' => 'activations#new', :as => "register"
+  match 'activate/:id' => "activations#create", :as => "activate"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
