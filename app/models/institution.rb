@@ -1,8 +1,4 @@
-class Institution
-  include Mongoid::Document
-  field :name
-  field :description
-  
+class Institution < ActiveRecord::Base
   validates :name, :presence => true, :length => { :maximum => 200 }, :uniqueness => true
-  has_many_related :users, :dependent => :destroy
+  has_many :users, :dependent => :destroy
 end
