@@ -1,6 +1,6 @@
 class Notifier < ActionMailer::Base
-  ActionMailer::Base.default_url_options[:host] = "lhvac.com"
-  default :from => "from@lhvac.com"
+  ActionMailer::Base.default_url_options[:host] = Site.config["host"]
+  default :from => Site.config["from"]
     
   def password_reset_instructions(user) 
     @user = user

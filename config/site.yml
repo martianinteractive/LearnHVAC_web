@@ -1,0 +1,11 @@
+development:
+  host: development.lhvac.com
+  from: test@lhvac.com
+  
+test:
+  host: test.lhvac.com
+  from: test@lhvac.com
+  
+production:
+  host: production.lhvac.com
+  from: production@lhvac.com
