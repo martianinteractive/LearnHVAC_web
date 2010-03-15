@@ -7,4 +7,14 @@ class Notifier < ActionMailer::Base
     mail(:to => user.email, :subject => "Password Reset Instructions")
   end
   
+  def activation_instructions(user)
+    @user = user
+    mail(:to => user.email, :subject => "Activation Instructions")
+  end
+  
+  def activation_confirmation(user)
+    @user = user
+    mail(:to => user.email, :subject => "Activation Confirmation")
+  end
+  
 end
