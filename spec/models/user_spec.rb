@@ -41,6 +41,17 @@ describe User do
       sent.body.should match(/#{@user.perishable_token}/)
     end
     
+    it "should send activation instructions" do
+      @user.deliver_activation_instructions!
+      sent.subject.should match(/Activation Instructions/)
+      sent.body.should match(/register\/#{@user.perishable_token}/)
+    end
+    
+    it "should send an activation confirmation email" do
+      @user.deliver_activation_confirmation!
+      sent.subject.should match(/Activation Confirmation/)
+      sent.body.should match(/account has been activated/)
+    end
   end
   
   def sent
