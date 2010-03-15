@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   acts_as_authentic
   
   belongs_to :institution
-  
+  attr_protected :active
   
   def role
     ROLES.index(read_attribute(:role_code))
@@ -13,6 +13,10 @@ class User < ActiveRecord::Base
   def deliver_password_reset_instructions!  
     reset_perishable_token!  
     Notifier.password_reset_instructions(self).deliver
+  end
+  
+  def active?
+    active
   end
   
 end
