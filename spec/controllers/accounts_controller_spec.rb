@@ -25,7 +25,11 @@ describe AccountsController do
         proc { post :create, :user => Factory.attributes_for(:user) }.should change(ActionMailer::Base.deliveries, :size).by(1)
       end
       
-      pending "should redirect to another action."
+      it "should redirect to the login action" do
+        post :create, :user => Factory.attributes_for(:user)
+        flash[:notice].should match(/Your account has been created. Please check your e-mail/)
+        response.should redirect_to(login_path)
+      end
     end
     
     describe "an invalid account" do

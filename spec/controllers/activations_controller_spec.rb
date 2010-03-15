@@ -40,11 +40,11 @@ describe ActivationsController do
         # mail detailed specs in user_spec.
         proc { post :create, :id => @user.id }.should change(ActionMailer::Base.deliveries, :size).by(1)
       end
-      
-      pending "redirect to another action."
-      
-      it "should redirect_to ?" do
-        # test redirect after setting up the new root.
+            
+      it "should redirect to the login action" do
+        post :create, :id => @user.id
+        flash[:notice].should match(/activated/)
+        response.should redirect_to(login_path)
       end
     end
     

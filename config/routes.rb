@@ -10,7 +10,7 @@ Learnhvac::Application.routes.draw do |map|
   match 'logout'  => 'user_sessions#destroy', :as => "logout"
   match 'sign_up' => 'accounts#new', :as => "sign_up"
   match 'register/:activation_code' => 'activations#new', :as => "register"
-  match 'activate/:id' => "activations#create", :as => "activate"
+  match 'activate/:id' => 'activations#create', :as => "activate"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
