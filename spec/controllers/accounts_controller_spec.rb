@@ -24,6 +24,8 @@ describe AccountsController do
       it "should send an activation information mail" do
         proc { post :create, :user => Factory.attributes_for(:user) }.should change(ActionMailer::Base.deliveries, :size).by(1)
       end
+      
+      pending "should redirect to another action."
     end
     
     describe "an invalid account" do

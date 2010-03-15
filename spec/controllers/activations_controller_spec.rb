@@ -41,6 +41,8 @@ describe ActivationsController do
         proc { post :create, :id => @user.id }.should change(ActionMailer::Base.deliveries, :size).by(1)
       end
       
+      pending "redirect to another action."
+      
       it "should redirect_to ?" do
         # test redirect after setting up the new root.
       end
