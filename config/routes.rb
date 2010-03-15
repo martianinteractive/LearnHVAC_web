@@ -1,13 +1,14 @@
 Learnhvac::Application.routes.draw do |map|
-  resources :institutions
-
   
+  resources :accounts
+  resources :institutions
   resources :users
   resources :user_sessions
   map.resources :password_resets
   
   match 'login'   => 'user_sessions#new'
   match 'logout'  => 'user_sessions#destroy'
+  match 'sign_up' => 'accounts#new'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

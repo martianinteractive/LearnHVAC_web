@@ -1,0 +1,29 @@
+= error_messages_for 'user'
+- form_for @account do |f|
+  %p
+    = f.label :login
+    %br
+    = f.text_field :login
+  %p
+    = f.label :first_name, "First Name"
+    %br
+    = f.text_field :first_name
+  %p
+    = f.label :last_name, "Last Name"
+    %br
+    = f.text_field :last_name
+  %p
+    = f.label :email
+    %br
+    = f.text_field :email
+  %p
+    = f.label :password
+    %br
+    = f.password_field :password, :size=>20,  :value=>""
+  %p
+    = f.label :password_confirmation, "Password Confirmation"	
+    %br
+    = f.password_field :password_confirmation, :size=>20,  :value=>""
+
+  = submit_tag "Create", :class=>'submitButton'
+= link_to 'Back', "#"
