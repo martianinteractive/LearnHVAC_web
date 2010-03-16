@@ -1,0 +1,2 @@
+class InstructorSystemVariable < SystemVariable
+end
