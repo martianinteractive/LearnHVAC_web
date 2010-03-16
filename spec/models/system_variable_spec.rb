@@ -1,5 +1,10 @@
-require 'spec_helper'
+require File.dirname(__FILE__) + "/../spec_helper"
 
 describe SystemVariable do
-  pending "add some examples to (or delete) #{__FILE__}"
+  
+  context "Roles" do
+    it "" do
+      SystemVariable::TYPES.should have(3).types
+    end
+  end
 end
