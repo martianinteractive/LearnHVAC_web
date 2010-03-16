@@ -6,13 +6,13 @@ class User < ActiveRecord::Base
   belongs_to :institution
   attr_protected :active
   
-  after_create :copy_system_variables, :if => Proc.new { |u| u.is_a?(:instructor) }
+  after_create :copy_system_variables, :if => Proc.new { |u| u.has_role?(:instructor) }
   
   def role
     ROLES.index(read_attribute(:role_code))
   end
   
-  def is_a?(_role)
+  def has_role?(_role)
     _role.to_sym == role
   end
   
