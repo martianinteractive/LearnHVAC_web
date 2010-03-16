@@ -42,6 +42,8 @@ class User < ActiveRecord::Base
   
   private
   
+  # At the moment only is called on create,
+  # we need to define a flow when updating a role.
   def copy_system_variables
     GlobalSystemVariable.all.each do |gsv|
       atts = gsv.attributes
