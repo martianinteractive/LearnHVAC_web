@@ -6,8 +6,14 @@ class User < ActiveRecord::Base
   belongs_to :institution
   attr_protected :active
   
+  after_create :copy_system_variables, :if => Proc.new { |u| u.is_a?(:instructor) }
+  
   def role
     ROLES.index(read_attribute(:role_code))
+  end
+  
+  def is_a?(_role)
+    _role.to_sym == role
   end
   
   def deliver_password_reset_instructions!  
@@ -32,5 +38,17 @@ class User < ActiveRecord::Base
   def activate!
     self.active = true
     save
-  end  
+  end
+  
+  private
+  
+  def copy_system_variables
+    GlobalSystemVariable.all.each do |gsv|
+      atts = gsv.attributes
+      atts.delete("_id")
+      isv = InstructorSystemVariable.new(atts)
+      isv.user = self
+      isv.save
+    end
+  end
 end
