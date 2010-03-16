@@ -15,7 +15,7 @@ Rspec.configure do |config|
   require 'rspec/expectations'
   config.include Rspec::Matchers
   config.mock_with :mocha
-  config.after(:all) { Mongoid.database.collections.each { |coll| coll.remove } }
+  config.before(:each) { Mongoid.master.collections.each(&:drop) }
 end
 
 module AuthlogicTestHelper 
