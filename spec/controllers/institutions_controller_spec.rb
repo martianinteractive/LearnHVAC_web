@@ -129,7 +129,7 @@ describe InstitutionsController do
     
     it "should require a superadmin user for all actions" do
       authorize_actions do
-        response.should redirect_to(root_path)
+        response.should redirect_to(users_path)
         flash[:notice].should == "You don't have the privileges to access this page"
       end
     end

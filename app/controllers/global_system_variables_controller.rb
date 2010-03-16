@@ -1,6 +1,6 @@
 class GlobalSystemVariablesController < ApplicationController
-  # GET /global_system_variables
-  # GET /global_system_variables.xml
+  before_filter :require_superadmin
+  
   def index
     @global_system_variables = GlobalSystemVariable.all
 
@@ -10,8 +10,7 @@ class GlobalSystemVariablesController < ApplicationController
     end
   end
 
-  # GET /global_system_variables/1
-  # GET /global_system_variables/1.xml
+
   def show
     @global_system_variable = GlobalSystemVariable.find(params[:id])
 
@@ -21,8 +20,7 @@ class GlobalSystemVariablesController < ApplicationController
     end
   end
 
-  # GET /global_system_variables/new
-  # GET /global_system_variables/new.xml
+
   def new
     @global_system_variable = GlobalSystemVariable.new
 
@@ -32,13 +30,10 @@ class GlobalSystemVariablesController < ApplicationController
     end
   end
 
-  # GET /global_system_variables/1/edit
   def edit
     @global_system_variable = GlobalSystemVariable.find(params[:id])
   end
 
-  # POST /global_system_variables
-  # POST /global_system_variables.xml
   def create
     @global_system_variable = GlobalSystemVariable.new(params[:global_system_variable])
 
@@ -53,8 +48,6 @@ class GlobalSystemVariablesController < ApplicationController
     end
   end
 
-  # PUT /global_system_variables/1
-  # PUT /global_system_variables/1.xml
   def update
     @global_system_variable = GlobalSystemVariable.find(params[:id])
 
@@ -69,8 +62,6 @@ class GlobalSystemVariablesController < ApplicationController
     end
   end
 
-  # DELETE /global_system_variables/1
-  # DELETE /global_system_variables/1.xml
   def destroy
     @global_system_variable = GlobalSystemVariable.find(params[:id])
     @global_system_variable.destroy
