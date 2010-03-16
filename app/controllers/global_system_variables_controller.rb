@@ -1,20 +1,14 @@
 class GlobalSystemVariablesController < ApplicationController
   before_filter :require_superadmin
+  layout "application"
   
   def index
     @global_system_variables = GlobalSystemVariable.all
   end
 
-
   def show
     @global_system_variable = GlobalSystemVariable.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @global_system_variable }
-    end
   end
-
 
   def new
     @global_system_variable = GlobalSystemVariable.new
