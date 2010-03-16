@@ -1,0 +1,40 @@
+%h1
+  Listing Global System Variables
+%table
+  %tr
+    %th Comp
+    %th fault
+    %th Name
+    %th Display Name
+    %th Description
+    %th Type
+    %th Min
+    %th Default
+    %th Max
+    %th Unit SI
+    %th Unit IP
+    %th SI to IP
+    %th Disabled
+    %th
+    %th
+    %th
+  - @global_system_variables.each do |global_system_variable|
+    %tr
+      %td comp
+      %td fault
+      %th= global_system_variable.name
+      %th= global_system_variable.display_name
+      %th= global_system_variable.description
+      %th= global_system_variable.io_type
+      %th= global_system_variable.min_value
+      %th= global_system_variable.default_value
+      %th= global_system_variable.max_value
+      %th= global_system_variable.unit_si
+      %th= global_system_variable.unit_ip
+      %th= global_system_variable.si_to_ip
+      %th= global_system_variable.global_disable
+      %td= link_to 'Show', global_system_variable
+      %td= link_to 'Edit', edit_global_system_variable_path(global_system_variable)
+      %td= link_to 'Destroy', global_system_variable, :confirm => 'Are you sure?', :method => :delete
+%br
+= link_to 'New System Var', new_global_system_variable_path

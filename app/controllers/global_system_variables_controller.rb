@@ -3,11 +3,6 @@ class GlobalSystemVariablesController < ApplicationController
   
   def index
     @global_system_variables = GlobalSystemVariable.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @global_system_variables }
-    end
   end
 
 

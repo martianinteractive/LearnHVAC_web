@@ -3,9 +3,21 @@ require File.dirname(__FILE__) + "/../spec_helper"
 describe GlobalSystemVariablesController do
 
   before(:each) do
-    @admin = Factory(:user, :login => "joedoe", :email => "jdoe@lhvac.com")
+    @admin = Factory.build(:user, :login => "joedoe", :email => "jdoe@lhvac.com")
+    @admin.role_code = User::ROLES[:superadmin]
+    @admin.save
     login_as(@admin)
   end
+  
+  describe "GET index" do
+    it "" do
+      GlobalSystemVariable.expects(:all).returns([mock_global_var])
+      get :index
+      response.should render_template(:index)
+      assigns(:global_system_variables).should eq([mock_global_var])
+    end
+  end
+  
   
   describe "Authorization" do
     it "should require an authenticated superadmin for all actions" do
@@ -16,6 +28,11 @@ describe GlobalSystemVariablesController do
         flash[:notice].should == "You don't have the privileges to access this page"
       end
     end
+  end
+  
+  
+  def mock_global_var(attrs = {})
+    @mock_global_variable ||= Factory(:global_system_variable, attrs)
   end
   
 end
