@@ -1,0 +1,2 @@
+class GlobalSystemVariable < SystemVariable
+end

@@ -1,4 +1,6 @@
 Learnhvac::Application.routes.draw do |map|
+  resources :global_system_variables
+
   
   resources :accounts
   resources :institutions
