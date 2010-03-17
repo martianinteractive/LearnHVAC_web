@@ -1,28 +1,6 @@
 class ScenarioSystemVariablesController < ApplicationController
-  # GET /scenario_system_variables
-  # GET /scenario_system_variables.xml
-  def index
-    @scenario_system_variables = ScenarioSystemVariable.all
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @scenario_system_variables }
-    end
-  end
 
-  # GET /scenario_system_variables/1
-  # GET /scenario_system_variables/1.xml
-  def show
-    @scenario_system_variable = ScenarioSystemVariable.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @scenario_system_variable }
-    end
-  end
-
-  # GET /scenario_system_variables/new
-  # GET /scenario_system_variables/new.xml
   def new
     @scenario_system_variable = ScenarioSystemVariable.new
 
@@ -32,13 +10,10 @@ class ScenarioSystemVariablesController < ApplicationController
     end
   end
 
-  # GET /scenario_system_variables/1/edit
   def edit
     @scenario_system_variable = ScenarioSystemVariable.find(params[:id])
   end
 
-  # POST /scenario_system_variables
-  # POST /scenario_system_variables.xml
   def create
     @scenario_system_variable = ScenarioSystemVariable.new(params[:scenario_system_variable])
 

@@ -41,6 +41,15 @@ describe ScenariosController do
     end
   end
   
+  describe "GET variables_edit" do
+    it "" do
+      Scenario.expects(:find).with("37").returns(mock_scenario)
+      get :variables_edit, :id => "37"
+      response.should render_template(:variables_edit)
+      assigns(:scenario).should be(mock_scenario)
+    end
+  end
+  
   describe "POST create" do
     describe "with valid params" do
       it "should change the Scenario count" do
