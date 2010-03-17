@@ -48,6 +48,12 @@ describe InstructorSystemVariablesController do
       it "should change the InstructorSystemVariable count" do
         proc{ post :create, :instructor_system_factory => Factory.attributes_for(:instructor_system_variable) }.should change(InstructorSystemVariable, :count).by(1)
       end
+      
+      it "should assign the current user as the InstructorSystemVariable user" do
+        post :create, :instructor_system_variable => Factory.attributes_for(:instructor_system_variable)
+        assigns(:instructor_system_variable).user.should == @instructor
+        
+      end
   
       it "redirects to the created instructor_system_variable" do
         post :create, :instructor_system_variable => Factory.attributes_for(:instructor_system_variable)
@@ -108,7 +114,7 @@ describe InstructorSystemVariablesController do
     describe "As Instructor" do
       it "should have access to all actions" do
         authorize_actions do
-          response.body.should_not match(/redirected/)
+          flash[:notice].should_not == "You don't have the privileges to access this page"
         end
       end
     end
@@ -118,7 +124,7 @@ describe InstructorSystemVariablesController do
         @instructor.role_code = User::ROLES[:superadmin]
         @instructor.save
         authorize_actions do
-          response.body.should_not match(/redirected/)
+          flash[:notice].should_not == "You don't have the privileges to access this page"
         end
       end
     end
