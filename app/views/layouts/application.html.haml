@@ -26,12 +26,7 @@
     .shadow
       .subnav
         - if logged_in?
-          %h2
-            Test
-          .navigation
-            %ul
-              %li
-                = link_to 'Root', root_path
+          = yield :subnav
       .main
         = display_flash
         = yield

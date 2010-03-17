@@ -1,17 +1,13 @@
-%div
-  #section_icon
-    = image_tag("icon_users_45.png", :alt => "Users Icon")
-  #section_title
-    %h1
-      Manage Users
-  %div
-    = button_to 'Create New User', new_user_path, :class=>"createButton", :method => :get
-  %div
-%p
-  %span
-  (your user is highlighted yellow)
-%table#listTable
-  %tr#listHeader
+- content_for :subnav do
+  %h2
+    Manage Users
+  .navigation
+    %ul
+      %li
+        = link_to 'New User', new_user_path
+
+%table
+  %tr
     %th
     %th
       Institution

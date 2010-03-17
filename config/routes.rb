@@ -21,6 +21,12 @@ Learnhvac::Application.routes.draw do |map|
   match 'sign_up' => 'accounts#new', :as => "sign_up"
   match 'register/:activation_code' => 'activations#new', :as => "register"
   match 'activate/:id' => 'activations#create', :as => "activate"
+  
+  # Admin routes  
+  namespace :admin do
+    resource :dashboard
+    match 'institutions' => 'institutions#index'
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
