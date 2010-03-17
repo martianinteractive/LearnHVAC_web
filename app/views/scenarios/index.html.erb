@@ -1,0 +1,57 @@
+<h1>Listing scenarios</h1>
+
+<table>
+  <tr>
+    <th>Scenario</th>
+    <th>Name</th>
+    <th>Movie url</th>
+    <th>Thumbnail url</th>
+    <th>Level</th>
+    <th>Inputs visible</th>
+    <th>Inputs enabled</th>
+    <th>Faults visible</th>
+    <th>Faults enabled</th>
+    <th>Longterm start date</th>
+    <th>Longterm stop date</th>
+    <th>Allow longterm date change</th>
+    <th>Realtime start datetime</th>
+    <th>Allow realtime datetime change</th>
+    <th>Valve info enabled</th>
+    <th>Short description</th>
+    <th>Description</th>
+    <th>Goal</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @scenarios.each do |scenario| %>
+  <tr>
+    <td><%= scenario.scenario_id %></td>
+    <td><%= scenario.name %></td>
+    <td><%= scenario.movie_url %></td>
+    <td><%= scenario.thumbnail_url %></td>
+    <td><%= scenario.level %></td>
+    <td><%= scenario.inputs_visible %></td>
+    <td><%= scenario.inputs_enabled %></td>
+    <td><%= scenario.faults_visible %></td>
+    <td><%= scenario.faults_enabled %></td>
+    <td><%= scenario.longterm_start_date %></td>
+    <td><%= scenario.longterm_stop_date %></td>
+    <td><%= scenario.allow_longterm_date_change %></td>
+    <td><%= scenario.realtime_start_datetime %></td>
+    <td><%= scenario.allow_realtime_datetime_change %></td>
+    <td><%= scenario.valve_info_enabled %></td>
+    <td><%= scenario.short_description %></td>
+    <td><%= scenario.description %></td>
+    <td><%= scenario.goal %></td>
+    <td><%= link_to 'Show', scenario %></td>
+    <td><%= link_to 'Edit', edit_scenario_path(scenario) %></td>
+    <td><%= link_to 'Destroy', scenario, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New scenario', new_scenario_path %>
