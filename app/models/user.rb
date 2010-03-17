@@ -40,6 +40,10 @@ class User < ActiveRecord::Base
     save
   end
   
+  def instructor_system_variables
+    InstructorSystemVariable.all(:conditions => { :user_id => self.id.to_s }).to_a
+  end
+  
   private
   
   # At the moment only is called on create,

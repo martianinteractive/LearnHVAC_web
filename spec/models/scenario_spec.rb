@@ -1,5 +1,32 @@
-require 'spec_helper'
+require File.dirname(__FILE__) + "/../spec_helper"
 
 describe Scenario do
-  pending "add some examples to (or delete) #{__FILE__}"
+  
+  before(:each) do
+    @user = Factory(:user)
+    @scenario = Factory.build(:scenario, :user => @user)
+  end
+  
+  pending "Make real tests for this, atm getting problems with documents."
+    
+  context "Callbacks" do    
+    context "on create" do
+      
+      before(:each) do
+        create_user_system_vars
+      end
+      
+      it "should create a set of scenario_variables" do
+        @user.instructor_system_variables.should_not be_empty
+        @scenario.save
+        @scenario.scenario_system_variables.should_not be_empty
+      end
+    end
+  end
+  
+  def create_user_system_vars
+    Factory.create(:instructor_system_variable, :name => "var 1", :user => @user)
+    Factory.create(:instructor_system_variable, :name => "var 2", :user => @user)
+    Factory.create(:instructor_system_variable, :name => "var 3", :user => @user)
+  end
 end

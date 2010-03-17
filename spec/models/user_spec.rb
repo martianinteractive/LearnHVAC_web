@@ -82,9 +82,9 @@ describe User do
   end
   
   def create_global_system_vars
-   @gsv1 =  Factory(:global_system_variable, :name => "var 1")
-   @gsv2 =  Factory(:global_system_variable, :name => "var 2")
-   @gsv3 =  Factory(:global_system_variable, :name => "var 3")
+   Factory(:global_system_variable, :name => "var 1")
+   Factory(:global_system_variable, :name => "var 2")
+   Factory(:global_system_variable, :name => "var 3")
   end
   
 end
