@@ -41,6 +41,12 @@ class ApplicationController < ActionController::Base
     end
   end
   
+  def require_instructor
+    if current_user and !current_user.has_role?(:instructor)
+      require_superadmin
+    end
+  end
+  
   def store_location
     session[:return_to] = request.request_uri
   end

@@ -1,0 +1,97 @@
+%p
+  %b
+    Name:
+  = @instructor_system_variable.name
+%p
+  %b
+    Display name:
+  = @instructor_system_variable.display_name
+%p
+  %b
+    Index:
+  = @instructor_system_variable.index
+%p
+  %b
+    Description:
+  = @instructor_system_variable.description
+%p
+  %b
+    I/O type:
+  = @instructor_system_variable.io_type
+%p
+  %b
+    Min value:
+  = @instructor_system_variable.description
+%p
+  %b
+    Default value:
+  = @instructor_system_variable.default_value
+%p
+  %b
+    Max value:
+  = @instructor_system_variable.max_value
+%p
+  %b
+    Unit SI
+  = @instructor_system_variable.unit_si
+%p
+  %b
+    Unit IP
+  = @instructor_system_variable.unit_ip
+%p
+  %b
+    SI to IP
+  = @instructor_system_variable.si_to_ip
+%p
+  %b
+    Fault?
+  = @instructor_system_variable.is_fault
+%p
+  %b
+    instructor disable:
+  = @instructor_system_variable.global_disable
+%p
+  %b
+    Left label:
+  = @instructor_system_variable.left_label
+%p
+  %b
+    Right label:
+  = @instructor_system_variable.right_label
+%p
+  %b
+    Subsection:
+  = @instructor_system_variable.subsection
+%p
+  %b
+    Zone position:
+  = @instructor_system_variable.zone_position
+%p
+  %b
+    Subsection:
+  = @instructor_system_variable.subsection
+%p
+  %b
+    Is percentage:
+  = @instructor_system_variable.is_percentage
+%p
+  %b
+    Fault widget type:
+  = @instructor_system_variable.fault_widget_type
+%p
+  %b
+    Notes:
+  = @instructor_system_variable.notes
+%p
+  %b
+    Lock version:
+  = @instructor_system_variable.lock_version
+%p
+  %b
+    Node sequence:
+  = @instructor_system_variable.node_sequence
+
+= link_to 'Edit', edit_instructor_system_variable_path(@instructor_system_variable)
+|
+= link_to 'Back', instructor_system_variables_path
+
