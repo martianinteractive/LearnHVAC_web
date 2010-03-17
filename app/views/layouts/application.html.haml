@@ -16,34 +16,25 @@
     .header
       .content
         %h1.siteTitle
-          = link_to image_tag 'logo.png', root_path
+          = link_to image_tag('logo.png'), root_path
         %ul.globalNav
           - if logged_in?
-          %li.username
-            Welcome Joe Doe
-          - if current_user.admin?
-          %li
-            = link_to 'Admin Dashboard', admin_dashboard_path
-          - end
+            %li.username
+              Welcome Joe Doe
+            - if current_user.admin?
+              %li
+                = link_to 'Admin Dashboard', admin_dashboard_path
           %li
             = link_to 'Root', root_path
-          - end
     .shadow
       .subnav
         - if logged_in?
-        %h2
-          = t('dashboard.dashboard_for', :company => h(current_user.provider.company_name))
-        .navigation
-          %ul
-            %li
-              = link_to t('navigation.dashboard'), my_dashboard_path
-            %li
-              = link_to t('navigation.rfps'), my_requests_path
-            %li
-              = link_to t('navigation.company'), current_user.provider
-            %li
-              = link_to t('navigation.users'), my_users_path
-        - end
+          %h2
+            Test
+          .navigation
+            %ul
+              %li
+                = link_to 'Root', root_path
       .main
         = display_flash
         = yield
@@ -52,15 +43,8 @@
       .content
         %ul.nav
           %li
-            = link_to t('general.contact_us'), '/contact_messages/new', :rel => "nofollow"
+            = link_to 'Contact Us', '/contact_messages/new', :rel => "nofollow"
           %li
-            = link_to t('general.terms'), '/pages/terms-of-use', :rel => "nofollow"
-          %li
-            = link_to t('home.full_listing'), providers_path
-          %li
-            = link_to t('home.by_location'), by_location_providers_path
-          %li
-            = link_to t('home.top_cities'), top_cities_path
+            = link_to 'Terms', '/pages/terms-of-use', :rel => "nofollow"
         %p.attribution
-          = t('general.copyright')
-    = render :partial => 'shared/ga_tracker'
+          Copyright

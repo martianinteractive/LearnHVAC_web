@@ -1,9 +1,9 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  helper_method :current_user
+  helper_method :current_user, :logged_in?
   
   private
-  
+
   def current_user_session
     return @current_user_session if defined?(@current_user_session)
     @current_user_session = UserSession.find
@@ -32,9 +32,8 @@ class ApplicationController < ActionController::Base
     end
   end
   
-  def require_superadmin
-    if current_user and !current_user.has_role?(:superadmin)
-      store_location
+  def require_admin
+    if current_user.try(:role) != :admin
       flash[:notice] = "You don't have the privileges to access this page"
       redirect_back_or_default(users_path)
       return false
@@ -56,4 +55,9 @@ class ApplicationController < ActionController::Base
     session[:return_to] = nil
     redirect_to(back || default)
   end
+  
+  def logged_in?
+    current_user
+  end
+  
 end

@@ -1,5 +1,5 @@
-class InstitutionsController < ApplicationController
-  before_filter :require_superadmin
+class Admin::InstitutionsController < ApplicationController
+  before_filter :require_admin
   
   def index
     @institutions = Institution.all

@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  ROLES = { :guest => 0, :student => 1, :instructor => 2, :administrator => 3, :superadmin => 4 }
+  ROLES = { :guest => 0, :student => 1, :instructor => 2, :admin => 3 }
   validates :first_name, :last_name, :presence => true, :length => { :maximum => 200 }, :format => { :with => /^\w+$/i }
   acts_as_authentic
   
@@ -29,6 +29,10 @@ class User < ActiveRecord::Base
   def deliver_activation_confirmation!
     reset_perishable_token!
     Notifier.activation_confirmation(self).deliver
+  end
+  
+  def admin?
+    true
   end
   
   def active?
