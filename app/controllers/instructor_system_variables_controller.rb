@@ -20,7 +20,8 @@ class InstructorSystemVariablesController < ApplicationController
 
   def create
     @instructor_system_variable = InstructorSystemVariable.new(params[:instructor_system_variable])
-
+    @instructor_system_variable.user = current_user
+    
     if @instructor_system_variable.save
       redirect_to(@instructor_system_variable, :notice => 'InstructorSystemVariable was successfully created.')
     else

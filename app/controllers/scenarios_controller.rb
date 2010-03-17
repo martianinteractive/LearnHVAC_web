@@ -20,7 +20,8 @@ class ScenariosController < ApplicationController
 
   def create
     @scenario = Scenario.new(params[:scenario])
-
+    @scenario.user = current_user
+    
     if @scenario.save
       redirect_to(@scenario, :notice => 'Scenario was successfully created.')
     else
