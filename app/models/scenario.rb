@@ -23,6 +23,8 @@ class Scenario
   has_many :scenario_system_variables
   belongs_to_related :user
   
+  accepts_nested_attributes_for :scenario_system_variables
+  
   after_create :copy_instructor_system_variables
   
   private

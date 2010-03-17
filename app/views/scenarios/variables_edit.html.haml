@@ -1,0 +1,92 @@
+%h1 Scenario Variables
+
+- form_for(@scenario) do |f|
+  = f.error_messages
+
+  - f.fields_for :scenario_system_variables do |system_variable_form|
+    .field
+      = system_variable_form.label :name
+      %br
+      = system_variable_form.text_field :name
+    .field
+      = system_variable_form.label :display_name
+      %br
+      = system_variable_form.text_field :display_name
+    .field
+      = system_variable_form.label :description
+      %br
+      = system_variable_form.text_area :description
+    .field
+      = system_variable_form.label :component
+      %br
+      %p put here select component.
+    .field
+      = system_variable_form.label :global_disable, "Globally Disabled:"
+      %br
+      = system_variable_form.check_box :global_disable
+    .field
+      = system_variable_form.label :type_code, "I/O Type"
+      %br
+      = system_variable_form.select :type_code, GlobalSystemVariable::TYPES.keys.collect {|type| [ type, GlobalSystemVariable::TYPES[type] ] }
+    .field
+      = system_variable_form.label :index
+      %br
+      = system_variable_form.text_field :index
+    .field
+      = system_variable_form.label :unit_si
+      %br
+      = system_variable_form.text_field :unit_si
+    .field
+      = system_variable_form.label :unit_ip
+      %br
+      = system_variable_form.text_field :unit_ip
+    .field
+      = system_variable_form.label :min_value
+      %br
+      = system_variable_form.text_field :min_value
+    .field
+      = system_variable_form.label :default_value
+      %br
+      = system_variable_form.text_field :default_value
+    .field
+      = system_variable_form.label :max_value
+      %br
+      = system_variable_form.text_field :max_value
+    .field
+      = system_variable_form.label :notes
+      %br
+      = system_variable_form.text_area :notes
+
+    %p Fault Information
+
+    .field
+      = system_variable_form.label :is_fault
+      %br
+      = system_variable_form.check_box :is_fault
+    .field
+      = system_variable_form.label :fault_widget_type
+      %br
+      = system_variable_form.text_field :fault_widget_type
+    .field
+      = system_variable_form.label :subsection
+      %br
+      = system_variable_form.text_field :subsection
+    .field
+      = system_variable_form.label :left_label
+      %br
+      = system_variable_form.text_field :left_label
+    .field
+      = system_variable_form.label :right_label
+      %br
+      = system_variable_form.text_field :right_label
+    .field
+      = system_variable_form.label :zone_position
+      %br
+      = system_variable_form.text_field :zone_position
+    .field
+      = system_variable_form.label :is_percentage
+      %br
+      = system_variable_form.check_box :is_percentage
+
+  .actions
+    = f.submit

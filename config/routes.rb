@@ -1,12 +1,14 @@
 Learnhvac::Application.routes.draw do |map|
-  resources :scenarios
-
-  resources :scenario_system_variables
+  
+  resources :scenarios do
+    member do
+      get :variables_edit
+    end
+    resources :scenario_system_variables
+  end
 
   resources :instructor_system_variables
-
   resources :global_system_variables
-
   
   resources :accounts
   resources :institutions
