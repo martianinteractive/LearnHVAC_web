@@ -25,7 +25,6 @@ class Scenario
   
   after_create :copy_instructor_system_variables
   
-  
   private
   
   def copy_instructor_system_variables
