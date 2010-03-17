@@ -101,13 +101,14 @@ describe InstructorSystemVariablesController do
   
   describe "Authorization" do
     before(:each) do
+      InstructorSystemVariable.stubs(:all).returns([mock_instructor_var])
       InstructorSystemVariable.stubs(:find).returns(mock_instructor_var)
     end
     
     describe "As Instructor" do
       it "should have access to all actions" do
         authorize_actions do
-          flash[:notice].should_not match(/don't have the privileges/)
+          response.body.should_not match(/redirected/)
         end
       end
     end
@@ -117,7 +118,7 @@ describe InstructorSystemVariablesController do
         @instructor.role_code = User::ROLES[:superadmin]
         @instructor.save
         authorize_actions do
-          flash[:notice].should_not match(/don't have the privileges/)
+          response.body.should_not match(/redirected/)
         end
       end
     end
@@ -128,6 +129,7 @@ describe InstructorSystemVariablesController do
         @instructor.save
         authorize_actions do
           response.should redirect_to(users_path)
+          response.body.should match(/redirected/)
           flash[:notice].should == "You don't have the privileges to access this page"
         end
       end

@@ -22,7 +22,7 @@
 .field
   = f.label :type_code, "I/O Type"
   %br
-  = f.select :type_code, SystemVariable::TYPES.keys.collect {|type| [ type, SystemVariable::TYPES[type] ] }
+  = f.select :type_code, GlobalSystemVariable::TYPES.keys.collect {|type| [ type, GlobalSystemVariable::TYPES[type] ] }
 .field
   = f.label :index
   %br
