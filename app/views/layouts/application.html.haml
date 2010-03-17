@@ -4,20 +4,17 @@
     %title
       = yield :title
       Learn HVAC Administration
-    = stylesheet_link_tag "master.css"
+    = stylesheet_link_tag "screen.css"
+    = stylesheet_link_tag "print.css", :media => "print"
     = javascript_include_tag :defaults, 'datepicker', 'jquery.bgiframe', 'jquery.dimensions', 'jquery.delegate', 'jquery.tooltip', 'jquery.delay', 'locales'
-    /
-      [if IE]><haml:loud> stylesheet_link_tag 'emastic/ie-min' </haml:loud><![endif]
-    /
-      [if IE 7]><haml:loud> stylesheet_link_tag 'ie7' </haml:loud><![endif]
-    %script{ :type => "text/javascript", :charset => "utf-8" }
-      AUTH_TOKEN = '<haml:loud> u(form_authenticity_token) </haml:loud>';
-  %body
+    /[if IE]
+      = stylesheet_link_tag 'ie.css'
+  %body.bp
     .header
       .content
         %h1.siteTitle
           = link_to image_tag('logo.png'), root_path
-        %ul.globalNav
+        %ul.global_nav
           - if logged_in?
             %li.username
               Welcome Joe Doe

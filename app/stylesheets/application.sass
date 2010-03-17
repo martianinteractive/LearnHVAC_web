@@ -1,6 +1,6 @@
 body
   font-size: 84%
-  background: url(/images/bg-header.png) repeat-x left top
+  background: url(/images/layout/bg-header.png) repeat-x left top
 
 
 .content, .shadow, .subnav, .footer
@@ -11,52 +11,16 @@ body
   margin: 0 auto
 
 
-.description
-  font-size: 1.1em
-  margin-top: 0.5em
-  text-align: center
-
-
-.narrow .description
-  text-align: left
-
-
-dl
-  margin: 1em 0
-
-
-dt
-  font-weight: normal
-  margin: 0.5em 0
-  padding-top: 1em
-
-  &:first-child
-    padding-top: 0
-
-
-dd
-  margin: 0 0 0 0.5em
-
-  &.date
-    margin-bottom: 1em
-    color: #666
-
-
 .header
-  padding: 20px 0 12px
   margin-bottom: 0
 
   h1
     font-size: 1.3em
     font-weight: normal
-    padding: 10px 0 0 0
-
-    a
-      background: url(/images/logo-rdd.png) no-repeat left bottom
-      padding: 30px 0 0px 54px
 
     img
       margin: 0 0 5px
+      border: none
 
   a
     border: none
@@ -65,7 +29,7 @@ dd
       border: none
 
 
-.globalNav
+.global_nav
   margin-top: 0.3em
 
   a
@@ -83,13 +47,13 @@ li.username
 
 
 .shadow
-  background: url(/images/bg-body-shadow.png) no-repeat top center
+  background: url(/images/layout/bg-body-shadow.png) no-repeat top center
   padding: 7px
   margin: 0 auto
 
 
 .subnav
-  background: #59D8E5
+  background: #FFFDDD
   margin: 0 auto
   min-height: 2.3em
 
@@ -126,241 +90,6 @@ li.username
   min-height: 500px
 
 
-.welcome
-  text-align: center
-  font-size: 1.1em
-  margin: 0em 0 3em
-  padding: 0 40px
-
-  img
-    float: left
-    margin: 0 30px 0 50px
-
-  h1
-    font-size: 2.4em
-    line-height: 1.1em
-    padding-top: 0.2em
-    margin-bottom: 0.5em
-
-  p
-    font-size: 1.1em
-    line-height: 1.3em
-
-
-.searchWizard
-  background: #EEE url(/images/bg-search.png) repeat-x
-  padding: 20px
-  margin: 0 -40px
-  border-top: 1px solid #BBC1C2
-  border-bottom: 1px solid #BBC1C2
-
-  h3
-    font-size: 1.35em
-    float: left
-    width: 190px
-    text-align: center
-    margin: 0
-    padding: 0 10px 100px 0
-    background: url(/images/img-arrow.png) no-repeat bottom right
-
-
-.search
-  text-align: center
-  width: 660px
-  padding: 0 52px 2em
-  margin-left: 205px
-  border: 1px solid #999
-
-
-.provider
-  h3
-    font-size: 1.7em
-    color: #333
-    padding-top: 1em
-
-  a
-    font-size: 1.2em
-    font-weight: normal
-    color: #2F3738
-    display: block
-    background: url(/images/btn-lg.png) no-repeat center
-    width: 204px
-    margin: 0 auto
-    padding: 1.1em 0 1.3em
-    border: none
-
-    &:hover
-      text-decoration: none
-      border: none
-
-
-.providerHead
-  border-bottom: 2px solid #59D8E5
-  margin-bottom: 1.2em
-  height: 8em
-
-  .narrow
-    width: auto
-
-
-  h2
-    margin-top: 1em
-    font-size: 2.5em
-    text-align: left
-
-  img
-    margin: 2em 1em 0 0
-    float: left
-    position: relative
-    max-height: 64px
-    max-width: 64px
-
-
-.provider.search
-  background: #FEFEDC
-  padding: 10px 20px 20px
-
-  h3
-    font: 1em Lucida Grande, Verdana, sans-serif
-    text-align: left
-    color: #333
-    border-bottom: 1px solid #DEDEDE
-    padding-bottom: 1em
-    margin-bottom: 0
-
-  h4
-    color: #000
-
-  form
-    text-align: left
-
-  label
-    color: #666
-    width: auto
-    margin-right: 0
-    display: inline
-
-  input[type="text"]
-    display: inline
-    margin-left: 0.5em
-    width: 12.5em
-    background: #FFFFF3
-
-    &:focus
-      background: #FFF
-
-  p, ul, li
-    margin-left: 0
-    margin-bottom: 0.2em
-
-  ul
-    width: 530px
-
-  li
-    display: block
-    float: left
-    width: 40%
-    margin-right: 2%
-    min-height: 20px
-    white-space: nowrap
-
-
-li .check
-  position: relative
-  top: -2px
-  margin: 0 0.3em -5px 0
-
-
-.provider.search
-  input[type="submit"]
-    font-size: 1.4em
-    font-weight: normal
-    display: block
-    margin: 1em auto 0
-    background: url(/images/btn-search.png) no-repeat center
-    color: #FFF
-    border: none
-    padding: 0.8em 1.3em
-    -moz-border-radius: 12px
-    -webkit-border-radius: 3px
-    border-radius: 10px
-
-  table
-    margin: 0
-
-    td:hover, tr:hover
-      background: none
-
-  form
-    td
-      border: none
-      padding: 0 0 0 35px
-
-
-      &:first-child
-        padding-left: 0
-
-        label
-          display: block
-          clear: both
-          text-align: left
-          float: none
-          color: #000
-
-    input[type="text"]
-      margin-left: 0
-      margin-top: 0.5em
-      width: 12em
-
-
-.links
-  margin: 2em 0 0 0
-
-  li
-    display: block
-    margin: 0em
-
-    &.request
-      float: right
-      margin: 0.4em 0 0 0
-
-      a
-        color: #FFF
-        display: block
-        padding: 0.5em 1em
-        background: #2E95A3 url(/images/bg-btn2.png) repeat-x left top
-        border: 1px solid #2E95A3
-        -moz-border-radius: 4px
-        -webkit-border-radius: 4px
-
-
-.narrow
-  float: left
-  width: 510px
-
-
-.block
-  clear: both
-  margin-top: 1.5em
-  padding-top: 1.5em
-  border-top: 1px solid #9FBCBF
-
-  &:first-child
-    border-top: none
-    padding-top: 0
-    margin-top: 0
-
-  h4
-    margin-top: 0em
-
-  address
-    margin-bottom: 1em
-
-
-.services li
-  list-style: inside url(/images/img-bullet.png)
-
-
 .column
   width: 45%
   padding-right: 5%
@@ -389,27 +118,6 @@ li .check
   margin: 0.5em 0
 
 
-li
-  &.requestRFP
-    padding-left: 0
-    font-weight: bold
-
-  &.email
-    background: url(/images/icon-email.png) no-repeat left center
-
-  &.address
-    background: url(/images/icon-contact.png) no-repeat left center
-
-  &.calendar
-    background: url(/images/icon-cal.png) no-repeat left center
-
-  &.download
-    background: url(/images/icon-download.png) no-repeat left center
-
-  &.document
-    background: url(/images/icon-document.png) no-repeat left center
-
-
 .dashboard
   h3
     border-bottom: 2px solid #59D8E5
@@ -420,81 +128,11 @@ li
     font: 1.05em Georgia, Times New Roman, serif
 
 
-.utility
-  color: #666
-  float: right
-  margin: -3.7em 0 0
-
-  li
-    float: left
-    margin-left: 1em
-    padding-left: 1em
-    border-left: 1px solid #CCC
-
-    &:first-child
-      border-left: none
-
-
-.request
-  .pageHead
-    padding: 2em 0 1em
-    margin-bottom: 1.5em
-    border-bottom: 2px solid #59D8E5
-
-    h2
-      font-size: 1.2em
-      color: #666
-      text-align: left
-
-      strong
-        color: #333
-        font-weight: normal
-
-  .narrow
-    width: 560px
-    padding-right: 28px
-    margin-right: -1px
-    border-right: 1px solid #CCC
-
-  .sidebar
-    width: 204px
-    padding-left: 27px
-    margin-left: -1px
-    border-left: 1px solid #CCC
-
-  .block
-    border: none
-    margin-top: 0
-    padding-top: 2em
-
-    &:first-child
-      padding-top: 0
-
-  h3
-    font: bold 1em Lucida Grande, Verdana, sans-serif
-    color: #999
-    margin: 0 0 0 0
-    padding: 0.5em 0 0.2em
-    border-bottom: 1px solid #CCC
-
-  h4
-    margin-top: 1em
-
-
-.sidebar .edit_request input
-  background: url(/images/icon-delete.png) no-repeat left center
-  padding: 0 0 0 1.5em
-  border: none
-  color: #008C98
-  font-weight: normal
-  margin: 0
-
-
 .footer
   height: 5em
   line-height: 1em
   margin: 0 auto 2em
-  background: #FFF url(/images/bg-body-shadow-foot.png) no-repeat center bottom
+  background: #FFF url(/images/layout/bg-body-shadow-foot.png) no-repeat center bottom
 
   .content
     width: 940px
@@ -540,91 +178,10 @@ li
       border-bottom: 1px solid #91020C
 
 
-table
-  font-size: 0.9em
-
-
-th
-  background: #FFF none
-  text-transform: capitalize
-
-
-td
-  padding: 0.2em
-  vertical-align: top
-
-  &:first-child
-    min-width: 10em
-
-
-.ui-datepicker td:first-child
-  min-width: 0
-
-
-td input
-  margin: 0
-
-  &[type="checkbox"]
-    margin: 0
-
-
-.requests td:first-child
-  padding-left: 25px
-
-
-.unread td:first-child
-  background: url(/images/icon-unread.png) no-repeat 6px center
-
-
-.endorsements
-  td:first-child, th:first-child
-    min-width: 1em
-
-  a
-    white-space: nowrap
-
-
-.allEndorsements
-  margin-top: 2em
-
-  p
-    font-size: 1.1em
-    margin-bottom: 1em
-
-  blockquote
-    margin-bottom: 1em
-
-  cite
-    padding-left: 0
-
-
-.wizard
-  text-align: center
-  margin: 0
-
-  li
-    font: 1.5em Georgia, Times New Roman, serif
-    display: inline-block
-    padding: 10px 0 10px 50px
-    margin-left: 2.6em
-
-    &:first-child
-      margin-left: 0
-
-  .step1
-    background: url(/images/img-wizard-s1.png) no-repeat left center
-
-  .step2
-    background: url(/images/img-wizard-s2.png) no-repeat left center
-
-  .step3
-    background: url(/images/img-wizard-s3.png) no-repeat left center
-
-
 input[type="submit"], button
   font-weight: bold
   color: #FFF
-  background: #858585 url(/images/bg-btn.png) repeat-x left top
+  background: #858585 url(/images/layout/bg-btn.png) repeat-x left top
   padding: 0.5em 1em
   border: 1px solid #858585
   -moz-border-radius: 4px
@@ -656,11 +213,6 @@ textarea
   margin-left: 0
 
 
-.provider form
-  ul, p, li, input
-    margin-left: 1em
-
-
 hr
   border: none
   border-top: 1px solid #59D8E5
@@ -671,31 +223,6 @@ hr
   font-size: 0.9em
   line-height: 1.3em
   color: #999
-
-
-.timestamp
-  font: 1.1em Georgia, Times New Roman, serif
-  color: #666
-  float: right
-  margin-top: -1.2em
-
-
-.charCount
-  background: #FFC
-  color: #030
-  padding: 4px 10px
-  line-height: 2em
-  -webkit-border-radius: 6px
-  -moz-border-radius: 6px
-
-
-.hidden
-  display: none
-
-
-.note
-  font-size: 0.9em
-  color: #666
 
 
 #tooltip
@@ -726,96 +253,3 @@ hr
     text-align: center
     font-size: 1.4em
     margin-bottom: 0.75em
-
-
-.feature
-  margin-bottom: 1em
-  border: 1px solid #16BDDE
-  background: url(/images/bg-feature-top.png) no-repeat left top
-
-  .content
-    background: url(/images/bg-feature-bottom.png) no-repeat left bottom
-    padding: 10px 10px 10px 20px
-    width: auto
-    letter-spacing: -0.5px
-
-  img
-    max-width: 34px
-    max-height: 34px
-    float: left
-    margin: -5px 0.5em 0 0
-
-  h4
-    font-size: 1.3em
-    color: #000
-    padding: 10px 0 0
-    margin: 0 0 0.8em
-
-  p
-    margin: 1em 0 0 0
-
-
-.provider.search
-  ul.location
-    width: 100px
-
-    li
-      float: none
-
-  form td:first-child ul.location
-    label
-      display: inline
-      cursor: pointer
-
-    li ul li
-      margin-left: 1em
-
-
-.badge
-  height: 50px
-  width: 210px
-  margin-bottom: 1em
-
-
-.rdd1
-  background: url(/images/featured-rdd-1.png) no-repeat center
-
-
-.rdd2
-  background: url(/images/featured-rdd-2.png) no-repeat center
-
-
-.rdd3
-  background: url(/images/featured-rdd-3.png) no-repeat center
-
-
-.rdd4
-  background: url(/images/featured-rdd-4.png) no-repeat center
-
-
-.rdd5
-  background: url(/images/featured-rdd-reverse-1.png) no-repeat center
-
-
-.rdd6
-  background: url(/images/featured-rdd-reverse-2.png) no-repeat center
-
-
-.PDS_Poll
-  label
-    text-align: left
-    width: auto
-    padding: 0
-    margin: 0
-    clear: none
-
-  br
-    clear: none
-    width: auto
-
-  input
-    margin: inherit
-
-
-div#sorting-endorsements ul li strong
-  cursor: move

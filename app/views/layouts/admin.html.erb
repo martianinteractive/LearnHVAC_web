@@ -16,7 +16,7 @@
     <div class="header">
       <h1 class="siteTitle"><%= t('general.site_title_admin') %></h1>
       
-      <ul class="globalNav">
+      <ul class="global_nav">
         <li class="username"><%= t('user.welcome', :user => current_user.first_name_or_email)%></li>
         <li><%= link_to t('navigation.provider_directory'), providers_path %></li>
         <li><%= link_to t('admin.change_password'), change_password_path %></li>
