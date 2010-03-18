@@ -1,6 +1,5 @@
 class ActivationsController < ApplicationController
   before_filter :require_no_user
-  layout 'user_sessions'
   
   def new
     @user = User.find_using_perishable_token(params[:activation_code], 1.week) || (raise Exception)

@@ -24,20 +24,20 @@ class Scenario
   named_scope :recently_created, criteria.where(:created_at.gt => (Time.now + 30.days))
   named_scope :recently_updated, criteria.where(:updated_at.gt => (Time.now + 30.days))
   
-  has_many :scenario_system_variables
+  has_many :scenario_variables
   belongs_to_related :user
   
-  accepts_nested_attributes_for :scenario_system_variables
+  accepts_nested_attributes_for :scenario_variables
   
-  after_create :copy_instructor_system_variables
+  after_create :copy_system_variables
   
   private
   
-  def copy_instructor_system_variables
-    user.instructor_system_variables.each do |isv|
+  def copy_system_variables
+    user.system_variables.each do |isv|
       atts = isv.attributes
       atts.delete("_id")
-      self.scenario_system_variables.create(atts)
+      self.scenario_variables.create(atts)
     end
   end
 end

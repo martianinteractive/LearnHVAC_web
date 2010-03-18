@@ -17,16 +17,16 @@ describe Scenario do
       end
       
       it "should create a set of scenario_variables" do
-        @user.instructor_system_variables.should_not be_empty
+        @user.system_variables.should_not be_empty
         @scenario.save
-        @scenario.scenario_system_variables.should_not be_empty
+        @scenario.scenario_variables.should_not be_empty
       end
     end
   end
   
   def create_user_system_vars
-    Factory.create(:instructor_system_variable, :name => "var 1", :user => @user)
-    Factory.create(:instructor_system_variable, :name => "var 2", :user => @user)
-    Factory.create(:instructor_system_variable, :name => "var 3", :user => @user)
+    Factory.create(:system_variable, :name => "var 1", :user => @user)
+    Factory.create(:system_variable, :name => "var 2", :user => @user)
+    Factory.create(:system_variable, :name => "var 3", :user => @user)
   end
 end

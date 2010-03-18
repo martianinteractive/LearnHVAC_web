@@ -41,10 +41,6 @@ class User < ActiveRecord::Base
     Notifier.activation_confirmation(self).deliver
   end
   
-  def admin?
-    role_code == ROLES[:admin]
-  end
-  
   def active?
     active
   end
@@ -54,8 +50,8 @@ class User < ActiveRecord::Base
     save
   end
   
-  def instructor_system_variables
-    InstructorSystemVariable.all(:conditions => { :user_id => self.id.to_s }).to_a
+  def system_variables
+    SystemVariable.all(:conditions => { :user_id => self.id.to_s }).to_a
   end
   
   private
@@ -66,7 +62,7 @@ class User < ActiveRecord::Base
     GlobalSystemVariable.all.each do |gsv|
       atts = gsv.attributes
       atts.delete("_id")
-      isv = InstructorSystemVariable.new(atts)
+      isv = SystemVariable.new(atts)
       isv.user = self
       isv.save
     end
