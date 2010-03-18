@@ -50,7 +50,7 @@ class User < ActiveRecord::Base
     save
   end
   
-  #Finders for Mongoid related models.
+  # Collection finders for Mongoid related models.
   def system_variables
     SystemVariable.all(:conditions => { :user_id => self.id.to_s }).to_a
   end
@@ -59,9 +59,16 @@ class User < ActiveRecord::Base
     Scenario.all(:conditions => { :user_id => self.id.to_s }).to_a
   end
   
-  # something like scenarios.find(scenario_id) (AR way) would be more elegant. I'll check that later.
+  
+  # Specific document finders.
+  # We shouldn't define these methods.
+  # Something like scenarios.find(scenario_id) (AR way) is more elegant. I'll check that later.
   def find_scenario(scenario_id)
     Scenario.first(:conditions => { :_id => scenario_id, :user_id => self.id.to_s })
+  end
+  
+  def find_system_variable(sys_var_id)
+    SystemVariable.first(:conditions => { :_id => sys_var_id, :user_id => self.id.to_s })
   end
   
   private

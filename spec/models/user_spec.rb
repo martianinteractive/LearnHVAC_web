@@ -52,6 +52,22 @@ describe User do
     end
   end
   
+  # context "Scopes" do
+  #   before(:each) do
+  #     @student    = create_user_with_role(:student)
+  #     @instructor = create_user_with_role(:instructor)
+  #     @admin      = create_user_with_role(:admin)
+  #   end
+  #   
+  #   context "instructor" do
+  #     it "should return only instructors" do
+  #       
+  #     end
+  #   end
+  #   
+  #   
+  # end
+  
   context "Delivering emails" do
     before(:each) do
       @user.save
@@ -86,5 +102,12 @@ describe User do
    Factory(:global_system_variable, :name => "var 2")
    Factory(:global_system_variable, :name => "var 3")
   end
+  
+  # def create_user_with_role(role)
+  #   user = Factory.build(:user, :first_name => role)
+  #   user.role_code = User::ROLES[role]
+  #   user.save
+  #   user
+  # end
   
 end

@@ -5,24 +5,23 @@ describe SystemVariablesController do
     @instructor = Factory.build(:user, :login => "joedoe", :email => "jdoe@lhvac.com")
     @instructor.role_code = User::ROLES[:instructor]
     @instructor.save
+    @system_variable = Factory(:system_variable, :user => @instructor)
     login_as(@instructor)
   end
   
   describe "GET index" do
     it "" do
-      SystemVariable.expects(:all).returns([mock_instructor_var])
       get :index
       response.should render_template(:index)
-      assigns(:system_variables).should eq([mock_instructor_var])
+      assigns(:system_variables).should_not be_empty
     end
   end
   
   describe "GET show" do
     it "" do
-      SystemVariable.expects(:find).with("37").returns(mock_instructor_var)
-      get :show, :id => "37"
+      get :show, :id => @system_variable.id
       response.should render_template(:show)
-      assigns(:system_variable).should be(mock_instructor_var)
+      assigns(:system_variable).should eq(@system_variable)
     end
   end
   
@@ -36,27 +35,26 @@ describe SystemVariablesController do
   
   describe "GET edit" do
     it "" do
-      SystemVariable.expects(:find).with("37").returns(mock_instructor_var)
-      get :edit, :id => "37"
+      get :edit, :id => @system_variable.id
       response.should render_template(:edit)
-      assigns(:system_variable).should be(mock_instructor_var)
+      assigns(:system_variable).should eq(@system_variable)
     end
   end
   
   describe "POST create" do
     describe "with valid params" do
       it "should change the SystemVariable count" do
-        proc{ post :create, :instructor_factory => Factory.attributes_for(:system_variable) }.should change(SystemVariable, :count).by(1)
+        proc{ post :create, :instructor_factory => Factory.attributes_for(:system_variable, :name => "nvar") }.should change(SystemVariable, :count).by(1)
       end
       
       it "should assign the current user as the SystemVariable user" do
-        post :create, :system_variable => Factory.attributes_for(:system_variable)
+        post :create, :system_variable => Factory.attributes_for(:system_variable, :name => "new var")
         assigns(:system_variable).user.should == @instructor
         
       end
   
       it "redirects to the created system_variable" do
-        post :create, :system_variable => Factory.attributes_for(:system_variable)
+        post :create, :system_variable => Factory.attributes_for(:system_variable, :name => "new var")
         response.should redirect_to(system_variable_path(assigns(:system_variable)))
       end
     end
@@ -66,12 +64,7 @@ describe SystemVariablesController do
     end
   end
   
-  describe "PUT update" do
-    
-    before(:each) do
-      @system_variable = Factory(:system_variable)
-    end
-    
+  describe "PUT update" do    
     describe "with valid params" do      
       it "updates the requested system_variable" do
         put :update, :id => @system_variable.id, :system_variable => { :name => "Inst var" }
@@ -90,11 +83,7 @@ describe SystemVariablesController do
   end
   
   
-  describe "DELETE destroy" do
-    before(:each) do
-      @system_variable = Factory(:system_variable)
-    end
-    
+  describe "DELETE destroy" do    
     it "destroys the requested system_variable" do
       proc { delete :destroy, :id => @system_variable.id }.should change(SystemVariable, :count).by(-1)
     end
@@ -108,7 +97,7 @@ describe SystemVariablesController do
   describe "Authorization" do
     before(:each) do
       SystemVariable.stubs(:all).returns([mock_instructor_var])
-      SystemVariable.stubs(:find).returns(mock_instructor_var)
+      SystemVariable.stubs(:first).returns(mock_instructor_var)
     end
     
     describe "As " do

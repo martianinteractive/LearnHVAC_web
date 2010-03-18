@@ -1,12 +1,12 @@
 class SystemVariablesController < ApplicationController
   before_filter :require_instructor
+  before_filter :find_system_variable, :only => [:show, :edit, :update, :destroy]
   
   def index
-    @system_variables = SystemVariable.all
+    @system_variables = current_user.system_variables
   end
 
   def show
-    @system_variable = SystemVariable.find(params[:id])
   end
 
   def new
@@ -14,7 +14,6 @@ class SystemVariablesController < ApplicationController
   end
 
   def edit
-    @system_variable = SystemVariable.find(params[:id])
   end
 
   def create
@@ -29,8 +28,6 @@ class SystemVariablesController < ApplicationController
   end
 
   def update
-    @system_variable = SystemVariable.find(params[:id])
-
     if @system_variable.update_attributes(params[:system_variable])
       redirect_to(@system_variable, :notice => 'SystemVariable was successfully updated.')
     else
@@ -39,10 +36,14 @@ class SystemVariablesController < ApplicationController
   end
 
   def destroy
-    @system_variable = SystemVariable.find(params[:id])
     @system_variable.destroy
-
     redirect_to(system_variables_url)
+  end
+  
+  private
+  
+  def find_system_variable
+    @system_variable = current_user.find_system_variable(params[:id])
   end
 
 end
