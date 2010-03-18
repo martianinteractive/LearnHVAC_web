@@ -45,7 +45,7 @@ class ScenarioVariablesController < ApplicationController
   private
   
   def find_scenario
-    @scenario = Scenario.first(:conditions => { :_id => params[:scenario_id], :user_id => current_user.id.to_s })
+    @scenario = current_user.find_scenario(params[:scenario_id])
   end
   
   def find_scenario_variable
