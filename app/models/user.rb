@@ -50,8 +50,18 @@ class User < ActiveRecord::Base
     save
   end
   
+  #Finders for Mongoid related models.
   def system_variables
     SystemVariable.all(:conditions => { :user_id => self.id.to_s }).to_a
+  end
+  
+  def scenarios
+    Scenario.all(:conditions => { :user_id => self.id.to_s }).to_a
+  end
+  
+  # something like scenarios.find(scenario_id) (AR way) would be more elegant. I'll check that later.
+  def find_scenario(scenario_id)
+    Scenario.first(:conditions => { :_id => scenario_id, :user_id => self.id.to_s })
   end
   
   private

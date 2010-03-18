@@ -2,25 +2,24 @@ require File.dirname(__FILE__) + "/../spec_helper"
 
 describe ScenariosController do
   before(:each) do
-    @user = Factory(:user, :login => "joedoe", :email => "jdoe@lhvac.com")
+    @user     = Factory(:user, :login => "joedoe", :email => "jdoe@lhvac.com")
+    @scenario = Factory(:scenario, :user => @user) 
     login_as(@user)
   end
   
   describe "GET index" do
     it "" do
-      Scenario.expects(:all).returns([mock_scenario])
       get :index
       response.should render_template(:index)
-      assigns(:scenarios).should eq([mock_scenario])
+      assigns(:scenarios).should_not be_empty
     end
   end
   
   describe "GET show" do
     it "" do
-      Scenario.expects(:find).with("37").returns(mock_scenario)
-      get :show, :id => "37"
+      get :show, :id => @scenario.id
       response.should render_template(:show)
-      assigns(:scenario).should be(mock_scenario)
+      assigns(:scenario).should eq(@scenario)
     end
   end
   
@@ -34,17 +33,16 @@ describe ScenariosController do
   
   describe "GET edit" do
     it "" do
-      Scenario.expects(:find).with("37").returns(mock_scenario)
-      get :edit, :id => "37"
+      get :edit, :id => @scenario.id
       response.should render_template(:edit)
-      assigns(:scenario).should be(mock_scenario)
+      assigns(:scenario).should eq(@scenario)
     end
   end
   
   describe "POST create" do
     describe "with valid params" do
       it "should change the Scenario count" do
-        proc{ post :create, :scenario => Factory.attributes_for(:scenario) }.should change(Scenario, :count).by(1)
+        proc{ post :create, :scenario => Factory.attributes_for(:scenario, :name => "new scenario") }.should change(Scenario, :count).by(1)
       end
       
       it "should assign the current user as the Scenario user" do
@@ -106,9 +104,4 @@ describe ScenariosController do
   pending "Authorization definition"
   # describe "Authorization" do
   # end
-  
-  
-  def mock_scenario(attrs = {})
-    @mock_scenario ||= Factory(:scenario, {:user => @user}.merge(attrs))
-  end
 end

@@ -1,13 +1,13 @@
 class ScenariosController < ApplicationController
   layout "application"
   before_filter :require_user
+  before_filter :find_scenario, :only => [:show, :edit, :update, :destroy]
   
   def index
-    @scenarios = Scenario.all
+    @scenarios = current_user.scenarios
   end
 
   def show
-    @scenario = Scenario.find(params[:id])
   end
 
   def new
@@ -15,7 +15,6 @@ class ScenariosController < ApplicationController
   end
 
   def edit
-    @scenario = Scenario.find(params[:id])
   end
   
   def create
@@ -30,8 +29,6 @@ class ScenariosController < ApplicationController
   end
 
   def update
-    @scenario = Scenario.find(params[:id])
-
     if @scenario.update_attributes(params[:scenario])
       redirect_to(@scenario, :notice => 'Scenario was successfully updated.')
     else
@@ -40,9 +37,14 @@ class ScenariosController < ApplicationController
   end
 
   def destroy
-    @scenario = Scenario.find(params[:id])
     @scenario.destroy
-    
     redirect_to(scenarios_url)
   end
+  
+  private
+  
+  def find_scenario
+    @scenario = current_user.find_scenario(params[:id])
+  end
+  
 end
