@@ -1,5 +1,6 @@
 # All default passwords are => "password"
 # All default users belongs_to "Administration" (Institution)
+# All default users are Administrators.
 joseph:
   first_name: Joseph
   last_name: Deringer
@@ -9,7 +10,7 @@ joseph:
   crypted_password: de09a2edb7ae7936ca80d64c2857093e80e5521553bd486ee0e66376276aee735a8909b9dcfc9b90280613697c1859db8068188aa6bec0966f1d9d1e13a23382 
   persistence_token: da9e4d10c4ca18c27b12434daa4224c3eb0ba4b5f3d30c4c6df6507b6c5692cd11b6184508d3f91a78a50aad1f7c3e01afa5e5445275922bbc279ab0388a8721
   perishable_token: 6pYLQO5c3R-W9jD3T6Ux
-  role_code: 4
+  role_code: 3
   institution_id: 1
 
 daniel:
@@ -21,7 +22,7 @@ daniel:
   crypted_password: de09a2edb7ae7936ca80d64c2857093e80e5521553bd486ee0e66376276aee735a8909b9dcfc9b90280613697c1859db8068188aa6bec0966f1d9d1e13a23382 
   persistence_token: da9e4d10c4ca18c27b12434daa4224c3eb0ba4b5f3d30c4c6df6507b6c5692cd11b6184508d3f91a78a50aad1f7c3e01afa5e5445275922bbc279ab0388a8721
   perishable_token: 6pYLQO5c3R-W9jD3T6Ux
-  role_code: 4
+  role_code: 3
   institution_id: 1
   
 sergio:
@@ -33,7 +34,7 @@ sergio:
   crypted_password: de09a2edb7ae7936ca80d64c2857093e80e5521553bd486ee0e66376276aee735a8909b9dcfc9b90280613697c1859db8068188aa6bec0966f1d9d1e13a23382 
   persistence_token: da9e4d10c4ca18c27b12434daa4224c3eb0ba4b5f3d30c4c6df6507b6c5692cd11b6184508d3f91a78a50aad1f7c3e01afa5e5445275922bbc279ab0388a8721
   perishable_token: 6pYLQO5c3R-W9jD3T6Ux
-  role_code: 4
+  role_code: 3
   institution_id: 1
   
 juan:
@@ -45,8 +46,5 @@ juan:
   crypted_password: de09a2edb7ae7936ca80d64c2857093e80e5521553bd486ee0e66376276aee735a8909b9dcfc9b90280613697c1859db8068188aa6bec0966f1d9d1e13a23382 
   persistence_token: da9e4d10c4ca18c27b12434daa4224c3eb0ba4b5f3d30c4c6df6507b6c5692cd11b6184508d3f91a78a50aad1f7c3e01afa5e5445275922bbc279ab0388a8721
   perishable_token: 6pYLQO5c3R-W9jD3T6Ux
-  role_code: 4
+  role_code: 3
   institution_id: 1
-  
-
-  
