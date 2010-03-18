@@ -1,6 +1,7 @@
 class ScenarioSystemVariablesController < ApplicationController
   before_filter :require_user
   before_filter :find_scenario
+  before_filter :find_scenario_system_variable, :only => [:show, :edit, :update]
 
   def index
     @scenario_system_variables = @scenario.scenario_system_variables
@@ -11,11 +12,9 @@ class ScenarioSystemVariablesController < ApplicationController
   end
   
   def show
-    @scenario_system_variable = @scenario.scenario_system_variables.find(params[:id])
   end
 
   def edit
-    @scenario_system_variable = @scenario.scenario_system_variables.find(params[:id])
   end
 
   def create
@@ -30,8 +29,6 @@ class ScenarioSystemVariablesController < ApplicationController
   end
 
   def update
-    @scenario_system_variable = @scenario.scenario_system_variables.find(params[:id])
-
     if @scenario_system_variable.update_attributes(params[:scenario_system_variable])
       redirect_to(scenario_scenario_system_variable_path(@scenario, @scenario_system_variable), :notice => 'ScenarioSystemVariable was successfully updated.')
     else
@@ -49,6 +46,10 @@ class ScenarioSystemVariablesController < ApplicationController
   
   def find_scenario
     @scenario = Scenario.first(:conditions => { :_id => params[:scenario_id], :user_id => current_user.id.to_s })
+  end
+  
+  def find_scenario_system_variable
+    @scenario_system_variable = @scenario.scenario_system_variables.find(params[:id])
   end
   
 end
