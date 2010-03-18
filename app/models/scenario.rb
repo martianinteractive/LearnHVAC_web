@@ -1,5 +1,6 @@
 class Scenario
   include Mongoid::Document
+  include Mongoid::Timestamps
   
   field :scenario_id
   field :name
@@ -19,6 +20,9 @@ class Scenario
   field :longterm_start_date,             :type => Date
   field :longterm_stop_date,              :type => Date
   field :realtime_start_datetime,         :type => DateTime  
+  
+  named_scope :recently_created, criteria.where(:created_at.gt => (Time.now + 30.days))
+  named_scope :recently_updated, criteria.where(:updated_at.gt => (Time.now + 30.days))
   
   has_many :scenario_system_variables
   belongs_to_related :user

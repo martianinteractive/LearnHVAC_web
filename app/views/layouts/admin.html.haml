@@ -1,0 +1,39 @@
+%html
+  %head
+    %meta{ "http-equiv" => "Content-type", :content => "text/html; charset=utf-8" }
+    %title
+      Administration
+    = stylesheet_link_tag "screen.css"
+    = stylesheet_link_tag "print.css", :media => "print"
+  %body
+    .header
+      %h1.siteTitle
+        Administration
+      %ul.global_nav
+        %li.username
+          = current_user.name
+        %li
+          = link_to "Change Password", '/'
+        %li
+          = link_to "Sign up", logout_path
+    .main
+      .dl10.navigation
+        %h3
+          General
+        %ul
+          %li
+            = link_to "Dasboard", admin_dashboard_path
+        %h3
+          System
+        %ul
+          %li
+            = link_to "Variables", "/"
+      .fluid
+        .content
+          - if flash[:notice]
+          .flash.notice
+            = flash[:notice]
+          - elsif flash[:error]
+          .flash.error
+            = flash[:notice]
+          = yield

@@ -3,6 +3,12 @@ class User < ActiveRecord::Base
   validates :first_name, :last_name, :presence => true, :length => { :maximum => 200 }, :format => { :with => /^\w+$/i }
   acts_as_authentic
   
+  scope :instructor, where("role_code = #{ROLES[:instructor]}")
+  scope :student, where("role_code = #{ROLES[:student]}")
+  scope :admin, where("role_code = #{ROLES[:admin]}")
+  scope :recently_created, where("created_at < '#{(Time.now + 30.days).to_formatted_s(:db)}'")
+  scope :recently_updated, where("updated_at < '#{(Time.now + 30.days).to_formatted_s(:db)}'")
+  
   def name
     first_name + " " + last_name
   end
@@ -36,7 +42,7 @@ class User < ActiveRecord::Base
   end
   
   def admin?
-    true
+    role_code == ROLES[:admin]
   end
   
   def active?

@@ -10,8 +10,7 @@ Learnhvac::Application.routes.draw do |map|
   resources :instructor_system_variables
   resources :global_system_variables
   
-  resources :accounts
-  resources :institutions
+  resources :accounts 
   resources :users
   resources :user_sessions
   map.resources :password_resets
@@ -23,9 +22,11 @@ Learnhvac::Application.routes.draw do |map|
   match 'activate/:id' => 'activations#create', :as => "activate"
   
   # Admin routes  
+  
+  match 'admin/dashboard' => 'admin/dashboard#show', :as => "admin_dashboard"
+  
   namespace :admin do
-    resource :dashboard
-    match 'institutions' => 'institutions#index'
+    resources :institutions
   end
 
   # The priority is based upon order of creation:
