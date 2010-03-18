@@ -1,23 +1,52 @@
-james:
-  first_name: James
-  last_name: Doe
-  login: jamesdoe
-  email: james@lhvac.com
+# All default passwords are => "password"
+# All default users belongs_to "Administration" (Institution)
+joseph:
+  first_name: Joseph
+  last_name: Deringer
+  login: jjderinger
+  email: jjderinger@lbl.gov
   password_salt: 6_BCHsGsNvzCACSvL1EF
-  # plain: "password"
   crypted_password: de09a2edb7ae7936ca80d64c2857093e80e5521553bd486ee0e66376276aee735a8909b9dcfc9b90280613697c1859db8068188aa6bec0966f1d9d1e13a23382 
   persistence_token: da9e4d10c4ca18c27b12434daa4224c3eb0ba4b5f3d30c4c6df6507b6c5692cd11b6184508d3f91a78a50aad1f7c3e01afa5e5445275922bbc279ab0388a8721
   perishable_token: 6pYLQO5c3R-W9jD3T6Ux
   role_code: 4
+  institution_id: 1
 
-joe:
-  first_name: Joe
-  last_name: Doe
-  login: joedoe
-  email: joedoe@lhvac.com
-  password_salt: 0TlyAfNjs4U71ckWX2B5
-  # plain: "password!"
-  crypted_password: 875c378da42da4126fa421fb95bb1a52fe42aaeb08451c916efcecb3ce397fd8cb1c599a393db5491172a397452dc3f3d2c3e38349e79f85440f5b7ce8829da9
-  persistence_token: cfc3a4e3060007e19a01438c31412f8543e2fbeb5417747a547750d62976e946be257fcc27c0b8059323e00544a87397285e381acd457b4fd427f11aa4f16386
-  perishable_token: b6HfSBH4ZersZ1gJGOfS
+daniel:
+  first_name: Daniel
+  last_name: McQuillen 
+  login: daniel.mcquillen
+  email: daniel.mcquillen@gmail.com
+  password_salt: 6_BCHsGsNvzCACSvL1EF
+  crypted_password: de09a2edb7ae7936ca80d64c2857093e80e5521553bd486ee0e66376276aee735a8909b9dcfc9b90280613697c1859db8068188aa6bec0966f1d9d1e13a23382 
+  persistence_token: da9e4d10c4ca18c27b12434daa4224c3eb0ba4b5f3d30c4c6df6507b6c5692cd11b6184508d3f91a78a50aad1f7c3e01afa5e5445275922bbc279ab0388a8721
+  perishable_token: 6pYLQO5c3R-W9jD3T6Ux
   role_code: 4
+  institution_id: 1
+  
+sergio:
+  first_name: Sergio
+  last_name: Bayona 
+  login: sbayona
+  email: sbayona@martianinteractive.com
+  password_salt: 6_BCHsGsNvzCACSvL1EF
+  crypted_password: de09a2edb7ae7936ca80d64c2857093e80e5521553bd486ee0e66376276aee735a8909b9dcfc9b90280613697c1859db8068188aa6bec0966f1d9d1e13a23382 
+  persistence_token: da9e4d10c4ca18c27b12434daa4224c3eb0ba4b5f3d30c4c6df6507b6c5692cd11b6184508d3f91a78a50aad1f7c3e01afa5e5445275922bbc279ab0388a8721
+  perishable_token: 6pYLQO5c3R-W9jD3T6Ux
+  role_code: 4
+  institution_id: 1
+  
+juan:
+  first_name: Juan
+  last_name: Pemberthy 
+  login: jpemberthy
+  email: jpemberthy@martianinteractive.com
+  password_salt: 6_BCHsGsNvzCACSvL1EF
+  crypted_password: de09a2edb7ae7936ca80d64c2857093e80e5521553bd486ee0e66376276aee735a8909b9dcfc9b90280613697c1859db8068188aa6bec0966f1d9d1e13a23382 
+  persistence_token: da9e4d10c4ca18c27b12434daa4224c3eb0ba4b5f3d30c4c6df6507b6c5692cd11b6184508d3f91a78a50aad1f7c3e01afa5e5445275922bbc279ab0388a8721
+  perishable_token: 6pYLQO5c3R-W9jD3T6Ux
+  role_code: 4
+  institution_id: 1
+  
+
+  

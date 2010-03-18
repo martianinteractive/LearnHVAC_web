@@ -1,4 +1,6 @@
 Learnhvac::Application.routes.draw do |map|
+  resources :colleges
+
   
   resources :scenarios do
     member do
