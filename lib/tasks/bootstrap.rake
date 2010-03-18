@@ -6,4 +6,9 @@ namespace :bootstrap do
   task :users => :environment do
     Fixtures.create_fixtures('db/bootstrap', 'users')
   end
+  
+  desc "load default colleges"
+  task :colleges => :environment do
+    Fixtures.create_fixtures('db/bootstrap', 'colleges')
+  end
 end
