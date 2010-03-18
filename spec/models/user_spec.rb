@@ -48,7 +48,7 @@ describe User do
   
   context "Roles" do
     it "" do
-      User::ROLES.should have(5).roles
+      User::ROLES.should have(4).roles
     end
   end
   

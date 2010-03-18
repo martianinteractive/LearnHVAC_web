@@ -119,9 +119,9 @@ describe InstructorSystemVariablesController do
       end
     end
     
-    describe "As Superadmin" do
+    describe "As Aadmin" do
       it "should have access to all actions" do
-        @instructor.role_code = User::ROLES[:superadmin]
+        @instructor.role_code = User::ROLES[:admin]
         @instructor.save
         authorize_actions do
           flash[:notice].should_not == "You don't have the privileges to access this page"

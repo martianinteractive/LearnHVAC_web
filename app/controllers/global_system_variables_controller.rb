@@ -1,5 +1,5 @@
 class GlobalSystemVariablesController < ApplicationController
-  before_filter :require_superadmin
+  before_filter :require_admin
   layout "application"
   
   def index

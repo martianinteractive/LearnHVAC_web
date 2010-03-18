@@ -1,12 +1,12 @@
-require File.dirname(__FILE__) + "/../spec_helper"
+require File.dirname(__FILE__) + "/../../spec_helper"
 
-describe InstitutionsController do
+describe Admin::InstitutionsController do
   
   before(:each) do
-    @superadmin = Factory.build(:user, :login => "joedoe", :email => "jdoe@lhvac.com")
-    @superadmin.role_code = User::ROLES[:superadmin]
-    @superadmin.save
-    login_as(@superadmin)
+    @admin            = Factory.build(:user, :login => "joedoe", :email => "jdoe@lhvac.com")
+    @admin.role_code  = User::ROLES[:admin]
+    @admin.save
+    login_as(@admin)
   end
   
   describe "GET index" do
@@ -123,11 +123,11 @@ describe InstitutionsController do
   
   describe "Authentication" do
     before(:each) do
-      @superadmin.role_code = User::ROLES[:guest]
-      @superadmin.save
+      @admin.role_code = User::ROLES[:guest]
+      @admin.save
     end
     
-    it "should require a superadmin user for all actions" do
+    it "should require an admin user for all actions" do
       authorize_actions do
         response.should redirect_to(users_path)
         flash[:notice].should == "You don't have the privileges to access this page"

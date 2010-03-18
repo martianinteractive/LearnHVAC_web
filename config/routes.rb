@@ -1,18 +1,17 @@
 Learnhvac::Application.routes.draw do |map|
-  resources :colleges
-
   
   resources :scenarios do
     member do
       get :variables_edit
     end
-    resources :scenario_system_variables
+    resources :scenario_variables
   end
 
   resources :instructor_system_variables
   resources :global_system_variables
   
-  resources :accounts 
+  resources :accounts
+  resources :institutions
   resources :users
   resources :user_sessions
   map.resources :password_resets
@@ -22,14 +21,6 @@ Learnhvac::Application.routes.draw do |map|
   match 'sign_up' => 'accounts#new', :as => "sign_up"
   match 'register/:activation_code' => 'activations#new', :as => "register"
   match 'activate/:id' => 'activations#create', :as => "activate"
-  
-  # Admin routes  
-  
-  match 'admin/dashboard' => 'admin/dashboard#show', :as => "admin_dashboard"
-  
-  namespace :admin do
-    resources :institutions
-  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -70,6 +61,10 @@ Learnhvac::Application.routes.draw do |map|
   #       get :recent, :on => :collection
   #     end
   #   end
+  
+  namespace :admin do
+    resource :dashboard
+  end
 
   # Sample resource route within a namespace:
   #   namespace :admin do
