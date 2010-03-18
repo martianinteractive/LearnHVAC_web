@@ -7,7 +7,7 @@ Learnhvac::Application.routes.draw do |map|
     resources :scenario_variables
   end
 
-  resources :instructor_system_variables
+  resources :system_variables
   resources :global_system_variables
   
   resources :accounts

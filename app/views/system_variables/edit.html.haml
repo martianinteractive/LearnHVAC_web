@@ -1,5 +1,5 @@
 %h1 Edit instructor System Var
-- form_for(@instructor_system_variable) do |f|
+- form_for(@system_variable) do |f|
   = f.error_messages
   = render :partial => "form", :locals => { :f => f }
-= link_to 'Back', instructor_system_variables_path
+= link_to 'Back', system_variables_path

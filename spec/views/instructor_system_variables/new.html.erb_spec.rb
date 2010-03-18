@@ -1,16 +1,16 @@
 require 'spec_helper'
 
-describe "instructor_system_variables/new.html.erb" do
+describe "system_variables/new.html.erb" do
   before(:each) do
-    assign(:instructor_system_variable, stub_model(InstructorSystemVariable,
+    assign(:system_variable, stub_model(SystemVariable,
       :new_record? => true
     ))
   end
 
-  it "renders new instructor_system_variable form" do
+  it "renders new system_variable form" do
     render
 
-    response.should have_selector("form", :action => instructor_system_variables_path, :method => "post") do |form|
+    response.should have_selector("form", :action => system_variables_path, :method => "post") do |form|
     end
   end
 end

@@ -29,12 +29,12 @@ class Scenario
   
   accepts_nested_attributes_for :scenario_variables
   
-  after_create :copy_instructor_system_variables
+  after_create :copy_system_variables
   
   private
   
-  def copy_instructor_system_variables
-    user.instructor_system_variables.each do |isv|
+  def copy_system_variables
+    user.system_variables.each do |isv|
       atts = isv.attributes
       atts.delete("_id")
       self.scenario_variables.create(atts)

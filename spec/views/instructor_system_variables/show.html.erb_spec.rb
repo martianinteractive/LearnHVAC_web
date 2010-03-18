@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe "instructor_system_variables/show.html.erb" do
+describe "system_variables/show.html.erb" do
   before(:each) do
-    assign(:instructor_system_variable, @instructor_system_variable = stub_model(InstructorSystemVariable)
+    assign(:system_variable, @system_variable = stub_model(SystemVariable)
   end
 
   it "renders attributes in <p>" do

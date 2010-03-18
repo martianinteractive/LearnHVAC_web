@@ -34,12 +34,12 @@ describe User do
             
       it "should create a set of instructor_variables" do
         GlobalSystemVariable.count.should be > 1
-        proc { @instructor.save }.should change(InstructorSystemVariable, :count).by(GlobalSystemVariable.count)
+        proc { @instructor.save }.should change(SystemVariable, :count).by(GlobalSystemVariable.count)
       end
       
       it "should assign the system variables to the user" do
         @instructor.save
-        InstructorSystemVariable.all.each { |isv| isv.user.should == @instructor } 
+        SystemVariable.all.each { |isv| isv.user.should == @instructor } 
       end
       
       pending "check attribute per attribute copy."

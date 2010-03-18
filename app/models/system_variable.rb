@@ -1,4 +1,4 @@
-class InstructorSystemVariable
+class SystemVariable
   include Mongoid::Document
   include SystemVariableFields
   
