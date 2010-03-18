@@ -94,9 +94,18 @@ describe ScenarioSystemVariablesController do
     end
   end
   
-  pending "Authorization definition"
-  # describe "Authorization" do
-  # end
+  pending "Authorization & roles"
+
+  describe "Authentication" do
+    before(:each) { user_logout }
+    
+    it "should require a logged user" do
+      authorize_actions do 
+        response.should redirect_to(new_user_session_path)
+        flash[:notice].should == "You must be logged in to access this page"
+      end
+    end
+  end
   
   
   def mock_scenario_system_variable(attrs = {})
