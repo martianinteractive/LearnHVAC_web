@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "scenario_system_variables/edit.html.erb" do
+describe "scenario_variables/edit.html.erb" do
   before(:each) do
     assign(:scenario_system_variable, @scenario_system_variable = stub_model(ScenarioSystemVariable,
       :new_record? => false

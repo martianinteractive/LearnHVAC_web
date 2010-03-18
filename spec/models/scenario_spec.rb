@@ -19,7 +19,7 @@ describe Scenario do
       it "should create a set of scenario_variables" do
         @user.instructor_system_variables.should_not be_empty
         @scenario.save
-        @scenario.scenario_system_variables.should_not be_empty
+        @scenario.scenario_variables.should_not be_empty
       end
     end
   end
