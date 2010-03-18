@@ -3,6 +3,10 @@ class User < ActiveRecord::Base
   validates :first_name, :last_name, :presence => true, :length => { :maximum => 200 }, :format => { :with => /^\w+$/i }
   acts_as_authentic
   
+  def name
+    first_name + " " + last_name
+  end
+  
   belongs_to :institution
   attr_protected :active
   

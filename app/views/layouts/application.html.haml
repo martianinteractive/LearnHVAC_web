@@ -17,12 +17,15 @@
         %ul.global_nav
           - if logged_in?
             %li.username
-              Welcome Joe Doe
+              Welcome #{current_user.name}
+            %li
+              = link_to 'Log-out', logout_path, :method => :delete
             - if current_user.admin?
               %li
-                = link_to 'Admin Dashboard', admin_dashboard_path
-          %li
-            = link_to 'Root', root_path
+                = link_to 'Admin', admin_dashboard_path
+          - else
+            %li
+              = link_to 'Signup', sign_up_path
     .shadow
       .subnav
         - if logged_in?
