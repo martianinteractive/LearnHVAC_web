@@ -20,7 +20,7 @@
               Welcome #{current_user.name}
             %li
               = link_to 'Log-out', logout_path, :method => :delete
-            - if current_user.admin?
+            - if current_user.has_role?(:admin)
               %li
                 = link_to 'Admin', admin_dashboard_path
           - else

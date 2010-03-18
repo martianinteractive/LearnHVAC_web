@@ -41,10 +41,6 @@ class User < ActiveRecord::Base
     Notifier.activation_confirmation(self).deliver
   end
   
-  def admin?
-    role_code == ROLES[:admin]
-  end
-  
   def active?
     active
   end
