@@ -1,0 +1,5 @@
+# All default passwords are => "password"
+administration:
+  id : 1
+  name: Administration
+  description: Administration
