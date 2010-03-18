@@ -8,8 +8,7 @@ Learnhvac::Application.routes.draw do |map|
   end
 
   resources :system_variables
-  resources :global_system_variables
-  
+    
   resources :accounts
   resources :institutions
   resources :users
@@ -64,6 +63,7 @@ Learnhvac::Application.routes.draw do |map|
   
   namespace :admin do
     resource :dashboard
+    resources :system_variables
   end
 
   # Sample resource route within a namespace:

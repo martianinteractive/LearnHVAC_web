@@ -1,6 +1,6 @@
-require File.dirname(__FILE__) + "/../spec_helper"
+require File.dirname(__FILE__) + "/../../spec_helper"
 
-describe GlobalSystemVariablesController do
+describe Admin::SystemVariablesController do
 
   before(:each) do
     @admin = Factory.build(:user, :login => "joedoe", :email => "jdoe@lhvac.com")
@@ -52,7 +52,7 @@ describe GlobalSystemVariablesController do
   
       it "redirects to the created global_system_variable" do
         post :create, :global_system_variable => Factory.attributes_for(:global_system_variable)
-        response.should redirect_to(global_system_variable_path(assigns(:global_system_variable)))
+        response.should redirect_to(admin_system_variable_path(assigns(:global_system_variable)))
       end
     end
   
@@ -75,7 +75,7 @@ describe GlobalSystemVariablesController do
       
       it "redirects to the global_system_variable" do
         put :update, :id => @global_system_variable.id, :global_system_variable => { :name => "Cold var" }
-        response.should redirect_to(global_system_variable_path(@global_system_variable.id))
+        response.should redirect_to(admin_system_variable_path(@global_system_variable.id))
       end
     end
     
@@ -96,7 +96,7 @@ describe GlobalSystemVariablesController do
   
     it "redirects to the global_system_variables list" do
       delete :destroy, :id => @global_system_variable.id
-      response.should redirect_to(global_system_variables_path)
+      response.should redirect_to(admin_system_variables_url)
     end
   end
   

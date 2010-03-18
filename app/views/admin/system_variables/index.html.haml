@@ -33,8 +33,8 @@
       %th= global_system_variable.unit_ip
       %th= global_system_variable.si_to_ip
       %th= global_system_variable.global_disable
-      %td= link_to 'Show', global_system_variable
-      %td= link_to 'Edit', edit_global_system_variable_path(global_system_variable)
-      %td= link_to 'Destroy', global_system_variable, :confirm => 'Are you sure?', :method => :delete
+      %td= link_to 'Show', admin_system_variable_path(global_system_variable)
+      %td= link_to 'Edit', edit_admin_system_variable_path(global_system_variable)
+      %td= link_to 'Destroy', admin_system_variable_path(global_system_variable), :confirm => 'Are you sure?', :method => :delete
 %br
-= link_to 'New System Var', new_global_system_variable_path
+= link_to 'New System Var', new_admin_system_variable_path

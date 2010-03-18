@@ -1,6 +1,5 @@
-class GlobalSystemVariablesController < ApplicationController
+class Admin::SystemVariablesController < ApplicationController
   before_filter :require_admin
-  layout "application"
   
   def index
     @global_system_variables = GlobalSystemVariable.all
@@ -22,7 +21,7 @@ class GlobalSystemVariablesController < ApplicationController
     @global_system_variable = GlobalSystemVariable.new(params[:global_system_variable])
 
     if @global_system_variable.save
-      redirect_to(@global_system_variable, :notice => 'GlobalSystemVariable was successfully created.')
+      redirect_to(admin_system_variable_path(@global_system_variable), :notice => "System Variable was succesfully created.")
     else
       render :action => :new
     end
@@ -32,7 +31,7 @@ class GlobalSystemVariablesController < ApplicationController
     @global_system_variable = GlobalSystemVariable.find(params[:id])
 
     if @global_system_variable.update_attributes(params[:global_system_variable])
-      redirect_to(@global_system_variable, :notice => 'GlobalSystemVariable was successfully updated.')
+      redirect_to(admin_system_variable_path(@global_system_variable), :notice => "System Variable was succesfully updated.")
     else
       render :action => :edit
     end
@@ -42,6 +41,6 @@ class GlobalSystemVariablesController < ApplicationController
     @global_system_variable = GlobalSystemVariable.find(params[:id])
     @global_system_variable.destroy
 
-    redirect_to(global_system_variables_url)
+    redirect_to(admin_system_variables_url)
   end
 end
