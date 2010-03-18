@@ -18,10 +18,6 @@ class ScenariosController < ApplicationController
     @scenario = Scenario.find(params[:id])
   end
   
-  def variables_edit
-    @scenario = Scenario.find(params[:id])
-  end
-
   def create
     @scenario = Scenario.new(params[:scenario])
     @scenario.user = current_user
