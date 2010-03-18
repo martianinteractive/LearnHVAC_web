@@ -5,7 +5,7 @@
       Administration
     = stylesheet_link_tag "admin.css"
     = stylesheet_link_tag "print.css", :media => "print"
-  %body
+  %body.bp
     .header
       %h1.siteTitle
         Administration
@@ -31,9 +31,9 @@
       .fluid
         .content
           - if flash[:notice]
-          .flash.notice
-            = flash[:notice]
+            .flash.notice
+              = flash[:notice]
           - elsif flash[:error]
-          .flash.error
-            = flash[:notice]
+            .flash.error
+              = flash[:notice]
           = yield

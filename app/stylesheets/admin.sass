@@ -1,6 +1,31 @@
-body
+// This import applies a global reset to any page that imports this stylesheet.
+@import blueprint/reset.sass
+@import blueprint/modules/form.sass
+@import compass/utilities.sass
+
+// Import all the default blueprint modules so that we can access their mixins.
+@import blueprint
+// Import the non-default scaffolding module.
+@import blueprint/scaffolding.sass
+
+// To generate css equivalent to the blueprint css but with your configuration applied, uncomment:
+// +blueprint
+
+//Recommended Blueprint configuration with scoping and semantic layout:
++blueprint-scaffolding("body.bp")
+body.bp
+  +blueprint-typography(true)
+
+@import application.sass
+@import common.sass
+
+
+
+body.bp
   background: #FEFEFE
   font-size: 85%
+  margin: 0
+  padding: 0
 
 
 .main
@@ -8,10 +33,11 @@ body
   padding: 0
   min-width: 760px
   height: 500px
-  background: url(/images/bg-sidebar.png) repeat-x left top
+  background: url(/images/layout/bg-sidebar.png) repeat-x left top
 
 
-.header
+.bp .header
+  height: 40px
   background: #313131
   border-bottom: 1px solid #DDD
   margin-bottom: 0
@@ -22,7 +48,7 @@ body
   min-height: 400px
   width: 110px
   float: left
-  background: url(/images/bg-side-border.png) no-repeat right top
+  background: url(/images/layout/bg-side-border.png) no-repeat right top
   padding: 40px 40px
 
   li
@@ -77,9 +103,8 @@ h2
 .small-text
   height: 3em
 
-
-.globalNav li
-  margin-top: 0.5em
+.bp .global_nav li
+  margin-top: 0
   margin-left: 1em
   padding: 0 0 0 1em
   border-left: 1px solid #FFF
