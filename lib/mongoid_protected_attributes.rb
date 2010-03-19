@@ -14,7 +14,7 @@ module Mongoid
       module InstanceMethods
         
         def write_attributes(attrs = nil)
-          attrs = attrs.reject {|k,v| (self.class.protected_attribute.include?(k.to_s))}
+          attrs = attrs.reject {|k,v| (self.class.protected_attributes.include?(k.to_s))}
           process(attrs || {})
           identify if id.blank?
           notify
