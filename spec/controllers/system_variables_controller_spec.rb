@@ -81,8 +81,7 @@ describe SystemVariablesController do
     describe "with invalid params" do  
     end
   end
-  
-  
+    
   describe "DELETE destroy" do    
     it "destroys the requested system_variable" do
       proc { delete :destroy, :id => @system_variable.id }.should change(SystemVariable, :count).by(-1)

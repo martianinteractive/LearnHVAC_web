@@ -12,7 +12,7 @@ class ActivationsController < ApplicationController
     raise Exception if @user.active?
 
     if @user.activate!
-      flash[:notice] = "Your account has been succesfully activated your account."
+      flash[:notice] = "Your account has been succesfully activated."
       @user.deliver_activation_confirmation!
       redirect_to login_path
     else
