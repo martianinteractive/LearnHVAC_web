@@ -62,6 +62,7 @@ class User < ActiveRecord::Base
     GlobalSystemVariable.all.each do |gsv|
       atts = gsv.attributes
       atts.delete("_id")
+      atts.delete("_type")
       isv = SystemVariable.new(atts)
       isv.user = self
       isv.save

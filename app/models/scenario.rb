@@ -40,6 +40,7 @@ class Scenario
     user.system_variables.each do |isv|
       atts = isv.attributes
       atts.delete("_id")
+      atts.delete("_type")
       self.scenario_variables.create(atts)
     end
   end
