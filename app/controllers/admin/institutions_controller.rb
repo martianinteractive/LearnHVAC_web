@@ -1,5 +1,6 @@
 class Admin::InstitutionsController < ApplicationController
   before_filter :require_admin
+  layout "admin"
   
   def index
     @institutions = Institution.all
