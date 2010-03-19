@@ -1,6 +1,7 @@
 class Scenario
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Mongoid::Document::ProtectedAttributes
   
   field :scenario_id
   field :name
@@ -30,6 +31,8 @@ class Scenario
   accepts_nested_attributes_for :scenario_variables
   
   after_create :copy_system_variables
+  
+  attr_protected :user_id
   
   private
   
