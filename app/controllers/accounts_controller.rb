@@ -10,6 +10,7 @@ class AccountsController < ApplicationController
   def create
     @account = User.new(params[:user])
     @account.active = false
+    @account.role_code = User::ROLES[:instructor]
     
     if @account.save_without_session_maintenance
       @account.deliver_activation_instructions!

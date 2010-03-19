@@ -21,6 +21,11 @@ describe AccountsController do
         assigns(:account).active?.should_not be(true)
       end
       
+      it "should save set the role as :instructor" do
+        post :create, :user => Factory.attributes_for(:user)
+        assigns(:account).role_code.should == User::ROLES[:instructor]
+      end
+      
       it "should send an activation information mail" do
         proc { post :create, :user => Factory.attributes_for(:user) }.should change(ActionMailer::Base.deliveries, :size).by(1)
       end
