@@ -23,10 +23,6 @@
   %br
   = f.password_field :password_confirmation, :size=>20,  :value=>""
 %p
-  Role:
-  %br
-  = f.select(:role_code, User::ROLES.keys.collect{|k| [k.to_s.capitalize, User::ROLES[k]]})
-%p
   Institution:
   %br
   = f.collection_select(:institution_id, Institution.all, :id, :name)

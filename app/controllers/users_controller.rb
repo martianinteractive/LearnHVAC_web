@@ -1,17 +1,14 @@
 class UsersController < ApplicationController
   before_filter :require_user
+  before_filter :set_user
 
   def show
-    @user = User.find(params[:id])
   end
 
   def edit
-    @user = User.find(params[:id])
   end
 
   def update
-    @user = User.find(params[:id])
-
     if @user.update_attributes(params[:user])
       redirect_to(@user, :notice => 'User was successfully updated.')
     else
@@ -20,9 +17,13 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user = User.find(params[:id])
     @user.destroy
-
     redirect_to(users_url)
+  end
+  
+  private
+  
+  def set_user
+    @user = current_user.has_role?(:admin) ? User.find(params[:id]) : current_user
   end
 end
