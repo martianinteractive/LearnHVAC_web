@@ -39,6 +39,10 @@ module AuthlogicTestHelper
    login_as(@admin)
  end
  
+ def default_path_for(user)
+   user.has_role?(:admin) ? admin_dashboard_path : scenarios_path
+ end
+ 
 end
 
 module AuthorizationTestHelper  

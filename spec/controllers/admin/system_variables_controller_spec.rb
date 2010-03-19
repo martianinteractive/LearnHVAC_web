@@ -102,7 +102,7 @@ describe Admin::SystemVariablesController do
       @admin.role_code = User::ROLES[:student]
       @admin.save
       authorize_actions do
-        response.should redirect_to(users_path)
+        response.should redirect_to(default_path_for(@admin))
         flash[:notice].should == "You don't have the privileges to access this page"
       end
     end

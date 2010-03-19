@@ -27,7 +27,7 @@ class ApplicationController < ActionController::Base
     if current_user
       store_location
       flash[:notice] = "You must be logged out to access this page"
-      redirect_back_or_default(users_path)
+      redirect_back_or_default(default_path_for(current_user))
       return false
     end
   end
@@ -35,7 +35,7 @@ class ApplicationController < ActionController::Base
   def require_admin
     if !current_user or !current_user.has_role?(:admin)
       flash[:notice] = "You don't have the privileges to access this page"
-      redirect_back_or_default(users_path)
+      redirect_back_or_default(default_path_for(current_user))
       return false
     end
   end
@@ -54,6 +54,10 @@ class ApplicationController < ActionController::Base
     back = session[:return_to] if session[:return_to] != request.request_uri
     session[:return_to] = nil
     redirect_to(back || default)
+  end
+  
+  def default_path_for(user)
+    user.has_role?(:admin) ? admin_dashboard_path : scenarios_path
   end
   
   def logged_in?
