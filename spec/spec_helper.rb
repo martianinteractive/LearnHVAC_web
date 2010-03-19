@@ -31,6 +31,14 @@ module AuthlogicTestHelper
    @user_session = nil 
    UserSession.stubs(:find).returns(nil) 
  end
+ 
+ def admin_login
+   @admin            = Factory.build(:user, :login => "joedoe", :email => "jdoe@lhvac.com")
+   @admin.role_code  = User::ROLES[:admin]
+   @admin.save
+   login_as(@admin)
+ end
+ 
 end
 
 module AuthorizationTestHelper  
