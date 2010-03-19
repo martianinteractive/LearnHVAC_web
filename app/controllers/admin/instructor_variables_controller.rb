@@ -2,6 +2,7 @@ class Admin::InstructorVariablesController < ApplicationController
   before_filter :require_admin
   before_filter :find_instructor
   before_filter :find_instructor_variable, :only => [:show, :edit, :update, :destroy]
+  layout "admin"
   
   def index
     @instructor_variables = @instructor.system_variables
