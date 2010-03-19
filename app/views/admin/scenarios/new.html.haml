@@ -1,0 +1,4 @@
+%h1 New scenario
+- form_for(@scenario, :url => admin_scenarios_path, :method => :post) do |f|
+  = render :partial => "form", :locals => { :f => f }
+= link_to 'Back', admin_scenarios_path

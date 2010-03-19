@@ -1,0 +1,4 @@
+%h1 Edit scenario
+- form_for(@scenario, :url => admin_scenario_path(@scenario), :method => :put) do |f|
+  = render :partial => "form", :locals => { :f => f }
+= link_to 'Back', admin_scenarios_path

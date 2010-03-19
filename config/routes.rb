@@ -64,6 +64,7 @@ Learnhvac::Application.routes.draw do |map|
   namespace :admin do
     resources :system_variables
     resources :institutions
+    resources :scenarios
   end
 
   # Sample resource route within a namespace:

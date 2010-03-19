@@ -47,8 +47,8 @@
       %td= scenario.goal
       %td= link_to "Instructor", user_path(scenario.user)
       %td= link_to "System Vars", scenario_scenario_variables_path(scenario)
-      %td= link_to 'Show', scenario
-      %td= link_to 'Edit', edit_scenario_path(scenario)
-      %td= link_to 'Destroy', scenario, :confirm => 'Are you sure?', :method => :delete
+      %td= link_to 'Show', admin_scenario_path(scenario)
+      %td= link_to 'Edit', edit_admin_scenario_path(scenario)
+      %td= link_to 'Destroy', admin_scenario_path(scenario), :confirm => 'Are you sure?', :method => :delete
 %br
-= link_to 'New scenario', new_scenario_path
+= link_to 'New scenario', new_admin_scenario_path
