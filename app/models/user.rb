@@ -14,10 +14,9 @@ class User < ActiveRecord::Base
   has_many_documents :scenarios
   has_many_documents :system_variables
   
-  attr_protected :active
+  attr_protected :active, :role_code
   
   after_create :copy_system_variables, :if => Proc.new { |u| u.has_role?(:instructor) }
-  
   
   def name
     first_name + " " + last_name
