@@ -20,6 +20,7 @@ class Admin::UsersController < ApplicationController
 
   def create
     @user = User.new(params[:user])
+    @user.role_code = params[:user][:role_code]
 
     if @user.save
       redirect_to(admin_user_path(@user), :notice => 'User was successfully created.')
@@ -30,7 +31,8 @@ class Admin::UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-
+    @user.role_code = params[:user][:role_code]
+    
     if @user.update_attributes(params[:user])
       redirect_to(admin_user_url(@user), :notice => 'User was successfully updated.')
     else
