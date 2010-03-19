@@ -20,6 +20,7 @@ Learnhvac::Application.routes.draw do |map|
   namespace :admin do
     resources :system_variables
     resources :institutions
+    resources :users
     resources :scenarios do
       resources :scenario_variables
     end
