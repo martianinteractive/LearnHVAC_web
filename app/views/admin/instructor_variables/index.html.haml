@@ -1,0 +1,40 @@
+%h1
+  Listing instructor System Variables
+%table
+  %tr
+    %th Comp
+    %th fault
+    %th Name
+    %th Display Name
+    %th Description
+    %th Type
+    %th Min
+    %th Default
+    %th Max
+    %th Unit SI
+    %th Unit IP
+    %th SI to IP
+    %th Disabled
+    %th
+    %th
+    %th
+  - @instructor_variables.each do |instructor_variable|
+    %tr
+      %td comp
+      %td fault
+      %th= instructor_variable.name
+      %th= instructor_variable.display_name
+      %th= instructor_variable.description
+      %th= instructor_variable.io_type
+      %th= instructor_variable.min_value
+      %th= instructor_variable.default_value
+      %th= instructor_variable.max_value
+      %th= instructor_variable.unit_si
+      %th= instructor_variable.unit_ip
+      %th= instructor_variable.si_to_ip
+      %th= instructor_variable.global_disable
+      %td= link_to 'Show', admin_user_instructor_variable_path(@instructor, instructor_variable)
+      %td= link_to 'Edit', edit_admin_user_instructor_variable_path(@instructor, instructor_variable)
+      %td= link_to 'Destroy', admin_user_instructor_variable_path(@instructor, instructor_variable), :confirm => 'Are you sure?', :method => :delete
+%br
+= link_to 'New System Var', new_admin_user_instructor_variable_path(@instructor)
