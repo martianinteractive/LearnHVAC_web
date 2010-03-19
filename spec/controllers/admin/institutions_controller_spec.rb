@@ -3,10 +3,7 @@ require File.dirname(__FILE__) + "/../../spec_helper"
 describe Admin::InstitutionsController do
   
   before(:each) do
-    @admin            = Factory.build(:user, :login => "joedoe", :email => "jdoe@lhvac.com")
-    @admin.role_code  = User::ROLES[:admin]
-    @admin.save
-    login_as(@admin)
+    admin_login
   end
   
   describe "GET index" do

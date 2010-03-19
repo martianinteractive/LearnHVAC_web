@@ -1,0 +1,54 @@
+%h1
+  Listing scenarios
+%table
+  %tr
+    %th Scenario
+    %th Name
+    %th Movie url
+    %th Thumbnail url
+    %th Level
+    %th Inputs visible
+    %th Inputs enabled
+    %th Faults visible
+    %th Faults enabled
+    %th Longterm start date
+    %th Longterm stop date
+    %th Allow longterm date change
+    %th Realtime start datetime
+    %th Allow realtime datetime change
+    %th Valve info enabled
+    %th Short description
+    %th Description
+    %th Goal
+    %th Instructor
+    %th
+    %th
+    %th
+    %th
+  - @scenarios.each do |scenario|
+    %tr
+      %td= scenario.scenario_id
+      %td= scenario.name
+      %td= scenario.movie_url
+      %td= scenario.thumbnail_url
+      %td= scenario.level
+      %td= scenario.inputs_visible
+      %td= scenario.inputs_enabled
+      %td= scenario.faults_visible
+      %td= scenario.faults_enabled
+      %td= scenario.longterm_start_date
+      %td= scenario.longterm_stop_date
+      %td= scenario.allow_longterm_date_change
+      %td= scenario.realtime_start_datetime
+      %td= scenario.allow_realtime_datetime_change
+      %td= scenario.valve_info_enabled
+      %td= scenario.short_description
+      %td= scenario.description
+      %td= scenario.goal
+      %td= link_to "Instructor", user_path(scenario.user)
+      %td= link_to "System Vars", scenario_scenario_variables_path(scenario)
+      %td= link_to 'Show', scenario
+      %td= link_to 'Edit', edit_scenario_path(scenario)
+      %td= link_to 'Destroy', scenario, :confirm => 'Are you sure?', :method => :delete
+%br
+= link_to 'New scenario', new_scenario_path
