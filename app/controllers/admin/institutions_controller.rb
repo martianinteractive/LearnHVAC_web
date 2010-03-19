@@ -20,7 +20,7 @@ class Admin::InstitutionsController < ApplicationController
   def create
     @institution = Institution.new(params[:institution])
     if @institution.save
-      redirect_to(@institution, :notice => 'Institution was successfully created.')
+      redirect_to(admin_institution_path(@institution), :notice => 'Institution was successfully created.')
     else
       render :action => "new"
     end
@@ -29,7 +29,7 @@ class Admin::InstitutionsController < ApplicationController
   def update
     @institution = Institution.find(params[:id])
     if @institution.update_attributes(params[:institution])
-      redirect_to(@institution, :notice => 'Institution was successfully updated.') 
+      redirect_to(admin_institution_path(@institution), :notice => 'Institution was successfully updated.')
     else
       render :action => "edit"
     end
@@ -38,7 +38,7 @@ class Admin::InstitutionsController < ApplicationController
   def destroy
     @institution = Institution.find(params[:id])
     @institution.destroy
-    redirect_to(institutions_url)
+    redirect_to(admin_institutions_url)
   end
   
 end

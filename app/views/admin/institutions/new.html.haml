@@ -1,4 +1,4 @@
-%h1
-  New institution
-= render 'form'
-= link_to 'Back', institutions_path
+%h1 New institution
+- form_for(@institution, :url => admin_institutions_path, :method => :post) do |f|
+  = render :partial => 'form', :locals => { :f => f }
+= link_to 'Back', admin_institutions_path

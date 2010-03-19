@@ -55,7 +55,7 @@ describe Admin::InstitutionsController do
   
       it "redirects to the created institution" do
         post :create, :institution => Factory.attributes_for(:institution)
-        response.should redirect_to(institution_url(assigns(:institution)))
+        response.should redirect_to(admin_institution_url(assigns(:institution)))
       end
     end
   
@@ -86,7 +86,7 @@ describe Admin::InstitutionsController do
       
       it "redirects to the Institution" do
         put :update, :id => @institution.id, :institution => { :name => "Joe's Bar" }
-        response.should redirect_to(institution_url(@institution))
+        response.should redirect_to(admin_institution_url(@institution))
       end
     end
       
@@ -116,7 +116,7 @@ describe Admin::InstitutionsController do
   
     it "redirects to the institutions list" do
       delete :destroy, :id => @institution.id
-      response.should redirect_to(institutions_url)
+      response.should redirect_to(admin_institutions_url)
     end
   end
   

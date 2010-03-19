@@ -1,5 +1,6 @@
 class Admin::SystemVariablesController < ApplicationController
   before_filter :require_admin
+  layout "admin"
   
   def index
     @global_system_variables = GlobalSystemVariable.all

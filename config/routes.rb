@@ -1,16 +1,7 @@
 Learnhvac::Application.routes.draw do |map|
   
-  resources :scenarios do
-    member do
-      get :variables_edit
-    end
-    resources :scenario_variables
-  end
-
   resources :system_variables
-    
   resources :accounts
-  resources :institutions
   resources :users
   resources :user_sessions
   map.resources :password_resets
@@ -34,6 +25,13 @@ Learnhvac::Application.routes.draw do |map|
 
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
+  
+  resources :scenarios do
+    member do
+      get :variables_edit
+    end
+    resources :scenario_variables
+  end
 
   # Sample resource route with options:
   #   resources :products do
@@ -65,6 +63,7 @@ Learnhvac::Application.routes.draw do |map|
   
   namespace :admin do
     resources :system_variables
+    resources :institutions
   end
 
   # Sample resource route within a namespace:
