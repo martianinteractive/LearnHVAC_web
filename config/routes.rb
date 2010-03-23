@@ -1,4 +1,6 @@
 Learnhvac::Application.routes.draw do |map|
+  resources :groups
+
   resources :system_variables
   resources :accounts
   resources :users
