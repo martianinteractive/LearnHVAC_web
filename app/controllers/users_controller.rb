@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_filter :require_user
-  before_filter :set_user
+  before_filter :find_user
 
   def show
   end
@@ -23,7 +23,7 @@ class UsersController < ApplicationController
   
   private
   
-  def set_user
+  def find_user
     @user = current_user.has_role?(:admin) ? User.find(params[:id]) : current_user
   end
 end
