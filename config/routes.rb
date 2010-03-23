@@ -2,7 +2,6 @@ Learnhvac::Application.routes.draw do |map|
   
   resources :system_variables
   resources :accounts
-  resources :groups
   resources :users 
   resources :user_sessions
   map.resources :password_resets
@@ -14,6 +13,10 @@ Learnhvac::Application.routes.draw do |map|
   match 'activate/:id' => 'activations#create', :as => 'activate'
   match 'students/sign_up' => 'students/accounts#new', :as => 'students_signup'
   match 'groups/register/:code' => 'memberships#create', :as => 'membership_register'
+  
+  resources :groups do
+    resources :students, :only => [:index]
+  end
   
   resources :scenarios do
     resources :scenario_variables

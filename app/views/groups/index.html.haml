@@ -4,6 +4,7 @@
     %th Name
     %th Code
     %th Invitation URL
+    %th 
     %th
     %th
     %th
@@ -12,6 +13,7 @@
       %td= group.name
       %td= group.code
       %td= membership_register_url(group.code)
+      %td= link_to 'Students', group_students_path(group)
       %td= link_to 'Show', group
       %td= link_to 'Edit', edit_group_path(group)
       %td= link_to 'Destroy', group, :confirm => 'Are you sure?', :method => :delete
