@@ -1,125 +1,100 @@
-require 'spec_helper'
+require File.dirname(__FILE__) + "/../spec_helper"
 
 describe GroupsController do
-
-  def mock_group(stubs={})
-    @mock_group ||= mock_model(Group, stubs).as_null_object
+  before(:each) do
+    @instructor = Factory(:user)
+    @group = Factory(:group, :name => "Class 01", :instructor => @instructor)
+    login_as(@instructor)
   end
-
+  
   describe "GET index" do
-    it "assigns all groups as @groups" do
-      Group.stub(:all) { [mock_group] }
+    it "" do
       get :index
-      assigns(:groups).should eq([mock_group])
+      response.should render_template(:index)
+      assigns(:groups).should_not be_empty
+      assigns(:groups).should eq([@group])
     end
   end
 
   describe "GET show" do
-    it "assigns the requested group as @group" do
-      Group.stub(:find).with("37") { mock_group }
-      get :show, :id => "37"
-      assigns(:group).should be(mock_group)
+    it "" do
+      get :show, :id => @group.id
+      response.should render_template(:show)
+      assigns(:group).should eq(@group)
     end
   end
-
+  
   describe "GET new" do
-    it "assigns a new group as @group" do
-      Group.stub(:new) { mock_group }
+    it "" do
       get :new
-      assigns(:group).should be(mock_group)
+      response.should render_template(:new)
+      assigns(:group).instructor.should eq(@instructor)
     end
   end
-
+  
   describe "GET edit" do
-    it "assigns the requested group as @group" do
-      Group.stub(:find).with("37") { mock_group }
-      get :edit, :id => "37"
-      assigns(:group).should be(mock_group)
+    it "" do
+      get :edit, :id => @group.id
+      response.should render_template(:edit)
+      assigns(:group).should eq(@group)
     end
   end
-
+  
   describe "POST create" do
-
     describe "with valid params" do
-      it "assigns a newly created group as @group" do
-        Group.stub(:new).with({'these' => 'params'}) { mock_group(:save => true) }
-        post :create, :group => {'these' => 'params'}
-        assigns(:group).should be(mock_group)
+      it "should change the Group count" do
+        proc{ post :create, :group => Factory.attributes_for(:group, :name => "Class 02") }.should change(Group, :count).by(1)
       end
-
+      
+      it "should assign the current user as the Group instructor" do
+        post :create, :group => Factory.attributes_for(:group, :name => "Class 02")
+        assigns(:group).instructor.should == @instructor
+      end
+  
       it "redirects to the created group" do
-        Group.stub(:new) { mock_group(:save => true) }
-        post :create, :group => {}
-        response.should redirect_to(group_url(mock_group))
+        post :create, :group => Factory.attributes_for(:group, :name => "Class 02")
+        response.should redirect_to(assigns(:group))
       end
     end
-
+  
     describe "with invalid params" do
-      it "assigns a newly created but unsaved group as @group" do
-        Group.stub(:new).with({'these' => 'params'}) { mock_group(:save => false) }
-        post :create, :group => {'these' => 'params'}
-        assigns(:group).should be(mock_group)
-      end
-
-      it "re-renders the 'new' template" do
-        Group.stub(:new) { mock_group(:save => false) }
-        post :create, :group => {}
-        response.should render_template('new')
+      it "" do
+        post :create, :group => Factory.attributes_for(:group, :name => @group.name)
+        response.should render_template(:new)
       end
     end
-
   end
-
-  describe "PUT update" do
-
-    describe "with valid params" do
+  
+  describe "PUT update" do    
+    describe "with valid params" do      
       it "updates the requested group" do
-        Group.should_receive(:find).with("37") { mock_group }
-        mock_group.should_receive(:update_attributes).with({'these' => 'params'})
-        put :update, :id => "37", :group => {'these' => 'params'}
+        put :update, :id => @group.id, :group => { :name => "CS Group" }
+        @group.reload.name.should == "CS Group"
       end
-
-      it "assigns the requested group as @group" do
-        Group.stub(:find) { mock_group(:update_attributes => true) }
-        put :update, :id => "1"
-        assigns(:group).should be(mock_group)
-      end
-
+      
       it "redirects to the group" do
-        Group.stub(:find) { mock_group(:update_attributes => true) }
-        put :update, :id => "1"
-        response.should redirect_to(group_url(mock_group))
+        put :update, :id => @group.id, :group => { }
+        response.should redirect_to(@group)
       end
     end
-
-    describe "with invalid params" do
-      it "assigns the group as @group" do
-        Group.stub(:find) { mock_group(:update_attributes => false) }
-        put :update, :id => "1"
-        assigns(:group).should be(mock_group)
-      end
-
-      it "re-renders the 'edit' template" do
-        Group.stub(:find) { mock_group(:update_attributes => false) }
-        put :update, :id => "1"
-        response.should render_template('edit')
+    
+    describe "with invalid params" do  
+      it "" do
+        put :update, :id => @group.id, :group => { :name => "" }
+        response.should render_template(:edit)
       end
     end
-
   end
-
-  describe "DELETE destroy" do
+  
+  describe "DELETE destroy" do    
     it "destroys the requested group" do
-      Group.should_receive(:find).with("37") { mock_group }
-      mock_group.should_receive(:destroy)
-      delete :destroy, :id => "37"
+      proc { delete :destroy, :id => @group.id }.should change(Group, :count).by(-1)
     end
-
-    it "redirects to the groups list" do
-      Group.stub(:find) { mock_group(:destroy => true) }
-      delete :destroy, :id => "1"
-      response.should redirect_to(groups_url)
+  
+    it "redirects to the instructor groups list" do
+      delete :destroy, :id => @group.id
+      response.should redirect_to(groups_path)
     end
   end
-
+  
 end
