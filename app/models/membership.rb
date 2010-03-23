@@ -4,4 +4,5 @@ class Membership < ActiveRecord::Base
   
   validate :group_id, :presence => true
   validate :student_id, :presence => true
+  validate :group_id, :uniqueness => true, :scope => :student_id
 end
