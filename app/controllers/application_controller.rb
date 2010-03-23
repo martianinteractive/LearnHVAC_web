@@ -47,7 +47,7 @@ class ApplicationController < ActionController::Base
   end
   
   def require_student
-    unless logged_as(:student)
+    unless logged_as?(:student)
       require_admin
     end
   end
@@ -63,13 +63,15 @@ class ApplicationController < ActionController::Base
   end
   
   def default_path_for(user)
-    case user.role
+    case user.try(:role)
     when :admin
       admin_dashboard_path
     when :instructor
       scenarios_path
     when :student
       students_groups_path
+    else
+      new_user_session_url
     end
   end
   
