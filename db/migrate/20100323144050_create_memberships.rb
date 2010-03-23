@@ -1,7 +1,7 @@
 class CreateMemberships < ActiveRecord::Migration
   def self.up
     create_table :memberships do |t|
-      t.intenger :user_id
+      t.intenger :student_id
       t.integer :group_id
 
       t.timestamps

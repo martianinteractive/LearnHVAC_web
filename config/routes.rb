@@ -1,9 +1,11 @@
 Learnhvac::Application.routes.draw do |map|
-  resources :groups
-
   resources :system_variables
   resources :accounts
-  resources :users
+  
+  resources :users do
+    resources :groups
+  end
+  
   resources :user_sessions
   map.resources :password_resets
   
