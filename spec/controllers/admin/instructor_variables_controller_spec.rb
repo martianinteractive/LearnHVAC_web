@@ -96,7 +96,7 @@ describe Admin::InstructorVariablesController do
   
   describe "Authentication" do
     before(:each) do
-      @admin.role_code = User::ROLES[:guest]
+      @admin.role_code = User::ROLES[:student]
       @admin.save
     end
     

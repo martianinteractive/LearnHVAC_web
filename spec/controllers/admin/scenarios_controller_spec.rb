@@ -98,6 +98,8 @@ describe Admin::ScenariosController do
   describe "Authorization" do
     before(:each) do
       user_logout
+      @instructor.role_code = User::ROLES[:instructor]
+      @instructor.save
       login_as(@instructor)
     end
     

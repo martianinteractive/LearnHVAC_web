@@ -3,7 +3,9 @@ require File.dirname(__FILE__) + "/../../spec_helper"
 describe Admin::ScenarioVariablesController do
   
   before(:each) do
-    @instructor               = Factory(:user, :login => "joedoe", :email => "jdoe@lhvac.com")
+    @instructor               = Factory.build(:user, :login => "joedoe", :email => "jdoe@lhvac.com")
+    @instructor.role_code     = User::ROLES[:instructor]
+    @instructor.save
     @scenario                 = Factory(:scenario, :user => @instructor)
     @scenario_variable        = Factory(:scenario_variable, :scenario => @scenario)
     admin_login
