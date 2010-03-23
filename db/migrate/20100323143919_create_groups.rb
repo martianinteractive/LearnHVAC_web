@@ -7,9 +7,12 @@ class CreateGroups < ActiveRecord::Migration
 
       t.timestamps
     end
+    
+    add_index :groups, :instructor_id
   end
 
   def self.down
+    remove_index :groups, :instructor_id
     drop_table :groups
   end
 end

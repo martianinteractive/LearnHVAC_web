@@ -25,6 +25,8 @@ ActiveRecord::Schema.define(:version => 20100323144050) do
     t.datetime "updated_at"
   end
 
+  add_index "groups", ["instructor_id"], :name => "index_groups_on_instructor_id"
+
   create_table "institutions", :force => true do |t|
     t.string   "name"
     t.text     "description"
@@ -33,10 +35,14 @@ ActiveRecord::Schema.define(:version => 20100323144050) do
   end
 
   create_table "memberships", :force => true do |t|
+    t.integer  "student_id"
     t.integer  "group_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "memberships", ["group_id"], :name => "index_memberships_on_group_id"
+  add_index "memberships", ["student_id"], :name => "index_memberships_on_student_id"
 
   create_table "users", :force => true do |t|
     t.string   "first_name"
