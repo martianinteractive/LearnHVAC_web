@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
   scope :recently_updated, where("updated_at < '#{(Time.now + 30.days).to_formatted_s(:db)}'")
     
   belongs_to :institution
+  has_many :groups, :foreign_key => "instructor_id"
   has_many_documents :scenarios
   has_many_documents :system_variables
   
