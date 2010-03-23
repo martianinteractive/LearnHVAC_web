@@ -1,0 +1,9 @@
+%h1 Listing groups
+%table
+  %tr
+    %th Name
+    %th
+  - @groups.each do |group|
+    %tr
+      %td= group.name
+      %td= link_to 'Show', students_group_path(group)
