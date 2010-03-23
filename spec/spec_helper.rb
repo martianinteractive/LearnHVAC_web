@@ -40,7 +40,14 @@ module AuthlogicTestHelper
  end
  
  def default_path_for(user)
-   user.has_role?(:admin) ? admin_dashboard_path : scenarios_path
+   case user.role
+   when :admin
+     admin_dashboard_path
+   when :instructor
+     scenarios_path
+   when :student
+     students_groups_path
+   end
  end
  
 end

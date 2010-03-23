@@ -1,26 +1,28 @@
 Learnhvac::Application.routes.draw do |map|
+  
   resources :system_variables
   resources :accounts
-  
   resources :groups
   resources :users 
- 
   resources :user_sessions
   map.resources :password_resets
   
-  match 'login'   => 'user_sessions#new', :as => "login"
-  match 'logout'  => 'user_sessions#destroy', :as => "logout"
-  match 'sign_up' => 'accounts#new', :as => "sign_up"
-  match 'register/:activation_code' => 'activations#new', :as => "register"
-  match 'activate/:id' => 'activations#create', :as => "activate"
+  match 'login'   => 'user_sessions#new', :as => 'login'
+  match 'logout'  => 'user_sessions#destroy', :as => 'logout'
+  match 'sign_up' => 'accounts#new', :as => 'sign_up'
+  match 'register/:activation_code' => 'activations#new', :as => 'register'
+  match 'activate/:id' => 'activations#create', :as => 'activate'
+  match 'students/sign_up' => 'students/accounts#new', :as => 'students_signup'
+  match 'groups/register/:code' => 'memberships#create', :as => 'membership_register'
   
   resources :scenarios do
     resources :scenario_variables
   end
 
-  match 'admin/dashboard' => 'admin/dashboard#show', :as => "admin_dashboard"
+  match 'admin/dashboard' => 'admin/dashboard#show', :as => 'admin_dashboard'
   
   namespace :students do
+    resources :accounts
     resources :groups
   end
   
@@ -37,5 +39,5 @@ Learnhvac::Application.routes.draw do |map|
     end
   end
 
-  root :to => "user_sessions#new"
+  root :to => 'user_sessions#new'
 end
