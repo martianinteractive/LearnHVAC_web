@@ -20,6 +20,10 @@ Learnhvac::Application.routes.draw do |map|
 
   match 'admin/dashboard' => 'admin/dashboard#show', :as => "admin_dashboard"
   
+  namespace :students do
+    resources :groups
+  end
+  
   namespace :admin do
     resources :system_variables
     resources :institutions
