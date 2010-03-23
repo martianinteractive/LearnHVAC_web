@@ -11,6 +11,8 @@ describe Students::AccountsController do
   
   describe "POST :create" do
     before(:each) do
+      instructor = Factory(:user, :first_name => "inst", :login => "instructor", :email => "inst@mi.com")
+      @group = Factory(:group, :instructor => instructor)
       ActionMailer::Base.deliveries = []
     end
     
@@ -35,6 +37,16 @@ describe Students::AccountsController do
         flash[:notice].should match(/Your account has been created. Please check your e-mail/)
         response.should redirect_to(login_path)
       end
+      
+      it "should create membership if a valid group code is given" do
+        proc { post :create, :code => @group.code, :user => Factory.attributes_for(:user) }.should change(Membership, :count).by(1)
+      end
+      
+      it "should assign the user to the group" do
+        post :create, :code => @group.code, :user => Factory.attributes_for(:user)
+        assigns(:account).groups.should eq([@group])
+      end
+      
     end
     
     describe "an invalid account" do

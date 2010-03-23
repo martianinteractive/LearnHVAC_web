@@ -1,8 +1,16 @@
+- content_for :head do
+  - javascript_tag do
+    $(document).ready(function() { $("#code").val("#{params[:code]}"); });
+
 = error_messages_for :account
 %p 
   Already a member? please
   = link_to "login", login_path
 - form_for @account, :url => { :controller => "students/accounts", :action => "create" } do |f|
+  %p
+    = f.label :code, "*Group code"
+    %br
+    = text_field_tag :code
   %p
     = f.label :login
     %br

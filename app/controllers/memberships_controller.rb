@@ -27,7 +27,7 @@ class MembershipsController < ApplicationController
   def require_student
     unless logged_as?(:student)
       flash[:notice] = "You must be logged in to access this page. Signup or login if you are already a member."
-      redirect_to students_signup_path
+      redirect_to students_signup_path(:code => params[:code])
     end
   end
   
