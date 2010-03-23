@@ -9,7 +9,7 @@ describe UsersController do
   
   #This behaviour applies for all the actions.
   describe "GET show" do
-    it "should not an instructor to view other users" do
+    it "should not let an instructor to view other users" do
       get :show, :id => "37"
       response.should render_template(:show)
       assigns(:user).should be(@user)
