@@ -46,6 +46,17 @@ describe MembershipsController do
       #   end
       # end
     end
+    
+    describe "without authentication" do
+      before(:each) do
+        user_logout
+      end
+      
+      it "" do
+        post :create
+        response.should redirect_to(students_signup_path)
+      end
+    end
   end
   
 end

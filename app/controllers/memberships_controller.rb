@@ -25,7 +25,7 @@ class MembershipsController < ApplicationController
   # This method is re-defined here 'cause it's redirecting
   # to students_signup instead of login. 
   def require_student
-    if current_user and !current_user.has_role?(:student)
+    if (current_user and !current_user.has_role?(:student)) or !current_user
       flash[:notice] = "You must be logged in to access this page. Signup or login if you are already a member."
       redirect_to students_signup_path
     end
