@@ -21,7 +21,7 @@ class Group < ActiveRecord::Base
   end
   
   def secure_rand
-    ActiveSupport::SecureRandom.base64(6).gsub("/","_").gsub(/=+$/,"")
+    ActiveSupport::SecureRandom.hex(3)
   end
   
 end
