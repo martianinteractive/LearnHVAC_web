@@ -3,14 +3,14 @@ class GroupsController < ApplicationController
   before_filter :find_group, :only => [:show, :edit, :update, :destroy]
   
   def index
-    @groups = current_user.groups
+    @groups = current_user.managed_groups
   end
 
   def show
   end
 
   def new
-    @group = current_user.groups.build
+    @group = current_user.managed_groups.build
   end
 
   def edit
@@ -47,7 +47,7 @@ class GroupsController < ApplicationController
   private
   
   def find_group
-    @group = current_user.groups.find(params[:id])
+    @group = current_user.managed_groups.find(params[:id])
   end
   
 end

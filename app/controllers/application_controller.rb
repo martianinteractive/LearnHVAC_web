@@ -33,7 +33,7 @@ class ApplicationController < ActionController::Base
   end
   
   def require_admin
-    if current_user and !current_user.has_role?(:admin)
+    unless logged_as?(:admin)
       flash[:notice] = "You don't have the privileges to access this page"
       redirect_back_or_default(default_path_for(current_user))
       return false
@@ -41,13 +41,13 @@ class ApplicationController < ActionController::Base
   end
   
   def require_instructor
-    if current_user and !current_user.has_role?(:instructor)
+    unless logged_as?(:instructor)
       require_admin
     end
   end
   
   def require_student
-    if current_user and !current_user.has_role?(:student)
+    unless logged_as(:student)
       require_admin
     end
   end
@@ -75,6 +75,10 @@ class ApplicationController < ActionController::Base
   
   def logged_in?
     current_user
+  end
+  
+  def logged_as?(role)
+    logged_in? and current_user.has_role?(role)
   end
   
 end
