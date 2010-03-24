@@ -1,6 +1,5 @@
 Learnhvac::Application.routes.draw do |map|
   
-  resources :system_variables
   resources :accounts
   resources :users 
   resources :user_sessions
@@ -32,8 +31,11 @@ Learnhvac::Application.routes.draw do |map|
   
   # Admin Routes.
   namespace :admin do
-    resources :system_variables
     resources :institutions
+    
+    resources :master_scenarios do
+      resources :system_variables
+    end
     
     resources :groups do
       resources :students, :only => [:index]
