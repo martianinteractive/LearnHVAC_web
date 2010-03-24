@@ -69,7 +69,7 @@ describe Admin::InstructorVariablesController do
     describe "with valid params" do      
       it "updates the requested system_variable" do
         put :update, :user_id => @instructor.id, :id => @instructor_variable.id, :system_variable => { :name => "Inst var" }
-        @instructor_variable.reload["name"].should == "Inst var"
+        @instructor_variable.reload.name.should == "Inst var"
       end
       
       it "redirects to the system_variable" do

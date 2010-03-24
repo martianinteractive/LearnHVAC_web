@@ -65,7 +65,7 @@ describe Admin::ScenariosController do
     describe "with valid params" do      
       it "updates the requested scenario" do
         put :update, :id => @scenario.id, :scenario => { :name => "new scenario", :user_id => @instructor.id }
-        @scenario.reload["name"].should == "new scenario"
+        @scenario.reload.name.should == "new scenario"
       end
       
       it "should update the scenario.user" do

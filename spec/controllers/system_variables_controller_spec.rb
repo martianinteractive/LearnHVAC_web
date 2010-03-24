@@ -68,7 +68,7 @@ describe SystemVariablesController do
     describe "with valid params" do      
       it "updates the requested system_variable" do
         put :update, :id => @system_variable.id, :system_variable => { :name => "Inst var" }
-        @system_variable.reload["name"].should == "Inst var"
+        @system_variable.reload.name.should == "Inst var"
       end
       
       it "redirects to the system_variable" do

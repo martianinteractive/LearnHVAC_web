@@ -67,7 +67,7 @@ describe Admin::SystemVariablesController do
     describe "with valid params" do      
       it "updates the requested global_system_variable" do
         put :update, :id => @global_system_variable.id, :global_system_variable => { :name => "Cold var" }
-        @global_system_variable.reload["name"].should == "Cold var"
+        @global_system_variable.reload.name.should == "Cold var"
       end
       
       it "redirects to the global_system_variable" do

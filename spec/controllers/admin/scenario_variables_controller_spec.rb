@@ -49,7 +49,7 @@ describe Admin::ScenarioVariablesController do
       it "should change the scenario.scenario_variables count" do
         @scenario_sys_vars = @scenario.scenario_variables.size
         post :create, :scenario_id => @scenario.id, :scenario_variable => Factory.attributes_for(:scenario_variable, :name => "new scen. sys var")
-        @scenario.reload["scenario_variables"].size.should == @scenario_sys_vars + 1
+        Scenario.find(@scenario.id).scenario_variables.size.should == @scenario_sys_vars + 1
       end
       
       it "redirects to the created scenario_variable" do
@@ -67,7 +67,7 @@ describe Admin::ScenarioVariablesController do
     describe "with valid params" do      
       it "updates the requested scenario_variable" do
         put :update, :scenario_id => @scenario.id, :id => @scenario_variable.id, :scenario_variable => { :name => "updated var name" }
-        @scenario.reload["scenario_variables"].first["name"].should == "updated var name"
+        Scenario.find(@scenario.id).scenario_variables.first.name.should == "updated var name"
       end
       
       it "redirects to the scenario_variable" do
@@ -85,7 +85,7 @@ describe Admin::ScenarioVariablesController do
     it "destroys the requested scenario_variable" do
       @scenario_sys_vars = @scenario.scenario_variables.size
       delete :destroy, :scenario_id => @scenario.id, :id => @scenario_variable.id
-      @scenario.reload["scenario_variables"].size.should == @scenario_sys_vars - 1
+      Scenario.find(@scenario.id).scenario_variables.size.should == @scenario_sys_vars - 1
     end
   
     it "redirects to the scenario_variables list" do

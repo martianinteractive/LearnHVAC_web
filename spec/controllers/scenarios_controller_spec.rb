@@ -73,7 +73,7 @@ describe ScenariosController do
     describe "with valid params" do      
       it "updates the requested scenario" do
         put :update, :id => @scenario.id, :scenario => { :name => "Inst var" }
-        @scenario.reload["name"].should == "Inst var"
+        @scenario.reload.name.should == "Inst var"
       end
       
       it "redirects to the scenario" do
