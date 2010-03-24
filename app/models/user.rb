@@ -18,8 +18,7 @@ class User < ActiveRecord::Base
   has_many :groups, :through => :memberships
   
   has_many_documents :scenarios
-  has_many_documents :system_variables
-  
+    
   attr_protected :active, :role_code
   
   def name
