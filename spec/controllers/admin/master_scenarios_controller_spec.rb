@@ -85,21 +85,19 @@ describe Admin::MasterScenariosController do
     end
   end
   
-  # 
-  # describe "Authorization" do
-  #   before(:each) do
-  #     user_logout
-  #     @instructor.role_code = User::ROLES[:instructor]
-  #     @instructor.save
-  #     login_as(@instructor)
-  #   end
-  #   
-  #   it "should require an admin user for all actions" do
-  #     authorize_actions do
-  #       response.should redirect_to(default_path_for(@instructor))
-  #       flash[:notice].should == "You don't have the privileges to access this page"
-  #     end
-  #   end
-  # end
+  
+  describe "Authorization" do
+    before(:each) do
+      @admin.role_code = User::ROLES[:instructor]
+      @admin.save
+    end
+    
+    it "should require an admin user for all actions" do
+      authorize_actions do
+        response.should redirect_to(default_path_for(@admin))
+        flash[:notice].should == "You don't have the privileges to access this page"
+      end
+    end
+  end
 
 end
