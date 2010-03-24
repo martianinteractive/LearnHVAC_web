@@ -1,4 +1,4 @@
-%h2 Editing Global System Variable
-- form_for(@global_system_variable, :url => admin_system_variable_path(@global_system_variable), :method => :put) do |f|
+%h2 Editing System Variable
+- form_for([@master_scenario, @system_variable], :url => admin_master_scenario_system_variable_path(@master_scenario, @system_variable), :method => :put) do |f|
   = render :partial => "form", :locals => { :f => f }
-= link_to 'Back', admin_system_variables_path
+= link_to 'Back', admin_master_scenario_system_variables_path(@master_scenario)

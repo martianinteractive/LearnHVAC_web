@@ -1,101 +1,101 @@
-%h2= "#{@global_system_variable.name.capitalize} variable"
-%p= @global_system_variable.description.capitalize
+%h2= "#{@system_variable.name.capitalize} variable"
+%p= @system_variable.description.try(:capitalize)
 %hr  
 
 %p
   %b
     Name:
-  = @global_system_variable.name
+  = @system_variable.name
 %p
   %b
     Display name:
-  = @global_system_variable.display_name
+  = @system_variable.display_name
 %p
   %b
     Index:
-  = @global_system_variable.index
+  = @system_variable.index
 %p
   %b
     Description:
-  = @global_system_variable.description
+  = @system_variable.description
 %p
   %b
     I/O type:
-  = @global_system_variable.io_type
+  = @system_variable.io_type
 %p
   %b
     Min value:
-  = @global_system_variable.description
+  = @system_variable.description
 %p
   %b
     Default value:
-  = @global_system_variable.default_value
+  = @system_variable.default_value
 %p
   %b
     Max value:
-  = @global_system_variable.max_value
+  = @system_variable.max_value
 %p
   %b
     Unit SI
-  = @global_system_variable.unit_si
+  = @system_variable.unit_si
 %p
   %b
     Unit IP
-  = @global_system_variable.unit_ip
+  = @system_variable.unit_ip
 %p
   %b
     SI to IP
-  = @global_system_variable.si_to_ip
+  = @system_variable.si_to_ip
 %p
   %b
     Fault?
-  = @global_system_variable.is_fault
+  = @system_variable.is_fault
 %p
   %b
     Global disable:
-  = @global_system_variable.global_disable
+  = @system_variable.global_disable
 %p
   %b
     Left label:
-  = @global_system_variable.left_label
+  = @system_variable.left_label
 %p
   %b
     Right label:
-  = @global_system_variable.right_label
+  = @system_variable.right_label
 %p
   %b
     Subsection:
-  = @global_system_variable.subsection
+  = @system_variable.subsection
 %p
   %b
     Zone position:
-  = @global_system_variable.zone_position
+  = @system_variable.zone_position
 %p
   %b
     Subsection:
-  = @global_system_variable.subsection
+  = @system_variable.subsection
 %p
   %b
     Is percentage:
-  = @global_system_variable.is_percentage
+  = @system_variable.is_percentage
 %p
   %b
     Fault widget type:
-  = @global_system_variable.fault_widget_type
+  = @system_variable.fault_widget_type
 %p
   %b
     Notes:
-  = @global_system_variable.notes
+  = @system_variable.notes
 %p
   %b
     Lock version:
-  = @global_system_variable.lock_version
+  = @system_variable.lock_version
 %p
   %b
     Node sequence:
-  = @global_system_variable.node_sequence
+  = @system_variable.node_sequence
 
-= link_to 'Edit', edit_admin_system_variable_path(@global_system_variable)
+= link_to 'Edit', edit_admin_master_scenario_system_variable_path(@master_scenario, @system_variable)
 |
-= link_to 'Back', admin_system_variables_path
+= link_to 'Back', admin_master_scenario_system_variables_path(@master_scenario)
 

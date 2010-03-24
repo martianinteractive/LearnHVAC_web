@@ -1,4 +1,4 @@
-%h2 Global System Variables
+%h2= "System Variables for #{@master_scenario.name}"
 %p Manage system variables
 %hr
 %table
@@ -16,26 +16,26 @@
     %th Unit IP
     %th SI to IP
     %th Disabled
-  - @global_system_variables.each do |global_system_variable|
+  - @system_variables.each do |system_variable|
     %tr
       %td comp
       %td fault
-      %td= global_system_variable.name
-      %td= global_system_variable.display_name
-      %td= global_system_variable.description
-      %td= global_system_variable.io_type
-      %td= global_system_variable.min_value
-      %td= global_system_variable.default_value
-      %td= global_system_variable.max_value
-      %td= global_system_variable.unit_si
-      %td= global_system_variable.unit_ip
-      %td= global_system_variable.si_to_ip
-      %td= global_system_variable.global_disable
-      %td= link_to 'Show', admin_system_variable_path(global_system_variable)
-      %td= link_to 'Edit', edit_admin_system_variable_path(global_system_variable)
-      %td= link_to 'Destroy', admin_system_variable_path(global_system_variable), :confirm => 'Are you sure?', :method => :delete
+      %td= system_variable.name
+      %td= system_variable.display_name
+      %td= system_variable.description
+      %td= system_variable.io_type
+      %td= system_variable.min_value
+      %td= system_variable.default_value
+      %td= system_variable.max_value
+      %td= system_variable.unit_si
+      %td= system_variable.unit_ip
+      %td= system_variable.si_to_ip
+      %td= system_variable.global_disable
+      %td= link_to 'Show', admin_master_scenario_system_variable_path(@master_scenario, system_variable)
+      %td= link_to 'Edit', edit_admin_master_scenario_system_variable_path(@master_scenario, system_variable)
+      %td= link_to 'Destroy', admin_master_scenario_system_variable_path(@master_scenario, system_variable), :confirm => 'Are you sure?', :method => :delete
 %br
-= will_paginate @global_system_variables
+= will_paginate @master_scenarios
 %br
-= link_to 'New System Var', new_admin_system_variable_path
+= link_to 'New System Var', new_admin_master_scenario_system_variable_path(@master_scenario)
 

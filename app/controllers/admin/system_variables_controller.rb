@@ -1,47 +1,54 @@
 class Admin::SystemVariablesController < ApplicationController
   before_filter :require_admin
+  before_filter :find_master_scenario
+  before_filter :find_system_variable, :only => [:show, :edit, :update]
   layout "admin"
   
   def index
-    @global_system_variables = GlobalSystemVariable.paginate :page => params[:page], :per_page => 25
+    @system_variables = @master_scenario.system_variables.paginate :page => params[:page], :per_page => 25
   end
 
   def show
-    @global_system_variable = GlobalSystemVariable.find(params[:id])
   end
 
   def new
-    @global_system_variable = GlobalSystemVariable.new
+    @system_variable = SystemVariable.new
   end
 
   def edit
-    @global_system_variable = GlobalSystemVariable.find(params[:id])
   end
 
   def create
-    @global_system_variable = GlobalSystemVariable.new(params[:global_system_variable])
-
-    if @global_system_variable.save
-      redirect_to(admin_system_variable_path(@global_system_variable), :notice => "System Variable was succesfully created.")
+    @system_variable = SystemVariable.new(params[:system_variable])
+    @system_variable.master_scenario = @master_scenario
+    
+    if @system_variable.save
+      redirect_to(admin_master_scenario_system_variable_path(@master_scenario, @system_variable), :notice => 'System Variable was successfully created.')
     else
       render :action => :new
     end
   end
 
   def update
-    @global_system_variable = GlobalSystemVariable.find(params[:id])
-
-    if @global_system_variable.update_attributes(params[:global_system_variable])
-      redirect_to(admin_system_variable_path(@global_system_variable), :notice => "System Variable was succesfully updated.")
+    if @system_variable.update_attributes(params[:system_variable])
+      redirect_to(admin_master_scenario_system_variable_path(@master_scenario, @system_variable), :notice => 'System Variable was successfully created.')
     else
       render :action => :edit
     end
   end
 
   def destroy
-    @global_system_variable = GlobalSystemVariable.find(params[:id])
-    @global_system_variable.destroy
-
-    redirect_to(admin_system_variables_url)
+    @master_scenario.system_variables.find(params[:id]).destroy
+    redirect_to(admin_master_scenario_system_variables_path(@master_scenario))
+  end
+  
+  private
+  
+  def find_master_scenario
+    @master_scenario = MasterScenario.find(params[:master_scenario_id])
+  end
+  
+  def find_system_variable
+    @system_variable = @master_scenario.system_variables.find(params[:id])
   end
 end
