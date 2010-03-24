@@ -48,5 +48,5 @@ Learnhvac::Application.routes.draw do |map|
     end
   end
 
-  root :to => 'user_sessions#new'
+  root :to => 'scenarios#index'
 end

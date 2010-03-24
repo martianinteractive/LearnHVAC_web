@@ -2,7 +2,9 @@ require File.dirname(__FILE__) + "/../spec_helper"
 
 describe ScenariosController do
   before(:each) do
-    @user     = Factory(:user, :login => "joedoe", :email => "jdoe@lhvac.com")
+    @user     = Factory.build(:user, :login => "joedoe", :email => "jdoe@lhvac.com")
+    @user.role_code = User::ROLES[:instructor]
+    @user.save
     @scenario = Factory(:scenario, :user => @user) 
     login_as(@user)
   end
@@ -101,7 +103,17 @@ describe ScenariosController do
     end
   end
   
-  pending "Authorization definition"
-  # describe "Authorization" do
-  # end
+  describe "Authentication" do
+    before(:each) do
+      @user.role_code = User::ROLES[:student]
+      @user.save
+    end
+    
+    it "should require an admin user for all actions" do
+      authorize_actions do
+        response.should redirect_to(default_path_for(@user))
+        flash[:notice].should == "You don't have the privileges to access this page"
+      end
+    end
+  end
 end
