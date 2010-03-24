@@ -1,6 +1,0 @@
-%h2= "New System Variable for #{@instructor.name}"
-%hr
-
-- form_for([@instructor, @instructor_variable], :url => admin_user_instructor_variables_path(@instructor), :method => :post) do |f|
-  = render :partial => "form", :locals => { :f => f }
-= link_to 'Back', admin_user_instructor_variables_path(@instructor)

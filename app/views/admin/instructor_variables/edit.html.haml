@@ -1,5 +1,0 @@
-%h2= "Edit #{@instructor_variable.name} Instructor Variable"
-%hr
-- form_for([@instructor, @instructor_variable], :url => admin_user_instructor_variable_path(@instructor, @instructor_variable), :method => :put) do |f|
-  = render :partial => "form", :locals => { :f => f }
-= link_to 'Back', admin_user_instructor_variables_path(@instructor)
