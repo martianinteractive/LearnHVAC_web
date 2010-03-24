@@ -22,8 +22,6 @@ class User < ActiveRecord::Base
   
   attr_protected :active, :role_code
   
-  after_create :copy_system_variables, :if => Proc.new { |u| u.has_role?(:instructor) }
-  
   def name
     first_name + " " + last_name
   end
@@ -59,19 +57,5 @@ class User < ActiveRecord::Base
     self.active = true
     save
   end
-    
-  private
-  
-  # At the moment only is called on create,
-  # we need to define a flow when updating a role.
-  def copy_system_variables
-    GlobalSystemVariable.all.each do |gsv|
-      atts = gsv.attributes
-      atts.delete("_id")
-      atts.delete("_type")
-      isv = SystemVariable.new(atts)
-      isv.user = self
-      isv.save
-    end
-  end
+
 end

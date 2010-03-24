@@ -11,19 +11,7 @@ class Scenario
   named_scope :recently_updated, criteria.where(:updated_at.gt => (Time.now + 30.days))
   
   accepts_nested_attributes_for :scenario_variables
-  
-  after_create :copy_system_variables
-  
+    
   attr_protected :user_id
   
-  private
-  
-  def copy_system_variables
-    user.system_variables.each do |isv|
-      atts = isv.attributes
-      atts.delete("_id")
-      atts.delete("_type")
-      self.scenario_variables.create(atts)
-    end
-  end
 end

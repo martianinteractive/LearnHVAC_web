@@ -24,26 +24,6 @@ describe User do
   end
   
   context "Callbacks" do
-    context "on create when the user is instructor" do
-      
-      before(:each) do
-        create_global_system_vars
-        @instructor = Factory.build(:user, :first_name => "Jack")
-        @instructor.role_code = User::ROLES[:instructor]
-      end
-            
-      it "should create a set of instructor_variables" do
-        GlobalSystemVariable.count.should be > 1
-        proc { @instructor.save }.should change(SystemVariable, :count).by(GlobalSystemVariable.count)
-      end
-      
-      it "should assign the system variables to the user" do
-        @instructor.save
-        SystemVariable.all.each { |isv| isv.user.should == @instructor } 
-      end
-      
-      pending "check attribute per attribute copy."
-    end
   end
   
   context "Roles" do
@@ -95,12 +75,6 @@ describe User do
   
   def sent
     ActionMailer::Base.deliveries.first
-  end
-  
-  def create_global_system_vars
-   Factory(:global_system_variable, :name => "var 1")
-   Factory(:global_system_variable, :name => "var 2")
-   Factory(:global_system_variable, :name => "var 3")
   end
   
   # def create_user_with_role(role)
