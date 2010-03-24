@@ -3,7 +3,7 @@ class Admin::GroupsController < ApplicationController
   layout "admin"
   
   def index
-    @groups = Group.all
+    @groups = Group.paginate :page => params[:page], :per_page => 25
   end
 
   def show

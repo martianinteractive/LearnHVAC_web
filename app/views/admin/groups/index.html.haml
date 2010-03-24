@@ -1,21 +1,22 @@
-%h1 Listing groups
+%h2 Listing Groups
+%p Manage Groups
+%hr
+
 %table
   %tr
     %th Name
     %th Code
     %th Invitation URL
-    %th 
-    %th
-    %th
-    %th
   - @groups.each do |group|
     %tr
       %td= group.name
       %td= group.code
       %td= membership_register_url(group.code)
-      %td= link_to 'Students', "#"
+      %td= link_to 'Students', admin_group_students_path(group)
       %td= link_to 'Show', admin_group_path(group)
       %td= link_to 'Edit', edit_admin_group_path(group)
       %td= link_to 'Destroy', admin_group_path(group), :confirm => 'Are you sure?', :method => :delete
+%br
+= will_paginate @groups
 %br
 = link_to 'New group', new_admin_group_path

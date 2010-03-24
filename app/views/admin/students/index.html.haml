@@ -1,0 +1,26 @@
+%h2= "#{@group.name.capitalize} Students"
+%hr
+
+%table
+  %tr
+    %th Institution
+    %th Last Name
+    %th First Name
+    %th Login
+    %th Role
+    %th Email
+
+    - for student in @students
+      %tr
+        %td= student.institution.try(:name).try(:capitalize)
+        %td= student.last_name
+        %td= student.first_name
+        %td= student.login
+        %td= student.role.to_s.capitalize
+        %td= student.email
+        %td= link_to 'Show', admin_user_path(student)
+        %td= link_to 'Edit', edit_admin_user_path(student)
+        %td= link_to 'Destroy', admin_user_path(student), :confirm => 'Are you sure?', :method => :delete
+
+%br
+= will_paginate @students
