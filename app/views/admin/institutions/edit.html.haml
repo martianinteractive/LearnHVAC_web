@@ -1,6 +1,10 @@
-%h1 Editing institution
-= form_for(@institution, :url => admin_institution_path(@institution), :method => :put) do |f|
-  = render :partial => 'form', :locals => { :f => f }
+%h2= "Editing #{@institution.name.capitalize}" 
+%hr
+
+- form_for(@institution, :url => admin_institution_path(@institution), :method => :put) do |f|
+  = render :partial => "form", :locals => { :f => f }
+
+%br
 = link_to 'Show', admin_institution_path(@institution)
 |
 = link_to 'Back', admin_institutions_path

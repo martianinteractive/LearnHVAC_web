@@ -3,15 +3,15 @@ require File.dirname(__FILE__) + "/../../spec_helper"
 describe Admin::InstitutionsController do
   
   before(:each) do
+    @institution = Factory(:institution, :name => "MI")
     admin_login
   end
   
   describe "GET index" do
     it "" do
-      Institution.expects(:all).returns([mock_institution])
       get :index
       response.should render_template(:index)
-      assigns(:institutions).should eq([mock_institution])
+      assigns(:institutions).should_not be_empty
     end
   end
   

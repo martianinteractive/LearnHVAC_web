@@ -17,7 +17,7 @@ describe Admin::SystemVariablesController do
   
   describe "GET show" do
     it "" do
-      GlobalSystemVariable.expects(:find).with("37").returns(mock_global_var)
+      GlobalSystemVariable.expects(:find).with("37").returns(mock_global_var(:name => "global var", :description => "description"))
       get :show, :id => "37"
       response.should render_template(:show)
       assigns(:global_system_variable).should be(mock_global_var)

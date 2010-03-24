@@ -1,11 +1,10 @@
-%h1
-  Listing institutions
+%h2 Listing institutions
+%hr
 %table
   %tr
-    %th
-      Name
-    %th
-      Description
+    %th Name
+    %th Description
+    %th User count
     %th
     %th
     %th
@@ -13,8 +12,11 @@
     %tr
       %td= institution.name
       %td= institution.description
+      %td= institution.users.count
       %td= link_to 'Show', admin_institution_path(institution)
       %td= link_to 'Edit', edit_admin_institution_path(institution)
       %td= link_to 'Destroy', admin_institution_path(institution), :confirm => 'Are you sure?', :method => :delete
+%br
+= will_paginate @institutions
 %br
 = link_to 'New institution', new_admin_institution_path

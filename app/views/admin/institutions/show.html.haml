@@ -1,11 +1,7 @@
-%p
-  %b
-    Name:
-  = @institution.name
-%p
-  %b
-    Description:
-  = @institution.description
+%h2= @institution.name
+%p= @institution.description
+%hr
+%br
 = link_to 'Edit', edit_admin_institution_path(@institution)
 |
 = link_to 'Back', admin_institutions_path

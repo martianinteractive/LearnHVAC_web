@@ -3,7 +3,7 @@ class Admin::InstitutionsController < ApplicationController
   layout "admin"
   
   def index
-    @institutions = Institution.all
+    @institutions = Institution.paginate :page => params[:page], :per_page => 25
   end
 
   def show
