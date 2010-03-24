@@ -3,7 +3,7 @@ class ScenariosController < ApplicationController
   before_filter :find_scenario, :only => [:show, :edit, :update, :destroy]
   
   def index
-    @scenarios = current_user.scenarios
+    @scenarios = current_user.scenarios.paginate :page => params[:page], :per_page => 25
   end
 
   def show

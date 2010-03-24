@@ -4,7 +4,7 @@ class ScenarioVariablesController < ApplicationController
   before_filter :find_scenario_variable, :only => [:show, :edit, :update]
 
   def index
-    @scenario_variables = @scenario.scenario_variables
+    @scenario_variables = @scenario.scenario_variables.paginate :page => params[:page], :per_page => 25
   end
   
   def new

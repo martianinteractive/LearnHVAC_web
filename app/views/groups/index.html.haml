@@ -1,13 +1,11 @@
-%h1 Listing groups
+%h2 Your Groups
+%hr
+
 %table
   %tr
     %th Name
     %th Code
     %th Invitation URL
-    %th 
-    %th
-    %th
-    %th
   - @groups.each do |group|
     %tr
       %td= group.name
@@ -17,5 +15,7 @@
       %td= link_to 'Show', group
       %td= link_to 'Edit', edit_group_path(group)
       %td= link_to 'Destroy', group, :confirm => 'Are you sure?', :method => :delete
+%br
+= will_paginate @groups
 %br
 = link_to 'New group', new_group_path

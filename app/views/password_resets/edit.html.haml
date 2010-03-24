@@ -1,4 +1,6 @@
-%h1 Change My Password
+%h2 Change My Password
+%p Please enter a new password.
+
 - form_for @user, :url => {:controller => :password_resets, :action => :create }, :html => {:method => :put } do |f|
   = f.error_messages
   = f.label :password

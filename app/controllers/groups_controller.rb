@@ -3,7 +3,7 @@ class GroupsController < ApplicationController
   before_filter :find_group, :only => [:show, :edit, :update, :destroy]
   
   def index
-    @groups = current_user.managed_groups
+    @groups = current_user.managed_groups.paginate :page => params[:page], :per_page => 25
   end
 
   def show
