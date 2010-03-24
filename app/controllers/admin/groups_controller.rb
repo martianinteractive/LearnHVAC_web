@@ -1,5 +1,6 @@
 class Admin::GroupsController < ApplicationController
   before_filter :require_admin
+  layout "admin"
   
   def index
     @groups = Group.all

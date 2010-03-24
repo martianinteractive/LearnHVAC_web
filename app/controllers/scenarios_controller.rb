@@ -1,7 +1,6 @@
 class ScenariosController < ApplicationController
   before_filter :require_user
   before_filter :find_scenario, :only => [:show, :edit, :update, :destroy]
-  layout "application"
   
   def index
     @scenarios = current_user.scenarios
