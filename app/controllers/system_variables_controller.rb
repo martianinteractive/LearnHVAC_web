@@ -2,6 +2,7 @@ class SystemVariablesController < ApplicationController
   before_filter :require_instructor
   before_filter :find_system_variable, :only => [:show, :edit, :update, :destroy]
   
+  # Pending probably will disapear.
   def index
     @system_variables = current_user.system_variables.paginate :page => params[:page], :per_page => 25
   end
