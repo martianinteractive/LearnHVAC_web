@@ -8,10 +8,9 @@ describe Admin::UsersController do
   
   describe "GET index" do
     it "assigns all users as @users" do
-      User.expects(:order).returns([mock_user])
       get :index
       response.should render_template(:index)
-      assigns(:users).should == [mock_user]
+      assigns(:users).should_not be_empty
     end
   end
   

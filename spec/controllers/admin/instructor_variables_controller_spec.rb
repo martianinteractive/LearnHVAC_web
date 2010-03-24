@@ -46,16 +46,16 @@ describe Admin::InstructorVariablesController do
   describe "POST create" do
     describe "with valid params" do
       it "should change the SystemVariable count" do
-        proc{ post :create, :user_id => @instructor.id, :instructor_variable => Factory.attributes_for(:system_variable, :name => "nvar") }.should change(SystemVariable, :count).by(1)
+        proc{ post :create, :user_id => @instructor.id, :system_variable => Factory.attributes_for(:system_variable, :name => "nvar") }.should change(SystemVariable, :count).by(1)
       end
       
       it "should assign the current user as the SystemVariable user" do
-        post :create, :user_id => @instructor.id, :instructor_variable => Factory.attributes_for(:system_variable, :name => "new var")
+        post :create, :user_id => @instructor.id, :system_variable => Factory.attributes_for(:system_variable, :name => "new var")
         assigns(:instructor_variable).user.should == @instructor        
       end
   
       it "redirects to the created system_variable" do
-        post :create, :user_id => @instructor.id, :instructor_variable => Factory.attributes_for(:system_variable, :name => "new var")
+        post :create, :user_id => @instructor.id, :system_variable => Factory.attributes_for(:system_variable, :name => "new var")
         response.should redirect_to(admin_user_instructor_variable_path(@instructor, assigns(:instructor_variable)))
       end
     end
@@ -68,12 +68,12 @@ describe Admin::InstructorVariablesController do
   describe "PUT update" do    
     describe "with valid params" do      
       it "updates the requested system_variable" do
-        put :update, :user_id => @instructor.id, :id => @instructor_variable.id, :instructor_variable => { :name => "Inst var" }
+        put :update, :user_id => @instructor.id, :id => @instructor_variable.id, :system_variable => { :name => "Inst var" }
         @instructor_variable.reload["name"].should == "Inst var"
       end
       
       it "redirects to the system_variable" do
-        put :update, :user_id => @instructor.id, :id => @instructor_variable.id, :instructor_variable => { :name => "Inst var" }
+        put :update, :user_id => @instructor.id, :id => @instructor_variable.id, :system_variable => { :name => "Inst var" }
         response.should redirect_to(admin_user_instructor_variable_path(@instructor, @instructor_variable))
       end
     end

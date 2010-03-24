@@ -1,40 +1,29 @@
-- content_for :subnav do
-  %h2
-    Manage Users
-  .navigation
-    %ul
-      %li
-        = link_to 'New User', new_admin_user_path
+%h2 Manage users
+%hr
 
 %table
   %tr
-    %th
-    %th
-      Institution
-    %th
-      Last Name
-    %th
-      First Name
-    %th
-      Login
-    %th
-      Role
-    %th
-      e-Mail
-    %th
-    %th{ :colspan => "4" }
+    %th Institution
+    %th Last Name
+    %th First Name
+    %th Login
+    %th Role
+    %th Email
 
     - for user in @users
-      %tr{ :class => cycle("lightRow", "darkRow") }
-        %td
-        %td= "Institution" #user.institution.name
+      %tr
+        %td= user.institution.try(:name).try(:capitalize)
         %td= user.last_name
         %td= user.first_name
-        %td
-          %b= user.login
+        %td= user.login
         %td= user.role.to_s.capitalize
         %td= user.email
-        %td= link_to('Variables', admin_user_instructor_variables_path(user)) if user.has_role?(:instructor)
+        %td= link_to('Variables', admin_user_instructor_variables_path(user)) if user.has_role?(:instructor) or user.has_role?(:admin)
         %td= link_to 'Show', admin_user_path(user)
         %td= link_to 'Edit', edit_admin_user_path(user)
         %td= link_to 'Destroy', admin_user_path(user), :confirm => 'Are you sure?', :method => :delete
+
+%br
+= will_paginate @users
+%br
+= link_to 'New User', new_admin_user_path

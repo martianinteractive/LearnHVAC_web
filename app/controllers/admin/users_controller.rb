@@ -3,7 +3,7 @@ class Admin::UsersController < ApplicationController
   layout "admin"
   
   def index
-    @users = User.order("role_code DESC")
+    @users = User.paginate :page => params[:page], :per_page => 25, :order => "role_code DESC"
   end
 
   def show

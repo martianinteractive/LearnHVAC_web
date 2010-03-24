@@ -1,10 +1,6 @@
-%table
-  %tr
-    %td=image_tag("icon_users_45.png", :alt => "Users Icon")
-    %td
-    %td
-      %h1 New user
-= error_messages_for 'user'
+%h2= "Edit #{@user.name}"
+%hr
+
 - form_for(@user, :url => admin_user_path(@user), :method => :put) do |f|
   = render :partial => "form", :locals => { :f => f }
   = submit_tag "Update"

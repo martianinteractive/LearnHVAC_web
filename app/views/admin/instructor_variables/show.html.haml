@@ -1,7 +1,7 @@
-%p
-  %b
-    Name:
-  = @instructor_variable.name
+%h2= @instructor_variable.name
+%p= @instructor_variable.description
+%hr
+
 %p
   %b
     Display name:
@@ -10,10 +10,7 @@
   %b
     Index:
   = @instructor_variable.index
-%p
-  %b
-    Description:
-  = @instructor_variable.description
+
 %p
   %b
     I/O type:

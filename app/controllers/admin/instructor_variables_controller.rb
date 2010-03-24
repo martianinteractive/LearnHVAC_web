@@ -5,7 +5,7 @@ class Admin::InstructorVariablesController < ApplicationController
   layout "admin"
   
   def index
-    @instructor_variables = @instructor.system_variables
+    @instructor_variables = @instructor.system_variables.paginate :page => params[:page], :per_page => 25
   end
 
   def show
@@ -19,19 +19,19 @@ class Admin::InstructorVariablesController < ApplicationController
   end
 
   def create
-    @instructor_variable = SystemVariable.new(params[:instructor_variable])
+    @instructor_variable = SystemVariable.new(params[:system_variable])
     @instructor_variable.user = @instructor
     
     if @instructor_variable.save
-      redirect_to(admin_user_instructor_variable_path(@instructor, @instructor_variable), :notice => 'SystemVariable was successfully created.')
+      redirect_to(admin_user_instructor_variable_path(@instructor, @instructor_variable), :notice => 'Instructor Variable was successfully created.')
     else
       render :action => :new
     end
   end
 
   def update
-    if @instructor_variable.update_attributes(params[:instructor_variable])
-      redirect_to(admin_user_instructor_variable_path(@instructor, @instructor_variable), :notice => 'SystemVariable was successfully created.')
+    if @instructor_variable.update_attributes(params[:system_variable])
+      redirect_to(admin_user_instructor_variable_path(@instructor, @instructor_variable), :notice => 'Instructor Variable was successfully created.')
     else
       render :action => :edit
     end
