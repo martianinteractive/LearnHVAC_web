@@ -1,11 +1,11 @@
+%h2= @scenario.name
+%p= @scenario.description
+%hr
+
 %p
   %b
     Scenario:
   = @scenario.scenario_id
-%p
-  %b
-    Name:
-  = @scenario.name
 %p
   %b
     Movie url:
@@ -62,10 +62,6 @@
   %b
     Short description:
   = @scenario.short_description
-%p
-  %b
-    Description:
-  = @scenario.description
 %p
   %b
     Goal:

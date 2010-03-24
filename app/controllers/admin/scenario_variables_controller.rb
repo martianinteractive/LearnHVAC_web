@@ -5,7 +5,7 @@ class Admin::ScenarioVariablesController < ApplicationController
   layout "admin"
   
   def index
-    @scenario_variables = @scenario.scenario_variables
+    @scenario_variables = @scenario.scenario_variables.paginate :page => params[:page], :per_page => 25
   end
   
   def new

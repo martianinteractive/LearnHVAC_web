@@ -1,11 +1,13 @@
-%h1
-  Listing Scenario System Variables
+%h2= "#{@scenario.name.capitalize} System Variables"
+%p Manage the associated scenario system variables.
+%hr
+
 %table
   %tr
     %th Comp
-    %th fault
+    %th Fault
     %th Name
-    %th Display Name
+    %th Disp. Name
     %th Description
     %th Type
     %th Min
@@ -15,26 +17,25 @@
     %th Unit IP
     %th SI to IP
     %th Disabled
-    %th
-    %th
-    %th
   - @scenario_variables.each do |scenario_system_variable|
     %tr
       %td comp
       %td fault
-      %th= scenario_system_variable.name
-      %th= scenario_system_variable.display_name
-      %th= scenario_system_variable.description
-      %th= scenario_system_variable.io_type
-      %th= scenario_system_variable.min_value
-      %th= scenario_system_variable.default_value
-      %th= scenario_system_variable.max_value
-      %th= scenario_system_variable.unit_si
-      %th= scenario_system_variable.unit_ip
-      %th= scenario_system_variable.si_to_ip
-      %th= scenario_system_variable.global_disable
+      %td= scenario_system_variable.name
+      %td= scenario_system_variable.display_name
+      %td= scenario_system_variable.description
+      %td= scenario_system_variable.io_type
+      %td= scenario_system_variable.min_value
+      %td= scenario_system_variable.default_value
+      %td= scenario_system_variable.max_value
+      %td= scenario_system_variable.unit_si
+      %td= scenario_system_variable.unit_ip
+      %td= scenario_system_variable.si_to_ip
+      %td= scenario_system_variable.global_disable
       %td= link_to 'Show', admin_scenario_scenario_variable_path(@scenario, scenario_system_variable)
       %td= link_to 'Edit', edit_admin_scenario_scenario_variable_path(@scenario, scenario_system_variable)
       %td= link_to 'Destroy', admin_scenario_scenario_variable_path(@scenario, scenario_system_variable), :confirm => 'Are you sure?', :method => :delete
+%br
+= will_paginate @scenario_variables
 %br
 = link_to 'New System Var', new_admin_scenario_scenario_variable_path(@scenario)

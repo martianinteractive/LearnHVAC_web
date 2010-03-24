@@ -2,8 +2,8 @@ class Admin::ScenariosController < ApplicationController
   before_filter :require_admin
   layout "admin"
   
-  def index
-     @scenarios = Scenario.all
+   def index
+     @scenarios = Scenario.paginate :page => params[:page], :per_page => 25
    end
 
    def show
