@@ -3,15 +3,15 @@ require File.dirname(__FILE__) + "/../../spec_helper"
 describe Admin::SystemVariablesController do
 
   before(:each) do
+    @global_system_variable = Factory(:global_system_variable)
     admin_login
   end
   
   describe "GET index" do
     it "" do
-      GlobalSystemVariable.expects(:all).returns([mock_global_var])
       get :index
       response.should render_template(:index)
-      assigns(:global_system_variables).should eq([mock_global_var])
+      assigns(:global_system_variables).should_not be_empty
     end
   end
   

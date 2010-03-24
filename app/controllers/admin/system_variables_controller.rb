@@ -3,7 +3,7 @@ class Admin::SystemVariablesController < ApplicationController
   layout "admin"
   
   def index
-    @global_system_variables = GlobalSystemVariable.all
+    @global_system_variables = GlobalSystemVariable.paginate :page => params[:page], :per_page => 25
   end
 
   def show
