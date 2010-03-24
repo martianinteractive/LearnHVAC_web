@@ -1,6 +1,10 @@
 %html
   %head
     %meta{ "http-equiv" => "Content-type", :content => "text/html; charset=utf-8" }
+    %meta{:name => 'csrf-token', :content => form_authenticity_token}
+    %meta{:name => 'csrf-param', :content => 'authenticity_token'}
+
+
     = csrf_meta_tag
     %title
       Administration
