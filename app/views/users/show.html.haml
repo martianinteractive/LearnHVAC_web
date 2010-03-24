@@ -1,26 +1,26 @@
-%div
-  %p
-    %b
-      Login:
-    = h @user.login
-  %p
-    %b
-      Role:
-    = h @user.role
-  %p
-    %b
-      First Name:
-    = h @user.first_name
-  %p
-    %b
-      Last Name:
-    = h @user.last_name
-  %p
-    %b
-      E-Mail:
-    = h @user.email
+%h2= @user.name.capitalize
 
-%div
-  = link_to 'Edit', edit_user_path(@user)
-  |
-  = link_to 'Back', users_path
+%p
+  %b
+    Login:
+  = h @user.login
+%p
+  %b
+    Role:
+  = h @user.role
+%p
+  %b
+    First Name:
+  = h @user.first_name
+%p
+  %b
+    Last Name:
+  = h @user.last_name
+%p
+  %b
+    E-Mail:
+  = h @user.email
+
+= link_to 'Edit', edit_user_path(@user)
+|
+= link_to 'Back', users_path
