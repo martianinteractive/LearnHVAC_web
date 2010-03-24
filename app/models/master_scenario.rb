@@ -1,7 +1,6 @@
-class MasterScenario < ActiveRecord::Base
+class MasterScenario
   include Mongoid::Document
   include Mongoid::Timestamps
-  include Mongoid::Document::ProtectedAttributes
   include ScenarioFields
   
   has_many :system_variables

@@ -2,5 +2,5 @@ class SystemVariable
   include Mongoid::Document
   include SystemVariableFields
   
-  belongs_to_related :user
+  belongs_to :master_scenario
 end

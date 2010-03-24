@@ -1,0 +1,75 @@
+%h2= @master_scenario.name
+%p= @master_scenario.description
+%hr
+
+%p
+  %b
+    ID:
+  = @master_scenario.scenario_id
+%p
+  %b
+    Movie url:
+  = @master_scenario.movie_url
+%p
+  %b
+    Thumbnail url:
+  = @master_scenario.thumbnail_url
+%p
+  %b
+    Level:
+  = @master_scenario.level
+%p
+  %b
+    Inputs visible:
+  = @master_scenario.inputs_visible
+%p
+  %b
+    Inputs enabled:
+  = @master_scenario.inputs_enabled
+%p
+  %b
+    Faults visible:
+  = @master_scenario.faults_visible
+%p
+  %b
+    Faults enabled:
+  = @master_scenario.faults_enabled
+%p
+  %b
+    Longterm start date:
+  = @master_scenario.longterm_start_date
+%p
+  %b
+    Longterm stop date:
+  = @master_scenario.longterm_stop_date
+%p
+  %b
+    Allow longterm date change:
+  = @master_scenario.allow_longterm_date_change
+%p
+  %b
+    Realtime start datetime:
+  = @master_scenario.realtime_start_datetime
+%p
+  %b
+    Allow realtime datetime change:
+  = @master_scenario.allow_realtime_datetime_change
+%p
+  %b
+    Valve info enabled:
+  = @master_scenario.valve_info_enabled
+%p
+  %b
+    Short description:
+  = @master_scenario.short_description
+%p
+  %b
+    Description:
+  = @master_scenario.description
+%p
+  %b
+    Goal:
+  = @master_scenario.goal
+= link_to 'Edit', edit_scenario_path(@master_scenario)
+|
+= link_to 'Back', scenarios_path

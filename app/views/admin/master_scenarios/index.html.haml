@@ -1,0 +1,21 @@
+%h2 Master Scenarios
+%hr
+
+%table
+  %tr
+    %th ID
+    %th Name
+    %th Description
+  - @master_scenarios.each do |master_scenario|
+    %tr
+      %td= master_scenario.scenario_id
+      %td= master_scenario.name
+      %td= master_scenario.description
+      %td= link_to "Sys. Vars.", admin_master_scenario_system_variables_path(master_scenario)
+      %td= link_to 'Show', admin_master_scenario_path(master_scenario)
+      %td= link_to 'Edit', edit_admin_master_scenario_path(master_scenario)
+      %td= link_to 'Destroy', admin_master_scenario_path(master_scenario), :confirm => 'Are you sure?', :method => :delete
+%br
+= will_paginate @master_scenarios
+%br
+= link_to 'New master_scenario', new_admin_master_scenario_path
