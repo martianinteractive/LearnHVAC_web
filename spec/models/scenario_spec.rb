@@ -12,14 +12,14 @@ describe Scenario do
   context "Validations" do
     before(:each) { @scenario = Factory.build(:scenario, :name => nil) }
     
-    it "with invalid attributes" do
+    it "should be invalid without required attributes" do
       @scenario.should_not be_valid
       @scenario.errors[:user].should_not be_empty
       @scenario.errors[:master_scenario].should_not be_empty
       @scenario.errors[:name].should_not be_empty
     end
     
-    it "with valid attributes" do
+    it "" do
       @scenario = Factory.build(:scenario, :name => "scenario", :user => @user, :master_scenario => @master_scenario)
       @scenario.should be_valid
     end

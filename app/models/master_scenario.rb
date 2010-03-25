@@ -8,4 +8,7 @@ class MasterScenario
   has_many :system_variables
   has_many_related :scenarios
   belongs_to_related :user
+  
+  validates_presence_of :name, :user
+  
 end
