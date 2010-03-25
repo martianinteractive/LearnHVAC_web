@@ -1,3 +1,42 @@
+CREATE TABLE `colleges` (
+  `id` int(11) NOT NULL auto_increment,
+  `value` varchar(255) collate utf8_unicode_ci default NULL,
+  `created_at` datetime default NULL,
+  `updated_at` datetime default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE `groups` (
+  `id` int(11) NOT NULL auto_increment,
+  `name` varchar(255) collate utf8_unicode_ci default NULL,
+  `code` varchar(255) collate utf8_unicode_ci default NULL,
+  `instructor_id` int(11) default NULL,
+  `created_at` datetime default NULL,
+  `updated_at` datetime default NULL,
+  PRIMARY KEY  (`id`),
+  KEY `index_groups_on_instructor_id` (`instructor_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE `institutions` (
+  `id` int(11) NOT NULL auto_increment,
+  `name` varchar(255) collate utf8_unicode_ci default NULL,
+  `description` text collate utf8_unicode_ci,
+  `created_at` datetime default NULL,
+  `updated_at` datetime default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE `memberships` (
+  `id` int(11) NOT NULL auto_increment,
+  `student_id` int(11) default NULL,
+  `group_id` int(11) default NULL,
+  `created_at` datetime default NULL,
+  `updated_at` datetime default NULL,
+  PRIMARY KEY  (`id`),
+  KEY `index_memberships_on_student_id` (`student_id`),
+  KEY `index_memberships_on_group_id` (`group_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 CREATE TABLE `schema_migrations` (
   `version` varchar(255) collate utf8_unicode_ci NOT NULL,
   UNIQUE KEY `unique_schema_migrations` (`version`)
@@ -22,10 +61,18 @@ CREATE TABLE `users` (
   `perishable_token` varchar(255) collate utf8_unicode_ci NOT NULL default '',
   PRIMARY KEY  (`id`),
   KEY `index_users_on_perishable_token` (`perishable_token`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 INSERT INTO schema_migrations (version) VALUES ('20100302150214');
 
 INSERT INTO schema_migrations (version) VALUES ('20100302205816');
 
 INSERT INTO schema_migrations (version) VALUES ('20100303160903');
+
+INSERT INTO schema_migrations (version) VALUES ('20100308222159');
+
+INSERT INTO schema_migrations (version) VALUES ('20100318165744');
+
+INSERT INTO schema_migrations (version) VALUES ('20100323143919');
+
+INSERT INTO schema_migrations (version) VALUES ('20100323144050');

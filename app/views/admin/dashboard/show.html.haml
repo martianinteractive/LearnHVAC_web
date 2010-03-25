@@ -1,0 +1,42 @@
+%h2
+  Admin Dashboard
+%p
+  This is the administration section of the LearnHVAC instructor application
+%hr
+%table
+  %tr
+    %th
+      \&nbsp;
+    %th
+      All
+    %th
+      Recently Added
+    %th
+      Recently Updated
+  %tr
+    %td
+      Instructors
+    %td
+      = User.instructor.count
+    %td
+      = User.instructor.recently_created.count
+    %td
+      = User.instructor.recently_updated.count
+  %tr
+    %td
+      Students
+    %td
+      = User.student.count
+    %td
+      = User.student.recently_created.count
+    %td
+      = User.student.recently_updated.count
+  %tr
+    %td
+      Scenarios
+    %td
+      = Scenario.count
+    %td
+      = Scenario.recently_created.count
+    %td
+      = Scenario.recently_updated.count

@@ -7,7 +7,8 @@
       Learn HVAC Administration
     = stylesheet_link_tag "screen.css"
     = stylesheet_link_tag "print.css", :media => "print"
-    = javascript_include_tag 'jquery-1.4.min', 'rails', 'jquery-ujs/rails', 'datepicker', 'jquery.bgiframe', 'jquery.dimensions', 'jquery.delegate', 'jquery.tooltip', 'jquery.delay', 'locales'
+    = javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"
+    = javascript_include_tag 'rails', 'application'
     = yield :head
     /[if IE]
       = stylesheet_link_tag 'ie.css'
