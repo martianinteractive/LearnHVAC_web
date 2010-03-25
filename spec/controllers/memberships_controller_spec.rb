@@ -3,12 +3,9 @@ require File.dirname(__FILE__) + "/../spec_helper"
 describe MembershipsController do
   
   before(:each) do
-    @instructor           = Factory.build(:user, :first_name => "James")
-    @instructor.role_code = User::ROLES[:intructor]
-    @instructor.save
+    @instructor           = user_with_role(:instructor)
     @group                = Factory(:group, :name => "Class 01", :instructor => @instructor)
-    @student              = Factory.build(:user, :first_name => "Ben")
-    @student.role_code    = User::ROLES[:student]
+    @student              = user_with_role(:student)
     login_as(@student)
   end
   

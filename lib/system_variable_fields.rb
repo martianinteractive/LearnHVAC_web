@@ -25,6 +25,10 @@ module SystemVariableFields
     parent.field :is_fault,        :type => Boolean,   :default => false
     parent.field :is_percentage,   :type => Boolean,   :default => false
     
+    parent.validates_presence_of :name, :display_name, :min_value, :default_value, :max_value
+    parent.validates_numericality_of :min_value, :default_value, :max_value
+    parent.validates :type_code, :inclusion => { :in => TYPES.values }
+    
     parent.send :include, SysVarMethods
   end
 
