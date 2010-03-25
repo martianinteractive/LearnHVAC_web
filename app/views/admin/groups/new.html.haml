@@ -1,3 +1,5 @@
 %h2 New Group
-= render 'form'
+- form_for(@group, :url => admin_groups_path, :method => :post) do |f|
+  = render :partial => 'form', :locals => { :f => f }
+
 = link_to 'Back', admin_groups_path

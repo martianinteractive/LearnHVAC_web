@@ -6,6 +6,7 @@ class Admin::InstitutionsController < Admin::ApplicationController
 
   def show
     @institution = Institution.find(params[:id])
+    @users = @institution.users.paginate :page => params[:page], :per_page => 25
   end
 
   def new

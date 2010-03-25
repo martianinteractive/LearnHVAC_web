@@ -1,9 +1,14 @@
 %h2= @group.name.capitalize
+%p Give the Invitation URL to your students so they can join the group.
 %hr
 
 %p
   %b Code:
   = @group.code
+
+%p
+  %b Invitation URL
+  = membership_register_url(@group.code)
 
 = link_to 'Edit', edit_admin_group_path(@group)
 |

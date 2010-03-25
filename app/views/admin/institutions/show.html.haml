@@ -1,7 +1,32 @@
-%h2= @institution.name
-%p= @institution.description
+%h2= @institution.name.capitalize
+%p= "There are currently #{pluralize(@users.count, 'user')} registered in this institution."
 %hr
+%h3= "#{@institution.name.capitalize}'s users."
+
+%table
+  %tr
+    %th Last Name
+    %th First Name
+    %th Login
+    %th Role
+    %th Email
+
+    - for user in @users
+      %tr
+        %td= user.last_name
+        %td= user.first_name
+        %td= user.login
+        %td= user.role.to_s.capitalize
+        %td= user.email
+        %td= link_to 'Show', admin_user_path(user)
+        %td= link_to 'Edit', edit_admin_user_path(user)
+        %td= link_to 'Destroy', admin_user_path(user), :confirm => 'Are you sure?', :method => :delete
+
+
 %br
+= will_paginate @users
+%br
+
 = link_to 'Edit', edit_admin_institution_path(@institution)
 |
 = link_to 'Back', admin_institutions_path

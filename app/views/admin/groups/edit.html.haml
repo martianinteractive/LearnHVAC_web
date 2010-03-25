@@ -1,5 +1,7 @@
 %h2 Editing Group
-= render 'form'
-= link_to 'Show', @group
+- form_for(@group, :url => admin_group_path(@group), :method => :put) do |f|
+  = render :partial => 'form', :locals => { :f => f }
+
+= link_to 'Show', admin_group_path(@group)
 |
 = link_to 'Back', admin_groups_path
