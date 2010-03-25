@@ -7,11 +7,27 @@ describe Admin::UsersController do
   end 
   
   describe "GET index" do
-    it "assigns all users as @users" do
+    
+    before(:each) do
+      @instructor = user_with_role(:instructor)
+      @student    = user_with_role(:student)
+      @guest      = user_with_role(:guest)
+    end
+    
+    it "should filter by role if requested" do
+      User::ROLES.keys.each do |role|
+        get :index, :role => role
+        response.should render_template(:index)
+        assigns(:users).each { |user| user.role.should == role }
+      end
+    end
+    
+    it "should assigns all users if not role is specified" do
       get :index
       response.should render_template(:index)
       assigns(:users).should_not be_empty
     end
+
   end
   
   describe "GET show" do
