@@ -1,6 +1,4 @@
-class Admin::GroupsController < ApplicationController
-  before_filter :require_admin
-  layout "admin"
+class Admin::GroupsController < Admin::ApplicationController
   
   def index
     @groups = Group.paginate :page => params[:page], :per_page => 25

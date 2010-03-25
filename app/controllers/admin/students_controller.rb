@@ -1,7 +1,5 @@
-class Admin::StudentsController < ApplicationController
-  before_filter :require_admin
+class Admin::StudentsController < Admin::ApplicationController
   before_filter :find_group
-  layout "admin"
   
   def index
     @students = @group.students.paginate :page => params[:page], :per_page => 25

@@ -1,6 +1,4 @@
-class Admin::InstitutionsController < ApplicationController
-  before_filter :require_admin
-  layout "admin"
+class Admin::InstitutionsController < Admin::ApplicationController
   
   def index
     @institutions = Institution.paginate :page => params[:page], :per_page => 25

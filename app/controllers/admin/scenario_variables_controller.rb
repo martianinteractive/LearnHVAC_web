@@ -1,8 +1,6 @@
-class Admin::ScenarioVariablesController < ApplicationController
-  before_filter :require_admin
+class Admin::ScenarioVariablesController < Admin::ApplicationController
   before_filter :find_scenario
   before_filter :find_scenario_variable, :only => [:show, :edit, :update]
-  layout "admin"
   
   def index
     @scenario_variables = @scenario.scenario_variables.paginate :page => params[:page], :per_page => 25

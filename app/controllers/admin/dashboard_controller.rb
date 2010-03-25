@@ -1,6 +1,4 @@
-class Admin::DashboardController < ApplicationController  
-  before_filter :require_admin
-  layout 'admin'
+class Admin::DashboardController < Admin::ApplicationController
   
   def show    
   end

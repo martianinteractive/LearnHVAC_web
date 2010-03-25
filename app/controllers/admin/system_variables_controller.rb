@@ -1,8 +1,6 @@
-class Admin::SystemVariablesController < ApplicationController
-  before_filter :require_admin
+class Admin::SystemVariablesController < Admin::ApplicationController
   before_filter :find_master_scenario
   before_filter :find_system_variable, :only => [:show, :edit, :update]
-  layout "admin"
   
   def index
     @system_variables = @master_scenario.system_variables.paginate :page => params[:page], :per_page => 25

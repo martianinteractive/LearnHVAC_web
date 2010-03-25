@@ -1,6 +1,4 @@
-class Admin::UsersController < ApplicationController
-  before_filter :require_admin
-  layout "admin"
+class Admin::UsersController < Admin::ApplicationController
   
   def index
     @users = User.paginate :page => params[:page], :per_page => 25, :order => "role_code DESC"
