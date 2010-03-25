@@ -3,17 +3,33 @@ require File.dirname(__FILE__) + "/../spec_helper"
 describe Scenario do
   
   before(:each) do
-    @user = user_with_role(:instructor)
-    @scenario = Factory.build(:scenario, :user => @user)
+    @user            = user_with_role(:instructor)
+    @admin           = user_with_role(:admin)
+    @master_scenario = Factory(:master_scenario, :user => @admin)
+    @scenario        = Factory.build(:scenario, :user => @user, :master_scenario => @master_scenario)
+  end
+  
+  context "Validations" do
+    before(:each) { @scenario = Factory.build(:scenario, :name => nil) }
+    
+    it "with invalid attributes" do
+      @scenario.should_not be_valid
+      @scenario.errors[:user].should_not be_empty
+      @scenario.errors[:master_scenario].should_not be_empty
+      @scenario.errors[:name].should_not be_empty
+    end
+    
+    it "with valid attributes" do
+      @scenario = Factory.build(:scenario, :name => "scenario", :user => @user, :master_scenario => @master_scenario)
+      @scenario.should be_valid
+    end
+    
   end
       
   context "Callbacks" do
     context "on create" do
       before(:each) do
-        @admin = user_with_role(:admin)
-        @master_scenario = Factory(:master_scenario, :user => @admin)
         create_system_variables
-        @scenario.master_scenario = @master_scenario
       end
       
       it "should make a copy of the master_scenario.system_variables as scenario_variables" do
