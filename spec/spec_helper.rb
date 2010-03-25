@@ -33,10 +33,17 @@ module AuthlogicTestHelper
  end
  
  def admin_login
-   @admin            = Factory.build(:user, :login => "joedoe", :email => "jdoe@lhvac.com")
-   @admin.role_code  = User::ROLES[:admin]
-   @admin.save
+   @admin = user_with_role(:admin)
    login_as(@admin)
+ end
+ 
+ #Peding, use this method to create user with roles
+ #Improve to support atts.
+ def user_with_role(role, _save=true)
+  user = Factory.build(:user, :login => role.to_s, :email => "#{role.to_s}@#{role.to_s}.com")
+  user.role_code = User::ROLES[role]
+  user.save if _save
+  user
  end
  
  def default_path_for(user)
