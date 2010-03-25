@@ -2,10 +2,10 @@ require File.dirname(__FILE__) + "/../spec_helper"
 
 describe ScenariosController do
   before(:each) do
-    @user     = Factory.build(:user, :login => "joedoe", :email => "jdoe@lhvac.com")
-    @user.role_code = User::ROLES[:instructor]
-    @user.save
-    @scenario = Factory(:scenario, :user => @user) 
+    @admin           = user_with_role(:admin)
+    @user            = user_with_role(:instructor)
+    @master_scenario = Factory(:master_scenario, :user => @admin)
+    @scenario        = Factory(:scenario, :user => @user, :master_scenario => @master_scenario) 
     login_as(@user)
   end
   
@@ -44,16 +44,16 @@ describe ScenariosController do
   describe "POST create" do
     describe "with valid params" do
       it "should change the Scenario count" do
-        proc{ post :create, :scenario => Factory.attributes_for(:scenario, :name => "new scenario") }.should change(Scenario, :count).by(1)
+        proc{ post :create, :scenario => Factory.attributes_for(:scenario, :name => "new scenario", :master_scenario_id => @master_scenario.id) }.should change(Scenario, :count).by(1)
       end
       
       it "should assign the current user as the Scenario user" do
-        post :create, :scenario => Factory.attributes_for(:scenario)
+        post :create, :scenario => Factory.attributes_for(:scenario, :name => "new scenario", :master_scenario_id => @master_scenario.id)
         assigns(:scenario).user.should == @user
       end
   
       it "redirects to the created scenario" do
-        post :create, :scenario => Factory.attributes_for(:scenario)
+        post :create, :scenario => Factory.attributes_for(:scenario, :name => "new scenario", :master_scenario_id => @master_scenario.id)
         response.should redirect_to(scenario_path(assigns(:scenario)))
       end
     end
@@ -64,15 +64,10 @@ describe ScenariosController do
     
   end
   
-  describe "PUT update" do
-    
-    before(:each) do
-      @scenario = Factory(:scenario, :user => @user)
-    end
-    
+  describe "PUT update" do    
     describe "with valid params" do      
       it "updates the requested scenario" do
-        put :update, :id => @scenario.id, :scenario => { :name => "Inst var" }
+        put :update, :id => @scenario.id, :scenario => { :name => "Inst var"}
         @scenario.reload.name.should == "Inst var"
       end
       
@@ -88,11 +83,7 @@ describe ScenariosController do
   end
   
   
-  describe "DELETE destroy" do
-    before(:each) do
-      @scenario = Factory(:scenario, :user => @user)
-    end
-    
+  describe "DELETE destroy" do    
     it "destroys the requested scenario" do
       proc { delete :destroy, :id => @scenario.id }.should change(Scenario, :count).by(-1)
     end

@@ -3,8 +3,10 @@ require File.dirname(__FILE__) + "/../spec_helper"
 describe ScenarioVariablesController do
 
   before(:each) do
-    @user                     = Factory(:user, :login => "joedoe", :email => "jdoe@lhvac.com")
-    @scenario                 = Factory(:scenario, :user => @user)
+    @user                     = user_with_role(:instructor)
+    @admin                    = user_with_role(:admin)
+    @master_scenario          = Factory(:master_scenario, :user => @admin)
+    @scenario                 = Factory(:scenario, :user => @user, :master_scenario => @master_scenario)
     @scenario_variable        = Factory(:scenario_variable, :scenario => @scenario)
     login_as(@user)
   end
