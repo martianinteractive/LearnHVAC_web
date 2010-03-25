@@ -3,6 +3,7 @@ class Students::GroupsController < ApplicationController
   
   def index
     @groups = current_user.groups.paginate :page => params[:page], :per_page => 25
+    @membership = Membership.new(:student => current_user)
   end
   
   def show

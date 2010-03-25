@@ -11,7 +11,7 @@ Learnhvac::Application.routes.draw do |map|
   match 'register/:activation_code' => 'activations#new', :as => 'register'
   match 'activate/:id' => 'activations#create', :as => 'activate'
   match 'students/sign_up' => 'students/accounts#new', :as => 'students_signup'
-  match 'groups/register/:code' => 'memberships#create', :as => 'membership_register'
+  match 'groups/register/(:code)' => 'memberships#create', :as => 'membership_register'
   
   resources :groups do
     resources :students, :only => [:index]

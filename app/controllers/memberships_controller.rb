@@ -9,11 +9,10 @@ class MembershipsController < ApplicationController
       
       if @membership.new_record? and @membership.save
         flash[:notice] = "Registered"
-        redirect_to default_path_for(current_user)
       elsif !@membership.new_record?
         flash[:notice] = "You are already a member of this group."
-        redirect_to students_group_path(@group)
       end
+      redirect_to students_group_path(@group)
     else
       # This is looking through app/views instead of the absolute path.
       render :file => "#{Rails.root}/public/404.html", :layout => false, :status => 404
@@ -25,7 +24,7 @@ class MembershipsController < ApplicationController
   # This method is re-defined here 'cause it's redirecting
   # to students_signup instead of login. 
   def require_student
-    unless logged_as?(:student)
+    unless logged_as?(:student) or logged_as?(:admin)
       flash[:notice] = "You must be logged in to access this page. Signup or login if you are already a member."
       redirect_to students_signup_path(:code => params[:code])
     end

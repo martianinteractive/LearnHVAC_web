@@ -1,6 +1,13 @@
 %h2 Listing groups
 %hr
 
+%p Register a group.
+
+- form_for(@membership, :url => membership_register_path) do |f|
+  = label_tag :code, "Group Code"
+  = text_field_tag :code
+  = f.submit "Register Group"
+
 %table
   %tr
     %th Name

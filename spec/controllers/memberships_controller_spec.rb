@@ -17,7 +17,7 @@ describe MembershipsController do
       
       it "" do
         post :create, :code => @group.code
-        response.should redirect_to(default_path_for(@student))
+        response.should redirect_to(students_group_path(@group))
       end
     end
     
