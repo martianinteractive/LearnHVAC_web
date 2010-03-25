@@ -5,5 +5,5 @@ end
 
 Factory.define :master_scenario do |master_scenario|
   master_scenario.name "master scenario"
-  master_scenario.short_description "master scenario"
+  master_scenario.description "just a master scenario"
 end

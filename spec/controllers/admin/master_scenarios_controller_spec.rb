@@ -3,7 +3,7 @@ require File.dirname(__FILE__) + "/../../spec_helper"
 describe Admin::MasterScenariosController do
   before(:each) do
     admin_login
-    @master_scenario = Factory(:master_scenario)
+    @master_scenario = Factory(:master_scenario, :user => @admin)
   end
   
   describe "GET index" do
@@ -42,6 +42,11 @@ describe Admin::MasterScenariosController do
     describe "with valid params" do
       it "should change the MasterScenario count" do
         proc{ post :create, :master_scenario => Factory.attributes_for(:master_scenario, :name => "new scenario") }.should change(MasterScenario, :count).by(1)
+      end
+      
+      it "should assign the current admin as the master_scenario creator" do
+        post :create, :master_scenario => { :name => "new master scenario" }
+        assigns(:master_scenario).user.should == @admin
       end
       
       it "redirects to the created admin_master_scenario" do

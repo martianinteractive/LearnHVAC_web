@@ -20,6 +20,7 @@ class Admin::MasterScenariosController < ApplicationController
   
   def create
     @master_scenario = MasterScenario.new(params[:master_scenario])
+    @master_scenario.user = current_user
     
     if @master_scenario.save
       redirect_to(admin_master_scenario_path(@master_scenario), :notice => 'Scenario was successfully created.')
