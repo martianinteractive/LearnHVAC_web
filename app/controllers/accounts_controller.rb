@@ -4,6 +4,19 @@ class AccountsController < ApplicationController
     @account = User.new
   end
   
+  def colleges
+    if params[:term]
+      @colleges = College.find(:all, :conditions => [ "LOWER(value) LIKE ?", '%' + params[:term].downcase + '%' ], :order => "value ASC", :limit => 10)
+    end
+    
+    if @colleges.any?
+      render :js => @colleges.map(&:value).to_json
+    else
+      render :nothing => true
+    end
+  end
+  
+  
   # Saving without session maintenance to skip
   # auto-login which can't happen here because
   # the User has not yet been activated
