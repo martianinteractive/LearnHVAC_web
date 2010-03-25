@@ -3,7 +3,7 @@
     :plain
       $(document).ready(function(){
         $(function() {
-          $("#user_institution").autocomplete({
+          $("#user_institution_name").autocomplete({
             source: "/colleges"
           });
         });
@@ -47,10 +47,10 @@
   
   %fieldset
     %p
-      Enter the name of the institution you are a member of.
+      Enter the name of your institution and select the name if available.
     %p
-      = f.label :institution
-      = f.text_field :institution
+      = f.label :institution_name
+      = f.text_field :institution_name
 
 
   = submit_tag "Create", :class=>'submitButton'
