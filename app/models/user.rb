@@ -35,6 +35,14 @@ class User < ActiveRecord::Base
     _role.to_sym == role
   end
   
+  def institution_name
+    self.institution.name if self.institution
+  end
+  
+  def institution_name=(name)
+    self.institution = Institution.find_or_create_by_name(name)
+  end
+  
   def deliver_password_reset_instructions!  
     reset_perishable_token!  
     Notifier.password_reset_instructions(self).deliver
