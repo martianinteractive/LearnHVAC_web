@@ -1,75 +1,11 @@
 = f.error_messages
 .field
-  = f.label :scenario_id
-  %br
-  = f.text_field :scenario_id
-.field
   = f.label :name
   %br
   = f.text_field :name
 .field
-  = f.label :movie_url
-  %br
-  = f.text_field :movie_url
-.field
-  = f.label :thumbnail_url
-  %br
-  = f.text_field :thumbnail_url
-.field
-  = f.label :level
-  %br
-  = f.text_field :level
-.field
-  = f.label :inputs_visible
-  %br
-  = f.check_box :inputs_visible
-.field
-  = f.label :inputs_enabled
-  %br
-  = f.check_box :inputs_enabled
-.field
-  = f.label :faults_visible
-  %br
-  = f.check_box :faults_visible
-.field
-  = f.label :faults_enabled
-  %br
-  = f.check_box :faults_enabled
-.field
-  = f.label :longterm_start_date
-  %br
-  = f.date_select :longterm_start_date
-.field
-  = f.label :longterm_stop_date
-  %br
-  = f.date_select :longterm_stop_date
-.field
-  = f.label :allow_longterm_date_change
-  %br
-  = f.check_box :allow_longterm_date_change
-.field
-  = f.label :realtime_start_datetime
-  %br
-  = f.datetime_select :realtime_start_datetime
-.field
-  = f.label :allow_realtime_datetime_change
-  %br
-  = f.check_box :allow_realtime_datetime_change
-.field
-  = f.label :valve_info_enabled
-  %br
-  = f.check_box :valve_info_enabled
-.field
-  = f.label :short_description
-  %br
-  = f.text_field :short_description
-.field
   = f.label :description
   %br
   = f.text_area :description
-.field
-  = f.label :goal
-  %br
-  = f.text_area :goal
 .actions
   = f.submit

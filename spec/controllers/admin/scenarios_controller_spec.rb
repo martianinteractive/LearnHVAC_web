@@ -2,9 +2,10 @@ require File.dirname(__FILE__) + "/../../spec_helper"
 
 describe Admin::ScenariosController do
   before(:each) do
-    admin_login
-    @instructor = Factory(:user, :first_name => "instructor")
-    @scenario   = Factory(:scenario, :user => @instructor)
+    admin_login #makes @admin available
+    @instructor      = Factory(:user, :first_name => "instructor")
+    @master_scenario = Factory(:master_scenario, :user => @admin)
+    @scenario        = Factory(:scenario, :user => @instructor, :master_scenario => @master_scenario)
   end
   
   describe "GET index" do
@@ -42,16 +43,18 @@ describe Admin::ScenariosController do
   describe "POST create" do
     describe "with valid params" do
       it "should change the Scenario count" do
-        proc{ post :create, :scenario => Factory.attributes_for(:scenario, :name => "new scenario", :user_id => @instructor.id) }.should change(Scenario, :count).by(1)
+        proc { 
+          post :create, :scenario => Factory.attributes_for(:scenario, :name => "new scenario", :user_id => @instructor.id, :master_scenario_id => @master_scenario.id) 
+        }.should change(Scenario, :count).by(1)
       end
       
       it "should assign the selected user as the Scenario user" do
-        post :create, :scenario => Factory.attributes_for(:scenario, :name => "new scenario", :user_id => @instructor.id)
+        post :create, :scenario => Factory.attributes_for(:scenario, :name => "new scenario", :user_id => @instructor.id, :master_scenario_id => @master_scenario.id)
         assigns(:scenario).user.should == @instructor
       end
   
       it "redirects to the created admin_scenario" do
-        post :create, :scenario => Factory.attributes_for(:scenario, :name => "new scenario", :user_id => @instructor.id)
+        post :create, :scenario => Factory.attributes_for(:scenario, :name => "new scenario", :user_id => @instructor.id, :master_scenario_id => @master_scenario.id)
         response.should redirect_to(admin_scenario_path(assigns(:scenario)))
       end
     end
