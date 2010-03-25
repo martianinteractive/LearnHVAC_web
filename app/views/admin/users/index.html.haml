@@ -1,4 +1,4 @@
-%h2 Manage users
+%h2= "Manage #{session[:role].try(:capitalize) || 'User'}s"
 %hr
 
 %table
