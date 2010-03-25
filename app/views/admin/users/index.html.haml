@@ -18,7 +18,6 @@
         %td= user.login
         %td= user.role.to_s.capitalize
         %td= user.email
-        %td= link_to('Variables', admin_user_instructor_variables_path(user)) if user.has_role?(:instructor) or user.has_role?(:admin)
         %td= link_to 'Show', admin_user_path(user)
         %td= link_to 'Edit', edit_admin_user_path(user)
         %td= link_to 'Destroy', admin_user_path(user), :confirm => 'Are you sure?', :method => :delete

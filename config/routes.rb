@@ -42,9 +42,7 @@ Learnhvac::Application.routes.draw do |map|
       resources :students, :only => [:index]
     end
     
-    resources :users do
-      resources :instructor_variables
-    end
+    resources :users
     
     resources :scenarios do
       resources :scenario_variables
