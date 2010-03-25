@@ -3,9 +3,8 @@
     :plain
       $(document).ready(function(){
         $(function() {
-        var availableTags = ["c++", "java", "php", "coldfusion", "javascript", "asp", "ruby", "python", "c", "scala", "groovy", "haskell", "perl"];
           $("#user_institution").autocomplete({
-            source: availableTags
+            source: "/colleges"
           });
         });
       });
