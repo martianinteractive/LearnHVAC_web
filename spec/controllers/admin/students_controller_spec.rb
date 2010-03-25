@@ -3,7 +3,7 @@ require File.dirname(__FILE__) + "/../../spec_helper"
 describe Admin::StudentsController do
   before(:each) do
     admin_login
-    @student      = Factory(:user, :first_name => "student", :email => "student@mi.com", :login => "student")
+    @student      = user_with_role(:student)
     @group        = Factory(:group, :name => "Class 01", :instructor => @admin)
     @membership   = Factory(:membership, :group => @group, :student => @student)
   end

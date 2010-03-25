@@ -3,7 +3,7 @@ require File.dirname(__FILE__) + "/../spec_helper"
 describe GroupsController do
   before(:each) do
     @instructor = Factory(:user)
-    @group = Factory(:group, :name => "Class 01", :instructor => @instructor)
+    @group      = Factory(:group, :name => "Class 01", :instructor => @instructor)
     login_as(@instructor)
   end
   
