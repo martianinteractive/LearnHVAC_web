@@ -1,8 +1,8 @@
 class Admin::UsersController < Admin::ApplicationController
+  before_filter :set_role, :only => :index
   
   def index
-    @role = params[:role] if params[:role] and User::ROLES.keys.include?(params[:role].to_sym)
-    @users = User.send(@role || :all).paginate :page => params[:page], :per_page => 25, :order => "role_code DESC"
+    @users = User.send(session[:role] || :all).paginate :page => params[:page], :per_page => 25, :order => "role_code DESC"
   end
 
   def show
@@ -22,7 +22,7 @@ class Admin::UsersController < Admin::ApplicationController
     @user.role_code = params[:user][:role_code]
 
     if @user.save
-      redirect_to(admin_user(@user), :notice => 'User was successfully created.')
+      redirect_to(admin_user_path(@user), :notice => 'User was successfully created.')
     else
       render :action => "new"
     end
@@ -33,7 +33,7 @@ class Admin::UsersController < Admin::ApplicationController
     @user.role_code = params[:user][:role_code]
     
     if @user.update_attributes(params[:user])
-      redirect_to(admin_user(@user), :notice => 'User was successfully updated.')
+      redirect_to(admin_user_path(@user), :notice => 'User was successfully updated.')
     else
       render :action => "edit"
     end
@@ -43,6 +43,17 @@ class Admin::UsersController < Admin::ApplicationController
     @user = User.find(params[:id])
     @user.destroy
 
-    redirect_to(admin_users_url)
+    redirect_to(admin_users_url(:role => session[:role]))
   end
+  
+  private
+  
+  def set_role
+    if params[:role] and User::ROLES.keys.include?(params[:role].to_sym)
+      session[:role] = params[:role]
+    else
+      session[:role] = nil
+    end
+  end
+  
 end
