@@ -2,6 +2,9 @@ namespace :bootstrap do
   require 'active_record'
   require 'active_record/fixtures'
   
+  desc "load all"
+  task :all => ["bootstrap:institutions", "bootstrap:users", "bootstrap:colleges"]
+  
   desc "load default institutions"
   task :institutions => :environment do
     Fixtures.create_fixtures('db/bootstrap', 'institutions')
