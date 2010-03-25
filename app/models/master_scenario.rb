@@ -6,5 +6,6 @@ class MasterScenario
   field :description
 
   has_many :system_variables
+  has_many_related :scenarios
   belongs_to_related :user
 end
