@@ -9,13 +9,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100323144050) do
+ActiveRecord::Schema.define(:version => 20100325212707) do
 
   create_table "colleges", :force => true do |t|
     t.string   "value"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "colleges", ["value"], :name => "index_colleges_on_value"
 
   create_table "groups", :force => true do |t|
     t.string   "name"
