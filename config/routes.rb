@@ -36,6 +36,10 @@ Learnhvac::Application.routes.draw do |map|
     
     resources :master_scenarios do
       resources :system_variables
+      
+      member do
+        post :clone
+      end
     end
     
     resources :groups do
@@ -51,6 +55,7 @@ Learnhvac::Application.routes.draw do |map|
     resources :scenarios do
       resources :scenario_variables
     end
+    
   end
 
   root :to => 'scenarios#index'

@@ -1,5 +1,4 @@
-class Admin::MasterScenariosController < Admin::ApplicationController
-  
+class Admin::MasterScenariosController < Admin::ApplicationController  
   def index
     @master_scenarios = MasterScenario.all.to_a.paginate :page => params[:page], :per_page => 25
   end
@@ -14,6 +13,13 @@ class Admin::MasterScenariosController < Admin::ApplicationController
 
   def edit
     @master_scenario = MasterScenario.find(params[:id])
+  end
+  
+  def clone
+    @master_scenario = MasterScenario.find(params[:id])
+    clon = @master_scenario.clone!
+    notice = clon.valid? ? "Master Scenario was successfully cloned" : "There were problems cloning the Master Scenario"
+    redirect_to(admin_master_scenarios_path, :notice => notice)
   end
   
   def create
