@@ -22,9 +22,13 @@
         %li.username
           = current_user.name
         %li
+          = link_to "Instructor Site", "/"
+        %li
           = link_to "Change Password", '/'
         %li
           = link_to "Log-out", logout_path
+    .border
+      &nbsp;
     .main
       .dl10.navigation
         %h3 General

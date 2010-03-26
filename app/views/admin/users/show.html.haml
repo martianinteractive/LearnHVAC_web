@@ -18,7 +18,7 @@
 %p
   %b
     Institution:
-  = link_to @user.institution.name, admin_institution_path(@user.institution)
+  = link_to @user.institution.name, admin_institution_path(@user.institution) if @user.institution
 %p
   %b
     First Name:

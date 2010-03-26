@@ -17,33 +17,32 @@
   %body.bp.instructor_site
     .header
       %h1.siteTitle
-        Administration
-      %ul.global_nav
-        %li.username
-          = current_user.name
-        %li
-          = link_to "Change Password", '/'
-        %li
-          = link_to "Log-out", logout_path
+        %span
+        = link_to "Instructor Site", "/"
+      - if logged_in?
+        %ul.global_nav
+          %li.username
+            = current_user.name
+          - if current_user.has_role?(:admin)
+            %li
+              = link_to 'Admin Site', admin_dashboard_path
+          %li
+            = link_to "Change Password", '/'
+          %li
+            = link_to "Log-out", logout_path
+    .border
+      &nbsp; 
     .main
       .dl10.navigation
-        %h3 General
-        %ul
-          %li
-            = link_to "Dasboard", admin_dashboard_path
-        %h3 System
-        %ul
-          %li
-            = link_to "Master Scenarios", admin_master_scenarios_path
-            = link_to "Instructor Scenarios", admin_scenarios_path
-        %h3 Users
-        %ul
-          %li
-            = link_to "Admins", admin_users_path(:role => :admin)
-            = link_to "Instructors", admin_users_path(:role => :instructor)
-            = link_to "Students", admin_users_path(:role => :student)
-            = link_to "Institutions", admin_institutions_path
-            = link_to "Groups", admin_groups_path
+        - if logged_in?
+          %h3 System
+          %ul
+            %li
+              = link_to "Scenarios", scenarios_path
+          %h3 Users/Groups
+          %ul
+            %li
+              = link_to "Groups", groups_path
 
       .fluid
         .content

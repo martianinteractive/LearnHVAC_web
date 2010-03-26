@@ -1,13 +1,19 @@
 %h2= @group.name.capitalize
-%p= link_to 'Students', group_students_path(group)
-%p= link_to 'Show', group
-%p= link_to 'Edit', edit_group_path(group)
-%p= link_to 'Destroy', group, :confirm => 'Are you sure?', :method => :delete
+%p 
+  = link_to 'Students', group_students_path(@group)
+  &nbsp;|&nbsp;
+  = link_to 'Edit', edit_group_path(@group)
+  &nbsp;|&nbsp;
+  = link_to 'Delete', @group, :confirm => 'Are you sure?', :method => :delete
+  &nbsp;|&nbsp;
+  = link_to 'Back', groups_path
+
+%hr
 
 %p
   %b Code:
   = @group.code
-
-= link_to 'Edit', edit_group_path(@group)
-|
-= link_to 'Back', groups_path
+  
+%p
+  %b Registration url:
+  = link_to membership_register_url(@group.code), membership_register_url(@group.code) 

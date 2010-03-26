@@ -1,4 +1,8 @@
 %h2 Your Scenarios
+
+%p
+  = link_to 'New scenario', new_scenario_path
+
 %hr
 
 %table
@@ -17,5 +21,4 @@
       %td= link_to 'Destroy', scenario, :confirm => 'Are you sure?', :method => :delete
 %br
 = will_paginate @scenarios
-%br
-= link_to 'New scenario', new_scenario_path
+
