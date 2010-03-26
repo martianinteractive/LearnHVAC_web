@@ -1,16 +1,16 @@
 %h2 Listing institutions
+%p
+  = link_to 'New institution', new_admin_institution_path
+
 %hr
 %table
   %tr
     %th Name
-    %th Description
-    %th User count
+    %th Users
   - @institutions.each do |institution|
     %tr
       %td= link_to institution.name, admin_institution_path(institution)
-      %td= institution.description
       %td= institution.users.count
 %br
 = will_paginate @institutions
-%br
-= link_to 'New institution', new_admin_institution_path
+
