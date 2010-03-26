@@ -1,5 +1,10 @@
 %h2= @group.name.capitalize
-%p Give the Invitation URL to your students so they can join the group.
+%p
+  = link_to 'Edit Group', edit_admin_group_path(@group)
+  &nbsp;|&nbsp;
+  = link_to 'Delete Group', admin_group_path(@group), :confirm => 'Are you sure?', :method => :delete
+  &nbsp;|&nbsp;
+  = link_to 'Back', admin_groups_path
 %hr
 
 %p
@@ -7,9 +12,18 @@
   = @group.code
 
 %p
+  %b Lead by:
+  = @group.instructor.name
+
+%p
   %b Invitation URL:
   = membership_register_url(@group.code)
 
-= link_to 'Edit', edit_admin_group_path(@group)
-|
-= link_to 'Back', admin_groups_path
+- if @group.students.size.zero?
+  %b There are no students registered under this group.
+- else
+  %b members:
+  %ul
+    - @group.students.each do |student|
+      %li
+        = link_to student.name, admin_user_path(student)

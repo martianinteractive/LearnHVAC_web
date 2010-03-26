@@ -36,6 +36,8 @@ ActiveRecord::Schema.define(:version => 20100325212707) do
     t.datetime "updated_at"
   end
 
+  add_index "institutions", ["name"], :name => "index_institutions_on_name"
+
   create_table "memberships", :force => true do |t|
     t.integer  "student_id"
     t.integer  "group_id"

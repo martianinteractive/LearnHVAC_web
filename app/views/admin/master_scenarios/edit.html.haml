@@ -1,8 +1,10 @@
 %h2= "Editing #{@master_scenario.name}"
 
+%p 
+  = link_to 'Back', admin_master_scenarios_path
+
+%hr
+
 - form_for(@master_scenario, :url => admin_master_scenario_path(@master_scenario), :method => :put) do |f|
   = render :partial => 'form', :locals => { :f => f }
 
-= link_to 'Show', admin_master_scenario_path(@master_scenario)
-|
-= link_to 'Back', admin_master_scenarios_path
