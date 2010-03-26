@@ -1,0 +1,18 @@
+winter_day_chicago:
+  _id : "1"
+  name: Winter Day in Chicago - Modelic Model
+  description: This is a basic scenario for checking how the system responds to winter heating conditions.
+  user_id: "1"
+  
+summer_day_in_phoenix:
+  _id: "2"
+  name: "Summer Day in Phoenix - Modelic Model"
+  description: "This is a basic scenario for checking how the system responds to summer coolingconditions."
+  user_id: "2"
+  
+spring_day_in_dc:
+  _id: "3"
+  name: "Spring Day in DC - Modelic Model"
+  description: "This is a basic scenario for checking how the system responds to springtime temperate conditions."
+  user_id: "3"
+  

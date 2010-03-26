@@ -19,4 +19,14 @@ namespace :bootstrap do
   task :colleges => :environment do
     Fixtures.create_fixtures('db/bootstrap', 'colleges')
   end
+  
+  desc "load default master scenarios"
+  task :master_scenarios => :environment do
+    MasterScenario.delete_all
+    File.open(File.join(Rails.root, 'db/bootstrap/master_scenarios.yml'), 'r') do |f|
+      @master_scenarios = YAML.load(f)
+    end
+    @master_scenarios.values.each { |ms_atts| MasterScenario.create(ms_atts) }
+  end
+  
 end

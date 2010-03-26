@@ -2,6 +2,7 @@
 # All default users belongs_to "Administration" (Institution)
 # All default users are Administrators.
 joseph:
+  id: 1
   first_name: Joseph
   last_name: Deringer
   login: jjderinger
@@ -14,6 +15,7 @@ joseph:
   institution_id: 1
 
 daniel:
+  id: 2
   first_name: Daniel
   last_name: McQuillen 
   login: daniel.mcquillen
@@ -26,6 +28,7 @@ daniel:
   institution_id: 1
   
 sergio:
+  id: 3
   first_name: Sergio
   last_name: Bayona 
   login: sbayona
@@ -38,6 +41,7 @@ sergio:
   institution_id: 1
   
 juan:
+  id: 4
   first_name: Juan
   last_name: Pemberthy 
   login: jpemberthy
