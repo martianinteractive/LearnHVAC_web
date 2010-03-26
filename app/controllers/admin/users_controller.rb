@@ -1,8 +1,14 @@
 class Admin::UsersController < Admin::ApplicationController
-  before_filter :set_role, :only => :index
+  before_filter :set_role, :only => [:index, :search]
   
   def index
     @users = User.send(session[:role] || :all).paginate :page => params[:page], :per_page => 25, :order => "role_code DESC"
+  end
+  
+  def search
+    collection = session[:role] ? User.send(params[:role]) : User
+    @users = collection.search(params[:q]).paginate :page => params[:page], :order => "role_code DESC"
+    render :action => "index"
   end
 
   def show
