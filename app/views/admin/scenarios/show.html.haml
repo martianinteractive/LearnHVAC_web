@@ -1,11 +1,38 @@
 %h2= @scenario.name
-%p= @scenario.description
+
+%p
+  = link_to "Scenario Variables", admin_scenario_scenario_variables_path(@scenario)
+  &nbsp;|&nbsp;
+  = link_to 'Edit', edit_admin_scenario_path(@scenario)
+  &nbsp;|&nbsp;
+  = link_to 'Delete', admin_scenario_path(@scenario), :confirm => 'Are you sure?', :method => :delete
+  &nbsp;|&nbsp;
+  = link_to 'Back', admin_scenarios_path
+
 %hr
 
 %p
   %b
-    Scenario:
-  = @scenario.scenario_id
+    Author:
+  = @scenario.user.name
+
+%p
+  %b
+    Created on:
+  = @scenario.created_at.to_formatted_s(:long) if @scenario.created_at
+
+%hr
+
+%p
+  %b
+    Scenario name:
+  = @scenario.name
+
+%p
+  %b
+    Description:
+  = @scenario.description
+
 %p
   %b
     Movie url:

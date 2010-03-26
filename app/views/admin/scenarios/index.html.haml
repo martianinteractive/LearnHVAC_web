@@ -1,25 +1,17 @@
 %h2 Listing scenarios
-%p Manage scenarios
 %hr
 
 %table
   %tr
-    %th ID
     %th Name
-    %th Description
     %th Instructor
+    %th Created on
   - @scenarios.each do |scenario|
     %tr
-      %td= scenario.scenario_id
-      %td= scenario.name
-      %td= scenario.description
+      %td= link_to scenario.name, admin_scenario_path(scenario)
       %td= link_to scenario.user.name, user_path(scenario.user)
-      %td= link_to "Scenario Variables", admin_scenario_scenario_variables_path(scenario)
-      %td= link_to 'Show', admin_scenario_path(scenario)
-      %td= link_to 'Edit', edit_admin_scenario_path(scenario)
-      %td= link_to 'Destroy', admin_scenario_path(scenario), :confirm => 'Are you sure?', :method => :delete
+      %td= scenario.created_at.to_formatted_s(:long) if scenario.created_at
 
 %br
 = will_paginate @scenarios
-%br
-= link_to 'New scenario', new_admin_scenario_path
+
