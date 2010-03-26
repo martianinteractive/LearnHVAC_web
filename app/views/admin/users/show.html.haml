@@ -17,6 +17,10 @@
   = @user.role
 %p
   %b
+    Institution:
+  = link_to @user.institution.name, admin_institution_path(@user.institution)
+%p
+  %b
     First Name:
   = @user.first_name
 %p

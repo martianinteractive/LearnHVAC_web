@@ -5,17 +5,11 @@
     %th Name
     %th Description
     %th User count
-    %th
-    %th
-    %th
   - @institutions.each do |institution|
     %tr
-      %td= institution.name
+      %td= link_to institution.name, admin_institution_path(institution)
       %td= institution.description
       %td= institution.users.count
-      %td= link_to 'Show', admin_institution_path(institution)
-      %td= link_to 'Edit', edit_admin_institution_path(institution)
-      %td= link_to 'Destroy', admin_institution_path(institution), :confirm => 'Are you sure?', :method => :delete
 %br
 = will_paginate @institutions
 %br

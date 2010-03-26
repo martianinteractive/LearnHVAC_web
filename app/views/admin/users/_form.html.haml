@@ -1,33 +1,32 @@
 = error_messages_for 'user'
 %p
   = f.label :login
-  %br
   = f.text_field :login
+
 %p
   = f.label :first_name, "First Name"
-  %br
   = f.text_field :first_name
+
 %p
   = f.label :last_name, "Last Name"
-  %br
   = f.text_field :last_name
+
 %p
   = f.label :email
-  %br
   = f.text_field :email
+
 %p
   = f.label :password
-  %br
   = f.password_field :password, :size=>20,  :value=>""
+
 %p
   = f.label :password_confirmation, "Password Confirmation"	
-  %br
   = f.password_field :password_confirmation, :size=>20,  :value=>""
+
 %p
-  Role:
-  %br
+  = f.label :role
   = f.select(:role_code, User::ROLES.keys.collect{|k| [k.to_s.capitalize, User::ROLES[k]]})
+
 %p
-  Institution:
-  %br
+  = f.label :institution_id
   = f.collection_select(:institution_id, Institution.all, :id, :name)
