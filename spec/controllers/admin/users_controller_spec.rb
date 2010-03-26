@@ -8,11 +8,7 @@ describe Admin::UsersController do
   
   describe "GET index" do
     
-    before(:each) do
-      @instructor = user_with_role(:instructor)
-      @student    = user_with_role(:student)
-      @guest      = user_with_role(:guest)
-    end
+    before{ create_users }
     
     it "should filter by role if requested" do
       User::ROLES.keys.each do |role|
@@ -30,12 +26,24 @@ describe Admin::UsersController do
 
   end
   
+  describe "POST search" do
+    
+    before { create_users }
+    
+    it "should find users based on the given parameter" do
+      post :search, :q => "adm"
+      response.should render_template(:index)
+      assigns(:users).should_not be_empty
+    end
+    
+  end
+  
   describe "GET show" do
     it "assigns the requested user as @user" do
-      User.expects(:find).with("37").returns(mock_user)
-      get :show, :id => "37"
+      create_users
+      get :show, :id => @admin.id
       response.should render_template(:show)
-      assigns(:user).should be(mock_user)
+      assigns(:user).should eq(@admin)
     end
   end
   
@@ -145,6 +153,14 @@ describe Admin::UsersController do
   
   def mock_user(attrs = {})
     @mock_user ||= Factory(:user, attrs)
-  end 
+  end
+  
+  def create_users
+    institution = Factory(:institution)
+    @admin.update_attributes(:institution_id => institution.id)
+    @instructor = user_with_role(:instructor, :institution => institution)
+    @student    = user_with_role(:student, :institution => institution)
+    @guest      = user_with_role(:guest, :institution => institution)
+  end
 
 end
