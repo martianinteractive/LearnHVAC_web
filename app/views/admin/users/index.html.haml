@@ -1,6 +1,12 @@
 %h2= "Manage #{session[:role].try(:capitalize) || 'User'}s"
 %p= link_to 'New User', new_admin_user_path
 %hr
+- form_tag(search_admin_users_path(:role => session[:role]), :class => "search") do
+  %p
+    = label_tag :q, "Find #{session[:role].try(:capitalize) || 'User'}"
+    = text_field_tag :q, params[:q]
+    = submit_tag "Search!"
+
 
 %table
   %tr
