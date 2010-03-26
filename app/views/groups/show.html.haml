@@ -1,8 +1,8 @@
 %h2= @group.name.capitalize
-%p= link_to 'Students', group_students_path(group)
-%p= link_to 'Show', group
-%p= link_to 'Edit', edit_group_path(group)
-%p= link_to 'Destroy', group, :confirm => 'Are you sure?', :method => :delete
+%p= link_to 'Students', group_students_path(@group)
+%p= link_to 'Show', @group
+%p= link_to 'Edit', edit_group_path(@group)
+%p= link_to 'Destroy', @group, :confirm => 'Are you sure?', :method => :delete
 
 %p
   %b Code:
