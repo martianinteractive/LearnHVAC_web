@@ -1,3 +1,5 @@
+require 'search'
+
 class User < ActiveRecord::Base
   include ManyDocuments
   ROLES = { :guest => 0, :student => 1, :instructor => 2, :admin => 3 }
