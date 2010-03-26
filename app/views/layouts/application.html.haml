@@ -5,48 +5,47 @@
     %meta{ "http-equiv" => "Content-type", :content => "text/html; charset=utf-8" }
     = csrf_meta_tag
     %title
-      = yield :title
       Learn HVAC Administration
-    = stylesheet_link_tag "screen.css"
+    = stylesheet_link_tag "admin.css"
     = stylesheet_link_tag "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/themes/base/jquery-ui.css"
     = stylesheet_link_tag "print.css", :media => "print"
     = javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"
     = javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"
     = javascript_include_tag 'rails', 'application'
+
     = yield :head
-    /[if IE]
-      = stylesheet_link_tag 'ie.css'
   %body.bp
     .header
-      .content
-        %h1.siteTitle
-          = link_to image_tag('logo.png'), root_path
-        %ul.global_nav
-          - if logged_in?
-            %li.username
-              Welcome #{current_user.name}
-            %li
-              = link_to 'Log-out', logout_path, :method => :delete
-            - if current_user.has_role?(:admin)
-              %li
-                = link_to 'Admin', admin_dashboard_path
-          - else
-            %li
-              = link_to 'Signup', sign_up_path
-    .shadow
-      .subnav
-        - if logged_in?
-          = yield :subnav
-      .main
-        = display_flash
-        = yield
-        .clear
-    .footer
-      .content
-        %ul.nav
+      %h1.siteTitle
+        Administration
+      %ul.global_nav
+        %li.username
+          = current_user.name
+        %li
+          = link_to "Change Password", '/'
+        %li
+          = link_to "Log-out", logout_path
+    .main
+      .dl10.navigation
+        %h3 General
+        %ul
           %li
-            = link_to 'Contact Us', '/contact_messages/new', :rel => "nofollow"
+            = link_to "Dasboard", admin_dashboard_path
+        %h3 System
+        %ul
           %li
-            = link_to 'Terms', '/pages/terms-of-use', :rel => "nofollow"
-        %p.attribution
-          Copyright
+            = link_to "Master Scenarios", admin_master_scenarios_path
+            = link_to "Instructor Scenarios", admin_scenarios_path
+        %h3 Users
+        %ul
+          %li
+            = link_to "Admins", admin_users_path(:role => :admin)
+            = link_to "Instructors", admin_users_path(:role => :instructor)
+            = link_to "Students", admin_users_path(:role => :student)
+            = link_to "Institutions", admin_institutions_path
+            = link_to "Groups", admin_groups_path
+
+      .fluid
+        .content
+          = display_flash
+          = yield
