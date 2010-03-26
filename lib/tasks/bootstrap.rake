@@ -29,4 +29,18 @@ namespace :bootstrap do
     @master_scenarios.values.each { |ms_atts| MasterScenario.create(ms_atts) }
   end
   
+  desc "load default system variables for master scenarios"
+  task :system_variables => :environment do
+    File.open(File.join(Rails.root, 'db/bootstrap/system_variables.yml'), 'r') do |f|
+      @system_variables = YAML.load(f)
+    end
+    MasterScenario.all.each do |ms| 
+      @system_variables.values.each do |sv|
+        sv["type_code"] = SystemVariable::TYPES[sv["io_type"].downcase.to_sym] if sv["io_type"]
+        sv.delete("io_type")
+        ms.system_variables.create(sv)
+      end
+    end
+  end
+  
 end
