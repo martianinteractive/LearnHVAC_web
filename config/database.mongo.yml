@@ -1,5 +1,13 @@
 defaults: &defaults
   host: localhost
+  
+development:
+  <<: *defaults
+  database: lhvac_development
+
+test:
+  <<: *defaults
+  database: lhvac_test
 
 production:
   <<: *defaults
