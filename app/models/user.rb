@@ -23,7 +23,7 @@ class User < ActiveRecord::Base
   has_many_documents :master_scenarios
     
   attr_accessor :group_code, :require_group_code
-  attr_protected :active, :role_code
+  attr_protected :active, :role_code, :enabled
   
   validates :first_name, :last_name, :presence => true, :length => { :maximum => 200 }, :format => { :with => /^\w+$/i }
   validate :group_presence,  :on => :create, :if => :require_group_code

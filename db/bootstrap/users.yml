@@ -7,6 +7,7 @@ joseph:
   last_name: Deringer
   login: jjderinger
   email: jjderinger@lbl.gov
+  enabled: true
   password_salt: 6_BCHsGsNvzCACSvL1EF
   crypted_password: de09a2edb7ae7936ca80d64c2857093e80e5521553bd486ee0e66376276aee735a8909b9dcfc9b90280613697c1859db8068188aa6bec0966f1d9d1e13a23382 
   persistence_token: da9e4d10c4ca18c27b12434daa4224c3eb0ba4b5f3d30c4c6df6507b6c5692cd11b6184508d3f91a78a50aad1f7c3e01afa5e5445275922bbc279ab0388a8721
@@ -20,6 +21,7 @@ daniel:
   last_name: McQuillen 
   login: daniel.mcquillen
   email: daniel.mcquillen@gmail.com
+  enabled: true
   password_salt: 6_BCHsGsNvzCACSvL1EF
   crypted_password: de09a2edb7ae7936ca80d64c2857093e80e5521553bd486ee0e66376276aee735a8909b9dcfc9b90280613697c1859db8068188aa6bec0966f1d9d1e13a23382 
   persistence_token: da9e4d10c4ca18c27b12434daa4224c3eb0ba4b5f3d30c4c6df6507b6c5692cd11b6184508d3f91a78a50aad1f7c3e01afa5e5445275922bbc279ab0388a8721
@@ -33,6 +35,7 @@ sergio:
   last_name: Bayona 
   login: sbayona
   email: sbayona@martianinteractive.com
+  enabled: true
   password_salt: P7suzIavXn8CUL6Vqg-X
   crypted_password: 07f840a3815be1775be9dc5059bc544e8c3bd16abd9294c531dfcfc80923e84166e364baf2c0b75c0be58611fa4ea3898fa36bbd5880d769f5304bb3afc68213 
   persistence_token: e9f892b8283c562729301116647da494dd88a2ab2e810424dfcc57c369b713e1f19c1c47a0c5d245c921aa633829cfa1d596f84cf9843e58426946c49be0df9f
@@ -46,6 +49,7 @@ juan:
   last_name: Pemberthy 
   login: jpemberthy
   email: jpemberthy@martianinteractive.com
+  enabled: true
   password_salt: 6_BCHsGsNvzCACSvL1EF
   crypted_password: de09a2edb7ae7936ca80d64c2857093e80e5521553bd486ee0e66376276aee735a8909b9dcfc9b90280613697c1859db8068188aa6bec0966f1d9d1e13a23382 
   persistence_token: da9e4d10c4ca18c27b12434daa4224c3eb0ba4b5f3d30c4c6df6507b6c5692cd11b6184508d3f91a78a50aad1f7c3e01afa5e5445275922bbc279ab0388a8721

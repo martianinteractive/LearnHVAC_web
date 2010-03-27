@@ -22,10 +22,11 @@ class Admin::UsersController < Admin::ApplicationController
   def edit
     @user = User.find(params[:id])
   end
-
+  
   def create
     @user = User.new(params[:user])
     @user.role_code = params[:user][:role_code]
+    @user.enabled = params[:user][:enabled]
 
     if @user.save
       redirect_to(admin_user_path(@user), :notice => 'User was successfully created.')
@@ -37,6 +38,7 @@ class Admin::UsersController < Admin::ApplicationController
   def update
     @user = User.find(params[:id])
     @user.role_code = params[:user][:role_code]
+    @user.enabled = params[:user][:enabled]
     
     if @user.update_attributes(params[:user])
       redirect_to(admin_user_path(@user), :notice => 'User was successfully updated.')

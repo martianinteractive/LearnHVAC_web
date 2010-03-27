@@ -30,3 +30,7 @@
 %p
   = f.label :institution_id
   = f.collection_select(:institution_id, Institution.all, :id, :name)
+
+%p
+  = f.label :enabled
+  = f.check_box :enabled
