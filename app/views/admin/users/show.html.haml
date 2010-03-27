@@ -33,5 +33,10 @@
   = @user.email
 %p
   %b
+    Status:
+  = @user.enabled? ? "Enabled" : "Disabled"
+
+%p
+  %b
     Created on:
   = @user.created_at.to_formatted_s(:long)
