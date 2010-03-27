@@ -32,8 +32,8 @@ end
 namespace :bundler do
   desc "Run bundler, installing gems"
   task :install do
-    run("cd #{release_path} && /usr/local/bin/bundle install --without=development test")
+    run("cd #{release_path} && /usr/local/bin/bundle install")
   end
 end
 
-# after "deploy:update_code", "bundler:install"
+after "deploy:update_code", "bundler:install"
