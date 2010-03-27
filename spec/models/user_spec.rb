@@ -32,9 +32,17 @@ describe User do
   
   it "should be valid if group_code is required and code is valid" do
     group = Factory(:group, :instructor => user_with_role(:instructor))
-    @user.group_code = group.code
+    @user = user_with_role(:student, 1, { :group_code => group.code })
     @user.require_group_code!
     @user.should be_valid
+  end
+  
+  it "should register an student as a member of the group's instructor institution" do
+    group = Factory(:group, :instructor => user_with_role(:instructor, 1, { :institution => Factory(:institution) }))
+    @user = user_with_role(:student, 1, { :group_code => group.code })
+    @user.should be_valid
+    @user.save
+    @user.reload.institution.should == group.instructor.institution
   end
   
   context "Roles" do

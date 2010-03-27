@@ -28,6 +28,8 @@ class User < ActiveRecord::Base
   validates :first_name, :last_name, :presence => true, :length => { :maximum => 200 }, :format => { :with => /^\w+$/i }
   validate :group_presence,  :on => :create, :if => :require_group_code
   
+  before_save :set_institution, :on => :create, :if => Proc.new { |user| user.has_role?(:student) }
+  
   def name
     first_name + " " + last_name
   end
@@ -80,6 +82,14 @@ class User < ActiveRecord::Base
   
   def group_presence
     self.errors.add(:group_code, "invalid") unless Group.find_by_code(self.group_code)
+  end
+  
+  def set_institution
+    # Only needed from students/sign_up
+    if self.group_code
+      group = Group.find_by_code(self.group_code)
+      self.institution = group.instructor.institution
+    end
   end
 
 end
