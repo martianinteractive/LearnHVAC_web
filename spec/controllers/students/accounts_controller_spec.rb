@@ -18,32 +18,32 @@ describe Students::AccountsController do
     
     describe "a valid account" do
       it "should save an not-active account" do
-        post :create, :user => Factory.attributes_for(:user)
+        post :create, :user => Factory.attributes_for(:user, :group_code => @group.code)
         assigns(:account).active?.should_not be(true)
       end
       
       # here we ensure the saved user is an student.
       it "should save set the role as :student" do
-        post :create, :user => Factory.attributes_for(:user)
+        post :create, :user => Factory.attributes_for(:user, :group_code => @group.code)
         assigns(:account).role_code.should == User::ROLES[:student]
       end
       
       it "should send an activation information mail" do
-        proc { post :create, :user => Factory.attributes_for(:user) }.should change(ActionMailer::Base.deliveries, :size).by(1)
+        proc { post :create, :user => Factory.attributes_for(:user, :group_code => @group.code) }.should change(ActionMailer::Base.deliveries, :size).by(1)
       end
       
       it "should redirect to the login action" do
-        post :create, :user => Factory.attributes_for(:user)
+        post :create, :user => Factory.attributes_for(:user, :group_code => @group.code)
         flash[:notice].should match(/Your account has been created. Please check your e-mail/)
         response.should redirect_to(login_path)
       end
       
       it "should create membership if a valid group code is given" do
-        proc { post :create, :code => @group.code, :user => Factory.attributes_for(:user) }.should change(Membership, :count).by(1)
+        proc { post :create, :code => @group.code, :user => Factory.attributes_for(:user, :group_code => @group.code) }.should change(Membership, :count).by(1)
       end
       
       it "should assign the user to the group" do
-        post :create, :code => @group.code, :user => Factory.attributes_for(:user)
+        post :create, :code => @group.code, :user => Factory.attributes_for(:user, :group_code => @group.code)
         assigns(:account).groups.should eq([@group])
       end
       

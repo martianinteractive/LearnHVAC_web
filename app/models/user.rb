@@ -3,7 +3,6 @@ require 'search'
 class User < ActiveRecord::Base
   include ManyDocuments
   ROLES = { :guest => 0, :student => 1, :instructor => 2, :admin => 3 }
-  validates :first_name, :last_name, :presence => true, :length => { :maximum => 200 }, :format => { :with => /^\w+$/i }
   acts_as_authentic
   
   scope :instructor, where("role_code = #{ROLES[:instructor]}")
@@ -23,7 +22,11 @@ class User < ActiveRecord::Base
   has_many_documents :scenarios
   has_many_documents :master_scenarios
     
+  attr_accessor :group_code, :require_group_code
   attr_protected :active, :role_code
+  
+  validates :first_name, :last_name, :presence => true, :length => { :maximum => 200 }, :format => { :with => /^\w+$/i }
+  validate :group_presence,  :on => :create, :if => :require_group_code
   
   def name
     first_name + " " + last_name
@@ -67,6 +70,16 @@ class User < ActiveRecord::Base
   def activate!
     self.active = true
     save
+  end
+  
+  def require_group_code!
+    @require_group_code = true
+  end
+  
+  private
+  
+  def group_presence
+    self.errors.add(:group_code, "invalid") unless Group.find_by_code(self.group_code)
   end
 
 end

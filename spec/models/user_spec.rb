@@ -23,7 +23,18 @@ describe User do
     @user.errors[:last_name].should == ["is invalid"]
   end
   
-  context "Callbacks" do
+  it "should not be valid if group_code is required and code is not present or invalid" do
+    @user.require_group_code!
+    @user.should_not be_valid
+    @user.group_code = "fakecode"
+    @user.should_not be_valid
+  end
+  
+  it "should be valid if group_code is required and code is valid" do
+    group = Factory(:group, :instructor => user_with_role(:instructor))
+    @user.group_code = group.code
+    @user.require_group_code!
+    @user.should be_valid
   end
   
   context "Roles" do
@@ -76,12 +87,6 @@ describe User do
   def sent
     ActionMailer::Base.deliveries.first
   end
-  
-  # def create_user_with_role(role)
-  #   user = Factory.build(:user, :first_name => role)
-  #   user.role_code = User::ROLES[role]
-  #   user.save
-  #   user
-  # end
+
   
 end

@@ -10,13 +10,13 @@ class Students::AccountsController < ApplicationController
     @account = User.new(params[:user])
     @account.active = false
     @account.role_code = User::ROLES[:student]
+    @account.require_group_code!
     
-    if @account.save_without_session_maintenance
-      group = Group.find_by_code(params[:code])
-      Membership.create(:group => group, :student => @account) if group
+    if @account.valid? and @account.save_without_session_maintenance
+      group = Group.find_by_code(@account.group_code)
+      Membership.create(:group => group, :student => @account)
       @account.deliver_activation_instructions!
-      flash[:notice] = "Your account has been created. Please check your e-mail for your account activation instructions!"
-      redirect_to login_path
+      redirect_to(login_path, :notice => "Your account has been created. Please check your e-mail for your account activation instructions!")
     else
       render :action => :new
     end

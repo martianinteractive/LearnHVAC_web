@@ -28,8 +28,8 @@ describe Group do
   describe "Destroy" do
     before(:each) do
       @group.save
-      @group.memberships << Factory(:membership, :group => @group, :student => user_with_role(:student))
-      @group.memberships << Factory(:membership, :group => @group, :student => user_with_role(:student))
+      @group.memberships << Factory(:membership, :group => @group, :student => user_with_role(:student, 1, { :group_code => @group.code }))
+      @group.memberships << Factory(:membership, :group => @group, :student => user_with_role(:student, 1, { :login => "student2", :email => "st2@st.com", :group_code => @group.code }))
     end
     
     it "should destroy the associated memberships" do

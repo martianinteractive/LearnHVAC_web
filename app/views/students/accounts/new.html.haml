@@ -8,9 +8,9 @@
   = link_to "login", login_path
 - form_for @account, :url => { :controller => "students/accounts", :action => "create" } do |f|
   %p
-    = f.label :code, "*Group code"
+    = f.label :group_code, "Group code"
     %br
-    = text_field_tag :code
+    = f.text_field :group_code
   %p
     = f.label :login
     %br

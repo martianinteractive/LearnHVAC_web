@@ -39,8 +39,8 @@ module AuthlogicTestHelper
  
  #Peding, use this method to create user with roles
  #Improve to support atts.
- def user_with_role(role, _save=true)
-  user = Factory.build(:user, :login => role.to_s, :email => "#{role.to_s}@#{role.to_s}.com")
+ def user_with_role(role, _save=true, atts={})
+  user = Factory.build(:user, {:login => role.to_s, :email => "#{role.to_s}@#{role.to_s}.com"}.merge(atts))
   user.role_code = User::ROLES[role]
   user.save if _save
   user
