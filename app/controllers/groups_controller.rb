@@ -1,5 +1,5 @@
 class GroupsController < ApplicationController
-  before_filter :require_user
+  before_filter :require_instructor
   before_filter :find_group, :only => [:show, :edit, :update, :destroy]
   
   def index
