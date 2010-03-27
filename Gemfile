@@ -6,7 +6,7 @@ gem "mysql"
 gem "will_paginate", "3.0.pre"
 gem "mongo", "0.19.1"
 gem "mongo_ext", "0.19.1"
-gem "mongoid", :git => "git://github.com/durran/mongoid.git", "2.0.0.beta1"
+gem "mongoid", :git => "git://github.com/durran/mongoid.git", "2.0.0.beta1" if RUBY_VERSION == "1.8.7"
 
 group :test do
   gem "rspec-rails", ">= 2.0.0.beta.1"
