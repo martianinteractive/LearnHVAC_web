@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100325212707) do
+ActiveRecord::Schema.define(:version => 20100327161124) do
 
   create_table "colleges", :force => true do |t|
     t.string   "value"
@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(:version => 20100325212707) do
     t.datetime "updated_at"
     t.integer  "role_code",         :default => 0
     t.string   "perishable_token",  :default => "",   :null => false
+    t.boolean  "enabled",           :default => true
   end
 
   add_index "users", ["perishable_token"], :name => "index_users_on_perishable_token"
