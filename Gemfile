@@ -7,7 +7,7 @@ gem "will_paginate", "3.0.pre"
 gem "mongo", "0.19.1"
 gem "mongo_ext", "0.19.1"
 gem "mongoid", :git => "git://github.com/durran/mongoid.git", :branch => "prerelease" if RUBY_VERSION == "1.9.1"
-gem "mongoid", :git => "git://github.com/durran/mongoid.git" if RUBY_VERSION == "1.8.7"
+gem "mongoid", :git => "git://github.com/durran/mongoid.git", "2.0.0.alpha" if RUBY_VERSION == "1.8.7"
 
 group :test do
   gem "rspec-rails", ">= 2.0.0.beta.1"
