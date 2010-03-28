@@ -34,7 +34,7 @@ class ApplicationController < ActionController::Base
   
   def require_admin
     unless logged_as?(:admin)
-      flash[:notice] = "You don't have the privileges to access this page"
+      flash[:notice] = "You must be logged in to access this page"
       redirect_back_or_default(default_path_for(current_user))
       return false
     end

@@ -19,8 +19,8 @@
       %h1.siteTitle
         %span
         = link_to "Instructor Site", "/"
-      - if logged_in?
-        %ul.global_nav
+      %ul.global_nav
+        - if logged_in?
           %li.username
             = current_user.name
           - if current_user.has_role?(:admin)
@@ -30,6 +30,10 @@
             = link_to "Change Password", '/'
           %li
             = link_to "Log-out", logout_path
+        - else
+          %li
+            = link_to "Sign Up", signup_path
+        
     .border
       &nbsp; 
     .main

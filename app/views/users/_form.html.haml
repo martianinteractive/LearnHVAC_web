@@ -1,28 +1,27 @@
-%p
+.field
   = f.label :login
-  %br
   = f.text_field :login
-%p
+
+.field
   = f.label :first_name, "First Name"
-  %br
   = f.text_field :first_name
-%p
+
+.field
   = f.label :last_name, "Last Name"
-  %br
   = f.text_field :last_name
-%p
+
+.field
   = f.label :email
-  %br
   = f.text_field :email
-%p
+
+.field
   = f.label :password
-  %br
   = f.password_field :password, :size=>20,  :value=>""
-%p
+
+.field
   = f.label :password_confirmation, "Password Confirmation"	
-  %br
   = f.password_field :password_confirmation, :size=>20,  :value=>""
-%p
-  Institution:
-  %br
+
+.field
+  = f.label :institution_id, "Institution bla"
   = f.collection_select(:institution_id, Institution.all, :id, :name)

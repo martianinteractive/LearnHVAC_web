@@ -1,11 +1,12 @@
 = f.error_messages
+
 .field
   = f.label :name
-  %br
   = f.text_field :name
+
 .field
   = f.label :instructor
-  %br
   = f.select :instructor_id, User.instructor.collect {|user| [ user.name, user.id ] }
+
 .actions
   = f.submit

@@ -25,7 +25,7 @@ describe Admin::StudentsController do
     it "should require an admin for all actions" do
       authorize_actions({:get => [:index]}) do
         response.should redirect_to(default_path_for(@admin))
-        flash[:notice].should == "You don't have the privileges to access this page"
+        flash[:notice].should == "You must be logged in to access this page"
       end
     end
   end

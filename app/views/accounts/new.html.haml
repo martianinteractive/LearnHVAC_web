@@ -21,40 +21,40 @@
   = error_messages_for :account
 
   %fieldset
-    %p
+    .field
       = f.label :first_name, "First Name"
 
       = f.text_field :first_name
-    %p
+    .field
       = f.label :last_name, "Last Name"
 
       = f.text_field :last_name
 
   %fieldset
-    %p
+    .field
       = f.label :login
 
       = f.text_field :login
-    %p
+    .field
       = f.label :email, "Email address"
 
       = f.text_field :email
-    %p
+    .field
       = f.label :password
 
       = f.password_field :password, :size=>20,  :value=>""
-    %p
+    .field
       = f.label :password_confirmation, "Password Confirmation"	
 
       = f.password_field :password_confirmation, :size=>20,  :value=>""
   
   %fieldset
-    %p
+    .field
       Enter the name of your institution and select the name if available.
-    %p
+    .field
       = f.label :institution_name
       = f.text_field :institution_name
 
-
-  = submit_tag "Create", :class=>'submitButton'
-= link_to 'Back', "#"
+  .action
+    = submit_tag "Create", :class=>'submitButton'
+    = link_to 'Back', "#"
