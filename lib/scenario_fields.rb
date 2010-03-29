@@ -19,5 +19,5 @@ module ScenarioFields
     parent.field :longterm_start_date,             :type => Date
     parent.field :longterm_stop_date,              :type => Date
     parent.field :realtime_start_datetime,         :type => DateTime
-  end  
+  end 
 end

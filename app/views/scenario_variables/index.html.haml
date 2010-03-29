@@ -18,7 +18,7 @@
     %th Disabled
   - @scenario_variables.each do |scenario_system_variable|
     %tr
-      %td comp
+      %td= scenario_system_variable.component_code
       %td fault
       %td= scenario_system_variable.name
       %td= scenario_system_variable.display_name

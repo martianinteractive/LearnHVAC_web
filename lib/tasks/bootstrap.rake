@@ -23,6 +23,7 @@ namespace :bootstrap do
   desc "load default master scenarios"
   task :master_scenarios => :environment do
     MasterScenario.delete_all
+    Scenario.delete_all
     File.open(File.join(Rails.root, 'db/bootstrap/master_scenarios.yml'), 'r') do |f|
       @master_scenarios = YAML.load(f)
     end
