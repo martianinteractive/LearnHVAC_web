@@ -83,4 +83,9 @@ class ApplicationController < ActionController::Base
     logged_in? and current_user.has_role?(role)
   end
   
+  def initialize_variables_sort
+    sort_init 'name'
+    sort_update
+  end
+  
 end

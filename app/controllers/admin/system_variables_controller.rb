@@ -3,10 +3,9 @@ class Admin::SystemVariablesController < Admin::ApplicationController
   before_filter :find_system_variable, :only => [:show, :edit, :update]
   helper :sort
   include SortHelper
+  before_filter :initialize_variables_sort, :only => [:index]
   
   def index
-    sort_init 'name'
-    sort_update
     @system_variables = doc_sort(@master_scenario.system_variables).paginate(:page => params[:page], :per_page => 25)
   end
   

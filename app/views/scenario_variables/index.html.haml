@@ -3,15 +3,14 @@
 
 %table
   %tr
-    %th Comp
+    = sort_header_tag('component_code', :title => 'Component')
     %th Fault
     %th Name
     %th Display Name
-    %th Description
-    %th Type
-    %th Min
-    %th Default
-    %th Max
+    = sort_header_tag('type_code', :title => 'Type')
+    = sort_header_tag('min_value', :title => 'Min.')
+    = sort_header_tag('default_value', :title => 'Default')
+    = sort_header_tag('max_value', :title => 'Max.')
     %th Unit SI
     %th Unit IP
     %th SI to IP
@@ -21,8 +20,7 @@
       %td fault
       %td= scenario_system_variable.name
       %td= scenario_system_variable.display_name
-      %td= scenario_system_variable.description
-      %td= scenario_system_variable.io_type
+      %td= scenario_system_variable.io_type.to_s.upcase
       %td= scenario_system_variable.min_value
       %td= scenario_system_variable.default_value
       %td= scenario_system_variable.max_value
