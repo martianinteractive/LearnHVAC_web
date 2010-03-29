@@ -1,6 +1,6 @@
 class Students::AccountsController < ApplicationController
   def new
-    @account = User.new
+    @account = User.new(:group_code => params[:code])
   end
   
   # Saving without session maintenance to skip
