@@ -8,11 +8,10 @@
 %hr
 %table
   %tr
-    %th Comp
+    %th Component
     %th Fault
     %th Name
     %th Display Name
-    %th Description
     %th Type
     %th Min
     %th Default
@@ -20,14 +19,12 @@
     %th Unit SI
     %th Unit IP
     %th SI to IP
-    %th Disabled
   - @system_variables.each do |system_variable|
     %tr
-      %td= system_variable.component_code
-      %td fault
+      %td= system_variable.component
+      %td= system_variable.is_fault ? "Yes" : "No"
       %td= link_to system_variable.name, admin_master_scenario_system_variable_path(@master_scenario, system_variable)
       %td= system_variable.display_name
-      %td= system_variable.description
       %td= system_variable.io_type
       %td= system_variable.min_value
       %td= system_variable.default_value
@@ -35,7 +32,6 @@
       %td= system_variable.unit_si
       %td= system_variable.unit_ip
       %td= system_variable.si_to_ip
-      %td= system_variable.global_disable
 %br
 = will_paginate @master_scenarios
 %br

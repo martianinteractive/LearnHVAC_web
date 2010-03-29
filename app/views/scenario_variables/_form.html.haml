@@ -16,10 +16,6 @@
   %br
   = f.select :component_code, SystemVariable::COMPONENTS.keys.collect { |comp| [SystemVariable::COMPONENTS[comp], comp] }
 .field
-  = f.label :global_disable, "Globally Disabled:"
-  %br
-  = f.check_box :global_disable
-.field
   = f.label :type_code, "I/O Type"
   %br
   = f.select :type_code, ScenarioVariable::TYPES.keys.collect {|type| [ type, ScenarioVariable::TYPES[type] ] }
