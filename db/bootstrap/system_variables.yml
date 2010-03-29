@@ -1,6 +1,6 @@
 SYSTAirDB:
  name: SYSTAirDB
- component: SYS
+ component_code: SYS
  index: 1
  io_type: INPUT
  display_name: Outside air dry bulb
@@ -13,7 +13,7 @@ SYSTAirDB:
 
 SYSTRmSPHeat:
  name: SYSTRmSPHeat
- component: SYS
+ component_code: SYS
  index: 2
  io_type: INPUT
  display_name: Room temp heating set point
@@ -26,7 +26,7 @@ SYSTRmSPHeat:
 
 SYSTSupS:
  name: SYSTSupS
- component: SYS
+ component_code: SYS
  index: 3
  io_type: INPUT
  display_name: Supply air temp set point
@@ -39,7 +39,7 @@ SYSTSupS:
 
 SYSTRmSPCool:
  name: SYSTRmSPCool
- component: SYS
+ component_code: SYS
  index: 4
  io_type: INPUT
  display_name: Room temp cooling set point
@@ -52,7 +52,7 @@ SYSTRmSPCool:
 
 MXMinPos:
  name: MXMinPos
- component: MX
+ component_code: MX
  index: 5
  io_type: INPUT
  display_name: Outside air damper min position
@@ -64,7 +64,7 @@ MXMinPos:
 
 MXEnableTAirOut:
  name: MXEnableTAirOut
- component: MX
+ component_code: MX
  index: 6
  io_type: INPUT
  display_name: Economizer enable outside air temp
@@ -77,7 +77,7 @@ MXEnableTAirOut:
 
 MXKp:
  name: MXKp
- component: MX
+ component_code: MX
  index: 7
  io_type: INPUT
  display_name: Economizer PI controller P gain
@@ -87,7 +87,7 @@ MXKp:
 
 MXKi:
  name: MXKi
- component: MX
+ component_code: MX
  index: 8
  io_type: INPUT
  display_name: Economizer PI controller integrator time constant
@@ -99,7 +99,7 @@ MXKi:
 
 FANSpdMin:
  name: FANSpdMin
- component: FAN
+ component_code: FAN
  index: 9
  io_type: INPUT
  display_name: Fan minimum speed ratio
@@ -111,7 +111,7 @@ FANSpdMin:
 
 FANKp:
  name: FANKp
- component: FAN
+ component_code: FAN
  index: 10
  io_type: INPUT
  display_name: Fan speed controller P gain
@@ -121,7 +121,7 @@ FANKp:
 
 FANki:
  name: FANki
- component: FAN
+ component_code: FAN
  index: 11
  io_type: INPUT
  display_name: Fan speed controller integrator time constant
@@ -133,7 +133,7 @@ FANki:
 
 DCTPstSP:
  name: DCTPstSP
- component: DCT
+ component_code: DCT
  index: 12
  io_type: INPUT
  display_name: Supply duct static pressure set point
@@ -146,7 +146,7 @@ DCTPstSP:
 
 HCKp:
  name: HCKp
- component: HC
+ component_code: HC
  index: 13
  io_type: INPUT
  display_name: Heating coil valve controller P gain
@@ -156,7 +156,7 @@ HCKp:
 
 HCKi:
  name: HCKi
- component: HC
+ component_code: HC
  index: 14
  io_type: INPUT
  display_name: Heating coil valve controller integrator time constant
@@ -168,7 +168,7 @@ HCKi:
 
 CCKp:
  name: CCKp
- component: CC
+ component_code: CC
  index: 15
  io_type: INPUT
  display_name: Cooling coil valve controller P gain
@@ -178,7 +178,7 @@ CCKp:
 
 CCKi:
  name: CCKi
- component: CC
+ component_code: CC
  index: 16
  io_type: INPUT
  display_name: Cooling coil valve controller integrator time constant
@@ -190,7 +190,7 @@ CCKi:
 
 VAVDmprKp:
  name: VAVDmprKp
- component: VAV
+ component_code: VAV
  index: 17
  io_type: INPUT
  display_name: VAV damper controller P gain
@@ -200,7 +200,7 @@ VAVDmprKp:
 
 VAVDmprKi:
  name: VAVDmprKi
- component: VAV
+ component_code: VAV
  index: 18
  io_type: INPUT
  display_name: VAV damper controller integrator time constant
@@ -212,7 +212,7 @@ VAVDmprKi:
 
 VAVMinPos:
  name: VAVMinPos
- component: VAV
+ component_code: VAV
  index: 19
  io_type: INPUT
  display_name: VAV damper min position
@@ -224,7 +224,7 @@ VAVMinPos:
 
 VAVRhcKp:
  name: VAVRhcKp
- component: VAV
+ component_code: VAV
  index: 20
  io_type: INPUT
  display_name: VAV reheat coil controller P gain
@@ -234,7 +234,7 @@ VAVRhcKp:
 
 VAVRhcKi:
  name: VAVRhcKi
- component: VAV
+ component_code: VAV
  index: 21
  io_type: INPUT
  display_name: VAV reheat coil controller integrator time constant
@@ -246,7 +246,7 @@ VAVRhcKi:
 
 SYSRmQSens:
  name: SYSRmQSens
- component: SYS
+ component_code: SYS
  index: 1
  io_type: PARAMETER
  display_name: design room sensible heat gain
@@ -259,7 +259,7 @@ SYSRmQSens:
 
 FANHd:
  name: FANHd
- component: FAN
+ component_code: FAN
  index: 2
  io_type: PARAMETER
  display_name: fan head at design operating point
@@ -272,7 +272,7 @@ FANHd:
 
 FANAirFlwd:
  name: FANAirFlwd
- component: FAN
+ component_code: FAN
  index: 3
  io_type: PARAMETER
  display_name: fan volume flow rate at design operating point
@@ -285,7 +285,7 @@ FANAirFlwd:
 
 HCLiqFlwd:
  name: HCLiqFlwd
- component: HC
+ component_code: HC
  index: 4
  io_type: PARAMETER
  display_name: Heating coil hot water design flow rate
@@ -298,7 +298,7 @@ HCLiqFlwd:
 
 HCQd:
  name: HCQd
- component: HC
+ component_code: HC
  index: 5
  io_type: PARAMETER
  display_name: Heating coil design heating capacity
@@ -311,7 +311,7 @@ HCQd:
 
 HCAirFlwd:
  name: HCAirFlwd
- component: HC
+ component_code: HC
  index: 6
  io_type: PARAMETER
  display_name: heating coil design air flow rate
@@ -324,7 +324,7 @@ HCAirFlwd:
 
 HCPDd:
  name: HCPDd
- component: HC
+ component_code: HC
  index: 7
  io_type: PARAMETER
  display_name: heating coil design air side pressure drop
@@ -337,7 +337,7 @@ HCPDd:
 
 CCLiqFlwd:
  name: CCLiqFlwd
- component: CC
+ component_code: CC
  index: 8
  io_type: PARAMETER
  display_name: Cooling coil chilled water design mass flow rate
@@ -350,7 +350,7 @@ CCLiqFlwd:
 
 CCQd:
  name: CCQd
- component: CC
+ component_code: CC
  index: 9
  io_type: PARAMETER
  display_name: Cooling coil design cooling capacity
@@ -363,7 +363,7 @@ CCQd:
 
 CCAirFlwd:
  name: CCAirFlwd
- component: CC
+ component_code: CC
  index: 10
  io_type: PARAMETER
  display_name: cooling coil design air flow rate
@@ -376,7 +376,7 @@ CCAirFlwd:
 
 CCPDd:
  name: CCPDd
- component: CC
+ component_code: CC
  index: 11
  io_type: PARAMETER
  display_name: cooling coil design air side pressure drop
@@ -389,7 +389,7 @@ CCPDd:
 
 VAVAirFlwd:
  name: VAVAirFlwd
- component: VAV
+ component_code: VAV
  index: 12
  io_type: PARAMETER
  display_name: VAV max cooling air flow rate
@@ -402,7 +402,7 @@ VAVAirFlwd:
 
 VAVPDd:
  name: VAVPDd
- component: VAV
+ component_code: VAV
  index: 13
  io_type: PARAMETER
  display_name: VAV air side pressure drop at max cooling
@@ -415,7 +415,7 @@ VAVPDd:
 
 VAVRhcPDd:
  name: VAVRhcPDd
- component: VAV
+ component_code: VAV
  index: 14
  io_type: PARAMETER
  display_name: VAV reheat coil air side pressure drop at design condition
@@ -428,7 +428,7 @@ VAVRhcPDd:
 
 VAVRhcQd:
  name: VAVRhcQd
- component: VAV
+ component_code: VAV
  index: 15
  io_type: PARAMETER
  display_name: Reheat coil design heating capacity
@@ -440,7 +440,7 @@ VAVRhcQd:
 
 CHLTLiqSup:
  name: CHLTLiqSup
- component: CHL
+ component_code: CHL
  index: 16
  io_type: PARAMETER
  display_name: design chilled water supply temperature
@@ -453,7 +453,7 @@ CHLTLiqSup:
 
 BOITLiqSup:
  name: BOITLiqSup
- component: BOI
+ component_code: BOI
  index: 17
  io_type: PARAMETER
  display_name: design hot water supply temperature
@@ -466,7 +466,7 @@ BOITLiqSup:
 
 RMTemp:
  name: RMTemp
- component: RM
+ component_code: RM
  index: 1
  io_type: OUTPUT
  display_name: Room temp
@@ -476,7 +476,7 @@ RMTemp:
 
 MXExDampPos:
  name: MXExDampPos
- component: MX
+ component_code: MX
  index: 2
  io_type: OUTPUT
  display_name: Economizer exhaust air damper position
@@ -485,7 +485,7 @@ MXExDampPos:
 
 FLTPDrop:
  name: FLTPDrop
- component: FLT
+ component_code: FLT
  index: 3
  io_type: OUTPUT
  display_name: filter pressure drop
@@ -495,7 +495,7 @@ FLTPDrop:
 
 HCPos:
  name: HCPos
- component: HC
+ component_code: HC
  index: 20
  io_type: OUTPUT
  display_name: Heating coil valve position
@@ -504,7 +504,7 @@ HCPos:
 
 HCTAirEnt:
  name: HCTAirEnt
- component: HC
+ component_code: HC
  index: 4
  io_type: OUTPUT
  display_name: Heating coil entering air temp
@@ -514,7 +514,7 @@ HCTAirEnt:
 
 HCTAirLvg:
  name: HCTAirLvg
- component: HC
+ component_code: HC
  index: 5
  io_type: OUTPUT
  display_name: Heating coil leaving air temp
@@ -524,7 +524,7 @@ HCTAirLvg:
 
 HCTLiqLvg:
  name: HCTLiqLvg
- component: HC
+ component_code: HC
  index: 6
  io_type: OUTPUT
  display_name: Heating coil leaving hot water temp
@@ -534,7 +534,7 @@ HCTLiqLvg:
 
 CCPos:
  name: CCPos
- component: CC
+ component_code: CC
  index: 21
  io_type: OUTPUT
  display_name: Cooling coil valve position
@@ -543,7 +543,7 @@ CCPos:
 
 CCTAirEnt:
  name: CCTAirEnt
- component: CC
+ component_code: CC
  index: 7
  io_type: OUTPUT
  display_name: Cooling coil entering air temp
@@ -553,7 +553,7 @@ CCTAirEnt:
 
 CCTAirLvg:
  name: CCTAirLvg
- component: CC
+ component_code: CC
  index: 8
  io_type: OUTPUT
  display_name: Cooling coil leaving air temp
@@ -563,7 +563,7 @@ CCTAirLvg:
 
 CCTLiqLvg:
  name: CCTLiqLvg
- component: CC
+ component_code: CC
  index: 9
  io_type: OUTPUT
  display_name: Cooling coil leaving chilled water temp
@@ -573,7 +573,7 @@ CCTLiqLvg:
 
 FANSpd:
  name: FANSpd
- component: FAN
+ component_code: FAN
  index: 10
  io_type: OUTPUT
  display_name: Fan speed
@@ -582,7 +582,7 @@ FANSpd:
 
 FANPwr:
  name: FANPwr
- component: FAN
+ component_code: FAN
  index: 11
  io_type: OUTPUT
  display_name: Fan Power
@@ -591,7 +591,7 @@ FANPwr:
 
 DCTStPre:
  name: DCTStPre
- component: DCT
+ component_code: DCT
  index: 12
  io_type: OUTPUT
  display_name: Duct static pressure
@@ -601,7 +601,7 @@ DCTStPre:
 
 FANAirFlw:
  name: FANAirFlw
- component: FAN
+ component_code: FAN
  index: 13
  io_type: OUTPUT
  display_name: Fan air flow rate
@@ -611,7 +611,7 @@ FANAirFlw:
 
 FANTAirLvg:
  name: FANTAirLvg
- component: FAN
+ component_code: FAN
  index: 22
  io_type: OUTPUT
  display_name: Fan leaving air temp
@@ -621,7 +621,7 @@ FANTAirLvg:
 
 VAVAirFlw:
  name: VAVAirFlw
- component: VAV
+ component_code: VAV
  index: 14
  io_type: OUTPUT
  display_name: VAV box air flow rate
@@ -631,7 +631,7 @@ VAVAirFlw:
 
 VAVDampPos:
  name: VAVDampPos
- component: VAV
+ component_code: VAV
  index: 15
  io_type: OUTPUT
  display_name: VAV box damper position
@@ -640,7 +640,7 @@ VAVDampPos:
 
 VAVRhcPos:
  name: VAVRhcPos
- component: VAV
+ component_code: VAV
  index: 16
  io_type: OUTPUT
  display_name: VAV box reheat coil position
@@ -649,7 +649,7 @@ VAVRhcPos:
 
 VAVTAirLvg:
  name: VAVTAirLvg
- component: VAV
+ component_code: VAV
  index: 17
  io_type: OUTPUT
  display_name: VAV box leaving air temp
@@ -659,7 +659,7 @@ VAVTAirLvg:
 
 CHLLiqFlw:
  name: CHLLiqFlw
- component: CHL
+ component_code: CHL
  index: 18
  io_type: OUTPUT
  display_name: Chilled water flow rate
@@ -669,7 +669,7 @@ CHLLiqFlw:
 
 BOILiqFlw:
  name: BOILiqFlw
- component: BOI
+ component_code: BOI
  index: 19
  io_type: OUTPUT
  display_name: Hot water flow rate
@@ -679,7 +679,7 @@ BOILiqFlw:
 
 VAVAirFlw:
  name: VAVAirFlw
- component: VAV
+ component_code: VAV
  index: 23
  io_type: OUTPUT
  display_name: VAV Air flow rate
@@ -689,7 +689,7 @@ VAVAirFlw:
 
 MXRtnAirDampPos:
  name: MXRtnDampPos
- component: MX
+ component_code: MX
  index: 24
  io_type: OUTPUT
  display_name: Economizer return air damper position
@@ -698,7 +698,7 @@ MXRtnAirDampPos:
 
 MXIntDampPos:
  name: MXIntDampPos
- component: MX
+ component_code: MX
  index: 25
  io_type: OUTPUT
  display_name: Economizer intake air damper position
@@ -707,7 +707,7 @@ MXIntDampPos:
 
 MXTAirRet:
  name: MXTAirRet
- component: MX
+ component_code: MX
  index: 26
  io_type: OUTPUT
  display_name: Economizer return air temperature
@@ -717,7 +717,7 @@ MXTAirRet:
 
 MXTAirMix:
  name: MXTAirMix
- component: MX
+ component_code: MX
  index: 27
  io_type: OUTPUT
  display_name: Economizer mixed air temperature
@@ -727,7 +727,7 @@ MXTAirMix:
  
 BOITLiqEnt:
  name: BOITLiqEnt
- component: BOI
+ component_code: BOI
  index: 28
  io_type: OUTPUT
  display_name: Boiler entering water temp
@@ -737,7 +737,7 @@ BOITLiqEnt:
  
 CHLTLiqEnt:
  name: CHLTLiqEnt
- component: CHL
+ component_code: CHL
  index: 29
  io_type: OUTPUT
  display_name: Chiller entering water temp
@@ -748,7 +748,7 @@ CHLTLiqEnt:
  
 VAVTAirEnt:
  name: VAVTAirEnt
- component: VAV
+ component_code: VAV
  index: 30
  io_type: OUTPUT
  display_name: VAV entering air temp
