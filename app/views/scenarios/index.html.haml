@@ -7,12 +7,10 @@
 
 %table
   %tr
-    %th ID
     %th Name
     %th Description
   - @scenarios.each do |scenario|
     %tr
-      %td= scenario.scenario_id
       %td= scenario.name
       %td= scenario.description
       %td= link_to "System Vars", scenario_scenario_variables_path(scenario)
