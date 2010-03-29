@@ -13,8 +13,7 @@ class Students::AccountsController < ApplicationController
     @account.require_group_code!
     
     if @account.valid? and @account.save_without_session_maintenance
-      group = Group.find_by_code(@account.group_code)
-      Membership.create(:group => group, :student => @account)
+      @account.register_group!
       @account.deliver_activation_instructions!
       redirect_to(login_path, :notice => "Your account has been created. Please check your e-mail for your account activation instructions!")
     else

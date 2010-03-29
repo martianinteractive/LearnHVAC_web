@@ -45,6 +45,28 @@ describe User do
     @user.reload.institution.should == group.instructor.institution
   end
   
+  context "Group Register" do 
+    before(:each) do
+      @group = Factory(:group, :instructor => user_with_role(:instructor, 1, { :institution => Factory(:institution) }))
+      @user  = user_with_role(:student, 1, { :group_code => @group.code })
+    end
+  
+    it "" do
+      proc { @user.register_group! }.should change(Membership, :count).by(1)
+    end
+  
+    it "" do
+      proc { @user.register_group! }.should change(@user.reload.groups, :size).by(1)
+    end
+    
+    it "should not register a student without group_code" do
+      @user.group_code = nil
+      proc { @user.register_group! }.should_not change(Membership, :count)
+      proc { @user.register_group! }.should_not change(@user.reload.groups, :size)
+    end
+    
+  end
+  
   context "Roles" do
     it "" do
       User::ROLES.should have(4).roles
