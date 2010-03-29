@@ -8,14 +8,14 @@
 %hr
 %table
   %tr
-    %th Component
+    = sort_header_tag('component_code', :title => 'Component')
     %th Fault
-    %th Name
+    = sort_header_tag('name', :title => 'Name')
     %th Display Name
-    %th Type
-    %th Min
-    %th Default
-    %th Max
+    = sort_header_tag('type_code', :title => 'Type')
+    = sort_header_tag('min_value', :title => 'Min.')
+    = sort_header_tag('default_value', :title => 'Default')
+    = sort_header_tag('max_value', :title => 'Max.')
     %th Unit SI
     %th Unit IP
     %th SI to IP
@@ -25,7 +25,7 @@
       %td= system_variable.is_fault ? "Yes" : "No"
       %td= link_to system_variable.name, admin_master_scenario_system_variable_path(@master_scenario, system_variable)
       %td= system_variable.display_name
-      %td= system_variable.io_type
+      %td= system_variable.io_type.to_s.upcase
       %td= system_variable.min_value
       %td= system_variable.default_value
       %td= system_variable.max_value
