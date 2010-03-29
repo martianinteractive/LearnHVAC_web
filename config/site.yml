@@ -7,5 +7,5 @@ test:
   from: test@lhvac.com
   
 production:
-  host: production.lhvac.com
-  from: production@lhvac.com
+  host: v2.learnhvac.org
+  from: v2@learnhvac.org
