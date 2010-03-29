@@ -5,6 +5,8 @@ module ScenarioFields
     parent.field :thumbnail_url
     parent.field :short_description
     parent.field :description
+    parent.field :master_scenario_name
+    parent.field :master_scenario_version
     parent.field :goal
     parent.field :level,                           :type => Integer, :default => 1
     parent.field :inputs_visible,                  :type => Boolean, :default => true

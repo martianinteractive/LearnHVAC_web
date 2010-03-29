@@ -1,5 +1,24 @@
 %h2= @scenario.name
+
+%p
+  = link_to 'Edit', edit_scenario_path(@scenario)
+  &nbsp;|&nbsp;
+  = link_to "System Vars", scenario_scenario_variables_path(@scenario)
+  &nbsp;|&nbsp;
+  = link_to 'Delete', @scenario, :confirm => 'Are you sure?', :method => :delete
+  &nbsp;|&nbsp;
+  = link_to 'Back', :back
 %hr
+
+%p
+  %b
+    Modeled after:
+  = @scenario.master_scenario_name
+
+%p
+  %b
+    Master Scenario version:
+  = @scenario.master_scenario_version
 
 %p
   %b
@@ -65,6 +84,14 @@
   %b
     Goal:
   = @scenario.goal
-= link_to 'Edit', edit_scenario_path(@scenario)
-|
-= link_to 'Back', scenarios_path
+
+%hr
+
+%p
+  = link_to 'Edit', edit_scenario_path(@scenario)
+  &nbsp;|&nbsp;
+  = link_to "System Vars", scenario_scenario_variables_path(@scenario)
+  &nbsp;|&nbsp;
+  = link_to 'Delete', @scenario, :confirm => 'Are you sure?', :method => :delete
+  &nbsp;|&nbsp;
+  = link_to 'Back', :back
