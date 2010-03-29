@@ -16,16 +16,22 @@ class Scenario
     
   attr_protected :user_id
   
+  before_create :assign_modeled_after
   after_create :copy_system_variables
   
   private
   
+  def assign_master_scenario
+      self.master_scenario_name = self.master_scenario.name
+      self.master_scenario_version = self.master_scenario.updated_at.to_time.to_i
+  end
+  
   def copy_system_variables
-    self.master_scenario.system_variables.each do |sv|
-      scen_var_atts = sv.attributes
-      scen_var_atts.delete("_id")
-      scen_var_atts.delete("_type")
-      self.scenario_variables.create(scen_var_atts)
+    self.master_scenario.system_variables.each do |system_variables|
+      sys_var_attributes = system_variables.attributes
+      sys_var_attributes.delete("_id")
+      sys_var_attributes.delete("_type")
+      self.scenario_variables.create(sys_var_attributes)
     end
   end
   

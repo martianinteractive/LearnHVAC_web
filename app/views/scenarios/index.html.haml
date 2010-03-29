@@ -11,12 +11,8 @@
     %th Description
   - @scenarios.each do |scenario|
     %tr
-      %td= scenario.name
+      %td= link_to scenario.name, scenario
       %td= scenario.description
-      %td= link_to "System Vars", scenario_scenario_variables_path(scenario)
-      %td= link_to 'Show', scenario
-      %td= link_to 'Edit', edit_scenario_path(scenario)
-      %td= link_to 'Destroy', scenario, :confirm => 'Are you sure?', :method => :delete
 %br
 = will_paginate @scenarios
 
