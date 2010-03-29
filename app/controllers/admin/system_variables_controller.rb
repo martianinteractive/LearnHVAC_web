@@ -5,9 +5,11 @@ class Admin::SystemVariablesController < Admin::ApplicationController
   include SortHelper
   
   def index
-    @system_variables = @master_scenario.system_variables.paginate :page => params[:page], :per_page => 25
+    sort_init 'name'
+    sort_update
+    @system_variables = mongo_collection_sort(@master_scenario.system_variables).paginate(:page => params[:page], :per_page => 25)
   end
-
+  
   def show
   end
 

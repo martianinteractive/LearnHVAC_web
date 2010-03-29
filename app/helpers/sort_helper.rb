@@ -157,6 +157,16 @@ module SortHelper
     text = options[:title] || options.delete(:text) || ActiveSupport::Inflector::titleize(column.humanize)
     content_tag('th', sort_link(column, text, options), options)
   end
+  
+  
+  # Ruby Sort for Mongoid embedded documents as collections.
+  # Uses the current sort_clause by default.
+  def mongo_collection_sort(collection, _sort_clause = sort_clause)
+    attribute, order = _sort_clause.split(" ")
+    co = collection.sort_by { |item| item.send(attribute) }
+    co.reverse! if order == "desc"
+    co
+  end
 
   private
 

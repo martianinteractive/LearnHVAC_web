@@ -8,15 +8,15 @@
 %hr
 %table
   %tr
-    %th Comp
+    = sort_header_tag('component_code', :title => 'Comp.')
     %th Fault
-    %th Name
+    = sort_header_tag('name', :title => 'Name')
     %th Display Name
     %th Description
-    %th Type
-    %th Min
-    %th Default
-    %th Max
+    = sort_header_tag('type_code', :title => 'Type')
+    = sort_header_tag('min_value', :title => 'Min.')
+    = sort_header_tag('default_value', :title => 'Default')
+    = sort_header_tag('max_value', :title => 'Max.')
     %th Unit SI
     %th Unit IP
     %th SI to IP
