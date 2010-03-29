@@ -128,8 +128,7 @@ module SortHelper
     text = Inflector::titleize(column) unless text
     params = {:params => {:sort_key => column, :sort_order => order } }
     params = params.merge(options[:params]) if options[:params]
-    link_to(text, params) +
-      (icon ? nbsp(2) + image_tag(File.join(@icons_dir,icon)) : '')
+    link_to(text, params[:params])  #+ (icon ? nbsp(2) + image_tag(File.join(@icons_dir,icon)) : '')
   end
 
   # Returns a table header <th> tag with a sort link for the named column
@@ -153,9 +152,9 @@ module SortHelper
   #   </th>
   #
   def sort_header_tag(column, options = {})
-    text = options.delete(:text) || Inflector::titleize(column.humanize)
+    text = options.delete(:text) || ActiveSupport::Inflector::titleize(column.humanize)
     options[:title]= "Sort by #{text}" unless options[:title]
-    text = options[:title] || options.delete(:text) || Inflector::titleize(column.humanize)
+    text = options[:title] || options.delete(:text) || ActiveSupport::Inflector::titleize(column.humanize)
     content_tag('th', sort_link(column, text, options), options)
   end
 
