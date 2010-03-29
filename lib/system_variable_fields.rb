@@ -25,7 +25,6 @@ module SystemVariableFields
     parent.field :min_value,       :type => Float,     :default => 0.0
     parent.field :default_value,   :type => Float,     :default => 0.0
     parent.field :max_value,       :type => Float,     :default => 0.0
-    parent.field :global_disable,  :type => Boolean,   :default => false
     parent.field :is_fault,        :type => Boolean,   :default => false
     parent.field :is_percentage,   :type => Boolean,   :default => false
     

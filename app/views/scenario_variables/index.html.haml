@@ -15,7 +15,6 @@
     %th Unit SI
     %th Unit IP
     %th SI to IP
-    %th Disabled
   - @scenario_variables.each do |scenario_system_variable|
     %tr
       %td= scenario_system_variable.component_code
@@ -30,7 +29,6 @@
       %td= scenario_system_variable.unit_si
       %td= scenario_system_variable.unit_ip
       %td= scenario_system_variable.si_to_ip
-      %td= scenario_system_variable.global_disable
       %td= link_to 'Show', scenario_scenario_variable_path(@scenario, scenario_system_variable)
       %td= link_to 'Edit', edit_scenario_scenario_variable_path(@scenario, scenario_system_variable)
       %td= link_to 'Destroy', scenario_scenario_variable_path(@scenario, scenario_system_variable), :confirm => 'Are you sure?', :method => :delete
