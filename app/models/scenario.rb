@@ -16,7 +16,7 @@ class Scenario
     
   attr_protected :user_id
   
-  before_create :assign_modeled_after
+  before_create :assign_master_scenario
   after_create :copy_system_variables
   
   private
