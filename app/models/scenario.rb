@@ -4,7 +4,7 @@ class Scenario
   include Mongoid::Document::ProtectedAttributes
   include ScenarioFields
     
-  has_many :scenario_variables
+  embed_many :scenario_variables
   belongs_to_related :user
   belongs_to_related :master_scenario
   
