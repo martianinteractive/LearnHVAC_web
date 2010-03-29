@@ -1,6 +1,8 @@
 class Admin::SystemVariablesController < Admin::ApplicationController
   before_filter :find_master_scenario
   before_filter :find_system_variable, :only => [:show, :edit, :update]
+  helper :sort
+  include SortHelper
   
   def index
     @system_variables = @master_scenario.system_variables.paginate :page => params[:page], :per_page => 25
