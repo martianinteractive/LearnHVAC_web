@@ -1,5 +1,12 @@
 %h2= "#{@system_variable.name.capitalize} variable"
-%p= @system_variable.description.try(:capitalize)
+
+%p
+  = link_to 'Edit', edit_admin_master_scenario_system_variable_path(@master_scenario, @system_variable)
+  &nbsp;|&nbsp;
+  = link_to 'Delete', admin_master_scenario_system_variable_path(@master_scenario, @system_variable), :confirm => 'Are you sure?', :method => :delete
+  &nbsp;|&nbsp;
+  = link_to 'Back', :back
+
 %hr  
 
 %p
@@ -95,7 +102,9 @@
     Node sequence:
   = @system_variable.node_sequence
 
-= link_to 'Edit', edit_admin_master_scenario_system_variable_path(@master_scenario, @system_variable)
-|
-= link_to 'Back', admin_master_scenario_system_variables_path(@master_scenario)
-
+%p
+  = link_to 'Edit', edit_admin_master_scenario_system_variable_path(@master_scenario, @system_variable)
+  &nbsp;|&nbsp;
+  = link_to 'Delete', admin_master_scenario_system_variable_path(@master_scenario, @system_variable), :confirm => 'Are you sure?', :method => :delete
+  &nbsp;|&nbsp;
+  = link_to 'Back', admin_master_scenario_system_variables_path(@master_scenario)

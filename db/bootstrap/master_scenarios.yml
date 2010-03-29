@@ -7,7 +7,7 @@ winter_day_chicago:
 summer_day_in_phoenix:
   _id: "2"
   name: "Summer Day in Phoenix - Modelic Model"
-  description: "This is a basic scenario for checking how the system responds to summer coolingconditions."
+  description: "This is a basic scenario for checking how the system responds to summer cooling conditions."
   user_id: "2"
   
 spring_day_in_dc:

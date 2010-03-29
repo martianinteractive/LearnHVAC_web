@@ -1,5 +1,10 @@
 %h2= "System Variables for #{@master_scenario.name}"
-%p Manage system variables
+
+%p
+  = link_to 'New System Variable', new_admin_master_scenario_system_variable_path(@master_scenario)
+  &nbsp;|&nbsp;
+  = link_to "Back", :back
+
 %hr
 %table
   %tr
@@ -20,7 +25,7 @@
     %tr
       %td comp
       %td fault
-      %td= system_variable.name
+      %td= link_to system_variable.name, admin_master_scenario_system_variable_path(@master_scenario, system_variable)
       %td= system_variable.display_name
       %td= system_variable.description
       %td= system_variable.io_type
@@ -31,12 +36,7 @@
       %td= system_variable.unit_ip
       %td= system_variable.si_to_ip
       %td= system_variable.global_disable
-      %td= link_to 'Show', admin_master_scenario_system_variable_path(@master_scenario, system_variable)
-      %td= link_to 'Edit', edit_admin_master_scenario_system_variable_path(@master_scenario, system_variable)
-      %td= link_to 'Destroy', admin_master_scenario_system_variable_path(@master_scenario, system_variable), :confirm => 'Are you sure?', :method => :delete
 %br
 = will_paginate @master_scenarios
 %br
-= link_to 'New System Var', new_admin_master_scenario_system_variable_path(@master_scenario)
-|
-= link_to "Back", admin_master_scenarios_path
+

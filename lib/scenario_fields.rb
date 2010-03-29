@@ -1,6 +1,5 @@
 module ScenarioFields  
   def self.included(parent)
-    parent.field :scenario_id
     parent.field :name
     parent.field :movie_url
     parent.field :thumbnail_url
