@@ -23,7 +23,7 @@ module Mongoid
  
       module ClassMethods
         def tags
-          all.collect{ |ms| ms.tags }.flatten.uniq.compact
+          all.only(:tags).collect{ |ms| ms.tags }.flatten.uniq.compact
         end
 
         def tagged_with(_tags)
