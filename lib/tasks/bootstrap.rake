@@ -42,7 +42,9 @@ namespace :bootstrap do
         sv.delete("io_type")
         sys_vars << sv
       end
-      ms.system_variables = system_variables
+      # Here we resets the versions, 1st save the system_vars, and then reset the versions.
+      ms.update_attributes(:system_variables => sys_vars)
+      ms.update_attributes(:version => 1, :versions => nil)
     end
   end
   

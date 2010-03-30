@@ -27,9 +27,9 @@ module Mongoid
         end
         
         # I have to figure out how to make this with something similar to "LIKE"
-        def tagged_like(_perm)
+        def tagged_like(perm)
           _tags = tags
-          _tags.delete_if { |t| !t.include?(_perm) }
+          _tags.delete_if { |t| !t.include?(perm) }
         end
         
         def tagged_with(_tags)
