@@ -1,0 +1,20 @@
+%h2= "Old versions for #{@master_scenario.name.capitalize} scenario."
+%p= link_to 'Master/Current Scenario', admin_master_scenario_path(@master_scenario)
+%hr
+
+%table
+  %tr
+    %th Name
+    %th Author
+    %th Updated at
+    %th
+  - @versions.each do |version|
+    %tr
+      %td= link_to version.name, admin_master_scenario_master_version_path(@master_scenario, version.version)
+      %td= version.user.name
+      %td= version.updated_at
+      %td 
+        = link_to "System vars.", admin_master_scenario_master_version_variable_versions_path(@master_scenario, version.version)
+%br
+= will_paginate @versions
+

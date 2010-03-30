@@ -39,6 +39,10 @@ Learnhvac::Application.routes.draw do |map|
     resources :master_scenarios do
       resources :system_variables
       
+      resources :master_versions do
+        resources :variable_versions, :controller => "system_variable_versions"
+      end  
+      
       member do
         post :clone
       end

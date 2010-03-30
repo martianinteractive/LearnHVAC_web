@@ -1,0 +1,2 @@
+module Admin::SystemVariableVersionsHelper
+end
