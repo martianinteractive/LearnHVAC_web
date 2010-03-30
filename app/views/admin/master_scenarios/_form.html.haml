@@ -2,11 +2,18 @@
   - javascript_tag do
     :plain
       $(document).ready(function(){
-        $(function() {
-          $("#master_scenario_tag_list").autocomplete({
-            source: "#{tags_admin_master_scenarios_path}",
-            select: function(event, ui) { $(this).val('someval'); }
-          });
+
+        $("#master_scenario_tag_list").autocomplete({
+          source: "#{tags_admin_master_scenarios_path}",
+          select: function(event, ui) { return false; },
+          focus: function(event, ui) { return false; }
+        });
+
+        $("#master_scenario_tag_list" ).bind("autocompleteselect", 
+          function(event, ui) {
+            _tags = $(this).val().replace(/ /g,'').split(",")
+            _tags[_tags.length - 1] = ui.item.value + ", "
+            $(this).val(_tags.join(", "))
         });
       });
 

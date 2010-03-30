@@ -13,7 +13,7 @@ module Mongoid
       
       module InstanceMethods
         def tag_list=(tags)
-          self.tags = tags.split(",").collect{|t| t.strip}
+          self.tags = tags.split(",").collect{ |t| t.strip }.delete_if{ |t| t.blank? }
         end
 
         def tag_list
