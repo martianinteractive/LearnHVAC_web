@@ -1,10 +1,7 @@
 class Admin::TagsController < ApplicationController
   
   def index
-    if params[:term]
-      @tags = MasterScenario.tagged_like(params[:term].split(",").last.strip)
-    end
-    
+    @tags = MasterScenario.tagged_like(params[:term].split(",").last.strip) if params[:term]
     render :js => @tags.try(:to_json) || []
   end
   
