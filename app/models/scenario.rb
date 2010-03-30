@@ -2,7 +2,6 @@ class Scenario
   include Mongoid::Document
   include Mongoid::Timestamps
   include Mongoid::Document::ProtectedAttributes
-  include Mongoid::Document::Taggable
   include ScenarioFields
     
   embed_many :scenario_variables
