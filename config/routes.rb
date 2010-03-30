@@ -40,6 +40,10 @@ Learnhvac::Application.routes.draw do |map|
       member do
         post :clone
       end
+      
+      collection do
+        get :tags
+      end
     end
     
     resources :groups do
