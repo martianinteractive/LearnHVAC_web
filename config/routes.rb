@@ -13,6 +13,7 @@ Learnhvac::Application.routes.draw do |map|
   match 'activate/:id' => 'activations#create', :as => 'activate'
   match 'students/sign_up' => 'students/accounts#new', :as => 'students_signup'
   match 'groups/register/(:code)' => 'memberships#create', :as => 'membership_register'
+  match 'admin/master_scenarios/tagged/:tag' => "admin/master_scenarios#tag", :as => 'master_scenarios_tag'
   
   resources :groups do
     resources :students, :only => [:index]

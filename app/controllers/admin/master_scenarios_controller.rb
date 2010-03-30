@@ -4,6 +4,10 @@ class Admin::MasterScenariosController < Admin::ApplicationController
     @master_scenarios = MasterScenario.all.to_a.paginate :page => params[:page], :per_page => 25
   end
   
+  def tag
+    @master_scenarios = MasterScenario.tagged_with(params[:tag]).paginate :page => params[:page], :per_page => 25
+  end
+  
   def show
     @master_scenario = MasterScenario.find(params[:id])
   end

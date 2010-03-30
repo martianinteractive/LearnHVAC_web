@@ -34,7 +34,7 @@ module Mongoid
         
         def tagged_with(_tags)
           _tags = [_tags] unless _tags.is_a? Array
-          criteria.in(:tags => _tags)
+          criteria.in(:tags => _tags).to_a
         end
       end
       

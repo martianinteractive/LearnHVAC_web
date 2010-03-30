@@ -1,10 +1,5 @@
-%h2 Master Scenarios
-%p= link_to 'New master_scenario', new_admin_master_scenario_path
-%h4 Tags
-%p 
-  - for tag in MasterScenario.tags do
-    = link_to tag, master_scenarios_tag_path(tag)
-
+%h2= "Master Scenarios tagged as #{params[:tag]}"
+%p= link_to 'Master Scenarios', admin_master_scenarios_path
 %hr
 
 %table
@@ -17,8 +12,6 @@
       %td= link_to master_scenario.name, admin_master_scenario_path(master_scenario)
       %td= master_scenario.user.name
       %td 
-        = link_to "Clone", clone_admin_master_scenario_path(master_scenario), :method => :post
-        &nbsp;|&nbsp;
         = link_to "System vars.", admin_master_scenario_system_variables_path(master_scenario)
 %br
 = will_paginate @master_scenarios
