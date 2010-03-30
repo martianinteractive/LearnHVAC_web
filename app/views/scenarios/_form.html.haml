@@ -44,14 +44,25 @@
       = f.label :description
       = f.text_area :description
 
-  .field
-    = f.label :goal
-    = f.text_area :goal
+  %fieldset
+    %legend
+      Goal
 
-  .field
-    = f.label :tag_list, "Tags"
-    = f.text_field :tag_list
-    Comma separated.
+    .field
+      = f.label :goal
+      = f.text_area :goal
+
+
+  %fieldset
+    %legend
+      Dificulty
+    
+    %p
+      Select a level of difficulty for this scenario. 1 = easy, 5 = very difficult.
+
+    .field
+    = f.label :level
+    = f.select :level, [1, 2, 3, 4, 5]
 
   .field
     = f.label :movie_url
@@ -60,10 +71,6 @@
   .field
     = f.label :thumbnail_url
     = f.text_field :thumbnail_url
-
-  .field
-    = f.label :level
-    = f.text_field :level
 
   .field
     = f.label :inputs_visible
