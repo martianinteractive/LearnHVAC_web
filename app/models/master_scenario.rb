@@ -16,6 +16,8 @@ class MasterScenario
   def clone!
     clon_atts = self.attributes
     clon_atts.delete("_id")
+    clon_atts.delete("version")
+    clon_atts.delete("versions")
     clon_atts.delete("system_variables")
     clon_atts["name"] = "#{self.name}_clon"
     clon = MasterScenario.create(clon_atts)
