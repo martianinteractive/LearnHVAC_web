@@ -36,11 +36,13 @@ namespace :bootstrap do
       @system_variables = YAML.load(f)
     end
     MasterScenario.all.each do |ms| 
+      sys_vars = []
       @system_variables.values.each do |sv|
         sv["type_code"] = SystemVariable::TYPES[sv["io_type"].downcase.to_sym] if sv["io_type"]
         sv.delete("io_type")
-        ms.system_variables.create(sv)
+        sys_vars << sv
       end
+      ms.system_variables = system_variables
     end
   end
   
