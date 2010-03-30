@@ -33,16 +33,13 @@ Learnhvac::Application.routes.draw do |map|
   # Admin Routes.
   namespace :admin do
     resources :institutions
+    resources :tags
     
     resources :master_scenarios do
       resources :system_variables
       
       member do
         post :clone
-      end
-      
-      collection do
-        get :tags
       end
     end
     

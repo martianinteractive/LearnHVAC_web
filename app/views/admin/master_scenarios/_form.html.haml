@@ -4,7 +4,7 @@
       $(document).ready(function(){
 
         $("#master_scenario_tag_list").autocomplete({
-          source: "#{tags_admin_master_scenarios_path}",
+          source: "#{admin_tags_path}",
           select: function(event, ui) { return false; },
           focus: function(event, ui) { return false; }
         });
