@@ -1,6 +1,7 @@
 class MasterScenario
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Mongoid::Versioning
   include Mongoid::Document::Taggable
   field :name
   field :description
