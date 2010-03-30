@@ -1,3 +1,15 @@
+- content_for :head do
+  - javascript_tag do
+    :plain
+      $(document).ready(function(){
+        $(function() {
+          $("#master_scenario_tag_list").autocomplete({
+            source: "#{tags_admin_master_scenarios_path}",
+            select: function(event, ui) { $(this).val('someval'); }
+          });
+        });
+      });
+
 = f.error_messages
 .field
   = f.label :name
@@ -6,6 +18,11 @@
 .field
   = f.label :description
   = f.text_area :description
+
+.field
+  = f.label :tag_list, "Tags"
+  = f.text_field :tag_list
+  Comma separated.
 
 .actions
   = f.submit

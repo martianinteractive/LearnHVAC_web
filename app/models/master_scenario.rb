@@ -1,16 +1,16 @@
 class MasterScenario
   include Mongoid::Document
   include Mongoid::Timestamps
-  
+  include Mongoid::Document::Taggable
   field :name
   field :description
-
+  
   embed_many :system_variables
+  
   has_many_related :scenarios
   belongs_to_related :user
   
   validates_presence_of :name, :user
-  
   
   def clone!
     clon_atts = self.attributes

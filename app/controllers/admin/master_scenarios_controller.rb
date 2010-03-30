@@ -1,6 +1,20 @@
-class Admin::MasterScenariosController < Admin::ApplicationController  
+class Admin::MasterScenariosController < Admin::ApplicationController 
+   
   def index
     @master_scenarios = MasterScenario.all.to_a.paginate :page => params[:page], :per_page => 25
+  end
+  
+  def tags
+    if params[:term]
+      term = params[:term].split(",").last.strip
+      @tags = MasterScenario.tagged_like(term)
+    end
+    
+    if @tags.any?
+      render :js => @tags.to_json
+    else
+      render :nothing => true
+    end
   end
 
   def show
