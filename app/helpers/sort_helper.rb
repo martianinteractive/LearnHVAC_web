@@ -161,7 +161,7 @@ module SortHelper
   
   # Ruby Sort for Mongoid embedded documents as collections.
   # Uses the current sort_clause by default.
-  def mongo_collection_sort(collection, _sort_clause = sort_clause)
+  def doc_sort(collection, _sort_clause = sort_clause)
     attribute, order = _sort_clause.split(" ")
     co = collection.sort_by { |item| item.send(attribute) }
     co.reverse! if order == "desc"

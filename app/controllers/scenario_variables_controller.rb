@@ -2,9 +2,13 @@ class ScenarioVariablesController < ApplicationController
   before_filter :require_user
   before_filter :find_scenario
   before_filter :find_scenario_variable, :only => [:show, :edit, :update]
-
+  helper :sort
+  include SortHelper
+  before_filter :initialize_variables_sort, :only => [:index]
+  
+  
   def index
-    @scenario_variables = @scenario.scenario_variables.paginate :page => params[:page], :per_page => 25
+    @scenario_variables = doc_sort(@scenario.scenario_variables).paginate :page => params[:page], :per_page => 25
   end
   
   def new
