@@ -14,6 +14,20 @@ describe Admin::MasterScenariosController do
     end
   end
   
+  describe "GET tag" do
+    it "" do
+      get :tag, :tag => @master_scenario.tags.first
+      response.should render_template(:tag)
+      assigns(:master_scenarios).should_not be_empty
+    end
+    
+    it "" do
+      get :tag, :tag => "faketag"
+      response.should render_template(:tag)
+      assigns(:master_scenarios).should be_empty
+    end
+  end
+  
   describe "GET show" do
     it "" do
       get :show, :id => @master_scenario.id
