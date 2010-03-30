@@ -34,7 +34,7 @@ describe Admin::MasterVersionsController do
     end
     
     it "should require an admin user for all actions" do
-      authorize_actions do
+      authorize_actions({:get => [:index, :show]}) do
         response.should redirect_to(default_path_for(@admin))
         flash[:notice].should == "You must be logged in to access this page"
       end
