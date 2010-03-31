@@ -11,7 +11,6 @@ class Scenario
   
   validates_presence_of :master_scenario, :user, :name
 
-  
   named_scope :recently_created, criteria.where(:created_at.gt => (Time.now + 30.days))
   named_scope :recently_updated, criteria.where(:updated_at.gt => (Time.now + 30.days))
     

@@ -4,13 +4,18 @@ class Group < ActiveRecord::Base
   has_many :students, :through => :memberships
   
   has_many :group_scenarios
-  # has_many :scenarios, :through => :group_scenarios #obviously doesn't work! yet.
   
   validates :name, :presence => true, :length => { :maximum => 200 }, :uniqueness => true
   validates :code, :presence => true, :length => { :maximum => 200 }, :uniqueness => true, :on => :update
   validates :instructor, :presence => true
   
   after_create :set_code
+    
+  # Define this later using has_many_documents :scenarios, :through => :group_scenarios
+  def scenarios
+    scenarios_ids = group_scenarios.all.collect { |gs| gs.scenario_id }
+    Scenario.criteria.in("_id" => scenarios_ids).to_a
+  end
     
   private
   
