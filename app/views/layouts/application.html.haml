@@ -14,6 +14,9 @@
     = javascript_include_tag 'rails', 'application'
 
     = yield :head
+    - javascript_tag do
+      = yield :js_templates
+
   %body.bp.instructor_site
     .header
       %h1.siteTitle

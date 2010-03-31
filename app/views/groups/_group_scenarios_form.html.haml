@@ -1,6 +1,8 @@
-- group_form.fields_for :group_scenarios do |group_scenario_form|
+- content_for :js_templates do
+  $(document).ready(function() { setup_group_scenarios(); })
+  var group_scenario='#{generate_template(group_form, :group_scenarios, :partial => 'groups/group_scenario', :form_builder_local => :group_scenario)}'
+
+- group_form.fields_for :group_scenarios do |group_scenario|
+  = render :partial => "group_scenario", :locals => { :group_scenario =>  group_scenario }
   .field
-    = group_scenario_form.label :scenario_id, "Scenario"
-    %br
-    = group_scenario_form.select :scenario_id, current_user.scenarios.collect{ |s| [s.name, s.id] }
-  
+    = link_to "Add Scenario", '#group_scenario', :class => "add", :rel => "group_scenario" if  @group.group_scenarios.last == group_scenario.object
