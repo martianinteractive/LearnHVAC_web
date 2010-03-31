@@ -1,5 +1,7 @@
 class MembershipsController < ApplicationController
-  before_filter :require_student
+  before_filter :require_student, :only => [:create]
+  before_filter :require_instructor, :only => [:destroy]
+  before_filter :find_group, :only => [:destroy]
   
   def create
     @group = Group.find_by_code(params[:code])
@@ -19,7 +21,19 @@ class MembershipsController < ApplicationController
     end
   end
   
+  # This destroy could support a student-membership remove as student. 
+  # For now only instructors can remove memberships.
+  def destroy
+    @membership = @group.memberships.find(params[:id])
+    @membership.destroy
+    redirect_to group_path(@group) 
+  end
+  
   private 
+  
+  def find_group
+    @group = current_user.managed_groups.find(params[:group_id])
+  end
   
   # This method is re-defined here 'cause it's redirecting
   # to students_signup instead of login. 

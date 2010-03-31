@@ -7,6 +7,7 @@ class Scenario
   embed_many :scenario_variables
   belongs_to_related :user
   belongs_to_related :master_scenario
+  has_many_related :group_scenarios
   
   validates_presence_of :master_scenario, :user, :name
 

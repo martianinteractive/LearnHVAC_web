@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + "/../../spec_helper"
 
-describe Admin::MasterVersionsController do
+describe Admin::RevisionsController do
   before(:each) do
      admin_login
      @master_scenario = Factory(:master_scenario, :name => "Summer Day in DC", :user => @admin)

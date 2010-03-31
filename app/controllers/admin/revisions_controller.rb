@@ -1,4 +1,4 @@
-class Admin::MasterVersionsController < Admin::ApplicationController 
+class Admin::RevisionsController < Admin::ApplicationController 
   before_filter :find_master_scenario
   
   def index

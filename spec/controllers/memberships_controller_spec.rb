@@ -44,6 +44,23 @@ describe MembershipsController do
       # end
     end
     
+    
+    describe "DELETE :destroy" do
+      before(:each) do 
+        @membership = Membership.create(:group => @group, :student => @student)
+        login_as(@instructor)
+      end
+      
+      it "" do
+        proc { delete :destroy, :group_id => @group.id, :id => @membership.id }.should change(Membership, :count).by(-1)
+      end
+      
+      it "" do
+        delete :destroy, :group_id => @group.id, :id => @membership.id
+        response.should redirect_to(group_path(@group))
+      end
+    end
+    
     describe "without authentication" do
       before(:each) do
         user_logout

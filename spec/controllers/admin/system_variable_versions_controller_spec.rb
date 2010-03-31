@@ -18,14 +18,14 @@ describe Admin::SystemVariableVersionsController do
   
   describe "GET show" do    
     it "" do
-      get :show, :master_scenario_id => @master_scenario.id, :master_version_id => "2", :id => @system_variable.id
+      get :show, :master_scenario_id => @master_scenario.id, :revision_id => "2", :id => @system_variable.id
       response.should render_template(:show)
       assigns(:system_variable_version).should_not be_nil
       assigns(:system_variable_version).name.should == "Water Temp"
     end
     
     it "" do
-      get :show, :master_scenario_id => @master_scenario.id, :master_version_id => "3", :id => @system_variable.id
+      get :show, :master_scenario_id => @master_scenario.id, :revision_id => "3", :id => @system_variable.id
       response.should render_template(:show)
       assigns(:system_variable_version).should_not be_nil
       assigns(:system_variable_version).name.should == "Air Temp"

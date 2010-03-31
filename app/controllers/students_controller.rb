@@ -1,11 +1,7 @@
 class StudentsController < ApplicationController
   before_filter :require_instructor
   before_filter :find_group
-  
-  def index
-    @students = @group.students
-  end
-  
+    
   def show
     @student = @group.students.find(params[:id])
   end
