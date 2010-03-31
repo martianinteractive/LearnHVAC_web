@@ -1,8 +1,9 @@
-- form_for(@group) do |f|
-  = f.error_messages
+- form_for(@group) do |group_form|
+  = group_form.error_messages
   .field
-    = f.label :name
+    = group_form.label :name
     %br
-    = f.text_field :name
+    = group_form.text_field :name
+  = render :partial => "group_scenarios_form", :locals => { :group_form => group_form }
   .actions
-    = f.submit
+    = group_form.submit
