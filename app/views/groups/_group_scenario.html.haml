@@ -2,7 +2,7 @@
   = group_scenario.label :scenario_id, "Scenario"
   %br
   = group_scenario.select :scenario_id, current_user.scenarios.collect{ |s| [s.name, s.id] }
-  - if group_scenario.object.new_record?
+  - if group_scenario.object.new_record? and @group.group_scenarios.first != group_scenario.object
     = link_to "delete", "#delete", :class => "delete"
   - elsif @group.group_scenarios.first != group_scenario.object
     = group_scenario.check_box :_destroy
