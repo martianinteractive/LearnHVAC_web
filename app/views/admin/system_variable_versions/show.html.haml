@@ -1,7 +1,7 @@
 %h2= "#{@master_scenario.name.capitalize}/System Variables #{@system_variable_version.name} -v# #{@version.version}"
 
 %p
-  = link_to 'Back', admin_master_scenario_master_version_variable_versions_path(@master_scenario, @version.version)
+  = link_to 'Back', admin_master_scenario_revision_variables_path(@master_scenario, @version.version)
 
 %hr  
 
@@ -99,4 +99,4 @@
   = @system_variable_version.node_sequence
 
 %p
-  = link_to 'Back', admin_master_scenario_master_version_variable_versions_path(@master_scenario, @version.version)
+  = link_to 'Back', admin_master_scenario_revision_variables_path(@master_scenario, @version.version)

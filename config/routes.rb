@@ -17,6 +17,7 @@ Learnhvac::Application.routes.draw do |map|
   
   resources :groups do
     resources :students, :only => [:index, :show]
+    resources :memberships, :only => [:destroy]
   end
   
   resources :scenarios do
@@ -39,8 +40,8 @@ Learnhvac::Application.routes.draw do |map|
     resources :master_scenarios do
       resources :system_variables
       
-      resources :master_versions do
-        resources :variable_versions, :controller => "system_variable_versions"
+      resources :revisions do
+        resources :variables, :controller => "system_variable_versions"
       end  
       
       member do
