@@ -11,6 +11,7 @@ class GroupsController < ApplicationController
 
   def new
     @group = current_user.managed_groups.build
+    @group.group_scenarios.build
   end
 
   def edit

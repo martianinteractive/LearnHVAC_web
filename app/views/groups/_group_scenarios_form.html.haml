@@ -1,0 +1,6 @@
+- group_form.fields_for :group_scenarios do |group_scenario_form|
+  .field
+    = group_scenario_form.label :scenario_id, "Scenario"
+    %br
+    = group_scenario_form.select :scenario_id, current_user.scenarios.collect{ |s| [s.name, s.id] }
+  
