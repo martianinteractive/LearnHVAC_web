@@ -16,7 +16,7 @@
 
   %fieldset
     %p 
-      Description shown when student views available scenarios
+      Description shown when student views available scenarios.
 
     .field.clearfix
       = f.label :short_description
@@ -122,6 +122,9 @@
       = f.label :allow_realtime_datetime_change
       = f.check_box :allow_realtime_datetime_change
 
+
+  %fieldset
+    %p Allow student to view Heating Coil and Cooling Coil valve information
 
   .field.clearfix
     = f.label :valve_info_enabled
