@@ -98,8 +98,9 @@ cite
 
 fieldset
   border: none
-  padding: 1.5em 0 1.5em
-  margin: 10px 0 0
+  padding: 0
+  margin: 15px 0 15px 0
+  padding-top: 10px
   border-width: 1px medium medium
   border-top: 1px solid #CCCCCC
 
@@ -133,9 +134,10 @@ input
 
   &[value="Find
 
-form
+
+.bp form
   ul, p
-    margin-left: 17em
+    margin-bottom: 0.5em
 
 
 .edit_provider img
@@ -394,13 +396,14 @@ form .errorExplanation ul
 div.notice
   background-color: #E0F5CC
 
+.clearfix:after
+  content: "."
+  display: block
+  clear: both
+  visibility: hidden
+  line-height: 0
+  height: 0
 
-.over-limit
-  color: #CC0000
+.clearfix
+  display: inline-block
 
-
-#recaptcha_widget_div
-  margin: 1.5em 0 0.5em 17em
-
-  table
-    width: auto

@@ -7,7 +7,7 @@
   &nbsp;|&nbsp;
   = link_to "Manage variables", admin_master_scenario_system_variables_path(@master_scenario)
   &nbsp;|&nbsp;
-  = link_to "Versions", admin_master_scenario_revisions_path(@master_scenario)
+  = link_to "Revisions", admin_master_scenario_revisions_path(@master_scenario)
   &nbsp;|&nbsp;
   = link_to 'Back', admin_master_scenarios_path
 
@@ -22,6 +22,11 @@
   %b
     Description:
   = @master_scenario.description
+
+%p
+  %b
+    Revisions:
+  = @master_scenario.versions.size
 
 %p
   %b

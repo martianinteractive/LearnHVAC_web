@@ -1,7 +1,7 @@
 - form_for(@scenario) do |f|
   = f.error_messages
 
-  .field
+  .field.clearfix
     = f.label :name, "Scenario name"
     = f.text_field :name
 	
@@ -9,30 +9,30 @@
     %p
       Select a master scenario to model your scenario from.
 
-    .field
+    .field.clearfix
       = f.label :master_scenario_id, "Master Scenario"
       = f.select :master_scenario_id, MasterScenario.all.collect { |ms| [ ms.name.capitalize, ms.id ] }
 
 
   %fieldset
     %p 
-      Description shown when student views available scenarios
+      Description shown when student views available scenarios.
 
-    .field
+    .field.clearfix
       = f.label :short_description
       = f.text_field :short_description
 
   %fieldset
     %p
-      A longer description describing scenario in detail
+      Enter a longer description describing scenario in detail.
 
-    .field
+    .field.clearfix
       = f.label :description, "Full description"
       = f.text_area :description
 
   %fieldset
 
-    .field
+    .field.clearfix
       = f.label :goal
       = f.text_area :goal
 
@@ -42,7 +42,7 @@
     
     %p Select a level of difficulty for this scenario. 1 = easy, 5 = very difficult.
 
-    .field
+    .field.clearfix
     = f.label :level
     = f.select :level, [1, 2, 3, 4, 5]
 
@@ -54,7 +54,7 @@
     
     %p Allow students to see PUBLIC input values during simulation.
 
-    .field
+    .field.clearfix
       = f.label :inputs_visible
       = f.check_box :inputs_visible
 
@@ -63,7 +63,7 @@
 
     %p Allow student to enter PUBLIC input values during simulation.
 
-    .field
+    .field.clearfix
       = f.label :inputs_enabled
       = f.check_box :inputs_enabled
 
@@ -72,7 +72,7 @@
    
     %p Allow student to see PUBLIC fault values during simulation.
 
-    .field
+    .field.clearfix
       = f.label :faults_visible
       = f.check_box :faults_visible
 
@@ -81,39 +81,52 @@
 
     %p Allow student to enter PUBLIC fault values during simulation.
 
-    .field
+    .field.clearfix
       = f.label :faults_enabled
       = f.check_box :faults_enabled
 
-  %fieldset
-    %legend Real-time Simulation
-   
-    .field
-      = f.label :realtime_start_datetime
-      = f.datetime_select :realtime_start_datetime
-
-    .field
-      = f.label :allow_realtime_datetime_change
-      = f.check_box :allow_realtime_datetime_change
-	
 
   %fieldset
     %legend Long-term Simulation
 
-    .field
+    %p The date and time the real-time simulation should start.
+
+    .field.clearfix
       = f.label :longterm_start_date
       = f.date_select :longterm_start_date
 
-    .field
+    %p{:style => "margin-top:35px;"} The date and time the real-time simulation should stop.
+
+    .field.clearfix
       = f.label :longterm_stop_date
       = f.date_select :longterm_stop_date
 
-    .field
+    %p{:style => "margin-top:35px;"} Allow the student to change the start and stop time and date for the long-term simulation.
+
+    .field.clearfix
       = f.label :allow_longterm_date_change
       = f.check_box :allow_longterm_date_change
 
+  %fieldset
+    %legend Real-time Simulation
+ 
+    %p The date and time the real-time simulation should start at.
+   
+    .field.clearfix
+      = f.label :realtime_start_datetime
+      = f.datetime_select :realtime_start_datetime
 
-  .field
+    %p{:style => "margin-top:35px;"} Allow the student to change the start time and date for the short-term simulation.
+
+    .field.clearfix
+      = f.label :allow_realtime_datetime_change
+      = f.check_box :allow_realtime_datetime_change
+
+
+  %fieldset
+    %p Allow student to view Heating Coil and Cooling Coil valve information
+
+  .field.clearfix
     = f.label :valve_info_enabled
     = f.check_box :valve_info_enabled
 
