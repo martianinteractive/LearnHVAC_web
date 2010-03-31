@@ -9,12 +9,12 @@ describe StudentsController do
     login_as(@instructor)
   end
   
-  describe "GET index" do
+  describe "GET show" do
     it "" do
-      get :index, :group_id => @group.id
-      response.should render_template(:index)
-      assigns(:students).should_not be_empty
-      assigns(:students).should eq([@student])
+      get :show, :group_id => @group.id, :id => @student.id
+      response.should render_template(:show)
+      assigns(:student).should_not be_nil
+      assigns(:student).should eq(@student)
     end
   end
   
@@ -25,7 +25,7 @@ describe StudentsController do
     end
     
     it "should require an instructor for all actions" do
-      authorize_actions({:get => [:index]}) do
+      authorize_actions({:get => [:show]}) do
         response.should redirect_to(default_path_for(@instructor))
         flash[:notice].should == "You must be logged in to access this page"
       end
