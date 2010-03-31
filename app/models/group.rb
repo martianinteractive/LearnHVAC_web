@@ -3,6 +3,9 @@ class Group < ActiveRecord::Base
   has_many :memberships, :dependent => :destroy
   has_many :students, :through => :memberships
   
+  has_many :group_scenarios
+  # has_many :scenarios, :through => :group_scenarios #obviously doesn't work! yet.
+  
   validates :name, :presence => true, :length => { :maximum => 200 }, :uniqueness => true
   validates :code, :presence => true, :length => { :maximum => 200 }, :uniqueness => true, :on => :update
   validates :instructor, :presence => true
