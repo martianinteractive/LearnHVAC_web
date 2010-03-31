@@ -16,7 +16,7 @@ Learnhvac::Application.routes.draw do |map|
   match 'admin/master_scenarios/tagged/:tag' => "admin/master_scenarios#tag", :as => 'master_scenarios_tag'
   
   resources :groups do
-    resources :students, :only => [:index]
+    resources :students, :only => [:index, :show]
   end
   
   resources :scenarios do

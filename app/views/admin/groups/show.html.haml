@@ -13,7 +13,7 @@
 
 %p
   %b Lead by:
-  = @group.instructor.name
+  = link_to @group.instructor.name, admin_user_path(@group.instructor)
 
 %p
   %b Invitation URL:

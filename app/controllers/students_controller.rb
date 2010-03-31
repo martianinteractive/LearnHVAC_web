@@ -6,6 +6,10 @@ class StudentsController < ApplicationController
     @students = @group.students
   end
   
+  def show
+    @student = @group.students.find(params[:id])
+  end
+  
   private
   
   def find_group

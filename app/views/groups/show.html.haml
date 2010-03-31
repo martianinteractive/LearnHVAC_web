@@ -8,10 +8,33 @@
   &nbsp;|&nbsp;
   = link_to 'Back', groups_path
 
-%p
-  %b Code:
-  = @group.code
   
-%p
-  %b Registration url:
-  = link_to membership_register_url(@group.code), membership_register_url(@group.code) 
+%fieldset
+  %legend
+    Registration Link
+
+  %p
+    Send students the following link to let them join this group.
+  
+  %p
+    %b Link:
+    %input{:type => "text", :value => membership_register_url(@group.code), :style => "width: 400px", :spellcheck => false}
+
+%h3
+  Students
+
+- if @group.students.any?
+
+  %table
+    %tr
+      %th Name
+      %th Email
+
+      - for student in @group.students
+        %tr
+          %td= link_to student.name, group_student_path(@group, student)
+          %td= student.email
+
+- else
+  %p
+    There are no students on this group.

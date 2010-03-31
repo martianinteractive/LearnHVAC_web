@@ -19,7 +19,7 @@
 %p
   %b
     E-Mail:
-  = h @user.email
+  = mail_to @user.email, @user.email
 
 = link_to 'Edit', edit_user_path(@user)
 |
