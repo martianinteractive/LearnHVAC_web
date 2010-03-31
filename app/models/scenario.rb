@@ -20,6 +20,10 @@ class Scenario
   before_create :assign_master_scenario
   after_create :copy_system_variables
   
+  def validate(record)
+    record.errors[:name] = "can't be monkey" if record.name == "monkey"
+  end
+  
   private
   
   def assign_master_scenario
