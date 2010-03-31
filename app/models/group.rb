@@ -4,12 +4,13 @@ class Group < ActiveRecord::Base
   has_many :students, :through => :memberships  
   has_many :group_scenarios
   
+  accepts_nested_attributes_for :group_scenarios, :allow_destroy => true
+  
   validates :name, :presence => true, :length => { :maximum => 200 }, :uniqueness => true
   validates :code, :presence => true, :length => { :maximum => 200 }, :uniqueness => true, :on => :update
   validates :instructor, :presence => true
+  validate  :scenario_uniqueness
   
-  accepts_nested_attributes_for :group_scenarios, :allow_destroy => true
-
   after_create :set_code
     
   # Define this later using has_many_documents :scenarios, :through => :group_scenarios
@@ -31,6 +32,10 @@ class Group < ActiveRecord::Base
   
   def secure_rand
     ActiveSupport::SecureRandom.hex(3)
+  end
+  
+  def scenario_uniqueness
+    errors.add(:scenarios, "must be unique for each group.") if group_scenarios.collect{ |gs| gs.scenario_id }.uniq.size != group_scenarios.size
   end
   
 end
