@@ -1,7 +1,7 @@
-$(document).ready(function() {
-    $('.add').live('click', function() { Group.addItem(this); })
+function setup_group_scenarios() { 
+	$('.add').live('click', function() { Group.addItem(this); })
     $('.delete').live('click', function() { Group.deleteItem(this); })
-})
+}
 
 Group = {
     addItem: function(item) {

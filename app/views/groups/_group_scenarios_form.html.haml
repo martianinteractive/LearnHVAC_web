@@ -1,4 +1,5 @@
 - content_for :js_templates do
+  $(document).ready(function() { setup_group_scenarios(); })
   var group_scenario='#{generate_template(group_form, :group_scenarios, :partial => 'groups/group_scenario', :form_builder_local => :group_scenario)}'
 
 - group_form.fields_for :group_scenarios do |group_scenario|
