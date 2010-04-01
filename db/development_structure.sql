@@ -7,6 +7,15 @@ CREATE TABLE `colleges` (
   KEY `index_colleges_on_value` (`value`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1073688967 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+CREATE TABLE `group_scenarios` (
+  `id` int(11) NOT NULL auto_increment,
+  `group_id` int(11) default NULL,
+  `scenario_id` varchar(255) collate utf8_unicode_ci default NULL,
+  `created_at` datetime default NULL,
+  `updated_at` datetime default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 CREATE TABLE `groups` (
   `id` int(11) NOT NULL auto_increment,
   `name` varchar(255) collate utf8_unicode_ci default NULL,
@@ -16,7 +25,7 @@ CREATE TABLE `groups` (
   `updated_at` datetime default NULL,
   PRIMARY KEY  (`id`),
   KEY `index_groups_on_instructor_id` (`instructor_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 CREATE TABLE `institutions` (
   `id` int(11) NOT NULL auto_increment,
@@ -37,11 +46,31 @@ CREATE TABLE `memberships` (
   PRIMARY KEY  (`id`),
   KEY `index_memberships_on_student_id` (`student_id`),
   KEY `index_memberships_on_group_id` (`group_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 CREATE TABLE `schema_migrations` (
   `version` varchar(255) collate utf8_unicode_ci NOT NULL,
   UNIQUE KEY `unique_schema_migrations` (`version`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE `taggings` (
+  `id` int(11) NOT NULL auto_increment,
+  `tag_id` int(11) default NULL,
+  `taggable_id` int(11) default NULL,
+  `taggable_type` varchar(255) collate utf8_unicode_ci default NULL,
+  `tagger_id` int(11) default NULL,
+  `tagger_type` varchar(255) collate utf8_unicode_ci default NULL,
+  `context` varchar(255) collate utf8_unicode_ci default NULL,
+  `created_at` datetime default NULL,
+  PRIMARY KEY  (`id`),
+  KEY `index_taggings_on_tag_id` (`tag_id`),
+  KEY `index_taggings_on_taggable_id_and_taggable_type_and_context` (`taggable_id`,`taggable_type`,`context`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE `tags` (
+  `id` int(11) NOT NULL auto_increment,
+  `name` varchar(255) collate utf8_unicode_ci default NULL,
+  PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 CREATE TABLE `users` (
@@ -64,7 +93,7 @@ CREATE TABLE `users` (
   `enabled` tinyint(1) default '1',
   PRIMARY KEY  (`id`),
   KEY `index_users_on_perishable_token` (`perishable_token`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 INSERT INTO schema_migrations (version) VALUES ('20100302150214');
 
@@ -83,3 +112,7 @@ INSERT INTO schema_migrations (version) VALUES ('20100323144050');
 INSERT INTO schema_migrations (version) VALUES ('20100325212707');
 
 INSERT INTO schema_migrations (version) VALUES ('20100327161124');
+
+INSERT INTO schema_migrations (version) VALUES ('20100329224224');
+
+INSERT INTO schema_migrations (version) VALUES ('20100331204627');

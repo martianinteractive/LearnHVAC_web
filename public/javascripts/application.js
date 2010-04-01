@@ -22,3 +22,8 @@ replace_ids = function(s) {
     return s.replace(/NEW_RECORD/g, new_id);
 }
 
+$(document).ready(function() {
+  $("#scenario_longterm_start_date").datepicker();
+  $("#scenario_longterm_stop_date").datepicker();
+  $("#scenario_realtime_start_datetime").datepicker();
+});
