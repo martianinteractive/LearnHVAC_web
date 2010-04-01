@@ -3,7 +3,9 @@ require File.dirname(__FILE__) + "/../spec_helper"
 describe Membership do
   before(:each) do
     @student    = user_with_role(:student)
-    @group      = Factory(:group, :instructor => user_with_role(:instructor))
+    @group      = Factory.build(:group, :instructor => user_with_role(:instructor))
+    @group.group_scenarios.build(:scenario_id => "1")
+    @group.save
     @membership = Factory.build(:membership, :group => @group, :student => @student)
   end
   

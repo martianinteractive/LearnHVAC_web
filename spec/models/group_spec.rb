@@ -4,6 +4,8 @@ describe Group do
   before(:each) do
     @instructor = Factory(:user)
     @group = Factory.build(:group, :instructor => @instructor)
+    @group.group_scenarios.build(:scenario_id => "1")
+    @group.save
   end
   
   it "" do
@@ -15,6 +17,12 @@ describe Group do
     @group.instructor = nil
     @group.should_not be_valid
     [:name, :instructor].each { |gattr| @group.errors[gattr].sort.should == ["can't be blank"] }
+  end
+  
+  it "should not be valid when assigning the same scenario multiple times" do
+    @group.group_scenarios.build(:scenario_id => "1")
+    @group.should_not be_valid
+    @group.errors[:scenarios].should_not be_empty
   end
   
   it "should validate code on update" do
@@ -41,7 +49,9 @@ describe Group do
     describe "After create" do
       before(:each) do
         @group2 = Factory.build(:group, :name => "class2", :instructor => @instructor)
+        @group2.group_scenarios.build(:scenario_id => "1")
         @group3 = Factory.build(:group, :name => "class3", :instructor => @instructor)
+        @group3.group_scenarios.build(:scenario_id => "1")
         @group2.save
         @group3.save
       end

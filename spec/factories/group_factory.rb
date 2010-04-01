@@ -5,3 +5,6 @@ end
 
 Factory.define :membership do |membership|
 end
+
+Factory.define :group_scenario do |gs|
+end
