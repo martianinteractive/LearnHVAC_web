@@ -3,6 +3,11 @@ class Admin::ScenariosController < Admin::ApplicationController
    def index
      @scenarios = Scenario.paginate :page => params[:page], :per_page => 25
    end
+   
+   def list
+     @scenarios = User.find(params[:id]).scenarios
+     render :layout => false
+   end
 
    def show
      @scenario = Scenario.find(params[:id])

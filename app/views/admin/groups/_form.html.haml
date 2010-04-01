@@ -8,5 +8,7 @@
   = f.label :instructor
   = f.select :instructor_id, User.instructor.collect {|user| [ user.name, user.id ] }
 
+  = render :partial => "group_scenarios_form", :locals => { :group_form => f }
+
 .actions
   = f.submit

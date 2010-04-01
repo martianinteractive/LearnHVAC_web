@@ -10,6 +10,7 @@ class Admin::GroupsController < Admin::ApplicationController
 
   def new
     @group = Group.new
+    @group.group_scenarios.build
   end
 
   def edit
