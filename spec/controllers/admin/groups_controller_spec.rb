@@ -2,8 +2,10 @@ require File.dirname(__FILE__) + "/../../spec_helper"
 
 describe Admin::GroupsController do
   before(:each) do
-    @instructor = Factory(:user)
-    @group      = Factory(:group, :name => "Class 01", :instructor => @instructor)
+    @instructor = user_with_role(:instructor)
+    @group      = Factory.build(:group, :name => "Class 01", :instructor => @instructor)
+    @group.group_scenarios.build(:scenario_id => "1")
+    @group.save
     admin_login
   end
   
@@ -43,18 +45,21 @@ describe Admin::GroupsController do
   describe "POST create" do
     describe "with valid params" do
       it "should change the Group count" do
-        proc{ post :create, :group => Factory.attributes_for(:group, :name => "Class 02", :instructor_id => @instructor.id) }.should change(Group, :count).by(1)
+        proc{ post :create, :group => Factory.attributes_for(:group, :name => "Class 02", :instructor_id => @instructor.id, 
+                            :group_scenarios_attributes => {"0" => {"scenario_id"=> "4b" }}) 
+            }.should change(Group, :count).by(1)
       end
       
       it "redirects to the created group" do
-        post :create, :group => Factory.attributes_for(:group, :name => "Class 02", :instructor_id => @instructor.id)
+        post :create, :group => Factory.attributes_for(:group, :name => "Class 02", :instructor_id => @instructor.id, 
+                      :group_scenarios_attributes => {"0" => {"scenario_id"=> "4b" }})
         response.should redirect_to(admin_group_path(assigns(:group)))
       end
     end
   
     describe "with invalid params" do
       it "" do
-        post :create, :group => Factory.attributes_for(:group, :name => @group.name)
+        post :create, :group => Factory.attributes_for(:group, :name => @group.name, :instructor_id => @instructor.id)
         response.should render_template(:new)
       end
     end

@@ -10,4 +10,4 @@
   .field.group_scenario
     = group_scenario.label :scenario_id, "Scenario"
     %br
-    = group_scenario.select :scenario_id, User.instructor.first.scenarios.collect{ |s| [s.name, s.id] }, {}, { :class => "scenario" }
+    = group_scenario.select :scenario_id, @group.instructor.scenarios.collect{ |s| [s.name, s.id] }, {}, { :class => "scenario" }
