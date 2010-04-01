@@ -2,7 +2,7 @@
   :plain
     $(document).ready(function() { 
       $("#group_instructor_id").change(function() { 
-        $.get("#{list_admin_scenarios_path}", { id: $(this).val() }, function(r) { $(".scenario").html(r) }) 
+        $.get("#{list_admin_scenarios_path}", { user_id: $(this).val() }, function(r) { $(".scenario").html(r) }) 
       }) 
     })
 
