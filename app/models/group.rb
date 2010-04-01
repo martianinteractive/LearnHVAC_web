@@ -19,12 +19,12 @@ class Group < ActiveRecord::Base
     Scenario.criteria.in("_id" => scenarios_ids).to_a
   end
   
-  def scenario_ids=(scen_ids)
+  def scenarios_ids=(scen_ids)
     self.group_scenarios = []
     scen_ids.each { |scen_id|  self.group_scenarios.build(:scenario_id => scen_id) }
   end
   
-  def scenario_ids
+  def scenarios_ids
     group_scenarios.all.collect { |gs| gs.scenario_id }
   end
     
