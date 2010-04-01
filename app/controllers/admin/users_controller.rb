@@ -10,7 +10,7 @@ class Admin::UsersController < Admin::ApplicationController
     @users = collection.search(params[:q]).paginate :page => params[:page], :order => "role_code DESC"
     render :action => "index"
   end
-
+  
   def show
     @user = User.find(params[:id])
   end
