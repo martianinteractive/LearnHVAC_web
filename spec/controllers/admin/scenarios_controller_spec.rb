@@ -16,6 +16,21 @@ describe Admin::ScenariosController do
     end
   end
   
+  describe "GET list" do
+    it "" do
+      get :list
+      response.should render_template(:list)
+      assigns(:scenarios).should be_nil
+    end
+    
+    it "" do
+      get :list, :user_id => @instructor.id
+      response.should render_template(:list)
+      assigns(:scenarios).should_not be_empty
+      assigns(:scenarios).should eq([@scenario])
+    end
+  end
+  
   describe "GET show" do
     it "" do
       get :show, :id => @scenario.id

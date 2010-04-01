@@ -11,7 +11,6 @@ class GroupsController < ApplicationController
 
   def new
     @group = current_user.managed_groups.build
-    @group.group_scenarios.build
   end
 
   def edit
@@ -20,7 +19,7 @@ class GroupsController < ApplicationController
   def create
     @group = Group.new(params[:group])
     @group.instructor = current_user
-
+    
     if @group.save
       redirect_to(@group, :notice => 'Group was successfully created.')
     else

@@ -4,6 +4,9 @@
     = group_form.label :name
     %br
     = group_form.text_field :name
-  = render :partial => "group_scenarios_form", :locals => { :group_form => group_form }
+  .field
+    = group_form.label :scenarios
+    %br
+    = select_tag "group[scenario_ids][]", options_from_collection_for_select(current_user.scenarios, :id, :name), :multiple => true
   .actions
     = group_form.submit

@@ -10,14 +10,22 @@ class Group < ActiveRecord::Base
   validates :code, :presence => true, :length => { :maximum => 200 }, :uniqueness => true, :on => :update
   validates :instructor, :presence => true
   validates :group_scenarios, :presence => true
-  validate  :scenario_uniqueness
+  # validate  :scenario_uniqueness
   
   after_create :set_code
     
   # Define this later using has_many_documents :scenarios, :through => :group_scenarios
   def scenarios
-    scenarios_ids = group_scenarios.all.collect { |gs| gs.scenario_id }
     Scenario.criteria.in("_id" => scenarios_ids).to_a
+  end
+  
+  def scenarios_ids=(scen_ids)
+    self.group_scenarios = []
+    scen_ids.each { |scen_id|  self.group_scenarios.build(:scenario_id => scen_id) }
+  end
+  
+  def scenarios_ids
+    group_scenarios.all.collect { |gs| gs.scenario_id }
   end
     
   private
