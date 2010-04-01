@@ -9,6 +9,7 @@ class Group < ActiveRecord::Base
   validates :name, :presence => true, :length => { :maximum => 200 }, :uniqueness => true
   validates :code, :presence => true, :length => { :maximum => 200 }, :uniqueness => true, :on => :update
   validates :instructor, :presence => true
+  validates :group_scenarios, :presence => true
   validate  :scenario_uniqueness
   
   after_create :set_code

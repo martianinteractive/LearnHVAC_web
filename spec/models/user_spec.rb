@@ -31,14 +31,14 @@ describe User do
   end
   
   it "should be valid if group_code is required and code is valid" do
-    group = Factory(:group, :instructor => user_with_role(:instructor))
+    group = build_group(:instructor => user_with_role(:instructor))
     @user = user_with_role(:student, 1, { :group_code => group.code })
     @user.require_group_code!
     @user.should be_valid
   end
   
   it "should register an student as a member of the group's instructor institution" do
-    group = Factory(:group, :instructor => user_with_role(:instructor, 1, { :institution => Factory(:institution) }))
+    group = build_group( :instructor => user_with_role(:instructor, 1, { :institution => Factory(:institution) }))
     @user = user_with_role(:student, 1, { :group_code => group.code })
     @user.should be_valid
     @user.save
@@ -47,7 +47,7 @@ describe User do
   
   context "Group Register" do 
     before(:each) do
-      @group = Factory(:group, :instructor => user_with_role(:instructor, 1, { :institution => Factory(:institution) }))
+      @group = build_group(:instructor => user_with_role(:instructor, 1, { :institution => Factory(:institution) }))
       @user  = user_with_role(:student, 1, { :group_code => @group.code })
     end
   
@@ -116,6 +116,13 @@ describe User do
   
   def sent
     ActionMailer::Base.deliveries.first
+  end
+  
+  def build_group(atts)
+    group = Factory.build(:group, atts)
+    group.group_scenarios.build(:scenario_id => "1")
+    group.save
+    group
   end
 
   

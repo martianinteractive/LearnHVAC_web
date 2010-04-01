@@ -1,0 +1,13 @@
+- content_for :js_templates do
+  :plain
+    $(document).ready(function() { 
+      $("#group_instructor_id").change(function() { 
+        $.get("#{list_admin_scenarios_path}", { id: $(this).val() }, function(r) { $(".scenario").html(r) }) 
+      }) 
+    })
+
+- group_form.fields_for :group_scenarios do |group_scenario|
+  .field.group_scenario
+    = group_scenario.label :scenario_id, "Scenario"
+    %br
+    = group_scenario.select :scenario_id, @group.instructor.scenarios.collect{ |s| [s.name, s.id] }, {}, { :class => "scenario" }

@@ -3,7 +3,9 @@ require File.dirname(__FILE__) + "/../../spec_helper"
 describe Students::GroupsController do
   before(:each) do
     @student    = user_with_role(:student)
-    @group      = Factory(:group, :name => "Class 01", :instructor => Factory(:user, :first_name => "instructor", :email => "inst@mi.com", :login => "instructor"))
+    @group      = Factory.build(:group, :name => "Class 01", :instructor => user_with_role(:instructor))
+    @group.group_scenarios.build(:scenario_id => "1")
+    @group.save
     @membership = Factory(:membership, :group => @group, :student => @student)
     login_as(@student)
   end

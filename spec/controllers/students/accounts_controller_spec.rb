@@ -11,8 +11,9 @@ describe Students::AccountsController do
   
   describe "POST :create" do
     before(:each) do
-      instructor = Factory(:user, :first_name => "inst", :login => "instructor", :email => "inst@mi.com")
-      @group = Factory(:group, :instructor => instructor)
+      @group = Factory.build(:group, :name => "Class 01", :instructor => user_with_role(:instructor))
+      @group.group_scenarios.build(:scenario_id => "1")
+      @group.save
       ActionMailer::Base.deliveries = []
     end
     
