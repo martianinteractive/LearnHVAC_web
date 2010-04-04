@@ -12,8 +12,7 @@ class Group < ActiveRecord::Base
   validates :name, :presence => true, :length => { :maximum => 200 }, :uniqueness => true
   validates :code, :presence => true, :length => { :maximum => 200 }, :uniqueness => true, :on => :update
   validates :instructor, :presence => true
-  validates :group_scenarios, :presence => true
-  validate  :scenario_uniqueness
+  validate  :scenario_validator
   
   after_create :set_code
   before_save  :handle_scenarios
@@ -50,8 +49,9 @@ class Group < ActiveRecord::Base
     end
   end
   
-  def scenario_uniqueness
+  def scenario_validator
     errors.add(:scenarios, "must be unique for each group.") if group_scenarios.collect{ |gs| gs.scenario_id }.uniq.size != group_scenarios.size
+    errors.add(:scenarios, "can't be blank") if self.new_record? and self.scenarios.empty?
   end
   
 end
