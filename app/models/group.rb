@@ -6,28 +6,27 @@ class Group < ActiveRecord::Base
   
   accepts_nested_attributes_for :group_scenarios, :allow_destroy => true
   
+  # Define in module
+  attr_writer :scenarios_ids
+  
   validates :name, :presence => true, :length => { :maximum => 200 }, :uniqueness => true
   validates :code, :presence => true, :length => { :maximum => 200 }, :uniqueness => true, :on => :update
   validates :instructor, :presence => true
   validates :group_scenarios, :presence => true
-  # validate  :scenario_uniqueness
+  validate  :scenario_uniqueness
   
   after_create :set_code
+  before_save  :handle_scenarios
     
   # Define this later using has_many_documents :scenarios, :through => :group_scenarios
   def scenarios
     Scenario.criteria.in("_id" => scenarios_ids).to_a
   end
   
-  def scenarios_ids=(scen_ids)
-    self.group_scenarios = []
-    scen_ids.each { |scen_id|  self.group_scenarios.build(:scenario_id => scen_id) }
+  def scenarios_ids
+    @scenarios_ids || group_scenarios.all.collect { |gs| gs.scenario_id }
   end
   
-  def scenarios_ids
-    group_scenarios.all.collect { |gs| gs.scenario_id }
-  end
-    
   private
   
   def set_code
@@ -41,6 +40,14 @@ class Group < ActiveRecord::Base
   
   def secure_rand
     ActiveSupport::SecureRandom.hex(3)
+  end
+  
+  # move to a module.
+  def handle_scenarios
+    if @scenarios_ids
+      @scenarios_ids.each { |scenario_id| group_scenarios.build(:scenario_id => scenario_id ) unless group_scenarios.where(:scenario_id => scenario_id).any? }
+      group_scenarios.each { |gs| gs.destroy unless @scenarios_ids.include?(gs.scenario_id) }
+    end
   end
   
   def scenario_uniqueness
