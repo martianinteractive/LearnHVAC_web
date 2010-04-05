@@ -114,7 +114,7 @@ describe Admin::MasterScenariosController do
     it "should require an admin user for all actions" do
       authorize_actions do
         response.should redirect_to(default_path_for(@admin))
-        flash[:notice].should == "You must be logged in to access this page"
+        flash[:notice].should == "You don't have privileges to access that page"
       end
     end
   end

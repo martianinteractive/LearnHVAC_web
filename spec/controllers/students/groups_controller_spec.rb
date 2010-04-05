@@ -4,7 +4,7 @@ describe Students::GroupsController do
   before(:each) do
     @student    = user_with_role(:student)
     @group      = Factory.build(:group, :name => "Class 01", :instructor => user_with_role(:instructor))
-    @group.group_scenarios.build(:scenario_id => "1")
+    @group.expects(:scenario_validator).returns(true) #skip scenarios assignment.
     @group.save
     @membership = Factory(:membership, :group => @group, :student => @student)
     login_as(@student)
@@ -29,13 +29,12 @@ describe Students::GroupsController do
   
   describe "Authentication" do
     before(:each) do
-      @student.role_code = User::ROLES[:instructor]
-      @student.save
+      user_logout
     end
     
     it "should require a student for all actions" do
       authorize_actions({:get => [:index, :show]}) do
-        response.should redirect_to(default_path_for(@student))
+        response.should redirect_to(login_path)
         flash[:notice].should == "You must be logged in to access this page"
       end
     end

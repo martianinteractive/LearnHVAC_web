@@ -12,7 +12,7 @@ describe Students::AccountsController do
   describe "POST :create" do
     before(:each) do
       @group = Factory.build(:group, :name => "Class 01", :instructor => user_with_role(:instructor))
-      @group.group_scenarios.build(:scenario_id => "1")
+      @group.expects(:scenario_validator).returns(true) #skip scenarios assignment.
       @group.save
       ActionMailer::Base.deliveries = []
     end

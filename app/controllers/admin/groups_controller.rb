@@ -10,7 +10,6 @@ class Admin::GroupsController < Admin::ApplicationController
 
   def new
     @group = Group.new(:instructor => User.instructor.first)
-    @group.group_scenarios.build
   end
 
   def edit
