@@ -113,8 +113,11 @@
     %p The date and time the real-time simulation should start at.
    
     .field.clearfix
-      = f.label :realtime_start_datetime
-      = f.text_field :realtime_start_datetime
+      = f.label :realtime_start_date
+      = f.text_field :realtime_start_date
+      = f.select :realtime_start_hour, (1..12).to_a
+      = f.select :realtime_start_minute, (0..59).to_a
+      = f.select :realtime_meridiem, %w(AM PM)
 
     %p{:style => "margin-top:35px;"} Allow the student to change the start time and date for the short-term simulation.
 
