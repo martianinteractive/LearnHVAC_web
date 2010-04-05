@@ -36,9 +36,10 @@ class MembershipsController < ApplicationController
   end
   
   # This method is re-defined here 'cause it's redirecting
-  # to students_signup instead of login. 
+  # to students_signup instead of login.
   def require_student
-    unless logged_as?(:student) or logged_as?(:admin)
+    unless logged_as?(:student)
+      store_location
       flash[:notice] = "You must be logged in to access this page. Signup or login if you are already a member."
       redirect_to students_signup_path(:code => params[:code])
     end
