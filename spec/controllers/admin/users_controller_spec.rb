@@ -158,6 +158,7 @@ describe Admin::UsersController do
     institution = Factory(:institution)
     @admin.update_attributes(:institution_id => institution.id)
     @instructor = user_with_role(:instructor, :institution => institution)
+    @manager    = user_with_role(:institution_manager, :institution => institution)
     @student    = user_with_role(:student, :institution => institution)
     @guest      = user_with_role(:guest, :institution => institution)
   end

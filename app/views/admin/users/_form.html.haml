@@ -25,7 +25,7 @@
 
 .field
   = f.label :role
-  = f.select(:role_code, User::ROLES.keys.collect{|k| [k.to_s.capitalize, User::ROLES[k]]})
+  = f.select(:role_code, User::ROLES.keys.collect{|k| [k.to_s.gsub("_", " ").capitalize, User::ROLES[k]]})
 
 .field
   = f.label :institution_id
