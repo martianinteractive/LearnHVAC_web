@@ -18,30 +18,6 @@ class Scenario
   attr_protected :user_id
   
   after_create :copy_system_variables
-  
-  # def longterm_start_date
-  #   read_attribute("longterm_start_date").strftime("%m/%d/%Y") if read_attribute("longterm_start_date")
-  # end
-  # 
-  # def longterm_start_date=(value)
-  #   write_attribute(:longterm_start_date, Time.parse(value).to_date) if value
-  # end
-  # 
-  # def longterm_stop_date
-  #   read_attribute("longterm_stop_date").strftime("%m/%d/%Y") if read_attribute("longterm_stop_date")
-  # end
-  # 
-  # def longterm_stop_date=(value)
-  #   write_attribute(:longterm_stop_date, Time.parse(value).to_date) if value
-  # end
-  
-  # def realtime_start_datetime
-  #   read_attribute("realtime_start_datetime").strftime("%m/%d/%Y") if read_attribute("realtime_start_datetime")
-  # end
-  # 
-  # def realtime_start_datetime=(value)
-  #   write_attribute(:realtime_start_datetime, Time.parse(value).to_date) if value
-  # end
 
   private
   
