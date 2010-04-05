@@ -49,7 +49,7 @@ class ApplicationController < ActionController::Base
     when :instructor
       scenarios_path
     when :institution_manager
-      institution_manager_instructors_path
+      institution_managers_instructors_path
     when :student
       students_groups_path
     else

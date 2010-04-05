@@ -33,6 +33,11 @@ Learnhvac::Application.routes.draw do |map|
     resources :groups
   end
   
+  # Institution Manager Routes.
+  namespace :institution_managers do
+    resources :instructors
+  end
+  
   # Admin Routes.
   namespace :admin do
     resources :institutions

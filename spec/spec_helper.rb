@@ -47,13 +47,17 @@ module AuthlogicTestHelper
  end
  
  def default_path_for(user)
-   case user.role
+   case user.try(:role)
    when :admin
      admin_dashboard_path
    when :instructor
      scenarios_path
+   when :institution_manager
+     institution_managers_instructors_path
    when :student
      students_groups_path
+   else
+     new_user_session_url
    end
  end
  
