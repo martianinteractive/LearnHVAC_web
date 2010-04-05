@@ -2,9 +2,11 @@ require File.dirname(__FILE__) + "/../spec_helper"
 
 describe Group do
   before(:each) do
-    @instructor = Factory(:user)
-    @group = Factory.build(:group, :instructor => @instructor)
-    @group.group_scenarios.build(:scenario_id => "1")
+    @instructor       = Factory(:user)
+    @group            = Factory.build(:group, :instructor => @instructor)
+    @master_scenario  = Factory(:master_scenario, :user => user_with_role(:admin))
+    @scenario1        = Factory(:scenario, :name => "scene 1", :user => @instructor, :master_scenario => @master_scenario)
+    @group.group_scenarios.build(:scenario_id => @scenario1.id)
     @group.save
   end
   
@@ -20,7 +22,7 @@ describe Group do
   end
   
   it "should not be valid when assigning the same scenario multiple times" do
-    @group.group_scenarios.build(:scenario_id => "1")
+    @group.group_scenarios.build(:scenario_id => @scenario1.id)
     @group.should_not be_valid
     @group.errors[:scenarios].should_not be_empty
   end
@@ -31,6 +33,33 @@ describe Group do
     @group.save
     @group.should_not be_valid
     @group.errors[:code].sort.should == ["can't be blank"]
+  end
+  
+  describe "Mongoid Associations" do    
+    it "should return the associated documents" do
+      @group.scenarios.should eq([@scenario1])
+    end
+    
+    describe "re-assigning documents" do
+      before(:each) { @scenario2 = Factory(:scenario, :name => "scene 2", :user => @instructor, :master_scenario => @master_scenario) }
+      
+      it "should show the current scenarios, but make db associations changes only when saving" do
+        @group.scenarios_ids = [@scenario2.id]
+        @group.scenarios.should eq([@scenario2])
+        @group.group_scenarios.where(:scenario_id => @scenario1.id).should have(1).group_scenario
+        @group.save
+        @group.scenarios.should eq([@scenario2])
+        @group.group_scenarios.where(:scenario_id => @scenario1.id).should be_empty
+        @group.group_scenarios.where(:scenario_id => @scenario2.id).should have(1).group_scenario
+      end
+      
+      it "" do
+        @group.scenarios_ids = [@scenario1.id, @scenario2.id]
+        @group.save
+        @group.scenarios.should eq([@scenario1, @scenario2])
+      end
+      
+    end
   end
   
   describe "Destroy" do
