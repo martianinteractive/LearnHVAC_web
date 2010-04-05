@@ -1,3 +1,4 @@
 - if @scenarios
   - for scenario in @scenarios
-    = content_tag(:option, scenario.name.capitalize, :value => scenario.id)
+    - selected = @group.scenarios_ids.include?(scenario.id) if @group.try(:scenarios_ids)
+    = content_tag(:option, scenario.name.capitalize, :value => scenario.id, :selected => selected)
