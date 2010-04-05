@@ -3,27 +3,48 @@ class Scenario
   include Mongoid::Timestamps
   include Mongoid::Document::ProtectedAttributes
   include ScenarioFields
+  include ActiveModel::Validations
     
   embed_many :scenario_variables
   belongs_to_related :user
   belongs_to_related :master_scenario
   
-  validates_presence_of :master_scenario, :user, :name
+  validates_with ScenarioValidator
+  
+  validates_presence_of :name, :master_scenario_id, :user, :longterm_start_date, :longterm_stop_date, :realtime_start_datetime
 
   named_scope :recently_created, criteria.where(:created_at.gt => (Time.now + 30.days))
   named_scope :recently_updated, criteria.where(:updated_at.gt => (Time.now + 30.days))
     
   attr_protected :user_id
   
-  before_create :assign_master_scenario
   after_create :copy_system_variables
   
-  private
-  
-  def assign_master_scenario
-      self.master_scenario_name = self.master_scenario.name
-      self.master_scenario_version = self.master_scenario.updated_at.to_time.to_i
+  def longterm_start_date
+    read_attribute("longterm_start_date").strftime("%m/%d/%Y") if read_attribute("longterm_start_date")
   end
+  
+  def longterm_start_date=(value)
+    write_attributes(Time.parse(value).to_date) if value
+  end
+  
+  def longterm_stop_date
+    read_attribute("longterm_stop_date").strftime("%m/%d/%Y") if read_attribute("longterm_stop_date")
+  end
+  
+  def longterm_stop_date=(value)
+    write_attributes(Time.parse(value).to_date) if value
+  end
+  
+  def realtime_start_datetime
+    read_attribute("realtime_start_datetime").strftime("%m/%d/%Y") if read_attribute("realtime_start_datetime")
+  end
+  
+  def realtime_start_datetime=(value)
+    write_attributes(Time.parse(value).to_date) if value
+  end
+
+  private
   
   def copy_system_variables
     self.master_scenario.system_variables.each do |system_variables|

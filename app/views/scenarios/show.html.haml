@@ -10,15 +10,15 @@
   = link_to 'Back', :back
 %hr
 
-%p
-  %b
-    Modeled after:
-  = @scenario.master_scenario_name
 
 %p
   %b
-    Master Scenario version:
-  = @scenario.master_scenario_version
+    Scenario name:
+  = @scenario.name
+%p
+  %b
+    Modeled after:
+  = @scenario.master_scenario.name
 
 %p
   %b
