@@ -57,6 +57,14 @@ describe Group do
         @group.scenarios.should eq([@scenario1, @scenario2])
       end
       
+      it "should not assign scenarios that don't belong to the group instructor" do
+        @scenario2.user = user_with_role(:instructor, 1, :login => "instructor2", :email => "inst2@inst.com")
+        @scenario2.save
+        @group.scenarios_ids = [@scenario2.id]
+        @group.should_not be_valid
+        @group.errors[:base].should == ["invalid scenario"]
+      end
+      
     end
   end
   
