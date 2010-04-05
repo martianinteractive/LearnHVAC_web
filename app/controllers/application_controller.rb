@@ -31,25 +31,7 @@ class ApplicationController < ActionController::Base
       return false
     end
   end
-  
-  def require_admin
-    unless logged_as?(:admin)
-      notice_and_path_for(current_user)
-    end
-  end
-  
-  def require_instructor
-    unless logged_as?(:instructor)
-      notice_and_path_for(current_user)
-    end
-  end
-  
-  def require_student
-    unless logged_as?(:student)
-      notice_and_path_for(current_user)
-    end
-  end
-  
+    
   def store_location
     session[:return_to] = request.request_uri
   end
@@ -66,13 +48,15 @@ class ApplicationController < ActionController::Base
       admin_dashboard_path
     when :instructor
       scenarios_path
+    when :institution_manager
+      institution_manager_instructors_path
     when :student
       students_groups_path
     else
       new_user_session_url
     end
   end
-  
+    
   def logged_in?
     current_user
   end
@@ -93,9 +77,19 @@ class ApplicationController < ActionController::Base
     end
   end
   
+  User::ROLES.keys.each do |role| 
+    define_method("require_#{role}") do
+      unless logged_as?(role)
+        notice_and_path_for(current_user)
+      end
+    end
+  end
+  
   def initialize_variables_sort
     sort_init 'name'
     sort_update
   end
+  
+  
   
 end
