@@ -7,6 +7,11 @@
             source: "/colleges"
           });
         });
+        $(function() {
+          $.get('/states?s=' + $("#user_country").val(), function(data) {
+            $('#states').html(data);
+          })
+        })
       });
 
 %h2 
@@ -33,15 +38,15 @@
   %fieldset
     .field
       = f.label :country
-      = f.country_select :country
+      = f.country_select :country, ['United States', 'Canada']
+
+    .field#states
+      = f.label :state
+      = f.text_field :state
 
     .field
       = f.label :city
       = f.text_field :city
-
-    .field
-      = f.label :state
-      = f.text_field :state
 
   %fieldset
     .field

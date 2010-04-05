@@ -9,6 +9,7 @@ Learnhvac::Application.routes.draw do |map|
   match 'logout'  => 'user_sessions#destroy', :as => 'logout'
   match 'sign_up' => 'accounts#new', :as => 'signup'
   match 'colleges' => 'accounts#colleges'
+  match 'states'  => 'accounts#states'
   match 'register/:activation_code' => 'activations#new', :as => 'register'
   match 'activate/:id' => 'activations#create', :as => 'activate'
   match 'students/sign_up' => 'students/accounts#new', :as => 'students_signup'

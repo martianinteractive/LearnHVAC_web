@@ -87,11 +87,11 @@ ActiveRecord::Schema.define(:version => 20100405162227) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "role_code",         :default => 0
-    t.string   "perishable_token",  :default => "",   :null => false
+    t.string   "perishable_token",  :default => "",              :null => false
     t.boolean  "enabled",           :default => true
     t.string   "city"
     t.string   "state"
-    t.string   "country"
+    t.string   "country",           :default => "United States"
   end
 
   add_index "users", ["perishable_token"], :name => "index_users_on_perishable_token"

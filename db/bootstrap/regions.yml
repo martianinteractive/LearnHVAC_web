@@ -1,0 +1,266 @@
+-
+  id: 239
+  value: Quebec
+  short_name: QC
+  country_code: CA
+-
+  id: 240
+  value: Prince Edward Island
+  short_name: PE
+  country_code: CA
+-
+  id: 241
+  value: Nunavut
+  short_name: NU
+  country_code: CA
+-
+  id: 242
+  value: Wisconsin
+  short_name: WI
+  country_code: US
+-
+  id: 243
+  value: Vermont
+  short_name: VT
+  country_code: US
+-
+  id: 244
+  value: Iowa
+  short_name: IA
+  country_code: US
+-
+  id: 245
+  value: Yukon Territory
+  short_name: YT
+  country_code: CA
+-
+  id: 246
+  value: Tennessee
+  short_name: TN
+  country_code: US
+-
+  id: 247
+  value: Nevada
+  short_name: NV
+  country_code: US
+-
+  id: 248
+  value: Massachusetts
+  short_name: MA
+  country_code: US
+-
+  id: 249
+  value: Arizona
+  short_name: AZ
+  country_code: US
+-
+  id: 250
+  value: Alaska
+  short_name: AK
+  country_code: US
+-
+  id: 251
+  value: Manitoba
+  short_name: MB
+  country_code: CA
+-
+  id: 252
+  value: Washington
+  short_name: WA
+  country_code: US
+-
+  id: 253
+  value: Virginia
+  short_name: VA
+  country_code: US
+-
+  id: 254
+  value: Louisiana
+  short_name: LA
+  country_code: US
+-
+  id: 255
+  value: Connecticut
+  short_name: CT
+  country_code: US
+-
+  id: 256
+  value: Colorado
+  short_name: CO
+  country_code: US
+-
+  id: 257
+  value: New Brunswick
+  short_name: NB
+  country_code: CA
+-
+  id: 258
+  value: New Hampshire
+  short_name: NH
+  country_code: US
+-
+  id: 259
+  value: Mississippi
+  short_name: MS
+  country_code: US
+-
+  id: 260
+  value: Illinois
+  short_name: IL
+  country_code: US
+-
+  id: 261
+  value: Idaho
+  short_name: ID
+  country_code: US
+-
+  id: 262
+  value: Newfoundland
+  short_name: NL
+  country_code: CA
+-
+  id: 263
+  value: West Virginia
+  short_name: WV
+  country_code: US
+-
+  id: 264
+  value: Missouri
+  short_name: MO
+  country_code: US
+-
+  id: 265
+  value: Minnesota
+  short_name: MN
+  country_code: US
+-
+  id: 266
+  value: Delaware
+  short_name: DE
+  country_code: US
+-
+  id: 267
+  value: Hawaii
+  short_name: HI
+  country_code: US
+-
+  id: 268
+  value: Ontario
+  short_name: 1
+  country_code: CA
+-
+  id: 269
+  value: Northwest Territories
+  short_name: NT
+  country_code: CA
+-
+  id: 270
+  value: British Columbia
+  short_name: BC
+  country_code: CA
+-
+  id: 271
+  value: Texas
+  short_name: TX
+  country_code: US
+-
+  id: 272
+  value: South Dakota
+  short_name: SD
+  country_code: US
+-
+  id: 273
+  value: South Carolina
+  short_name: SC
+  country_code: US
+-
+  id: 274
+  value: Maryland
+  short_name: MD
+  country_code: US
+-
+  id: 275
+  value: Alabama
+  short_name: AL
+  country_code: US
+-
+  id: 276
+  value: Saskatchewan
+  short_name: SK
+  country_code: CA
+-
+  id: 277
+  value: Michigan
+  short_name: MI
+  country_code: US
+-
+  id: 278
+  value: Maine
+  short_name: ME
+  country_code: US
+-
+  id: 279
+  value: Kentucky
+  short_name: KY
+  country_code: US
+-
+  id: 280
+  value: Georgia
+  short_name: GA
+  country_code: US
+-
+  id: 281
+  value: Florida
+  short_name: FL
+  country_code: US
+-
+  id: 282
+  value: Montana
+  short_name: MT
+  country_code: US
+-
+  id: 283
+  value: Kansas
+  short_name: KS
+  country_code: US
+-
+  id: 284
+  value: Arkansas
+  short_name: AR
+  country_code: US
+-
+  id: 285
+  value: Nova Scotia
+  short_name: NS
+  country_code: CA
+-
+  id: 286
+  value: Indiana
+  short_name: IN
+  country_code: US
+-
+  id: 287
+  value: California
+  short_name: CA
+  country_code: US
+-
+  id: 288
+  value: Alberta
+  short_name: AB
+  country_code: CA
+-
+  id: 289
+  value: Wyoming
+  short_name: WY
+  country_code: US
+-
+  id: 290
+  value: Utah
+  short_name: UT
+  country_code: US
+-
+  id: 291
+  value: Nebraska
+  short_name: NE
+  country_code: US
+...

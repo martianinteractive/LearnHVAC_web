@@ -16,6 +16,10 @@ class AccountsController < ApplicationController
     end
   end
   
+  def states
+    render :text => "Hi there"
+  end
+  
   
   # Saving without session maintenance to skip
   # auto-login which can't happen here because
