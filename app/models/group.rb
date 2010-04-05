@@ -44,7 +44,7 @@ class Group < ActiveRecord::Base
   # move to a module.
   def handle_scenarios
     if @scenarios_ids
-      @scenarios_ids.each { |scenario_id| group_scenarios.build(:scenario_id => scenario_id ) unless group_scenarios.where(:scenario_id => scenario_id).any? }
+      scenarios.each { |scenario| group_scenarios.build(:scenario_id => scenario.id) unless group_scenarios.where(:scenario_id => scenario.id).any?  }
       group_scenarios.each { |gs| gs.destroy unless @scenarios_ids.include?(gs.scenario_id) }
     end
   end
@@ -52,6 +52,7 @@ class Group < ActiveRecord::Base
   def scenario_validator
     errors.add(:scenarios, "must be unique for each group.") if group_scenarios.collect{ |gs| gs.scenario_id }.uniq.size != group_scenarios.size
     errors.add(:scenarios, "can't be blank") if self.new_record? and self.scenarios.empty?
+    scenarios.each {|scenario| errors.add(:base, "invalid scenario") if scenario.user != self.instructor }
   end
   
 end

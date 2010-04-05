@@ -120,7 +120,7 @@ describe User do
   
   def build_group(atts)
     group = Factory.build(:group, atts)
-    group.group_scenarios.build(:scenario_id => "1")
+    group.expects("valid?").returns(true)
     group.save
     group
   end

@@ -3,11 +3,9 @@ require File.dirname(__FILE__) + "/../spec_helper"
 describe Group do
   before(:each) do
     @instructor       = Factory(:user)
-    @group            = Factory.build(:group, :instructor => @instructor)
     @master_scenario  = Factory(:master_scenario, :user => user_with_role(:admin))
     @scenario1        = Factory(:scenario, :name => "scene 1", :user => @instructor, :master_scenario => @master_scenario)
-    @group.group_scenarios.build(:scenario_id => @scenario1.id)
-    @group.save
+    @group            = Factory(:group, :instructor => @instructor, :scenarios_ids => [@scenario1.id])
   end
   
   it "" do
@@ -59,6 +57,14 @@ describe Group do
         @group.scenarios.should eq([@scenario1, @scenario2])
       end
       
+      it "should not assign scenarios that don't belong to the group instructor" do
+        @scenario2.user = user_with_role(:instructor, 1, :login => "instructor2", :email => "inst2@inst.com")
+        @scenario2.save
+        @group.scenarios_ids = [@scenario2.id]
+        @group.should_not be_valid
+        @group.errors[:base].should == ["invalid scenario"]
+      end
+      
     end
   end
   
@@ -77,12 +83,8 @@ describe Group do
   describe "Callbacks" do    
     describe "After create" do
       before(:each) do
-        @group2 = Factory.build(:group, :name => "class2", :instructor => @instructor)
-        @group2.group_scenarios.build(:scenario_id => "1")
-        @group3 = Factory.build(:group, :name => "class3", :instructor => @instructor)
-        @group3.group_scenarios.build(:scenario_id => "1")
-        @group2.save
-        @group3.save
+        @group2 = Factory(:group, :name => "class2", :instructor => @instructor, :scenarios_ids => [@scenario1.id])
+        @group3 = Factory(:group, :name => "class3", :instructor => @instructor, :scenarios_ids => [@scenario1.id])
       end
       
       it "should set a unique valid code" do

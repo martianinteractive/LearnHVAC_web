@@ -15,7 +15,7 @@ describe Scenario do
     it "should be invalid without required attributes" do
       @scenario.should_not be_valid
       @scenario.errors[:user].should_not be_empty
-      @scenario.errors[:master_scenario].should_not be_empty
+      @scenario.errors[:master_scenario_id].should_not be_empty
       @scenario.errors[:name].should_not be_empty
     end
     
