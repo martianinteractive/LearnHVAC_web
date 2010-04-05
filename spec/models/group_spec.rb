@@ -3,11 +3,9 @@ require File.dirname(__FILE__) + "/../spec_helper"
 describe Group do
   before(:each) do
     @instructor       = Factory(:user)
-    @group            = Factory.build(:group, :instructor => @instructor)
     @master_scenario  = Factory(:master_scenario, :user => user_with_role(:admin))
     @scenario1        = Factory(:scenario, :name => "scene 1", :user => @instructor, :master_scenario => @master_scenario)
-    @group.group_scenarios.build(:scenario_id => @scenario1.id)
-    @group.save
+    @group            = Factory(:group, :instructor => @instructor, :scenarios_ids => [@scenario1.id])
   end
   
   it "" do
@@ -77,12 +75,8 @@ describe Group do
   describe "Callbacks" do    
     describe "After create" do
       before(:each) do
-        @group2 = Factory.build(:group, :name => "class2", :instructor => @instructor)
-        @group2.group_scenarios.build(:scenario_id => "1")
-        @group3 = Factory.build(:group, :name => "class3", :instructor => @instructor)
-        @group3.group_scenarios.build(:scenario_id => "1")
-        @group2.save
-        @group3.save
+        @group2 = Factory(:group, :name => "class2", :instructor => @instructor, :scenarios_ids => [@scenario1.id])
+        @group3 = Factory(:group, :name => "class3", :instructor => @instructor, :scenarios_ids => [@scenario1.id])
       end
       
       it "should set a unique valid code" do
