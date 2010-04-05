@@ -32,6 +32,19 @@
 
   %fieldset
     .field
+      = f.label :country
+      = f.country_select :country
+
+    .field
+      = f.label :city
+      = f.text_field :city
+
+    .field
+      = f.label :state
+      = f.text_field :state
+
+  %fieldset
+    .field
       = f.label :login
 
       = f.text_field :login
