@@ -120,5 +120,19 @@ describe InstitutionManagers::InstructorsController do
     end
   end
   
+  describe "Authentication" do
+    before(:each) do
+      @manager.role_code = User::ROLES[:instructor]
+      @manager.save
+    end
+    
+    it "should require a manager for all actions" do
+      authorize_actions do
+        response.should redirect_to(default_path_for(@manager))
+        flash[:notice].should == "You don't have privileges to access that page"
+      end
+    end
+  end
+  
   
 end
