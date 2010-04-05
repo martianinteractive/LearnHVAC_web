@@ -34,21 +34,19 @@ class ApplicationController < ActionController::Base
   
   def require_admin
     unless logged_as?(:admin)
-      flash[:notice] = "You must be logged in to access this page"
-      redirect_back_or_default(default_path_for(current_user))
-      return false
+      notice_and_path_for(current_user)
     end
   end
   
   def require_instructor
     unless logged_as?(:instructor)
-      require_admin
+      notice_and_path_for(current_user)
     end
   end
   
   def require_student
     unless logged_as?(:student)
-      require_admin
+      notice_and_path_for(current_user)
     end
   end
   
@@ -80,7 +78,19 @@ class ApplicationController < ActionController::Base
   end
   
   def logged_as?(role)
-    logged_in? and current_user.has_role?(role)
+    logged_in? and (current_user.has_role?(role) or current_user.has_role?(:admin)) #this makes admin able to access everything.
+  end
+  
+  def notice_and_path_for(user)
+    if user
+      flash[:notice] = "You don't have privileges to access that page"
+      redirect_back_or_default(default_path_for(user))
+    else
+      store_location
+      flash[:notice] = "You must be logged in to access this page"
+      redirect_to login_path
+      return false
+    end
   end
   
   def initialize_variables_sort
