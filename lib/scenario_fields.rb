@@ -15,5 +15,6 @@ module ScenarioFields
     parent.field :valve_info_enabled,              :type => Boolean, :default => true
     parent.field :allow_longterm_date_change,      :type => Boolean, :default => false
     parent.field :allow_realtime_datetime_change,  :type => Boolean, :default => false
-  end  
+  end
+  
 end
