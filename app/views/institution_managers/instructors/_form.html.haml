@@ -1,0 +1,27 @@
+= error_messages_for 'instructor'
+.field
+  = f.label :login
+  = f.text_field :login
+
+.field
+  = f.label :first_name, "First Name"
+  = f.text_field :first_name
+
+.field
+  = f.label :last_name, "Last Name"
+  = f.text_field :last_name
+
+.field
+  = f.label :email
+  = f.text_field :email
+
+.field
+  = f.label :password
+  = f.password_field :password, :size=>20,  :value=>""
+
+.field
+  = f.label :password_confirmation, "Password Confirmation"	
+  = f.password_field :password_confirmation, :size=>20,  :value=>""
+
+.actions
+  = f.submit

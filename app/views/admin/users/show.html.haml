@@ -8,35 +8,27 @@
 %hr
 
 %p
-  %b
-    Login:
+  %b Login:
   = @user.login
 %p
-  %b
-    Role:
+  %b Role:
   = @user.role
 %p
-  %b
-    Institution:
+  %b Institution:
   = link_to @user.institution.name, admin_institution_path(@user.institution) if @user.institution
 %p
-  %b
-    First Name:
+  %b First Name:
   = @user.first_name
 %p
-  %b
-    Last Name:
+  %b Last Name:
   = @user.last_name
 %p
-  %b
-    E-Mail:
+  %b E-Mail:
   = @user.email
 %p
-  %b
-    Status:
+  %b Status:
   = @user.enabled? ? "Enabled" : "Disabled"
 
 %p
-  %b
-    Created on:
+  %b Created on:
   = @user.created_at.to_formatted_s(:long)
