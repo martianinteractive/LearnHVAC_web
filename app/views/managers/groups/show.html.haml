@@ -19,11 +19,18 @@
   %b Invitation URL:
   = membership_register_url(@group.code)
 
-- if @group.students.size.zero?
-  %b There are no students registered under this group.
+%h3 Students
+- if @group.students.any?
+  %table
+    %tr
+      %th Name
+      %th Email
+      - for student in @group.students
+        %tr
+          %td= student.name
+          %td= student.email
+          %td= link_to "Remove from group", managers_group_membership_path(@group, @group.memberships.where(:student_id => student.id).first), :confirm => 'Are you sure?', :method => :delete
+
 - else
-  %b members:
-  %ul
-    - @group.students.each do |student|
-      %li
-        = link_to student.name, "#"
+  %p
+    There are no students on this group.
