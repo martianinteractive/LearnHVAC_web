@@ -1,6 +1,5 @@
-class Students::GroupsController < ApplicationController
-  before_filter :require_student
-  
+class Students::GroupsController < Students::ApplicationController
+    
   def index
     @groups = current_user.groups.paginate :page => params[:page], :per_page => 25
   end
