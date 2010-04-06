@@ -1,0 +1,20 @@
+%h2="#{current_user.institution.name} Groups"
+
+%p
+  = link_to 'New group', new_managers_group_path
+
+%hr
+
+%table
+  %tr
+    %th Name
+    %th Instructor
+    %th Students
+  - @groups.each do |group|
+    %tr
+      %td= link_to group.name, managers_group_path(group)
+      %td= link_to group.instructor.name, managers_instructor_path(group.instructor)
+      %td= group.students.count
+%br
+= will_paginate @groups
+
