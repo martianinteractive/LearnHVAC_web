@@ -1,0 +1,29 @@
+- content_for :js_templates do
+  :plain
+    $(document).ready(function() { 
+      $("#group_instructor_id").change(function() { 
+        $.get("#{list_managers_scenarios_path}", { user_id: $(this).val() }, function(r) { $("#group_scenarios_ids_").html(r) }) 
+      }) 
+    })
+
+%h2 New Group
+- form_for(@group, :url => managers_groups_path, :method => :post) do |f|
+  = f.error_messages
+
+  .field
+    = f.label :name
+    = f.text_field :name
+
+  .field 
+    = f.label :instructor
+    = f.select :instructor_id, User.instructor.collect {|user| [ user.name, user.id ] }
+
+  .field
+    = f.label :scenarios
+    %br
+    = select_tag "group[scenarios_ids][]", options_from_collection_for_select(@instructor.scenarios, :id, :name, @group.scenarios_ids || []), :multiple => true
+
+  .actions
+    = f.submit
+
+= link_to 'Back', managers_groups_path
