@@ -1,4 +1,4 @@
-%h2 New User
+%h2 New #{params[:role].humanize}
 %hr
 
 - form_for(@user,:url => admin_users_path, :method => :post) do |f|
