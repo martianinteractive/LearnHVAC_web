@@ -70,7 +70,7 @@ class ApplicationController < ActionController::Base
       flash[:notice] = "You don't have privileges to access that page"
       redirect_back_or_default(default_path_for(user))
     else
-      store_location
+      store_location if request.request_uri != "/"
       flash[:notice] = "You must be logged in to access this page"
       redirect_to login_path
       return false
