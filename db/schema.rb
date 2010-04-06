@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100405162227) do
+ActiveRecord::Schema.define(:version => 20100405195414) do
 
   create_table "colleges", :force => true do |t|
     t.string   "value"
@@ -54,6 +54,13 @@ ActiveRecord::Schema.define(:version => 20100405162227) do
 
   add_index "memberships", ["group_id"], :name => "index_memberships_on_group_id"
   add_index "memberships", ["student_id"], :name => "index_memberships_on_student_id"
+
+  create_table "regions", :force => true do |t|
+    t.string "value"
+    t.string "country"
+  end
+
+  add_index "regions", ["country"], :name => "index_regions_on_country"
 
   create_table "taggings", :force => true do |t|
     t.integer  "tag_id"

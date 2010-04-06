@@ -1,18 +1,5 @@
 - content_for :head do
-  - javascript_tag do
-    :plain
-      $(document).ready(function(){
-        $(function() {
-          $("#user_institution_name").autocomplete({
-            source: "/colleges"
-          });
-        });
-        $(function() {
-          $.get('/states?s=' + $("#user_country").val(), function(data) {
-            $('#states').html(data);
-          })
-        })
-      });
+  = render :partial => 'js'
 
 %h2 
   Instructor Registration
@@ -41,7 +28,7 @@
       = f.country_select :country, ['United States', 'Canada']
 
     .field#states
-      = f.label :state
+      = f.label :state, "State/Region"
       = f.text_field :state
 
     .field
@@ -73,6 +60,5 @@
       = f.label :institution_name
       = f.text_field :institution_name
 
-  .action
-    = submit_tag "Create", :class=>'submitButton'
-    = link_to 'Back', "#"
+  .actions
+    = submit_tag "Register", :class=>'submitButton'

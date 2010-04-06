@@ -20,6 +20,11 @@ namespace :bootstrap do
     Fixtures.create_fixtures('db/bootstrap', 'colleges')
   end
   
+  desc "load regions"
+  task :regions => :environment do
+    Fixtures.create_fixtures('db/bootstrap', 'regions')
+  end
+  
   desc "load default master scenarios"
   task :master_scenarios => :environment do
     MasterScenario.delete_all

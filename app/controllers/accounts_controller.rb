@@ -17,7 +17,13 @@ class AccountsController < ApplicationController
   end
   
   def states
-    render :text => "Hi there"
+    if params[:state]
+      country_code = Carmen::country_code(params[:state])
+      @states = Region.where(:country => country_code)
+      render :partial => 'states'
+    else
+      render :nothing => true
+    end
   end
   
   
