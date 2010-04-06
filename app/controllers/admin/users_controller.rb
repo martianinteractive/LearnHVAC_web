@@ -17,7 +17,9 @@ class Admin::UsersController < Admin::ApplicationController
   end
 
   def new
+    role = User::ROLES[params[:role].to_sym]
     @user = User.new
+    @user.role_code = role
   end
 
   def edit
