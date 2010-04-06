@@ -4,7 +4,7 @@ describe Admin::GroupsController do
   before(:each) do
     @instructor = user_with_role(:instructor)
     @group      = Factory.build(:group, :name => "Class 01", :instructor => @instructor)
-    @group.group_scenarios.build(:scenario_id => "1")
+    @group.expects(:scenario_validator).returns(true) #skip scenarios assignment.
     @group.save
     admin_login
   end
@@ -44,15 +44,18 @@ describe Admin::GroupsController do
   
   describe "POST create" do
     describe "with valid params" do
+      before(:each) do
+        @mocked_group = Group.new
+        Group.expects(:new).returns(@mocked_group)
+        @mocked_group.expects(:valid?).returns(true)
+      end
+      
       it "should change the Group count" do
-        proc{ post :create, :group => Factory.attributes_for(:group, :name => "Class 02", :instructor_id => @instructor.id, 
-                            :group_scenarios_attributes => {"0" => {"scenario_id"=> "4b" }}) 
-            }.should change(Group, :count).by(1)
+        proc{ post :create, :group => @params }.should change(Group, :count).by(1)
       end
       
       it "redirects to the created group" do
-        post :create, :group => Factory.attributes_for(:group, :name => "Class 02", :instructor_id => @instructor.id, 
-                      :group_scenarios_attributes => {"0" => {"scenario_id"=> "4b" }})
+        post :create, :group => @params
         response.should redirect_to(admin_group_path(assigns(:group)))
       end
     end

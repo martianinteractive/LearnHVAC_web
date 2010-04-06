@@ -2,13 +2,14 @@ require 'search'
 
 class User < ActiveRecord::Base
   include ManyDocuments
-  ROLES = { :guest => 0, :student => 1, :instructor => 2, :admin => 3 }
+  ROLES = { :guest => 0, :student => 1, :instructor => 2, :institution_manager => 3, :admin => 4 }
   acts_as_authentic
   
-  scope :instructor, where("role_code = #{ROLES[:instructor]}")
-  scope :student, where("role_code = #{ROLES[:student]}")
-  scope :admin, where("role_code = #{ROLES[:admin]}")
   scope :guest, where("role_code = #{ROLES[:guest]}")
+  scope :student, where("role_code = #{ROLES[:student]}")
+  scope :instructor, where("role_code = #{ROLES[:instructor]}")
+  scope :institution_manager, where("role_code = #{ROLES[:institution_manager]}")
+  scope :admin, where("role_code = #{ROLES[:admin]}")
   scope :recently_created, where("created_at < '#{(Time.now + 30.days).to_formatted_s(:db)}'")
   scope :recently_updated, where("updated_at < '#{(Time.now + 30.days).to_formatted_s(:db)}'")
     

@@ -1,0 +1,2 @@
+module InstitutionManagers::InstructorsHelper
+end

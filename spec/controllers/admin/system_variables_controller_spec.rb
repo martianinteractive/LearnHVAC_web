@@ -95,10 +95,10 @@ describe Admin::SystemVariablesController do
   
   describe "Authorization" do
     it "should require an authenticated admin for all actions" do
-      @admin.role_code = User::ROLES[:student]
-      @admin.save
+      user_logout
+      
       authorize_actions do
-        response.should redirect_to(default_path_for(@admin))
+        response.should redirect_to(login_path)
         flash[:notice].should == "You must be logged in to access this page"
       end
     end

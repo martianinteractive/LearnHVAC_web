@@ -3,8 +3,6 @@
 %body.bp.instructor_site
   .header
     %h1.siteTitle
-      %span
-      = link_to "Instructor Site", "/"
     %ul.global_nav
       - if logged_in?
         %li.username
@@ -25,13 +23,11 @@
   .main
     .dl10.navigation
       - if logged_in?
-        %h3 System
+        %h3= "#{current_user.institution.name}"
         %ul
           %li
+            = link_to "Instructors", institution_managers_instructors_path
             = link_to "Scenarios", scenarios_path
-        %h3 Users/Groups
-        %ul
-          %li
             = link_to "Groups", groups_path
 
     .fluid

@@ -1,4 +1,4 @@
-= error_messages_for 'user'
+= error_messages_for 'instructor'
 .field
   = f.label :login
   = f.text_field :login
@@ -23,14 +23,5 @@
   = f.label :password_confirmation, "Password Confirmation"	
   = f.password_field :password_confirmation, :size=>20,  :value=>""
 
-.field
-  = f.label :role
-  = f.select(:role_code, User::ROLES.keys.collect{|k| [k.to_s.gsub("_", " ").capitalize, User::ROLES[k]]})
-
-.field
-  = f.label :institution_id
-  = f.collection_select(:institution_id, Institution.all, :id, :name)
-
-.field
-  = f.label :enabled
-  = f.check_box :enabled
+.actions
+  = f.submit

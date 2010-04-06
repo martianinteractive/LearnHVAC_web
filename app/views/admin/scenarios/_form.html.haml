@@ -32,20 +32,23 @@
   = f.check_box :faults_enabled
 
 .field
-  = f.label :longterm_start_date  
-  = f.date_select :longterm_start_date
+  = f.label :longterm_start_date
+  = f.text_field :longterm_start_date
 
 .field
-  = f.label :longterm_stop_date  
-  = f.date_select :longterm_stop_date
+  = f.label :longterm_stop_date
+  = f.text_field :longterm_stop_date
 
 .field
   = f.label :allow_longterm_date_change  
   = f.check_box :allow_longterm_date_change
 
 .field
-  = f.label :realtime_start_datetime  
-  = f.datetime_select :realtime_start_datetime
+  = f.label :realtime_start_date
+  = f.text_field :realtime_start_date
+  = f.select :realtime_start_hour, (1..12).to_a
+  = f.select :realtime_start_minute, (0..59).to_a
+  = f.select :realtime_meridiem, %w(AM PM)
 
 .field
   = f.label :allow_realtime_datetime_change  

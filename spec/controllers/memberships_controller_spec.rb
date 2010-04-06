@@ -5,7 +5,7 @@ describe MembershipsController do
   before(:each) do
     @instructor   = user_with_role(:instructor)
     @group        = Factory.build(:group, :name => "Class 01", :instructor => @instructor)
-    @group.group_scenarios.build(:scenario_id => "1")
+    @group.expects(:scenario_validator).returns(true) #skip scenarios assignment.
     @group.save
     @student      = user_with_role(:student)
     login_as(@student)

@@ -1,58 +1,42 @@
-!!! XML
-!!!
-%html{"xmlns" => "http://www.w3.org/1999/xhtml"}
-  %head
-    %meta{ "http-equiv" => "Content-type", :content => "text/html; charset=utf-8" }
-    = csrf_meta_tag
-    %title
-      Learn HVAC Administration
-    = stylesheet_link_tag "admin.css"
-    = stylesheet_link_tag "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/themes/base/jquery-ui.css"
-    = stylesheet_link_tag "print.css", :media => "print"
-    = javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"
-    = javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"
-    = javascript_include_tag 'rails', 'application'
+= render "layouts/head"
 
-    = yield :head
-    - javascript_tag do
-      = yield :js_templates
+%body.bp
+  .header
+    %h1.siteTitle
+      Administration
+    %ul.global_nav
+      %li.username
+        = current_user.name
+      %li
+        = link_to "Instructor Site", "/"
+      %li
+        = link_to "Change Password", '/'
+      %li
+        = link_to "Log-out", logout_path
+  .border
+    &nbsp;
+  .main
+    .dl10.navigation
+      %h3 General
+      %ul
+        %li
+          = link_to "Dasboard", admin_dashboard_path
+      %h3 System
+      %ul
+        %li
+          = link_to "Master Scenarios", admin_master_scenarios_path
+          = link_to "Instructor Scenarios", admin_scenarios_path
+      %h3 Users
+      %ul
+        %li
+          = link_to "Admins", admin_users_path(:role => :admin)
+          = link_to "Instructors", admin_users_path(:role => :instructor)
+          = link_to "Students", admin_users_path(:role => :student)
+          = link_to "Inst. Managers", admin_users_path(:role => :institution_manager)
+          = link_to "Institutions", admin_institutions_path
+          = link_to "Groups", admin_groups_path
 
-  %body.bp
-    .header
-      %h1.siteTitle
-        Administration
-      %ul.global_nav
-        %li.username
-          = current_user.name
-        %li
-          = link_to "Instructor Site", "/"
-        %li
-          = link_to "Change Password", '/'
-        %li
-          = link_to "Log-out", logout_path
-    .border
-      &nbsp;
-    .main
-      .dl10.navigation
-        %h3 General
-        %ul
-          %li
-            = link_to "Dasboard", admin_dashboard_path
-        %h3 System
-        %ul
-          %li
-            = link_to "Master Scenarios", admin_master_scenarios_path
-            = link_to "Instructor Scenarios", admin_scenarios_path
-        %h3 Users
-        %ul
-          %li
-            = link_to "Admins", admin_users_path(:role => :admin)
-            = link_to "Instructors", admin_users_path(:role => :instructor)
-            = link_to "Students", admin_users_path(:role => :student)
-            = link_to "Institutions", admin_institutions_path
-            = link_to "Groups", admin_groups_path
-
-      .fluid
-        .content
-          = display_flash
-          = yield
+    .fluid
+      .content
+        = display_flash
+        = yield

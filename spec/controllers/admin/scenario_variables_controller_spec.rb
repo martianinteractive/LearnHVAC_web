@@ -100,7 +100,7 @@ describe Admin::ScenarioVariablesController do
     it "should require a logged admin" do
       authorize_actions do 
         response.should redirect_to(default_path_for(@instructor))
-        flash[:notice].should == "You must be logged in to access this page"
+        flash[:notice].should == "You don't have privileges to access that page"
       end
     end
   end

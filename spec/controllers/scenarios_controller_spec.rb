@@ -96,13 +96,12 @@ describe ScenariosController do
   
   describe "Authentication" do
     before(:each) do
-      @user.role_code = User::ROLES[:student]
-      @user.save
+      user_logout
     end
     
     it "should require an admin user for all actions" do
       authorize_actions do
-        response.should redirect_to(default_path_for(@user))
+        response.should redirect_to(login_path)
         flash[:notice].should == "You must be logged in to access this page"
       end
     end

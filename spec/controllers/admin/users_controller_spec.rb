@@ -139,13 +139,12 @@ describe Admin::UsersController do
   
   describe "Authentication" do
     before(:each) do
-      @admin.role_code = User::ROLES[:student]
-      @admin.save
+      user_logout
     end
     
     it "should require an admin user for all actions" do
       authorize_actions do
-        response.should redirect_to(default_path_for(@admin))
+        response.should redirect_to(login_path)
         flash[:notice].should == "You must be logged in to access this page"
       end
     end
@@ -159,6 +158,7 @@ describe Admin::UsersController do
     institution = Factory(:institution)
     @admin.update_attributes(:institution_id => institution.id)
     @instructor = user_with_role(:instructor, :institution => institution)
+    @manager    = user_with_role(:institution_manager, :institution => institution)
     @student    = user_with_role(:student, :institution => institution)
     @guest      = user_with_role(:guest, :institution => institution)
   end
