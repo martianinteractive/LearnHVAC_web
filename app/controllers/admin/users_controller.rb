@@ -52,9 +52,10 @@ class Admin::UsersController < Admin::ApplicationController
 
   def destroy
     @user = User.find(params[:id])
+    role = @user.role
     @user.destroy
 
-    redirect_to(:back)
+    redirect_to admin_users_path(:role => role)
   end
   
 end
