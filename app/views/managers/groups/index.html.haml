@@ -9,7 +9,7 @@
   - @groups.each do |group|
     %tr
       %td= link_to group.name, managers_group_path(group)
-      %td= link_to group.instructor.name, managers_instructor_path(group.instructor)
+      %td= link_to_if group.instructor.has_role?(:instructor), group.instructor.name, managers_instructor_path(group.instructor)
       %td= group.students.count
 %br
 = will_paginate @groups
