@@ -1,5 +1,5 @@
 %h2= "#{@scenario.name.capitalize} System Variables"
-%p Manage the associated scenario system variables.
+= link_to 'New Variable', new_admin_scenario_scenario_variable_path(@scenario)
 %hr
 
 %table
@@ -33,5 +33,3 @@
       %td= link_to 'Destroy', admin_scenario_scenario_variable_path(@scenario, scenario_system_variable), :confirm => 'Are you sure?', :method => :delete
 %br
 = will_paginate @scenario_variables
-%br
-= link_to 'New System Var', new_admin_scenario_scenario_variable_path(@scenario)
