@@ -1,4 +1,5 @@
 %h2= "Simulation variables for #{@scenario.name}"
+%p= link_to 'New Variable', new_scenario_scenario_variable_path(@scenario)
 %hr
 
 %table
@@ -32,5 +33,3 @@
       %td= link_to 'Destroy', scenario_scenario_variable_path(@scenario, scenario_system_variable), :confirm => 'Are you sure?', :method => :delete
 %br
 = will_paginate @scenario_variables
-%br
-= link_to 'New System Var', new_scenario_scenario_variable_path(@scenario)
