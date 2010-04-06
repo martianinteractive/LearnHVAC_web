@@ -14,11 +14,11 @@
 .field
   = f.label :component_code, "Component"
   %br
-  = f.select :component_code, SystemVariable::COMPONENTS.keys.collect { |comp| [SystemVariable::COMPONENTS[comp], comp] }
+  = f.select :component_code, SystemVariable::COMPONENTS.keys.collect { |comp| [SystemVariable::COMPONENTS[comp], comp] }, { :prompt => "Please select..."}
 .field
   = f.label :type_code, "I/O Type"
   %br
-  = f.select :type_code, SystemVariable::TYPES.keys.collect {|type| [ type, SystemVariable::TYPES[type] ] }
+  = f.select :type_code, SystemVariable::TYPES.keys.collect {|type| [ type.to_s.capitalize, SystemVariable::TYPES[type] ] }, { :prompt => "Please select..."}
 .field
   = f.label :index
   %br
@@ -80,5 +80,5 @@
   = f.check_box :is_percentage
 .actions
   = f.submit
-  &nbsp;|&nbsp;
-  = link_to 'Back', admin_master_scenario_system_variables_path(@master_scenario)
+  &nbsp;or&nbsp;
+  = link_to 'Cancel', :back

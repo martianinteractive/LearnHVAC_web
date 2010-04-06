@@ -1,4 +1,6 @@
 %h2= "New #{@scenario.name.capitalize} Scenario System Variable"
+%p
+  = link_to "Back", :back
 %hr
 - form_for([@scenario, @scenario_variable], :url => admin_scenario_scenario_variables_path(@scenario), :method => :post) do |f|
   = render :partial => "form", :locals => { :f => f }
