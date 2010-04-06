@@ -30,9 +30,9 @@
       %ul
         %li
           = link_to "Admins", admin_users_path(:role => :admin)
+          = link_to "Inst. Managers", admin_users_path(:role => :manager)
           = link_to "Instructors", admin_users_path(:role => :instructor)
           = link_to "Students", admin_users_path(:role => :student)
-          = link_to "Inst. Managers", admin_users_path(:role => :institution_manager)
           = link_to "Institutions", admin_institutions_path
           = link_to "Groups", admin_groups_path
 

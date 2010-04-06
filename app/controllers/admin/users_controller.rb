@@ -1,13 +1,14 @@
 class Admin::UsersController < Admin::ApplicationController
-  before_filter :set_role, :only => [:index, :search]
   
   def index
-    @users = User.send(session[:role] || :all).paginate :page => params[:page], :per_page => 25, :order => "role_code DESC"
+    role = params[:role] ? User::ROLES[params[:role].to_sym] : 0
+    @users = User.where(:role_code => role).limit(25).order('last_name DESC').paginate(:page => params[:page])
   end
   
   def search
-    collection = session[:role] ? User.send(params[:role]) : User
-    @users = collection.search(params[:q]).paginate :page => params[:page], :order => "role_code DESC"
+    role = params[:role] ? User::ROLES[params[:role].to_sym] : 0
+    conditions = ["role_code = #{role} AND (first_name LIKE :q OR last_name LIKE :q OR login LIKE :q OR email LIKE :q)", {:q => '%'+params[:q]+'%'}]
+    @users = User.where(conditions).limit(25).order('last_name DESC').paginate(:page => params[:page])
     render :action => "index"
   end
   
@@ -51,17 +52,7 @@ class Admin::UsersController < Admin::ApplicationController
     @user = User.find(params[:id])
     @user.destroy
 
-    redirect_to(admin_users_url(:role => session[:role]))
-  end
-  
-  private
-  
-  def set_role
-    if params[:role] and User::ROLES.keys.include?(params[:role].to_sym)
-      session[:role] = params[:role]
-    else
-      session[:role] = nil
-    end
+    redirect_to(:back)
   end
   
 end

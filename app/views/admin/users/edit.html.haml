@@ -3,5 +3,7 @@
 
 - form_for(@user, :url => admin_user_path(@user), :method => :put) do |f|
   = render :partial => "form", :locals => { :f => f }
-  = submit_tag "Update"
-= link_to 'Back', admin_users_path(:role => session[:role])
+  .actions
+    = submit_tag "Update"
+    &nbsp;or&nbsp;
+    = link_to 'Cancel', :back
