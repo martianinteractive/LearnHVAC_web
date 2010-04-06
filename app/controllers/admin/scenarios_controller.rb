@@ -6,7 +6,6 @@ class Admin::ScenariosController < Admin::ApplicationController
    
    def list
      @scenarios = User.find(params[:user_id]).scenarios if params[:user_id]
-     @group = Group.find(params[:group_id]) if params[:group_id]
      render :layout => false
    end
 

@@ -9,7 +9,8 @@ class Admin::GroupsController < Admin::ApplicationController
   end
 
   def new
-    @group = Group.new(:instructor => User.instructor.first)
+    @instructor = User.instructor.first
+    @group = Group.new(:instructor => @instructor)
   end
 
   def edit
@@ -22,6 +23,7 @@ class Admin::GroupsController < Admin::ApplicationController
     if @group.save
       redirect_to(admin_group_path(@group), :notice => 'Group was successfully created.')
     else
+      @instructor = User.find(params[:group][:instructor_id])
       render :action => "new"
     end
   end
