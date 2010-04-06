@@ -23,5 +23,5 @@
   = f.password_field :password_confirmation, :size=>20,  :value=>""
 
 .field
-  = f.label :institution_id, "Institution bla"
+  = f.label :institution_id, "Institution"
   = f.collection_select(:institution_id, Institution.all, :id, :name)
