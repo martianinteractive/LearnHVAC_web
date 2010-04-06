@@ -2,13 +2,13 @@ class Admin::UsersController < Admin::ApplicationController
   
   def index
     role = params[:role] ? User::ROLES[params[:role].to_sym] : 0
-    @users = User.where(:role_code => role).limit(25).order('last_name DESC').paginate(:page => params[:page])
+    @users = User.where(:role_code => role).order('last_name DESC').paginate(:page => params[:page], :per_page => 25)
   end
   
   def search
     role = params[:role] ? User::ROLES[params[:role].to_sym] : 0
     conditions = ["role_code = #{role} AND (first_name LIKE :q OR last_name LIKE :q OR login LIKE :q OR email LIKE :q)", {:q => '%'+params[:q]+'%'}]
-    @users = User.where(conditions).limit(25).order('last_name DESC').paginate(:page => params[:page])
+    @users = User.where(conditions).order('last_name DESC').paginate(:page => params[:page], :per_page => 25)
     render :action => "index"
   end
   

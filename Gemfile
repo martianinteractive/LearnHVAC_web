@@ -10,7 +10,7 @@ gem "mongoid", "2.0.0.alpha"
 gem 'acts-as-taggable-on', '2.0.0.rc1'
 
 group :test do
-  gem "rspec-rails", ">= 2.0.0.beta.1"
+  gem "rspec-rails", "= 2.0.0.beta.4"
   # gem "shoulda", :git => "git://github.com/thoughtbot/shoulda.git", :branch => "rails3"
   gem "factory_girl", :git => "git://github.com/thoughtbot/factory_girl.git", :branch => "rails3"
   gem "mocha"
