@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
   belongs_to :institution
   
   #Maybe we should use simple table inheritance if this type of relationships continue to grow.
-  has_many :managed_groups, :class_name => "Group", :foreign_key => "instructor_id"
+  has_many :managed_groups, :class_name => "Group", :foreign_key => "instructor_id", :dependent => :destroy
   has_many :memberships, :foreign_key => "student_id"
   has_many :groups, :through => :memberships
   
