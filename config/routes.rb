@@ -36,7 +36,10 @@ Learnhvac::Application.routes.draw do |map|
   # Manager Routes.
   namespace :managers do
     resources :instructors
-    resources :groups
+    
+    resources :groups do
+      resources :memberships
+    end
     
     resources :scenarios do
       collection do
