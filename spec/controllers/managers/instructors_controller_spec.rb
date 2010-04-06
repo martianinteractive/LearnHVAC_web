@@ -1,10 +1,10 @@
 require File.dirname(__FILE__) + "/../../spec_helper"
 
-describe InstitutionManagers::InstructorsController do
+describe Managers::InstructorsController do
   before(:each) do
     @institution = Factory(:institution)
     @instructor  = user_with_role(:instructor, 1, :institution => @institution)
-    @manager     = user_with_role(:institution_manager, 1, :institution => @institution)
+    @manager     = user_with_role(:manager, 1, :institution => @institution)
     login_as(@manager)
   end
   
@@ -66,7 +66,7 @@ describe InstitutionManagers::InstructorsController do
       
       it "redirects to the created user" do
         post :create, :user => Factory.attributes_for(:user)
-        response.should redirect_to(institution_managers_instructor_path(assigns(:instructor)))
+        response.should redirect_to(managers_instructor_path(assigns(:instructor)))
       end
     end
   
@@ -89,7 +89,7 @@ describe InstitutionManagers::InstructorsController do
       
       it "redirects to the instructor" do
         put :update, :id => @instructor.id, :user => { :last_name => "Doex" }
-        response.should redirect_to(institution_managers_instructor_path(@instructor))
+        response.should redirect_to(managers_instructor_path(@instructor))
       end
       
       it "should assign the manager institution even if a institution_id is passed by a malicious user" do
@@ -116,7 +116,7 @@ describe InstitutionManagers::InstructorsController do
   describe "DELETE destroy" do
     it "" do
       proc { delete :destroy, :id => @instructor.id }.should change(User, :count).by(-1)
-      response.should redirect_to(institution_managers_instructors_path)
+      response.should redirect_to(managers_instructors_path)
     end
   end
   

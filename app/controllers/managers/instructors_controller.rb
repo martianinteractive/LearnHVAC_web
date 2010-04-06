@@ -1,4 +1,4 @@
-class InstitutionManagers::InstructorsController < InstitutionManagers::ApplicationController  
+class Managers::InstructorsController < Managers::ApplicationController  
   before_filter :find_instructor, :only => [:show, :edit, :update, :destroy]
   
   def index
@@ -21,7 +21,7 @@ class InstitutionManagers::InstructorsController < InstitutionManagers::Applicat
     @instructor.role_code = User::ROLES[:instructor]
     
     if @instructor.save
-      redirect_to(institution_managers_instructor_path(@instructor), :notice => 'Instructor was successfully created.')
+      redirect_to(managers_instructor_path(@instructor), :notice => 'Instructor was successfully created.')
     else
       render :action => "new"
     end
@@ -32,7 +32,7 @@ class InstitutionManagers::InstructorsController < InstitutionManagers::Applicat
     @instructor.role_code = User::ROLES[:instructor]
     
     if @instructor.update_attributes(params[:user])
-      redirect_to(institution_managers_instructor_path(@instructor), :notice => 'Instructor was successfully created.')
+      redirect_to(managers_instructor_path(@instructor), :notice => 'Instructor was successfully created.')
     else
       render :action => "edit"
     end
@@ -40,7 +40,7 @@ class InstitutionManagers::InstructorsController < InstitutionManagers::Applicat
   
   def destroy
     @instructor.destroy
-    redirect_to(institution_managers_instructors_path)
+    redirect_to(managers_instructors_path)
   end
   
   private

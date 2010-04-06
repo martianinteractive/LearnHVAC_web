@@ -1,7 +1,7 @@
 %h2= "#{current_user.institution.name} Instructors"
 
 %p
-  = link_to 'New Instructor', new_institution_managers_instructor_path
+  = link_to 'New Instructor', new_managers_instructor_path
 
 %hr
 
@@ -13,7 +13,7 @@
     %th Scenarios
   - @instructors.each do |instructor|
     %tr
-      %td= link_to instructor.name, institution_managers_instructor_path(instructor)
+      %td= link_to instructor.name, managers_instructor_path(instructor)
       %td= instructor.email
       %td= instructor.managed_groups.count
       %td= instructor.scenarios.count

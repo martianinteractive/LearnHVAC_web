@@ -34,7 +34,7 @@ Learnhvac::Application.routes.draw do |map|
   end
   
   # Institution Manager Routes.
-  namespace :institution_managers do
+  namespace :managers do
     resources :instructors
   end
   

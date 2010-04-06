@@ -1,0 +1,5 @@
+%h2 New Instructor
+- form_for(@instructor, :url => managers_instructors_path, :method => :post) do |f|
+  = render :partial => 'form', :locals => { :f => f }
+
+= link_to 'Back', managers_instructors_path

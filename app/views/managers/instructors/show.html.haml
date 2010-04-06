@@ -1,10 +1,10 @@
 %h2= @instructor.name.capitalize
 %p 
-  = link_to 'Edit', edit_institution_managers_instructor_path(@instructor)
+  = link_to 'Edit', edit_managers_instructor_path(@instructor)
   &nbsp;|&nbsp;
-  = link_to 'Delete', institution_managers_instructor_path(@instructor), :confirm => 'Are you sure?', :method => :delete
+  = link_to 'Delete', managers_instructor_path(@instructor), :confirm => 'Are you sure?', :method => :delete
   &nbsp;|&nbsp;
-  = link_to 'Back', institution_managers_instructors_path
+  = link_to 'Back', managers_instructors_path
 %hr
 
 %p
