@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   scope :instructor, where("role_code = #{ROLES[:instructor]}")
   scope :manager, where("role_code = #{ROLES[:manager]}")
   scope :admin, where("role_code = #{ROLES[:admin]}")
+  scope :admin_instructor, where("role_code = #{User::ROLES[:admin]} OR role_code = #{User::ROLES[:instructor]}")
   scope :recently_created, where("created_at < '#{(Time.now + 30.days).to_formatted_s(:db)}'")
   scope :recently_updated, where("updated_at < '#{(Time.now + 30.days).to_formatted_s(:db)}'")
     

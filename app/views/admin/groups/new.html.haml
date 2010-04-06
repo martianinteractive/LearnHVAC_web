@@ -14,7 +14,7 @@
 
   .field 
     = f.label :instructor
-    = f.select :instructor_id, User.instructor.collect {|user| [ user.name, user.id ] }
+    = f.select :instructor_id, User.admin_instructor.collect {|user| [ user.name, user.id ] }
 
   .field
     = f.label :scenarios
