@@ -99,4 +99,18 @@ describe Admin::GroupsController do
       response.should redirect_to(admin_groups_path)
     end
   end
+  
+  describe "Authentication" do
+    before(:each) do
+      @admin.role_code = User::ROLES[:student]
+      @admin.save
+    end
+    
+    it "should require an admin user for all actions" do
+      authorize_actions do
+        response.should redirect_to(default_path_for(@admin))
+        flash[:notice].should == "You don't have privileges to access that page"
+      end
+    end
+  end
 end
