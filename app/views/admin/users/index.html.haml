@@ -1,11 +1,18 @@
-%h2= "Manage #{formatted_role}s"
-%p= link_to 'New User', new_admin_user_path
+%h2 Manage #{params[:role].humanize.pluralize}
+%table.plain
+  %tr
+    %td
+      = link_to 'New User', new_admin_user_path
+    %td
+      - form_tag(search_admin_users_path(:role => params[:role]), :class => "search") do
+        = label_tag :q, "Search"
+        = text_field_tag :q, params[:q]
+        = submit_tag "Search!"
+        &nbsp;&nbsp;
+        = link_to "Reset", admin_users_path(:role => params[:role]) if controller.action_name == 'search'
+
 %hr
-- form_tag(search_admin_users_path(:role => session[:role]), :class => "search") do
-  %p
-    = label_tag :q, "Find #{formatted_role(:short)}s"
-    = text_field_tag :q, params[:q]
-    = submit_tag "Search!"
+
 
 
 %table
