@@ -19,9 +19,7 @@ describe Admin::UsersController do
     end
     
     it "should assigns all users if not role is specified" do
-      get :index
-      response.should render_template(:index)
-      assigns(:users).should_not be_empty
+      lambda { get :index }.should raise_error
     end
 
   end
@@ -31,7 +29,7 @@ describe Admin::UsersController do
     before { create_users }
     
     it "should find users based on the given parameter" do
-      post :search, :q => "adm"
+      post :search, :q => "adm", :role => 'admin'
       response.should render_template(:index)
       assigns(:users).should_not be_empty
     end
@@ -49,7 +47,7 @@ describe Admin::UsersController do
   
   describe "GET new" do
     it "assigns a new user as @user" do
-      get :new
+      get :new, :role => 'admin'
       response.should render_template(:new)
       assigns(:user).should be_instance_of(User)
     end
@@ -80,12 +78,12 @@ describe Admin::UsersController do
   
     describe "with invalid params" do
       it "assigns a newly created but unsaved user as @user" do
-        proc{ post :create, :user => Factory.attributes_for(:user).merge(:first_name => "Jame$") }.should_not change(User, :count)
+        proc{ post :create, :role => 1, :user => Factory.attributes_for(:user).merge(:first_name => "Jame$") }.should_not change(User, :count)
         assigns(:user).should be_instance_of(User)
       end
       
       it "re-renders the 'new' template" do
-        post :create, :user => Factory.attributes_for(:user).merge(:first_name => "Jame$")
+        post :create, :role => 1, :user => Factory.attributes_for(:user).merge(:first_name => "Jame$"), :role => 1
         response.should render_template(:new)
       end
     end
@@ -132,8 +130,9 @@ describe Admin::UsersController do
     end
     
     it "destroys the requested user" do
+      role = @user.role
       proc { delete :destroy, :id => @user.id }.should change(User, :count).by(-1)
-      response.should redirect_to(admin_users_path)
+      response.should redirect_to(admin_users_path(:role => role))
     end
   end
   
