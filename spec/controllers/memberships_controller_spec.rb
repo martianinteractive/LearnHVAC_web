@@ -37,6 +37,33 @@ describe MembershipsController do
         end
       end
       
+      describe "As a logged instructor" do
+        describe "and the instructor is the group instructor" do
+          before { login_as(@instructor) }
+        
+          it { proc { post :create, :code => @group.code }.should_not change(Membership, :count) }
+        
+          it "" do
+            post :create, :code => @group.code
+            flash[:notice].should == "You already have joined this group as instructor."
+            response.should redirect_to(group_path(@group))
+          end
+        end
+        
+        describe "and the instructor isn't the group instructor." do
+          before(:each) do
+            @instructor2 = user_with_role(:instructor, 1, { :login => "instructor2", :email => "inst2@inst.com"})
+            login_as(@instructor2)
+          end
+          
+          it "" do
+            post :create, :code => @group.code
+            flash[:notice].should == "You need to login as student to join groups."
+            response.should redirect_to(default_path_for(@instructor2))
+          end
+        end
+      end
+      
       pending "fix the 404 response."
       # describe "Trying to register a non-existent group" do
       #   it "" do
