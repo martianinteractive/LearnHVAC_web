@@ -37,7 +37,7 @@ class AccountsController < ApplicationController
     
     if @account.save_without_session_maintenance
       @account.deliver_activation_instructions!
-      flash[:notice] = "Your account has been created. Please check your e-mail for your account activation instructions!"
+      flash[:notice] = "Your account has been created. Before login you have to activate your account. Please check your e-mail for account activation instructions!"
       redirect_to login_path
     else
       render :action => :new
