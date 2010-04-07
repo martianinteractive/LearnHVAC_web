@@ -1,4 +1,5 @@
 class Admin::GroupsController < Admin::ApplicationController
+  before_filter :build_instructor, :only => [:new, :create]
   
   def index
     @groups = Group.paginate :page => params[:page], :per_page => 25
@@ -9,7 +10,6 @@ class Admin::GroupsController < Admin::ApplicationController
   end
 
   def new
-    @instructor = User.new
     @group = Group.new
   end
 
@@ -23,7 +23,6 @@ class Admin::GroupsController < Admin::ApplicationController
     if @group.save
       redirect_to(admin_group_path(@group), :notice => 'Group was successfully created.')
     else
-      @instructor = User.find(params[:group][:instructor_id])
       render :action => "new"
     end
   end
@@ -43,6 +42,13 @@ class Admin::GroupsController < Admin::ApplicationController
     @group.destroy
     
     redirect_to(admin_groups_path)
+  end
+  
+  private
+  
+  def build_instructor
+    @instructor = User.find(params[:group][:instructor_id]) if params[:group] and params[:group][:instructor_id].present?
+    @instructor ||= User.new 
   end
   
 end
