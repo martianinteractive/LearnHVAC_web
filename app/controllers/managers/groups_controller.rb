@@ -1,5 +1,6 @@
 class Managers::GroupsController < Managers::ApplicationController
   before_filter :find_group, :only => [:show, :edit, :update, :destroy]
+  before_filter :build_instructor, :only => [:new, :create]
   
   def index
     @groups = current_user.institution.groups.paginate :page => params[:page], :per_page => 25, :order => "users.last_name"
@@ -9,7 +10,6 @@ class Managers::GroupsController < Managers::ApplicationController
   end
   
   def new
-    @instructor = current_user.institution.users.instructor.first
     @group = Group.new(:instructor => @instructor)
   end
   
@@ -22,7 +22,6 @@ class Managers::GroupsController < Managers::ApplicationController
     if @group.save
       redirect_to(managers_group_path(@group), :notice => 'Group was successfully created.')
     else
-      @instructor = current_user.institution.users.instructor.find(params[:group][:instructor_id])
       render :action => "new"
     end
   end
@@ -45,6 +44,14 @@ class Managers::GroupsController < Managers::ApplicationController
   
   def find_group
     @group = current_user.institution.groups.find(params[:id], :readonly => false)
+  end
+  
+  def build_instructor 
+    begin
+      @instructor = current_user.institution.users.instructor.find(params[:group][:instructor_id])
+    rescue
+      @instructor = User.new
+    end
   end
   
 end

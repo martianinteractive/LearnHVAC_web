@@ -16,6 +16,6 @@
     = select_tag "group[scenarios_ids][]", options_from_collection_for_select(@group.instructor.scenarios, :id, :name, @group.scenarios_ids), :multiple => true
 
   .actions
-    = f.submit
-
-= link_to 'Back', managers_groups_path
+    = submit_tag "Update"
+    &nbsp;or&nbsp;
+    = link_to 'Cancel', :back
