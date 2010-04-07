@@ -33,7 +33,7 @@ class User < ActiveRecord::Base
   before_save :set_institution, :on => :create, :if => Proc.new { |user| user.has_role?(:student) }
   
   def name
-    first_name + " " + last_name
+    first_name.capitalize + " " + last_name.capitalize
   end
   
   def role

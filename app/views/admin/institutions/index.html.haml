@@ -9,7 +9,7 @@
     %th Users
   - @institutions.each do |institution|
     %tr
-      %td= link_to institution.name, admin_institution_path(institution)
+      %td= link_to formatted_institution_name(institution), admin_institution_path(institution)
       %td= institution.users.count
 %br
 = will_paginate @institutions

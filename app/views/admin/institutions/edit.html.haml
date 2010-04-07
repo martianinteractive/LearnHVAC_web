@@ -1,4 +1,4 @@
-%h2= "Editing #{@institution.name.capitalize}" 
+%h2= "Editing #{formatted_institution_name}" 
 %hr
 
 - form_for(@institution, :url => admin_institution_path(@institution), :method => :put) do |f|
