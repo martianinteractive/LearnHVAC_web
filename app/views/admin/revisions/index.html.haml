@@ -1,4 +1,8 @@
-%h2= "Revisions of #{@master_scenario.name.capitalize}"
+%h2
+  ="#{@master_scenario.name}"
+  %br Revisions
+  %br="Last version, revision ##{@master_scenario.version}"
+
 %p= link_to 'Back to current scenario', admin_master_scenario_path(@master_scenario)
 %hr
 
@@ -7,12 +11,14 @@
     %th Name
     %th Author
     %th Updated at
+    %th Version
     %th
   - @versions.each do |version|
     %tr
       %td= link_to version.name, admin_master_scenario_revision_path(@master_scenario, version.version)
       %td= version.user.name
       %td= version.updated_at
+      %td= version.version
       %td 
         = link_to "System vars.", admin_master_scenario_revision_variables_path(@master_scenario, version.version)
 %br
