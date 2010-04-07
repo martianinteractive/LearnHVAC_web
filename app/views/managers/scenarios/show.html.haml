@@ -1,0 +1,81 @@
+%h2= @scenario.name
+
+%p
+  = link_to "Review simulation vars.", "#" #managers_scenario_variables_path(@scenario)
+  &nbsp;|&nbsp;
+  = link_to 'Back', :back
+%hr
+
+
+%p
+  %b
+    Scenario name:
+  = @scenario.name
+%p
+  %b
+    Modeled after:
+  = @scenario.master_scenario.name
+
+%p
+  %b
+    Level:
+  = @scenario.level
+%p
+  %b
+    Inputs visible:
+  = @scenario.inputs_visible
+%p
+  %b
+    Inputs enabled:
+  = @scenario.inputs_enabled
+%p
+  %b
+    Faults visible:
+  = @scenario.faults_visible
+%p
+  %b
+    Faults enabled:
+  = @scenario.faults_enabled
+%p
+  %b
+    Longterm start date:
+  = @scenario.longterm_start_date
+%p
+  %b
+    Longterm stop date:
+  = @scenario.longterm_stop_date
+%p
+  %b
+    Allow longterm date change:
+  = @scenario.allow_longterm_date_change
+%p
+  %b
+    Realtime start datetime:
+  = @scenario.realtime_start_datetime
+%p
+  %b
+    Allow realtime datetime change:
+  = @scenario.allow_realtime_datetime_change
+%p
+  %b
+    Valve info enabled:
+  = @scenario.valve_info_enabled
+%p
+  %b
+    Short description:
+  = @scenario.short_description
+%p
+  %b
+    Description:
+  = @scenario.description
+%p
+  %b
+    Goal:
+  = @scenario.goal
+
+%hr
+
+%p
+  = link_to "Review simulation vars.", "#" #managers_scenario_variables_path(@scenario)
+  &nbsp;|&nbsp;
+  = link_to 'Back', :back
