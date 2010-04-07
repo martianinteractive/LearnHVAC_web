@@ -18,8 +18,28 @@
     %b Link:
     %input{:type => "text", :value => membership_register_url(@group.code), :style => "width: 400px", :spellcheck => false}
 
+
 %h3
-  Students
+  Group Scenarios
+
+%p
+  Group members have access to the following scenarios.
+
+- if @group.group_scenarios.any?
+  %table
+    %tr
+      %th Scenario
+      %th Description
+      
+      - for scenario in @group.scenarios
+        %tr
+          %td= link_to scenario.name, scenario_path(scenario)
+          %td= scenario.description
+
+
+
+%h3
+  Group Members
 
 - if @group.students.any?
 
@@ -27,6 +47,7 @@
     %tr
       %th Name
       %th Email
+      %th
 
       - for student in @group.students
         %tr

@@ -1,2 +1,8 @@
 %h2= "Editing #{@group.name.capitalize}"
+
+%p
+  = link_to "Back", group_path(@group)
+
+%hr
+
 = render 'form'
