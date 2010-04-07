@@ -1,9 +1,5 @@
 %h2= @group.name.capitalize
 %p
-  = link_to 'Edit Group', edit_managers_group_path(@group)
-  &nbsp;|&nbsp;
-  = link_to 'Delete Group', managers_group_path(@group), :confirm => 'Are you sure?', :method => :delete
-  &nbsp;|&nbsp;
   = link_to 'Back', managers_groups_path
 %hr
 

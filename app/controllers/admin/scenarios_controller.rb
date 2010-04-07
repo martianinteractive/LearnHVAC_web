@@ -5,7 +5,7 @@ class Admin::ScenariosController < Admin::ApplicationController
    end
    
    def list
-     @scenarios = User.find(params[:user_id]).scenarios if params[:user_id]
+     @scenarios = User.find(params[:user_id]).scenarios if params[:user_id].present?
      render :layout => false
    end
 

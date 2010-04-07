@@ -1,5 +1,10 @@
 %h2= "Edit #{@scenario_variable.name}"
+%p
+  = link_to "Back", :back
 %hr
 - form_for([@scenario, @scenario_variable], :url => admin_scenario_scenario_variable_path(@scenario, @scenario_variable), :method => :put) do |f|
   = render :partial => "form", :locals => { :f => f }
-= link_to 'Back', admin_scenario_scenario_variables_path(@scenario)
+  .actions
+    = submit_tag "Update"
+    &nbsp;or&nbsp;
+    = link_to 'Cancel', :back

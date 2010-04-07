@@ -1,6 +1,3 @@
-%h1 
-  Monkey
-
 = f.error_messages
 .field
   = f.label :name
@@ -17,11 +14,11 @@
 .field
   = f.label :component_code
   
-  = f.select :component_code, ScenarioVariable::COMPONENTS.keys.collect { |comp| [SystemVariable::COMPONENTS[comp], comp] }
+  = f.select :component_code, ScenarioVariable::COMPONENTS.keys.collect { |comp| [SystemVariable::COMPONENTS[comp], comp] }, { :prompt => "Please select..."}
 .field
   = f.label :type_code, "I/O Type"
   
-  = f.select :type_code, ScenarioVariable::TYPES.keys.collect {|type| [ type, ScenarioVariable::TYPES[type] ] }
+  = f.select :type_code, ScenarioVariable::TYPES.keys.collect {|type| [ type.to_s.capitalize, ScenarioVariable::TYPES[type] ] }, { :prompt => "Please select..."}
 .field
   = f.label :index
   
@@ -81,5 +78,3 @@
   = f.label :is_percentage
   
   = f.check_box :is_percentage
-.actions
-  = f.submit

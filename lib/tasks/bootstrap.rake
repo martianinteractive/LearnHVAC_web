@@ -3,7 +3,8 @@ namespace :bootstrap do
   require 'active_record/fixtures'
   
   desc "load all"
-  task :all => ["bootstrap:institutions", "bootstrap:users", "bootstrap:regions", "bootstrap:colleges", "bootstrap:master_scenarios", "bootstrap:system_variables"]
+  task :all => ["bootstrap:institutions", "bootstrap:users", "bootstrap:regions", "bootstrap:colleges", "bootstrap:master_scenarios", 
+                "bootstrap:system_variables", "bootstrap:scenarios", "bootstrap:groups"]
   
   desc "load default institutions"
   task :institutions => :environment do
@@ -28,7 +29,6 @@ namespace :bootstrap do
   desc "load default master scenarios"
   task :master_scenarios => :environment do
     MasterScenario.delete_all
-    Scenario.delete_all
     File.open(File.join(Rails.root, 'db/bootstrap/master_scenarios.yml'), 'r') do |f|
       @master_scenarios = YAML.load(f)
     end
@@ -51,6 +51,19 @@ namespace :bootstrap do
       ms.update_attributes(:system_variables => sys_vars)
       ms.update_attributes(:version => 1, :versions => nil)
     end
+  end
+  
+  desc "Load instructor scenarios for default users"
+  task :scenarios => :environment do
+    Scenario.delete_all
+    File.open(File.join(Rails.root, 'db/bootstrap/scenarios.yml'), 'r') do |f|
+      @scenarios = YAML.load(f)
+    end
+  @scenarios.values.each {|scene_atts| Scenario.create(scene_atts)  }
+  end
+  
+  task :groups => :environment do
+    Group.destroy_all
   end
   
 end

@@ -5,3 +5,7 @@
 
 - form_for(@instructor, :url => managers_instructors_path, :method => :post) do |f|
   = render :partial => 'form', :locals => { :f => f }
+  .actions
+    = submit_tag "Create Instructor"
+    &nbsp;or&nbsp;
+    = link_to 'Cancel', managers_instructors_path

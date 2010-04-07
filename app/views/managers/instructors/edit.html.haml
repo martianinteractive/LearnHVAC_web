@@ -1,3 +1,7 @@
 %h2 New Instructor
 - form_for(@instructor, :url => managers_instructor_path(@instructor), :method => :put) do |f|
   = render :partial => 'form', :locals => { :f => f }
+  .actions
+    = submit_tag "Update"
+    &nbsp;or&nbsp;
+    = link_to 'Cancel', managers_instructors_path

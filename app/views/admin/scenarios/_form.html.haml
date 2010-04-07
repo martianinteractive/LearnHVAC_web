@@ -13,7 +13,7 @@
 
 .field
   = f.label :user_id, "Instructor"  
-  = f.select :user_id, User.instructor.collect {|user| [ user.name, user.id ] }
+  = f.select :user_id, User.admin_instructor.collect {|user| [ user.name, user.id ] }
 
 .field
   = f.label :inputs_visible  
@@ -69,6 +69,3 @@
 .field
   = f.label :goal  
   = f.text_area :goal
-
-.actions
-  = f.submit

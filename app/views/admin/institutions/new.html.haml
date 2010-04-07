@@ -2,4 +2,7 @@
 %hr
 - form_for(@institution, :url => admin_institutions_path, :method => :post) do |f|
   = render :partial => 'form', :locals => { :f => f }
-= link_to 'Back', admin_institutions_path
+  .actions
+    = submit_tag "Create"
+    &nbsp;or&nbsp;
+    = link_to 'Cancel', :back

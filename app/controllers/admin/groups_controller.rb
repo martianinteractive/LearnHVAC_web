@@ -9,8 +9,8 @@ class Admin::GroupsController < Admin::ApplicationController
   end
 
   def new
-    @instructor = User.instructor.first
-    @group = Group.new(:instructor => @instructor)
+    @instructor = User.new
+    @group = Group.new
   end
 
   def edit

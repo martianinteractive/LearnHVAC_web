@@ -67,6 +67,19 @@ describe User do
     
   end
   
+  context "on Callbacks" do
+    
+    describe "on destroy" do
+      before(:each) do
+        build_group(:instructor => @user)
+      end
+      
+      it "should description" do
+        proc { @user.destroy }.should change(Group, :count).by(-1)
+      end
+    end
+  end
+  
   context "Roles" do
     it "" do
       User::ROLES.should have(5).roles

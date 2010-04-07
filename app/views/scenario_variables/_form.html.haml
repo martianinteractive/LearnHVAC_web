@@ -13,11 +13,11 @@
 
 .field
   = f.label :component_code, "Component"  
-  = f.select :component_code, SystemVariable::COMPONENTS.keys.collect { |comp| [SystemVariable::COMPONENTS[comp], comp] }
+  = f.select :component_code, SystemVariable::COMPONENTS.keys.collect { |comp| [SystemVariable::COMPONENTS[comp], comp] }, {:prompt => "Please select..."}
 
 .field
   = f.label :type_code, "I/O Type"  
-  = f.select :type_code, ScenarioVariable::TYPES.keys.collect {|type| [ type, ScenarioVariable::TYPES[type] ] }
+  = f.select :type_code, ScenarioVariable::TYPES.keys.collect {|type| [ type.to_s.capitalize, ScenarioVariable::TYPES[type] ] }, {:prompt => "Please select..."}
 
 .field
   = f.label :index  
@@ -81,3 +81,6 @@
 
 .actions
   = f.submit
+  &nbsp;or&nbsp;
+  = link_to 'Cancel', scenario_scenario_variables_path(@scenario)
+%br

@@ -8,13 +8,14 @@
 
 %h2 New Group
 - form_for(@group, :url => admin_groups_path, :method => :post) do |f|
+  = f.error_messages
   .field
     = f.label :name
     = f.text_field :name
 
   .field 
     = f.label :instructor
-    = f.select :instructor_id, User.instructor.collect {|user| [ user.name, user.id ] }
+    = f.select :instructor_id, User.admin_instructor.collect {|user| [ user.name, user.id ] }, { :prompt => 'Please select ...'}
 
   .field
     = f.label :scenarios
@@ -23,5 +24,5 @@
 
   .actions
     = f.submit
-
-= link_to 'Back', admin_groups_path
+    &nbsp;or&nbsp;
+    = link_to 'Cancel', :back

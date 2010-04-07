@@ -10,3 +10,5 @@
     = select_tag "group[scenarios_ids][]", options_from_collection_for_select(current_user.scenarios, :id, :name, @group.scenarios_ids), :multiple => true
   .actions
     = group_form.submit
+    &nbsp;or&nbsp;
+    = link_to 'Cancel', :back

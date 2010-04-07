@@ -1,0 +1,35 @@
+=render "layouts/head"
+
+%body.bp.instructor_site
+  .header
+    %h1.siteTitle
+    %ul.global_nav
+      - if logged_in?
+        %li.username
+          = current_user.name
+        - if current_user.has_role?(:admin)
+          %li
+            = link_to 'Admin Site', admin_dashboard_path
+        %li
+          = link_to "Change Password", '/'
+        %li
+          = link_to "Log-out", logout_path
+      - else
+        %li
+          = link_to "Sign Up", signup_path
+      
+  .border
+    &nbsp; 
+  .main
+    .dl10.navigation
+      - if logged_in?
+        %h3 System
+        %ul
+          %li
+            = link_to "Groups", students_groups_path
+            = link_to "Scenarios", "#"
+
+    .fluid
+      .content
+        = display_flash
+        = yield
