@@ -19,7 +19,7 @@ module ScenarioFields
     attr_accessor :realtime_start_date, :realtime_start_hour, :realtime_start_minute, :realtime_meridiem
     
     parent.send :include, InstanceMethods
-    parent.before_save :set_realtime_start_datetime
+    parent.before_validate :set_realtime_start_datetime
   end
   
   module InstanceMethods
