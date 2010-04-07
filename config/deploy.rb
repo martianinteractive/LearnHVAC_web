@@ -21,6 +21,7 @@ namespace(:deploy) do
   desc "setup the server's database.yml file" 
   task :after_update_code do
     run "rm -rf #{release_path}/config/database.yml && ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
+    run "rm -rf #{release_path}/config/newrelic.yml && ln -nfs #{shared_path}/config/newrelic.yml #{release_path}/config/newrelic.yml"
   end
 
   desc "Configure and restart the passenger"
