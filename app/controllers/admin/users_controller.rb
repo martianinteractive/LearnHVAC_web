@@ -1,5 +1,5 @@
 class Admin::UsersController < Admin::ApplicationController
-  before_filter :get_role, :only => [:index, :search]
+  before_filter :get_role, :only => [:index, :search, :new]
   
   def index
     @users = User.where(:role_code => @role).order('last_name DESC').paginate(:page => params[:page], :per_page => 25)
@@ -16,9 +16,8 @@ class Admin::UsersController < Admin::ApplicationController
   end
 
   def new
-    role = User::ROLES[params[:role].to_sym]
     @user = User.new
-    @user.role_code = role
+    @user.role_code = @role
   end
 
   def edit
