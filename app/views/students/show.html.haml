@@ -1,6 +1,11 @@
 %h2= @student.name.capitalize
 
 %p
+  = link_to "Back", group_path(@group)
+
+%hr
+
+%p
   %b
     Login:
   = h @student.login
@@ -20,4 +25,9 @@
   %b
     E-Mail:
   = mail_to @student.email, @student.email
+
+%p
+  %b
+    Group member since:
+  = @member_since
 

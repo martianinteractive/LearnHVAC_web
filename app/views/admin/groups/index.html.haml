@@ -11,7 +11,7 @@
   - @groups.each do |group|
     %tr
       %td= link_to group.name, admin_group_path(group)
-      %td= group.instructor.name
+      %td= group.instructor.name if group.instructor
       %td= group.students.count
 %br
 = will_paginate @groups

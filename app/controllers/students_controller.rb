@@ -4,6 +4,7 @@ class StudentsController < ApplicationController
     
   def show
     @student = @group.students.find(params[:id])
+    @member_since = @student.memberships.where(:group_id => @group.id).first.created_at.to_formatted_s(:long)
   end
   
   private
