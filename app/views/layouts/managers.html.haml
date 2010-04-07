@@ -23,7 +23,7 @@
   .main
     .dl10.navigation
       - if logged_in?
-        %h3= "#{current_user.institution.name}"
+        %h3="#{formatted_institution_name(current_user.institution)}"
         %ul
           %li
             = link_to "Instructors", managers_instructors_path
