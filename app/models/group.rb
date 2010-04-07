@@ -23,7 +23,7 @@ class Group < ActiveRecord::Base
   end
   
   def scenarios_ids
-    @scenarios_ids || group_scenarios.all.collect { |gs| gs.scenario_id }
+    @scenarios_ids.try(:uniq) || group_scenarios.all.collect { |gs| gs.scenario_id }
   end
   
   private
@@ -50,8 +50,6 @@ class Group < ActiveRecord::Base
   end
   
   def scenario_validator
-    errors.add(:scenarios, "must be unique for each group.") if group_scenarios.collect{ |gs| gs.scenario_id }.uniq.size != group_scenarios.size
-    errors.add(:scenarios, "can't be blank") if self.new_record? and self.scenarios.empty?
     scenarios.each {|scenario| errors.add(:base, "invalid scenario") if scenario.user != self.instructor }
   end
   
