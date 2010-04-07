@@ -5,9 +5,7 @@ describe Managers::GroupsController do
     institution = Factory(:institution)
     @manager    = user_with_role(:manager, 1, :institution => institution)
     instructor  = user_with_role(:instructor, 1, :institution => institution)
-    @group      = Factory.build(:group, :name => "Class 01", :instructor => instructor)
-    @group.expects(:scenario_validator).returns(true)
-    @group.save
+    @group      = Factory(:group, :name => "Class 01", :instructor => instructor)
     login_as(@manager)
   end
   
