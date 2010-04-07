@@ -27,7 +27,7 @@ describe PasswordResetsController do
       it "" do
         post :create, :email => @user.email
         flash[:notice].should =~ /Instructions to reset your password have been emailed to you/
-        response.should redirect_to(root_url)
+        response.should redirect_to(login_path)
       end
     end
     
@@ -58,7 +58,7 @@ describe PasswordResetsController do
         User.expects(:find_using_perishable_token).with(@user.id.to_s).returns(nil)
         get :edit, :id => @user.id
         flash[:notice].should =~ /we could not locate your account/
-        response.should redirect_to(root_url)
+        response.should redirect_to(login_path)
       end
     end
   end
@@ -70,7 +70,7 @@ describe PasswordResetsController do
       it "should update the password" do
         put :update, :id => @user.id, :user => { :password => "newpassword", :password_confirmation => "newpassword" }
         flash[:notice].should == "Password successfully updated"
-        response.should redirect_to(root_url)
+        response.should redirect_to(default_path_for(@user))
       end
     end
     

@@ -3,7 +3,7 @@ Learnhvac::Application.routes.draw do |map|
   resources :accounts
   resources :users 
   resources :user_sessions
-  map.resources :password_resets
+  resources :password_resets
   
   match 'login'   => 'user_sessions#new', :as => 'login'
   match 'logout'  => 'user_sessions#destroy', :as => 'logout'
