@@ -27,6 +27,10 @@
   = f.text_area :description
 
 .field
+  = f.label :client_version
+  = f.select :client_version_id, ClientVersion.all.collect { |cv| [cv.version, cv.id] }, :prompt => "Please select..."
+
+.field
   = f.label :tag_list, "Tags"
   = f.text_field :tag_list
   Comma separated.

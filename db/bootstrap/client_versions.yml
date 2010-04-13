@@ -1,19 +1,23 @@
 0_99_15:
+  id: 4
   version: 0_99.15
   url: http://github.com/downloads/danielmcquillen/LearnHVAC_AIR/LearnHVAC_Installer_0_99.15.exe
   release_date: 2010-04-12
   
 0_99_14:
+  id: 3
   version: 0_99.14
   url: http://github.com/downloads/danielmcquillen/LearnHVAC_AIR/LearnHVAC_Installer_0_99.14.exe
   release_date: 2010-04-06
 
 0_99_12:
+  id: 2
   version: 0_99.12
   url: http://github.com/downloads/danielmcquillen/LearnHVAC_AIR/LearnHVAC_Installer_0_99_12.exe
   release_date: 2010-04-06
   
 0_99_11:
+  id: 1
   version: 0_99.11
   url: http://github.com/downloads/danielmcquillen/LearnHVAC_AIR/LearnHVAC_Installer_0_99_11.exe
   release_date: 2010-04-05

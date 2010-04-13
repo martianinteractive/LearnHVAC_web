@@ -21,6 +21,11 @@
     Created on:
   = @scenario.created_at.to_formatted_s(:long) if @scenario.created_at
 
+%p
+  %b
+    Client version:
+  = @scenario.master_scenario.client_version.version
+
 %hr
 
 %p
