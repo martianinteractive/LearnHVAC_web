@@ -18,9 +18,7 @@
 
 - form_for @account, :url => { :controller => "students/accounts", :action => "create" } do |f|
   = error_messages_for :account
-  .field
-    = f.label :group_code, "Group code"
-    = f.text_field :group_code
+  = f.hidden_field :group_code
 
   .field
     = f.label :login
