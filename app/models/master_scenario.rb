@@ -12,7 +12,7 @@ class MasterScenario
   belongs_to_related :user
   belongs_to_related :client_version
   
-  validates_presence_of :name, :user
+  validates_presence_of :name, :user, :client_version
   
   def clone!
     clon_atts = self.attributes
