@@ -63,7 +63,8 @@ namespace :bootstrap do
   end
   
   task :groups => :environment do
-    Group.destroy_all
+    Group.destroy_all # needed to destroy dependent records.
+    Fixtures.create_fixtures('db/bootstrap', 'groups')
   end
   
 end
