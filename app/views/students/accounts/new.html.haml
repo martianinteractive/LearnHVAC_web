@@ -1,12 +1,23 @@
-= error_messages_for :account
-
-%h2 
-  Student Registration
-
+%h2  Student Registration
 %p 
   Already a member? please
   = link_to "login", login_path
+%hr
+
+- if @group
+  #group_info
+    %h4 Group Information
+  
+    %p
+      %b Lead by:
+      = @group.instructor.name
+
+    %p
+      %b Group name:
+      = @group.name
+
 - form_for @account, :url => { :controller => "students/accounts", :action => "create" } do |f|
+  = error_messages_for :account
   .field
     = f.label :group_code, "Group code"
     = f.text_field :group_code
