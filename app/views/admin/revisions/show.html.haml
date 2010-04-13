@@ -1,4 +1,6 @@
-%h2="#{@master_scenario.name.capitalize} -version# #{@version.version}"
+%h2
+  ="#{@master_scenario.name}"
+  %br="Revision ##{@version.version}"
 
 %p
   = link_to "View variables", admin_master_scenario_revision_variables_path(@master_scenario, @version.version)

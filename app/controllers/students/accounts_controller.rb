@@ -16,7 +16,7 @@ class Students::AccountsController < ApplicationController
     if @account.valid? and @account.save_without_session_maintenance
       @account.register_group!
       @account.deliver_activation_instructions!
-      redirect_to(login_path, :notice => "Your account has been created. Please check your e-mail for your account activation instructions!")
+      redirect_to(login_path, :notice => "Your account has been created. Before login you have to activate your account. Please check your e-mail for account activation instructions!")
     else
       render :action => :new
     end

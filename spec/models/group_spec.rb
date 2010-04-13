@@ -19,12 +19,6 @@ describe Group do
     [:name, :instructor].each { |gattr| @group.errors[gattr].sort.should == ["can't be blank"] }
   end
   
-  it "should not be valid when assigning the same scenario multiple times" do
-    @group.group_scenarios.build(:scenario_id => @scenario1.id)
-    @group.should_not be_valid
-    @group.errors[:scenarios].should_not be_empty
-  end
-  
   it "should validate code on update" do
     @group.save #creates the group. and sets a valid unique code.
     @group.code = ""
@@ -63,6 +57,11 @@ describe Group do
         @group.scenarios_ids = [@scenario2.id]
         @group.should_not be_valid
         @group.errors[:base].should == ["invalid scenario"]
+      end
+      
+      it "should uniquify documents_ids" do
+        @group.scenarios_ids = [@scenario1.id, @scenario1.id]
+        @group.scenarios_ids.should eq([@scenario1.id])
       end
       
     end

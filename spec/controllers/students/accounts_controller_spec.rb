@@ -35,7 +35,7 @@ describe Students::AccountsController do
       
       it "should redirect to the login action" do
         post :create, :user => Factory.attributes_for(:user, :group_code => @group.code)
-        flash[:notice].should match(/Your account has been created. Please check your e-mail/)
+        flash[:notice].should match(/Your account has been created/)
         response.should redirect_to(login_path)
       end
       

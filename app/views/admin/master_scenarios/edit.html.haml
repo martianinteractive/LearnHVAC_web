@@ -1,4 +1,7 @@
-%h2= "Editing #{@master_scenario.name}"
+%h2
+  ="#{@master_scenario.name}"
+  %br
+  ="Last version, revision ##{@master_scenario.version}"
 
 %p 
   = link_to 'Back', admin_master_scenarios_path

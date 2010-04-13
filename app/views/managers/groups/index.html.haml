@@ -1,4 +1,4 @@
-%h2="#{current_user.institution.name} Groups"
+%h2="#{formatted_institution_name(current_user.institution)} Groups"
 
 %p
   = link_to 'New group', new_managers_group_path

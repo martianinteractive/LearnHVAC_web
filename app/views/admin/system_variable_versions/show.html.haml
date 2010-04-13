@@ -1,4 +1,7 @@
-%h2= "#{@master_scenario.name.capitalize}/System Variables #{@system_variable_version.name} -v# #{@version.version}"
+%h2
+  ="#{@master_scenario.name}"
+  %br="System Variables - #{@system_variable_version.name}"
+  %br="Revision ##{@version.version}"
 
 %p
   = link_to 'Back', admin_master_scenario_revision_variables_path(@master_scenario, @version.version)
