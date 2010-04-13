@@ -5,14 +5,10 @@
     %h1.siteTitle
       Administration
     %ul.global_nav
-      %li.username
-        = current_user.name
-      %li
-        = link_to "Instructor Site", "/"
-      %li
-        = link_to "Change Password", '/'
-      %li
-        = link_to "Log-out", logout_path
+      %li.username= current_user.name
+      %li= link_to "Instructor Site", "/"
+      %li= link_to "Log-out", logout_path
+
   .border
     &nbsp;
   .main

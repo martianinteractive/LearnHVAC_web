@@ -12,13 +12,9 @@
         - if current_user.has_role?(:admin)
           %li
             = link_to 'Admin Site', admin_dashboard_path
-        %li
-          = link_to "Change Password", '/'
-        %li
-          = link_to "Log-out", logout_path
+        %li= link_to "Log-out", logout_path
       - else
-        %li
-          = link_to "Sign Up", signup_path
+        %li= link_to "Sign Up", signup_path
       
   .border
     &nbsp; 
