@@ -52,6 +52,7 @@ Learnhvac::Application.routes.draw do |map|
   namespace :admin do
     resources :institutions
     resources :tags
+    resources :client_versions
     
     resources :master_scenarios do
       resources :system_variables

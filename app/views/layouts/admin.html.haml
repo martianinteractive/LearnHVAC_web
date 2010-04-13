@@ -35,6 +35,10 @@
           = link_to "Students", admin_users_path(:role => :student)
           = link_to "Institutions", admin_institutions_path
           = link_to "Groups", admin_groups_path
+      %h3 Client
+      %ul
+        %li
+          = link_to "Versions", admin_client_versions_path
 
     .fluid
       .content
