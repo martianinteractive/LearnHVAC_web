@@ -32,7 +32,7 @@ namespace :bootstrap do
     File.open(File.join(Rails.root, 'db/bootstrap/master_scenarios.yml'), 'r') do |f|
       @master_scenarios = YAML.load(f)
     end
-    @master_scenarios.values.each { |ms_atts| MasterScenario.create(ms_atts) }
+    @master_scenarios.values.each { |ms_atts| debugger; MasterScenario.create(ms_atts) }
   end
   
   desc "load default system variables for master scenarios"
