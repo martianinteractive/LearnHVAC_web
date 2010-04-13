@@ -4,7 +4,7 @@ namespace :bootstrap do
   
   desc "load all"
   task :all => ["bootstrap:institutions", "bootstrap:users", "bootstrap:regions", "bootstrap:colleges", "bootstrap:master_scenarios", 
-                "bootstrap:system_variables", "bootstrap:scenarios", "bootstrap:groups"]
+                "bootstrap:system_variables", "bootstrap:scenarios", "bootstrap:groups", "bootstrap:client_versions"]
   
   desc "load default institutions"
   task :institutions => :environment do
@@ -67,4 +67,8 @@ namespace :bootstrap do
     Fixtures.create_fixtures('db/bootstrap', 'groups')
   end
   
+  task :client_versions => :environment do
+    ClientVersion.delete_all
+    Fixtures.create_fixtures('db/bootstrap', 'client_versions')
+  end
 end
