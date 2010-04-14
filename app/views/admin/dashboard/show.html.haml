@@ -5,38 +5,19 @@
 %hr
 %table
   %tr
-    %th
-      \&nbsp;
-    %th
-      All
-    %th
-      Recently Added
-    %th
-      Recently Updated
+    %th 
+    %th All
+    %th Recently Added
+    %th Recently Updated
+  - for role in User::ROLES.keys.collect { |r| r.to_s }.sort
+    %tr
+      %td= link_to role.to_s.pluralize.capitalize, admin_users_path(:role => role)
+      %td= User.send(role).count
+      %td= User.send(role).recently_created.count
+      %td= User.send(role).recently_updated.count
+
   %tr
-    %td
-      Instructors
-    %td
-      = User.instructor.count
-    %td
-      = User.instructor.recently_created.count
-    %td
-      = User.instructor.recently_updated.count
-  %tr
-    %td
-      Students
-    %td
-      = User.student.count
-    %td
-      = User.student.recently_created.count
-    %td
-      = User.student.recently_updated.count
-  %tr
-    %td
-      Scenarios
-    %td
-      = Scenario.count
-    %td
-      = Scenario.recently_created.count
-    %td
-      = Scenario.recently_updated.count
+    %td= link_to "Scenarios", admin_scenarios_path
+    %td= Scenario.count
+    %td= Scenario.recently_created.count
+    %td= Scenario.recently_updated.count
