@@ -57,6 +57,7 @@ Learnhvac::Application.routes.draw do |map|
     resources :institutions
     resources :tags
     resources :client_versions
+    resources :settings, :only => [:index]
     
     resources :master_scenarios do
       resources :system_variables

@@ -1,7 +1,5 @@
-%h2
-  Admin Dashboard
-%p
-  This is the administration section of the LearnHVAC instructor application
+%h2 Admin Dashboard
+%p This is the administration section of the LearnHVAC instructor application
 %hr
 %table
   %tr
@@ -9,7 +7,7 @@
     %th All
     %th Recently Added
     %th Recently Updated
-  - for role in User::ROLES.keys.collect { |r| r.to_s }.sort
+  - for role in User::ROLES.keys.collect{ |r| r.to_s }.sort
     %tr
       %td= link_to role.to_s.pluralize.capitalize, admin_users_path(:role => role)
       %td= User.send(role).count
