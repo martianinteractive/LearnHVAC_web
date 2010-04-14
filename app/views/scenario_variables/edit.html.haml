@@ -1,5 +1,8 @@
-%h2= "Editing #{@scenario_variable.name}"
-%p= link_to "Back", :back
+%h2 
+  Edit 
+  %br="Scenario Variables - #{@scenario_variable.name}"
+
+%p= link_to 'Back', :back
 %hr
 
 - form_for([@scenario, @scenario_variable]) do |f|

@@ -1,9 +1,8 @@
 %h2
   ="#{@scenario.name}"
-  %br="System Variables - #{@scenario_variable.name}"
+  %br="Scenario Variables - #{@scenario_variable.name}"
 
-%p= link_to 'Back', managers_scenario_variables_path(@scenario)
-
+%p= link_to 'Back', :back
 %hr  
 
 %p
@@ -99,4 +98,4 @@
     Node sequence:
   = @scenario_variable.node_sequence
 
-%p= link_to 'Back', managers_scenario_variables_path(@scenario)
+%p= link_to 'Back', :back

@@ -90,6 +90,11 @@
   %b
     Goal:
   = @scenario.goal
+
+= link_to "Scenario Variables", admin_scenario_scenario_variables_path(@scenario)
+&nbsp;|&nbsp;
 = link_to 'Edit', edit_admin_scenario_path(@scenario)
-|
+&nbsp;|&nbsp;
+= link_to 'Delete', admin_scenario_path(@scenario), :confirm => 'Are you sure?', :method => :delete
+&nbsp;|&nbsp;
 = link_to 'Back', admin_scenarios_path

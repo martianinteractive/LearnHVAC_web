@@ -40,7 +40,7 @@ class Admin::ScenarioVariablesController < Admin::ApplicationController
 
   def destroy
     @scenario.scenario_variables.find(params[:id]).destroy
-    redirect_to(admin_scenario_scenario_variables_path(@scenario))
+    redirect_to(admin_scenario_scenario_variables_path(@scenario), :notice => 'ScenarioVariable was successfully deleted.')
   end
   
   
