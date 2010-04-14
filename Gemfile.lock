@@ -1,0 +1,167 @@
+--- 
+dependencies: 
+  mongo: 
+    group: 
+    - :default
+    version: = 0.19.1
+  compass: 
+    group: 
+    - :default
+    version: = 0.10.0.rc1
+  ruby-debug: 
+    group: 
+    - :development
+    version: ">= 0"
+  rails: 
+    group: 
+    - :default
+    version: = 3.0.0.beta
+  mysql: 
+    group: 
+    - :default
+    version: ">= 0"
+  haml: 
+    group: 
+    - :default
+    version: ">= 0"
+  mongo_ext: 
+    group: 
+    - :default
+    version: = 0.19.1
+  acts-as-taggable-on: 
+    group: 
+    - :default
+    version: = 2.0.0.rc1
+  rspec-rails: 
+    group: 
+    - :test
+    version: = 2.0.0.beta.4
+  hirb: 
+    group: 
+    - :development
+    version: ">= 0"
+  mocha: 
+    group: 
+    - :test
+    version: ">= 0"
+  will_paginate: 
+    group: 
+    - :default
+    version: = 3.0.pre
+  factory_girl: 
+    group: 
+    - :test
+    version: ">= 0"
+  mongoid: 
+    group: 
+    - :default
+    version: = 2.0.0.alpha
+specs: 
+- rake: 
+    version: 0.8.7
+- abstract: 
+    version: 1.0.0
+- builder: 
+    version: 2.1.2
+- i18n: 
+    version: 0.3.6
+- memcache-client: 
+    version: 1.7.8
+- tzinfo: 
+    version: 0.3.19
+- activesupport: 
+    version: 3.0.0.beta
+- activemodel: 
+    version: 3.0.0.beta
+- erubis: 
+    version: 2.6.5
+- rack: 
+    version: 1.1.0
+- rack-mount: 
+    version: 0.4.7
+- rack-test: 
+    version: 0.5.3
+- actionpack: 
+    version: 3.0.0.beta
+- mime-types: 
+    version: "1.16"
+- polyglot: 
+    version: 0.3.1
+- treetop: 
+    version: 1.4.5
+- mail: 
+    version: 2.1.5.3
+- text-hyphen: 
+    version: 1.0.0
+- text-format: 
+    version: 1.0.0
+- actionmailer: 
+    version: 3.0.0.beta
+- arel: 
+    version: 0.2.1
+- activerecord: 
+    version: 3.0.0.beta
+- activeresource: 
+    version: 3.0.0.beta
+- acts-as-taggable-on: 
+    version: 2.0.0.rc1
+- bundler: 
+    version: 0.9.19
+- columnize: 
+    version: 0.3.1
+- haml: 
+    version: 2.2.23
+- compass: 
+    version: 0.10.0.rc1
+- factory_girl: 
+    version: 1.2.3
+    source: 0
+- hirb: 
+    version: 0.3.1
+- linecache: 
+    version: "0.43"
+- mocha: 
+    version: 0.9.8
+- mongo: 
+    version: 0.19.1
+- mongo_ext: 
+    version: 0.19.1
+- will_paginate: 
+    version: 3.0.pre
+- mongoid: 
+    version: 2.0.0.alpha
+- mysql: 
+    version: 2.8.1
+- nokogiri: 
+    version: 1.4.1
+- thor: 
+    version: 0.13.4
+- railties: 
+    version: 3.0.0.beta
+- rails: 
+    version: 3.0.0.beta
+- rspec-core: 
+    version: 2.0.0.beta.4
+- rspec-expectations: 
+    version: 2.0.0.beta.4
+- rspec-mocks: 
+    version: 2.0.0.beta.4
+- rspec: 
+    version: 2.0.0.beta.4
+- webrat: 
+    version: 0.7.0
+- rspec-rails: 
+    version: 2.0.0.beta.4
+- ruby-debug-base: 
+    version: 0.10.3
+- ruby-debug: 
+    version: 0.10.3
+hash: edca32f4fe9e08af4786be71aed8d5692b10b653
+sources: 
+- Git: 
+    uri: git://github.com/thoughtbot/factory_girl.git
+    branch: rails3
+    git: git://github.com/thoughtbot/factory_girl.git
+    ref: feac7298352a83fef0717d8beadd2eda9aabfe56
+- Rubygems: 
+    uri: http://gemcutter.org
