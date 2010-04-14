@@ -44,7 +44,6 @@ Learnhvac::Application.routes.draw do |map|
     
     resources :scenarios do
       resources :variables, :controller => "scenario_variables"
-      
       collection do
         get :list
       end
@@ -52,7 +51,7 @@ Learnhvac::Application.routes.draw do |map|
     
   end
   
-  # Admin Routes.
+  ### Admin Routes.
   namespace :admin do
     resources :institutions
     resources :tags
@@ -61,11 +60,9 @@ Learnhvac::Application.routes.draw do |map|
     
     resources :master_scenarios do
       resources :system_variables
-      
       resources :revisions do
         resources :variables, :controller => "system_variable_versions"
       end  
-      
       member do
         post :clone
       end
@@ -83,9 +80,14 @@ Learnhvac::Application.routes.draw do |map|
     
     resources :scenarios do
       resources :scenario_variables
-      
       collection do
         get :list
+      end
+    end
+    
+    resources :colleges do
+      collection do
+        post :search
       end
     end
     

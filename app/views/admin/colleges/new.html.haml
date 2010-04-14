@@ -1,0 +1,9 @@
+%h2 New College
+%hr
+
+- form_for(@college,:url => admin_colleges_path, :method => :post) do |f|
+  = render :partial => "form", :locals => { :f => f }
+  .actions
+    = submit_tag "Create"
+    &nbsp;or&nbsp;
+    = link_to 'Cancel', :back

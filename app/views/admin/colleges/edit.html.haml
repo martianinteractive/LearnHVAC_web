@@ -1,0 +1,9 @@
+%h2= "Edit #{@college.value}"
+%hr
+
+- form_for(@college,:url => admin_college_path(@college), :method => :put) do |f|
+  = render :partial => "form", :locals => { :f => f }
+  .actions
+    = submit_tag "Update"
+    &nbsp;or&nbsp;
+    = link_to 'Cancel', :back
