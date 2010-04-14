@@ -54,17 +54,19 @@ describe Admin::MasterScenariosController do
   
   describe "POST create" do
     describe "with valid params" do
+      before(:each) { @valid_params = Factory.attributes_for(:master_scenario, :name => "new scenario", :client_version_id => @master_scenario.client_version_id) }
+      
       it "should change the MasterScenario count" do
-        proc{ post :create, :master_scenario => Factory.attributes_for(:master_scenario, :name => "new scenario") }.should change(MasterScenario, :count).by(1)
+        proc{ post :create, :master_scenario => @valid_params }.should change(MasterScenario, :count).by(1)
       end
       
       it "should assign the current admin as the master_scenario creator" do
-        post :create, :master_scenario => { :name => "new master scenario" }
+        post :create, :master_scenario => @valid_params
         assigns(:master_scenario).user.should == @admin
       end
       
       it "redirects to the created admin_master_scenario" do
-        post :create, :master_scenario => Factory.attributes_for(:master_scenario, :name => "new scenario")
+        post :create, :master_scenario => @valid_params
         response.should redirect_to(admin_master_scenario_path(assigns(:master_scenario)))
       end
     end

@@ -1,19 +1,21 @@
 require File.dirname(__FILE__) + "/../../spec_helper"
 
 describe Students::AccountsController do
+  before(:each) do
+    @group = Factory(:group, :name => "Class 01", :instructor => user_with_role(:instructor))
+  end
+  
   describe "GET :new" do
     it "should assign as @account" do
-      get :new
+      get :new, :code => @group.code
       response.should render_template(:new)      
+      assigns(:account).should be_instance_of(User)
       assigns(:account).should be_instance_of(User)
     end
   end
   
   describe "POST :create" do
     before(:each) do
-      @group = Factory.build(:group, :name => "Class 01", :instructor => user_with_role(:instructor))
-      @group.expects(:scenario_validator).returns(true) #skip scenarios assignment.
-      @group.save
       ActionMailer::Base.deliveries = []
     end
     

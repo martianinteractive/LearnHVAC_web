@@ -5,14 +5,10 @@
     %h1.siteTitle
       Administration
     %ul.global_nav
-      %li.username
-        = current_user.name
-      %li
-        = link_to "Instructor Site", "/"
-      %li
-        = link_to "Change Password", '/'
-      %li
-        = link_to "Log-out", logout_path
+      %li.username= current_user.name
+      %li= link_to "Instructor Site", "/"
+      %li= link_to "Log-out", logout_path
+
   .border
     &nbsp;
   .main
@@ -35,6 +31,10 @@
           = link_to "Students", admin_users_path(:role => :student)
           = link_to "Institutions", admin_institutions_path
           = link_to "Groups", admin_groups_path
+      %h3 Client
+      %ul
+        %li
+          = link_to "Versions", admin_client_versions_path
 
     .fluid
       .content

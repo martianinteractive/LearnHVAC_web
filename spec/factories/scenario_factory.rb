@@ -13,4 +13,5 @@ Factory.define :master_scenario do |master_scenario|
   master_scenario.name "master scenario"
   master_scenario.description "just a master scenario"
   master_scenario.tag_list "first, basic"
+  master_scenario.association :client_version, :factory => :client_version
 end

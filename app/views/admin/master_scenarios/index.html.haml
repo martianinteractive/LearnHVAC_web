@@ -11,12 +11,14 @@
   %tr
     %th Name
     %th Author
-    %th Versions
+    %th Client Version
+    %th Revisions
     %th
   - @master_scenarios.each do |master_scenario|
     %tr
       %td= link_to master_scenario.name, admin_master_scenario_path(master_scenario)
       %td= master_scenario.user.name
+      %td= link_to master_scenario.client_version.version, admin_client_version_path(master_scenario.client_version_id)
       %td= master_scenario.versions.count
       %td 
         = link_to "Clone", clone_admin_master_scenario_path(master_scenario), :method => :post
