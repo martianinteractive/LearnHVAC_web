@@ -43,10 +43,13 @@ Learnhvac::Application.routes.draw do |map|
     end
     
     resources :scenarios do
+      resources :variables, :controller => "managers/scenario_variables"
+      
       collection do
         get :list
       end
     end
+    
   end
   
   # Admin Routes.
