@@ -32,5 +32,20 @@
           %td= link_to "Remove from group", managers_group_membership_path(@group, @group.memberships.where(:student_id => student.id).first), :confirm => 'Are you sure?', :method => :delete
 
 - else
-  %p
-    There are no students on this group.
+  %p There are no students on this group.
+
+%h3 Group Scenarios
+
+- if @group.group_scenarios.any?
+  %p Group members have access to the following scenarios.
+  %table
+    %tr
+      %th Scenario
+      %th Description
+
+      - for scenario in @group.scenarios
+        %tr
+          %td= link_to scenario.name, managers_scenario_path(scenario)
+          %td= scenario.description
+- else
+  %p There are no scenarios on this group.

@@ -1,3 +1,18 @@
 %h2= @group.name.capitalize
 
+%h3 Group Scenarios
+
+- if @group.group_scenarios.any?
+  %table
+    %tr
+      %th Scenario
+      %th Description
+
+      - for scenario in @group.scenarios
+        %tr
+          %td= scenario.name
+          %td= scenario.description
+- else
+  %p There are no scenarios on this group.
+
 = link_to 'Back', students_groups_path
