@@ -7,7 +7,7 @@ describe MasterScenario do
   end
   
   context "Validations" do
-    before(:each) { @master_scenario = Factory.build(:scenario, :name => nil) }
+    before(:each) { @master_scenario = Factory.build(:master_scenario, :name => nil) }
     
     it "should be invalid without required attributes" do
       @master_scenario.should_not be_valid
@@ -18,7 +18,12 @@ describe MasterScenario do
     it "" do
       @master_scenario = Factory.build(:master_scenario, :name => "m scenario", :user => @admin)
       @master_scenario.should be_valid
-    end
+    end    
+  end
+  
+    
+  it "should reset some attributes for cloning." do
+    @master_scenario.default_clon_attributes.should == { "version" => 1, "versions" => nil, "system_variables" => nil, "name" => "#{@master_scenario.name}_clon" }      
   end
     
   context "Cloning" do

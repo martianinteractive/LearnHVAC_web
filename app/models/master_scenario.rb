@@ -15,19 +15,21 @@ class MasterScenario
   validates_presence_of :name, :user, :client_version
   
   def clone!
-    clon_atts = self.attributes
+    clon_atts = self.attributes.merge(default_clon_attributes)
     clon_atts.delete("_id")
-    clon_atts.delete("version")
-    clon_atts.delete("versions")
-    clon_atts.delete("system_variables")
-    clon_atts["name"] = "#{self.name}_clon"
-    clon = MasterScenario.create(clon_atts)
+    clon = MasterScenario.new(clon_atts)
+    sys_vars = []
     self.system_variables.each do |sv| 
-      sys_var_clon_atts = sv.attributes
-      sys_var_clon_atts.delete("_id")
-      clon.system_variables.create(sys_var_clon_atts)
+      sys_vars << sv.attributes
+      sys_vars.last.delete("_id")   
     end
+    clon.system_variables = sys_vars
+    clon.save
     clon
+  end
+    
+  def default_clon_attributes
+    { "version" => 1, "versions" => nil, "system_variables" => nil, "name" => "#{self.name}_clon" }
   end
   
 end
