@@ -1,7 +1,7 @@
 %h2= @scenario.name
 
 %p
-  = link_to "Scenario Variables", admin_scenario_scenario_variables_path(@scenario)
+  = link_to "Review simulation variables", admin_scenario_scenario_variables_path(@scenario)
   &nbsp;|&nbsp;
   = link_to 'Edit', edit_admin_scenario_path(@scenario)
   &nbsp;|&nbsp;
@@ -91,7 +91,7 @@
     Goal:
   = @scenario.goal
 
-= link_to "Scenario Variables", admin_scenario_scenario_variables_path(@scenario)
+= link_to "Review simulation variables", admin_scenario_scenario_variables_path(@scenario)
 &nbsp;|&nbsp;
 = link_to 'Edit', edit_admin_scenario_path(@scenario)
 &nbsp;|&nbsp;
