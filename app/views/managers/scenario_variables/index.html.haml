@@ -1,0 +1,33 @@
+%h2= "Simulation variables for #{@scenario.name}"
+%p= link_to 'Scenario', managers_scenario_path(@scenario)
+
+%hr
+
+%table
+  %tr
+    = sort_header_tag('component_code', :title => 'Component')
+    %th Fault
+    %th Name
+    %th Display Name
+    = sort_header_tag('type_code', :title => 'Type')
+    = sort_header_tag('min_value', :title => 'Min.')
+    = sort_header_tag('default_value', :title => 'Default')
+    = sort_header_tag('max_value', :title => 'Max.')
+    %th Unit SI
+    %th Unit IP
+    %th SI to IP
+  - @scenario_variables.each do |scenario_variable|
+    %tr
+      %td= scenario_variable.component_code
+      %td fault
+      %td= link_to scenario_variable.name, managers_scenario_variable_path(@scenario, scenario_variable)
+      %td= scenario_variable.display_name
+      %td= scenario_variable.io_type.to_s.upcase
+      %td= scenario_variable.min_value
+      %td= scenario_variable.default_value
+      %td= scenario_variable.max_value
+      %td= scenario_variable.unit_si
+      %td= scenario_variable.unit_ip
+      %td= scenario_variable.si_to_ip
+%br
+= will_paginate @scenario_variables
