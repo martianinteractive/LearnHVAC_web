@@ -26,6 +26,11 @@
     Client version:
   = @scenario.master_scenario.client_version.version
 
+%p
+  %b
+    Privacy:
+  = @scenario.public? ? "Public" : "Private"
+
 %hr
 
 %p

@@ -23,6 +23,11 @@
 
 %p
   %b
+    Privacy:
+  = @scenario.public? ? "Public" : "Private"
+
+%p
+  %b
     Level:
   = @scenario.level
 %p
