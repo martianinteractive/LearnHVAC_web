@@ -56,6 +56,8 @@ module AuthlogicTestHelper
      institution_managers_instructors_path
    when :student
      students_groups_path
+   when :guest
+     guests_dashboard_path
    else
      new_user_session_url
    end

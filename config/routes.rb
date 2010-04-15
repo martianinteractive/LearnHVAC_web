@@ -32,6 +32,7 @@ Learnhvac::Application.routes.draw do |map|
   ## Guests Routes.
   namespace :guests do
     resources :accounts
+    resource  :dashboard, :controller => "dashboard"
   end
   
   ## Student Routes.
