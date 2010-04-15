@@ -14,6 +14,7 @@ Learnhvac::Application.routes.draw do |map|
   match 'register/:activation_code' => 'activations#new', :as => 'register'
   match 'activate/:id' => 'activations#create', :as => 'activate'
   match 'students/sign_up' => 'students/accounts#new', :as => 'students_signup'
+  match 'guests/sign_up' => 'guests/accounts#new', :as => 'guests_signup'
   match 'groups/register/(:code)' => 'memberships#create', :as => 'membership_register'
   match 'admin/master_scenarios/tagged/:tag' => "admin/master_scenarios#tag", :as => 'master_scenarios_tag'
   
@@ -28,13 +29,18 @@ Learnhvac::Application.routes.draw do |map|
 
   match 'admin/dashboard' => 'admin/dashboard#show', :as => 'admin_dashboard'
   
-  # Student Routes.
+  ## Guests Routes.
+  namespace :guests do
+    resources :accounts
+  end
+  
+  ## Student Routes.
   namespace :students do
     resources :accounts
     resources :groups
   end
   
-  # Manager Routes.
+  ## Manager Routes.
   namespace :managers do
     resources :instructors
     
