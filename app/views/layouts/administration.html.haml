@@ -1,0 +1,44 @@
+= render "layouts/head"
+
+%body.bp.administration_site
+  .header
+    %h1.siteTitle
+      %span
+      = link_to "Administration Site", "/"
+    %ul.global_nav
+      %li.username= current_user.name
+      %li= link_to "Instructor Site", "/"
+      %li= link_to "Log-out", logout_path
+
+  .border
+    &nbsp;
+  .main
+    .dl10.navigation
+      %h3 General
+      %ul
+        %li
+          = link_to "Dasboard", admin_dashboard_path
+          = link_to "Settings", admin_settings_path
+      %h3 System
+      %ul
+        %li
+          = link_to "Master Scenarios", admin_master_scenarios_path
+          = link_to "Instructor Scenarios", admin_scenarios_path
+      %h3 Users
+      %ul
+        %li
+          = link_to "Admins", admin_users_path(:role => :admin)
+          = link_to "Inst. Managers", admin_users_path(:role => :manager)
+          = link_to "Instructors", admin_users_path(:role => :instructor)
+          = link_to "Students", admin_users_path(:role => :student)
+          = link_to "Institutions", admin_institutions_path
+          = link_to "Groups", admin_groups_path
+      %h3 Client
+      %ul
+        %li
+          = link_to "Versions", admin_client_versions_path
+
+    .fluid
+      .content
+        = display_flash
+        = yield

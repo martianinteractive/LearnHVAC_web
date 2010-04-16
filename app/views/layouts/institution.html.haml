@@ -1,0 +1,34 @@
+=render "layouts/head"
+
+%body.bp.institution_site
+  .header
+    %h1.siteTitle
+      %span
+      = link_to "Institution Site", "/"
+    %ul.global_nav
+      - if logged_in?
+        %li.username
+          = current_user.name
+        - if current_user.has_role?(:admin)
+          %li
+            = link_to 'Admin Site', admin_dashboard_path
+        %li= link_to "Log-out", logout_path
+      - else
+        %li= link_to "Sign Up", signup_path
+      
+  .border
+    &nbsp; 
+  .main
+    .dl10.navigation
+      - if logged_in?
+        %h3="#{formatted_institution_name(current_user.institution)}"
+        %ul
+          %li
+            = link_to "Instructors", managers_instructors_path
+            = link_to "Groups", managers_groups_path
+            = link_to "Scenarios", managers_scenarios_path
+
+    .fluid
+      .content
+        = display_flash
+        = yield

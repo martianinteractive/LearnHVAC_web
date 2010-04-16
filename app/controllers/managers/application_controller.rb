@@ -1,4 +1,4 @@
 class Managers::ApplicationController < ApplicationController
   before_filter :require_manager
-  layout "managers"
+  layout "institution"
 end

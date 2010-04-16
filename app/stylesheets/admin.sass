@@ -46,13 +46,20 @@ body.bp
   background: url(/images/layout/bg-sidebar.png) repeat-x left top
 
 
-.bp .header
-  background: #545454
-  border-bottom: 1px solid #DDD
-  padding: 0
-  margin: 0
-  height: 47px
+.bp 
 
+  .header
+    background: #545454
+    border-bottom: 1px solid #DDD
+    padding: 0
+    margin: 0
+    height: 47px
+
+    h1 span
+      display: block
+      position: relative
+      z-index: 1
+      margin-bottom: -47px
 
 .bp.instructor_site
 
@@ -72,13 +79,34 @@ body.bp
     h1, h1 span
       width: 300px
       height: 47px
-      background: url(/images/header_bar.png) no-repeat left top
+      background: url(/images/headers/instructors.png) no-repeat left top
 
-    h1 span
-      display: block
-      position: relative
-      z-index: 1
-      margin-bottom: -47px
+.bp.institution_site
+
+  .header
+    background: #65B879
+
+    h1, h1 span
+      width: 300px
+      height: 47px
+      background: url(/images/headers/institutions.png) no-repeat left top
+
+  .border
+    background: #1FA95A
+
+.bp.administration_site
+
+  .header
+    background: #545454
+
+    h1, h1 span
+      width: 300px
+      height: 47px
+      background: url(/images/headers/administration.png) no-repeat left top
+
+  .border
+    background: #363636
+
 
 .dl10
   min-height: 400px
