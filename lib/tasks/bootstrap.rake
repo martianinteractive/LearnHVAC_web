@@ -3,8 +3,7 @@ namespace :bootstrap do
   require 'active_record/fixtures'
   
   desc "load all"
-  task :all => ["bootstrap:institutions", "bootstrap:users", "bootstrap:regions", "bootstrap:colleges", "bootstrap:master_scenarios", 
-                "bootstrap:system_variables", "bootstrap:scenarios", "bootstrap:groups", "bootstrap:client_versions"]
+  task :all => ["bootstrap:institutions", "bootstrap:users", "bootstrap:regions", "bootstrap:colleges", "bootstrap:client_versions", "bootstrap:master_scenarios", "bootstrap:system_variables", "bootstrap:scenarios", "bootstrap:groups"]
   
   desc "load default institutions"
   task :institutions => :environment do

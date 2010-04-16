@@ -1,3 +1,13 @@
+CREATE TABLE `client_versions` (
+  `id` int(11) NOT NULL auto_increment,
+  `version` varchar(255) collate utf8_unicode_ci default NULL,
+  `url` varchar(255) collate utf8_unicode_ci default NULL,
+  `release_date` date default NULL,
+  `created_at` datetime default NULL,
+  `updated_at` datetime default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 CREATE TABLE `colleges` (
   `id` int(11) NOT NULL auto_increment,
   `value` varchar(255) collate utf8_unicode_ci default NULL,
@@ -14,7 +24,7 @@ CREATE TABLE `group_scenarios` (
   `created_at` datetime default NULL,
   `updated_at` datetime default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 CREATE TABLE `groups` (
   `id` int(11) NOT NULL auto_increment,
@@ -25,7 +35,7 @@ CREATE TABLE `groups` (
   `updated_at` datetime default NULL,
   PRIMARY KEY  (`id`),
   KEY `index_groups_on_instructor_id` (`instructor_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 CREATE TABLE `institutions` (
   `id` int(11) NOT NULL auto_increment,
@@ -46,7 +56,15 @@ CREATE TABLE `memberships` (
   PRIMARY KEY  (`id`),
   KEY `index_memberships_on_student_id` (`student_id`),
   KEY `index_memberships_on_group_id` (`group_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE `regions` (
+  `id` int(11) NOT NULL auto_increment,
+  `value` varchar(255) collate utf8_unicode_ci default NULL,
+  `country` varchar(255) collate utf8_unicode_ci default NULL,
+  PRIMARY KEY  (`id`),
+  KEY `index_regions_on_country` (`country`)
+) ENGINE=InnoDB AUTO_INCREMENT=1000199270 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 CREATE TABLE `schema_migrations` (
   `version` varchar(255) collate utf8_unicode_ci NOT NULL,
@@ -91,9 +109,12 @@ CREATE TABLE `users` (
   `role_code` int(11) default '0',
   `perishable_token` varchar(255) collate utf8_unicode_ci NOT NULL default '',
   `enabled` tinyint(1) default '1',
+  `city` varchar(255) collate utf8_unicode_ci default NULL,
+  `state` varchar(255) collate utf8_unicode_ci default NULL,
+  `country` varchar(255) collate utf8_unicode_ci default 'United States',
   PRIMARY KEY  (`id`),
   KEY `index_users_on_perishable_token` (`perishable_token`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 INSERT INTO schema_migrations (version) VALUES ('20100302150214');
 
@@ -116,3 +137,9 @@ INSERT INTO schema_migrations (version) VALUES ('20100327161124');
 INSERT INTO schema_migrations (version) VALUES ('20100329224224');
 
 INSERT INTO schema_migrations (version) VALUES ('20100331204627');
+
+INSERT INTO schema_migrations (version) VALUES ('20100405162227');
+
+INSERT INTO schema_migrations (version) VALUES ('20100405195414');
+
+INSERT INTO schema_migrations (version) VALUES ('20100413203436');
