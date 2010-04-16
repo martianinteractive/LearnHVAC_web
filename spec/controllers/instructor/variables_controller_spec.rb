@@ -1,6 +1,6 @@
-require File.dirname(__FILE__) + "/../spec_helper"
+require File.dirname(__FILE__) + "/../../spec_helper"
 
-describe ScenarioVariablesController do
+describe Instructor::VariablesController do
 
   before(:each) do
     @user                     = user_with_role(:instructor)
@@ -56,12 +56,15 @@ describe ScenarioVariablesController do
       
       it "redirects to the created scenario_variable" do
         post :create, :scenario_id => @scenario.id, :scenario_variable => Factory.attributes_for(:scenario_variable)
-        response.should redirect_to(scenario_scenario_variable_path(@scenario, assigns(:scenario_variable)))
+        response.should redirect_to(instructor_scenario_variable_path(@scenario, assigns(:scenario_variable)))
       end
     end
   
-    pending "Define invalid attrs for scenario_variable"
-    describe "with invalid params" do
+    describe "with invalid params (i.e. empty name)" do
+      it "should render #new with errors" do
+        post :create, :scenario_id => @scenario.id, :scenario_variable => Factory.attributes_for(:scenario_variable, :name => "")
+        response.should render_template(:new)
+      end
     end
     
   end
@@ -75,12 +78,15 @@ describe ScenarioVariablesController do
       
       it "redirects to the scenario_variable" do
         put :update, :scenario_id => @scenario.id, :id => @scenario_variable.id, :scenario_variable => { :name => "scenerio var" }
-        response.should redirect_to(scenario_scenario_variable_path(@scenario, @scenario_variable))
+        response.should redirect_to(instructor_scenario_variable_path(@scenario, @scenario_variable))
       end
     end
-    
-    pending "Define invalid attrs for Instructor system var"
-    describe "with invalid params" do  
+
+    describe "with invalid params (i.e. empty name)" do  
+      it "should render #edit with errors" do
+        put :update, :scenario_id => @scenario.id, :id => @scenario_variable.id, :scenario_variable => { :name => "" }
+        response.should render_template(:edit)
+      end
     end
   end
   
@@ -94,7 +100,7 @@ describe ScenarioVariablesController do
   
     it "redirects to the scenario_variables list" do
       delete :destroy, :scenario_id => @scenario.id, :id => @scenario_variable.id
-      response.should redirect_to(scenario_scenario_variables_path(@scenario))
+      response.should redirect_to(instructor_scenario_variables_path(@scenario))
     end
   end
   
@@ -105,7 +111,7 @@ describe ScenarioVariablesController do
     
     it "should require a logged user" do
       authorize_actions do 
-        response.should redirect_to(new_user_session_path)
+        response.should redirect_to(login_path)
         flash[:notice].should == "You must be logged in to access this page"
       end
     end

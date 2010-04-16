@@ -28,7 +28,7 @@ class Instructor::ScenariosController < Instructor::ApplicationController
 
   def update
     if @scenario.update_attributes(params[:scenario])
-      redirect_to(@scenario, :notice => 'Scenario was successfully updated.')
+      redirect_to instructor_scenario_path(@scenario), :notice => 'Scenario was successfully updated.'
     else
       render :action => "edit"
     end
@@ -36,7 +36,7 @@ class Instructor::ScenariosController < Instructor::ApplicationController
 
   def destroy
     @scenario.destroy
-    redirect_to(scenarios_url)
+    redirect_to(instructor_scenarios_url)
   end
   
   private

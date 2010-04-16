@@ -11,7 +11,7 @@
     %th Description
   - @scenarios.each do |scenario|
     %tr
-      %td= link_to scenario.name, scenario
+      %td= link_to scenario.name, instructor_scenario_path(scenario)
       %td= scenario.description
 %br
 = will_paginate @scenarios

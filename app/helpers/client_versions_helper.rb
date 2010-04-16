@@ -1,2 +1,0 @@
-module ClientVersionsHelper
-end

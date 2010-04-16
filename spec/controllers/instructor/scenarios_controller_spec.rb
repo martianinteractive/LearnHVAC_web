@@ -54,12 +54,15 @@ describe Instructor::ScenariosController do
   
       it "redirects to the created scenario" do
         post :create, :scenario => Factory.attributes_for(:scenario, :name => "new scenario", :master_scenario_id => @master_scenario.id)
-        response.should redirect_to(scenario_path(assigns(:scenario)))
+        response.should redirect_to(instructor_scenario_path(assigns(:scenario)))
       end
     end
   
-    pending "Define invalid attrs for scenario"
     describe "with invalid params" do
+      it "should render #new with errors" do
+        post :create, :scenario => Factory.attributes_for(:scenario, :name => "", :master_scenario_id => @master_scenario.id)
+        response.should render_template(:new)
+      end
     end
     
   end
@@ -73,12 +76,15 @@ describe Instructor::ScenariosController do
       
       it "redirects to the scenario" do
         put :update, :id => @scenario.id, :scenario => { :name => "Inst var" }
-        response.should redirect_to(scenario_path(@scenario.id))
+        response.should redirect_to(instructor_scenario_path(@scenario.id))
       end
     end
-    
-    pending "Define invalid attrs for Instructor system var"
+
     describe "with invalid params" do  
+      it "should render #edit with errors" do
+        put :update, :id => @scenario.id, :scenario => { :name => "" }
+        response.should render_template(:edit)
+      end
     end
   end
   
@@ -90,7 +96,7 @@ describe Instructor::ScenariosController do
   
     it "redirects to the scenarios list" do
       delete :destroy, :id => @scenario.id
-      response.should redirect_to(scenarios_path)
+      response.should redirect_to(instructor_scenarios_path)
     end
   end
   
