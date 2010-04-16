@@ -1,6 +1,6 @@
-require File.dirname(__FILE__) + "/../spec_helper"
+require File.dirname(__FILE__) + "/../../spec_helper"
 
-describe ClientVersionsController do
+describe Instructor::ClientVersionsController do
   before(:each) do
     @instructor     = user_with_role(:instructor)
     @client_version = Factory(:client_version)

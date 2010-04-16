@@ -1,6 +1,6 @@
-require File.dirname(__FILE__) + "/../spec_helper"
+require File.dirname(__FILE__) + "/../../spec_helper"
 
-describe GroupsController do
+describe Instructor::GroupsController do
   before(:each) do
     @instructor = user_with_role(:instructor)
     @group      = Factory.build(:group, :name => "Class 01", :instructor => @instructor)
