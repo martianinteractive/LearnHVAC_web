@@ -14,12 +14,14 @@
 %table
   %tr
     %th Name
+    %th
   - for college in @colleges
     %tr
       %td= link_to college.value, admin_college_path(college)
       %td
-        = link_to "Edit", edit_admin_college_path(college)
-        = link_to "Destroy", admin_college_path(college), :confirm => 'Are you sure?', :method => :delete
+        = link_to image_tag('trashcan.gif'), admin_college_path(college), :confirm => 'Are you sure?', :method => :delete
+        &nbsp;&nbsp;
+        = link_to image_tag('edit.gif'), edit_admin_college_path(college)
        
 
 %br
