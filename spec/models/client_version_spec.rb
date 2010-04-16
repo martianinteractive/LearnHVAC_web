@@ -10,7 +10,7 @@ describe ClientVersion do
   end
   
   it "" do
-    client_version = Factory.build(:client_version)
+    client_version = Factory.build(:client_version, :version => @client_version.version)
     client_version.should_not be_valid
     client_version.errors[:version].should_not be_empty
     client_version.version = "0.99.87"

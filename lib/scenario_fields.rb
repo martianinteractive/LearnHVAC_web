@@ -7,6 +7,7 @@ module ScenarioFields
     parent.field :longterm_start_date,             :default => Time.now.beginning_of_year.strftime("%m/%d/%Y")
     parent.field :longterm_stop_date,              :default => Time.now.beginning_of_year.end_of_month.strftime("%m/%d/%Y")
     parent.field :realtime_start_datetime,         :default => (Time.now.beginning_of_year + 14.days).strftime("%m/%d/%Y")
+    parent.field :public,                          :default => false
     parent.field :level,                           :type => Integer, :default => 1
     parent.field :inputs_visible,                  :type => Boolean, :default => true
     parent.field :inputs_enabled,                  :type => Boolean, :default => true

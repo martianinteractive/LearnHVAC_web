@@ -1,0 +1,2 @@
+module Guests::AccountsHelper
+end

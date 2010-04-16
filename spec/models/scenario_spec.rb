@@ -37,6 +37,10 @@ describe Scenario do
       @scenario.should be_valid
     end
     
+    it "should no be public by default" do
+      @scenario.should_not be_public
+    end
+    
   end
       
   context "Callbacks" do

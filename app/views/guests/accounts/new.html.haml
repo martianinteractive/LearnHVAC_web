@@ -1,0 +1,36 @@
+%h2  Student Registration
+%p 
+  Already a member? please
+  = link_to "login", login_path
+%hr
+
+- form_for @account, :url => guests_accounts_path, :method => :post do |f|
+  = error_messages_for :account
+  .field
+    = f.label :login
+    = f.text_field :login
+
+  .field
+    = f.label :first_name, "First Name"
+    = f.text_field :first_name
+
+  .field
+    = f.label :last_name, "Last Name"
+    = f.text_field :last_name
+
+  .field
+    = f.label :email
+    = f.text_field :email
+
+  .field
+    = f.label :password
+    = f.password_field :password, :size=>20,  :value=>""
+
+  .field
+    = f.label :password_confirmation, "Password Confirmation"	
+    = f.password_field :password_confirmation, :size=>20,  :value=>""
+
+  .actions
+    = submit_tag "Create", :class=>'submitButton'
+    &nbsp;|&nbsp;
+    = link_to 'Cancel', "http://www.learnhvac.org/"

@@ -1,7 +1,7 @@
 %h2= @scenario.name
 
 %p
-  = link_to "Review simulation vars.", "#" #managers_scenario_variables_path(@scenario)
+  = link_to "Review simulation vars.", managers_scenario_variables_path(@scenario)
   &nbsp;|&nbsp;
   = link_to 'Back', :back
 %hr
@@ -20,6 +20,11 @@
   %b
     Client version:
   = @scenario.master_scenario.client_version.version
+
+%p
+  %b
+    Privacy:
+  = @scenario.public? ? "Public" : "Private"
 
 %p
   %b

@@ -1,3 +1,16 @@
+%h2
+  ="#{@scenario.name}"
+  %br="Simulation Variables - #{@scenario_variable.name}"
+
+%p
+  = link_to 'Edit', edit_admin_scenario_scenario_variable_path(@scenario, @scenario_variable)
+  &nbsp;|&nbsp;
+  = link_to 'Delete', admin_scenario_scenario_variable_path(@scenario, @scenario_variable), :confirm => 'Are you sure?', :method => :delete
+  &nbsp;|&nbsp;
+  = link_to 'Back', admin_scenario_scenario_variables_path(@scenario)
+
+%hr
+
 %p
   %b
     Name:
@@ -91,7 +104,9 @@
     Node sequence:
   = @scenario_variable.node_sequence
 
-= link_to 'Edit', edit_admin_scenario_scenario_variable_path(@scenario, @scenario_variable)
-|
-= link_to 'Back', admin_scenario_scenario_variables_path(@scenario)
-
+%p
+  = link_to 'Edit', edit_admin_scenario_scenario_variable_path(@scenario, @scenario_variable)
+  &nbsp;|&nbsp;
+  = link_to 'Delete', admin_scenario_scenario_variable_path(@scenario, @scenario_variable), :confirm => 'Are you sure?', :method => :delete
+  &nbsp;|&nbsp;
+  = link_to 'Back', admin_scenario_scenario_variables_path(@scenario)

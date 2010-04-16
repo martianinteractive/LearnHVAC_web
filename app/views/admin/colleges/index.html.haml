@@ -1,0 +1,26 @@
+%h2 Manage Colleges
+%table.plain
+  %tr
+    %td 
+      = link_to "New College", new_admin_college_path
+    %td
+      - form_tag(search_admin_colleges_path, :class => "search") do
+        = label_tag :q, "Search"
+        = text_field_tag :q, params[:q]
+        = submit_tag "Search!"
+        &nbsp;&nbsp;
+        = link_to "Reset", admin_colleges_path if controller.action_name == 'search'
+
+%table
+  %tr
+    %th Name
+  - for college in @colleges
+    %tr
+      %td= link_to college.value, admin_college_path(college)
+      %td
+        = link_to "Edit", edit_admin_college_path(college)
+        = link_to "Destroy", admin_college_path(college), :confirm => 'Are you sure?', :method => :delete
+       
+
+%br
+= will_paginate @users

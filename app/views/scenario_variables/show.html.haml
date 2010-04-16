@@ -1,4 +1,9 @@
-%h2= @scenario_variable.name
+%h2
+  ="#{@scenario.name}"
+  %br="Simulation Variables - #{@scenario_variable.name}"
+
+%p= link_to 'Back', :back
+
 %hr
 
 %p

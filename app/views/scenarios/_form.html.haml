@@ -133,6 +133,13 @@
     = f.label :valve_info_enabled
     = f.check_box :valve_info_enabled
 
+  %fieldset
+    %p Allow all users to view this scenario.
+
+  .field.clearfix
+    = f.label :public, "Share"
+    = f.check_box :public
+
 
   .actions
     = f.submit
