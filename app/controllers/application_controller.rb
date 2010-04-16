@@ -47,7 +47,7 @@ class ApplicationController < ActionController::Base
     when :admin
       admin_dashboard_path
     when :instructor
-      scenarios_path
+      instructors_dashboard_path
     when :manager
       managers_instructors_path
     when :student

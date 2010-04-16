@@ -17,17 +17,20 @@ Learnhvac::Application.routes.draw do |map|
   match 'guests/sign_up' => 'guests/accounts#new', :as => 'guests_signup'
   match 'groups/register/(:code)' => 'memberships#create', :as => 'membership_register'
   match 'admin/master_scenarios/tagged/:tag' => "admin/master_scenarios#tag", :as => 'master_scenarios_tag'
-  
-  resources :groups do
-    resources :students, :only => [:index, :show]
-    resources :memberships, :only => [:destroy]
-  end
-  
-  resources :scenarios do
-    resources :scenario_variables
-  end
-
   match 'admin/dashboard' => 'admin/dashboard#show', :as => 'admin_dashboard'
+ 
+ ## Instructors Routes 
+  namespace :instructor do
+    resource :dashboard, :only => [:show]
+    resources :client_versions
+    resources :scenarios do
+      resources :variables
+    end
+    resources :groups do
+      resources :students, :only => [:index, :show]
+      resources :memberships, :only => [:destroy]
+    end
+  end
   
   ## Guests Routes.
   namespace :guests do

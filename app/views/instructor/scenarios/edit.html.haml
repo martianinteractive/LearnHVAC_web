@@ -1,0 +1,7 @@
+%h2= "Editing #{@scenario.name}"
+
+%p
+  = link_to "Back to scenario", instructor_scenario_path(@scenario)
+%hr
+
+= render 'form'
