@@ -17,6 +17,7 @@ describe DashboardController do
     it "should raise argument error when role is nil" do
       @user = Factory(:user, :login => "joedoe", :email => "jdoe@lhvac.com", :role_code => 0)
       login_as(@user)
+      get :index
       response.should redirect_to(guests_dashboard_path)
     end
   end
