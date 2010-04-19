@@ -104,8 +104,6 @@ describe Instructor::VariablesController do
     end
   end
   
-  pending "Authorization & roles"
-
   describe "Authentication" do
     before(:each) { user_logout }
     
@@ -116,7 +114,6 @@ describe Instructor::VariablesController do
       end
     end
   end
-  
   
   def mock_scenario_variable(attrs = {})
     @mock_scenario_variable ||= Factory(:scenario_variable, {:user => @user}.merge(attrs))

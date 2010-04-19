@@ -58,8 +58,17 @@ describe Admin::ScenarioVariablesController do
       end
     end
   
-    pending "Define invalid attrs for scenario_variable"
     describe "with invalid params" do
+      it "" do
+        @scenario_sys_vars = @scenario.scenario_variables.size
+        post :create, :scenario_id => @scenario.id, :scenario_variable => { }
+        Scenario.find(@scenario.id).scenario_variables.size.should == @scenario_sys_vars
+      end
+      
+      it "" do
+        post :create, :scenario_id => @scenario.id, :scenario_variable => { }
+        response.should render_template(:new)
+      end
     end
   end
   
@@ -76,8 +85,11 @@ describe Admin::ScenarioVariablesController do
       end
     end
     
-    pending "Define invalid attrs for Instructor system var"
     describe "with invalid params" do  
+      it "should description" do
+        put :update, :scenario_id => @scenario.id, :id => @scenario_variable.id, :scenario_variable => { :scenario_id => " " }
+        response.should render_template(:edit)
+      end
     end
   end
   

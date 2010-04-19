@@ -71,8 +71,26 @@ describe Admin::MasterScenariosController do
       end
     end
   
-    pending "Define invalid attrs for master_scenario"
     describe "with invalid params" do
+      it "" do
+        proc { post :create, :master_scenario => {} }.should_not change(MasterScenario, :count)
+      end
+      
+      it "" do
+        post :create, :master_scenario => {}
+        response.should render_template(:new)
+      end
+    end
+  end
+  
+  describe "POST clone" do
+    it "" do
+      proc { post :clone, :id => @master_scenario.id }.should change(MasterScenario, :count).by(1)
+    end
+    
+    it "" do
+      post :clone, :id => @master_scenario.id
+      response.should redirect_to(admin_master_scenarios_path)
     end
   end
   
@@ -89,12 +107,14 @@ describe Admin::MasterScenariosController do
       end
     end
     
-    pending "Define invalid attrs for Instructor system var"
-    describe "with invalid params" do  
+    describe "with invalid params" do
+      it "" do
+        put :update, :id => @master_scenario.id, :master_scenario => { :name => "" }
+        response.should render_template(:edit)
+      end
     end
   end
   
-    
   describe "DELETE destroy" do
     it "destroys the requested scenario" do
       proc { delete :destroy, :id => @master_scenario.id }.should change(MasterScenario, :count).by(-1)
@@ -105,7 +125,6 @@ describe Admin::MasterScenariosController do
       response.should redirect_to(admin_master_scenarios_path)
     end
   end
-  
   
   describe "Authorization" do
     before(:each) do
@@ -120,5 +139,4 @@ describe Admin::MasterScenariosController do
       end
     end
   end
-
 end

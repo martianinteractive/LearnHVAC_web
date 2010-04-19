@@ -57,25 +57,32 @@ describe Admin::ScenariosController do
   
   describe "POST create" do
     describe "with valid params" do
+      before(:each) { @valid_params = Factory.attributes_for(:scenario, :name => "new scenario", :user_id => @instructor.id, :master_scenario_id => @master_scenario.id) }
+      
       it "should change the Scenario count" do
-        proc { 
-          post :create, :scenario => Factory.attributes_for(:scenario, :name => "new scenario", :user_id => @instructor.id, :master_scenario_id => @master_scenario.id) 
-        }.should change(Scenario, :count).by(1)
+        proc { post :create, :scenario => @valid_params }.should change(Scenario, :count).by(1)
       end
       
       it "should assign the selected user as the Scenario user" do
-        post :create, :scenario => Factory.attributes_for(:scenario, :name => "new scenario", :user_id => @instructor.id, :master_scenario_id => @master_scenario.id)
+        post :create, :scenario => @valid_params
         assigns(:scenario).user.should == @instructor
       end
   
       it "redirects to the created admin_scenario" do
-        post :create, :scenario => Factory.attributes_for(:scenario, :name => "new scenario", :user_id => @instructor.id, :master_scenario_id => @master_scenario.id)
+        post :create, :scenario => @valid_params
         response.should redirect_to(admin_scenario_path(assigns(:scenario)))
       end
     end
   
-    pending "Define invalid attrs for scenario"
     describe "with invalid params" do
+      it "" do
+        proc { post :create, :scenario => { :user_id => @instructor.id } }.should_not change(Scenario, :count)
+      end
+      
+      it "" do
+        post :create, :scenario => { :user_id => @instructor.id }
+        response.should render_template(:new)
+      end
     end
   end
   
@@ -97,19 +104,26 @@ describe Admin::ScenariosController do
       end
     end
     
-    describe "DELETE destroy" do
-      it "destroys the requested scenario" do
-        proc { delete :destroy, :id => @scenario.id }.should change(Scenario, :count).by(-1)
+    describe "with invalid params" do
+      it "" do
+        proc { put :update, :id => @scenario.id, :scenario => { :name => "", :user_id => @instructor.id } }.should_not change(Scenario, :count)
       end
-
-      it "redirects to the scenarios list" do
-        delete :destroy, :id => @scenario.id
-        response.should redirect_to(admin_scenarios_path)
+      
+      it "" do
+        put :update, :id => @scenario.id, :scenario => { :name => "", :user_id => @instructor.id }
+        response.should render_template(:edit)
       end
     end
-    
-    pending "Define invalid attrs for Instructor system var"
-    describe "with invalid params" do  
+  end
+  
+  describe "DELETE destroy" do
+    it "destroys the requested scenario" do
+      proc { delete :destroy, :id => @scenario.id }.should change(Scenario, :count).by(-1)
+    end
+
+    it "redirects to the scenarios list" do
+      delete :destroy, :id => @scenario.id
+      response.should redirect_to(admin_scenarios_path)
     end
   end
   

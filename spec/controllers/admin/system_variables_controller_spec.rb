@@ -56,8 +56,17 @@ describe Admin::SystemVariablesController do
       end
     end
   
-    pending "Define invalid attrs for system var"
     describe "with invalid params" do
+      it "" do
+        proc { 
+          post :create, :master_scenario_id => @master_scenario.id, :system_variable => { } 
+        }.should_not change(@master_scenario.reload.system_variables, :count)
+      end
+      
+      it "" do
+        post :create, :master_scenario_id => @master_scenario.id, :system_variable => { }
+        response.should render_template(:new)
+      end
     end
   end
   
@@ -74,8 +83,11 @@ describe Admin::SystemVariablesController do
       end
     end
     
-    pending "Define invalid attrs for system var"
-    describe "with invalid params" do  
+    describe "with invalid params" do 
+      it "" do
+        put :update, :master_scenario_id => @master_scenario.id, :id => @system_variable.id, :system_variable => { :name => "" }
+        response.should render_template(:edit)
+      end
     end
   end
   
