@@ -5,11 +5,8 @@ class User < ActiveRecord::Base
   ROLES = { :guest => 0, :student => 1, :instructor => 2, :manager => 3, :admin => 4 }
   acts_as_authentic
   
-  scope :guest, where("role_code = #{ROLES[:guest]}")
-  scope :student, where("role_code = #{ROLES[:student]}")
-  scope :instructor, where("role_code = #{ROLES[:instructor]}")
-  scope :manager, where("role_code = #{ROLES[:manager]}")
-  scope :admin, where("role_code = #{ROLES[:admin]}")
+  # Dynamically creates scopes for each role.
+  ROLES.keys.each { |role| scope role.to_s.singularize, where("role_code = #{ROLES[role]}") }
   scope :admin_instructor, where("role_code = #{User::ROLES[:admin]} OR role_code = #{User::ROLES[:instructor]}")
   scope :recently_created, where("created_at < '#{(Time.now + 30.days).to_formatted_s(:db)}'")
   scope :recently_updated, where("updated_at < '#{(Time.now + 30.days).to_formatted_s(:db)}'")
