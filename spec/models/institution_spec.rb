@@ -9,6 +9,10 @@ describe Institution do
     @institution.should be_valid
   end
   
+  it "" do
+    Institution::CATEGORIES.should have(4).categories
+  end
+  
   it "should not be valid without name" do
     @institution.name = ""
     @institution.should_not be_valid

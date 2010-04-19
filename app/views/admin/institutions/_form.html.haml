@@ -7,3 +7,7 @@
 .field
   = f.label :description
   = f.text_area :description
+
+.field
+  = f.label :category_code, "Category"
+  = f.select :category_code, Institution::CATEGORIES.keys.collect{|k| [k.to_s.titleize, Institution::CATEGORIES[k]]}, :prompt => "Please select..."

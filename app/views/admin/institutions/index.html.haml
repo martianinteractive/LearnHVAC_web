@@ -7,10 +7,12 @@
   %tr
     %th Name
     %th Users
+    %th Category
   - @institutions.each do |institution|
     %tr
       %td= link_to formatted_institution_name(institution), admin_institution_path(institution)
       %td= institution.users.count
+      %td= institution.category.try(:titleize)
 %br
 = will_paginate @institutions
 
