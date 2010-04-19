@@ -4,8 +4,9 @@ class Membership < ActiveRecord::Base
   
   validates :group, :presence => true
   validates :student, :presence => true
-  
-  # Passing :scope to the new validates method 
-  # "validates :student_id, :uniqueness => true" isn't working. 
   validates_uniqueness_of :student_id, :scope => :group_id 
+  
+  def recently_created?
+    created_at > 20.minutes.ago
+  end
 end

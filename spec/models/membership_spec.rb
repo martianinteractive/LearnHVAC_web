@@ -3,9 +3,7 @@ require File.dirname(__FILE__) + "/../spec_helper"
 describe Membership do
   before(:each) do
     @student    = user_with_role(:student)
-    @group      = Factory.build(:group, :instructor => user_with_role(:instructor))
-    @group.group_scenarios.build(:scenario_id => "1")
-    @group.save
+    @group      = Factory(:group, :instructor => user_with_role(:instructor))
     @membership = Factory.build(:membership, :group => @group, :student => @student)
   end
   
@@ -30,6 +28,19 @@ describe Membership do
     membership = Factory.build(:membership, :group => @group, :student => @student)
     membership.should_not be_valid
     membership.errors[:student_id].should_not be_empty
+  end
+  
+  it "should be recently_created if created less than 20 minutes ago" do
+    @membership.save
+    @membership.should be_recently_created
+    @membership.expects(:created_at).returns(19.minutes.ago)
+    @membership.should be_recently_created
+  end
+  
+  it "should not be recently_create if created more than 20 minutes ago" do
+    @membership.save
+    @membership.expects(:created_at).returns(20.minutes.ago)
+    @membership.should_not be_recently_created
   end
   
 end

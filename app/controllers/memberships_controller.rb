@@ -10,7 +10,7 @@ class MembershipsController < ApplicationController
       if @membership.new_record? and @membership.save
         flash[:notice] = "Registered"
       elsif !@membership.new_record?
-        flash[:notice] = "You are already a member of this group."
+        flash[:notice] = @membership.recently_created? ? "Registered" : "You are already a member of this group."
       end
       redirect_to students_group_path(@group)
     else
