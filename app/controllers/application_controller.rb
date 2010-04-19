@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
     unless current_user
       store_location
       flash[:notice] = "You must be logged in to access this page"
-      redirect_to new_user_session_url
+      redirect_to login_path
       return false
     end
   end
@@ -43,7 +43,7 @@ class ApplicationController < ActionController::Base
   end
   
   def default_path_for(user)
-    case user.try(:role)
+    case user.role
     when :admin
       admin_dashboard_path
     when :instructor
@@ -55,7 +55,7 @@ class ApplicationController < ActionController::Base
     when :guest
       guests_dashboard_path
     else
-      new_user_session_url
+      raise ArgumentError, "role is required"
     end
   end
     

@@ -1,5 +1,4 @@
-class StudentsController < ApplicationController
-  before_filter :require_instructor
+class Instructor::StudentsController < Instructor::ApplicationController
   before_filter :find_group
     
   def show

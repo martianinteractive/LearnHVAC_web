@@ -74,7 +74,7 @@ describe UsersController do
     
     it "should require an authenticated user for all actions" do
       authorize_actions({:get => [:show, :edit], :put => [ :update ], :delete => [ :destroy ]}) do
-        response.should redirect_to(new_user_session_url)
+        response.should redirect_to(login_path)
         flash[:notice].should == "You must be logged in to access this page"
       end
     end

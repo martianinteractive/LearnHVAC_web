@@ -21,6 +21,7 @@ Learnhvac::Application.routes.draw do |map|
  
  ## Instructors Routes 
   namespace :instructor do
+    resources :students, :only => [:show]
     resource :dashboard, :only => [:show]
     resources :client_versions
     resources :scenarios do
@@ -103,5 +104,5 @@ Learnhvac::Application.routes.draw do |map|
     
   end
 
-  root :to => 'scenarios#index'
+  root :to => 'dashboard#index'
 end

@@ -1,6 +1,6 @@
-require File.dirname(__FILE__) + "/../spec_helper"
+require File.dirname(__FILE__) + "/../../spec_helper"
 
-describe StudentsController do
+describe Instructor::StudentsController do
   before(:each) do
     @instructor = user_with_role(:instructor)
     @student    = user_with_role(:student)

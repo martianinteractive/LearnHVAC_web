@@ -47,7 +47,7 @@ module AuthlogicTestHelper
  end
  
  def default_path_for(user)
-   case user.try(:role)
+   case user.role
    when :admin
      admin_dashboard_path
    when :instructor
@@ -59,7 +59,7 @@ module AuthlogicTestHelper
    when :guest
      guests_dashboard_path
    else
-     new_user_session_url
+     login_path
    end
  end
  
