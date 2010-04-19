@@ -4,9 +4,7 @@ describe MembershipsController do
   
   before(:each) do
     @instructor   = user_with_role(:instructor)
-    @group        = Factory.build(:group, :name => "Class 01", :instructor => @instructor)
-    @group.expects(:scenario_validator).returns(true) #skip scenarios assignment.
-    @group.save
+    @group        = Factory(:group, :name => "Class 01", :instructor => @instructor)
     @student      = user_with_role(:student)
     login_as(@student)
   end
@@ -46,7 +44,7 @@ describe MembershipsController do
           it "" do
             post :create, :code => @group.code
             flash[:notice].should == "You already have joined this group as instructor."
-            response.should redirect_to(group_path(@group))
+            response.should redirect_to(instructor_group_path(@group))
           end
         end
         
@@ -72,33 +70,33 @@ describe MembershipsController do
       #   end
       # end
     end
+  end
     
     
-    describe "DELETE :destroy" do
-      before(:each) do 
-        @membership = Membership.create(:group => @group, :student => @student)
-        login_as(@instructor)
-      end
-      
-      it "" do
-        proc { delete :destroy, :group_id => @group.id, :id => @membership.id }.should change(Membership, :count).by(-1)
-      end
-      
-      it "" do
-        delete :destroy, :group_id => @group.id, :id => @membership.id
-        response.should redirect_to(group_path(@group))
-      end
+  describe "DELETE :destroy" do
+    before(:each) do 
+      @membership = Membership.create(:group => @group, :student => @student)
+      login_as(@instructor)
     end
     
-    describe "without authentication" do
-      before(:each) do
-        user_logout
-      end
-      
-      it "" do
-        post :create
-        response.should redirect_to(students_signup_path)
-      end
+    it "" do
+      proc { delete :destroy, :group_id => @group.id, :id => @membership.id }.should change(Membership, :count).by(-1)
+    end
+    
+    it "" do
+      delete :destroy, :group_id => @group.id, :id => @membership.id
+      response.should redirect_to(instructor_group_path(@group))
+    end
+  end
+  
+  describe "without authentication" do
+    before(:each) do
+      user_logout
+    end
+    
+    it "" do
+      post :create
+      response.should redirect_to(students_signup_path)
     end
   end
   

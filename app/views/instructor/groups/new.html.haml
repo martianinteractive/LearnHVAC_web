@@ -1,3 +1,5 @@
 %h2 New group
 %hr
-= render 'form'
+
+- form_for(@group, :url => instructor_groups_path, :method => :post) do |f|
+  = render :partial => "form", :locals => { :f => f }

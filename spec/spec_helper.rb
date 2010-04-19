@@ -51,7 +51,7 @@ module AuthlogicTestHelper
    when :admin
      admin_dashboard_path
    when :instructor
-     scenarios_path
+     instructor_dashboard_path
    when :institution_manager
      institution_managers_instructors_path
    when :student
@@ -59,7 +59,7 @@ module AuthlogicTestHelper
    when :guest
      guests_dashboard_path
    else
-     login_path
+     raise ArgumentError, "role is required"
    end
  end
  

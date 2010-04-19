@@ -1,10 +1,10 @@
 %h2= @group.name.capitalize
 %p 
-  = link_to 'Edit', edit_group_path(@group)
+  = link_to 'Edit', edit_instructor_group_path(@group)
   &nbsp;|&nbsp;
-  = link_to 'Delete', @group, :confirm => 'Are you sure?', :method => :delete
+  = link_to 'Delete', instructor_group_path(@group), :confirm => 'Are you sure?', :method => :delete
   &nbsp;|&nbsp;
-  = link_to 'Back', groups_path
+  = link_to 'Back', instructor_groups_path
 
   
 %fieldset

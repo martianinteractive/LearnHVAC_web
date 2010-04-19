@@ -24,7 +24,7 @@ class MembershipsController < ApplicationController
   def destroy
     @membership = @group.memberships.find(params[:id])
     @membership.destroy
-    redirect_to group_path(@group) 
+    redirect_to instructor_group_path(@group) 
   end
   
   private 
@@ -41,7 +41,7 @@ class MembershipsController < ApplicationController
     if logged_as?(:instructor)
       if current_user == @group.instructor
         flash[:notice] = "You already have joined this group as instructor."
-        redirect_to group_path(@group)
+        redirect_to instructor_group_path(@group)
       else
         flash[:notice] = "You need to login as student to join groups."
         redirect_to default_path_for(current_user)

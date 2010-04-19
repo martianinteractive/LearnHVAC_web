@@ -3,9 +3,7 @@ require File.dirname(__FILE__) + "/../../spec_helper"
 describe Instructor::GroupsController do
   before(:each) do
     @instructor = user_with_role(:instructor)
-    @group      = Factory.build(:group, :name => "Class 01", :instructor => @instructor)
-    @group.expects(:scenario_validator).returns(true) #skip scenarios assignment.
-    @group.save
+    @group      = Factory(:group, :name => "Class 01", :instructor => @instructor)
     login_as(@instructor)
   end
   
@@ -56,7 +54,7 @@ describe Instructor::GroupsController do
       
       it "redirects to the created group" do
         post :create, :group => @params
-        response.should redirect_to(group_path(assigns(:group)))
+        response.should redirect_to(instructor_group_path(assigns(:group)))
       end
     end
   
@@ -77,7 +75,7 @@ describe Instructor::GroupsController do
       
       it "redirects to the group" do
         put :update, :id => @group.id, :group => { }
-        response.should redirect_to(@group)
+        response.should redirect_to(instructor_group_path(@group))
       end
     end
     
@@ -96,7 +94,21 @@ describe Instructor::GroupsController do
   
     it "redirects to the instructor groups list" do
       delete :destroy, :id => @group.id
-      response.should redirect_to(groups_path)
+      response.should redirect_to(instructor_groups_path)
+    end
+  end
+  
+  describe "Authentication" do
+    before(:each) do
+      @instructor.role_code = User::ROLES[:student]
+      @instructor.save
+    end
+    
+    it "should require an admin user for all actions" do
+      authorize_actions do
+        response.should redirect_to(default_path_for(@instructor))
+        flash[:notice].should == "You don't have privileges to access that page"
+      end
     end
   end
   

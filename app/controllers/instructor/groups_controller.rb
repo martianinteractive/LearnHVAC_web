@@ -20,7 +20,7 @@ class Instructor::GroupsController < Instructor::ApplicationController
     @group.instructor = current_user
     
     if @group.save
-      redirect_to(@group, :notice => 'Group was successfully created.')
+      redirect_to(instructor_group_path(@group), :notice => 'Group was successfully created.')
     else
       render :action => "new"
     end
@@ -30,7 +30,7 @@ class Instructor::GroupsController < Instructor::ApplicationController
     @group = Group.find(params[:id])
 
     if @group.update_attributes(params[:group])
-      redirect_to(@group, :notice => 'Group was successfully updated.')
+      redirect_to(instructor_group_path(@group), :notice => 'Group was successfully updated.')
     else
       render :action => "edit"
     end
@@ -40,7 +40,7 @@ class Instructor::GroupsController < Instructor::ApplicationController
     @group = Group.find(params[:id])
     @group.destroy
     
-    redirect_to(groups_url)
+    redirect_to(instructor_groups_url)
   end
   
   private
