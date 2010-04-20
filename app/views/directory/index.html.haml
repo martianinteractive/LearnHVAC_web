@@ -1,0 +1,14 @@
+%h2 Institutions with public scenarios.
+%hr
+
+%table
+  %tr
+    %th Name
+    %th Scenarios
+  - @institutions.each do |institution|
+    %tr
+      %td= formatted_institution_name(institution)
+      %td= institution.scenarios.public.count
+%br
+= will_paginate @institutions
+

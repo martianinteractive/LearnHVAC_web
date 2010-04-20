@@ -1,5 +1,5 @@
 module ApplicationHelper
-  
+    
   def display_flash
     return content_tag("div", flash[:notice], :class => "notice")  if flash[:notice]
     return content_tag("div", flash[:error], :class => "error")  if flash[:error]
@@ -19,5 +19,5 @@ module ApplicationHelper
   def generate_template(form_builder, method, options = {})
     escape_javascript generate_html(form_builder, method, options)
   end
-  
+    
 end

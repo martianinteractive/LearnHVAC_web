@@ -18,6 +18,7 @@ Learnhvac::Application.routes.draw do |map|
   match 'groups/register/(:code)' => 'memberships#create', :as => 'membership_register'
   match 'admin/master_scenarios/tagged/:tag' => "admin/master_scenarios#tag", :as => 'master_scenarios_tag'
   match 'admin/dashboard' => 'admin/dashboard#show', :as => 'admin_dashboard'
+  match 'directory' => 'directory#index', :as => 'directory'
  
  ## Instructors Routes 
   namespace :instructor do
