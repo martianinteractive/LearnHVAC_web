@@ -7,7 +7,7 @@
     %th Scenarios
   - @institutions.each do |institution|
     %tr
-      %td= formatted_institution_name(institution)
+      %td= link_to formatted_institution_name(institution), institution
       %td= institution.scenarios.public.count
 %br
 = will_paginate @institutions

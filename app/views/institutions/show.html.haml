@@ -1,0 +1,24 @@
+%h2= formatted_institution_name(@institution)
+%p= link_to 'Back to Directory', instructor_groups_path
+
+%h3 Shared Scenarios
+- if @public_scenarios
+
+  %table
+    %tr
+      %th Name
+      %th Description
+      %th Version
+
+      - for scenario in @institution.scenarios.public
+        %tr
+          %td= scenario.name
+          %td= scenario.short_description
+          %td= scenario.master_scenario.client_version.version
+
+- else
+  %p
+    There are no shared scenarios in this institution.
+
+%br
+= will_paginate @public_scenarios
