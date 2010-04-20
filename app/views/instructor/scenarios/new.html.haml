@@ -1,3 +1,4 @@
 %h2 New scenario
 %p Create a new scenario to share it with your students.
-= render 'form'
+- form_for(@scenario, :url => instructor_scenarios_path) do |f|
+  = render :partial => "form", :locals => { :f => f }
