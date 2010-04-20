@@ -5,6 +5,8 @@
   &nbsp;|&nbsp;
   = link_to "Review simulation vars.", instructor_scenario_variables_path(@scenario)
   &nbsp;|&nbsp;
+  = link_to "Who has access?", observers_instructor_scenario_path(@scenario)
+  &nbsp;|&nbsp;
   = link_to 'Delete', instructor_scenario_path(@scenario), :confirm => 'Are you sure?', :method => :delete
   &nbsp;|&nbsp;
   = link_to 'Back', :back

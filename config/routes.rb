@@ -26,6 +26,9 @@ Learnhvac::Application.routes.draw do |map|
     resources :client_versions
     resources :scenarios do
       resources :variables
+      member do
+        get :observers
+      end
     end
     resources :groups do
       resources :students, :only => [:index, :show]

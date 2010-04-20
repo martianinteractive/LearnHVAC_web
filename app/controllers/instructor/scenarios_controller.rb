@@ -1,11 +1,14 @@
 class Instructor::ScenariosController < Instructor::ApplicationController
-  before_filter :find_scenario, :only => [:show, :edit, :update, :destroy]
+  before_filter :find_scenario, :only => [:show, :edit, :observers, :update, :destroy]
   
   def index
     @scenarios = current_user.scenarios.paginate :page => params[:page], :per_page => 25
   end
 
   def show
+  end
+  
+  def observers
   end
 
   def new

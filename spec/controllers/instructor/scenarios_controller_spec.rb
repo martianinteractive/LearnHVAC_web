@@ -25,6 +25,15 @@ describe Instructor::ScenariosController do
     end
   end
   
+  describe "GET :obververs" do
+    it "" do
+      get :observers, :id => @scenario.id
+      response.should render_template(:obververs)
+      assigns(:scenario).should eq(@scenario)
+      assigns(:scenario).groups.should be_empty
+    end
+  end
+  
   describe "GET new" do
     it "" do
       get :new
