@@ -8,6 +8,7 @@ class Scenario
   embed_many :scenario_variables
   belongs_to_related :user
   belongs_to_related :master_scenario
+  has_many_related :group_scenarios
   
   validates_presence_of :name, :master_scenario_id, :user, :longterm_start_date, :longterm_stop_date, :realtime_start_date
   validates_format_of :longterm_start_date, :longterm_stop_date, :realtime_start_date, :with => /\d{2}\/\d{2}\/\d{4}/, :message => "is invalid"
@@ -19,6 +20,11 @@ class Scenario
   attr_protected :user_id
   
   after_create :copy_system_variables
+  
+  def groups
+    groups_ids = group_scenarios.collect { |gs| gs.group_id }
+    Group.find(groups_ids)
+  end
   
   private
   

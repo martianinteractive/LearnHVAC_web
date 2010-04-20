@@ -40,9 +40,23 @@ describe Scenario do
     it "should no be public by default" do
       @scenario.should_not be_public
     end
-    
   end
+  
+  context "related associations" do
+    describe "groups" do
+      it "should be empty by default" do
+        @scenario.groups.should be_empty
+      end
       
+      it "should find groups based on the groups_scenarios association" do
+        @scenario.save
+        Factory(:group_scenario, :group => @group = Factory(:group), :scenario_id => @scenario.id)
+        @scenario.groups.should_not  be_empty
+        @scenario.groups.first.should eq(@group)
+      end
+    end
+  end
+  
   context "Callbacks" do
     context "on create" do
       before(:each) do
