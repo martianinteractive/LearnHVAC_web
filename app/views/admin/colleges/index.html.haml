@@ -1,8 +1,8 @@
-%h2 Manage Colleges
+%h2 Manage Educational Entities
 %table.plain
   %tr
     %td 
-      = link_to "New College", new_admin_college_path
+      = link_to "New Educational Entity", new_admin_college_path
     %td
       - form_tag(search_admin_colleges_path, :class => "search") do
         = label_tag :q, "Search"
