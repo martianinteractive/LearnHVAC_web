@@ -5,7 +5,7 @@ Learnhvac::Application.routes.draw do |map|
   resources :user_sessions
   resources :password_resets
   resources :client_versions, :only => [:index]
-  resources :institutions, :only => [:show]
+  resources :institutions, :only => [:show, :index]
   
   match 'login'   => 'user_sessions#new', :as => 'login'
   match 'logout'  => 'user_sessions#destroy', :as => 'logout'
@@ -19,7 +19,7 @@ Learnhvac::Application.routes.draw do |map|
   match 'groups/register/(:code)' => 'memberships#create', :as => 'membership_register'
   match 'admin/master_scenarios/tagged/:tag' => "admin/master_scenarios#tag", :as => 'master_scenarios_tag'
   match 'admin/dashboard' => 'admin/dashboard#show', :as => 'admin_dashboard'
-  match 'directory' => 'directory#index', :as => 'directory'
+  match 'directory' => 'institutions#index', :as => 'directory'
  
  ## Instructors Routes 
   namespace :instructor do
