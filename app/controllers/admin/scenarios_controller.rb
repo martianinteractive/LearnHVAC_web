@@ -12,6 +12,10 @@ class Admin::ScenariosController < Admin::ApplicationController
    def show
      @scenario = Scenario.find(params[:id])
    end
+   
+   def observers
+     @scenario = Scenario.find(params[:id])
+   end
 
    def new
      @scenario = Scenario.new

@@ -97,6 +97,9 @@ Learnhvac::Application.routes.draw do |map|
       collection do
         get :list
       end
+      member do
+        get :observers
+      end
     end
     
     resources :colleges do

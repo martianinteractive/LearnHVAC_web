@@ -39,6 +39,24 @@ describe Admin::ScenariosController do
     end
   end
   
+  describe "GET observers" do
+    before(:each) do
+      @group = Factory(:group, :instructor => @instructor, :scenarios_ids => [@scenario.id])
+    end
+    
+    it "" do
+      get :observers, :id => @scenario.id
+      response.should render_template(:observers)
+    end
+    
+    it "" do
+      get :observers, :id => @scenario.id
+      assigns(:scenario).should eq(@scenario)
+      assigns(:scenario).groups.should_not be_empty
+      assigns(:scenario).groups.first.should eq(@group)
+    end
+  end
+  
   describe "GET new" do
     it "" do
       get :new
