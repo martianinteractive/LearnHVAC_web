@@ -9,6 +9,11 @@ class Institution < ActiveRecord::Base
   end
   
   def scenarios
-    Scenario.criteria.in("user_id" => user_ids.collect { |uid| uid.to_s }).to_a
+    Scenario.criteria.in("user_id" => user_ids.collect { |uid| uid.to_s })
   end
+  
+  def self.with_public_scenarios
+    self.all.collect { |i| i if i.scenarios.public.any? }.compact
+  end
+  
 end

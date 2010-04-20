@@ -4,7 +4,7 @@ class Scenario
   include Mongoid::Document::ProtectedAttributes
   include ScenarioFields
   include ActiveModel::Validations
-    
+      
   embed_many :scenario_variables
   belongs_to_related :user
   belongs_to_related :master_scenario
@@ -16,6 +16,7 @@ class Scenario
 
   named_scope :recently_created, criteria.where(:created_at.gt => (Time.now + 30.days))
   named_scope :recently_updated, criteria.where(:updated_at.gt => (Time.now + 30.days))
+  named_scope :public, criteria.where(:public => true)
     
   attr_protected :user_id
   
