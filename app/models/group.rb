@@ -2,7 +2,7 @@ class Group < ActiveRecord::Base
   belongs_to :instructor, :class_name => "User", :foreign_key => "instructor_id"
   has_many :memberships, :dependent => :destroy
   has_many :students, :through => :memberships  
-  has_many :group_scenarios
+  has_many :group_scenarios, :dependent => :destroy
   
   accepts_nested_attributes_for :group_scenarios, :allow_destroy => true
   

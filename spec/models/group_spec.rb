@@ -77,6 +77,10 @@ describe Group do
     it "should destroy the associated memberships" do
       proc { @group.destroy }.should change(Membership, :count).by(-2)
     end
+    
+    it "should destroy the associated group_scenarios" do
+      proc { @group.destroy }.should change(GroupScenario, :count).by(-1)
+    end
   end
   
   describe "Callbacks" do    
