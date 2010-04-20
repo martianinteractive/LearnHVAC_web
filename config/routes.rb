@@ -61,8 +61,10 @@ Learnhvac::Application.routes.draw do |map|
       collection do
         get :list
       end
+      member do
+        get :observers
+      end
     end
-    
   end
   
   ### Admin Routes.
@@ -107,7 +109,6 @@ Learnhvac::Application.routes.draw do |map|
         post :search
       end
     end
-    
   end
 
   root :to => 'dashboard#index'

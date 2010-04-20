@@ -26,6 +26,14 @@ describe Managers::ScenariosController do
     end
   end
   
+  describe "GET observers" do
+    it "" do
+      get :observers, :id => @scenario.id
+      response.should render_template(:observers)
+      assigns(:scenario).should eq(@scenario)
+    end
+  end
+  
   describe "GET list" do
     it "" do
       get :list, :user_id => @scenario.user.id
