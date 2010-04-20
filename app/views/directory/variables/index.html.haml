@@ -1,0 +1,33 @@
+%h2= "#{@scenario.name.capitalize} Simulation Variables"
+%p
+  = link_to 'Back', directory_institution_scenario_path(@institution, @scenario)
+%hr
+
+%table
+  %tr
+    = sort_header_tag('component_code', :title => 'Component')
+    %th Fault
+    = sort_header_tag('name', :title => 'Name')
+    %th Disp. Name
+    = sort_header_tag('type_code', :title => 'Type')
+    = sort_header_tag('min_value', :title => 'Min.')
+    = sort_header_tag('default_value', :title => 'Default')
+    = sort_header_tag('max_value', :title => 'Max.')
+    %th Unit SI
+    %th Unit IP
+    %th SI to IP
+  - @variables.each do |variable|
+    %tr
+      %td= variable.component
+      %td 
+      %td= link_to variable.name, directory_institution_scenario_variable_path(@institution, @scenario, variable)
+      %td= variable.display_name
+      %td= variable.io_type.to_s.upcase
+      %td= variable.min_value
+      %td= variable.default_value
+      %td= variable.max_value
+      %td= variable.unit_si
+      %td= variable.unit_ip
+      %td= variable.si_to_ip
+%br
+= will_paginate @variables

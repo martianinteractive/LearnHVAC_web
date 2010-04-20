@@ -12,7 +12,7 @@
 
       - for scenario in @institution.scenarios.public
         %tr
-          %td= link_to scenario.name, institution_scenario_path(@institution, scenario)
+          %td= link_to scenario.name, directory_institution_scenario_path(@institution, scenario)
           %td= scenario.short_description
           %td= scenario.master_scenario.client_version.version
 

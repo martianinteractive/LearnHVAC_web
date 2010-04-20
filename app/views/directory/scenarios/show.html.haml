@@ -1,9 +1,9 @@
 %h2= @scenario.name
 
 %p
-  = link_to "Simulation Variables", "#"
+  = link_to "Simulation Variables", directory_institution_scenario_variables_path(@institution, @scenario)
   &nbsp;|&nbsp;
-  = link_to 'Back', institution_path(@institution)
+  = link_to 'Back', directory_institution_path(@institution)
 
 %hr
 
@@ -87,5 +87,6 @@
     Goal:
   = @scenario.goal
 
-= link_to "Review simulation variables", "#"
-= link_to 'Back', institution_path(@institution)
+= link_to "Review simulation variables", directory_institution_scenario_variables_path(@institution, @scenario)
+&nbsp;|&nbsp;
+= link_to 'Back', directory_institution_path(@institution)
