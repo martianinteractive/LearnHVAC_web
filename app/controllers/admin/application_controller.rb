@@ -1,4 +1,4 @@
 class Admin::ApplicationController < ApplicationController
   before_filter :require_admin
-  layout "administration"
+  layout "admins"
 end

@@ -92,20 +92,8 @@ class ApplicationController < ActionController::Base
     sort_update
   end
   
-  # It should be standarized as role.pluralize :admin => "admins"
   def current_user_layout
-    case current_user.role
-    when :admin
-      "administration"
-    when :manager
-      "institution"
-    when :instructor
-      "instructor"
-    when :student
-      "students"
-    when :guest
-      "guests"
-    end
+    current_user.role.to_s.pluralize
   end
   
 end

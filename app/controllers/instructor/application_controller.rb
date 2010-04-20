@@ -1,4 +1,4 @@
 class Instructor::ApplicationController < ApplicationController
   before_filter :require_instructor
-  layout "instructor"
+  layout "instructors"
 end
