@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100419224135) do
+ActiveRecord::Schema.define(:version => 20100420225816) do
 
   create_table "client_versions", :force => true do |t|
     t.string   "version"
@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(:version => 20100419224135) do
     t.date     "release_date"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "description"
   end
 
   create_table "colleges", :force => true do |t|
