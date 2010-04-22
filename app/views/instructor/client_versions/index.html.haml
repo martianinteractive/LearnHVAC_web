@@ -4,12 +4,12 @@
 %table
   %tr
     %th Version
-    %th URL
+    %th Description
     %th Release Date
   - @client_versions.each do |version|
     %tr
-      %td= version.version
-      %td= link_to version.url, version.url
+      %td= link_to version.version, version.url
+      %td= version.description
       %td= version.release_date
 %br
 = will_paginate @client_versions

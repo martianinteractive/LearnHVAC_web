@@ -32,7 +32,7 @@
 %p
   %b
     Version:
-  = @master_scenario.client_version.version
+  = link_to @master_scenario.client_version.version, admin_client_version_path(@master_scenario.client_version)
 
 %p
   %b
