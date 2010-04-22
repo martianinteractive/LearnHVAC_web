@@ -1,7 +1,7 @@
 class Directory::InstitutionsController < Directory::ApplicationController
   
   def index
-    @institutions = Institution.with_public_scenarios.paginate :page => params[:page], :per_page => 25
+    @institutions = Institution.paginate :page => params[:page], :per_page => 25
   end
   
   def show
