@@ -19,7 +19,7 @@ class AccountsController < ApplicationController
   def states
     if params[:state]
       country_code = Carmen::country_code(params[:state])
-      @states = Region.where(:country => country_code)
+      @states = Region.where(:country => country_code).order(:value)
       render :partial => 'states'
     else
       render :nothing => true
