@@ -19,25 +19,6 @@ body.bp
 @import application.sass
 @import common.sass
 
-body.bp
-  background: #FEFEFE
-  font-size: 85%
-  margin: 0
-  padding: 0
-  
-  div.dl10 ul
-    padding: 0
-
-  div.border
-    background: #363636
-    height: 5px
-    padding: 0
-    margin: 0
-    border: 0
-
-  table.ui-datepicker-calendar td
-    padding: 1px
-
 .main
   margin-top: 0
   padding: 0
@@ -46,40 +27,53 @@ body.bp
   background: url(/images/layout/bg-sidebar.png) repeat-x left top
 
 
-.bp 
+body.bp
+  background: #FEFEFE
+  font-size: 85%
+  margin: 0
+  padding: 0
+
+  .dl10 ul
+    padding: 0
+
+  table.ui-datepicker-calendar td
+    padding: 1px
 
   .header
-    background: #545454
+    background: #7E95B7
     border-bottom: 1px solid #DDD
     padding: 0
     margin: 0
     height: 47px
 
-    h1 span
+    h1, h1 span
       display: block
       position: relative
       z-index: 1
       margin-bottom: -47px
+      width: 300px
+      height: 47px
+      background: url(/images/headers/generic.png) no-repeat left top
 
-.bp.instructor_site
-
-  .border
-    background: #6B809E
+  div.border
     height: 5px
     padding: 0
     margin: 0
     border: 0
+    background: #6B809E
+
+
+.bp.instructor_site
 
   .header
     background: #7E95B7
-    padding: 0
-    margin: 0
-    height: 47px
-  
+    
     h1, h1 span
-      width: 300px
-      height: 47px
       background: url(/images/headers/instructors.png) no-repeat left top
+  
+  .border
+    background: #6B809E
+
 
 .bp.institution_site
 
@@ -87,12 +81,11 @@ body.bp
     background: #65B879
 
     h1, h1 span
-      width: 300px
-      height: 47px
       background: url(/images/headers/institutions.png) no-repeat left top
 
   .border
     background: #1FA95A
+
 
 .bp.administration_site
 
@@ -100,8 +93,6 @@ body.bp
     background: #545454
 
     h1, h1 span
-      width: 300px
-      height: 47px
       background: url(/images/headers/administration.png) no-repeat left top
 
   .border

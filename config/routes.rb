@@ -8,17 +8,18 @@ Learnhvac::Application.routes.draw do |map|
     
   match 'login'   => 'user_sessions#new', :as => 'login'
   match 'logout'  => 'user_sessions#destroy', :as => 'logout'
-  match 'sign_up' => 'accounts#new', :as => 'signup'
+  match 'signup' => 'accounts#new', :as => 'signup'
   match 'colleges' => 'accounts#colleges'
   match 'states'  => 'accounts#states'
   match 'register/:activation_code' => 'activations#new', :as => 'register'
   match 'activate/:id' => 'activations#create', :as => 'activate'
-  match 'students/sign_up' => 'students/accounts#new', :as => 'students_signup'
-  match 'guests/sign_up' => 'guests/accounts#new', :as => 'guests_signup'
+  match 'students/signup' => 'students/accounts#new', :as => 'students_signup'
+  match 'guests/signup' => 'guests/accounts#new', :as => 'guests_signup'
   match 'groups/register/(:code)' => 'memberships#create', :as => 'membership_register'
   match 'admin/master_scenarios/tagged/:tag' => "admin/master_scenarios#tag", :as => 'master_scenarios_tag'
   match 'admin/dashboard' => 'admin/dashboard#show', :as => 'admin_dashboard'
   match 'directory' => 'directory/institutions#index', :as => 'directory'
+  match 'reset_password' => 'password_resets#new', :as => 'reset_password'
  
   ## Directory Routes.
   namespace :directory do
