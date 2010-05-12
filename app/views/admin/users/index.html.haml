@@ -1,28 +1,27 @@
-%h2 Manage #{params[:role].humanize.pluralize}
-%table.plain
-  %tr
-    %td
-      = link_to "New #{params[:role].humanize}", new_admin_user_path("role" => params[:role])
-    %td
-      - form_tag(search_admin_users_path(:role => params[:role]), :class => "search") do
-        = label_tag :q, "Search"
-        = text_field_tag :q, params[:q]
-        = submit_tag "Search!"
-        &nbsp;&nbsp;
-        = link_to "Reset", admin_users_path(:role => params[:role]) if controller.action_name == 'search'
-
-%hr
+#tabs
+  %ul
+    %li= link_to "Manage #{params[:role].pluralize.humanize}", admin_users_path("role" => params[:role])
+    %li= link_to "New #{params[:role].humanize}", new_admin_user_path("role" => params[:role])
 
 
+  - form_tag(search_admin_users_path(:role => params[:role]), :class => "search") do
+    = label_tag :q, "Search"
+    = text_field_tag :q, params[:q]
+    = submit_tag "Search!"
+    &nbsp;&nbsp;
+    = link_to "Reset", admin_users_path(:role => params[:role]) if controller.action_name == 'search'
 
-%table
-  %tr
-    %th Name
-    %th Institution
-  - for user in @users
-    %tr
-      %td= link_to user.name, admin_user_path(user)
-      %td= user.institution.try(:name).try(:capitalize)
+    %br
 
-%br
-= will_paginate @users
+    %table
+      %tr
+        %th Name
+        %th Institution
+        - for user in @users
+          %tr
+            %td= link_to user.name, admin_user_path(user, :role => params[:role])
+            %td= user.institution.try(:name).try(:capitalize)
+
+
+    %br
+    = will_paginate @users

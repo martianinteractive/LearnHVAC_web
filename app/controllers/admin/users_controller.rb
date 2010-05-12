@@ -1,8 +1,13 @@
 class Admin::UsersController < Admin::ApplicationController
-  before_filter :get_role, :only => [:index, :search, :new]
+  before_filter :get_role
   
   def index
     @users = User.where(:role_code => @role).order('last_name DESC').paginate(:page => params[:page], :per_page => 25)
+  end
+  
+  def list
+    @users = User.where(:role_code => @role).order('last_name DESC').paginate(:page => params[:page], :per_page => 25)
+    render :layout => false
   end
   
   def search

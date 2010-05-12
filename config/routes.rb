@@ -1,7 +1,6 @@
 Learnhvac::Application.routes.draw do |map|
   
   resources :accounts
-  resources :users 
   resources :user_sessions
   resources :password_resets
   resources :client_versions, :only => [:index]
@@ -99,9 +98,12 @@ Learnhvac::Application.routes.draw do |map|
       resources :students, :only => [:index]
     end
     
-    resources :users do
-      collection do
-        post :search
+    scope ":role" do
+      resources :users do 
+        collection do
+          post :search
+          get :list
+        end
       end
     end
     
