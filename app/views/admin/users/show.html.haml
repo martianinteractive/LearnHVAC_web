@@ -1,11 +1,9 @@
 %h2= @user.name
 
 %p 
-  = link_to 'Edit', edit_admin_user_path(@user)
+  = link_to 'Edit', edit_admin_user_path(@user, "role" => params[:role])
   &nbsp;|&nbsp;
-  = link_to 'Delete', admin_user_path(@user), :confirm => 'Are you sure?', :method => :delete
-  &nbsp;|&nbsp;
-  = link_to 'Back', admin_users_path(:role => @user.role)
+  = link_to 'Delete', admin_user_path(@user, "role" => params[:role]), :confirm => 'Are you sure?', :method => :delete
 %hr
 
 %p

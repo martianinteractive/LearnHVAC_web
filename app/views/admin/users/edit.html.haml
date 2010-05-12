@@ -1,9 +1,12 @@
-%h2= "Edit #{@user.name}"
-%hr
+#tabs
+  %ul
+    %li= link_to "Manage #{params[:role].pluralize.humanize}", admin_users_path("role" => params[:role])
+    %li= link_to "New #{params[:role].humanize}", new_admin_user_path("role" => params[:role])
 
-- form_for(@user, :url => admin_user_path(@user), :method => :put) do |f|
-  = render :partial => "form", :locals => { :f => f }
-  .actions
-    = submit_tag "Update"
-    &nbsp;or&nbsp;
-    = link_to 'Cancel', :back
+
+  - form_for(@user, :url => admin_user_path(@user), :method => :put) do |f|
+    = render :partial => "form", :locals => { :f => f }
+    .actions
+      = submit_tag "Update"
+      &nbsp;or&nbsp;
+      = link_to 'Cancel', :back

@@ -173,20 +173,22 @@ $.widget("ui.no_ajax_tabs", {
 						}
 					});
 				}
-				if (typeof o.selected != 'number' && o.cookie) {
+/*				if (typeof o.selected != 'number' && o.cookie) {
 					o.selected = parseInt(self._cookie(), 10);
 				}
 				if (typeof o.selected != 'number' && this.lis.filter('.ui-tabs-selected').length) {
 					o.selected = this.lis.index(this.lis.filter('.ui-tabs-selected'));
+					console.log(o.selected);
 				}
-				o.selected = o.selected || (this.lis.length ? 0 : -1);
+				o.selected = o.selected || (this.lis.length ? 0 : -1);*/
 			}
-			else if (o.selected === null) { // usage of null is deprecated, TODO remove in next release
+/*			else if (o.selected === null) { // usage of null is deprecated, TODO remove in next release
 				o.selected = -1;
-			}
+			}*/
+			
 
 			// sanity check - default to first tab...
-			o.selected = ((o.selected >= 0 && this.anchors[o.selected]) || o.selected < 0) ? o.selected : 0;
+/*			o.selected = ((o.selected >= 0 && this.anchors[o.selected]) || o.selected < 0) ? o.selected : 0;*/
 
 			// Take disabling tabs via class attribute from HTML
 			// into account and update option properly.
@@ -574,7 +576,6 @@ $.widget("ui.no_ajax_tabs", {
 		if (index == -1 && this.options.collapsible) {
 			index = this.options.selected;
 		}
-
 		this.anchors.eq(index).trigger(this.options.event + '.tabs');
 		return this;
 	},
