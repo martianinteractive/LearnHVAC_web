@@ -11,17 +11,18 @@
     &nbsp;&nbsp;
     = link_to "Reset", admin_users_path(:role => params[:role]) if controller.action_name == 'search'
 
-    %br
-
-    %table
+  %br
+  %table#users
+    %thead
       %tr
         %th Name
         %th Institution
-        - for user in @users
-          %tr
-            %td= link_to user.name, admin_user_path(user, :role => params[:role])
-            %td= user.institution.try(:name).try(:capitalize)
+    %tbody
+      - for user in @users
+        %tr
+          %td= link_to user.name, admin_user_path(user, :role => params[:role])
+          %td= user.institution.try(:name).try(:capitalize)
 
 
-    %br
-    = will_paginate @users
+  %br
+  = will_paginate @users

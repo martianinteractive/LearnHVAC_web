@@ -6,7 +6,7 @@ $(document).ready(function() {
 	$(function() {
 		$("#tabs").no_ajax_tabs();
 	});
-	
+
 });
 
 
