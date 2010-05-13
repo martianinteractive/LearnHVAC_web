@@ -241,40 +241,40 @@ form
     margin-top: 3em
 
 
-table
+table.listing
   width: 100%
   border-collapse: collapse
   -moz-border-radius-top: 6px
   -webkit-border-radius-top: 6px
 
 
-tr:hover
-  background: #F8F9F9
+  tr:hover
+    background: #F8F9F9
 
 
-th, table td
-  padding: 0.5em
-  line-height: 1.2em
+  th, table td
+    padding: 0.5em
+    line-height: 1.2em
 
 
-th
-  border-bottom: 2px solid #AED0EA
+  th
+    border-bottom: 2px solid #AED0EA
+ 
+
+  td
+    border-bottom: 1px solid #AED0EA
+    border-left: 1px solid #AED0EA
 
 
-td
-  border-bottom: 1px solid #AED0EA
-  border-left: 1px solid #AED0EA
+  th
+    border-left: 1px solid #AED0EA
+
+    &:first-child
+      border-left: none
 
 
-th
-  border-left: 1px solid #AED0EA
-
-  &:first-child
+  td:first-child
     border-left: none
-
-
-td:first-child
-  border-left: none
 
 
 table.layout

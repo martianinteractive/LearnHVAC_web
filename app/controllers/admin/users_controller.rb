@@ -47,7 +47,7 @@ class Admin::UsersController < Admin::ApplicationController
     @user.enabled = params[:user][:enabled]
     
     if @user.update_attributes(params[:user])
-      redirect_to(admin_user_path(@user), :notice => 'User was successfully updated.')
+      redirect_to(admin_user_path(@user, :role => params[:role]), :notice => 'User was successfully updated.')
     else
       render :action => "edit"
     end
@@ -60,6 +60,17 @@ class Admin::UsersController < Admin::ApplicationController
 
     redirect_to admin_users_path(:role => role)
   end
+  
+  def states
+    if params[:state]
+      country_code = Carmen::country_code(params[:state])
+      @states = Region.where(:country => country_code).order(:value)
+      render :partial => 'states'
+    else
+      render :nothing => true
+    end
+  end
+  
   
   private
   

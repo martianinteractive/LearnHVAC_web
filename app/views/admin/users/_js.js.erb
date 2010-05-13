@@ -1,0 +1,18 @@
+<% javascript_tag do %>
+$(document).ready(function(){
+	form = { 
+	  states: function() {
+		  $.get('/states?state=' + $("#user_country").val(), function(data) {
+	      $('#states').html(data);
+	    })
+		}
+	}
+	
+  $(function() {
+		form.states();
+  })
+
+  $('#user_country').change(function() {form.states()});
+		
+});
+<% end %>

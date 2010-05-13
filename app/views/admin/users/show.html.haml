@@ -1,33 +1,38 @@
-%h2= @user.name
+#tabs
+  %ul
+    %li= link_to "Manage #{params[:role].pluralize.humanize}", admin_users_path("role" => params[:role])
+    %li= link_to "New #{params[:role].humanize}", new_admin_user_path("role" => params[:role])
 
-%p 
-  = link_to 'Edit', edit_admin_user_path(@user, "role" => params[:role])
-  &nbsp;|&nbsp;
-  = link_to 'Delete', admin_user_path(@user, "role" => params[:role]), :confirm => 'Are you sure?', :method => :delete
-%hr
+  #page_header
+    #subject_actions
+      = link_to 'Edit this person', edit_admin_user_path(@user, "role" => params[:role])
 
-%p
-  %b Login:
-  = @user.login
-%p
-  %b Role:
-  = @user.role
-%p
-  %b Institution:
-  = link_to @user.institution.name, admin_institution_path(@user.institution) if @user.institution
-%p
-  %b First Name:
-  = @user.first_name.capitalize
-%p
-  %b Last Name:
-  = @user.last_name.capitalize
-%p
-  %b E-Mail:
-  = @user.email
-%p
-  %b Status:
-  = @user.enabled? ? "Enabled" : "Disabled"
+    #subject_info
+      %h2= @user.name
+      .subject_details
+        - if @user.institution
+          #{@user.role} at #{link_to @user.institution.name, admin_institution_path(@user.institution)}
+        - else
+          #{@user.role}
+  
+  #location.ui-widget.ui-widget-content.ui-corner-all
+    %h4 location
+    %p
+      = image_tag "globe_32.png"
+      = location_for(@user)
+	
+  #inner_column
+    %table
+      %tr
+        %th Login:
+        %td= @user.login
+      %tr
+        %th E-Mail:
+        %td= mail_to @user.email
+      %tr
+        %th Status:
+        %td= @user.enabled? ? "Enabled" : "Disabled"
+      %tr
+        %th Created on:
+        %td= @user.created_at.to_formatted_s(:long)
 
-%p
-  %b Created on:
-  = @user.created_at.to_formatted_s(:long)

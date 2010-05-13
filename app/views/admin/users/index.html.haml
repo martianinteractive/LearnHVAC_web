@@ -1,6 +1,6 @@
 #tabs
   %ul
-    %li= link_to "Manage #{params[:role].pluralize.humanize}", admin_users_path("role" => params[:role])
+    %li.ui-tabs-selected= link_to "Manage #{params[:role].pluralize.humanize}", admin_users_path("role" => params[:role])
     %li= link_to "New #{params[:role].humanize}", new_admin_user_path("role" => params[:role])
 
 

@@ -27,10 +27,10 @@
       %h3 Users
       %ul
         %li
-          = link_to "Admins", admin_users_path(:role => :admin, :anchor => "ui-tabs-1")
-          = link_to "Inst. Managers", admin_users_path(:role => :manager, :anchor => "ui-tabs-1")
-          = link_to "Instructors", admin_users_path(:role => :instructor, :anchor => "ui-tabs-1")
-          = link_to "Students", admin_users_path(:role => :student, :anchor => "ui-tabs-1")
+          = link_to "Admins", admin_users_path(:role => :admin)
+          = link_to "Inst. Managers", admin_users_path(:role => :manager)
+          = link_to "Instructors", admin_users_path(:role => :instructor)
+          = link_to "Students", admin_users_path(:role => :student)
           = link_to "Institutions", admin_institutions_path
           = link_to "Groups", admin_groups_path
       %h3 Client

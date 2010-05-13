@@ -19,7 +19,6 @@ var tabId = 0,
 $.widget("ui.no_ajax_tabs", {
 	options: {
 		add: null,
-		ajaxOptions: null,
 		cache: false,
 		cookie: null, // e.g. { expires: 7, path: '/', domain: 'jquery.com', secure: true }
 		collapsible: false,
@@ -95,61 +94,6 @@ $.widget("ui.no_ajax_tabs", {
 
 		var self = this, o = this.options;
 
-
-		var fragmentId = /^#.+/; // Safari 2 reports '#' for an empty hash
-		
-		this.anchors.each(function(i, a) {
-/*			console.log(self._tabId(a));
-			console.log(a.href);*/
-			href = a.href+"#"+self._tabId(a);
-			a.href = href;
-		})
-		
-/*		this.anchors.each(function(i, a) {
-			var href = $(a).attr('href');
-
-			// For dynamically created HTML that contains a hash as href IE < 8 expands
-			// such href to the full page url with hash and then misinterprets tab as ajax.
-			// Same consideration applies for an added tab with a fragment identifier
-			// since a[href=#fragment-identifier] does unexpectedly not match.
-			// Thus normalize href attribute...
-			var hrefBase = href.split('#')[0], baseEl;
-			if (hrefBase && (hrefBase === location.toString().split('#')[0] ||
-					(baseEl = $('base')[0]) && hrefBase === baseEl.href)) {
-				href = a.hash;
-				a.href = href;
-			}
-
-			// inline tab
-			if (fragmentId.test(href)) {
-				self.panels = self.panels.add(self._sanitizeSelector(href));
-			}
-
-			// remote tab
-			else if (href != '#') { // prevent loading the page itself if href is just "#"
-				$.data(a, 'href.tabs', href); // required for restore on destroy
-
-				// TODO until #3808 is fixed strip fragment identifier from url
-				// (IE fails to load from such url)
-				$.data(a, 'load.tabs', href.replace(/#.*$/, '')); // mutable data
-
-				var id = self._tabId(a);
-				a.href = '#' + id;
-				var $panel = $('#' + id);
-				if (!$panel.length) {
-					$panel = $(o.panelTemplate).attr('id', id).addClass('ui-tabs-panel ui-widget-content ui-corner-bottom')
-						.insertAfter(self.panels[i - 1] || self.list);
-					$panel.data('destroy.tabs', true);
-				}
-				self.panels = self.panels.add($panel);
-			}
-
-			// invalid tab href
-			else {
-				o.disabled.push(i);
-			}
-		});
-*/
 		// initialization from scratch
 		if (init) {
 
@@ -159,36 +103,10 @@ $.widget("ui.no_ajax_tabs", {
 			this.lis.addClass('ui-state-default ui-corner-top');
 			this.panels.addClass('ui-tabs-panel ui-widget-content ui-corner-bottom');
 
-			// Selected tab
-			// use "selected" option or try to retrieve:
-			// 1. from fragment identifier in url
-			// 2. from cookie
-			// 3. from selected class attribute on <li>
-			if (o.selected === undefined) {
-				if (location.hash) {
-					this.anchors.each(function(i, a) {
-						if (a.hash == location.hash) {
-							o.selected = i;
-							return false; // break
-						}
-					});
-				}
-/*				if (typeof o.selected != 'number' && o.cookie) {
-					o.selected = parseInt(self._cookie(), 10);
-				}
 				if (typeof o.selected != 'number' && this.lis.filter('.ui-tabs-selected').length) {
 					o.selected = this.lis.index(this.lis.filter('.ui-tabs-selected'));
-					console.log(o.selected);
 				}
-				o.selected = o.selected || (this.lis.length ? 0 : -1);*/
-			}
-/*			else if (o.selected === null) { // usage of null is deprecated, TODO remove in next release
-				o.selected = -1;
-			}*/
-			
 
-			// sanity check - default to first tab...
-/*			o.selected = ((o.selected >= 0 && this.anchors[o.selected]) || o.selected < 0) ? o.selected : 0;*/
 
 			// Take disabling tabs via class attribute from HTML
 			// into account and update option properly.
@@ -346,8 +264,6 @@ $.widget("ui.no_ajax_tabs", {
 			}
 
 			o.selected = self.anchors.index(this);
-			
-			console.log(o.selected);
 
 			self.abort();
 
@@ -387,22 +303,6 @@ $.widget("ui.no_ajax_tabs", {
 				self._cookie(o.selected, o.cookie);
 			}
 
-/*			// show new tab
-			if ($show.length) {
-				if ($hide.length) {
-					self.element.queue("tabs", function() {
-						hideTab(el, $hide);
-					});
-				}
-				self.element.queue("tabs", function() {
-					showTab(el, $show);
-				});
-				
-				self.load(self.anchors.index(this));
-			}
-			else {
-				throw 'jQuery UI Tabs: Mismatching fragment identifier.';
-			}*/
 
 			// Prevent IE from keeping other link focussed when using the back button
 			// and remove dotted border from clicked link. This is controlled via CSS
@@ -413,9 +313,6 @@ $.widget("ui.no_ajax_tabs", {
 			}
 
 		});
-
-		// disable click in any case
-/*		this.anchors.bind('click.tabs', function(){return false;});*/
 
 	},
 
@@ -581,68 +478,7 @@ $.widget("ui.no_ajax_tabs", {
 	},
 
 	load: function(index) {
-		var self = this, o = this.options, a = this.anchors.eq(index)[0], url = $.data(a, 'load.tabs');
-
-		this.abort();
-
-		// not remote or from cache
-		if (!url || this.element.queue("tabs").length !== 0 && $.data(a, 'cache.tabs')) {
-			this.element.dequeue("tabs");
-			return;
-		}
-
-		// load remote from here on
-		this.lis.eq(index).addClass('ui-state-processing');
-
-		if (o.spinner) {
-			var span = $('span', a);
-			span.data('label.tabs', span.html()).html(o.spinner);
-		}
-		
-		if (o.event == 'click') {
-			location.href = url;
-		}
-/*		location.href = url;*/
-/*		this.xhr = $.ajax($.extend({}, o.ajaxOptions, {
-			url: url,
-			success: function(r, s) {
-				$(self._sanitizeSelector(a.hash)).html(r);
-
-				// take care of tab labels
-				self._cleanup();
-
-				if (o.cache) {
-					$.data(a, 'cache.tabs', true); // if loaded once do not load them again
-				}
-
-				// callbacks
-				self._trigger('load', null, self._ui(self.anchors[index], self.panels[index]));
-				try {
-					o.ajaxOptions.success(r, s);
-				}
-				catch (e) {}
-			},
-			error: function(xhr, s, e) {
-				// take care of tab labels
-				self._cleanup();
-
-				// callbacks
-				self._trigger('load', null, self._ui(self.anchors[index], self.panels[index]));
-				try {
-					// Passing index avoid a race condition when this method is
-					// called after the user has selected another tab.
-					// Pass the anchor that initiated this request allows
-					// loadError to manipulate the tab content panel via $(a.hash)
-					o.ajaxOptions.error(xhr, s, index, a);
-				}
-				catch (e) {}
-			}
-		}));*/
-
-		// last, so that load event is fired before show...
-		self.element.dequeue("tabs");
-
-		return this;
+/*		console.log("load fired");*/
 	},
 
 	abort: function() {

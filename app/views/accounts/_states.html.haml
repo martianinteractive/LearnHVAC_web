@@ -1,5 +1,5 @@
 = label_tag 'State/Region'
 - if @states.any?
-  = select_tag 'user[state]', options_for_select(@states.collect(&:value))
+  = select_tag 'user[state]', options_for_select(@states.collect(&:value).insert(0, ""))
 - else
   = text_field_tag 'user[state]'

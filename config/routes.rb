@@ -99,7 +99,7 @@ Learnhvac::Application.routes.draw do |map|
     end
     
     scope ":role" do
-      resources :users do 
+      resources :users, :requirements => { :role => /[a-z]/ }  do 
         collection do
           post :search
           get :list
