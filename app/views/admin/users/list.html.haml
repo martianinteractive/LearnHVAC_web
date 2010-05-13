@@ -11,10 +11,15 @@
   %tr
     %th Name
     %th Institution
+	%th 
   - for user in @users
     %tr
       %td= link_to user.name, admin_user_path(user, :role => params[:role])
       %td= user.institution.try(:name).try(:capitalize)
+      %td
+        %ul.ui-widget.ui-helper-clearfix
+          %li.ui-state-default.ui-corner-all
+            %span.ui-icon.ui-icon-pencil
 
 %br
 = will_paginate @users

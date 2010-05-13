@@ -23,6 +23,7 @@
           %td= link_to user.name, admin_user_path(user, :role => params[:role])
           %td= user.institution.try(:name).try(:capitalize)
 
-
+                
+                  
   %br
   = will_paginate @users

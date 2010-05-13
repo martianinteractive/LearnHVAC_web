@@ -35,7 +35,7 @@ class Admin::UsersController < Admin::ApplicationController
     @user.enabled = params[:user][:enabled]
 
     if @user.save
-      redirect_to(admin_user_path(@user), :notice => 'User was successfully created.')
+      redirect_to(admin_user_path(@user, :role => params[:role], :anchor => "ui-tabs-1"), :notice => 'User was successfully created.')
     else
       render :action => "new"
     end
