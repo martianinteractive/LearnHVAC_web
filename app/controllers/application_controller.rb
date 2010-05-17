@@ -1,9 +1,19 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  helper_method :current_user, :logged_in?
+  helper_method :current_user, :logged_in?, :require_http_auth_user
   
   private
 
+  def require_http_auth_user
+    authenticate_or_request_with_http_basic do |username, password|
+      if @user = User.find_by_login(username) 
+        @user.valid_password?(password)
+      else
+        false
+      end
+    end
+  end
+  
   def current_user_session
     return @current_user_session if defined?(@current_user_session)
     @current_user_session = UserSession.find

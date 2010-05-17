@@ -9,7 +9,7 @@
   - @scenarios.each do |scenario|
     %tr
       %td= link_to scenario.name, admin_scenario_path(scenario)
-      %td= link_to scenario.user.name, user_path(scenario.user)
+      %td= link_to scenario.user.name, admin_user_path(scenario.user, :role => scenario.user.role)
       %td= scenario.created_at.to_formatted_s(:long) if scenario.created_at
 
 %br

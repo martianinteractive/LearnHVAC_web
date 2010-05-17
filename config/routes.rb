@@ -1,5 +1,6 @@
 Learnhvac::Application.routes.draw do |map|
   
+  resources :scenarios
   resources :accounts
   resources :user_sessions
   resources :password_resets
