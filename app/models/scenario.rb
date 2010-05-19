@@ -2,6 +2,7 @@ class Scenario
   include Mongoid::Document
   include Mongoid::Timestamps
   include Mongoid::Document::ProtectedAttributes
+  include Xml
   include ScenarioFields
   include ActiveModel::Validations
       

@@ -1,7 +1,5 @@
 Learnhvac::Application.routes.draw do |map|
   
-  resources :scenarios
-  resources :users
   resources :accounts
   resources :user_sessions
   resources :password_resets
@@ -21,6 +19,12 @@ Learnhvac::Application.routes.draw do |map|
   match 'admin/dashboard' => 'admin/dashboard#show', :as => 'admin_dashboard'
   match 'directory' => 'directory/institutions#index', :as => 'directory'
   match 'reset_password' => 'password_resets#new', :as => 'reset_password'
+ 
+ ## API ROUTES
+ namespace :api do
+   resources :scenarios
+   match 'users/user.:format' => 'api/users#show'
+ end
  
   ## Directory Routes.
   namespace :directory do
