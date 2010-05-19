@@ -1,29 +1,12 @@
 class UsersController < ApplicationController
-  before_filter :require_user
-  before_filter :find_user
+  before_filter :require_http_auth_user
 
   def show
-  end
-
-  def edit
-  end
-
-  def update
-    if @user.update_attributes(params[:user])
-      redirect_to(@user, :notice => 'User was successfully updated.')
-    else
-      render :action => "edit"
+    @user = current_user
+    respond_to do |format| 
+      format.xml { render :xml => @user.to_xml }
+      # format.xml { render :layout => false } 
     end
   end
 
-  def destroy
-    @user.destroy
-    redirect_to(users_url)
-  end
-  
-  private
-  
-  def find_user
-    @user = current_user.has_role?(:admin) ? User.find(params[:id]) : current_user
-  end
 end
