@@ -40,7 +40,7 @@ module SystemVariableFields
     
     parent.validates_presence_of :name, :display_name, :min_value, :default_value, :max_value
     parent.validates_numericality_of :min_value, :default_value, :max_value
-    parent.validates :type_code, :inclusion => { :in => TYPES.values }
+    parent.validates :type_code, :inclusion => { :in => TYPES }
     
     parent.send :include, SysVarMethods
   end

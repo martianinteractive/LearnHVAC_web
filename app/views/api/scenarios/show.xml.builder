@@ -20,9 +20,9 @@ xml.scenario do
         xml.systemNode
           xml.id(component)
           xml.name(SystemVariableFields::COMPONENTS[component])
-          variables.each do |variable|
+          variables.each do |var|
             xml.sysVar do
-              xml.name(variable.name)
+              xml.name(var.name)
               xml.displayName(var.display_name)
               xml.description(var.description)
               xml.index(var.index)
