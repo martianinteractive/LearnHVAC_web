@@ -26,16 +26,24 @@
   = @scenario_variable.component
 %p
   %b
-    Min value:
+    Description:
   = @scenario_variable.description
+
+%p
+  %p
+    Low value:
+  = @scenario_variable.low_value
+
 %p
   %b
-    Default value:
-  = @scenario_variable.default_value
+    High value:
+  = @scenario_variable.high_value
+
 %p
   %b
-    Max value:
-  = @scenario_variable.max_value
+    Initial value:
+  = @scenario_variable.initial_value
+
 %p
   %b
     Unit SI
