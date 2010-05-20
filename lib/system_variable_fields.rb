@@ -1,5 +1,5 @@
 module SystemVariableFields
-  TYPES = {:input => 0 , :output => 1, :parameter => 2}
+  TYPES = ['input', 'output', 'parameter']
   COMPONENTS = { "CC" => "Cooling Coil", "HC" => "Heating Coil", "MX" => "Mixing Box", "RM" => "Room", 
                  "BOI" => "Boiler", "CH" => "Chiller", "CTW" => "Cooling Tower", "DCT" => "Duct", 
                  "DIF" => "Diffuser", "FAN" => "Fan", "FLT" => "Filter", "PLT" => "Plant", "SYS" => "System", "VAV" => "VAV Box" }
@@ -18,7 +18,8 @@ module SystemVariableFields
     parent.field :fault_widget_type
     parent.field :notes
     parent.field :component_code
-    parent.field :type_code,       :type => Integer
+    parent.field :io_type
+    parent.field :view_type
     parent.field :index,           :type => Integer
     parent.field :lock_version,    :type => Integer,   :default => 0
     parent.field :node_sequence,   :type => Integer,   :default => 0
@@ -29,13 +30,14 @@ module SystemVariableFields
     parent.field :initial_value,   :type => Float,     :default => 0.0
     parent.field :is_fault,        :type => Boolean,   :default => false
     parent.field :is_percentage,   :type => Boolean,   :default => false
-    
+
     parent.index :component_code
     parent.index :name
     parent.index :type_code
     parent.index :min_value
     parent.index :default_value
     parent.index :max_value
+    parent.index :io_type
     
     parent.validates_presence_of :name, :display_name, :min_value, :default_value, :max_value
     parent.validates_numericality_of :min_value, :default_value, :max_value

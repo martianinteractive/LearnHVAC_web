@@ -26,9 +26,11 @@ xml.scenario do
               xml.displayName(var.display_name)
               xml.description(var.description)
               xml.index(var.index)
-              xml.minValue(var.min_value)
+              xml.lowValue(var.low_value)
+              xml.highValue(var.high_value)
               xml.initialValue(var.initial_value)
-              xml.lowValue
+              xml.ioType(var.io_type)
+              xml.viewType(var.view_type)
             end
           end
       end
