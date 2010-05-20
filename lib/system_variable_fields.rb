@@ -23,8 +23,6 @@ module SystemVariableFields
     parent.field :index,           :type => Integer
     parent.field :lock_version,    :type => Integer,   :default => 0
     parent.field :node_sequence,   :type => Integer,   :default => 0
-    parent.field :min_value,       :type => Integer,   :default => 0
-    parent.field :max_value,       :type => Integer,   :default => 0
     parent.field :low_value,       :type => Float,     :default => 0.0
     parent.field :high_value,       :type => Float,     :default => 0.0
     parent.field :initial_value,   :type => Float,     :default => 0.0
@@ -34,9 +32,9 @@ module SystemVariableFields
     parent.index :component_code
     parent.index :name
     parent.index :type_code
-    parent.index :min_value
-    parent.index :default_value
-    parent.index :max_value
+    parent.index :low_value
+    parent.index :high_value
+    parent.index :initial_value
     parent.index :io_type
     
     parent.validates_presence_of :name, :display_name, :min_value, :default_value, :max_value
