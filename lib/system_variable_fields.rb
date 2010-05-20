@@ -32,7 +32,6 @@ module SystemVariableFields
 
     parent.index :component_code
     parent.index :name
-    parent.index :type_code
     parent.index :low_value
     parent.index :high_value
     parent.index :initial_value
@@ -40,15 +39,12 @@ module SystemVariableFields
     
     parent.validates_presence_of :name, :display_name, :low_value, :initial_value, :high_value
     parent.validates_numericality_of :low_value, :initial_value, :high_value
-    parent.validates :type_code, :inclusion => { :in => IO_TYPES }
+    parent.validates :io_type, :inclusion => { :in => IO_TYPES }
     
     parent.send :include, SysVarMethods
   end
 
   module SysVarMethods
-    def io_type
-      TYPES.index(read_attribute(:type_code))
-    end
     
     def component
       COMPONENTS[read_attribute(:component_code)]
