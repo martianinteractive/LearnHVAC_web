@@ -1,5 +1,5 @@
 module SystemVariableFields
-  TYPES = ['input', 'output', 'parameter']
+  IO_TYPES = ['input', 'output', 'parameter']
   COMPONENTS = { "CC" => "Cooling Coil", "HC" => "Heating Coil", "MX" => "Mixing Box", "RM" => "Room", 
                  "BOI" => "Boiler", "CH" => "Chiller", "CTW" => "Cooling Tower", "DCT" => "Duct", 
                  "DIF" => "Diffuser", "FAN" => "Fan", "FLT" => "Filter", "PLT" => "Plant", "SYS" => "System", "VAV" => "VAV Box" }
@@ -40,7 +40,7 @@ module SystemVariableFields
     
     parent.validates_presence_of :name, :display_name, :min_value, :default_value, :max_value
     parent.validates_numericality_of :min_value, :default_value, :max_value
-    parent.validates :type_code, :inclusion => { :in => TYPES }
+    parent.validates :type_code, :inclusion => { :in => IO_TYPES }
     
     parent.send :include, SysVarMethods
   end
