@@ -42,8 +42,6 @@ namespace :bootstrap do
     MasterScenario.all.each do |ms| 
       sys_vars = []
       @system_variables.values.each do |sv|
-        sv["type_code"] = SystemVariable::TYPES[sv["io_type"].downcase.to_sym] if sv["io_type"]
-        sv.delete("io_type")
         sys_vars << sv
       end
       # Here we resets the versions, 1st save the system_vars, and then reset the versions.
