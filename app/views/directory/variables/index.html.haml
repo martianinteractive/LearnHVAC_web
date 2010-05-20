@@ -10,9 +10,9 @@
     = sort_header_tag('name', :title => 'Name')
     %th Disp. Name
     = sort_header_tag('type_code', :title => 'Type')
-    = sort_header_tag('min_value', :title => 'Min.')
-    = sort_header_tag('default_value', :title => 'Default')
-    = sort_header_tag('max_value', :title => 'Max.')
+    = sort_header_tag('low_value', :title => 'Min.')
+    = sort_header_tag('initial_value', :title => 'Default')
+    = sort_header_tag('high_value', :title => 'Max.')
     %th Unit SI
     %th Unit IP
     %th SI to IP
@@ -23,9 +23,9 @@
       %td= link_to variable.name, directory_institution_scenario_variable_path(@institution, @scenario, variable)
       %td= variable.display_name
       %td= variable.io_type.to_s.upcase
-      %td= variable.min_value
-      %td= variable.default_value
-      %td= variable.max_value
+      %td= variable.low_value
+      %td= variable.initial_value
+      %td= variable.high_value
       %td= variable.unit_si
       %td= variable.unit_ip
       %td= variable.si_to_ip
