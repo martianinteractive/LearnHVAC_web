@@ -20,7 +20,7 @@
 
   %h3 Instructor
   %p
-    =link_to @scenario.user.name, admin_user_path(@scenario.user)
+    =link_to @scenario.user.name, admin_user_path(@scenario.user, :role => @scenario.user.role)
     (read/write) permissions.
 
   %h3 Groups

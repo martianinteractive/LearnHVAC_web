@@ -18,9 +18,9 @@
         %td= student.login
         %td= student.role.to_s.capitalize
         %td= student.email
-        %td= link_to 'Show', admin_user_path(student)
-        %td= link_to 'Edit', edit_admin_user_path(student)
-        %td= link_to 'Destroy', admin_user_path(student), :confirm => 'Are you sure?', :method => :delete
+        %td= link_to 'Show', admin_user_path(student, :role => student.role)
+        %td= link_to 'Edit', edit_admin_user_path(student, :role => student.role)
+        %td= link_to 'Destroy', admin_user_path(student, :role => student.role), :confirm => 'Are you sure?', :method => :delete
 
 %br
 = will_paginate @students
