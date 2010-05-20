@@ -38,8 +38,8 @@ module SystemVariableFields
     parent.index :initial_value
     parent.index :io_type
     
-    parent.validates_presence_of :name, :display_name, :min_value, :default_value, :max_value
-    parent.validates_numericality_of :min_value, :default_value, :max_value
+    parent.validates_presence_of :name, :display_name, :low_value, :initial_value, :high_value
+    parent.validates_numericality_of :low_value, :initial_value, :high_value
     parent.validates :type_code, :inclusion => { :in => IO_TYPES }
     
     parent.send :include, SysVarMethods
