@@ -16,12 +16,12 @@ describe SystemVariable do
   
   it "should not be valid without formatted fields" do
     @system_variable  = Factory.build(:system_variable, :master_scenario => @master_scenario, 
-                        :low_value => "A", :initial_value => "B", :high_value => "C", :type_code => 5)
+                        :low_value => "A", :initial_value => "B", :high_value => "C", :io_type => 5)
     @system_variable.should_not be_valid
     @system_variable.errors[:low_value].should_not be_empty
     @system_variable.errors[:initial_value].should_not be_empty
     @system_variable.errors[:high_value].should_not be_empty
-    @system_variable.errors[:type_code].should_not be_empty
+    @system_variable.errors[:io_type].should_not be_empty
   end
   
   it "" do

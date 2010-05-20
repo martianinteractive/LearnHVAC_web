@@ -16,9 +16,9 @@
   %br
   = f.select :component_code, SystemVariable::COMPONENTS.keys.collect { |comp| [SystemVariable::COMPONENTS[comp], comp] }, { :prompt => "Please select..."}
 .field
-  = f.label :type_code, "I/O Type"
+  = f.label :io_type, "I/O Type"
   %br
-  = f.select :io_type, SystemVariable::IO_TYPES.collect {|type| [ type.to_s.capitalize, type.to_s.capitalize ] }, { :prompt => "Please select..."}
+  = f.select :io_type, SystemVariable::IO_TYPES.collect {|type| [ type.to_s.capitalize, type ] }, { :prompt => "Please select..."}
 .field
   = f.label :index
   %br
