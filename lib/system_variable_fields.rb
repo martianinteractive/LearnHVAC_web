@@ -19,7 +19,7 @@ module SystemVariableFields
     parent.field :notes
     parent.field :component_code
     parent.field :io_type
-    parent.field :view_type
+    parent.field :view_type,                           :default => "public"
     parent.field :index,           :type => Integer
     parent.field :lock_version,    :type => Integer,   :default => 0
     parent.field :node_sequence,   :type => Integer,   :default => 0
@@ -28,7 +28,7 @@ module SystemVariableFields
     parent.field :initial_value,   :type => Float,     :default => 0.0
     parent.field :is_fault,        :type => Boolean,   :default => false
     parent.field :is_percentage,   :type => Boolean,   :default => false
-    parent.field :disable,        :type => Boolean,   :default => false
+    parent.field :disable,         :type => Boolean,   :default => false
 
     parent.index :component_code
     parent.index :name

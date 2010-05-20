@@ -4,12 +4,14 @@ SYSTAirDB:
  index: 1
  io_type: INPUT
  display_name: Outside air dry bulb
- min_value: -40
- max_value: 50
- default_value: 30
+ low_value: -40
+ high_value: 50
+ initial_value: 30
  unit_si: C
  unit_ip: F
  si_to_ip: SI*1.8+32
+ view_type: public
+ disable: false
 
 SYSTRmSPHeat:
  name: SYSTRmSPHeat
@@ -17,12 +19,14 @@ SYSTRmSPHeat:
  index: 2
  io_type: INPUT
  display_name: Room temp heating set point
- min_value: 14
- max_value: cooling set point
- default_value: 18
+ low_value: 14
+ high_value: cooling set point
+ initial_value: 18
  unit_si: C
  unit_ip: F
  si_to_ip: SI*1.8+32
+ view_type: public
+ disable: false
 
 SYSTSupS:
  name: SYSTSupS
@@ -30,12 +34,14 @@ SYSTSupS:
  index: 3
  io_type: INPUT
  display_name: Supply air temp set point
- min_value: 13
- max_value: 25
- default_value: 15
+ low_value: 13
+ high_value: 25
+ initial_value: 15
  unit_si: C
  unit_ip: F
  si_to_ip: SI*1.8+32
+ view_type: public
+ disable: false
 
 SYSTRmSPCool:
  name: SYSTRmSPCool
@@ -43,12 +49,14 @@ SYSTRmSPCool:
  index: 4
  io_type: INPUT
  display_name: Room temp cooling set point
- min_value: 16
- max_value: 26
- default_value: 24
+ low_value: 16
+ high_value: 26
+ initial_value: 24
  unit_si: C
  unit_ip: F
  si_to_ip: SI*1.8+32
+ view_type: public
+ disable: false
 
 MXMinPos:
  name: MXMinPos
@@ -56,11 +64,13 @@ MXMinPos:
  index: 5
  io_type: INPUT
  display_name: Outside air damper min position
- min_value: 0
- max_value: 100
- default_value: 10
+ low_value: 0
+ high_value: 100
+ initial_value: 10
  unit_si: %
  unit_ip: %
+ view_type: public
+ disable: false
 
 MXEnableTAirOut:
  name: MXEnableTAirOut
@@ -68,12 +78,14 @@ MXEnableTAirOut:
  index: 6
  io_type: INPUT
  display_name: Economizer enable outside air temp
- min_value: 15
- max_value: 30
- default_value: 24
+ low_value: 15
+ high_value: 30
+ initial_value: 24
  unit_si: C
  unit_ip: F
  si_to_ip: SI*1.8+32
+ view_type: public
+ disable: false
 
 MXKp:
  name: MXKp
@@ -81,9 +93,11 @@ MXKp:
  index: 7
  io_type: INPUT
  display_name: Economizer PI controller P gain
- min_value: -100
- max_value: 100
- default_value: -1
+ low_value: -100
+ high_value: 100
+ initial_value: -1
+ view_type: public
+ disable: false
 
 MXKi:
  name: MXKi
@@ -91,11 +105,13 @@ MXKi:
  index: 8
  io_type: INPUT
  display_name: Economizer PI controller integrator time constant
- min_value: 0
- max_value: 1000
- default_value: 60
+ low_value: 0
+ high_value: 1000
+ initial_value: 60
  unit_si: second
  unit_ip: second
+ view_type: public
+ disable: false
 
 FANSpdMin:
  name: FANSpdMin
@@ -103,11 +119,13 @@ FANSpdMin:
  index: 9
  io_type: INPUT
  display_name: Fan minimum speed ratio
- min_value: 0
- max_value: 100
- default_value: 30
+ low_value: 0
+ high_value: 100
+ initial_value: 30
  unit_si: %
  unit_ip: %
+ view_type: public
+ disable: false
 
 FANKp:
  name: FANKp
@@ -115,9 +133,11 @@ FANKp:
  index: 10
  io_type: INPUT
  display_name: Fan speed controller P gain
- min_value: -100
- max_value: 100
- default_value: 1
+ low_value: -100
+ high_value: 100
+ initial_value: 1
+ view_type: public
+ disable: false
 
 FANki:
  name: FANki
@@ -125,11 +145,13 @@ FANki:
  index: 11
  io_type: INPUT
  display_name: Fan speed controller integrator time constant
- min_value: 0
- max_value: 1000
- default_value: 60
+ low_value: 0
+ high_value: 1000
+ initial_value: 60
  unit_si: second
  unit_ip: second
+ view_type: public
+ disable: false
 
 DCTPstSP:
  name: DCTPstSP
@@ -137,12 +159,14 @@ DCTPstSP:
  index: 12
  io_type: INPUT
  display_name: Supply duct static pressure set point
- min_value: 50
- max_value: 800
- default_value: 190
+ low_value: 50
+ high_value: 800
+ initial_value: 190
  unit_si: Pa
  unit_ip: In.W
  si_to_ip: SI/249.1  
+ view_type: public
+ disable: false
 
 HCKp:
  name: HCKp
@@ -150,9 +174,11 @@ HCKp:
  index: 13
  io_type: INPUT
  display_name: Heating coil valve controller P gain
- min_value: -100
- max_value: 100
- default_value: 1
+ low_value: -100
+ high_value: 100
+ initial_value: 1
+ view_type: public
+ disable: false
 
 HCKi:
  name: HCKi
@@ -160,11 +186,13 @@ HCKi:
  index: 14
  io_type: INPUT
  display_name: Heating coil valve controller integrator time constant
- min_value: 0
- max_value: 1000
- default_value: 60
+ low_value: 0
+ high_value: 1000
+ initial_value: 60
  unit_si: second
  unit_ip: second
+ view_type: public
+ disable: false
 
 CCKp:
  name: CCKp
@@ -172,9 +200,11 @@ CCKp:
  index: 15
  io_type: INPUT
  display_name: Cooling coil valve controller P gain
- min_value: -100
- max_value: 100
- default_value: 1
+ low_value: -100
+ high_value: 100
+ initial_value: 1
+ view_type: public
+ disable: false
 
 CCKi:
  name: CCKi
@@ -182,11 +212,13 @@ CCKi:
  index: 16
  io_type: INPUT
  display_name: Cooling coil valve controller integrator time constant
- min_value: 0
- max_value: 1000
- default_value: 60
+ low_value: 0
+ high_value: 1000
+ initial_value: 60
  unit_si: second
  unit_ip: second
+ view_type: public
+ disable: false
 
 VAVDmprKp:
  name: VAVDmprKp
@@ -194,9 +226,11 @@ VAVDmprKp:
  index: 17
  io_type: INPUT
  display_name: VAV damper controller P gain
- min_value: -100
- max_value: 100
- default_value: 1
+ low_value: -100
+ high_value: 100
+ initial_value: 1
+ view_type: public
+ disable: false
 
 VAVDmprKi:
  name: VAVDmprKi
@@ -204,11 +238,13 @@ VAVDmprKi:
  index: 18
  io_type: INPUT
  display_name: VAV damper controller integrator time constant
- min_value: 0
- max_value: 1000
- default_value: 60
+ low_value: 0
+ high_value: 1000
+ initial_value: 60
  unit_si: second
  unit_ip: second
+ view_type: public
+ disable: false
 
 VAVMinPos:
  name: VAVMinPos
@@ -216,11 +252,13 @@ VAVMinPos:
  index: 19
  io_type: INPUT
  display_name: VAV damper min position
- min_value: 0
- max_value: 100
- default_value: 20
+ low_value: 0
+ high_value: 100
+ initial_value: 20
  unit_si: %
  unit_ip: %
+ view_type: public
+ disable: false
 
 VAVRhcKp:
  name: VAVRhcKp
@@ -228,9 +266,11 @@ VAVRhcKp:
  index: 20
  io_type: INPUT
  display_name: VAV reheat coil controller P gain
- min_value: -100
- max_value: 100
- default_value: 1
+ low_value: -100
+ high_value: 100
+ initial_value: 1
+ view_type: public
+ disable: false
 
 VAVRhcKi:
  name: VAVRhcKi
@@ -238,11 +278,13 @@ VAVRhcKi:
  index: 21
  io_type: INPUT
  display_name: VAV reheat coil controller integrator time constant
- min_value: 0
- max_value: 1000
- default_value: 60
+ low_value: 0
+ high_value: 1000
+ initial_value: 60
  unit_si: second
  unit_ip: second
+ view_type: public
+ disable: false
 
 SYSRmQSens:
  name: SYSRmQSens
@@ -250,12 +292,14 @@ SYSRmQSens:
  index: 1
  io_type: PARAMETER
  display_name: design room sensible heat gain
- min_value: 0
- max_value: 30,000
- default_value: 8,000
+ low_value: 0
+ high_value: 30,000
+ initial_value: 8,000
  unit_si: W
  unit_ip: Btu/h
  si_to_ip:  SI*0.2931
+ view_type: public
+ disable: false
 
 FANHd:
  name: FANHd
@@ -263,12 +307,14 @@ FANHd:
  index: 2
  io_type: PARAMETER
  display_name: fan head at design operating point
- min_value: 0
- max_value: 1,000
- default_value: 461
+ low_value: 0
+ high_value: 1,000
+ initial_value: 461
  unit_si: Pa
  unit_ip: In.W
- si_to_ip: SI/249.1  
+ si_to_ip: SI/249.1 
+ view_type: public
+ disable: false
 
 FANAirFlwd:
  name: FANAirFlwd
@@ -276,12 +322,14 @@ FANAirFlwd:
  index: 3
  io_type: PARAMETER
  display_name: fan volume flow rate at design operating point
- min_value: 0
- max_value: 6
- default_value: 2
+ low_value: 0
+ high_value: 6
+ initial_value: 2
  unit_si: m3/s
  unit_ip: CFM
  si_to_ip: SI*2118.88
+ view_type: public
+ disable: false
 
 HCLiqFlwd:
  name: HCLiqFlwd
@@ -289,12 +337,14 @@ HCLiqFlwd:
  index: 4
  io_type: PARAMETER
  display_name: Heating coil hot water design flow rate
- min_value: 0
- max_value: 2
- default_value: 1
+ low_value: 0
+ high_value: 2
+ initial_value: 1
  unit_si: kg/s
  unit_ip: GPM
  si_to_ip: SI*15.88
+ view_type: public
+ disable: false
 
 HCQd:
  name: HCQd
@@ -302,12 +352,14 @@ HCQd:
  index: 5
  io_type: PARAMETER
  display_name: Heating coil design heating capacity
- min_value: 0
- max_value: 60,000
- default_value: 37,015
+ low_value: 0
+ high_value: 60,000
+ initial_value: 37,015
  unit_si: W
  unit_ip: Btu/h
  si_to_ip:  SI*0.2931
+ view_type: public
+ disable: false
 
 HCAirFlwd:
  name: HCAirFlwd
@@ -315,12 +367,14 @@ HCAirFlwd:
  index: 6
  io_type: PARAMETER
  display_name: heating coil design air flow rate
- min_value: 0
- max_value: 6
- default_value: 2
+ low_value: 0
+ high_value: 6
+ initial_value: 2
  unit_si: kg/s
  unit_ip: CFM
  si_to_ip: SI*1653.46
+ view_type: public
+ disable: false
 
 HCPDd:
  name: HCPDd
@@ -328,12 +382,14 @@ HCPDd:
  index: 7
  io_type: PARAMETER
  display_name: heating coil design air side pressure drop
- min_value: 0
- max_value: 100
- default_value: 29
+ low_value: 0
+ high_value: 100
+ initial_value: 29
  unit_si: Pa
  unit_ip: In.W
- si_to_ip: SI/249.1  
+ si_to_ip: SI/249.1
+ view_type: public
+ disable: false
 
 CCLiqFlwd:
  name: CCLiqFlwd
@@ -341,12 +397,14 @@ CCLiqFlwd:
  index: 8
  io_type: PARAMETER
  display_name: Cooling coil chilled water design mass flow rate
- min_value: 0
- max_value: 3
- default_value: 1
+ low_value: 0
+ high_value: 3
+ initial_value: 1
  unit_si: kg/s
  unit_ip: GPM
  si_to_ip: SI*15.88
+ view_type: public
+ disable: false
 
 CCQd:
  name: CCQd
@@ -354,12 +412,14 @@ CCQd:
  index: 9
  io_type: PARAMETER
  display_name: Cooling coil design cooling capacity
- min_value: 0
- max_value: 50,000
- default_value: 29,454
+ low_value: 0
+ high_value: 50,000
+ initial_value: 29,454
  unit_si: W
  unit_ip: Btu/h
  si_to_ip: SI*3.412
+ view_type: public
+ disable: false
 
 CCAirFlwd:
  name: CCAirFlwd
@@ -367,12 +427,14 @@ CCAirFlwd:
  index: 10
  io_type: PARAMETER
  display_name: cooling coil design air flow rate
- min_value: 0
- max_value: 6
- default_value: 2
+ low_value: 0
+ high_value: 6
+ initial_value: 2
  unit_si: kg/s
  unit_ip: CFM
  si_to_ip: 1653.46
+ view_type: public
+ disable: false
 
 CCPDd:
  name: CCPDd
@@ -380,12 +442,14 @@ CCPDd:
  index: 11
  io_type: PARAMETER
  display_name: cooling coil design air side pressure drop
- min_value: 0
- max_value: 400
- default_value: 165
+ low_value: 0
+ high_value: 400
+ initial_value: 165
  unit_si: Pa
  unit_ip: In.W
  si_to_ip: SI/249.1  
+ view_type: public
+ disable: false
 
 VAVAirFlwd:
  name: VAVAirFlwd
@@ -393,12 +457,14 @@ VAVAirFlwd:
  index: 12
  io_type: PARAMETER
  display_name: VAV max cooling air flow rate
- min_value: 0
- max_value: 6
- default_value: 2
+ low_value: 0
+ high_value: 6
+ initial_value: 2
  unit_si: kg/s
  unit_ip: CFM
  si_to_ip: 1653.46
+ view_type: public
+ disable: false
 
 VAVPDd:
  name: VAVPDd
@@ -406,12 +472,14 @@ VAVPDd:
  index: 13
  io_type: PARAMETER
  display_name: VAV air side pressure drop at max cooling
- min_value: 0
- max_value: 10
- default_value: 3
+ low_value: 0
+ high_value: 10
+ initial_value: 3
  unit_si: Pa
  unit_ip: In.W
  si_to_ip: SI/249.1  
+ view_type: public
+ disable: false
 
 VAVRhcPDd:
  name: VAVRhcPDd
@@ -419,12 +487,14 @@ VAVRhcPDd:
  index: 14
  io_type: PARAMETER
  display_name: VAV reheat coil air side pressure drop at design condition
- min_value: 0
- max_value: 300
- default_value: 87
+ low_value: 0
+ high_value: 300
+ initial_value: 87
  unit_si: Pa
  unit_ip: In.W
- si_to_ip: SI/249.1  
+ si_to_ip: SI/249.1 
+ view_type: public
+ disable: false
 
 VAVRhcQd:
  name: VAVRhcQd
@@ -432,11 +502,13 @@ VAVRhcQd:
  index: 15
  io_type: PARAMETER
  display_name: Reheat coil design heating capacity
- min_value: 0
- max_value: 50,000
- default_value: 20,000
+ low_value: 0
+ high_value: 50,000
+ initial_value: 20,000
  unit_si: W
  unit_ip: W
+ view_type: public
+ disable: false
 
 CHLTLiqSup:
  name: CHLTLiqSup
@@ -444,12 +516,14 @@ CHLTLiqSup:
  index: 16
  io_type: PARAMETER
  display_name: design chilled water supply temperature
- min_value: 2
- max_value: 13
- default_value: 7
+ low_value: 2
+ high_value: 13
+ initial_value: 7
  unit_si: C
  unit_ip: F
  si_to_ip: SI*1.8+32
+ view_type: public
+ disable: false
 
 BOITLiqSup:
  name: BOITLiqSup
@@ -457,12 +531,14 @@ BOITLiqSup:
  index: 17
  io_type: PARAMETER
  display_name: design hot water supply temperature
- min_value: 60
- max_value: 95
- default_value: 82
+ low_value: 60
+ high_value: 95
+ initial_value: 82
  unit_si: C
  unit_ip: F
  si_to_ip: SI*1.8+32
+ view_type: public
+ disable: false
 
 RMTemp:
  name: RMTemp
@@ -473,6 +549,8 @@ RMTemp:
  unit_si: C
  unit_ip: F
  si_to_ip: SI*1.8+32
+ view_type: public
+ disable: false
 
 MXExDampPos:
  name: MXExDampPos
@@ -482,6 +560,8 @@ MXExDampPos:
  display_name: Economizer exhaust air damper position
  unit_si: %
  unit_ip: %
+ view_type: public
+ disable: false
 
 FLTPDrop:
  name: FLTPDrop
@@ -492,6 +572,8 @@ FLTPDrop:
  unit_si: Pa
  unit_ip: In.W
  si_to_ip: SI/249.1  
+ view_type: public
+ disable: false
 
 HCPos:
  name: HCPos
@@ -501,6 +583,8 @@ HCPos:
  display_name: Heating coil valve position
  unit_si: %
  unit_ip: %
+ view_type: public
+ disable: false
 
 HCTAirEnt:
  name: HCTAirEnt
@@ -511,6 +595,8 @@ HCTAirEnt:
  unit_si: C
  unit_ip: F
  si_to_ip: SI*1.8+32
+ view_type: public
+ disable: false
 
 HCTAirLvg:
  name: HCTAirLvg
@@ -521,6 +607,8 @@ HCTAirLvg:
  unit_si: C
  unit_ip: F
  si_to_ip: SI*1.8+32
+ view_type: public
+ disable: false
 
 HCTLiqLvg:
  name: HCTLiqLvg
@@ -531,6 +619,8 @@ HCTLiqLvg:
  unit_si: C
  unit_ip: F
  si_to_ip: SI*1.8+32
+ view_type: public
+ disable: false
 
 CCPos:
  name: CCPos
@@ -540,6 +630,8 @@ CCPos:
  display_name: Cooling coil valve position
  unit_si: %
  unit_ip: %
+ view_type: public
+ disable: false
 
 CCTAirEnt:
  name: CCTAirEnt
@@ -550,6 +642,8 @@ CCTAirEnt:
  unit_si: C
  unit_ip: F
  si_to_ip: SI*1.8+32
+ view_type: public
+ disable: false
 
 CCTAirLvg:
  name: CCTAirLvg
@@ -560,6 +654,8 @@ CCTAirLvg:
  unit_si: C
  unit_ip: F
  si_to_ip: SI*1.8+32
+ view_type: public
+ disable: false
 
 CCTLiqLvg:
  name: CCTLiqLvg
@@ -570,6 +666,8 @@ CCTLiqLvg:
  unit_si: C
  unit_ip: F
  si_to_ip: SI*1.8+32
+ view_type: public
+ disable: false
 
 FANSpd:
  name: FANSpd
@@ -579,6 +677,8 @@ FANSpd:
  display_name: Fan speed
  unit_si: %
  unit_ip: %
+ view_type: public
+ disable: false
 
 FANPwr:
  name: FANPwr
@@ -588,6 +688,8 @@ FANPwr:
  display_name: Fan Power
  unit_si: W
  unit_ip: W
+ view_type: public
+ disable: false
 
 DCTStPre:
  name: DCTStPre
@@ -597,7 +699,9 @@ DCTStPre:
  display_name: Duct static pressure
  unit_si: Pa
  unit_ip: In.W
- si_to_ip: SI/249.1  
+ si_to_ip: SI/249.1
+ view_type: public
+ disable: false
 
 FANAirFlw:
  name: FANAirFlw
@@ -608,6 +712,8 @@ FANAirFlw:
  unit_si: m3/s
  unit_ip: CFM
  si_to_ip: SI*2118.88
+ view_type: public
+ disable: false
 
 FANTAirLvg:
  name: FANTAirLvg
@@ -618,6 +724,8 @@ FANTAirLvg:
  unit_si: C
  unit_ip: F
  si_to_ip: SI*1.8+32
+ view_type: public
+ disable: false
 
 VAVAirFlw:
  name: VAVAirFlw
@@ -628,6 +736,8 @@ VAVAirFlw:
  unit_si: m3/s
  unit_ip: CFM
  si_to_ip: SI*2118.88
+ view_type: public
+ disable: false
 
 VAVDampPos:
  name: VAVDampPos
@@ -637,6 +747,8 @@ VAVDampPos:
  display_name: VAV box damper position
  unit_si: %
  unit_ip: %
+ view_type: public
+ disable: false
 
 VAVRhcPos:
  name: VAVRhcPos
@@ -646,6 +758,8 @@ VAVRhcPos:
  display_name: VAV box reheat coil position
  unit_si: %
  unit_ip: %
+ view_type: public
+ disable: false
 
 VAVTAirLvg:
  name: VAVTAirLvg
@@ -656,6 +770,8 @@ VAVTAirLvg:
  unit_si: °C
  unit_ip: °F
  si_to_ip: SI*1.8+32
+ view_type: public
+ disable: false
 
 CHLLiqFlw:
  name: CHLLiqFlw
@@ -666,6 +782,8 @@ CHLLiqFlw:
  unit_si: m3/s
  unit_ip: GPM
  si_to_ip: SI*15850.32
+ view_type: public
+ disable: false
 
 BOILiqFlw:
  name: BOILiqFlw
@@ -676,6 +794,8 @@ BOILiqFlw:
  unit_si: m3/s
  unit_ip: GPM
  si_to_ip: SI*15850.32
+ view_type: public
+ disable: false
 
 VAVAirFlw:
  name: VAVAirFlw
@@ -686,6 +806,8 @@ VAVAirFlw:
  unit_si: m3/s
  unit_ip: CFM
  si_to_ip: SI*2118.88
+ view_type: public
+ disable: false
 
 MXRtnAirDampPos:
  name: MXRtnDampPos
@@ -695,6 +817,8 @@ MXRtnAirDampPos:
  display_name: Economizer return air damper position
  unit_si: %
  unit_ip: %
+ view_type: public
+ disable: false
 
 MXIntDampPos:
  name: MXIntDampPos
@@ -704,6 +828,8 @@ MXIntDampPos:
  display_name: Economizer intake air damper position
  unit_si: %
  unit_ip: %
+ view_type: public
+ disable: false
 
 MXTAirRet:
  name: MXTAirRet
@@ -714,6 +840,8 @@ MXTAirRet:
  unit_si: C
  unit_ip: F
  si_to_ip: SI*1.8+32
+ view_type: public
+ disable: false
 
 MXTAirMix:
  name: MXTAirMix
@@ -724,6 +852,8 @@ MXTAirMix:
  unit_si: C
  unit_ip: F
  si_to_ip: SI*1.8+32
+ view_type: public
+ disable: false
  
 BOITLiqEnt:
  name: BOITLiqEnt
@@ -734,6 +864,8 @@ BOITLiqEnt:
  unit_si: C
  unit_ip: F
  si_to_ip: SI*1.8+32
+ view_type: public
+ disable: false
  
 CHLTLiqEnt:
  name: CHLTLiqEnt
@@ -744,6 +876,8 @@ CHLTLiqEnt:
  unit_si: C
  unit_ip: F
  si_to_ip: SI*1.8+32
+ view_type: public
+ disable: false
  
  
 VAVTAirEnt:
@@ -755,3 +889,5 @@ VAVTAirEnt:
  unit_si: C
  unit_ip: F
  si_to_ip: SI*1.8+32
+ view_type: public
+ disable: false
