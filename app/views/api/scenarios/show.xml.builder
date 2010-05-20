@@ -35,6 +35,7 @@ xml.scenario do
               xml.SItoIP(var.si_to_ip)
               xml.unitIP(var.unit_ip)
               xml.disable(var.disable)
+              xml.isFault(var.is_fault)
             end
           end
       end
