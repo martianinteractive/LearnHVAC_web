@@ -1,11 +1,11 @@
 #tabs
   %ul
-    %li= link_to "Manage #{params[:role].pluralize.humanize}", admin_users_path("role" => params[:role])
-    %li= link_to "New #{params[:role].humanize}", new_admin_user_path("role" => params[:role])
+    %li= link_to "Manage #{@user.role.to_s.pluralize.humanize}", admin_users_path(:role => @user.role)
+    %li= link_to "New #{@user.role.to_s.pluralize.humanize}", new_admin_user_path(:role => @user.role)
 
   #page_header
     #subject_actions
-      = link_to 'Edit this person', edit_admin_user_path(@user, "role" => params[:role])
+      = link_to 'Edit this person', edit_admin_user_path(@user, :role => @user.role)
 
     #subject_info
       %h2= @user.name
