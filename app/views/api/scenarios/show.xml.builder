@@ -31,6 +31,10 @@ xml.scenario do
               xml.initialValue(var.initial_value)
               xml.ioType(var.io_type)
               xml.viewType(var.view_type)
+              xml.unitSI(var.unit_si)
+              xml.SItoIP(var.si_to_ip)
+              xml.unitIP(var.unit_ip)
+              xml.disable(var.disable)
             end
           end
       end
