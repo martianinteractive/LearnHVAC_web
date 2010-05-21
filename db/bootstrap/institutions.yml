@@ -1,4 +1,9 @@
 administration:
-  id : 1
+  id: 1
   name: Administration
   description: Administration
+  
+laney:
+  id: 2
+  name: Laney College
+  description: Laney College in Oakland, CA

@@ -7,6 +7,9 @@ joseph:
   last_name: Deringer
   login: jjderinger
   email: jjderinger@lbl.gov
+  city: Berkeley
+  state: California
+  country: United States
   enabled: true
   password_salt: 6_BCHsGsNvzCACSvL1EF
   crypted_password: de09a2edb7ae7936ca80d64c2857093e80e5521553bd486ee0e66376276aee735a8909b9dcfc9b90280613697c1859db8068188aa6bec0966f1d9d1e13a23382 
@@ -21,6 +24,9 @@ daniel:
   last_name: McQuillen 
   login: daniel.mcquillen
   email: daniel.mcquillen@gmail.com
+  city: Berkeley
+  state: California
+  country: United States
   enabled: true
   password_salt: 6_BCHsGsNvzCACSvL1EF
   crypted_password: de09a2edb7ae7936ca80d64c2857093e80e5521553bd486ee0e66376276aee735a8909b9dcfc9b90280613697c1859db8068188aa6bec0966f1d9d1e13a23382 
@@ -35,6 +41,9 @@ sergio:
   last_name: Bayona 
   login: sbayona
   email: sbayona@martianinteractive.com
+  city: Atlanta
+  state: Georgia
+  country: United States
   enabled: true
   password_salt: P7suzIavXn8CUL6Vqg-X
   crypted_password: 07f840a3815be1775be9dc5059bc544e8c3bd16abd9294c531dfcfc80923e84166e364baf2c0b75c0be58611fa4ea3898fa36bbd5880d769f5304bb3afc68213 
@@ -49,6 +58,9 @@ juan:
   last_name: Pemberthy 
   login: jpemberthy
   email: jpemberthy@martianinteractive.com
+  city: Medellin
+  state: Antioquia
+  country: Colombia
   enabled: true
   password_salt: 6_BCHsGsNvzCACSvL1EF
   crypted_password: de09a2edb7ae7936ca80d64c2857093e80e5521553bd486ee0e66376276aee735a8909b9dcfc9b90280613697c1859db8068188aa6bec0966f1d9d1e13a23382 
@@ -56,3 +68,31 @@ juan:
   perishable_token: 6pYLQO5c3R-W9jD3T6Ux
   role_code: 4
   institution_id: 1
+  
+jane:
+  id: 5
+  first_name: Jane
+  last_name: Doe
+  login: jdoe
+  email: test@martianinteractive.com
+  city: Berkeley
+  state: California
+  country: United States
+  enabled: true
+  password_salt: 6Sl4nIQnsP0DBXTjCL0u
+  persistence_token: 9725123e7f43b2cc1d5dcddb758cd8de8536350dce5f7bbdf8469846efa3ea96262d644044013cbd5890e13914187ed469b9ae0ee5527873f6bc3e0944aacffb
+  perishable_token: C9fHQBrj729FRCBysk17
+  role_code: 2
+  institution_id: 2
+
+james:
+  id: 6
+  first_name: James
+  last_name: Smith
+  login: james
+  email: james@martianinteractive.com
+  city: Atlanta
+  state: Georgia
+  country: United States
+  enabled: true
+  
