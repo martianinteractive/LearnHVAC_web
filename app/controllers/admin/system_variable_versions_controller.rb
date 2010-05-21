@@ -1,7 +1,7 @@
 class Admin::SystemVariableVersionsController < Admin::ApplicationController 
-  before_filter :find_master_scenario_and_version
-  helper :sort
   include SortHelper
+  helper :sort
+  before_filter :find_master_scenario_and_version
   before_filter :initialize_variables_sort, :only => [:index]
   
   def index
