@@ -14,9 +14,9 @@
     = sort_header_tag('name', :title => 'Name')
     %th Display Name
     = sort_header_tag('io_type', :title => 'Type')
-    = sort_header_tag('low_value', :title => 'Low.')
-    = sort_header_tag('initial_value', :title => 'Initial')
-    = sort_header_tag('high_value', :title => 'High.')
+    %th Low
+    %th Initial
+    %th High
     %th Unit SI
     %th Unit IP
     %th SI to IP
@@ -24,7 +24,7 @@
     %tr
       %td= system_variable.component
       %td= system_variable.is_fault ? "Yes" : "No"
-      %td= link_to system_variable.name, adlow_master_scenario_revision_variable_path(@master_scenario, @version.version, system_variable)
+      %td= link_to system_variable.name, admin_master_scenario_revision_variable_path(@master_scenario, @version.version, system_variable)
       %td= system_variable.display_name
       %td= system_variable.io_type.to_s.upcase
       %td= system_variable.low_value

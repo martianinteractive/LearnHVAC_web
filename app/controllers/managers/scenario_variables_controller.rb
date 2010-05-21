@@ -1,7 +1,7 @@
 class Managers::ScenarioVariablesController < Managers::ApplicationController
-  before_filter :find_scenario
   helper :sort
   include SortHelper
+  before_filter :find_scenario
   before_filter :initialize_variables_sort, :only => [:index]
   
   def index

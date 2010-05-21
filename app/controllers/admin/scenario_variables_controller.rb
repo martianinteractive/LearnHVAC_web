@@ -1,8 +1,8 @@
 class Admin::ScenarioVariablesController < Admin::ApplicationController
-  before_filter :find_scenario
-  before_filter :find_scenario_variable, :only => [:show, :edit, :update]
   helper :sort
   include SortHelper
+  before_filter :find_scenario
+  before_filter :find_scenario_variable, :only => [:show, :edit, :update]
   before_filter :initialize_variables_sort, :only => [:index]
   
   def index

@@ -1,7 +1,7 @@
 %h2 Editing Group
 %p
   %b Lead by:
-  = link_to @group.instructor.name, admin_user_path(@group.instructor)
+  = link_to @group.instructor.name, admin_user_path(@group.instructor, :role => @group.instructor.role)
 
 - form_for(@group, :url => admin_group_path(@group), :method => :put) do |f|
   = f.error_messages

@@ -39,7 +39,7 @@ describe Admin::UsersController do
   describe "GET show" do
     it "assigns the requested user as @user" do
       create_users
-      get :show, :id => @admin.id
+      get :show, :id => @admin.id, :role => @admin.role
       response.should render_template(:show)
       assigns(:user).should eq(@admin)
     end
@@ -47,7 +47,7 @@ describe Admin::UsersController do
   
   describe "GET new" do
     it "assigns a new user as @user" do
-      get :new, :role => 'admin'
+      get :new, :role => 'admin', :role => @admin.role
       response.should render_template(:new)
       assigns(:user).should be_instance_of(User)
     end
@@ -56,7 +56,7 @@ describe Admin::UsersController do
   describe "GET edit" do
     it "assigns the requested user as @user" do
       User.expects(:find).with("37").returns(mock_user)
-      get :edit, :id => "37"
+      get :edit, :id => "37", :role => @admin.role
       response.should render_template(:edit)
       assigns(:user).should be(mock_user)
     end
@@ -66,24 +66,24 @@ describe Admin::UsersController do
   
     describe "with valid params" do
       it "assigns a newly created user as @user" do
-        proc{ post :create, :user => Factory.attributes_for(:user) }.should change(User, :count).by(1)
+        proc{ post :create, :user => Factory.attributes_for(:user), :role => 'admin' }.should change(User, :count).by(1)
         assigns(:user).should be_instance_of(User)
       end
   
       it "redirects to the created user" do
-        post :create, :user => Factory.attributes_for(:user)
-        response.should redirect_to(admin_user_url(assigns(:user)))
+        post :create, :user => Factory.attributes_for(:user), :role => 'admin'
+        response.should redirect_to(admin_user_url(assigns(:user), :role => 'admin', :anchor => "ui-tabs-1"))
       end
     end
   
     describe "with invalid params" do
       it "assigns a newly created but unsaved user as @user" do
-        proc{ post :create, :role => 1, :user => Factory.attributes_for(:user).merge(:first_name => "Jame$") }.should_not change(User, :count)
+        proc{ post :create, :role => 1, :user => Factory.attributes_for(:user).merge(:first_name => "Jame$"), :role => 'admin' }.should_not change(User, :count)
         assigns(:user).should be_instance_of(User)
       end
       
       it "re-renders the 'new' template" do
-        post :create, :role => 1, :user => Factory.attributes_for(:user).merge(:first_name => "Jame$"), :role => 1
+        post :create, :role => 1, :user => Factory.attributes_for(:user).merge(:first_name => "Jame$"), :role => 'admin'
         response.should render_template(:new)
       end
     end
@@ -98,27 +98,26 @@ describe Admin::UsersController do
     
     describe "with valid params" do      
       it "updates the requested user" do
-        put :update, :id => @user.id, :user => { :first_name => "Joe" }
+        put :update, :id => @user.id, :user => { :first_name => "Joe" }, :role => @user.role
         assigns(:user).should == @user.reload
         @user.first_name.should == "Joe"
       end
       
       it "redirects to the user" do
-        put :update, :id => @user.id, :user => { :last_name => "Doex" }
-        response.should redirect_to(admin_user_url(@user))
+        put :update, :id => @user.id, :user => { :last_name => "Doex" }, :role => @user.role
+        response.should redirect_to(admin_user_url(@user, :role => @user.role))
       end
     end
       
     describe "with invalid params" do  
       it "not update the user" do
-        put :update, :id => @user.id, :user => { :first_name => "Jame$", :last_name => "" }
+        put :update, :id => @user.id, :user => { :first_name => "Jame$", :last_name => "" }, :role => @user.role
         assigns(:user).should_not equal(@user.reload)
-        
         assigns(:user).should be_instance_of(User)
       end
       
       it "re-renders the 'edit' template" do
-        put :update, :id => @user.id, :user => { :first_name => "Jame$", :last_name => "" }
+        put :update, :id => @user.id, :user => { :first_name => "Jame$", :last_name => "" }, :role => @user.role
         response.should render_template('edit')
       end
     end
@@ -130,9 +129,8 @@ describe Admin::UsersController do
     end
     
     it "destroys the requested user" do
-      role = @user.role
-      proc { delete :destroy, :id => @user.id }.should change(User, :count).by(-1)
-      response.should redirect_to(admin_users_path(:role => role))
+      proc { delete :destroy, :id => @user.id, :role => @user.role }.should change(User, :count).by(-1)
+      response.should redirect_to(admin_users_path(:role => @user.role))
     end
   end
   
