@@ -1,8 +1,8 @@
 class Instructor::VariablesController < Instructor::ApplicationController
-  before_filter :find_scenario
-  before_filter :find_scenario_variable, :only => [:show, :edit, :update]
   helper :sort
   include SortHelper
+  before_filter :find_scenario
+  before_filter :find_scenario_variable, :only => [:show, :edit, :update]
   before_filter :initialize_variables_sort, :only => [:index]
   
   

@@ -1,7 +1,7 @@
 class Directory::VariablesController < Directory::ApplicationController
-  before_filter :find_institution_and_scenario
   helper :sort
   include SortHelper
+  before_filter :find_institution_and_scenario
   before_filter :initialize_variables_sort, :only => [:index]
   
   def index
