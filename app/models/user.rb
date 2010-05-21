@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
   attr_accessor :group_code, :require_group_code
   attr_protected :active, :role_code, :enabled
   
-  validates :first_name, :last_name, :presence => true, :length => { :maximum => 200 }, :format => { :with => /^\w+$/i }
+  validates :first_name, :last_name, :role_code, :city, :state, :country, :presence => true, :length => { :maximum => 200 }, :format => { :with => /[A-Za-z0-9]+/ }
   validate :group_presence,  :on => :create, :if => :require_group_code
   
   before_save :set_institution, :on => :create, :if => Proc.new { |user| user.has_role?(:student) }
