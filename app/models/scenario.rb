@@ -42,7 +42,7 @@ class Scenario
       sys_var_attributes = system_variables.attributes
       sys_var_attributes.delete("_id")
       sys_var_attributes.delete("_type")
-      sys_var << sys_var_attributes
+      sys_vars << sys_var_attributes
     end
     self.scenario_variables = sys_vars
     self.save
