@@ -1,0 +1,27 @@
+.ui-widget.ui-widget-content.ui-corner-all
+  #page_header
+    #subject_actions
+      = link_to 'Edit your profile', edit_user_path(current_user)
+
+    #subject_info
+      %h2= current_user.name
+      .subject_details
+      = current_user.role.to_s.capitalize
+  
+  #location.ui-widget.ui-widget-content.ui-corner-all
+    %h4 location
+    %p
+      = image_tag "globe_32.png"
+      = location_for(current_user)
+	
+  #inner_column
+    %table
+      %tr
+        %th Login:
+        %td= current_user.login
+      %tr
+        %th E-Mail:
+        %td= mail_to current_user.email
+      %tr
+        %th Member since:
+        %td= current_user.created_at.to_date.to_formatted_s(:long)
