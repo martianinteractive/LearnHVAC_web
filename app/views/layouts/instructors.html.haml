@@ -7,8 +7,7 @@
       = link_to "Instructor Site", "/"
     %ul.global_nav
       - if logged_in?
-        %li.username
-          = current_user.name
+        %li.username= link_to current_user.name, profile_path
         - if current_user.has_role?(:admin)
           %li
             = link_to 'Admin Site', admin_dashboard_path
