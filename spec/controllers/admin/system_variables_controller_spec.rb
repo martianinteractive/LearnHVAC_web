@@ -10,9 +10,9 @@ describe Admin::SystemVariablesController do
   
   describe "GET index" do
     it "" do
-      # get :index, :master_scenario_id => @master_scenario.id
-      # response.should render_template(:index)
-      # assigns(:system_variables).should_not be_empty
+      get :index, :master_scenario_id => @master_scenario.id
+      response.should render_template(:index)
+      assigns(:system_variables).should_not be_empty
     end
   end
   
