@@ -66,12 +66,12 @@ describe Admin::UsersController do
   
     describe "with valid params" do
       it "assigns a newly created user as @user" do
-        proc{ post :create, :user => Factory.attributes_for(:user), :role => 'admin' }.should change(User, :count).by(1)
+        proc{ post :create, :user => Factory.attributes_for(:user, :role_code => User::ROLES[:admin]), :role => 'admin' }.should change(User, :count).by(1)
         assigns(:user).should be_instance_of(User)
       end
   
       it "redirects to the created user" do
-        post :create, :user => Factory.attributes_for(:user), :role => 'admin'
+        post :create, :user => Factory.attributes_for(:user, :role_code => User::ROLES[:admin]), :role => 'admin'
         response.should redirect_to(admin_user_url(assigns(:user), :role => 'admin', :anchor => "ui-tabs-1"))
       end
     end
@@ -93,18 +93,20 @@ describe Admin::UsersController do
   describe "PUT update" do
     
     before(:each) do
-      @user = Factory(:user)
+      @user = Factory.build(:user)
+      @user.role_code = User::ROLES[:instructor]
+      @user.save
     end
     
     describe "with valid params" do      
       it "updates the requested user" do
-        put :update, :id => @user.id, :user => { :first_name => "Joe" }, :role => @user.role
+        put :update, :id => @user.id, :user => { :first_name => "Joe", :role_code => @user.role_code }, :role => @user.role
         assigns(:user).should == @user.reload
         @user.first_name.should == "Joe"
       end
       
       it "redirects to the user" do
-        put :update, :id => @user.id, :user => { :last_name => "Doex" }, :role => @user.role
+        put :update, :id => @user.id, :user => { :last_name => "Doex", :role_code => @user.role_code }, :role => @user.role
         response.should redirect_to(admin_user_url(@user, :role => @user.role))
       end
     end

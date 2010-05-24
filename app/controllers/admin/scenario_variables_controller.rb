@@ -22,7 +22,7 @@ class Admin::ScenarioVariablesController < Admin::ApplicationController
   def create
     @scenario_variable = ScenarioVariable.new(params[:scenario_variable])
     @scenario_variable.scenario = @scenario
-    
+
     if @scenario_variable.save
       redirect_to(admin_scenario_scenario_variable_path(@scenario, @scenario_variable), :notice => 'ScenarioVariable was successfully created.')
     else

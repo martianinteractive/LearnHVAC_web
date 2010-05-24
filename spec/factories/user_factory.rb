@@ -6,4 +6,7 @@ Factory.define :user do |user|
   user.password 'jdoe1234'
   user.password_confirmation 'jdoe1234'
   user.enabled true
+  user.country 'United States'
+  user.city 'Bethesda'
+  user.state 'Maryland'
 end

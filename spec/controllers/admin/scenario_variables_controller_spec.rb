@@ -47,7 +47,7 @@ describe Admin::ScenarioVariablesController do
     describe "with valid params" do
       
       it "should change the scenario.scenario_variables count" do
-        @scenario_sys_vars = @scenario.scenario_variables.size
+        @scenario_sys_vars = Scenario.find(@scenario.id).scenario_variables.size
         post :create, :scenario_id => @scenario.id, :scenario_variable => Factory.attributes_for(:scenario_variable, :name => "new scen. sys var")
         Scenario.find(@scenario.id).scenario_variables.size.should == @scenario_sys_vars + 1
       end
@@ -60,7 +60,7 @@ describe Admin::ScenarioVariablesController do
   
     describe "with invalid params" do
       it "" do
-        @scenario_sys_vars = @scenario.scenario_variables.size
+        @scenario_sys_vars = Scenario.find(@scenario.id).scenario_variables.size
         post :create, :scenario_id => @scenario.id, :scenario_variable => { }
         Scenario.find(@scenario.id).scenario_variables.size.should == @scenario_sys_vars
       end
@@ -95,7 +95,7 @@ describe Admin::ScenarioVariablesController do
   
   describe "DELETE destroy" do    
     it "destroys the requested scenario_variable" do
-      @scenario_sys_vars = @scenario.scenario_variables.size
+      @scenario_sys_vars = Scenario.find(@scenario.id).scenario_variables.size
       delete :destroy, :scenario_id => @scenario.id, :id => @scenario_variable.id
       Scenario.find(@scenario.id).scenario_variables.size.should == @scenario_sys_vars - 1
     end
