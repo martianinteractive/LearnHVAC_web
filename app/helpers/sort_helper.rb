@@ -63,6 +63,7 @@
 #             - sort_init() :icons_dir option added.
 # 2005-03-26: Version 1.0.0
 #
+require "addressable/uri"
 module SortHelper
 
 
@@ -103,7 +104,7 @@ module SortHelper
   # Returns an SQL sort clause corresponding to the current sort state.
   # Use this to sort the controller's table items collection.
   #
-  def sort_clause()
+  def sort_clause
     result = session[@sort_name][:key] + ' ' + session[@sort_name][:order]
     result if result =~ /^[\w_]+ (asc|desc)$/i  # Validate sort.
   end
@@ -128,7 +129,9 @@ module SortHelper
     text = Inflector::titleize(column) unless text
     params = {:params => {:sort_key => column, :sort_order => order } }
     params = params.merge(options[:params]) if options[:params]
-    link_to(text, params[:params])  #+ (icon ? nbsp(2) + image_tag(File.join(@icons_dir,icon)) : '')
+    uri = Addressable::URI.new
+    uri.query_values = params[:params]
+    link_to(text, "?#{uri.query}")  #+ (icon ? nbsp(2) + image_tag(File.join(@icons_dir,icon)) : '')
   end
 
   # Returns a table header <th> tag with a sort link for the named column
@@ -158,6 +161,9 @@ module SortHelper
     content_tag('th', sort_link(column, text, options), options)
   end
   
+  def doc_sort_clause
+    sort_clause.split(" ").collect { |x| x.to_sym }
+  end
   
   # Ruby Sort for Mongoid embedded documents as collections.
   # Uses the current sort_clause by default.

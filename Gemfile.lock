@@ -1,13 +1,13 @@
 --- 
 dependencies: 
-  mongo: 
-    group: 
-    - :default
-    version: = 0.19.1
   compass: 
     group: 
     - :default
     version: = 0.10.0.rc1
+  mongo: 
+    group: 
+    - :default
+    version: = 0.19.1
   ruby-debug: 
     group: 
     - :development
@@ -16,18 +16,22 @@ dependencies:
     group: 
     - :default
     version: = 3.0.0.beta
-  mysql: 
-    group: 
-    - :default
-    version: ">= 0"
-  haml: 
-    group: 
-    - :default
-    version: ">= 0"
   mongo_ext: 
     group: 
     - :default
     version: = 0.19.1
+  haml: 
+    group: 
+    - :default
+    version: = 2.2.23
+  mysql: 
+    group: 
+    - :default
+    version: ">= 0"
+  addressable: 
+    group: 
+    - :default
+    version: = 2.1.1
   acts-as-taggable-on: 
     group: 
     - :default
@@ -64,11 +68,11 @@ specs:
 - builder: 
     version: 2.1.2
 - i18n: 
-    version: 0.3.6
+    version: 0.3.7
 - memcache-client: 
     version: 1.7.8
 - tzinfo: 
-    version: 0.3.19
+    version: 0.3.20
 - activesupport: 
     version: 3.0.0.beta
 - activemodel: 
@@ -105,8 +109,10 @@ specs:
     version: 3.0.0.beta
 - acts-as-taggable-on: 
     version: 2.0.0.rc1
+- addressable: 
+    version: 2.1.1
 - bundler: 
-    version: 0.9.19
+    version: 0.9.25
 - columnize: 
     version: 0.3.1
 - haml: 
@@ -117,7 +123,7 @@ specs:
     version: 1.2.3
     source: 0
 - hirb: 
-    version: 0.3.1
+    version: 0.3.2
 - linecache: 
     version: "0.43"
 - mocha: 
@@ -133,9 +139,9 @@ specs:
 - mysql: 
     version: 2.8.1
 - nokogiri: 
-    version: 1.4.1
+    version: 1.4.2
 - thor: 
-    version: 0.13.4
+    version: 0.13.6
 - railties: 
     version: 3.0.0.beta
 - rails: 
@@ -149,14 +155,14 @@ specs:
 - rspec: 
     version: 2.0.0.beta.4
 - webrat: 
-    version: 0.7.0
+    version: 0.7.1
 - rspec-rails: 
     version: 2.0.0.beta.4
 - ruby-debug-base: 
     version: 0.10.3
 - ruby-debug: 
     version: 0.10.3
-hash: edca32f4fe9e08af4786be71aed8d5692b10b653
+hash: 70dcb8629e668b62464a7d84abd5507de0af2715
 sources: 
 - Git: 
     uri: git://github.com/thoughtbot/factory_girl.git

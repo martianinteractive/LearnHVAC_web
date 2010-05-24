@@ -13,14 +13,11 @@ describe Instructor::VariablesController do
   
   describe "GET index" do
     it "" do
-      # get :index, :scenario_id => @scenario.id
-      # response.should render_template(:index)
-      # assigns(:scenario_variables).should eq(@scenario.scenario_variables)
+      get :index, :scenario_id => @scenario.id
+      response.should render_template(:index)
     end
   end
-  
-  pending "Fix :index with controller stubbing when available"
-  
+   
   describe "GET show" do
     it "" do
       get :show, :scenario_id => @scenario.id, :id => @scenario_variable.id

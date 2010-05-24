@@ -10,9 +10,10 @@ describe Directory::VariablesController do
     login_as(@instructor)
   end
   
-  pending "Fix :index with controller stubbing when available"
   describe "GET index" do
     it "" do
+      get :index, :institution_id => @institution.id, :scenario_id => @public_scenario.id
+      response.should render_template(:index)
     end
   end
   
