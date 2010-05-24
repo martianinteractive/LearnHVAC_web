@@ -1,6 +1,6 @@
 source "http://gemcutter.org"
 gem "rails", "3.0.0.beta"
-gem "haml"
+gem "haml", "2.2.23"
 gem "compass", "0.10.0.rc1"
 gem "mysql"
 gem "will_paginate", "3.0.pre"
