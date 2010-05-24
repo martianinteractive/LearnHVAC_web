@@ -13,9 +13,8 @@ describe Instructor::VariablesController do
   
   describe "GET index" do
     it "" do
-      # get :index, :scenario_id => @scenario.id
-      # response.should render_template(:index)
-      # assigns(:scenario_variables).should eq(@scenario.scenario_variables)
+      get :index, :scenario_id => @scenario.id
+      response.should render_template(:index)
     end
   end
   

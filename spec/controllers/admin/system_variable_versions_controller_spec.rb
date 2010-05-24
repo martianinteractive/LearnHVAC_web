@@ -10,9 +10,10 @@ describe Admin::SystemVariableVersionsController do
     @system_variable.update_attributes(:name => "Env Temp") # Version 4
   end
   
-  pending "Fix :index with controller stubbing when available"
   describe "GET index" do
     it "" do
+      get :index, :master_scenario_id => @master_scenario.id
+      response.should render_template(:index)
     end
   end
   

@@ -16,8 +16,6 @@ describe Admin::SystemVariablesController do
     end
   end
   
-  pending "Fix :index with controller stubbing when available"
-  
   describe "GET show" do
     it "" do
       get :show, :master_scenario_id => @master_scenario.id, :id => @system_variable.id

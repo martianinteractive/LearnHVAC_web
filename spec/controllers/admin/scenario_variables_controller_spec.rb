@@ -12,9 +12,9 @@ describe Admin::ScenarioVariablesController do
   
   describe "GET index" do
     it "" do
-      # get :index, :scenario_id => @scenario.id, :controller => "admin/scenario_variables"
-      # response.should render_template(:index)
-      # assigns(:scenario_variables).should eq(@scenario.scenario_variables)
+      get :index, :scenario_id => @scenario.id
+      response.should render_template(:index)
+      assigns(:scenario_variables).should eq(Scenario.find(@scenario.id).scenario_variables)
     end
   end
   pending "Fix :index with controller stubbing when available."

@@ -12,8 +12,11 @@ describe Managers::ScenarioVariablesController do
   end
   
   describe "GET index" do
+    it "" do    
+      get :index, :scenario_id => @scenario.id
+      response.should render_template(:index)
+    end
   end
-  pending "Fix :index with controller stubbing when available."
   
   
   describe "GET show" do
