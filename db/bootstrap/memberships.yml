@@ -1,0 +1,9 @@
+one:
+  id: 1
+  student_id: 6
+  group_id: 1
+
+two:
+  id: 2
+  student_id: 7
+  group_id: 1

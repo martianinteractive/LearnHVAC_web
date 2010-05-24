@@ -3,7 +3,7 @@ namespace :bootstrap do
   require 'active_record/fixtures'
   
   desc "load all"
-  task :all => ["bootstrap:institutions", "bootstrap:users", "bootstrap:regions", "bootstrap:colleges", "bootstrap:client_versions", "bootstrap:master_scenarios", "bootstrap:system_variables", "bootstrap:scenarios", "bootstrap:groups"]
+  task :all => ["bootstrap:institutions", "bootstrap:users", "bootstrap:regions", "bootstrap:colleges", "bootstrap:client_versions", "bootstrap:master_scenarios", "bootstrap:system_variables", "bootstrap:scenarios", "bootstrap:groups", "bootstrap:group_scenarios", "bootstrap:memberships"]
   
   desc "load default institutions"
   task :institutions => :environment do
@@ -23,6 +23,16 @@ namespace :bootstrap do
   desc "load regions"
   task :regions => :environment do
     Fixtures.create_fixtures('db/bootstrap', 'regions')
+  end
+  
+  desc "load group scenarios"
+  task :group_scenarios => :environment do
+    Fixtures.create_fixtures('db/bootstrap', 'group_scenarios')
+  end
+  
+  desc "memberships"
+  task :memberships => :environment do
+    Fixtures.create_fixtures('db/bootstrap', 'memberships')
   end
   
   desc "load default master scenarios"

@@ -95,4 +95,25 @@ james:
   state: Georgia
   country: United States
   enabled: true
+  password_salt: 6Sl4nIQnsP0DBXTjCL0u
+  persistence_token: 9725123e7f43b2cc1d5dcddb758cd8de8536350dce5f7bbdf8469846efa3ea96262d644044013cbd5890e13914187ed469b9ae0ee5527873f6bc3e0944aacffb
+  perishable_token: C9fHQBrj729FRCBysk17
+  role_code: 1
+  institution_id: 1
+  
+student:
+  id: 7
+  first_name: Jimmy
+  last_name: Jones
+  login: jimmy
+  email: jimmy@martianinteractive.com
+  city: Miami
+  state: Florida
+  country: United States
+  enabled: true
+  password_salt: 6Sl4nIQnsP0DBXTjCL0u
+  persistence_token: 9725123e7f43b2cc1d5dcddb758cd8de8536350dce5f7bbdf8469846efa3ea96262d644044013cbd5890e13914187ed469b9ae0ee5527873f6bc3e0944aacffb
+  perishable_token: C9fHQBrj729FRCBysk17
+  role_code: 1
+  institution_id: 1
   

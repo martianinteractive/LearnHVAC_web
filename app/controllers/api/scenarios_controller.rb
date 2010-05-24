@@ -3,8 +3,12 @@ class Api::ScenariosController < Api::ApplicationController
   
   def index
     @scenarios = @current_user.groups.collect(&:scenarios).flatten
+    if @scenarios.any?
+      @scenarios << @current_user.scenarios
+    else
+      @scenarios = @current_user.scenarios
+    end
     respond_to do |format| 
-       # format.xml { render :xml => @scenarios.to_xml(:skip_internals => true, :methods => [:id, :scenario_variables], :include => {:scenario_variables => {}}) }
       format.xml
     end
   end
