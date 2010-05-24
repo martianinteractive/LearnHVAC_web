@@ -78,7 +78,7 @@ module SortHelper
   #
   def sort_init(default_key, options={})
     options = { :default_order => 'asc',
-                :name => params[:controller] + '_sort',
+                :name => self.class.to_s.underscore + '_sort',
                 :icons_dir => '/images',
               }.merge(options)
     @sort_name = options[:name]
