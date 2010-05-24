@@ -17,7 +17,6 @@ describe Admin::ScenarioVariablesController do
       assigns(:scenario_variables).should eq(Scenario.find(@scenario.id).scenario_variables)
     end
   end
-  pending "Fix :index with controller stubbing when available."
   
   describe "GET new" do
     it "" do

@@ -17,9 +17,7 @@ describe Instructor::VariablesController do
       response.should render_template(:index)
     end
   end
-  
-  pending "Fix :index with controller stubbing when available"
-  
+   
   describe "GET show" do
     it "" do
       get :show, :scenario_id => @scenario.id, :id => @scenario_variable.id

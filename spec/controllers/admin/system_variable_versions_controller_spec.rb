@@ -12,7 +12,7 @@ describe Admin::SystemVariableVersionsController do
   
   describe "GET index" do
     it "" do
-      get :index, :master_scenario_id => @master_scenario.id
+      get :index, :master_scenario_id => @master_scenario.id, :revision_id => "2"
       response.should render_template(:index)
     end
   end
