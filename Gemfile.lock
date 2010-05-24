@@ -1,13 +1,13 @@
 --- 
 dependencies: 
-  mongo: 
-    group: 
-    - :default
-    version: = 0.19.1
   compass: 
     group: 
     - :default
     version: = 0.10.0.rc1
+  mongo: 
+    group: 
+    - :default
+    version: = 0.19.1
   ruby-debug: 
     group: 
     - :development
@@ -16,18 +16,22 @@ dependencies:
     group: 
     - :default
     version: = 3.0.0.beta
-  mysql: 
-    group: 
-    - :default
-    version: ">= 0"
-  haml: 
-    group: 
-    - :default
-    version: = 2.2.23
   mongo_ext: 
     group: 
     - :default
     version: = 0.19.1
+  haml: 
+    group: 
+    - :default
+    version: = 2.2.23
+  mysql: 
+    group: 
+    - :default
+    version: ">= 0"
+  addressable: 
+    group: 
+    - :default
+    version: = 2.1.1
   acts-as-taggable-on: 
     group: 
     - :default
@@ -105,6 +109,8 @@ specs:
     version: 3.0.0.beta
 - acts-as-taggable-on: 
     version: 2.0.0.rc1
+- addressable: 
+    version: 2.1.1
 - bundler: 
     version: 0.9.25
 - columnize: 
@@ -156,7 +162,7 @@ specs:
     version: 0.10.3
 - ruby-debug: 
     version: 0.10.3
-hash: 74892d440bdbfad47591d3f4ef719e719e04fc06
+hash: 70dcb8629e668b62464a7d84abd5507de0af2715
 sources: 
 - Git: 
     uri: git://github.com/thoughtbot/factory_girl.git
