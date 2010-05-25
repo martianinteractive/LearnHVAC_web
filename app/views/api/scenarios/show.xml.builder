@@ -19,7 +19,7 @@ xml.scenario do
   xml.realtimeStartDateTime({:type => "Time"},  @scenario.realtime_start_datetime)
     xml.sysVars do
       @scenario.scenario_variables.group_by(&:component_code).each do |component, variables|
-        xml.systemNode
+        xml.systemNode do
           xml.id(component)
           xml.name(SystemVariableFields::COMPONENTS[component])
           variables.each do |var|
@@ -40,6 +40,7 @@ xml.scenario do
               xml.isFault(var.is_fault)
             end
           end
+        end
       end
     end
 end
