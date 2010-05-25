@@ -4,7 +4,9 @@ class Api::ScenariosController < Api::ApplicationController
   def index
     @scenarios = @current_user.groups.collect(&:scenarios).flatten
     if @scenarios.any?
-      @scenarios << @current_user.scenarios
+      if @current_user.scenarios.any?
+        @scenarios << @current_user.scenarios
+      end
     else
       @scenarios = @current_user.scenarios
     end
