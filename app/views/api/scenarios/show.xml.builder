@@ -19,25 +19,23 @@ xml.scenario do
   xml.realtimeStartDateTime({:type => "Time"},  @scenario.realtime_start_datetime)
     xml.sysVars do
       @scenario.scenario_variables.group_by(&:component_code).each do |component, variables|
-        xml.systemNode do
-          xml.id(component)
-          xml.name(SystemVariableFields::COMPONENTS[component])
+        xml.systemNode({:id => component, :name => SystemVariableFields::COMPONENTS[component]}) do
           variables.each do |var|
             xml.sysVar do
-              xml.name(var.name)
-              xml.displayName(var.display_name)
-              xml.description(var.description)
-              xml.index(var.index)
-              xml.lowValue(var.low_value)
-              xml.highValue(var.high_value)
-              xml.initialValue(var.initial_value)
-              xml.ioType(var.io_type)
-              xml.viewType(var.view_type)
-              xml.unitSI(var.unit_si)
-              xml.SItoIP(var.si_to_ip)
-              xml.unitIP(var.unit_ip)
-              xml.disable(var.disable)
-              xml.isFault(var.is_fault)
+              xml.name({:type => "String"}, var.name)
+              xml.displayName({:type => "String"}, var.display_name)
+              xml.description({:type => "String"}, var.description)
+              xml.index({:type => "Integer"}, var.index)
+              xml.lowValue({:type => "Float"}, var.low_value)
+              xml.highValue({:type => "Float"}, var.high_value)
+              xml.initialValue({:type => "Float"}, var.initial_value)
+              xml.ioType({:type => "String"}, var.io_type)
+              xml.viewType({:type => "String"}, var.view_type)
+              xml.unitSI({:type => "String"}, var.unit_si)
+              xml.SItoIP({:type => "String"}, var.si_to_ip)
+              xml.unitIP({:type => "String"}, var.unit_ip)
+              xml.disable({:type => "Boolean"}, var.disable)
+              xml.isFault({:type => "Boolean"}, var.is_fault)
             end
           end
         end
