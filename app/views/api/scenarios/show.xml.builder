@@ -34,7 +34,7 @@ xml.scenario do
               xml.unitSI({:type => "String"}, var.unit_si)
               xml.SItoIP({:type => "String"}, var.si_to_ip)
               xml.unitIP({:type => "String"}, var.unit_ip)
-              xml.disable({:type => "Boolean"}, var.disable)
+              xml.disabled({:type => "Boolean"}, var.disable)
               xml.isFault({:type => "Boolean"}, var.is_fault)
             end
           end
