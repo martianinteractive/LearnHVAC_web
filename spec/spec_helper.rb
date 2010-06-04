@@ -3,7 +3,6 @@
 ENV["RAILS_ENV"] ||= 'test'
 require File.dirname(__FILE__) + "/../config/environment" unless defined?(Rails.root)
 require 'rspec/rails'
-require 'factory_girl'
 require 'ruby-debug'
 
 

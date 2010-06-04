@@ -18,25 +18,25 @@ xml.scenario do
   xml.longtermStopDate({:type => "Time"},  @scenario.longterm_stop_date)
   xml.realtimeStartDateTime({:type => "Time"},  @scenario.realtime_start_datetime)
     xml.sysVars do
-      @scenario.scenario_variables.group_by(&:component_code).each do |component, variables|
-        xml.systemNode({:id => component, :name => SystemVariableFields::COMPONENTS[component]}) do
-          variables.each do |var|
-            xml.sysVar do
-              xml.name({:type => "String"}, var.name)
-              xml.displayName({:type => "String"}, var.display_name)
-              xml.description({:type => "String"}, var.description)
-              xml.index({:type => "Integer"}, var.index)
-              xml.lowValue({:type => "Float"}, var.low_value)
-              xml.highValue({:type => "Float"}, var.high_value)
-              xml.initialValue({:type => "Float"}, var.initial_value)
-              xml.ioType({:type => "String"}, var.io_type)
-              xml.viewType({:type => "String"}, var.view_type)
-              xml.unitSI({:type => "String"}, var.unit_si)
-              xml.SItoIP({:type => "String"}, var.si_to_ip)
-              xml.unitIP({:type => "String"}, var.unit_ip)
-              xml.disabled({:type => "Boolean"}, var.disable)
-              xml.isFault({:type => "Boolean"}, var.is_fault)
-            end
+      SystemVariableFields::COMPONENTS.each_pair do |code, name|
+        xml.systemNode({:id => code, :name => name}) do
+          @scenario.scenario_variables.where("component_code" => code).each do |variable|
+              xml.sysVar do
+                xml.name({:type => "String"}, variable.name)
+                xml.displayName({:type => "String"}, variable.display_name)
+                xml.description({:type => "String"}, variable.description)
+                xml.index({:type => "Integer"}, variable.index)
+                xml.lowValue({:type => "Float"}, variable.low_value)
+                xml.highValue({:type => "Float"}, variable.high_value)
+                xml.initialValue({:type => "Float"}, variable.initial_value)
+                xml.ioType({:type => "String"}, variable.io_type)
+                xml.viewType({:type => "String"}, variable.view_type)
+                xml.unitSI({:type => "String"}, variable.unit_si)
+                xml.SItoIP({:type => "String"}, variable.si_to_ip)
+                xml.unitIP({:type => "String"}, variable.unit_ip)
+                xml.disabled({:type => "Boolean"}, variable.disable)
+                xml.isFault({:type => "Boolean"}, variable.is_fault)
+              end
           end
         end
       end
