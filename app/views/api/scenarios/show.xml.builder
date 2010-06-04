@@ -30,7 +30,7 @@ xml.scenario do
                 xml.highValue({:type => "Float"}, variable.high_value)
                 xml.initialValue({:type => "Float"}, variable.initial_value)
                 xml.ioType({:type => "String"}, variable.io_type)
-                xml.viewType({:type => "String"}, variable.view_type)
+                xml.viewType({:type => "String"}, variable.view_type.upcase)
                 xml.unitSI({:type => "String"}, variable.unit_si)
                 xml.SItoIP({:type => "String"}, variable.si_to_ip)
                 xml.unitIP({:type => "String"}, variable.unit_ip)
