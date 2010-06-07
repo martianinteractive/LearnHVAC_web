@@ -1,6 +1,0 @@
-%h2= "Editing #{@scenario.name}"
-%p= link_to "Back to scenario", instructor_scenario_path(@scenario)
-%hr
-
-- form_for(@scenario, :url => instructor_scenario_path(@scenario)) do |f|
-  = render :partial => "form", :locals => { :f => f }

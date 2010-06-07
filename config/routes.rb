@@ -38,7 +38,7 @@ Learnhvac::Application.routes.draw do |map|
   end
  
   ## Instructors Routes 
-  namespace :instructor do
+  namespace :instructors do
     resources :students, :only => [:show]
     resource :dashboard, :only => [:show]
     resources :client_versions

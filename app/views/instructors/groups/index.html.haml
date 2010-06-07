@@ -1,0 +1,18 @@
+%h2 Your Groups
+
+%p
+  = link_to 'New group', new_instructors_group_path
+
+%hr
+
+%table
+  %tr
+    %th Name
+    %th Students
+  - @groups.each do |group|
+    %tr
+      %td= link_to group.name, instructors_group_path(group)
+      %td= group.students.count
+%br
+= will_paginate @groups
+

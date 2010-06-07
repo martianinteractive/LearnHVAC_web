@@ -1,2 +1,0 @@
-module Instructor::VariablesHelper
-end

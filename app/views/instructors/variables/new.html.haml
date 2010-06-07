@@ -1,0 +1,6 @@
+%h2 New System Variable
+%p= link_to "Back", :back
+%hr
+
+- form_for([@scenario, @scenario_variable], :url => instructors_scenario_variables_path(@scenario)) do |f|
+  = render :partial => "form", :locals => { :f => f }

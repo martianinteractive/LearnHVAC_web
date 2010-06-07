@@ -1,0 +1,37 @@
+%h2= "#{@scenario.name.titleize} Simulation Variables"
+%p= link_to 'New Variable', new_instructors_scenario_variable_path(@scenario)
+%hr
+
+%table
+  %tr
+    = sort_header_tag('component_code', :title => 'Component')
+    %th Fault
+    %th Name
+    %th Display Name
+    = sort_header_tag('io_type', :title => 'Type')
+    %th Low
+    %th Initial
+    %th High
+    %th Unit SI
+    %th Unit IP
+    %th SI to IP
+    %th
+  - @scenario_variables.each do |scenario_system_variable|
+    %tr
+      %td= scenario_system_variable.component_code
+      %td fault
+      %td= scenario_system_variable.name
+      %td= link_to scenario_system_variable.display_name, instructors_scenario_variable_path(@scenario, scenario_system_variable)
+      %td= scenario_system_variable.io_type.to_s.upcase
+      %td= scenario_system_variable.low_value
+      %td= scenario_system_variable.initial_value
+      %td= scenario_system_variable.high_value
+      %td= scenario_system_variable.unit_si
+      %td= scenario_system_variable.unit_ip
+      %td= scenario_system_variable.si_to_ip
+      %td
+        = link_to image_tag("edit.gif"), edit_instructors_scenario_variable_path(@scenario, scenario_system_variable)
+        &nbsp;
+        = link_to image_tag("trashcan.gif"), instructors_scenario_variable_path(@scenario, scenario_system_variable), :confirm => 'Are you sure?', :method => :delete
+%br
+= will_paginate @scenario_variables

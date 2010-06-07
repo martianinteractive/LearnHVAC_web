@@ -44,7 +44,7 @@ describe MembershipsController do
           it "" do
             post :create, :code => @group.code
             flash[:notice].should == "You already have joined this group as instructor."
-            response.should redirect_to(instructor_group_path(@group))
+            response.should redirect_to(instructors_group_path(@group))
           end
         end
         
@@ -85,7 +85,7 @@ describe MembershipsController do
     
     it "" do
       delete :destroy, :group_id => @group.id, :id => @membership.id
-      response.should redirect_to(instructor_group_path(@group))
+      response.should redirect_to(instructors_group_path(@group))
     end
   end
   

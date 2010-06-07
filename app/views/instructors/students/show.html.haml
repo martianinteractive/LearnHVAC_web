@@ -1,0 +1,33 @@
+%h2= @student.name.capitalize
+
+%p
+  = link_to "Back", instructors_group_path(@group)
+
+%hr
+
+%p
+  %b
+    Login:
+  = h @student.login
+%p
+  %b
+    Role:
+  = h @student.role
+%p
+  %b
+    First Name:
+  = h @student.first_name
+%p
+  %b
+    Last Name:
+  = h @student.last_name
+%p
+  %b
+    E-Mail:
+  = mail_to @student.email, @student.email
+
+%p
+  %b
+    Group member since:
+  = @member_since
+

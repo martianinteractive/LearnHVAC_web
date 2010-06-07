@@ -1,0 +1,7 @@
+%h2 Editing Simulation Variable: #{@scenario_variable.name}
+
+%p= link_to 'Back', :back
+%hr
+
+- form_for([@scenario, @scenario_variable], :url => instructors_scenario_variable_path(@scenario, @scenario_variable), :method => :put) do |f|
+  = render :partial => "form", :locals => { :f => f }
