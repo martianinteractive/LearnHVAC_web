@@ -1,0 +1,12 @@
+#tabs
+  %ul
+    %li= link_to "Manage #{params[:role].pluralize.humanize}", admins_users_path("role" => params[:role])
+    %li= link_to "New #{params[:role].humanize}", new_admins_user_path("role" => params[:role])
+
+
+  - form_for(@user, :url => admins_user_path(@user, :role => params[:role]), :method => :put) do |f|
+    = render :partial => "form", :locals => { :f => f }
+    .actions
+      = submit_tag "Update"
+      &nbsp;or&nbsp;
+      = link_to 'Cancel', :back

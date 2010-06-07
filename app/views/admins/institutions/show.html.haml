@@ -1,0 +1,28 @@
+%h2= formatted_institution_name
+%p
+  = link_to 'Edit', edit_admins_institution_path(@institution)
+  &nbsp;|&nbsp;
+  = link_to 'Delete', admins_institution_path(@institution), :confirm => 'Are you sure?', :method => :delete
+  &nbsp;|&nbsp;
+  = link_to 'Back', admins_institutions_path
+
+%hr
+%p
+  %b
+    Members:
+
+%table
+  %tr
+    %th Name
+    %th Login
+    %th Role
+
+    - for user in @users
+      %tr
+        %td= link_to user.name, admins_user_path(user)
+        %td= user.login
+        %td= user.role.to_s.capitalize
+
+
+%br
+= will_paginate @users

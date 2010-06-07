@@ -31,7 +31,7 @@ module AuthlogicTestHelper
    UserSession.stubs(:find).returns(nil) 
  end
  
- def admin_login
+ def admins_login
    @admin = user_with_role(:admin)
    login_as(@admin)
  end
@@ -48,7 +48,7 @@ module AuthlogicTestHelper
  def default_path_for(user)
    case user.role
    when :admin
-     admin_dashboard_path
+     admins_dashboard_path
    when :instructor
      instructors_dashboard_path
    when :institution_manager

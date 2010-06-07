@@ -1,0 +1,41 @@
+%h2
+  ="#{@master_scenario.name}"
+  %br System Variables
+  %br="Last version, revision ##{@master_scenario.version}"
+
+%p
+  = link_to 'New System Variable', new_admins_master_scenario_system_variable_path(@master_scenario)
+  &nbsp;|&nbsp;
+  = link_to "Back", admins_master_scenario_path(@master_scenario)
+
+%hr
+%table
+  %tr
+    = sort_header_tag('component_code', :title => 'Component')
+    %th Fault
+    = sort_header_tag('name', :title => 'Name')
+    %th Display Name
+    = sort_header_tag('io_type', :title => 'Type')
+    %th Low
+    %th Initial
+    %th High
+    %th Unit SI
+    %th Unit IP
+    %th SI to IP
+  - @system_variables.each do |system_variable|
+    %tr
+      %td= system_variable.component
+      %td= system_variable.is_fault ? "Yes" : "No"
+      %td= link_to system_variable.name, admins_master_scenario_system_variable_path(@master_scenario, system_variable)
+      %td= system_variable.display_name
+      %td= system_variable.io_type.to_s.upcase
+      %td= system_variable.low_value
+      %td= system_variable.initial_value
+      %td= system_variable.high_value
+      %td= system_variable.unit_si
+      %td= system_variable.unit_ip
+      %td= system_variable.si_to_ip
+%br
+= will_paginate @master_scenarios
+%br
+

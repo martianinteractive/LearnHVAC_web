@@ -1,0 +1,107 @@
+%h2= @scenario.name
+
+%p
+  = link_to "Review simulation variables", admins_scenario_scenario_variables_path(@scenario)
+  &nbsp;|&nbsp;
+  = link_to 'Edit', edit_admins_scenario_path(@scenario)
+  &nbsp;|&nbsp;
+  = link_to 'Who has access?', observers_admins_scenario_path(@scenario)
+  &nbsp;|&nbsp;
+  = link_to 'Delete', admins_scenario_path(@scenario), :confirm => 'Are you sure?', :method => :delete
+  &nbsp;|&nbsp;
+  = link_to 'Back', admins_scenarios_path
+
+%hr
+
+%p
+  %b
+    Author:
+  = @scenario.user.name
+
+%p
+  %b
+    Created on:
+  = @scenario.created_at.to_formatted_s(:long) if @scenario.created_at
+
+%p
+  %b
+    Client version:
+  = link_to @scenario.master_scenario.client_version.version, @scenario.master_scenario.client_version.url
+
+%p
+  %b
+    Privacy:
+  = @scenario.public? ? "Public" : "Private"
+
+%hr
+
+%p
+  %b
+    Scenario name:
+  = @scenario.name
+
+%p
+  %b
+    Description:
+  = @scenario.description
+
+%p
+  %b
+    Level:
+  = @scenario.level
+%p
+  %b
+    Inputs visible:
+  = @scenario.inputs_visible
+%p
+  %b
+    Inputs enabled:
+  = @scenario.inputs_enabled
+%p
+  %b
+    Faults visible:
+  = @scenario.faults_visible
+%p
+  %b
+    Faults enabled:
+  = @scenario.faults_enabled
+%p
+  %b
+    Longterm start date:
+  = @scenario.longterm_start_date
+%p
+  %b
+    Longterm stop date:
+  = @scenario.longterm_stop_date
+%p
+  %b
+    Allow longterm date change:
+  = @scenario.allow_longterm_date_change
+%p
+  %b
+    Realtime start datetime:
+  = @scenario.realtime_start_datetime
+%p
+  %b
+    Allow realtime datetime change:
+  = @scenario.allow_realtime_datetime_change
+%p
+  %b
+    Valve info enabled:
+  = @scenario.valve_info_enabled
+%p
+  %b
+    Short description:
+  = @scenario.short_description
+%p
+  %b
+    Goal:
+  = @scenario.goal
+
+= link_to "Review simulation variables", admins_scenario_scenario_variables_path(@scenario)
+&nbsp;|&nbsp;
+= link_to 'Edit', edit_admins_scenario_path(@scenario)
+&nbsp;|&nbsp;
+= link_to 'Delete', admins_scenario_path(@scenario), :confirm => 'Are you sure?', :method => :delete
+&nbsp;|&nbsp;
+= link_to 'Back', admins_scenarios_path

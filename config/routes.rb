@@ -17,7 +17,7 @@ Learnhvac::Application.routes.draw do |map|
   match 'guests/signup' => 'guests/accounts#new', :as => 'guests_signup'
   match 'groups/register/(:code)' => 'memberships#create', :as => 'membership_register'
   match 'admin/master_scenarios/tagged/:tag' => "admin/master_scenarios#tag", :as => 'master_scenarios_tag'
-  match 'admin/dashboard' => 'admin/dashboard#show', :as => 'admin_dashboard'
+  match 'admin/dashboard' => 'admin/dashboard#show', :as => 'admins_dashboard'
   match 'directory' => 'directory/institutions#index', :as => 'directory'
   match 'reset_password' => 'password_resets#new', :as => 'reset_password'
   match 'profile' => 'users#show', :as => 'profile'
@@ -86,7 +86,7 @@ Learnhvac::Application.routes.draw do |map|
   end
   
   ### Admin Routes.
-  namespace :admin do
+  namespace :admins do
     resources :institutions
     resources :tags
     resources :client_versions

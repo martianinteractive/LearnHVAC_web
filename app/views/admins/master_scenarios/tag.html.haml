@@ -1,0 +1,18 @@
+%h2= "Master Scenarios tagged as #{params[:tag]}"
+%p= link_to 'Master Scenarios', admins_master_scenarios_path
+%hr
+
+%table
+  %tr
+    %th Name
+    %th Author
+    %th
+  - @master_scenarios.each do |master_scenario|
+    %tr
+      %td= link_to master_scenario.name, admins_master_scenario_path(master_scenario)
+      %td= master_scenario.user.name
+      %td 
+        = link_to "System vars.", admins_master_scenario_system_variables_path(master_scenario)
+%br
+= will_paginate @master_scenarios
+

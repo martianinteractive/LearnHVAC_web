@@ -1,0 +1,42 @@
+%h2
+  = @master_scenario.name
+  %em{:style => "color:red;"} - Revision ##{@version.version}
+
+%p
+  = link_to "View variables", admins_master_scenario_revision_variables_path(@master_scenario, @version.version)
+  &nbsp;|&nbsp;
+  = link_to 'Back', admins_master_scenario_revisions_path(@master_scenario)
+  &nbsp;|&nbsp;
+  = link_to 'Back to latest version of scenario', admins_master_scenario_path(@master_scenario)
+
+%hr
+
+%p 
+  %b
+    Name:
+  = @version.name
+
+%p 
+  %b
+    Author:
+  = @version.user.name
+
+%p
+  %b
+    Description:
+  = @version.description
+
+%p
+  %b
+    Tags:
+  = @version.tag_list
+
+%p 
+  %b
+    Created on:
+  = @version.created_at.to_formatted_s(:long)
+
+%p
+  %b 
+    Last updated:
+  = @version.updated_at.to_formatted_s(:long)

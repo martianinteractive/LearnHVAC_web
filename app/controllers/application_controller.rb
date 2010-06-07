@@ -45,7 +45,7 @@ class ApplicationController < ActionController::Base
   def default_path_for(user)
     case user.role
     when :admin
-      admin_dashboard_path
+      admins_dashboard_path
     when :instructor
       instructors_dashboard_path
     when :manager

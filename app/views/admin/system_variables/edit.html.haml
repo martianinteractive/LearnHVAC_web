@@ -1,7 +1,0 @@
-%h2 
-  Edit 
-  %br="System Variables - #{@system_variable.name}"
-
-- form_for([@master_scenario, @system_variable], :url => admin_master_scenario_system_variable_path(@master_scenario, @system_variable), :method => :put) do |f|
-  = render :partial => "form", :locals => { :f => f }
-%br

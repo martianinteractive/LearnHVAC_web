@@ -1,0 +1,50 @@
+%h2
+  ="#{@master_scenario.name}"
+
+%p
+  = link_to 'Edit', edit_admins_master_scenario_path(@master_scenario)
+  &nbsp;|&nbsp;
+  = link_to 'Delete', admins_master_scenario_path(@master_scenario), :confirm => 'Are you sure?', :method => :delete
+  &nbsp;|&nbsp;
+  = link_to "Manage variables", admins_master_scenario_system_variables_path(@master_scenario)
+  &nbsp;|&nbsp;
+  = link_to "Revisions", admins_master_scenario_revisions_path(@master_scenario)
+  &nbsp;|&nbsp;
+  = link_to 'Back', admins_master_scenarios_path
+
+%hr
+
+%p 
+  %b
+    Author:
+  = @master_scenario.user.name
+
+%p
+  %b
+    Description:
+  = @master_scenario.description
+
+%p
+  %b
+    Revisions:
+  = @master_scenario.versions.size
+
+%p
+  %b
+    Version:
+  = link_to @master_scenario.client_version.version, admins_client_version_path(@master_scenario.client_version)
+
+%p
+  %b
+    Tags:
+  = @master_scenario.tag_list
+
+%p 
+  %b
+    Created on:
+  = @master_scenario.created_at.to_formatted_s(:long)
+
+%p
+  %b 
+    Last updated:
+  = @master_scenario.updated_at.to_formatted_s(:long)

@@ -1,0 +1,41 @@
+- content_for :head do
+  - javascript_tag do
+    :plain
+      $(document).ready(function(){
+
+        $("#master_scenario_tag_list").autocomplete({
+          source: "#{admins_tags_path}",
+          select: function(event, ui) { return false; },
+          focus: function(event, ui) { return false; }
+        });
+
+        $("#master_scenario_tag_list" ).bind("autocompleteselect", 
+          function(event, ui) {
+            _tags = $(this).val().replace(/ /g,'').split(",")
+            _tags[_tags.length - 1] = ui.item.value + ", "
+            $(this).val(_tags.join(", "))
+        });
+      });
+
+= f.error_messages
+.field
+  = f.label :name
+  = f.text_field :name
+
+.field
+  = f.label :description
+  = f.text_area :description
+
+.field
+  = f.label :client_version
+  = f.select :client_version_id, ClientVersion.all.collect { |cv| [cv.version, cv.id] }, :prompt => "Please select..."
+
+.field
+  = f.label :tag_list, "Tags"
+  = f.text_field :tag_list
+  Comma separated.
+
+.actions
+  = f.submit
+  &nbsp;or&nbsp;
+  = link_to 'Cancel', :back

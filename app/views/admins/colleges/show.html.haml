@@ -1,0 +1,8 @@
+%h2= @college.value
+%p
+  = link_to 'Edit', edit_admins_college_path(@college)
+  &nbsp;|&nbsp;
+  = link_to 'Delete', admins_college_path(@college), :confirm => 'Are you sure?', :method => :delete
+  &nbsp;|&nbsp;
+  = link_to 'Back', admins_colleges_path
+

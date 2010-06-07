@@ -1,0 +1,8 @@
+%h2 New institution
+%hr
+- form_for(@institution, :url => admins_institutions_path, :method => :post) do |f|
+  = render :partial => 'form', :locals => { :f => f }
+  .actions
+    = submit_tag "Create"
+    &nbsp;or&nbsp;
+    = link_to 'Cancel', :back

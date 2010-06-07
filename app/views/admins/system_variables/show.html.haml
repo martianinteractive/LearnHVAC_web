@@ -1,0 +1,113 @@
+%h2
+  ="#{@master_scenario.name}"
+  %br="System Variables - #{@system_variable.name}"
+  %br="Last version, revision ##{@master_scenario.version}"
+
+%p
+  = link_to 'Edit', edit_admins_master_scenario_system_variable_path(@master_scenario, @system_variable)
+  &nbsp;|&nbsp;
+  = link_to 'Delete', admins_master_scenario_system_variable_path(@master_scenario, @system_variable), :confirm => 'Are you sure?', :method => :delete
+  &nbsp;|&nbsp;
+  = link_to 'Back', admins_master_scenario_system_variables_path(@master_scenario)
+
+%hr  
+
+%p
+  %b
+    Name:
+  = @system_variable.name
+%p
+  %b
+    Display name:
+  = @system_variable.display_name
+%p
+  %b
+    Index:
+  = @system_variable.index
+%p
+  %b
+    Description:
+  = @system_variable.description
+%p
+  %b
+    I/O type:
+  = @system_variable.io_type
+%p
+  %b
+    Component:
+  = @system_variable.component
+%p
+  %b
+    Low value:
+  = @system_variable.low_value
+%p
+  %b
+    Initial value:
+  = @system_variable.initial_value
+%p
+  %b
+    High value:
+  = @system_variable.high_value
+%p
+  %b
+    Unit SI
+  = @system_variable.unit_si
+%p
+  %b
+    Unit IP
+  = @system_variable.unit_ip
+%p
+  %b
+    SI to IP
+  = @system_variable.si_to_ip
+%p
+  %b
+    Fault?
+  = @system_variable.is_fault
+%p
+  %b
+    Left label:
+  = @system_variable.left_label
+%p
+  %b
+    Right label:
+  = @system_variable.right_label
+%p
+  %b
+    Subsection:
+  = @system_variable.subsection
+%p
+  %b
+    Zone position:
+  = @system_variable.zone_position
+%p
+  %b
+    Subsection:
+  = @system_variable.subsection
+%p
+  %b
+    Is percentage:
+  = @system_variable.is_percentage
+%p
+  %b
+    Fault widget type:
+  = @system_variable.fault_widget_type
+%p
+  %b
+    Notes:
+  = @system_variable.notes
+%p
+  %b
+    Lock version:
+  = @system_variable.lock_version
+%p
+  %b
+    Node sequence:
+  = @system_variable.node_sequence
+
+%p
+  = link_to 'Edit', edit_admins_master_scenario_system_variable_path(@master_scenario, @system_variable)
+  &nbsp;|&nbsp;
+  = link_to 'Delete', admins_master_scenario_system_variable_path(@master_scenario, @system_variable), :confirm => 'Are you sure?', :method => :delete
+  &nbsp;|&nbsp;
+  = link_to 'Back', admins_master_scenario_system_variables_path(@master_scenario)

@@ -1,0 +1,17 @@
+%h2 Listing scenarios
+%hr
+
+%table
+  %tr
+    %th Name
+    %th Instructor
+    %th Created on
+  - @scenarios.each do |scenario|
+    %tr
+      %td= link_to scenario.name, admins_scenario_path(scenario)
+      %td= link_to scenario.user.name, admins_user_path(scenario.user, :role => scenario.user.role)
+      %td= scenario.created_at.to_formatted_s(:long) if scenario.created_at
+
+%br
+= will_paginate @scenarios
+

@@ -9,7 +9,7 @@
           = current_user.name
         - if current_user.has_role?(:admin)
           %li
-            = link_to 'Admin Site', admin_dashboard_path
+            = link_to 'Admin Site', admins_dashboard_path
         %li= link_to "Log-out", logout_path
       - else
         - if request.path_info == "/signup"
