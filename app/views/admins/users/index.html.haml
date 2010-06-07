@@ -12,7 +12,7 @@
     = link_to "Reset", admins_users_path(:role => params[:role]) if controller.action_name == 'search'
 
   %br
-  %table#users
+  %table#users.listing
     %thead
       %tr
         %th Name
