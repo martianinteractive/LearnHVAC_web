@@ -1,6 +1,7 @@
 class Admins::UsersController < Admins::ApplicationController
   before_filter :get_role
   
+  
   def index
     @users = User.where(:role_code => @role).order('last_name DESC').paginate(:page => params[:page], :per_page => 25)
   end
@@ -78,5 +79,9 @@ class Admins::UsersController < Admins::ApplicationController
     raise ArgumentError, "role parameter is required" unless params[:role]
     @role = User::ROLES[params[:role].to_sym]
   end
+  
+  # def add_crumbs
+  #     add_crumb @role, admin_users_path(:role => @role)
+  # end
   
 end

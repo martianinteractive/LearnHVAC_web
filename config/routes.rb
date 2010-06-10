@@ -25,7 +25,7 @@ Learnhvac::Application.routes.draw do |map|
  ## API ROUTES
  namespace :api do
    resources :scenarios
-   match 'users/user.:format' => 'api/users#show'
+   match 'users/user.:format' => 'users#show'
  end
  
   ## Directory Routes.
