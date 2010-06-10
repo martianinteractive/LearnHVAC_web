@@ -15,7 +15,7 @@ module ManyDocuments
     def has_many_documents(name)
       define_method(name) do
         key_id = self.class.name.downcase + "_id"
-        name.to_s.singularize.classify.constantize.all(:conditions => { key_id => self.id.to_s } ).to_a
+        name.to_s.singularize.classify.constantize.all(:conditions => { key_id => self.id.to_s } )
       end
       
       define_method("find_#{name.to_s.singularize}") do |_key|
