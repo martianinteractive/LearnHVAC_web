@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100420225816) do
+ActiveRecord::Schema.define(:version => 20100610213228) do
 
   create_table "client_versions", :force => true do |t|
     t.string   "version"
@@ -109,6 +109,7 @@ ActiveRecord::Schema.define(:version => 20100420225816) do
     t.string   "city"
     t.string   "state"
     t.string   "country",           :default => "United States"
+    t.string   "phone"
   end
 
   add_index "users", ["perishable_token"], :name => "index_users_on_perishable_token"
