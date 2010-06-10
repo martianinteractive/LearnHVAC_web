@@ -17,6 +17,7 @@
     %th SI to IP
   - @scenario_variables.each do |scenario_system_variable|
     %tr
+	  %td= scenario_system_variable.index
       %td= scenario_system_variable.component
       %td fault
       %td= scenario_system_variable.name

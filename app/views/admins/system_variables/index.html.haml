@@ -11,6 +11,7 @@
 %hr
 %table
   %tr
+    = sort_header_tag('index', :title => 'Index')
     = sort_header_tag('component_code', :title => 'Component')
     %th Fault
     = sort_header_tag('name', :title => 'Name')
@@ -24,6 +25,7 @@
     %th SI to IP
   - @system_variables.each do |system_variable|
     %tr
+      %td= system_variable.index
       %td= system_variable.component
       %td= system_variable.is_fault ? "Yes" : "No"
       %td= link_to system_variable.name, admins_master_scenario_system_variable_path(@master_scenario, system_variable)

@@ -13,7 +13,7 @@ gem "addressable", "2.1.1"
 gem "crummy", "0.1.0"
 
 group :test do
-  gem "rspec-rails", "= 2.0.0.beta.4"
+  gem "rspec-rails", ">= 2.0.0.beta.8"
   gem "factory_girl", :git => "git://github.com/thoughtbot/factory_girl.git", :branch => "rails3"
   gem "mocha"
 end
