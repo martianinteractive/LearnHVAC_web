@@ -25,6 +25,7 @@ class User < ActiveRecord::Base
   attr_protected :active, :role_code, :enabled
   
   validates :first_name, :last_name, :role_code, :city, :state, :country, :presence => true, :length => { :maximum => 200 }, :format => { :with => /^[A-Za-z0-9\s]+$/ }
+  validates_length_of :phone, :in => 7..32, :allow_blank => true
   validate :group_presence,  :on => :create, :if => :require_group_code
   
   scope :recent, :limit => 10, :order => "created_at DESC"
