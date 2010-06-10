@@ -4,6 +4,8 @@ class Institution < ActiveRecord::Base
   has_many :users, :dependent => :destroy
   has_many :groups, :through => :users, :source => :managed_groups
   
+  scope :recent, :limit => 10, :order => "created_at DESC"
+  
   def category
     CATEGORIES.index(read_attribute(:category_code))
   end

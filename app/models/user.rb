@@ -27,6 +27,8 @@ class User < ActiveRecord::Base
   validates :first_name, :last_name, :role_code, :city, :state, :country, :presence => true, :length => { :maximum => 200 }, :format => { :with => /^[A-Za-z0-9\s]+$/ }
   validate :group_presence,  :on => :create, :if => :require_group_code
   
+  scope :recent, :limit => 10, :order => "created_at DESC"
+  
   before_save :set_institution, :on => :create, :if => Proc.new { |user| user.has_role?(:student) }
   
   def name
