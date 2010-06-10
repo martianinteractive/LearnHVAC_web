@@ -5,6 +5,7 @@ class Directory::ApplicationController < ApplicationController
   private
   
   def set_layout
+    @show_connection = true
     self.class.layout current_user_layout
   end
   

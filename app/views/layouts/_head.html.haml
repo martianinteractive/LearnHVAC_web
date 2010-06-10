@@ -13,6 +13,7 @@
     = javascript_include_tag "http://cdn.jquerytools.org/1.1.2/jquery.tools.min.js"
     = javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"
     = javascript_include_tag 'rails', 'jquery.cookie', 'jquery.ui.no-ajax-tabs', 'jquery.dataTables.min', 'application'
+    = javascript_include_tag "http://www.google.com/friendconnect/script/friendconnect.js" if @show_connection
 
     = yield :head
     - javascript_tag do
