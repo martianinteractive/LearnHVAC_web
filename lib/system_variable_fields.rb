@@ -1,7 +1,7 @@
 module SystemVariableFields
   IO_TYPES = ['input', 'output', 'parameter']
   COMPONENTS = { "CC" => "Cooling Coil", "HC" => "Heating Coil", "MX" => "Mixing Box", "RM" => "Room", 
-                 "BOI" => "Boiler", "CH" => "Chiller", "CTW" => "Cooling Tower", "DCT" => "Duct", 
+                 "BOI" => "Boiler", "CHL" => "Chiller", "CTW" => "Cooling Tower", "DCT" => "Duct", 
                  "DIF" => "Diffuser", "FAN" => "Fan", "FLT" => "Filter", "PLT" => "Plant", "SYS" => "System", "VAV" => "VAV Box" }
     
   def self.included(parent)
