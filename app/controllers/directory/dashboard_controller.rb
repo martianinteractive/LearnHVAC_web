@@ -1,8 +1,8 @@
 class Directory::DashboardController < Directory::ApplicationController
   
   def index
-    @recent_institutions = Institution.recent
-    @recent_members = User.recent
+    @institutions = Institution.recent
+    @users = User.recent
   end
   
 end
