@@ -36,6 +36,14 @@ xml.scenario do
                 xml.unitIP({:type => "String"}, variable.unit_ip)
                 xml.disabled({:type => "Boolean"}, variable.disable)
                 xml.isFault({:type => "Boolean"}, variable.is_fault)
+                if variable.is_fault
+                  xml.faultWidgetType({:type => "String"}, variable.fault_widget_type)
+                  xml.subsection({:type => "String"}, variable.subsection)
+                  xml.leftLabel({:type => "String"}, variable.left_label)
+                  xml.rightLabel({:type => "String"}, variable.right_label)
+                  xml.zonePosition({:type => "String"}, variable.zone_position)
+                  xml.isPercentage({:type => "Boolean"}, variable.is_percentage)
+                end
               end
           end
         end
