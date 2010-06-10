@@ -1,15 +1,13 @@
-%h2 Directory
+%h2 Institutions
 %hr
-
-%table.institutions_directory
+%table
   %tr
     %th
   - @institutions.each do |institution|
     %tr
       %td
         = link_to formatted_institution_name(institution), directory_institution_path(institution)
-        %span.institution_info= "scenarios #{institution.scenarios.public.count}"
-        %span.institution_info= "users #{institution.users.count}"
+        %span= "scenarios #{institution.scenarios.public.count}"
+        %span= "users #{institution.users.count}"
 %br
 = will_paginate @institutions
-

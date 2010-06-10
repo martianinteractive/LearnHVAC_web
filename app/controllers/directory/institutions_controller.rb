@@ -1,7 +1,7 @@
 class Directory::InstitutionsController < Directory::ApplicationController
   
   def index
-    @institutions = Institution.paginate :page => params[:page], :per_page => 25
+    @institutions = Institution.paginate :page => params[:page], :per_page => 25, :order => "created_at DESC"
   end
   
   def show

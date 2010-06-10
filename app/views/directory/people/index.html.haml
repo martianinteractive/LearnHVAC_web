@@ -1,0 +1,12 @@
+%h2 People
+%hr
+%table
+  %tr
+    %th
+  - @users.each do |user|
+    %tr
+      %td
+        = link_to user.name, directory_person_path(user)
+        %span= "scenarios #{user.scenarios.public.count}"
+%br
+= will_paginate @users

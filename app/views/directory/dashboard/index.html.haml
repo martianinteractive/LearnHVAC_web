@@ -6,20 +6,24 @@
 
 #directory_dashboard
   .institutions.column
-    %h3 Institutions
+    %h3 Recent Institutions
     - @institutions.each do |institution|
       .info
         = link_to formatted_institution_name(institution), directory_institution_path(institution)
         %span= "scenarios #{institution.scenarios.public.count}"
         %span= "users #{institution.users.count}"
+    %br
+    = link_to "view all", directory_institutions_path
     
   .people.column
-    %h3 People
+    %h3 Recent Users
     - @users.each do |user|
       .info
         = link_to user.name, directory_person_path(user)
         %span= role_and_institution_for(user)
         %span= "scenarios #{user.scenarios.public.count}"
+    %br
+    = link_to "view all", directory_people_path
 
 #connect
   %h3 Friends Connect

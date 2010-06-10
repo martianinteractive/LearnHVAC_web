@@ -1,5 +1,5 @@
 - content_for :head do
-  = render :partial => 'js'
+  = render :partial => 'js.js.erb'
 
 %h2 
   Instructor Registration
@@ -42,6 +42,10 @@
       = f.label :email, "Email address"
 
       = f.text_field :email
+    .field
+      = f.label :phone
+      
+      = f.text_field :phone
     .field
       = f.label :password
 
