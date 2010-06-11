@@ -19,6 +19,10 @@ class MasterScenario
   
   after_update :notify_change
   
+  def self.optimized_for_display
+    criteria.only(:name, :user_id, :client_version_id, :version)
+  end
+  
   def clone!
     clon_atts = self.attributes.merge(default_clon_attributes)
     clon_atts.delete("_id")
