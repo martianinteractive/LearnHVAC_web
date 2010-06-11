@@ -1,36 +1,39 @@
 = f.error_messages
 .field
   = f.label :name
-  
   = f.text_field :name
+
 .field
-  = f.label :display_name
-  
+  = f.label :display_name  
   = f.text_field :display_name
+
 .field
-  = f.label :description
-  
+  = f.label :description  
   = f.text_area :description
+
 .field
-  = f.label :component_code
-  
+  = f.label :component_code  
   = f.select :component_code, ScenarioVariable::COMPONENTS.keys.collect { |comp| [SystemVariable::COMPONENTS[comp], comp] }, { :prompt => "Please select..."}
+
 .field
-  = f.label :io_type, "I/O Type"
-  
+  = f.label :io_type, "I/O Type"  
   = f.select :io_type, ScenarioVariable::IO_TYPES.collect {|type| [ type.to_s.capitalize, type ] }, { :prompt => "Please select..."}
+
 .field
-  = f.label :index
-  
+  = f.label :index  
   = f.text_field :index
+
 .field
-  = f.label :unit_si
-  
+  = f.label :unit_si  
   = f.text_field :unit_si
+
 .field
-  = f.label :unit_ip
-  
+  = f.label :unit_ip  
   = f.text_field :unit_ip
+.field
+  = f.label :si_to_ip
+
+  = f.text_field :si_to_ip
 .field
   = f.label :low_value
   

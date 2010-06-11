@@ -63,7 +63,6 @@
 #             - sort_init() :icons_dir option added.
 # 2005-03-26: Version 1.0.0
 #
-require "addressable/uri"
 module SortHelper
 
 
