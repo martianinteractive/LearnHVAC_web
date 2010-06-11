@@ -2,7 +2,7 @@ class Managers::ScenariosController < Managers::ApplicationController
   before_filter :find_scenario, :only => [:show, :observers]
   
   def index
-    @scenarios = current_user.institution.scenarios.to_a.paginate(:page => params[:page], :per_page => 25)
+    @scenarios = current_user.institution.scenarios.paginate(:page => params[:page], :per_page => 25)
   end
   
   def show

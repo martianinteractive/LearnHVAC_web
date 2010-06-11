@@ -2,7 +2,7 @@ class Admins::RevisionsController < Admins::ApplicationController
   before_filter :find_master_scenario
   
   def index
-    @versions = @master_scenario.versions.to_a.paginate :page => params[:page], :per_page => 25
+    @versions = @master_scenario.versions.paginate :page => params[:page], :per_page => 25
   end
   
   def show
