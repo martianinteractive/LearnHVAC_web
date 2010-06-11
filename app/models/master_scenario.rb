@@ -12,6 +12,9 @@ class MasterScenario
   belongs_to_related :user
   belongs_to_related :client_version
   
+  index :user_id
+  index :client_version_id
+  
   validates_presence_of :name, :user, :client_version
   
   after_update :notify_change
