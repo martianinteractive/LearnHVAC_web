@@ -19,8 +19,10 @@ class MasterScenario
   
   after_update :notify_change
   
-  def self.optimized_for_display
-    criteria.only(:name, :user_id, :client_version_id, :version)
+  #skips embeded documents
+  def self.optimized_for_display(id_selector = nil)
+    _only = criteria.only(fields.keys)
+    id_selector ? _only.id(id_selector).first : _only
   end
   
   def clone!
