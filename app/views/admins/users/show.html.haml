@@ -29,6 +29,10 @@
       %tr
         %th E-Mail:
         %td= mail_to @user.email
+      - if @user.phone.present?
+        %tr
+          %th Phone:
+          %td= @user.phone
       %tr
         %th Status:
         %td= @user.enabled? ? "Enabled" : "Disabled"

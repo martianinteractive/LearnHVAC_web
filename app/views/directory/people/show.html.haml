@@ -25,7 +25,10 @@
       %tr
         %th E-Mail:
         %td= mail_to @user.email
-
+      - if @user.phone.present?
+        %tr
+          %th Phone:
+          %td= @user.phone
       %tr
         %th Member since:
         %td= @user.created_at.to_date.to_formatted_s(:long)
