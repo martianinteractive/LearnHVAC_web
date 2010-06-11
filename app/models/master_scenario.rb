@@ -14,6 +14,8 @@ class MasterScenario
   
   validates_presence_of :name, :user, :client_version
   
+  after_update :notify_change
+  
   def clone!
     clon_atts = self.attributes.merge(default_clon_attributes)
     clon_atts.delete("_id")
@@ -30,6 +32,10 @@ class MasterScenario
     
   def default_clon_attributes
     { "version" => 1, "versions" => nil, "system_variables" => nil, "name" => "#{self.name}_clon" }
+  end
+  
+  def notify_change
+    "I've changed."
   end
   
 end
