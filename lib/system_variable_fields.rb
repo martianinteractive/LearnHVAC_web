@@ -1,5 +1,5 @@
 module SystemVariableFields
-  IO_TYPES = ['input', 'output', 'parameter']
+  IO_TYPES = ['INPUT', 'OUTPUT', 'PARAMETER']
   COMPONENTS = { "CC" => "Cooling Coil", "HC" => "Heating Coil", "MX" => "Mixing Box", "RM" => "Room", 
                  "BOI" => "Boiler", "CHL" => "Chiller", "CTW" => "Cooling Tower", "DCT" => "Duct", 
                  "DIF" => "Diffuser", "FAN" => "Fan", "FLT" => "Filter", "PLT" => "Plant", "SYS" => "System", "VAV" => "VAV Box" }
