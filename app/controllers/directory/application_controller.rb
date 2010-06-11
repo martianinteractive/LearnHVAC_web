@@ -5,6 +5,7 @@ class Directory::ApplicationController < ApplicationController
   private
   
   def set_layout
+    @fconnect_site_id = Site.config["fconnect_site_id"]
     @show_connection = true
     self.class.layout current_user_layout
   end
