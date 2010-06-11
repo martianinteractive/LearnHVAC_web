@@ -9,7 +9,7 @@ class Admins::MasterScenariosController < Admins::ApplicationController
   end
   
   def show
-    @master_scenario = MasterScenario.find(params[:id])
+    @master_scenario = MasterScenario.optimized_for_display(params[:id])
   end
 
   def new
