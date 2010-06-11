@@ -12,6 +12,7 @@ Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each {|f| require f}
 
 Rspec.configure do |config|
   require 'rspec/expectations'
+  config.use_transactional_fixtures = true
   config.include Rspec::Matchers
   config.mock_with :mocha
   config.before(:each) { Mongoid.master.collections.each(&:drop) }

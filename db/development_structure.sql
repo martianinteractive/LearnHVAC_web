@@ -114,6 +114,7 @@ CREATE TABLE `users` (
   `city` varchar(255) collate utf8_unicode_ci default NULL,
   `state` varchar(255) collate utf8_unicode_ci default NULL,
   `country` varchar(255) collate utf8_unicode_ci default 'United States',
+  `phone` varchar(255) collate utf8_unicode_ci default NULL,
   PRIMARY KEY  (`id`),
   KEY `index_users_on_perishable_token` (`perishable_token`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -149,3 +150,5 @@ INSERT INTO schema_migrations (version) VALUES ('20100413203436');
 INSERT INTO schema_migrations (version) VALUES ('20100419224135');
 
 INSERT INTO schema_migrations (version) VALUES ('20100420225816');
+
+INSERT INTO schema_migrations (version) VALUES ('20100610213228');
