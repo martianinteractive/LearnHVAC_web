@@ -1,7 +1,7 @@
 class Admins::MasterScenariosController < Admins::ApplicationController 
    
   def index
-    @master_scenarios = MasterScenario.optimized_for_display.paginate :page => params[:page], :per_page => 25
+    @master_scenarios = MasterScenario.for_display.paginate :page => params[:page], :per_page => 25
   end
   
   def tag
@@ -9,7 +9,7 @@ class Admins::MasterScenariosController < Admins::ApplicationController
   end
   
   def show
-    @master_scenario = MasterScenario.optimized_for_display(params[:id])
+    @master_scenario = MasterScenario.for_display(params[:id])
   end
 
   def new

@@ -20,8 +20,10 @@ class MasterScenario
   after_update :notify_change
   
   #skips embeded documents
-  def self.optimized_for_display(id_selector = nil)
-    _only = criteria.only(fields.keys)
+  def self.for_display(id_selector=nil, opts={})
+    f = fields.keys
+    f << opts[:add] if opts[:add]
+    _only = criteria.only(f)
     id_selector ? _only.id(id_selector).first : _only
   end
   
