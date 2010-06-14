@@ -1,5 +1,5 @@
-class Admins::Settings::EducationalEntitiesController < Admins::Setttings::BaseController
-  add_crumb("Educational Entities") { |instance| instance.send :admins_setting_admins_settings_educational_entities_path }
+class Admins::Settings::EducationalEntitiesController < Admins::Settings::BaseController
+  add_crumb("Educational Entities") { |instance| instance.send :admins_settings_educational_entities_path }
   
   def index
     @colleges = College.paginate :page => params[:page], :per_page => 50, :order => "value ASC"
@@ -46,7 +46,7 @@ class Admins::Settings::EducationalEntitiesController < Admins::Setttings::BaseC
     @college = College.find(params[:id])
     
     @college.destroy
-    redirect_to(admins_educational_entities_url, :notice => "College was successfully deleted.")
+    redirect_to(admins_settings_educational_entities_path, :notice => "College was successfully deleted.")
   end
 
 end

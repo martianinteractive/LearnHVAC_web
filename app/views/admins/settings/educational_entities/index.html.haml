@@ -4,12 +4,12 @@
     %td 
       = link_to "New Educational Entity", new_admins_settings_educational_entity_path
     %td
-      - form_tag(search_admins_admins_settings_educational_entities_path, :class => "search") do
+      - form_tag(search_admins_settings_educational_entities_path, :class => "search") do
         = label_tag :q, "Search"
         = text_field_tag :q, params[:q]
         = submit_tag "Search!"
         &nbsp;&nbsp;
-        = link_to "Reset", admins_admins_settings_educational_entities_path if controller.action_name == 'search'
+        = link_to "Reset", admins_settings_educational_entities_path if controller.action_name == 'search'
 
 %table
   %tr

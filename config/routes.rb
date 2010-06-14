@@ -91,7 +91,8 @@ Learnhvac::Application.routes.draw do |map|
   namespace :admins do
     resources :institutions
     resources :tags
-    resources :settings, :only => [:index] do
+    resources :settings, :only => [:index]
+    namespace :settings do
       resources :client_versions
       resources :educational_entities do
         collection do

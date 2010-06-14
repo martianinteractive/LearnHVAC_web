@@ -1,7 +1,7 @@
 %h2 New College
 %hr
 
-- form_for(@college,:url => admins_colleges_path, :method => :post) do |f|
+- form_for(@college,:url => admins_settings_educational_entities_path, :method => :post) do |f|
   = render :partial => "form", :locals => { :f => f }
   .actions
     = submit_tag "Create"
