@@ -26,7 +26,7 @@ class Admins::MasterScenariosController < Admins::ApplicationController
   
   def clone
     @master_scenario = MasterScenario.find(params[:id])
-    clon = @master_scenario.clone!
+    clon = @master_scenario.clone!(current_user)
     notice = clon.valid? ? "Master Scenario was successfully cloned" : "There were problems cloning the Master Scenario"
     redirect_to(admins_master_scenarios_path, :notice => notice)
   end

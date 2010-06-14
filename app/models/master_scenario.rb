@@ -27,9 +27,10 @@ class MasterScenario
     id_selector ? _only.id(id_selector).first : _only
   end
   
-  def clone!
-    clon_atts = self.attributes.except("_id").merge(default_clon_attributes)
+  def clone!(usr=nil)
+    clon_atts = self.attributes.except("_id", "user_id").merge(default_clon_attributes)
     clon = MasterScenario.new(clon_atts)
+    clon.user = usr || self.user
     sys_vars = []
     self.system_variables.each { |sv| sys_vars << sv.attributes.except("_id") }
     clon.system_variables = sys_vars
