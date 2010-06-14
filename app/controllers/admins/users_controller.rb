@@ -25,10 +25,12 @@ class Admins::UsersController < Admins::ApplicationController
   def new
     @user = User.new
     @user.role_code = @role
+    add_crumb "New #{params[:role].humanize}", new_admins_user_path(:role => params[:role])
   end
 
   def edit
     @user = User.find(params[:id])
+    add_crumb "Editing #{@user.name}", edit_admins_user_path(:role => params[:role])
   end
   
   def create
@@ -39,6 +41,7 @@ class Admins::UsersController < Admins::ApplicationController
     if @user.save
       redirect_to(admins_user_path(@user, :role => params[:role], :anchor => "ui-tabs-1"), :notice => 'User was successfully created.')
     else
+      add_crumb "New #{params[:role].humanize}", new_admins_user_path(:role => params[:role])
       render :action => "new"
     end
   end
@@ -51,6 +54,7 @@ class Admins::UsersController < Admins::ApplicationController
     if @user.update_attributes(params[:user])
       redirect_to(admins_user_path(@user, :role => params[:role]), :notice => 'User was successfully updated.')
     else
+      add_crumb "Editing #{@user.name}", edit_admins_user_path(:role => params[:role])
       render :action => "edit"
     end
   end
@@ -82,7 +86,7 @@ class Admins::UsersController < Admins::ApplicationController
   end
   
   def add_crumbs
-    add_crumb params[:role].pluralize, admins_users_path(:role => @role)
+    add_crumb params[:role].pluralize.humanize, admins_users_path(:role => params[:role])
   end
   
 end
