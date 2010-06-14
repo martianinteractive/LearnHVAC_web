@@ -38,6 +38,7 @@ class Admins::MasterScenariosController < Admins::ApplicationController
     if @master_scenario.save
       redirect_to(admins_master_scenario_path(@master_scenario), :notice => 'Scenario was successfully created.')
     else
+      add_crumb "New Scenario", new_admins_master_scenario_path
       render :action => "new"
     end
   end
@@ -48,6 +49,7 @@ class Admins::MasterScenariosController < Admins::ApplicationController
     if @master_scenario.update_attributes(params[:master_scenario])
       redirect_to(admins_master_scenario_path(@master_scenario), :notice => 'Scenario was successfully updated.')
     else
+      add_crumb "Editing #{@master_scenario.name}", edit_admins_master_scenario_path(@master_scenario)
       render :action => "edit"
     end
   end
