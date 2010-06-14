@@ -1,7 +1,7 @@
 %h2= "Edit #{@college.value}"
 %hr
 
-- form_for(@college,:url => admins_college_path(@college), :method => :put) do |f|
+- form_for(@college,:url => admins_educational_entity_path(@college), :method => :put) do |f|
   = render :partial => "form", :locals => { :f => f }
   .actions
     = submit_tag "Update"

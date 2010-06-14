@@ -127,7 +127,7 @@ Learnhvac::Application.routes.draw do |map|
       end
     end
     
-    resources :colleges do
+    resources :educational_entities do
       collection do
         post :search
       end

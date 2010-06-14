@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + "/../../spec_helper"
 
-describe Admins::CollegesController do
+describe Admins::EducationalEntitiesController do
 
   before(:each) do
     @college = Factory(:college, :value => "Massachusetts Institute of Technology")

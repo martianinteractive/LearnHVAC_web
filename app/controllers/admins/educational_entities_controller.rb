@@ -1,4 +1,5 @@
-class Admins::CollegesController < Admins::ApplicationController
+class Admins::EducationalEntitiesController < Admins::ApplicationController
+  add_crumb "Client Versions", "/admins/client_versions"
   
   def index
     @colleges = College.paginate :page => params[:page], :per_page => 50, :order => "value ASC"
@@ -25,7 +26,7 @@ class Admins::CollegesController < Admins::ApplicationController
     @college = College.new(params[:college])
     
     if @college.save
-      redirect_to(admins_college_path(@college), :notice => 'College was successfully created.')
+      redirect_to(admins_educational_entity_path(@college), :notice => 'College was successfully created.')
     else
       render :action => "new"
     end
@@ -35,7 +36,7 @@ class Admins::CollegesController < Admins::ApplicationController
     @college = College.find(params[:id])
     
     if @college.update_attributes(params[:college])
-      redirect_to(admins_college_path(@college), :notice => 'College was successfully updated.')
+      redirect_to(admins_educational_entity_path(@college), :notice => 'College was successfully updated.')
     else
       render :action => "edit"
     end
@@ -45,7 +46,7 @@ class Admins::CollegesController < Admins::ApplicationController
     @college = College.find(params[:id])
     
     @college.destroy
-    redirect_to(admins_colleges_url, :notice => "College was successfully deleted.")
+    redirect_to(admins_educational_entities_url, :notice => "College was successfully deleted.")
   end
 
 end
