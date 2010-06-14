@@ -1,5 +1,5 @@
 class Admins::UsersController < Admins::ApplicationController
-  before_filter :get_role
+  before_filter :get_role, :add_crumbs
   
   
   def index
@@ -19,6 +19,7 @@ class Admins::UsersController < Admins::ApplicationController
   
   def show
     @user = User.find(params[:id])
+    add_crumb @user.name, admins_user_path(@user)
   end
 
   def new
@@ -80,8 +81,8 @@ class Admins::UsersController < Admins::ApplicationController
     @role = User::ROLES[params[:role].to_sym]
   end
   
-  # def add_crumbs
-  #     add_crumb @role, admin_users_path(:role => @role)
-  # end
+  def add_crumbs
+    add_crumb params[:role].pluralize, admins_users_path(:role => @role)
+  end
   
 end
