@@ -34,6 +34,11 @@
   = f.label :tag_list, "Tags"
   = f.text_field :tag_list
   Comma separated.
+  
+- unless @master_scenario.new_record?
+  .field
+    = f.label :changes_notes, "Changes Description"
+    = f.text_area :changes_notes
 
 .actions
   = f.submit
