@@ -15,7 +15,7 @@ class Admins::SystemVariableVersionsController < Admins::ApplicationController
   private
   
   def find_master_scenario_and_version
-    @master_scenario = MasterScenario.find(params[:master_scenario_id])
+    @master_scenario = MasterScenario.for_display(params[:master_scenario_id], :add => :versions)
     @version = @master_scenario.versions.detect { |v| v.version.to_s == params[:revision_id] }
   end
   

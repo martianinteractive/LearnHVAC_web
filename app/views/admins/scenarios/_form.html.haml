@@ -1,7 +1,7 @@
 = f.error_messages
 .field
   = f.label :master_scenario_id, "Master Scenario"  
-  = f.select :master_scenario_id, MasterScenario.all.collect { |ms| [ ms.name.capitalize, ms.id ] }
+  = f.select :master_scenario_id, MasterScenario.only(:name, :id).collect { |ms| [ ms.name.capitalize, ms.id ] }
 
 .field
   = f.label :name
