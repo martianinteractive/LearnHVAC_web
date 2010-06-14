@@ -1,4 +1,5 @@
 class Admins::InstitutionsController < Admins::ApplicationController
+  add_crumb("Institutions") { |instance| instance.send :admins_institutions_path }
   
   def index
     @institutions = Institution.paginate :page => params[:page], :per_page => 25

@@ -12,14 +12,17 @@ class Admins::Settings::EducationalEntitiesController < Admins::Settings::BaseCo
 
   def new
     @college = College.new
+    add_crumb "New Entity", new_admins_settings_educational_entity_path
   end
 
   def show
     @college = College.find(params[:id])
+    add_crumb @college.value, admins_settings_educational_entity_path(@college)
   end
 
   def edit
     @college = College.find(params[:id])
+    add_crumb "Editing #{@college.value}", edit_admins_settings_educational_entity_path(@college)
   end
 
   def create

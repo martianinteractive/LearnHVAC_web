@@ -1,4 +1,5 @@
 class Admins::MasterScenariosController < Admins::ApplicationController 
+   add_crumb("Master Scenarios") { |instance| instance.send :admins_master_scenarios_path }
    
   def index
     @master_scenarios = MasterScenario.for_display.paginate :page => params[:page], :per_page => 25
@@ -10,14 +11,17 @@ class Admins::MasterScenariosController < Admins::ApplicationController
   
   def show
     @master_scenario = MasterScenario.for_display(params[:id])
+    add_crumb @master_scenario.name, admins_master_scenario_path(@master_scenario)
   end
 
   def new
     @master_scenario = MasterScenario.new
+    add_crumb "New Scenario", new_admins_master_scenario_path
   end
 
   def edit
     @master_scenario = MasterScenario.find(params[:id])
+    add_crumb "Editing #{@master_scenario.name}", edit_admins_master_scenario_path(@master_scenario)
   end
   
   def clone
