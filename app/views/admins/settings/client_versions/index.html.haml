@@ -1,6 +1,6 @@
 %h2 Listing Client Versions
 %p
-  = link_to 'Add a new client version', new_admins_client_version_path
+  = link_to 'Add a new client version', new_admins_settings_client_version_path
 %hr
 
 %table
@@ -10,7 +10,7 @@
     %th Release Date
   - @client_versions.each do |version|
     %tr
-      %td= link_to version.version, admins_client_version_path(version)
+      %td= link_to version.version, admins_settings_client_version_path(version)
       / rspec doesn't like link_to version.url 
       %td= link_to version.url, version.url
       %td= version.release_date

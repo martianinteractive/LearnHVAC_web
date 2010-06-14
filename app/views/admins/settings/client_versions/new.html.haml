@@ -1,0 +1,3 @@
+%h2 New Client Version
+- form_for(@client_version, :url => admins_settings_client_versions_path, :method => :post) do |f|
+  = render :partial => "form", :locals => { :f => f }

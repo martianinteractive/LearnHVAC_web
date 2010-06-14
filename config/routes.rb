@@ -91,8 +91,14 @@ Learnhvac::Application.routes.draw do |map|
   namespace :admins do
     resources :institutions
     resources :tags
-    resources :client_versions
-    resources :settings, :only => [:index]
+    resources :settings, :only => [:index] do
+      resources :client_versions
+      resources :educational_entities do
+        collection do
+          post :search
+        end
+      end
+    end
     
     resources :master_scenarios do
       resources :system_variables
@@ -126,12 +132,7 @@ Learnhvac::Application.routes.draw do |map|
         get :observers
       end
     end
-    
-    resources :educational_entities do
-      collection do
-        post :search
-      end
-    end
+  
   end
 
   root :to => 'dashboard#index'

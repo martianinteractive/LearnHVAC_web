@@ -18,6 +18,8 @@
         %li
           = link_to "Dashboard", admins_dashboard_path
           = link_to "Settings", admins_settings_path
+          = link_to "Community Directory", directory_path
+
       %h3 System
       %ul
         %li
@@ -32,14 +34,6 @@
           = link_to "Students", admins_users_path(:role => :student)
           = link_to "Institutions", admins_institutions_path
           = link_to "Groups", admins_groups_path
-      %h3 Client
-      %ul
-        %li
-          = link_to "Versions", admins_client_versions_path
-      %h3 Community
-      %ul
-        %li
-          = link_to "Directory", directory_path
 
     .fluid
       .content

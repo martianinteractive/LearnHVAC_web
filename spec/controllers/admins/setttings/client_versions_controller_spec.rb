@@ -1,6 +1,6 @@
-require File.dirname(__FILE__) + "/../../spec_helper"
+require File.dirname(__FILE__) + "/../../../spec_helper"
 
-describe Admins::ClientVersionsController do
+describe Admins::Settings::ClientVersionsController do
   before(:each) do
     @client_version = Factory(:client_version)
     admins_login
@@ -49,7 +49,7 @@ describe Admins::ClientVersionsController do
       
       it "redirects to the created version" do
         post :create, :client_version => @valid_params
-        response.should redirect_to(admins_client_version_path(assigns(:client_version)))
+        response.should redirect_to(admins_settings_client_version_path(assigns(:client_version)))
       end
     end
   
@@ -70,7 +70,7 @@ describe Admins::ClientVersionsController do
       
       it "redirects to the version" do
         put :update, :id => @client_version.id, :client_version => { }
-        response.should redirect_to(admins_client_version_path(@client_version))
+        response.should redirect_to(admins_settings_client_version_path(@client_version))
       end
     end
     
@@ -89,7 +89,7 @@ describe Admins::ClientVersionsController do
   
     it "redirects to the client versions index" do
       delete :destroy, :id => @client_version.id
-      response.should redirect_to(admins_client_versions_path)
+      response.should redirect_to(admins_setttings_client_versions_path)
     end
   end
   

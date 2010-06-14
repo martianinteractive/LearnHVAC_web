@@ -1,6 +1,6 @@
-require File.dirname(__FILE__) + "/../../spec_helper"
+require File.dirname(__FILE__) + "/../../../spec_helper"
 
-describe Admins::EducationalEntitiesController do
+describe Admins::Settings::EducationalEntitiesController do
 
   before(:each) do
     @college = Factory(:college, :value => "Massachusetts Institute of Technology")
@@ -47,7 +47,7 @@ describe Admins::EducationalEntitiesController do
   
       it "redirects to the created college" do
         post :create, :college => { :value => "EAFIT" }
-        response.should redirect_to(admins_college_url(assigns(:college)))
+        response.should redirect_to(admins_settings_educational_entity_path(assigns(:college)))
       end
     end
   end
@@ -76,7 +76,7 @@ describe Admins::EducationalEntitiesController do
       
       it "redirects to the College" do
         put :update, :id => @college.id, :college => { :value => "EAFIT" }
-        response.should redirect_to(admins_college_url(@college))
+        response.should redirect_to(admins_settings_educational_entity_path(@college))
       end
     end
   end
