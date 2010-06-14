@@ -5,6 +5,7 @@ class MasterScenario
   include Mongoid::Document::Taggable
   field :name
   field :description
+  field :changes_notes
   
   embed_many :system_variables
   
@@ -16,6 +17,7 @@ class MasterScenario
   index :client_version_id
   
   validates_presence_of :name, :user, :client_version
+  validates_presence_of :changes_notes, :if => Proc.new { |ms| ms.changed.delete_if { |c| c == "changes_notes" }.any? }
   
   after_update :notify_change
   
@@ -28,14 +30,10 @@ class MasterScenario
   end
   
   def clone!
-    clon_atts = self.attributes.merge(default_clon_attributes)
-    clon_atts.delete("_id")
+    clon_atts = self.attributes.except("_id").merge(default_clon_attributes)
     clon = MasterScenario.new(clon_atts)
     sys_vars = []
-    self.system_variables.each do |sv| 
-      sys_vars << sv.attributes
-      sys_vars.last.delete("_id")   
-    end
+    self.system_variables.each { |sv| sys_vars << sv.attributes.except("_id") }
     clon.system_variables = sys_vars
     clon.save
     clon

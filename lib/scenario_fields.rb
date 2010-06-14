@@ -4,6 +4,7 @@ module ScenarioFields
     parent.field :short_description
     parent.field :description
     parent.field :goal
+    parent.field :master_scenario_version,         :type => Integer                          
     parent.field :longterm_start_date,             :default => Time.now.beginning_of_year.strftime("%m/%d/%Y")
     parent.field :longterm_stop_date,              :default => Time.now.beginning_of_year.end_of_month.strftime("%m/%d/%Y")
     parent.field :realtime_start_datetime,         :default => (Time.now.beginning_of_year + 14.days).strftime("%m/%d/%Y")
@@ -16,6 +17,8 @@ module ScenarioFields
     parent.field :valve_info_enabled,              :type => Boolean, :default => true
     parent.field :allow_longterm_date_change,      :type => Boolean, :default => false
     parent.field :allow_realtime_datetime_change,  :type => Boolean, :default => false
+    
+    parent.index :master_scenario_version
     
     attr_accessor :realtime_start_date, :realtime_start_hour, :realtime_start_minute, :realtime_meridiem
     

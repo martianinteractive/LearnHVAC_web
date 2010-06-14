@@ -28,12 +28,17 @@
 
 .field
   = f.label :client_version
-  = f.select :client_version_id, ClientVersion.all.collect { |cv| [cv.version, cv.id] }, :prompt => "Please select..."
+  = f.select :client_version_id, ClientVersion.all.collect { |cv| [cv.version, cv.id.to_s] }, :prompt => "Please select..."
 
 .field
   = f.label :tag_list, "Tags"
   = f.text_field :tag_list
   Comma separated.
+  
+- unless @master_scenario.new_record?
+  .field
+    = f.label :changes_notes, "Changes Description"
+    = f.text_area :changes_notes
 
 .actions
   = f.submit
