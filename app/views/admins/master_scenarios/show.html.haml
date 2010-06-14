@@ -27,7 +27,7 @@
 %p
   %b
     Revisions:
-  = @master_scenario.versions.size
+  = @master_scenario.version > 0 ? @master_scenario.version - 1 : 0
 
 %p
   %b

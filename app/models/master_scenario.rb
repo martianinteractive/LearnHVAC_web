@@ -17,9 +17,7 @@ class MasterScenario
   index :client_version_id
   
   validates_presence_of :name, :user, :client_version
-  validates_presence_of :changes_notes, :if => Proc.new { |ms| ms.changed.delete_if { |c| c == "changes_notes" }.any? }
-  
-  after_update :notify_change
+  # validates_presence_of :changes_notes, :if => Proc.new { |ms| !self.new_record and ms.changed.delete_if { |c| c == "changes_notes" }.any? }
   
   #skips embeded documents
   def self.for_display(id_selector=nil, opts={})
@@ -41,10 +39,6 @@ class MasterScenario
     
   def default_clon_attributes
     { "version" => 1, "versions" => nil, "system_variables" => nil, "name" => "#{self.name}_clon" }
-  end
-  
-  def notify_change
-    "I've changed."
   end
   
 end
