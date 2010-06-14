@@ -51,12 +51,7 @@ namespace :bootstrap do
     end
     MasterScenario.all.each do |ms| 
       sys_vars = []
-      @system_variables.values.each do |sv|
-        sys_vars << sv
-      end
-      # Here we resets the versions, 1st save the system_vars, and then reset the versions.
-      ms.update_attributes(:system_variables => sys_vars)
-      ms.update_attributes(:version => 1, :versions => nil)
+      @system_variables.values.each { |sv| ms.system_variables.create(sv) }
     end
   end
   
@@ -66,7 +61,7 @@ namespace :bootstrap do
     File.open(File.join(Rails.root, 'db/bootstrap/scenarios.yml'), 'r') do |f|
       @scenarios = YAML.load(f)
     end
-  @scenarios.values.each {|scene_atts| Scenario.create(scene_atts)  }
+    @scenarios.values.each {|scene_atts| Scenario.create(scene_atts)  }
   end
   
   task :groups => :environment do
@@ -78,4 +73,5 @@ namespace :bootstrap do
     ClientVersion.delete_all
     Fixtures.create_fixtures('db/bootstrap', 'client_versions')
   end
+  
 end
