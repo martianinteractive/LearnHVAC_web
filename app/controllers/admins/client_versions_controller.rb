@@ -1,19 +1,24 @@
 class Admins::ClientVersionsController < Admins::ApplicationController
   
+  add_crumb "Client Versions", "/admins/client_versions"
+  
   def index
     @client_versions = ClientVersion.paginate :page => params[:page], :per_page => 25, :order => "version DESC"
   end
 
   def show
     @client_version = ClientVersion.find(params[:id])
+    add_crumb "Version #{@client_version.version}", admins_client_version_path(@client_version)
   end
   
   def new
     @client_version = ClientVersion.new
+    add_crumb "New Version", new_admins_client_version_path
   end
   
   def edit
     @client_version = ClientVersion.find(params[:id])
+    add_crumb "Edit Version #{@client_version.version}", edit_admins_client_version_path(@client_version)
   end
   
   def create

@@ -1,4 +1,5 @@
-class Admins::CollegesController < Admins::ApplicationController
+class Admins::EducationalEntitiesController < Admins::ApplicationController
+  add_crumb "Client Versions", "/admins/client_versions"
   
   def index
     @colleges = College.paginate :page => params[:page], :per_page => 50, :order => "value ASC"
