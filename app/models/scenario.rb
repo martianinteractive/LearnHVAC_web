@@ -21,6 +21,7 @@ class Scenario
     
   attr_protected :user_id
   
+  before_create :set_master_scenario_version
   after_create :copy_system_variables
   
   def groups
@@ -28,21 +29,32 @@ class Scenario
     Group.find(groups_ids)
   end
   
+  def master_scenario
+    begin
+      ms = MasterScenario.find(self.master_scenario_id)
+      ms_version = self.master_scenario_version
+      (self.new_record? or ms.version == ms_version) ? ms : ms.versions.detect { |v| v.version == ms_version }
+    rescue
+      nil
+    end
+  end
+    
   private
-  
+    
   def longterm_validator
     errors.add(:longterm_start_date, "should be set before the longterm stop date") if longterm_start_date >= longterm_stop_date
     errors.add(:longterm_stop_date, "should be set after the longterm start date") if longterm_stop_date <= longterm_start_date
     errors.add(:realtime_start_date, "should be set between start and stop dates") if (realtime_start_date < longterm_start_date) or (realtime_start_date > longterm_stop_date) 
   end
   
+  def set_master_scenario_version
+    self.master_scenario_version = master_scenario.version
+  end
+  
   def copy_system_variables
     sys_vars = []
     self.master_scenario.system_variables.each do |system_variables|
-      sys_var_attributes = system_variables.attributes
-      sys_var_attributes.delete("_id")
-      sys_var_attributes.delete("_type")
-      sys_vars << sys_var_attributes
+      sys_vars << system_variables.attributes.except("_id", "_type")
     end
     self.scenario_variables = sys_vars
     self.save
