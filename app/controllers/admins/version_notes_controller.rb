@@ -1,4 +1,4 @@
-class Admins::VersionNoteController < Admins::ApplicationController
+class Admins::VersionNotesController < Admins::ApplicationController
   before_filter :find_master_scenario
   
   def new
