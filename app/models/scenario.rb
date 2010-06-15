@@ -7,6 +7,8 @@ class Scenario
   include ActiveModel::Validations
       
   embed_many :scenario_variables
+  embed_many :scenario_alerts
+  
   belongs_to_related :user
   belongs_to_related :master_scenario
   has_many_related :group_scenarios
