@@ -50,7 +50,7 @@ class ApplicationController < ActionController::Base
     when :instructor
       instructors_dashboard_path
     when :manager
-      managers_instructors_path
+      managers_dashboard_path
     when :student
       students_groups_path
     when :guest

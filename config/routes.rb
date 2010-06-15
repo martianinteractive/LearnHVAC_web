@@ -71,6 +71,7 @@ Learnhvac::Application.routes.draw do |map|
   ## Manager Routes.
   namespace :managers do
     resources :instructors
+    resource :dashboard, :only => [:show]
     
     resources :groups do
       resources :memberships

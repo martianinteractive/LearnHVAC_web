@@ -1,0 +1,14 @@
+%h2 Manager Dashboard
+%p This is the manager dashboard of the LearnHVAC website. From here you can view all the instructors associated with your institution, all available instructor scenarios and the groups they are sharing scenarios with.
+%hr
+%table
+  %tr
+    %th 
+    %th All
+    %th Recently Added
+    %th Recently Updated
+  %tr
+    %td Scenarios
+    %td= Scenario.count
+    %td= Scenario.recently_created.count
+    %td= Scenario.recently_updated.count
