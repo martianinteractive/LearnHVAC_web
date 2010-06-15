@@ -17,9 +17,10 @@ class Scenario
   validates_format_of :longterm_start_date, :longterm_stop_date, :realtime_start_date, :with => /\d{2}\/\d{2}\/\d{4}/, :message => "is invalid"
   validate :longterm_validator
 
-  named_scope :recently_created, criteria.where(:created_at.gt => (Time.now + 30.days))
-  named_scope :recently_updated, criteria.where(:updated_at.gt => (Time.now + 30.days))
-  named_scope :public, criteria.where(:public => true)
+  named_scope :recently_created, where(:created_at.gt => (Time.now + 30.days))
+  named_scope :recently_updated, where(:updated_at.gt => (Time.now + 30.days))
+  named_scope :public, where(:public => true)
+  named_scope :with_unread_alerts, where("scenario_alerts.read" => false)
     
   attr_protected :user_id
   

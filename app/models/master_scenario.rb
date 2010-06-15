@@ -17,9 +17,7 @@ class MasterScenario
   index :client_version_id
   
   validates_presence_of :name, :user, :client_version
-  
-  after_save :alert_scenarios
-  
+    
   #skips embeded documents
   def self.for_display(id_selector=nil, opts={})
     f = fields.keys
@@ -43,10 +41,6 @@ class MasterScenario
     { "version" => 1, "versions" => nil, "system_variables" => nil, "name" => "#{self.name}_clon" }
   end
   
-  private
-  
-  def alert_scenarios
-    self.scenarios.each { |s| s.scenario_alerts.create(:master_scenario_version => self.version, :description => self.changes_notes) }
-  end
+
   
 end

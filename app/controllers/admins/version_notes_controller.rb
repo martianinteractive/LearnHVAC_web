@@ -17,7 +17,7 @@ class Admins::VersionNotesController < Admins::ApplicationController
     end
   end
   
-  private 
+  private
   
   def find_master_scenario
     @master_scenario = MasterScenario.for_display(params[:master_scenario_id])
