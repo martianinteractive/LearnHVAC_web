@@ -1,2 +1,0 @@
-module Admin::VersionNoteHelper
-end
