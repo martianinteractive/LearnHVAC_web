@@ -1,11 +1,13 @@
 class Instructors::ScenariosController < Instructors::ApplicationController
   before_filter :find_scenario, :only => [:show, :edit, :observers, :update, :destroy]
+  add_crumb("Scenarios") { |instance| instance.send :instructors_scenarios_path }
   
   def index
     @scenarios = current_user.scenarios.paginate :page => params[:page], :per_page => 25
   end
 
   def show
+    add_crumb @scenario.name, instructors_scenario_path(@scenario)
   end
   
   def observers
@@ -13,9 +15,11 @@ class Instructors::ScenariosController < Instructors::ApplicationController
 
   def new
     @scenario = Scenario.new
+    add_crumb "New Scenario", new_instructors_scenario_path
   end
 
   def edit
+    add_crumb "Editing #{@scenario.name}", edit_instructors_scenario_path(@scenario)
   end
   
   def create
@@ -26,6 +30,7 @@ class Instructors::ScenariosController < Instructors::ApplicationController
       redirect_to instructors_scenario_path(@scenario), :notice => 'Scenario was successfully created.'
     else
       render :action => "new"
+      add_crumb "New Scenario", new_instructors_scenario_path
     end
   end
 
@@ -34,6 +39,7 @@ class Instructors::ScenariosController < Instructors::ApplicationController
       redirect_to instructors_scenario_path(@scenario), :notice => 'Scenario was successfully updated.'
     else
       render :action => "edit"
+      add_crumb "Editing #{@scenario.name}", edit_instructors_scenario_path(@scenario)
     end
   end
 
