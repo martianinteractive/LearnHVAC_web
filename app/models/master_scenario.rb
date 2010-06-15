@@ -7,7 +7,7 @@ class MasterScenario
   field :description
   
   embed_many :system_variables
-  embed_many :version_notes
+  embed_one :version_note
   
   has_many_related :scenarios
   belongs_to_related :user

@@ -5,7 +5,7 @@ class VersionNote
   field :master_scenario_version
   field :description
   
-  embedded_in :master_scenario, :inverse_of => :version_notes
+  embedded_in :master_scenario, :inverse_of => :version_note
   
   validates_presence_of :master_scenario_version
 end
