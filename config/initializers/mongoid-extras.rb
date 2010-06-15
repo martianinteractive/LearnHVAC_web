@@ -1,2 +1,2 @@
-require 'mongoid_protected_attributes'
-require 'mongoid_taggable'
+require 'mongoid-ext/mongoid_protected_attributes'
+require 'mongoid-ext/mongoid_taggable'
