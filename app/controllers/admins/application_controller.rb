@@ -4,5 +4,4 @@ class Admins::ApplicationController < ApplicationController
   
   add_crumb "Dashboard", '/admins/dashboard'
   
-  
 end
