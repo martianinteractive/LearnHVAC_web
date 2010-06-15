@@ -1,18 +1,22 @@
 class Instructors::GroupsController < Instructors::ApplicationController
   before_filter :find_group, :only => [:show, :edit, :update, :destroy]
+  add_crumb("Groups") { |instance| instance.send :instructors_groups_path }
   
   def index
     @groups = current_user.managed_groups.paginate :page => params[:page], :per_page => 25
   end
 
   def show
+    add_crumb @group.name, instructors_group_path(@group)
   end
 
   def new
     @group = current_user.managed_groups.build
+    add_crumb "New Group", new_instructors_group_path
   end
 
   def edit
+    add_crumb "Editing #{@group.name}", edit_instructors_group_path
   end
 
   def create
@@ -23,6 +27,7 @@ class Instructors::GroupsController < Instructors::ApplicationController
       redirect_to(instructors_group_path(@group), :notice => 'Group was successfully created.')
     else
       render :action => "new"
+      add_crumb "New Group", new_instructors_group_path
     end
   end
 
@@ -33,6 +38,7 @@ class Instructors::GroupsController < Instructors::ApplicationController
       redirect_to(instructors_group_path(@group), :notice => 'Group was successfully updated.')
     else
       render :action => "edit"
+      add_crumb "Editing #{@group.name}", edit_instructors_group_path
     end
   end
 

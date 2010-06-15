@@ -5,12 +5,12 @@ xml.scenario do
   xml.goal({:type => "String"}, @scenario.goal)
   xml.level({:type => "Integer"}, @scenario.level)
   xml.client do
-    xml.version @scenario.master_scenario.client_version.version
-    xml.url @scenario.master_scenario.client_version.url
-    xml.release_date @scenario.master_scenario.client_version.release_date
+    xml.version({:type => "String"}, @scenario.master_scenario.client_version.version)
+    xml.url({:type => "String"}, @scenario.master_scenario.client_version.url)
+    xml.release_date({:type => "Date"}, @scenario.master_scenario.client_version.release_date)
   end
-  xml.shortDescription({:type => "string"}, @scenario.short_description)
-  xml.description({:type => "string"}, @scenario.description)
+  xml.shortDescription({:type => "String"}, @scenario.short_description)
+  xml.description({:type => "String"}, @scenario.description)
   xml.valveInfoEnabled({:type => "Boolean"}, @scenario.valve_info_enabled)
   xml.faultsEnabled({:type => "Boolean"}, @scenario.faults_enabled)
   xml.allowRealTimeDateTimeChange({:type => "Boolean"}, @scenario.allow_realtime_datetime_change)
