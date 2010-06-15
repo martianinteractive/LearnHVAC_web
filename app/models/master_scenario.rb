@@ -17,7 +17,7 @@ class MasterScenario
   index :client_version_id
   
   validates_presence_of :name, :user, :client_version
-  # validates_presence_of :changes_notes, :if => Proc.new { |ms| !self.new_record and ms.changed.delete_if { |c| c == "changes_notes" }.any? }
+  validates_presence_of :changes_notes, :if => Proc.new { |ms| !self.new_record and ms.changed.delete_if { |c| c == "changes_notes" }.any? }
   
   #skips embeded documents
   def self.for_display(id_selector=nil, opts={})
