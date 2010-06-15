@@ -52,12 +52,8 @@ class Scenario
   end
   
   def copy_system_variables
-    sys_vars = []
-    self.master_scenario.system_variables.each do |system_variables|
-      sys_vars << system_variables.attributes.except("_id", "_type")
+    self.master_scenario.system_variables.each do |sv|
+      self.scenario_variables.create sv.attributes.except("_id", "_type")
     end
-    self.scenario_variables = sys_vars
-    self.save
   end
-  
 end
