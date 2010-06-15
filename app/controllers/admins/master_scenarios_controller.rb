@@ -1,5 +1,7 @@
 class Admins::MasterScenariosController < Admins::ApplicationController 
-   add_crumb("Master Scenarios") { |instance| instance.send :admins_master_scenarios_path }
+  before_filter :find_master_scenario, :only => [:show, :edit, :clone, :update, :destroy]
+  before_filter :check_version_notes, :only => [:show, :edit, :update]
+  add_crumb("Master Scenarios") { |instance| instance.send :admins_master_scenarios_path }
    
   def index
     @master_scenarios = MasterScenario.for_display.paginate :page => params[:page], :per_page => 25
@@ -10,7 +12,6 @@ class Admins::MasterScenariosController < Admins::ApplicationController
   end
   
   def show
-    @master_scenario = MasterScenario.for_display(params[:id])
     add_crumb @master_scenario.name, admins_master_scenario_path(@master_scenario)
   end
 
@@ -20,12 +21,10 @@ class Admins::MasterScenariosController < Admins::ApplicationController
   end
 
   def edit
-    @master_scenario = MasterScenario.find(params[:id])
     add_crumb "Editing #{@master_scenario.name}", edit_admins_master_scenario_path(@master_scenario)
   end
   
   def clone
-    @master_scenario = MasterScenario.find(params[:id])
     clon = @master_scenario.clone!(current_user)
     notice = clon.valid? ? "Master Scenario was successfully cloned" : "There were problems cloning the Master Scenario"
     redirect_to(admins_master_scenarios_path, :notice => notice)
@@ -44,8 +43,6 @@ class Admins::MasterScenariosController < Admins::ApplicationController
   end
 
   def update
-    @master_scenario = MasterScenario.find(params[:id])
-    
     if @master_scenario.update_attributes(params[:master_scenario])
       redirect_to(new_admins_master_scenario_version_note_path(@master_scenario), :notice => 'Scenario was successfully updated.')
     else
@@ -55,10 +52,18 @@ class Admins::MasterScenariosController < Admins::ApplicationController
   end
 
   def destroy
-    @master_scenario = MasterScenario.find(params[:id])
-    
     @master_scenario.destroy
     redirect_to(admins_master_scenarios_url)
+  end
+  
+  private
+  
+  def find_master_scenario
+    @master_scenario = MasterScenario.for_display(params[:id], :add => :version_note)
+  end
+  
+  def check_version_notes
+    redirect_to(new_admins_master_scenario_version_note_path(@master_scenario)) unless @master_scenario.version_note
   end
   
 end
