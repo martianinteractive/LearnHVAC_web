@@ -24,21 +24,15 @@
         %ul
           %li
             = link_to "Scenarios", instructors_scenarios_path
-        %h3 Users/Groups
-        %ul
-          %li
             = link_to "Groups", instructors_groups_path
-        %h3 Client
-        %ul
-          %li
-            = link_to "Versions", instructors_client_versions_path
-        %h3 Community
-        %ul
-          %li
-            = link_to "Directory", directory_path
+            = link_to "Client Versions", instructors_client_versions_path
+            = link_to "Community Directory", directory_path
+
+
 
     .fluid
       .content
+        = render_crumbs.html_safe
         = display_flash
         = yield
         = render :partial => "layouts/connection" if @show_connection

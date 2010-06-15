@@ -39,6 +39,5 @@
       .content
         = render_crumbs.html_safe
         = display_flash
-		
         = yield
         = render :partial => "layouts/connection" if @show_connection
