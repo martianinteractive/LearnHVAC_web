@@ -19,6 +19,8 @@ class MasterScenario
   validates_presence_of :name, :user, :client_version
   validates_presence_of :changes_notes, :if => Proc.new { |ms| !self.new_record and ms.changed.delete_if { |c| c == "changes_notes" }.any? }
   
+  after_save :alert_scenarios
+  
   #skips embeded documents
   def self.for_display(id_selector=nil, opts={})
     f = fields.keys
@@ -40,6 +42,12 @@ class MasterScenario
     
   def default_clon_attributes
     { "version" => 1, "versions" => nil, "system_variables" => nil, "name" => "#{self.name}_clon" }
+  end
+  
+  private
+  
+  def alert_scenarios
+    self.scenarios.each { |s| s.scenario_alerts.create(:master_scenario_version => self.version, :description => self.changes_notes) }
   end
   
 end
