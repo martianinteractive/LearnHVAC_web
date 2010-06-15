@@ -4,6 +4,11 @@ xml.scenario do
   xml.name({:type => "String"}, @scenario.name)
   xml.goal({:type => "String"}, @scenario.goal)
   xml.level({:type => "Integer"}, @scenario.level)
+  xml.client do
+    xml.version @scenario.master_scenario.client_version.version
+    xml.url @scenario.master_scenario.client_version.url
+    xml.release_date @scenario.master_scenario.client_version.release_date
+  end
   xml.shortDescription({:type => "string"}, @scenario.short_description)
   xml.description({:type => "string"}, @scenario.description)
   xml.valveInfoEnabled({:type => "Boolean"}, @scenario.valve_info_enabled)
