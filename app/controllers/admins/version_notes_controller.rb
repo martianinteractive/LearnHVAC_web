@@ -2,6 +2,7 @@ class Admins::VersionNotesController < Admins::ApplicationController
   before_filter :find_master_scenario
   
   def new
+    add_crumb @master_scenario.name, admins_master_scenario_path(@master_scenario)
     @version_note = VersionNote.new
   end
   
