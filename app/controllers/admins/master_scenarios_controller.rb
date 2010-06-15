@@ -36,7 +36,7 @@ class Admins::MasterScenariosController < Admins::ApplicationController
     @master_scenario.user = current_user
     
     if @master_scenario.save
-      redirect_to(admins_master_scenario_path(@master_scenario), :notice => 'Scenario was successfully created.')
+      redirect_to(new_admins_master_scenario_version_note_path(@master_scenario), :notice => 'Scenario was successfully created.')
     else
       add_crumb "New Scenario", new_admins_master_scenario_path
       render :action => "new"
@@ -47,7 +47,7 @@ class Admins::MasterScenariosController < Admins::ApplicationController
     @master_scenario = MasterScenario.find(params[:id])
     
     if @master_scenario.update_attributes(params[:master_scenario])
-      redirect_to(admins_master_scenario_path(@master_scenario), :notice => 'Scenario was successfully updated.')
+      redirect_to(new_admins_master_scenario_version_note_path(@master_scenario), :notice => 'Scenario was successfully updated.')
     else
       add_crumb "Editing #{@master_scenario.name}", edit_admins_master_scenario_path(@master_scenario)
       render :action => "edit"

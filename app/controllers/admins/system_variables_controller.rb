@@ -24,7 +24,7 @@ class Admins::SystemVariablesController < Admins::ApplicationController
     @system_variable.master_scenario = @master_scenario
     
     if @system_variable.save
-      redirect_to(admins_master_scenario_system_variable_path(@master_scenario, @system_variable), :notice => 'System Variable was successfully created.')
+      redirect_to(new_admins_master_scenario_version_note_path(@master_scenario), :notice => 'System Variable was successfully created.')
     else
       render :action => :new
     end
@@ -32,7 +32,7 @@ class Admins::SystemVariablesController < Admins::ApplicationController
 
   def update
     if @system_variable.update_attributes(params[:system_variable])
-      redirect_to(admins_master_scenario_system_variable_path(@master_scenario, @system_variable), :notice => 'System Variable was successfully created.')
+      redirect_to(new_admins_master_scenario_version_note_path(@master_scenario), :notice => 'System Variable was successfully created.')
     else
       render :action => :edit
     end

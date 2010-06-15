@@ -1,0 +1,13 @@
+%h2 Version Note
+%p Please enter a brief description of the changes you've just entered.
+
+- form_for (@version_note, :url => admins_master_scenario_version_note(@master_scenario), :method => :post) do |f|
+  = f.error_messages
+  
+  .field
+    = f.label :description
+    = f.text_area :description
+
+  .actions
+    = f.submit
+    &nbsp;or&nbsp;
