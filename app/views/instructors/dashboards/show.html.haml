@@ -30,7 +30,7 @@
       - scenario.scenario_alerts.unread.limit(5).each do |alert|
         %tr
           %td= scenario.name
-          %td= alert.master_scenario.name
+          %td= alert.master_scenario.try(:name)
           %td= alert.description
           %td= alert.created_at.to_s(:db)
           %td= link_to "close", instructors_scenario_alert_path(scenario, alert), :method => :put
