@@ -39,10 +39,10 @@ xml.scenario do
                 xml.unitSI({:type => "String"}, variable.unit_si)
                 xml.SItoIP({:type => "String"}, variable.si_to_ip)
                 xml.unitIP({:type => "String"}, variable.unit_ip)
-                xml.disabled({:type => "Boolean"}, variable.disable)
                 xml.isFault({:type => "Boolean"}, variable.is_fault)
                 if variable.is_fault
                   xml.faultWidgetType({:type => "String"}, variable.fault_widget_type)
+                  xml.disabled({:type => "Boolean"}, variable.disabled)
                   xml.subsection({:type => "String"}, variable.subsection)
                   xml.leftLabel({:type => "String"}, variable.left_label)
                   xml.rightLabel({:type => "String"}, variable.right_label)

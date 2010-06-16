@@ -51,32 +51,38 @@
   = f.label :notes  
   = f.text_area :notes
 
-%p Fault Information
+%fieldset
+  %legend
+    Fault Information
 
-.field
-  = f.label :is_fault
-  = f.check_box :is_fault
+  .field
+    = f.label :is_fault
+    = f.check_box :is_fault
 
-.field
-  = f.label :fault_widget_type  
-  = f.text_field :fault_widget_type
+  .field
+    = f.label :fault_widget_type  
+    = f.text_field :fault_widget_type
 
-.field
-  = f.label :subsection  
-  = f.text_field :subsection
+  .field
+    = f.label :disabled
+    = f.check_box :disabled
 
-.field
-  = f.label :left_label  
-  = f.text_field :left_label
+  .field
+    = f.label :subsection  
+    = f.text_field :subsection
 
-.field
-  = f.label :right_label  
-  = f.text_field :right_label
+  .field
+    = f.label :left_label  
+    = f.text_field :left_label
 
-.field
-  = f.label :zone_position  
-  = f.text_field :zone_position
+  .field
+    = f.label :right_label  
+    = f.text_field :right_label
 
-.field
-  = f.label :is_percentage  
-  = f.check_box :is_percentage
+  .field
+    = f.label :zone_position  
+    = f.text_field :zone_position
+
+  .field
+    = f.label :is_percentage  
+    = f.check_box :is_percentage

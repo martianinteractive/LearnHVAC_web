@@ -13,21 +13,21 @@
     %td= Scenario.recently_created.count
     %td= Scenario.recently_updated.count
     
-- if @unreviewed_scenarios.any?
-  %hr
-  %h2 Notifications
-  %p The master scenario for some of your scenarios have been changed.
-  
-  %table
-    %tr
-      %th Scenario
-      %th Master Scenario
-      %th Changes Description
-      %th Changes Date
-    - @unreviewed_scenarios.each do |scenario|
-      - scenario.scenario_alerts.unread.each do |alert|
-        %tr
-          %td= scenario.name
-          %td= alert.master_scenario.name
-          %td= alert.description
-          %td= alert.created_at.to_s(:db)
+/ - if @unreviewed_scenarios.any?
+/   %hr
+/   %h2 Notifications
+/   %p The master scenario for some of your scenarios have been changed.
+/   
+/   %table
+/     %tr
+/       %th Scenario
+/       %th Master Scenario
+/       %th Changes Description
+/       %th Changes Date
+/     - @unreviewed_scenarios.each do |scenario|
+/       - scenario.scenario_alerts.unread.each do |alert|
+/         %tr
+/           %td= scenario.name
+/           %td= alert.master_scenario.name
+/           %td= alert.description
+/           %td= alert.created_at.to_s(:db)

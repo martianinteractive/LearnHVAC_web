@@ -44,6 +44,14 @@ class Admins::SystemVariablesController < Admins::ApplicationController
     redirect_to(admins_master_scenario_system_variables_path(@master_scenario))
   end
   
+  def yaml_dump
+    @vars = {}
+    @master_scenario.system_variables.each do |var|
+      @vars[var.name.to_s] = var.attributes
+    end
+    @vars
+  end
+  
   private
   
   def add_crumbs
@@ -63,4 +71,5 @@ class Admins::SystemVariablesController < Admins::ApplicationController
   def find_system_variable
     @system_variable = @master_scenario.system_variables.find(params[:id])
   end
+  
 end
