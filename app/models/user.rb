@@ -52,6 +52,14 @@ class User < ActiveRecord::Base
     self.institution = Institution.find_or_create_by_name(name)
   end
   
+  def unread_scenario_alerts
+    alerts = []
+    scenarios.with_unread_alerts.order_by("created_at DESC").each do |scenario|
+      alerts << scenario.scenario_alerts.unread
+    end
+    alerts.flatten
+  end
+  
   def deliver_password_reset_instructions!  
     reset_perishable_token!  
     Notifier.password_reset_instructions(self).deliver

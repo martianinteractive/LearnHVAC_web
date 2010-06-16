@@ -1,0 +1,2 @@
+module Instructors::AlertsHelper
+end

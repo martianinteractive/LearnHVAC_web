@@ -45,6 +45,7 @@ Learnhvac::Application.routes.draw do |map|
     resource :dashboard, :only => [:show]
     resources :client_versions
     resources :scenarios do
+      resources :alerts, :only => [:index, :show, :update]
       resources :variables
       member do
         get :observers
