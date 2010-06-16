@@ -32,7 +32,7 @@ class Admins::SystemVariablesController < Admins::ApplicationController
 
   def update
     if @system_variable.update_attributes(params[:system_variable])
-      redirect_to(new_admins_master_scenario_version_note_path(@master_scenario), :notice => 'System Variable was successfully created.')
+      redirect_to(new_admins_master_scenario_version_note_path(@master_scenario), :notice => 'System Variable was successfully updated.')
     else
       render :action => :edit
     end
