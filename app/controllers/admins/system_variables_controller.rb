@@ -3,6 +3,7 @@ class Admins::SystemVariablesController < Admins::ApplicationController
   include SortHelper
   before_filter :find_master_scenario, :add_crumbs
   before_filter :find_system_variable, :only => [:show, :edit, :update]
+  before_filter :check_version_notes, :only => [:show, :edit, :update]
   before_filter :initialize_variables_sort, :only => [:index]
   
   def index
@@ -53,6 +54,10 @@ class Admins::SystemVariablesController < Admins::ApplicationController
   
   def find_master_scenario
     @master_scenario = MasterScenario.find(params[:master_scenario_id])
+  end
+  
+  def check_version_notes
+    redirect_to(new_admins_master_scenario_version_note_path(@master_scenario)) unless @master_scenario.version_note
   end
   
   def find_system_variable
