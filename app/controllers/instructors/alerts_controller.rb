@@ -5,8 +5,7 @@ class Instructors::AlertsController < Instructors::ApplicationController
   end
   
   def update
-    @scenario = Scenario.with_unread_alerts.criteria.id(params[:scenario_id]).first
-    @alert = @scenario.scenario_alerts.unread.criteria.id(params[:id]).first
+    @alert = current_user.unread_scenario_alerts.detect { |a| a.id = params[:id] }
     @alert.update_attributes(:read => true)
     redirect_to :back
   end
