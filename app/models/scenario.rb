@@ -11,6 +11,7 @@ class Scenario
   
   belongs_to_related :user
   belongs_to_related :master_scenario
+  belongs_to_related :client_version
   has_many_related :group_scenarios
   
   validates_presence_of :name, :master_scenario_id, :user, :longterm_start_date, :longterm_stop_date, :realtime_start_date
@@ -24,7 +25,7 @@ class Scenario
     
   attr_protected :user_id
   
-  before_create :set_master_scenario_version
+  before_create :copy_master_scenario_attributes
   after_create :copy_system_variables
   
   def groups
@@ -50,8 +51,10 @@ class Scenario
     errors.add(:realtime_start_date, "should be set between start and stop dates") if (realtime_start_date < longterm_start_date) or (realtime_start_date > longterm_stop_date) 
   end
   
-  def set_master_scenario_version
+  def copy_master_scenario_attributes
     self.master_scenario_version = master_scenario.version
+    self.master_scenario_name = master_scenario.name
+    self.client_version_id = master_scenario.client_version.id
   end
   
   def copy_system_variables
