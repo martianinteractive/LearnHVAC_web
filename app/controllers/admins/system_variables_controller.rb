@@ -47,7 +47,7 @@ class Admins::SystemVariablesController < Admins::ApplicationController
   def yaml_dump
     @vars = {}
     @master_scenario.system_variables.each do |var|
-      @vars[var.name.to_s] = var.attributes.except("_id")
+      @vars[var.name.to_s] = var.attributes.except("_id").to_hash
     end
     @vars
   end
