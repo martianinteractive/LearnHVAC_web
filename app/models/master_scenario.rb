@@ -17,6 +17,9 @@ class MasterScenario
   index :client_version_id
   
   validates_presence_of :name, :user, :client_version
+  
+  before_save :delete_version_note
+  after_create :create_initial_version_note
     
   #skips embeded documents
   def self.for_display(id_selector=nil, opts={})
@@ -40,5 +43,15 @@ class MasterScenario
   def default_clon_attributes
     { "version" => 1, "versions" => nil, "system_variables" => nil, "name" => "#{self.name}_clon" }
   end
-    
+  
+  private
+  
+  def delete_version_note
+    self.version_note = nil if self.version_note and self.version_note.master_scenario_version != self.version
+  end
+  
+  def create_initial_version_note
+    self.create_version_note(:master_scenario_version => self.version, :description => "#{self.name} has been created.")
+  end
+  
 end

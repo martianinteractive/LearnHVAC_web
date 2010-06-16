@@ -2,10 +2,10 @@ class ScenarioAlert
   include Mongoid::Document
   include Mongoid::Timestamps
     
-  field :master_scenario_version
   field :description
-  field :master_scenario_id,  :type => Integer
-  field :read,                :type => Boolean, :default => false
+  field :master_scenario_version, :type => Integer
+  field :master_scenario_id,      :type => Integer
+  field :read,                    :type => Boolean, :default => false
   
   embedded_in :scenario, :inverse_of => :scenario_alerts
   

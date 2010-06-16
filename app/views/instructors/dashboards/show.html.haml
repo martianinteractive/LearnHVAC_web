@@ -28,6 +28,6 @@
       - scenario.scenario_alerts.unread.each do |alert|
         %tr
           %td= scenario.name
-          %td
+          %td= alert.master_scenario.name
           %td= alert.description
           %td= alert.created_at.to_s(:db)
