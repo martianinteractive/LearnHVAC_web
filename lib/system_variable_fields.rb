@@ -39,7 +39,7 @@ module SystemVariableFields
     
     parent.validates_presence_of :name, :display_name, :low_value, :initial_value, :high_value
     parent.validates_numericality_of :low_value, :initial_value, :high_value
-    # parent.validates :io_type, :inclusion => { :in => IO_TYPES }
+    parent.validates :io_type, :inclusion => { :in => IO_TYPES }
     
     parent.send :include, SysVarMethods
   end
