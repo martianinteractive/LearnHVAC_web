@@ -1,24 +1,8 @@
-winter_day_chicago:
+uber_master_scenario:
   _id : "1"
-  client_version_id: 4
-  name: Winter Day in Chicago - Modelic Model
-  description: This is a basic scenario for checking how the system responds to winter heating conditions.
-  user_id: "1"
-  tags: ["winter", "chicago", "day"]
-  
-summer_day_in_phoenix:
-  _id: "2"
-  client_version_id: 4
-  name: "Summer Day in Phoenix - Modelic Model"
-  description: "This is a basic scenario for checking how the system responds to summer cooling conditions."
+  client_version_id: 1
+  name: Uber-Master Scenario
+  description: "This scenario has all the variables from the latest development of Learn HVAC. Once development is finished, other scenarios can be successfully cloned from it."
   user_id: "2"
   tags: ["summer", "phoenix", "day"]
-  
-spring_day_in_dc:
-  _id: "3"
-  client_version_id: 3
-  name: "Spring Day in DC - Modelic Model"
-  description: "This is a basic scenario for checking how the system responds to springtime temperate conditions."
-  user_id: "3"
-  tags: ["spring", "day"]
   
