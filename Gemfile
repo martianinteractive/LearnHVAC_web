@@ -12,7 +12,6 @@ gem "addressable", "2.1.1"
 
 group :test do
   gem "rspec-rails", ">= 2.0.0.beta.8"
-  gem "factory_girl_rails"
   gem "mocha"
 end
 
