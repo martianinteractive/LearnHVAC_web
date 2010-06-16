@@ -59,11 +59,7 @@ class Admins::MasterScenariosController < Admins::ApplicationController
   private
   
   def find_master_scenario
-    if params[:action] == "update"
-      @master_scenario = MasterScenario.find(params[:id])
-    else
-      @master_scenario = MasterScenario.for_display(params[:id], :add => :version_note)
-    end
+    @master_scenario = MasterScenario.find(params[:id])
   end
   
   def check_version_notes
