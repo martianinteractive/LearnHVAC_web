@@ -30,7 +30,7 @@
 %p
   %b
     Client version:
-  = link_to @scenario.client_version.version, @scenario.client_version.url
+  = link_to @scenario.client_version.version, @scenario.client_version.url if @scenario.client_version
 
 %p
   %b

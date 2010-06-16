@@ -105,7 +105,11 @@ Learnhvac::Application.routes.draw do |map|
     
     resources :master_scenarios do
       resource :version_note, :only => [:new, :create]
-      resources :system_variables
+      resources :system_variables do
+        collection do
+          get :yaml_dump
+        end
+      end
       resources :revisions do
         resources :variables, :controller => "system_variable_versions"
       end  
