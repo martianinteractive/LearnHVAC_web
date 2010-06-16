@@ -40,7 +40,5 @@ class MasterScenario
   def default_clon_attributes
     { "version" => 1, "versions" => nil, "system_variables" => nil, "name" => "#{self.name}_clon" }
   end
-  
-
-  
+    
 end
