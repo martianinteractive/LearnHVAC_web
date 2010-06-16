@@ -1,5 +1,4 @@
 ENV["RAILS_ENV"] = "test"
-require 'factory_girl'
 require 'ruby-debug'
 
 Learnhvac::Application.configure do
