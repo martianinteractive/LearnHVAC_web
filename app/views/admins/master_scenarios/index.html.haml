@@ -1,29 +1,27 @@
-%h2 Master Scenarios
-%p= link_to 'New Master Scenario', new_admins_master_scenario_path
 %h4 Tags
 %p 
   - for tag in MasterScenario.tags do
     = link_to tag, master_scenarios_tag_path(tag)
 
-%hr
+#tabs
+  %ul
+    %li.ui-tabs-selected= link_to "Master Scenarios", admins_master_scenarios_path
+    %li= link_to 'New Master Scenario', new_admins_master_scenario_path
 
-%table
-  %tr
-    %th Name
-    %th Author
-    %th Client Version
-    %th Revisions
-    %th
-  - @master_scenarios.each do |master_scenario|
-    %tr
-      %td= link_to master_scenario.name, admins_master_scenario_path(master_scenario)
-      %td= master_scenario.user.name
-      %td= link_to master_scenario.client_version.version, admins_settings_client_version_path(master_scenario.client_version_id)
-      %td= master_scenario.version > 0 ? master_scenario.version - 1 : 0
-      %td 
-        = link_to "Clone", clone_admins_master_scenario_path(master_scenario), :method => :post
-        &nbsp;|&nbsp;
-        = link_to "System vars.", admins_master_scenario_system_variables_path(master_scenario)
-%br
-= will_paginate @master_scenarios
-
+  %br
+  %table.listing
+    %thead
+      %tr
+        %th Name
+        %th Author
+        %th Client Version
+        %th Revisions
+    - @master_scenarios.each do |master_scenario|
+      %tr
+        %td= link_to master_scenario.name, admins_master_scenario_path(master_scenario)
+        %td= master_scenario.user.name
+        %td= link_to master_scenario.client_version.version, admins_settings_client_version_path(master_scenario.client_version_id)
+        %td= master_scenario.version > 0 ? master_scenario.version - 1 : 0
+        
+  %br
+  = will_paginate @master_scenarios
