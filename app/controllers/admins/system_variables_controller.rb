@@ -65,7 +65,11 @@ class Admins::SystemVariablesController < Admins::ApplicationController
   end
   
   def find_master_scenario
-    @master_scenario = MasterScenario.for_display(params[:master_scenario_id], :add => [:system_variables, :version_note])
+    if params[:action] =! "update"
+      @master_scenario = MasterScenario.for_display(params[:master_scenario_id], :add => [:system_variables, :version_note])
+    else
+      @master_scenario = MasterScenario.find(params[:master_scenario_id])
+    end
   end
   
   def check_version_notes
