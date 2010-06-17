@@ -24,8 +24,8 @@ class MasterScenario
   #skips embeded documents
   def self.for_display(id_selector=nil, opts={})
     f = fields.keys
-    f << opts[:add] if opts[:add]
-    _only = criteria.only(f)
+    opts[:add].is_a?(Array) ? opts[:add].each { |field| f << field } : f << opts[:add]
+    _only = criteria.only(f.compact)
     id_selector ? _only.id(id_selector).first : _only
   end
   
