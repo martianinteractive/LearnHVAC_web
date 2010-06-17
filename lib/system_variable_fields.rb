@@ -28,7 +28,8 @@ module SystemVariableFields
     parent.field :initial_value,   :type => Float,     :default => 0.0
     parent.field :is_fault,        :type => Boolean,   :default => false
     parent.field :is_percentage,   :type => Boolean,   :default => false
-    parent.field :disabled,        :type => Boolean,   :default => true
+    parent.field :disabled,        :type => Boolean,   :default => false
+    parent.field :fault_is_active, :type => Boolean,   :default => false
 
     parent.index :component_code
     parent.index :name

@@ -23,6 +23,10 @@
   = f.text_field :index
 
 .field
+  = f.label :disabled
+  = f.check_box :disabled
+
+.field
   = f.label :unit_si
   = f.text_field :unit_si
 
@@ -57,12 +61,12 @@
   = f.check_box :is_fault
 
 .field
-  = f.label :fault_widget_type
-  = f.text_field :fault_widget_type
+  = f.label :fault_is_active, "Fault active?"
+  = f.check_box :fault_is_active
 
 .field
-  = f.label :disabled
-  = f.check_box :disabled
+  = f.label :fault_widget_type
+  = f.text_field :fault_widget_type
 
 .field
   = f.label :subsection
