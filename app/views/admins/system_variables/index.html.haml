@@ -10,22 +10,25 @@
       %tr
         = sort_header_tag('index', :title => 'Index')
         = sort_header_tag('component_code', :title => 'Component')
-        %th Fault
         = sort_header_tag('name', :title => 'Name')
         = sort_header_tag('io_type', :title => 'Type')
         %th Low
         %th Initial
         %th High
+        %th 
     - @system_variables.each do |system_variable|
       %tr
         %td= system_variable.index
         %td= system_variable.component
-        %td= system_variable.is_fault ? "Yes" : "No"
         %td= link_to system_variable.name, admins_master_scenario_system_variable_path(@master_scenario, system_variable)
         %td= system_variable.io_type.to_s.upcase
         %td= system_variable.low_value
         %td= system_variable.initial_value
         %td= system_variable.high_value
+        %td
+          = link_to image_tag("edit.gif"), edit_admins_master_scenario_system_variable_path(@master_scenario, system_variable)
+          &nbsp;
+          = link_to image_tag("trashcan.gif"), admins_master_scenario_system_variable_path(@master_scenario, system_variable), :confirm => 'Are you sure?', :method => :delete
   %br
   = will_paginate @system_variables
   %br
