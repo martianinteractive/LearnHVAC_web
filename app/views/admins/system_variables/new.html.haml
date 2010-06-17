@@ -1,8 +1,11 @@
-%h2 New System Variable
-%p
-  = link_to "Back", :back
-
-%p Note: System Variables are directly related to SPARK, so a good understanding of how Learn HVAC works with SPARK is required before adding or changing System Variables. 
-%hr
-- form_for([@master_scenario, @system_variable], :url => admins_master_scenario_system_variables_path(@master_scenario), :method => :post) do |f|
-  = render :partial => "form", :locals => { :f => f }
+#tabs
+  %ul
+    %li= link_to @master_scenario.name, admins_master_scenario_path(@master_scenario) 
+    %li= link_to "System Variables", admins_master_scenario_system_variables_path(@master_scenario)
+    %li.ui-tabs-selected= link_to 'New System Variable', new_admins_master_scenario_system_variable_path(@master_scenario)
+  
+  %br
+  %p Note: System Variables are directly related to SPARK, so a good understanding of how Learn HVAC works with SPARK is required before adding or changing System Variables. 
+  %hr
+  - form_for([@master_scenario, @system_variable], :url => admins_master_scenario_system_variables_path(@master_scenario), :method => :post) do |f|
+    = render :partial => "form", :locals => { :f => f }

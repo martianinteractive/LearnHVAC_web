@@ -11,7 +11,8 @@ class Admins::VersionNotesController < Admins::ApplicationController
     @version_note.master_scenario = @master_scenario
     
     if @version_note.save
-      redirect_to(admins_master_scenario_path(@master_scenario), :notice => "Notes were successfully created.")
+      flash[:notice] = "Notes were successfully created."
+      redirect_back_or_default(admins_master_scenario_path(@master_scenario))
     else
       render :action => "new"
     end

@@ -1,6 +1,6 @@
 class Admins::MasterScenariosController < Admins::ApplicationController 
   before_filter :find_master_scenario, :only => [:show, :edit, :clone, :update, :destroy]
-  before_filter :check_version_notes, :only => [:show, :edit, :update]
+  before_filter :check_version_notes, :except => [:index, :tag]
   add_crumb("Master Scenarios") { |instance| instance.send :admins_master_scenarios_path }
    
   def index
