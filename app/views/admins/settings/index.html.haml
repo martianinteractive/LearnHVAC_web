@@ -1,12 +1,12 @@
-%h2 Settings
-%hr
-%p
-  = link_to "Educational Entity", admins_settings_educational_entities_path
-  Add/Edit or delete educational entities.
+#tabs
+  %ul
+    %li.ui-tabs-selected= link_to "Settings", admins_settings_path
 
-%p
-  = link_to "Client Versions", admins_settings_client_versions_path
-  Manage versions of the desktop software
-
-  
-
+  #page_header
+    #subject_info
+      %h2= link_to "Educational Entity", admins_settings_educational_entities_path
+      .subject_details Add/Edit or delete educational entities.
+      
+      %h2= link_to "Client Versions", admins_settings_client_versions_path
+      .subject_details Manage versions of the desktop software
+      
