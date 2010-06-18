@@ -1,33 +1,40 @@
-%h2
-  = @scenario.name
-  %br
-  Who has access?
+#tabs
+  %ul
+    %li= link_to @scenario.name, admins_scenario_path(@scenario)
+    %li.ui-tabs-selected= link_to "Observers", observers_admins_scenario_path(@scenario)
+    
+  #page_header
+    #subject_info
+      %h2 Who has access?
+      .subject_details= "Instructor: #{@scenario.user.name}"
+            
+  #inner_column
+    - if @scenario.public?
+      %p 
+        This scenario is 
+        %b public
+        and can be accessed by any user in the system.
 
-%p= link_to 'Back', admins_scenario_path(@scenario)
-%hr
+    - else
+      %p
+        This scenario is
+        %b private
+        and can only be accessed by the instructor and:
 
-- if @scenario.public?
-  %p 
-    This scenario is 
-    %b public
-    and can be accessed by any user in the system.
-
-- else
-  %p
-    This scenario is
-    %b private
-    and can only be accessed by:
-
-  %h3 Instructor
-  %p
-    =link_to @scenario.user.name, admins_user_path(@scenario.user, :role => @scenario.user.role)
-    (read/write) permissions.
-
-  %h3 Groups
-  - if @scenario.groups.empty?
-    %b This scenario hasn't been yet assigned to a group.
-  - else
-    %ul
-      - @scenario.groups.each do |group|
-        %li= link_to group.name, admins_group_path(group)
-  
+      %h3 Groups
+      - if @scenario.groups.empty?
+        %b This scenario hasn't been yet assigned to a group.
+      - else
+        %table.listing
+          %thead
+            %tr
+              %th Name
+              %th Students
+              %th Scenarios
+              %th Code
+          - @scenario.groups.each do |group|
+            %tr
+              %td= link_to group.name, admins_group_path(group)
+              %td= group.students.count
+              %td= group.scenarios.count
+              %td= group.code  

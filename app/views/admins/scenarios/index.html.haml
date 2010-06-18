@@ -1,17 +1,23 @@
-%h2 Listing scenarios
-%hr
+#tabs
+  %ul
+    %li.ui-tabs-selected= link_to "Instructor Scenarios", admins_scenarios_path
+    %li= link_to "New Scenario", new_admins_scenario_path
+    
+  %br
+  %table.listing
+    %thead
+      %tr
+        %th Name
+        %th Instructor
+        %th Master Scenario
+        %th Created on
+    - @scenarios.each do |scenario|
+      %tr
+        %td= link_to scenario.name, admins_scenario_path(scenario)
+        %td= link_to scenario.user.name, admins_user_path(scenario.user, :role => scenario.user.role)
+        %td= scenario.master_scenario_name
+        %td= scenario.created_at.to_formatted_s(:long) if scenario.created_at
 
-%table
-  %tr
-    %th Name
-    %th Instructor
-    %th Created on
-  - @scenarios.each do |scenario|
-    %tr
-      %td= link_to scenario.name, admins_scenario_path(scenario)
-      %td= link_to scenario.user.name, admins_user_path(scenario.user, :role => scenario.user.role)
-      %td= scenario.created_at.to_formatted_s(:long) if scenario.created_at
-
-%br
-= will_paginate @scenarios
+  %br
+  = will_paginate @scenarios
 

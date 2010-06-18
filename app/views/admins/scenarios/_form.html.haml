@@ -1,7 +1,7 @@
 = f.error_messages
 .field
   = f.label :master_scenario_id, "Master Scenario"  
-  = f.select :master_scenario_id, MasterScenario.only(:name, :id).collect { |ms| [ ms.name.capitalize, ms.id ] }
+  = f.select :master_scenario_id, MasterScenario.only(:name, :id).collect { |ms| [ ms.name.capitalize, ms.id ] }, :prompt => "Please select..."
 
 .field
   = f.label :name
@@ -13,7 +13,7 @@
 
 .field
   = f.label :user_id, "Instructor"  
-  = f.select :user_id, User.admin_instructor.collect {|user| [ user.name, user.id ] }
+  = f.select :user_id, User.admin_instructor.collect {|user| [ user.name, user.id.to_s ] }, :prompt => "Please select..."
 
 .field
   = f.label :inputs_visible  
@@ -46,6 +46,8 @@
 .field
   = f.label :realtime_start_date
   = f.text_field :realtime_start_date
+  %br
+  = label_tag "Realtime start hour"
   = f.select :realtime_start_hour, (1..12).to_a
   = f.select :realtime_start_minute, (0..59).to_a
   = f.select :realtime_meridiem, %w(AM PM)
