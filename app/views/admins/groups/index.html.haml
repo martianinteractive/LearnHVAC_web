@@ -1,18 +1,20 @@
-%h2 Listing Groups
-%p
-  = link_to 'Add a new group', new_admins_group_path
-%hr
-
-%table
-  %tr
-    %th Name
-    %th Instructor
-    %th Students
-  - @groups.each do |group|
-    %tr
-      %td= link_to group.name, admins_group_path(group)
-      %td= group.instructor.name if group.instructor
-      %td= group.students.count
-%br
-= will_paginate @groups
+#tabs
+  %ul
+    %li.ui-tabs-selected= link_to "Groups", admins_groups_path
+    %li= link_to "New Group", new_admins_group_path
+  
+  %br
+  %table.listing
+    %thead
+      %tr
+        %th Name
+        %th Instructor
+        %th Students
+    - @groups.each do |group|
+      %tr
+        %td= link_to group.name, admins_group_path(group)
+        %td= link_to group.instructor.name, admins_user_path(group.instructor, :role => group.instructor.role)
+        %td= group.students.count
+  %br
+  = will_paginate @groups
 

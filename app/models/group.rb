@@ -19,7 +19,7 @@ class Group < ActiveRecord::Base
     
   # Define this later using has_many_documents :scenarios, :through => :group_scenarios
   def scenarios
-    Scenario.criteria.in("_id" => scenarios_ids).to_a
+    Scenario.criteria.in("_id" => scenarios_ids)
   end
   
   def scenarios_ids

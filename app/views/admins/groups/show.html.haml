@@ -1,42 +1,63 @@
-%h2= @group.name
-%p
-  = link_to 'Edit Group', edit_admins_group_path(@group)
-  &nbsp;|&nbsp;
-  = link_to 'Delete Group', admins_group_path(@group), :confirm => 'Are you sure?', :method => :delete
-  &nbsp;|&nbsp;
-  = link_to 'Back', admins_groups_path
-%hr
-
-%p
-  %b Code:
-  = @group.code
-
-%p
-  %b Lead by:
-  = link_to @group.instructor.name, admins_user_path(@group.instructor, :role => @group.instructor.role)
-
-%p
-  %b Invitation URL:
-  = membership_register_url(@group.code)
-
-%h3 Students
-
-- if @group.students.empty?
-  %b There are no students registered under this group.
-- else
-  %b members:
+#tabs
   %ul
-    - @group.students.each do |student|
-      %li
-        = link_to student.name, admins_user_path(student, :role => student.role)
+    %li= link_to "Groups", admins_groups_path
+    %li= link_to "New Group", new_admins_group_path
+    
+  #page_header
+    #subject_actions
+      = link_to 'Edit', edit_admins_group_path(@group)
+      &nbsp;
+      = link_to 'Delete', admins_group_path(@group), :confirm => 'Are you sure?', :method => :delete
 
-%h3 Group Scenarios
+    #subject_info
+      %h2= @group.name
+      .subject_details
+        Lead by:
+        = link_to @group.instructor.name, admins_user_path(@group.instructor, :role => @group.instructor.role)
+        
+  #inner_column
+    %table
+      %tr
+        %th Code:
+        %td= @group.code
+      %tr
+        %th Invitation URL:
+        %td= membership_register_url(@group.code)
+        
 
-- if @group.group_scenarios.empty?
-  %p There are no scenarios on this group.
-- else
-  %b scenarios:
-  %ul
-    - @group.scenarios.each do |scenario|
-      %li
-        = link_to scenario.name, admins_scenario_path(scenario)
+    %h3 Students
+
+    - if @group.students.empty?
+      %b There are no students registered under this group.
+    - else
+      %table
+        %thead
+          %tr
+            %th Name
+            %th Institution
+            %th Email
+            %th 
+        - @group.students.each do |student|
+          %tr
+            %td= link_to student.name, admins_user_path(student, :role => student.role)
+            %td= link_to student.institution.name, admins_institution_path(student.institution)
+            %td= mail_to student.email
+            
+
+    %h3 Scenarios
+
+    - if @group.group_scenarios.empty?
+      %p There are no scenarios on this group.
+    - else
+      %table
+        %thead
+          %tr
+            %th Name
+            %th Instructor
+            %th 
+            %th
+        - @group.scenarios.each do |scenario|
+          %tr
+            %td= link_to scenario.name, admins_scenario_path(scenario)
+            %td= link_to scenario.user.name, admins_user_path(scenario.user)
+            

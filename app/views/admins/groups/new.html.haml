@@ -5,24 +5,28 @@
         $.get("#{list_admins_scenarios_path}", { user_id: $(this).val() }, function(r) { $("#group_scenarios_ids_").html(r) }) 
       }) 
     })
+    
+#tabs
+  %ul
+    %li= link_to "Groups", admins_groups_path
+    %li.ui-tabs-selected= link_to "New Group", new_admins_group_path
 
-%h2 New Group
-- form_for(@group, :url => admins_groups_path, :method => :post) do |f|
-  = f.error_messages
-  .field
-    = f.label :name
-    = f.text_field :name
+  - form_for(@group, :url => admins_groups_path, :method => :post) do |f|
+    = f.error_messages
+    .field
+      = f.label :name
+      = f.text_field :name
 
-  .field 
-    = f.label :instructor
-    = f.select :instructor_id, User.admin_instructor.collect {|user| [ user.name, user.id ] }, { :prompt => 'Please select ...'}
+    .field 
+      = f.label :instructor
+      = f.select :instructor_id, User.admin_instructor.collect {|user| [ user.name, user.id ] }, { :prompt => 'Please select ...'}
 
-  .field
-    = f.label :scenarios
-    %br
-    = select_tag "group[scenarios_ids][]", options_from_collection_for_select(@instructor.scenarios, :id, :name, @group.scenarios_ids || []), :multiple => true
+    .field
+      = f.label :scenarios
+      %br
+      = select_tag "group[scenarios_ids][]", options_from_collection_for_select(@instructor.scenarios, :id, :name, @group.scenarios_ids || []), :multiple => true
 
-  .actions
-    = f.submit
-    &nbsp;or&nbsp;
-    = link_to 'Cancel', :back
+    .actions
+      = f.submit
+      &nbsp;or&nbsp;
+      = link_to 'Cancel', :back
