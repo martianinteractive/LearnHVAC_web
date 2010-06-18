@@ -1,25 +1,24 @@
-%h2= @client_version.version
-%p
-  = link_to 'Edit Version', edit_admins_settings_client_version_path(@client_version)
-  &nbsp;|&nbsp;
-  = link_to 'Delete Version', admins_settings_client_version_path(@client_version), :confirm => 'Are you sure?', :method => :delete
-  &nbsp;|&nbsp;
-  = link_to 'Back', admins_settings_client_versions_path
-%hr
+#tabs
+  %ul
+    %li= link_to "Settings", admins_settings_path
+    %li= link_to "Client Versions", admins_settings_client_versions_path
+    %li= link_to "New Client Version", new_admins_settings_client_version_path
+    
+  #page_header
+    #subject_actions
+      = link_to 'Edit', edit_admins_settings_client_version_path(@client_version)
+      &nbsp;|&nbsp;
+      = link_to 'Delete Version', admins_settings_client_version_path(@client_version), :confirm => 'Are you sure?', :method => :delete
 
-%p
-  %b Version:
-  = @client_version.version
-
-%p
-  %b URL:
-  = link_to @client_version.url, @client_version.url
-
-%p
-  %b Release date:
-  = @client_version.release_date
-
-%p
-  %b Description:
-  = @client_version.description
-
+    #subject_info
+      %h2= @client_version.version
+      .subject_details="Release date: #{@client_version.release_date}"
+      
+  #inner_column
+    %table
+      %tr
+        %th URL:
+        %td= link_to @client_version.url, @client_version.url
+      %tr
+        %th Description:
+        %td= @client_version.description
