@@ -1,21 +1,25 @@
-%h2 Admin Dashboard
-%p This is the administration section of the LearnHVAC instructor application
-%hr
-%table
-  %tr
-    %th 
-    %th All
-    %th Recently Added
-    %th Recently Updated
-  - for role in User::ROLES.keys.collect{ |r| r.to_s }.sort
-    %tr
-      %td= link_to role.to_s.pluralize.capitalize, admins_users_path(:role => role)
-      %td= User.send(role).count
-      %td= User.send(role).recently_created.count
-      %td= User.send(role).recently_updated.count
-
-  %tr
-    %td= link_to "Scenarios", admins_scenarios_path
-    %td= Scenario.count
-    %td= Scenario.recently_created.count
-    %td= Scenario.recently_updated.count
+#tabs
+  %ul
+    %li.ui-tabs-selected= link_to "Dashboard", admins_dashboard_path
+  
+  #page_header
+    #subject_info
+      %h2= link_to "Scenarios", admins_scenarios_path
+      .subject_details 
+        = "#{Scenario.count} created."
+      %h2= link_to "Master Scenarios", admins_master_scenarios_path
+      .subject_details 
+        = "#{MasterScenario.count} created."
+        
+      %h2 Users
+      .subject_details    
+        %table.listing
+          %thead
+            %tr
+              %th Role
+              %th All
+          %tbody
+            - for role in User::ROLES.keys.collect{ |r| r.to_s }.sort
+              %tr
+                %td= link_to role.to_s.pluralize.capitalize, admins_users_path(:role => role)
+                %td= User.send(role).count
