@@ -17,6 +17,7 @@ class Admins::ScenarioVariablesController < Admins::ApplicationController
   end
 
   def edit
+    add_crumb "Edit", edit_admins_scenario_scenario_variable_path(@scenario, @scenario_variable)
   end
 
   def create
@@ -47,8 +48,9 @@ class Admins::ScenarioVariablesController < Admins::ApplicationController
   private
   
   def add_crumbs
-    add_crumb "Master Scenarios", admins_master_scenarios_path
-    add_crumb @scenario.name, admins_master_scenario_path(@scenario)
+    add_crumb "Instructor Scenarios", admins_scenarios_path
+    add_crumb @scenario.name, admins_scenario_path(@scenario)
+    add_crumb "Variables", admins_scenario_scenario_variables_path(@scenario)
   end
   
   def find_scenario
@@ -57,6 +59,7 @@ class Admins::ScenarioVariablesController < Admins::ApplicationController
   
   def find_scenario_variable
     @scenario_variable = @scenario.scenario_variables.find(params[:id])
+    add_crumb @scenario_variable.name, admins_scenario_scenario_variable_path(@scenario, @scenario_variable)
   end
   
 end

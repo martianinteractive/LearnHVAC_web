@@ -1,36 +1,33 @@
-%h2= "#{@scenario.name.capitalize} Simulation Variables"
-= link_to 'New Variable', new_admins_scenario_scenario_variable_path(@scenario)
-%hr
+#tabs
+  %ul
+    %li= link_to @scenario.name, admins_scenario_path(@scenario) 
+    %li.ui-tabs-selected= link_to "Variables", admins_scenario_scenario_variables_path(@scenario)
+    %li= link_to 'New Variable', new_admins_scenario_scenario_variable_path(@scenario)
 
-%table
-  %tr
-    = sort_header_tag('component_code', :title => 'Component')
-    %th Fault
-    = sort_header_tag('name', :title => 'Name')
-    %th Disp. Name
-    = sort_header_tag('io_type', :title => 'Type')
-    %th Low
-    %th Initial
-    %th High
-    %th Unit SI
-    %th Unit IP
-    %th SI to IP
-  - @scenario_variables.each do |scenario_system_variable|
-    %tr
-      %td= scenario_system_variable.index
-      %td= scenario_system_variable.component
-      %td fault
-      %td= scenario_system_variable.name
-      %td= scenario_system_variable.display_name
-      %td= scenario_system_variable.io_type.to_s.upcase
-      %td= scenario_system_variable.low_value
-      %td= scenario_system_variable.initial_value
-      %td= scenario_system_variable.high_value
-      %td= scenario_system_variable.unit_si
-      %td= scenario_system_variable.unit_ip
-      %td= scenario_system_variable.si_to_ip
-      %td= link_to 'Show', admins_scenario_scenario_variable_path(@scenario, scenario_system_variable)
-      %td= link_to 'Edit', edit_admins_scenario_scenario_variable_path(@scenario, scenario_system_variable)
-      %td= link_to 'Destroy', admins_scenario_scenario_variable_path(@scenario, scenario_system_variable), :confirm => 'Are you sure?', :method => :delete
-%br
-= will_paginate @scenario_variables
+  %br
+  %table.listing
+    %thead
+      %tr
+        = sort_header_tag('index', :title => 'Index')
+        = sort_header_tag('component_code', :title => 'Component')
+        = sort_header_tag('name', :title => 'Name')
+        = sort_header_tag('io_type', :title => 'Type')
+        %th Low
+        %th Initial
+        %th High
+        %th 
+    - @scenario_variables.each do |scenario_system_variable|
+      %tr
+        %td= scenario_system_variable.index
+        %td= scenario_system_variable.component
+        %td= link_to scenario_system_variable.name, admins_scenario_scenario_variable_path(@scenario, scenario_system_variable)
+        %td= scenario_system_variable.io_type.to_s.upcase
+        %td= scenario_system_variable.low_value
+        %td= scenario_system_variable.initial_value
+        %td= scenario_system_variable.high_value
+        %td
+          = link_to image_tag('edit.gif'), edit_admins_scenario_scenario_variable_path(@scenario, scenario_system_variable)
+          = link_to image_tag('trashcan.gif'), admins_scenario_scenario_variable_path(@scenario, scenario_system_variable), :confirm => 'Are you sure?', :method => :delete
+        
+  %br
+  = will_paginate @scenario_variables
