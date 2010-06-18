@@ -58,7 +58,7 @@ namespace :bootstrap do
   desc "load a default version_note for each master_scenario and then resets the versions"
   task :version_notes => :environment do
     MasterScenario.all.each do |ms|
-      ms.update_attributes(:versions => nil, :version => 2)
+      ms.update_attributes(:versions => [], :version => 2)
       ms.create_version_note(:master_scenario_version => ms.version, :description => "#{ms.name} has been created.")
     end
   end
