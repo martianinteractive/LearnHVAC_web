@@ -1,20 +1,21 @@
-%h2="#{formatted_institution_name(current_user.institution)} Groups"
+#tabs
+  %ul
+    %li.ui-tabs-selected= link_to "Groups", managers_groups_path
+    %li= link_to "New Group", new_managers_group_path
 
-%p
-  = link_to 'New group', new_managers_group_path
-
-%hr
-
-%table
-  %tr
-    %th Name
-    %th Instructor
-    %th Students
-  - @groups.each do |group|
-    %tr
-      %td= link_to group.name, managers_group_path(group)
-      %td= link_to_if group.instructor.has_role?(:instructor), group.instructor.name, managers_instructor_path(group.instructor)
-      %td= group.students.count
-%br
-= will_paginate @groups
-
+  %br
+  %table.listing
+    %thead
+      %tr
+        %th Name
+        %th Instructor
+        %th Students
+        %th Created on
+    - @groups.each do |group|
+      %tr
+        %td= link_to group.name, managers_group_path(group)
+        %td= link_to_if group.instructor.has_role?(:instructor), group.instructor.name, managers_instructor_path(group.instructor)
+        %td= group.students.count
+        %td= group.created_at.to_formatted_s(:long)
+  %br
+  = will_paginate @groups

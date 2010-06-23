@@ -1,21 +1,21 @@
-%h2 Editing Group
-%p
-  %b Lead by:
-  = link_to @group.instructor.name, managers_instructor_path(@group.instructor)
+#tabs
+  %ul
+    %li= link_to "Groups", managers_groups_path
+    %li= link_to "New Group", new_managers_group_path
 
-- form_for(@group, :url => managers_group_path(@group), :method => :put) do |f|
-  = f.error_messages
+  - form_for(@group, :url => managers_group_path(@group), :method => :put) do |f|
+    = f.error_messages
 
-  .field
-    = f.label :name
-    = f.text_field :name
+    .field
+      = f.label :name
+      = f.text_field :name
 
-  .field
-    = f.label :scenarios
-    %br
-    = select_tag "group[scenarios_ids][]", options_from_collection_for_select(@group.instructor.scenarios, :id, :name, @group.scenarios_ids), :multiple => true
+    .field
+      = f.label :scenarios
+      %br
+      = select_tag "group[scenarios_ids][]", options_from_collection_for_select(@group.instructor.scenarios, :id, :name, @group.scenarios_ids), :multiple => true
 
-  .actions
-    = submit_tag "Update"
-    &nbsp;or&nbsp;
-    = link_to 'Cancel', :back
+    .actions
+      = submit_tag "Update"
+      &nbsp;or&nbsp;
+      = link_to 'Cancel', :back

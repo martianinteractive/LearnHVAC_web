@@ -6,24 +6,28 @@
       }) 
     })
 
-%h2 New Group
-- form_for(@group, :url => managers_groups_path, :method => :post) do |f|
-  = f.error_messages
+#tabs
+  %ul
+    %li= link_to "Groups", managers_groups_path
+    %li.ui-tabs-selected= link_to "New Group", new_managers_group_path
+    
+  - form_for(@group, :url => managers_groups_path, :method => :post) do |f|
+    = f.error_messages
 
-  .field
-    = f.label :name
-    = f.text_field :name
+    .field
+      = f.label :name
+      = f.text_field :name
 
-  .field 
-    = f.label :instructor
-    = f.select :instructor_id, User.instructor.collect {|user| [ user.name, user.id ] }, { :prompt => 'Please select ...'}
+    .field 
+      = f.label :instructor
+      = f.select :instructor_id, current_user.institution.users.instructor.collect {|user| [ user.name, user.id ] }, { :prompt => 'Please select ...'}
 
-  .field
-    = f.label :scenarios
-    %br
-    = select_tag "group[scenarios_ids][]", options_from_collection_for_select(@instructor.scenarios, :id, :name, @group.scenarios_ids || []), :multiple => true
+    .field
+      = f.label :scenarios
+      %br
+      = select_tag "group[scenarios_ids][]", options_from_collection_for_select(@instructor.scenarios, :id, :name, @group.scenarios_ids || []), :multiple => true
 
-  .actions
-    = submit_tag "Create"
-    &nbsp;or&nbsp;
-    = link_to 'Cancel', :back
+    .actions
+      = submit_tag "Create"
+      &nbsp;or&nbsp;
+      = link_to 'Cancel', :back

@@ -1,19 +1,23 @@
 class Managers::GroupsController < Managers::ApplicationController
   before_filter :find_group, :only => [:show, :edit, :update, :destroy]
   before_filter :build_instructor, :only => [:new, :create]
+  add_crumb("Groups") { |instance| instance.send :managers_groups_path }
   
   def index
-    @groups = current_user.institution.groups.paginate :page => params[:page], :per_page => 25, :order => "users.last_name"
+    @groups = current_user.institution.groups.paginate :page => params[:page], :per_page => 25, :order => "users.last_name", :include => :students
   end
   
   def show
+    add_crumb @group.name, managers_group_path
   end
   
   def new
     @group = Group.new(:instructor => @instructor)
+    add_crumb "New Group", new_managers_group_path
   end
   
   def edit
+    add_crumb "Editing #{@group.name}", edit_managers_group_path
   end
   
   def create
