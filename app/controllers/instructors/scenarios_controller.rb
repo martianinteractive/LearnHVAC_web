@@ -11,6 +11,8 @@ class Instructors::ScenariosController < Instructors::ApplicationController
   end
   
   def observers
+    add_crumb @scenario.name, instructors_scenario_path(@scenario)
+    add_crumb "Observers", observers_instructors_scenario_path(@scenario)
   end
 
   def new
@@ -34,7 +36,7 @@ class Instructors::ScenariosController < Instructors::ApplicationController
     end
   end
 
-  def update
+  def update    
     if @scenario.update_attributes(params[:scenario])
       redirect_to instructors_scenario_path(@scenario), :notice => 'Scenario was successfully updated.'
     else
