@@ -1,4 +1,7 @@
-%h2 New scenario
-%p Create a new scenario to share it with your students.
-- form_for(@scenario, :url => instructors_scenarios_path) do |f|
-  = render :partial => "form", :locals => { :f => f }
+#tabs
+  %ul
+    %li= link_to "Scenarios", instructors_scenarios_path
+    %li.ui-tabs-selected= link_to "New Scenario", new_instructors_scenario_path
+    
+  - form_for(@scenario, :url => instructors_scenarios_path) do |f|
+    = render :partial => "form", :locals => { :f => f }

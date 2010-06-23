@@ -1,101 +1,76 @@
-%h2= @scenario.name
+#tabs
+  %ul
+    %li= link_to "Scenarios", instructors_scenarios_path
+    %li= link_to "New Scenario", new_instructors_scenario_path
+    
+  #page_header
+    #subject_actions
+      = link_to 'Edit', edit_instructors_scenario_path(@scenario)
+      &nbsp;
+      = link_to "Variables", instructors_scenario_variables_path(@scenario)
+      &nbsp;
+      = link_to 'Who has access?', observers_instructors_scenario_path(@scenario)
+      &nbsp;
+      = link_to 'Delete', instructors_scenario_path(@scenario), :confirm => 'Are you sure?', :method => :delete
 
-%p
-  = link_to 'Edit Scenario', edit_instructors_scenario_path(@scenario)
-  &nbsp;|&nbsp;
-  = link_to "Review simulation vars.", instructors_scenario_variables_path(@scenario)
-  &nbsp;|&nbsp;
-  = link_to "Who has access?", observers_instructors_scenario_path(@scenario)
-  &nbsp;|&nbsp;
-  = link_to 'Delete', instructors_scenario_path(@scenario), :confirm => 'Are you sure?', :method => :delete
-  &nbsp;|&nbsp;
-  = link_to 'Back', :back
-%hr
+    #subject_info
+      %h2= @scenario.name
+      .subject_details= @scenario.public? ? "Public" : "Private"
 
+  #location.ui-widget.ui-widget-content.ui-corner-all
+    %h4 Description
+    %p= @scenario.description
 
-%p
-  %b
-    Scenario name:
-  = @scenario.name
-%p
-  %b
-    Modeled after:
-  = @scenario.master_scenario_name
-
-%p
-  %b
-    Client version:
-  = link_to @scenario.client_version.version, @scenario.client_version.url if @scenario.client_version
-
-%p
-  %b
-    Privacy:
-  = @scenario.public? ? "Public" : "Private"
-
-%p
-  %b
-    Level:
-  = @scenario.level
-%p
-  %b
-    Inputs visible:
-  = @scenario.inputs_visible
-%p
-  %b
-    Inputs enabled:
-  = @scenario.inputs_enabled
-%p
-  %b
-    Faults visible:
-  = @scenario.faults_visible
-%p
-  %b
-    Faults enabled:
-  = @scenario.faults_enabled
-%p
-  %b
-    Longterm start date:
-  = @scenario.longterm_start_date
-%p
-  %b
-    Longterm stop date:
-  = @scenario.longterm_stop_date
-%p
-  %b
-    Allow longterm date change:
-  = @scenario.allow_longterm_date_change
-%p
-  %b
-    Realtime start datetime:
-  = @scenario.realtime_start_datetime
-%p
-  %b
-    Allow realtime datetime change:
-  = @scenario.allow_realtime_datetime_change
-%p
-  %b
-    Valve info enabled:
-  = @scenario.valve_info_enabled
-%p
-  %b
-    Short description:
-  = @scenario.short_description
-%p
-  %b
-    Description:
-  = @scenario.description
-%p
-  %b
-    Goal:
-  = @scenario.goal
-
-%hr
-
-%p
-  = link_to 'Edit Scenario', edit_instructors_scenario_path(@scenario)
-  &nbsp;|&nbsp;
-  = link_to "Review simulation vars.", instructors_scenario_variables_path(@scenario)
-  &nbsp;|&nbsp;
-  = link_to 'Delete', instructors_scenario_path(@scenario), :confirm => 'Are you sure?', :method => :delete
-  &nbsp;|&nbsp;
-  = link_to 'Back', :back
+  #inner_column
+    %table
+      %tr
+        %th Total variables:
+        %td= @scenario.scenario_variables.size
+      %tr
+        %th Author:
+        %td= @scenario.user.name
+      %tr
+        %th Created on:
+        %td= @scenario.created_at.to_formatted_s(:long)
+      %tr
+        %th Client version:
+        %td= link_to @scenario.client_version.version, @scenario.client_version.url
+      %tr
+        %th Level:
+        %td= @scenario.level
+      %tr
+        %th Inputs visible:
+        %td= @scenario.inputs_visible
+      %tr
+        %th Inputs enabled:
+        %td= @scenario.inputs_enabled
+      %tr
+        %th Faults visible:
+        %td= @scenario.faults_visible
+      %tr
+        %th Faults enabled:
+        %td= @scenario.faults_enabled
+      %tr
+        %th Longterm start date:
+        %td= @scenario.longterm_start_date
+      %tr
+        %th Longterm stop date:
+        %td= @scenario.longterm_stop_date
+      %tr
+        %th Allow longterm date change:
+        %td= @scenario.allow_longterm_date_change
+      %tr
+        %th Realtime start datetime:
+        %td= @scenario.realtime_start_datetime
+      %tr
+        %th Allow realtime datetime change:
+        %td= @scenario.allow_realtime_datetime_change
+      %tr
+        %th Valve info enabled:
+        %td= @scenario.valve_info_enabled
+      %tr
+        %th Short description:
+        %td= @scenario.short_description
+      %tr
+        %th Goal:
+        %td= @scenario.goal
