@@ -28,7 +28,7 @@
     %h3 Students
 
     - if @group.students.empty?
-      %b There are no students registered under this group.
+      %p There are no students registered under this group.
     - else
       %table
         %thead
@@ -54,10 +54,13 @@
           %tr
             %th Name
             %th Instructor
-            %th 
-            %th
+            %th Variables 
+            %th Created on
         - @group.scenarios.each do |scenario|
           %tr
             %td= link_to scenario.name, admins_scenario_path(scenario)
             %td= link_to scenario.user.name, admins_user_path(scenario.user)
+            %td= scenario.scenario_variables.count
+            %td= scenario.created_at.to_formatted_s(:long)
+            
             
