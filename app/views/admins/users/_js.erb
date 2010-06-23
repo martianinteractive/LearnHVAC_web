@@ -2,17 +2,11 @@
 $(document).ready(function(){
 	form = { 
 	  states: function() {
-	    $.get('/states', { state: $("#user_country").val(), current: '<%= @user.state %>' },
-			function(data) { 
-				$('#states').html(data); 
-			}
-		)
+	    $.get('/states', { state: $("#user_country").val(), current: '<%= @user.state %>' }, function(data) { $('#states').html(data); })
 	  }
 	}
 	
-  $(function() {
-	form.states();
-  })
+  $(function() { form.states(); })
 
   $('#user_country').change(function() {form.states()});
 		
