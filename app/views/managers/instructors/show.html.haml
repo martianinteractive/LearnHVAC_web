@@ -1,25 +1,39 @@
-%h2= @instructor.name.capitalize
-%p 
-  = link_to 'Edit', edit_managers_instructor_path(@instructor)
-  &nbsp;|&nbsp;
-  = link_to 'Delete', managers_instructor_path(@instructor), :confirm => 'Are you sure?', :method => :delete
-  &nbsp;|&nbsp;
-  = link_to 'Back', managers_instructors_path
-%hr
+#tabs
+  %ul
+    %li= link_to "Instructors", managers_instructors_path
+    %li= link_to "New Instructor", new_managers_instructor_path
 
-%p
-  %b Login:
-  = @instructor.login
-%p
-  %b First Name:
-  = @instructor.first_name
-%p
-  %b Last Name:
-  = @instructor.last_name
-%p
-  %b E-Mail:
-  = @instructor.email
+  #page_header
+    #subject_actions
+      = link_to 'Edit', edit_managers_instructor_path(@instructor)
+      &nbsp;
+      = link_to 'Delete', managers_instructor_path(@instructor), :confirm => 'Are you sure?', :method => :delete
 
-%p
-  %b Created on:
-  = @instructor.created_at.to_formatted_s(:long)
+    #subject_info
+      %h2= @instructor.name
+      .subject_details= "Instructor at #{@instructor.institution.name}"
+
+  #location.ui-widget.ui-widget-content.ui-corner-all
+    %h4 location
+    %p
+      = image_tag "globe_32.png"
+      = location_for(@instructor)
+
+  #inner_column
+    %table
+      %tr
+        %th Login:
+        %td= @instructor.login
+      %tr
+        %th E-Mail:
+        %td= mail_to @instructor.email
+      - if @instructor.phone.present?
+        %tr
+          %th Phone:
+          %td= @instructor.phone
+      %tr
+        %th Status:
+        %td= @instructor.enabled? ? "Enabled" : "Disabled"
+      %tr
+        %th Created on:
+        %td= @instructor.created_at.to_formatted_s(:long)

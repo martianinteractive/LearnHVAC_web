@@ -1,3 +1,6 @@
+- content_for :head do
+  = render :partial => 'js'
+  
 = error_messages_for 'instructor'
 .field
   = f.label :login
@@ -12,8 +15,24 @@
   = f.text_field :last_name
 
 .field
+  = f.label :country
+  = f.country_select :country, ['United States', 'Canada']
+
+.field#states
+  = f.label :state, "State/Region"
+  = f.text_field :state
+
+.field
+  = f.label :city
+  = f.text_field :city
+
+.field
   = f.label :email
   = f.text_field :email
+  
+.field
+  = f.label :phone
+  = f.text_field :phone
 
 .field
   = f.label :password

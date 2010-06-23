@@ -1,22 +1,22 @@
-%h2="#{formatted_institution_name(current_user.institution)} Instructors"
+#tabs
+  %ul
+    %li= link_to "Instructors", managers_instructors_path
+    %li= link_to "New Instructor", new_managers_instructor_path
 
-%p
-  = link_to 'New Instructor', new_managers_instructor_path
-
-%hr
-
-%table
-  %tr
-    %th Name
-    %th Email
-    %th Groups
-    %th Scenarios
-  - @instructors.each do |instructor|
-    %tr
-      %td= link_to instructor.name, managers_instructor_path(instructor)
-      %td= instructor.email
-      %td= instructor.managed_groups.count
-      %td= instructor.scenarios.count
-%br
-= will_paginate @instructors
-
+  %br
+  %table#users.listing
+    %thead
+      %tr
+        %th Name
+        %th Email
+        %th Groups
+        %th Scenarios
+    %tbody
+      - for instructor in @instructors
+        %tr
+          %td= link_to instructor.name, managers_instructor_path(instructor)
+          %td= instructor.email
+          %td= instructor.managed_groups.count
+          %td= instructor.scenarios.count
+  %br
+  = will_paginate @instructors

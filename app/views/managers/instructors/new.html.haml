@@ -1,11 +1,11 @@
-%h2 New Instructor
+#tabs
+  %ul
+    %li= link_to "Instructors", managers_instructors_path
+    %li.ui-tabs-selected= link_to "New Instructor", new_managers_instructor_path
 
-%p
-  = link_to "Back", managers_instructors_path 
-
-- form_for(@instructor, :url => managers_instructors_path, :method => :post) do |f|
-  = render :partial => 'form', :locals => { :f => f }
-  .actions
-    = submit_tag "Create Instructor"
-    &nbsp;or&nbsp;
-    = link_to 'Cancel', managers_instructors_path
+  - form_for(@instructor, :url => managers_instructors_path, :method => :post) do |f|
+    = render :partial => 'form', :locals => { :f => f }
+    .actions
+      = submit_tag "Create Instructor"
+      &nbsp;or&nbsp;
+      = link_to 'Cancel', managers_instructors_path
