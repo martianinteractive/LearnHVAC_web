@@ -1,11 +1,13 @@
 class Managers::ScenariosController < Managers::ApplicationController
   before_filter :find_scenario, :only => [:show, :observers]
+  add_crumb("Scenarios") { |instance| instance.send :managers_scenarios_path }
   
   def index
     @scenarios = current_user.institution.scenarios.paginate(:page => params[:page], :per_page => 25)
   end
   
   def show
+    add_crumb @scenario.name, managers_scenario_path(@scenario)
   end
   
   def observers
