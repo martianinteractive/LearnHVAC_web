@@ -1,5 +1,6 @@
 class Admins::ScenariosController < Admins::ApplicationController
     add_crumb("Instructor Scenarios") { |instance| instance.send :admins_scenarios_path }
+    before_filter :find_scenario, :only => [:show, :edit, :observers, :update, :destroy]
   
    def index
      @scenarios = Scenario.paginate :page => params[:page], :per_page => 25
@@ -11,14 +12,12 @@ class Admins::ScenariosController < Admins::ApplicationController
    end
 
    def show
-     @scenario = Scenario.find(params[:id])
      add_crumb @scenario.name, admins_scenario_path(@scenario)
    end
    
    def observers
-     @scenario = Scenario.find(params[:id])
      add_crumb @scenario.name, admins_scenario_path(@scenario)
-     add_crumb "Observers", observers_admins_scenario_path(@scenario)
+     add_crumb "Observers", observers_admin_scenario_path(@scenario)
    end
 
    def new
@@ -27,7 +26,6 @@ class Admins::ScenariosController < Admins::ApplicationController
    end
 
    def edit
-     @scenario = Scenario.find(params[:id])
      add_crumb "Editing #{@scenario.name}", edit_admins_scenario_path(@scenario)
    end
 
@@ -44,7 +42,6 @@ class Admins::ScenariosController < Admins::ApplicationController
    end
 
    def update
-     @scenario = Scenario.find(params[:id])
      @scenario.user = User.find(params[:scenario][:user_id])
      
      if @scenario.update_attributes(params[:scenario])
@@ -55,10 +52,15 @@ class Admins::ScenariosController < Admins::ApplicationController
      end
    end
 
-   def destroy
-     @scenario = Scenario.find(params[:id])
-     
+   def destroy     
      @scenario.destroy
      redirect_to(admins_scenarios_url)
    end
+   
+   private
+   
+   def find_scenario
+     @scenario = Scenario.only(Scenario.fields.keys).id(params[:id]).first
+   end
+   
 end
