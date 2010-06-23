@@ -1,42 +1,34 @@
-%h2
-  ="#{@scenario.name.titleize} Simulation Variables"
-%p= link_to 'New Variable', new_instructors_scenario_variable_path(@scenario)
-%hr
+#tabs
+  %ul
+    %li= link_to @scenario.name, instructors_scenario_path(@scenario) 
+    %li.ui-tabs-selected= link_to "Variables", instructors_scenario_variables_path(@scenario)
+    %li= link_to 'New Variable', new_instructors_scenario_variable_path(@scenario)
+    
+    
+  %br
+  %table.listing
+    %thead
+      %tr
+        = sort_header_tag('index', :title => 'Index')
+        = sort_header_tag('component_code', :title => 'Component')
+        = sort_header_tag('name', :title => 'Name')
+        = sort_header_tag('io_type', :title => 'Type')
+        %th Low
+        %th Initial
+        %th High
+        %th 
+    - @scenario_variables.each do |variable|
+      %tr
+        %td= variable.index
+        %td= variable.component
+        %td= link_to variable.name, instructors_scenario_variable_path(@scenario, variable)
+        %td= variable.io_type.to_s.upcase
+        %td= variable.low_value
+        %td= variable.initial_value
+        %td= variable.high_value
+        %td
+          = link_to image_tag('edit.gif'), edit_instructors_scenario_variable_path(@scenario, variable)
+          = link_to image_tag('trashcan.gif'), instructors_scenario_variable_path(@scenario, variable), :confirm => 'Are you sure?', :method => :delete
 
-%table
-  %tr
-    = sort_header_tag('index', :title => 'Index')
-    = sort_header_tag('component_code', :title => 'Component')
-    %th Fault
-    = sort_header_tag('name', :title => 'Name')
-    %th Display Name
-    = sort_header_tag('io_type', :title => 'Type')
-    %th Low
-    %th Initial
-    %th High
-    %th Unit SI
-    %th Unit IP
-    %th SI to IP
-    %th Actions
-  - @scenario_variables.each do |variable|
-    %tr
-      %td= variable.index
-      %td= variable.component
-      %td= variable.is_fault ? "Yes" : "No"
-      %td= link_to variable.name, instructors_scenario_variable_path(@scenario, variable)
-      %td= variable.display_name
-      %td= variable.io_type.to_s.upcase
-      %td= variable.low_value
-      %td= variable.initial_value
-      %td= variable.high_value
-      %td= variable.unit_si
-      %td= variable.unit_ip
-      %td= variable.si_to_ip
-      %td
-        = link_to image_tag("edit.gif"), edit_instructors_scenario_variable_path(@scenario, variable)
-        &nbsp;
-        = link_to image_tag("trashcan.gif"), instructors_scenario_variable_path(@scenario, variable), :confirm => 'Are you sure?', :method => :delete
-%br
-= will_paginate @scenario_variables
-%br
-
+  %br
+  = will_paginate @scenario_variables

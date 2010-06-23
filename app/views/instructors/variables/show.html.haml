@@ -1,108 +1,78 @@
-%h2
-  ="#{@scenario.name} Simulation Variables - #{@scenario_variable.name}"
+#tabs
+  %ul
+    %li= link_to @scenario.name, instructors_scenario_path(@scenario) 
+    %li= link_to "Variables", instructors_scenario_variables_path(@scenario)
+    %li= link_to 'New Variable', new_instructors_scenario_variable_path(@scenario)
+    
+  #page_header
+    #subject_actions
+      = link_to 'Edit', edit_instructors_scenario_variable_path(@scenario, @scenario_variable)
+      &nbsp;
+      = link_to 'Delete', instructors_scenario_variable_path(@scenario, @scenario_variable), :confirm => 'Are you sure?', :method => :delete
 
-%p
-  = link_to 'Back to scenario', instructors_scenario_path(@scenario)
-  &nbsp;|&nbsp;
-  = link_to 'Edit variable', edit_instructors_scenario_variable_path(@scenario, @scenario_variable)
+    #subject_info
+      %h2= @scenario_variable.name
+      .subject_details=@scenario_variable.display_name
 
-%hr
+  #location.ui-widget.ui-widget-content.ui-corner-all
+    %h4 Description
+    %p= @scenario_variable.description
+    %h4 Notes
+    %p= @scenario_variable.notes
 
-%p
-  %b
-    Display name:
-  = @scenario_variable.display_name
-%p
-  %b
-    Index:
-  = @scenario_variable.index
-%p
-  %b
-    I/O type:
-  = @scenario_variable.io_type
-%p
-  %b
-    Component:
-  = @scenario_variable.component
-%p
-  %b
-    Description:
-  = @scenario_variable.description
-
-%p
-  %p
-    Low value:
-  = @scenario_variable.low_value
-
-%p
-  %b
-    High value:
-  = @scenario_variable.high_value
-
-%p
-  %b
-    Initial value:
-  = @scenario_variable.initial_value
-
-%p
-  %b
-    Unit SI
-  = @scenario_variable.unit_si
-%p
-  %b
-    Unit IP
-  = @scenario_variable.unit_ip
-%p
-  %b
-    SI to IP
-  = @scenario_variable.si_to_ip
-%p
-  %b
-    Fault?
-  = @scenario_variable.is_fault
-%p
-  %b
-    Left label:
-  = @scenario_variable.left_label
-%p
-  %b
-    Right label:
-  = @scenario_variable.right_label
-%p
-  %b
-    Subsection:
-  = @scenario_variable.subsection
-%p
-  %b
-    Zone position:
-  = @scenario_variable.zone_position
-%p
-  %b
-    Subsection:
-  = @scenario_variable.subsection
-%p
-  %b
-    Is percentage:
-  = @scenario_variable.is_percentage
-%p
-  %b
-    Fault widget type:
-  = @scenario_variable.fault_widget_type
-%p
-  %b
-    Notes:
-  = @scenario_variable.notes
-%p
-  %b
-    Lock version:
-  = @scenario_variable.lock_version
-%p
-  %b
-    Node sequence:
-  = @scenario_variable.node_sequence
-
-%hr
-%p
-  = link_to 'Back to scenario', instructors_scenario_path(@scenario)
-  &nbsp;|&nbsp;
-  = link_to 'Edit variable', edit_instructors_scenario_variable_path(@scenario, @scenario_variable)
+  #inner_column
+    %table
+      %tr
+        %th Index:
+        %td= @scenario_variable.index
+      %tr
+        %th I/O type:
+        %td= @scenario_variable.io_type
+      %tr
+        %th Component:
+        %td= @scenario_variable.component
+      %tr
+        %th Low value:
+        %td= @scenario_variable.low_value
+      %tr
+        %th Initial value:
+        %td= @scenario_variable.initial_value
+      %tr
+        %th High value:
+        %td= @scenario_variable.high_value
+      %tr
+        %th Unit SI:
+        %td= @scenario_variable.unit_si
+      %tr
+        %th Initial IP:
+        %td= @scenario_variable.unit_ip
+      %tr
+        %th SI to IP:
+        %td= @scenario_variable.si_to_ip
+      %tr
+        %th Fault?:
+        %td= @scenario_variable.is_fault
+      %tr
+        %th Left label:
+        %td= @scenario_variable.left_label
+      %tr
+        %th Right label:
+        %td= @scenario_variable.right_label
+      %tr
+        %th Subsection:
+        %td= @scenario_variable.subsection
+      %tr
+        %th Zone position:
+        %td= @scenario_variable.zone_position
+      %tr
+        %th Is percentage:
+        %td= @scenario_variable.is_percentage
+      %tr
+        %th Fault widget type:
+        %td= @scenario_variable.fault_widget_type
+      %tr
+        %th Lock version:
+        %td= @scenario_variable.lock_version
+      %tr
+        %th Notes sequence:
+        %td= @scenario_variable.node_sequence

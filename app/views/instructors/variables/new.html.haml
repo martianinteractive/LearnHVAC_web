@@ -1,6 +1,8 @@
-%h2 New System Variable
-%p= link_to "Back", :back
-%hr
+#tabs
+  %ul
+    %li= link_to @scenario.name, instructors_scenario_path(@scenario) 
+    %li= link_to "Variables", instructors_scenario_variables_path(@scenario)
+    %li.ui-tabs-selected= link_to 'New Variable', new_instructors_scenario_variable_path(@scenario)
 
-- form_for([@scenario, @scenario_variable], :url => instructors_scenario_variables_path(@scenario)) do |f|
-  = render :partial => "form", :locals => { :f => f }
+  - form_for([@scenario, @scenario_variable], :url => instructors_scenario_variables_path(@scenario)) do |f|
+    = render :partial => "form", :locals => { :f => f }
