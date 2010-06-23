@@ -1,33 +1,29 @@
-%h2= "#{@scenario.name.titleize} Simulation Variables"
-%p= link_to 'Scenario', managers_scenario_path(@scenario)
+#tabs
+  %ul
+    %li= link_to @scenario.name, managers_scenario_path(@scenario) 
+    %li.ui-tabs-selected= link_to "Variables", managers_scenario_variables_path(@scenario)
+    
+  %br
+  %table.listing
+    %thead
+      %tr
+        = sort_header_tag('index', :title => 'Index')
+        = sort_header_tag('component_code', :title => 'Component')
+        = sort_header_tag('name', :title => 'Name')
+        = sort_header_tag('io_type', :title => 'Type')
+        %th Low
+        %th Initial
+        %th High
+        %th 
+    - @scenario_variables.each do |scenario_variable|
+      %tr
+        %td= scenario_variable.index
+        %td= scenario_variable.component
+        %td= link_to scenario_variable.name, managers_scenario_variable_path(@scenario, scenario_variable)
+        %td= scenario_variable.io_type.to_s.upcase
+        %td= scenario_variable.low_value
+        %td= scenario_variable.initial_value
+        %td= scenario_variable.high_value
 
-%hr
-
-%table
-  %tr
-    = sort_header_tag('component_code', :title => 'Component')
-    %th Fault
-    %th Name
-    %th Display Name
-    = sort_header_tag('io_type', :title => 'Type')
-    %th Low
-    %th Initial
-    %th High
-    %th Unit SI
-    %th Unit IP
-    %th SI to IP
-  - @scenario_variables.each do |scenario_variable|
-    %tr
-      %td= scenario_variable.component_code
-      %td fault
-      %td= link_to scenario_variable.name, managers_scenario_variable_path(@scenario, scenario_variable)
-      %td= scenario_variable.display_name
-      %td= scenario_variable.io_type.to_s.upcase
-      %td= scenario_variable.high_value
-      %td= scenario_variable.initial_value
-      %td= scenario_variable.high_value
-      %td= scenario_variable.unit_si
-      %td= scenario_variable.unit_ip
-      %td= scenario_variable.si_to_ip
-%br
-= will_paginate @scenario_variables
+  %br
+  = will_paginate @scenario_variables
