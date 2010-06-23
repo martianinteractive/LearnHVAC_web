@@ -1,11 +1,16 @@
-%h2 Listing groups
-%hr
+#tabs
+  %ul
+    %li.ui-tabs-selected= link_to "Groups", students_groups_path
 
-%table
-  %tr
-    %th Name
-    %th
-  - @groups.each do |group|
-    %tr
-      %td= group.name
-      %td= link_to 'Show', students_group_path(group)
+  %br
+  %table.listing
+    %thead
+      %tr
+        %th Name
+        %th Member since
+    - @groups.each do |group|
+      %tr
+        %td= link_to group.name, students_group_path(group)
+        %td= group.memberships.where(:student_id => current_user.id).first.created_at.to_formatted_s(:long)
+  %br
+  = will_paginate @groups
