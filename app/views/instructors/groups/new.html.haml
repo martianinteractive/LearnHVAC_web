@@ -1,5 +1,7 @@
-%h2 New group
-%hr
+#tabs
+  %ul
+    %li= link_to "Groups", instructors_groups_path
+    %li.ui-tabs-selected= link_to "New Group", new_instructors_group_path
 
-- form_for(@group, :url => instructors_groups_path, :method => :post) do |f|
-  = render :partial => "form", :locals => { :f => f }
+  - form_for(@group, :url => instructors_groups_path, :method => :post) do |f|
+    = render :partial => "form", :locals => { :f => f }

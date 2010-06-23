@@ -1,6 +1,7 @@
-%h2= "Editing #{@group.name.titleize}"
-%p= link_to "Back", instructors_group_path(@group)
-%hr
+#tabs
+  %ul
+    %li= link_to "Groups", instructors_groups_path
+    %li= link_to "New Group", new_instructors_group_path
 
-- form_for(@group, :url => instructors_group_path(@group), :method => :group) do |f|
-  = render :partial => "form", :locals => { :f => f }
+  - form_for(@group, :url => instructors_group_path(@group), :method => :group) do |f|
+    = render :partial => "form", :locals => { :f => f }

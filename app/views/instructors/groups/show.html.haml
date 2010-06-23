@@ -1,57 +1,61 @@
-%h2= @group.name.capitalize
-%p 
-  = link_to 'Edit', edit_instructors_group_path(@group)
-  &nbsp;|&nbsp;
-  = link_to 'Delete', instructors_group_path(@group), :confirm => 'Are you sure?', :method => :delete
-  &nbsp;|&nbsp;
-  = link_to 'Back', instructors_groups_path
+#tabs
+  %ul
+    %li.ui-tabs-selected= link_to "Groups", instructors_groups_path
+    %li= link_to "New Group", new_instructors_group_path
+    
+  #page_header
+    #subject_actions
+      = link_to 'Edit', edit_instructors_group_path(@group)
+      &nbsp;
+      = link_to 'Delete', instructors_group_path(@group), :confirm => 'Are you sure?', :method => :delete
 
-  
-%fieldset
-  %legend
-    Registration Link
+    #subject_info
+      %h2= @group.name
 
-  %p
-    Send students the following link to let them join this group.
-  
-  %p
-    %b Link:
-    %input{:type => "text", :value => membership_register_url(@group.code), :style => "width: 400px", :spellcheck => false}
+  #inner_column
+    %table
+      %tr
+        %th Code:
+        %td= @group.code
+      %tr
+        %th Invitation URL:
+        %td
+          %input{:type => "text", :value => membership_register_url(@group.code), :style => "width: 400px", :spellcheck => false}
+        
+        
+    %h3 Students
 
-%h3
-  Group Scenarios
+    - if @group.students.empty?
+      %p There are no students registered under this group.
+    - else
+      %table
+        %thead
+          %tr
+            %th Name
+            %th Institution
+            %th Email
+            %th 
+        - @group.students.each do |student|
+          %tr
+            %td= link_to student.name, instructors_group_student_path(@group, student)
+            %td= student.institution.name
+            %td= mail_to student.email
 
-%p
-  Group members have access to the following scenarios.
 
-- if @group.group_scenarios.any?
-  %table
-    %tr
-      %th Scenario
-      %th Description
-      
-      - for scenario in @group.scenarios
-        %tr
-          %td= link_to scenario.name, instructors_scenario_path(scenario)
-          %td= scenario.description
+    %h3 Scenarios
 
-%h3
-  Group Members
+    - if @group.group_scenarios.empty?
+      %p There are no scenarios on this group.
+    - else
+      %table
+        %thead
+          %tr
+            %th Name
+            %th Variables
+            %th Created on
+        - @group.scenarios.each do |scenario|
+          %tr
+            %td= link_to scenario.name, instructors_scenario_path(scenario)
+            %td= scenario.scenario_variables.count
+            %td= scenario.created_at.to_formatted_s(:long)
 
-- if @group.students.any?
-
-  %table
-    %tr
-      %th Name
-      %th Email
-      %th
-
-      - for student in @group.students
-        %tr
-          %td= link_to student.name, instructors_group_student_path(@group, student)
-          %td= student.email
-          %td= link_to "Remove from group", instructors_group_membership_path(@group, @group.memberships.where(:student_id => student.id).first), :confirm => 'Are you sure?', :method => :delete
-
-- else
-  %p
-    There are no students on this group.

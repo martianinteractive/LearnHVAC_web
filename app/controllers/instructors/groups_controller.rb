@@ -3,7 +3,7 @@ class Instructors::GroupsController < Instructors::ApplicationController
   add_crumb("Groups") { |instance| instance.send :instructors_groups_path }
   
   def index
-    @groups = current_user.managed_groups.paginate :page => params[:page], :per_page => 25
+    @groups = current_user.managed_groups.paginate :page => params[:page], :per_page => 25, :include => { :students => :institution }
   end
 
   def show
