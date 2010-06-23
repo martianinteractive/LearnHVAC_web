@@ -4,13 +4,14 @@
   = f.label :name, "Scenario name"
   = f.text_field :name
 
-%fieldset
-  %p
-    Select a master scenario to model your scenario from.
+- if @scenario.new_record?
+  %fieldset
+    %p
+      Select a master scenario to model your scenario from.
 
-  .field.clearfix
-    = f.label :master_scenario_id, "Master Scenario"
-    = f.select :master_scenario_id, MasterScenario.only(:name, :id).collect { |ms| [ ms.name.capitalize, ms.id ] }, {:prompt => "Please select..."}
+    .field.clearfix
+      = f.label :master_scenario_id, "Master Scenario"
+      = f.select :master_scenario_id, MasterScenario.only(:name, :id).collect { |ms| [ ms.name.capitalize, ms.id ] }, {:prompt => "Please select..."}
 
 
 %fieldset
