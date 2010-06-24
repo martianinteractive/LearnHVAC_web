@@ -7,7 +7,16 @@
         } else {
           window.location.search =  "?" + $(this).attr('name') + "=" + $(this).val();
         }
-      }); 
+      });
+      
+      $("#select_all").click(function() {
+        if ($(this).is(":checked")) {
+          $(":checkbox[name=system_variable[]]").each(function() { $(this).attr('checked', true); })
+        } else {
+          $(":checkbox[name=system_variable[]]").each(function() { $(this).attr('checked', false); })
+        }
+      })
+       
     })
 
 #tabs
@@ -21,7 +30,7 @@
     %table.listing
       %thead
         %tr
-          %th
+          %th= check_box_tag "select_all"
           = sort_header_tag('index', :title => 'Index')
           = sort_header_tag('component_code', :title => 'Component')
           = sort_header_tag('name', :title => 'Name')
