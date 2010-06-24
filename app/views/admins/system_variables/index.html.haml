@@ -13,7 +13,7 @@
         = sort_header_tag('name', :title => 'Name')
         %th 
           Type
-          - form_tag(filter_admins_master_scenario_system_variables_path) do
+          - form_tag(admins_master_scenario_system_variables_path, :method => :get) do
             = select_tag "filter[io_type]", options_for_select(SystemVariable::IO_TYPES)
             = submit_tag "foo"
         %th Low
@@ -34,5 +34,5 @@
           &nbsp;
           = link_to image_tag("trashcan.gif"), admins_master_scenario_system_variable_path(@master_scenario, system_variable), :confirm => 'Are you sure?', :method => :delete
   %br
-  = will_paginate @system_variables, :renderer => paginate_renderer, :params => params.slice(:filter)
+  = will_paginate @system_variables, :params => params.slice(:filter)
   %br

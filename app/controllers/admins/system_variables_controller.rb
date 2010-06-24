@@ -8,7 +8,8 @@ class Admins::SystemVariablesController < Admins::ApplicationController
   before_filter :store_location, :only => [:update]
   
   def index
-    @system_variables = doc_sort(@master_scenario.system_variables).paginate(:page => params[:page], :per_page => 25)
+    @system_variables = params[:filter].present? ? @master_scenario.system_variables.filter(params[:filter]).to_a : doc_sort(@master_scenario.system_variables)
+    @system_variables = @system_variables.paginate(:page => params[:page], :per_page => 25)
   end
   
   def show
