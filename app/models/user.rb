@@ -8,8 +8,8 @@ class User < ActiveRecord::Base
   # Dynamically creates scopes for each role.
   ROLES.keys.each { |role| scope role.to_s.singularize, where("role_code = #{ROLES[role]}") }
   scope :admin_instructor, where("role_code = #{User::ROLES[:admin]} OR role_code = #{User::ROLES[:instructor]}")
-  scope :recently_created, where("created_at < '#{(Time.now + 30.days).to_formatted_s(:db)}'")
-  scope :recently_updated, where("updated_at < '#{(Time.now + 30.days).to_formatted_s(:db)}'")
+  scope :recently_created, where("created_at > '#{(30.days.ago).to_formatted_s(:db)}'")
+  scope :recently_updated, where("updated_at > '#{(30.days.ago).to_formatted_s(:db)}'")
     
   belongs_to :institution
   
