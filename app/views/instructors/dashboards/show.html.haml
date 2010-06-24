@@ -1,14 +1,21 @@
-%h2 Instructor Dashboard
-%p This is the instructor dashboard of the LearnHVAC website.
-%hr
-%table
-  %tr
-    %th 
-    %th All
-    %th Recently Added
-    %th Recently Updated
-  %tr
-    %td Scenarios
-    %td= Scenario.count
-    %td= Scenario.recently_created.count
-    %td= Scenario.recently_updated.count
+#tabs
+  %ul
+    %li.ui-tabs-selected= link_to "Dashboard", instructors_dashboard_path
+    
+  %br  
+  %p This is the instructor dashboard of the LearnHVAC website.
+  %hr
+  %table.listing
+    %thead
+      %tr
+        %th 
+        %th All
+        %th Recently Added
+        %th Recently Updated
+    %tbdoy
+      %tr
+        %td Scenarios
+        %td= current_user.scenarios.count
+        %td= current_user.scenarios.recently_created.count
+        %td= current_user.scenarios.recently_updated.count
+       
