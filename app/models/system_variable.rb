@@ -6,7 +6,7 @@ class SystemVariable
 
   validates_presence_of :master_scenario
   before_save :detect_changes
-  # before_save :notify_change
+  before_save :notify_change
   before_destroy :set_destroy_flag
   before_destroy :notify_change
     
