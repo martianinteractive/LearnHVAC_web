@@ -11,6 +11,7 @@ class SystemVariable
   before_destroy :notify_change
   
   def self.filter(opts)
+    opts.each { |k, v| opts[k] = eval(v) if %w(true false).include?(v) }
     where(opts)
   end
   

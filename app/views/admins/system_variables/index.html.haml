@@ -21,6 +21,10 @@
           Type
           - form_tag(admins_master_scenario_system_variables_path, :method => :get) do
             = filter_select_for(:io_type, SystemVariable::IO_TYPES)
+        %th
+          Fault
+          - form_tag(admins_master_scenario_system_variables_path, :method => :get) do
+            = filter_select_for(:is_fault, [true, false])
         %th Low
         %th Initial
         %th High
@@ -31,6 +35,7 @@
         %td= system_variable.component
         %td= link_to system_variable.name, admins_master_scenario_system_variable_path(@master_scenario, system_variable)
         %td= system_variable.io_type.to_s.upcase
+        %td= system_variable.is_fault?
         %td= system_variable.low_value
         %td= system_variable.initial_value
         %td= system_variable.high_value
