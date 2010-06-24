@@ -1,15 +1,14 @@
-#tabs
-  %ul
-    %li.ui-tabs-selected= link_to "Dashboard", instructors_dashboard_path
-  
-  %br  
-  %p This is the manager dashboard of the LearnHVAC website. From here you can view all the instructors associated with your institution, all available instructor scenarios and the groups they are sharing scenarios with.
-  
-  #page_header
-    #subject_info
-      %h2= link_to "Instructors", managers_instructors_path
-      .subject_details= "#{current_user.institution.users.instructor.count} registered"
-      %h2= link_to "Scenarios", managers_scenarios_path
-      .subject_details= "#{current_user.institution.scenarios.count} created"
-      %h2= link_to "Groups", managers_groups_path
-      .subject_details= "#{current_user.institution.groups.count} created"
+%h2 Manager Dashboard
+%p This is the manager dashboard of the LearnHVAC website. From here you can view all the instructors associated with your institution, all available instructor scenarios and the groups they are sharing scenarios with.
+%hr
+%table
+  %tr
+    %th 
+    %th All
+    %th Recently Added
+    %th Recently Updated
+  %tr
+    %td Scenarios
+    %td= Scenario.count
+    %td= Scenario.recently_created.count
+    %td= Scenario.recently_updated.count
