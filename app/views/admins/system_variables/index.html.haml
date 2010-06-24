@@ -11,7 +11,9 @@
         = sort_header_tag('index', :title => 'Index')
         = sort_header_tag('component_code', :title => 'Component')
         = sort_header_tag('name', :title => 'Name')
-        = sort_header_tag('io_type', :title => 'Type')
+        %th 
+          Type
+          = select_tag "filter[io_type]", options_for_select(SystemVariable::IO_TYPES)
         %th Low
         %th Initial
         %th High

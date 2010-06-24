@@ -10,6 +10,10 @@ class SystemVariable
   before_destroy :set_destroy_flag
   before_destroy :notify_change
   
+  def self.filter(field, value)
+    where(field => value)
+  end
+  
   protected
   
   def detect_changes
