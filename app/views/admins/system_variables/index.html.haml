@@ -19,12 +19,10 @@
         = sort_header_tag('name', :title => 'Name')
         %th 
           Type
-          - form_tag(admins_master_scenario_system_variables_path, :method => :get) do
-            = filter_select_for(:io_type, SystemVariable::IO_TYPES)
+          = filter_select_for(:io_type, SystemVariable::IO_TYPES)
         %th
           Fault
-          - form_tag(admins_master_scenario_system_variables_path, :method => :get) do
-            = filter_select_for(:is_fault, [true, false])
+          = filter_select_for(:is_fault, [true, false])
         %th Low
         %th Initial
         %th High
