@@ -1,7 +1,13 @@
 - content_for :js_templates do
   :plain
     $(document).ready(function() { 
-      $(".filter").change(function() { $(this).parent('form').submit(); }) 
+      $(".filter").change(function() { 
+        if($(this).val() == "Any") {
+          window.location.replace(window.location.pathname);
+        } else {
+          $(this).parent('form').submit(); 
+        }
+      }); 
     })
 
 #tabs
