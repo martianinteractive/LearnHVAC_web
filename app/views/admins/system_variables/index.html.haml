@@ -1,3 +1,9 @@
+- content_for :js_templates do
+  :plain
+    $(document).ready(function() { 
+      $(".filter").change(function() { $(this).parent('form').submit(); }) 
+    })
+
 #tabs
   %ul
     %li= link_to @master_scenario.name, admins_master_scenario_path(@master_scenario) 
@@ -14,8 +20,7 @@
         %th 
           Type
           - form_tag(admins_master_scenario_system_variables_path, :method => :get) do
-            = select_tag "filter[io_type]", options_for_select(SystemVariable::IO_TYPES)
-            = submit_tag "foo"
+            = filter_select_for(:io_type, SystemVariable::IO_TYPES)
         %th Low
         %th Initial
         %th High
