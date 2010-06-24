@@ -5,7 +5,7 @@
         if($(this).val() == "Any") {
           window.location.replace(window.location.pathname);
         } else {
-          $(this).parent('form').submit(); 
+          window.location.search =  "?" + $(this).attr('name') + "=" + $(this).val();
         }
       }); 
     })
