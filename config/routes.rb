@@ -108,7 +108,6 @@ Learnhvac::Application.routes.draw do |map|
       resources :system_variables do
         collection do
           get :yaml_dump
-          get :filter
         end
       end
       resources :revisions do

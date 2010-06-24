@@ -49,11 +49,6 @@ class Admins::SystemVariablesController < Admins::ApplicationController
     redirect_to(new_admins_master_scenario_version_note_path(@master_scenario), :notice => 'System Variable was successfully deleted.')
   end
   
-  def filter
-    @system_variables = @master_scenario.system_variables.filter(params[:filter]).to_a.paginate(:page => params[:page], :per_page => 25)
-    render :action => :index
-  end
-  
   def yaml_dump
     @vars = {}
     @master_scenario.system_variables.each do |var|
