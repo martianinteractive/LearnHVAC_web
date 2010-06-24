@@ -17,7 +17,7 @@
     %li= link_to 'New System Variable', new_admins_master_scenario_system_variable_path(@master_scenario)
     
   %br
-  - form_tag(update_status_admins_master_scenario_system_variables_path(@master_scenario), :method => :put) do
+  - form_tag(update_status_admins_master_scenario_system_variables_path(@master_scenario), :method => :put, :class => "variables") do
     %table.listing
       %thead
         %tr
