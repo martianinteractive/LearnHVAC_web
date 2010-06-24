@@ -6,13 +6,21 @@ class SystemVariable
 
   validates_presence_of :master_scenario
   before_save :detect_changes
-  before_save :notify_change
+  # before_save :notify_change
   before_destroy :set_destroy_flag
   before_destroy :notify_change
-  
+    
   def self.filter(opts)
     opts.each { |k, v| opts[k] = eval(v) if %w(true false).include?(v) }
     where(opts)
+  end
+  
+  def skip_notify!
+    @notify = false
+  end
+  
+  def notify?
+    @notify != false
   end
   
   protected
@@ -29,7 +37,7 @@ class SystemVariable
   end
   
   def notify_change
-    if @var_changed or @to_destroy
+    if notify? and (@var_changed or @to_destroy)
       self.master_scenario.revise
       self.master_scenario.update(false)
     end

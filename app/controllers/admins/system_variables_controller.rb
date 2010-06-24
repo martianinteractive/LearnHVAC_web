@@ -42,7 +42,21 @@ class Admins::SystemVariablesController < Admins::ApplicationController
       render :action => :edit
     end
   end
-
+  
+  def update_status
+    @master_scenario.system_variables.criteria.in("_id" => params["system_variable"]).each do |sv|
+      sv.skip_notify!
+      sv.update_attributes(:disabled => params[:disable].present?)
+    end
+    
+    if @master_scenario.save
+      session[:return_to] = admins_master_scenario_system_variables_path(@master_scenario)
+      redirect_to(new_admins_master_scenario_version_note_path(@master_scenario), :notice => "Please describe the changes You've just made")
+    else
+      redirect_to(:back, :notice => "There were problems updating the variables status.")
+    end
+  end
+  
   def destroy
     @master_scenario.system_variables.find(params[:id]).destroy
     session[:return_to] = admins_master_scenario_system_variables_path(@master_scenario)
