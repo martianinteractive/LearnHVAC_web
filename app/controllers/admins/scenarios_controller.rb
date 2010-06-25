@@ -17,7 +17,7 @@ class Admins::ScenariosController < Admins::ApplicationController
    
    def observers
      add_crumb @scenario.name, admins_scenario_path(@scenario)
-     add_crumb "Observers", observers_admin_scenario_path(@scenario)
+     add_crumb "Observers", observers_admins_scenario_path(@scenario)
    end
 
    def new
