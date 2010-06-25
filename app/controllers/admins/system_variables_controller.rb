@@ -45,7 +45,7 @@ class Admins::SystemVariablesController < Admins::ApplicationController
   end
   
   def update_status
-    @master_scenario.system_variables.criteria.in("_id" => params["system_variable"]).each do |sv|
+    @master_scenario.system_variables.criteria.in("_id" => params["system_variables"]).each do |sv|
       sv.skip_notify!
       sv.update_attributes(:disabled => params[:disable].present?)
     end

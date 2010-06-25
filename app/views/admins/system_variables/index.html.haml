@@ -16,7 +16,13 @@
           $(":checkbox[name=system_variable[]]").each(function() { $(this).attr('checked', false); })
         }
       })
-       
+      
+      $("form.variables input[type=submit]").click(function(){ 
+        if ($("form.variables input:checkbox:checked").length == 0) {
+          return false;
+        }
+       }) 
+         
     })
 
 #tabs
