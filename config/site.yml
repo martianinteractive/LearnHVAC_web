@@ -9,6 +9,6 @@ test:
   fconnect_site_id: 18322011899239412358
   
 production:
-  host: v2.learnhvac.org
-  from: v2@learnhvac.org
+  host: app.learnhvac.org
+  from: app@learnhvac.org
   fconnect_site_id: 08223197587884952724
