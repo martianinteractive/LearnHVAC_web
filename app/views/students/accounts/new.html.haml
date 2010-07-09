@@ -20,33 +20,44 @@
   = error_messages_for :account
   = f.hidden_field :group_code
 
-  .field
-    = f.label :login
-    = f.text_field :login
+  %fieldset
+    .field
+      = f.label :first_name, "First Name"
+      = f.text_field :first_name
 
-  .field
-    = f.label :first_name, "First Name"
-    = f.text_field :first_name
+    .field
+      = f.label :last_name, "Last Name"
+      = f.text_field :last_name
 
-  .field
-    = f.label :last_name, "Last Name"
-    = f.text_field :last_name
+  %fieldset
+    .field
+      = f.label :country
+      = f.country_select :country, ['United States', 'Canada']
 
-  .field
-    = f.label :email
-    = f.text_field :email
-    
-  .field
-    = f.label :phone
-    = f.text_field :phone
+    .field#states
+      = f.label :state, "State/Region"
+      = f.text_field :state
 
-  .field
-    = f.label :password
-    = f.password_field :password, :size=>20,  :value=>""
+    .field
+      = f.label :city
+      = f.text_field :city
+	
+  %fieldset		
+    .field
+      = f.label :login
+      = f.text_field :login
 
-  .field
-    = f.label :password_confirmation, "Password Confirmation"	
-    = f.password_field :password_confirmation, :size=>20,  :value=>""
+    .field
+      = f.label :email
+      = f.text_field :email
+		
+    .field
+      = f.label :password
+      = f.password_field :password, :size=>20,  :value=>""
+
+    .field
+      = f.label :password_confirmation, "Password Confirmation"	
+      = f.password_field :password_confirmation, :size=>20,  :value=>""
 
   .actions
     = submit_tag "Create", :class=>'submitButton'
