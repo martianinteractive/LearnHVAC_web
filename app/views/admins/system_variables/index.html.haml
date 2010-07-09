@@ -16,7 +16,13 @@
           $(":checkbox[name=system_variable[]]").each(function() { $(this).attr('checked', false); })
         }
       })
-       
+      
+      $("form.variables input[type=submit]").click(function(){ 
+        if ($("form.variables input:checkbox:checked").length == 0) {
+          return false;
+        }
+       }) 
+         
     })
 
 #tabs
@@ -46,7 +52,7 @@
           %th 
       - @system_variables.each do |system_variable|
         %tr
-          %td= check_box_tag "system_variable[]", system_variable.id
+          %td= check_box_tag "system_variables[]", system_variable.id
           %td= system_variable.index
           %td= system_variable.component
           %td= link_to system_variable.name, admins_master_scenario_system_variable_path(@master_scenario, system_variable)

@@ -4,8 +4,9 @@ class Admins::SystemVariablesController < Admins::ApplicationController
   before_filter :find_master_scenario, :add_crumbs
   before_filter :check_version_notes, :except => [:index, :yaml_dump]
   before_filter :find_system_variable, :only => [:show, :edit, :update]
-  before_filter :initialize_variables_sort, :only => [:index, :filter]
+  before_filter :initialize_variables_sort, :only => [:index]
   before_filter :store_location, :only => [:update]
+  before_filter :check_system_variables, :only => [:update_status]
   
   def index
     @system_variables = params[:filter].present? ? @master_scenario.system_variables.filter(params[:filter]).to_a : doc_sort(@master_scenario.system_variables)
@@ -44,7 +45,7 @@ class Admins::SystemVariablesController < Admins::ApplicationController
   end
   
   def update_status
-    @master_scenario.system_variables.criteria.in("_id" => params["system_variable"]).each do |sv|
+    @master_scenario.system_variables.criteria.in("_id" => params["system_variables"]).each do |sv|
       sv.skip_notify!
       sv.update_attributes(:disabled => params[:disable].present?)
     end
@@ -93,6 +94,10 @@ class Admins::SystemVariablesController < Admins::ApplicationController
   
   def find_system_variable
     @system_variable = @master_scenario.system_variables.find(params[:id])
+  end
+  
+  def check_system_variables
+    redirect_to(:back, :notice => "Please select at least one variable") unless params[:system_variables].present?
   end
   
 end

@@ -13,7 +13,7 @@
       - @client_versions.each do |version|
         %tr
           %td= version.version
-          %td= link_to version.url, version.url
+          %td= button_to "Download", version.url
           %td= version.release_date
   %br
   = will_paginate @client_versions
