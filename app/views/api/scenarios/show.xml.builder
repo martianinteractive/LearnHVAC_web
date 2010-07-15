@@ -2,7 +2,7 @@ xml.instruct!
 xml.scenario do
   xml.id({:type => "Integer"}, @scenario.id)
   xml.name({:type => "String"}, @scenario.name)
-  xml.student_debug_access({:type => "boolean"}, @scenario.student_debug_access)
+  xml.studentDebugAccess({:type => "boolean"}, @scenario.student_debug_access)
   xml.goal({:type => "String"}, @scenario.goal)
   xml.level({:type => "Integer"}, @scenario.level)
   xml.client do
