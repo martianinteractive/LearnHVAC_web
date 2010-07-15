@@ -132,6 +132,13 @@
 .field.clearfix
   = f.label :valve_info_enabled
   = f.check_box :valve_info_enabled
+  
+%fieldset
+  %p Allow student to view the debug window button.
+  
+.field.clearfix
+  = f.label :student_debug_access
+  = f.check_box :student_debug_access
 
 %fieldset
   %p Allow all users to view this scenario.
