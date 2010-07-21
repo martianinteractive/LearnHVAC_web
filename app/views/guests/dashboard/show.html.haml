@@ -1,15 +1,20 @@
-%h2 Listing Client Versions
-%hr
+#tabs
+  %ul
+    %li.ui-tabs-selected= link_to "Client Versions", instructors_client_versions_path
 
-%table
-  %tr
-    %th Version
-    %th URL
-    %th Release Date
-  - @client_versions.each do |version|
-    %tr
-      %td= version.version
-      %td= link_to version.url, version.url
-      %td= version.release_date
-%br
-= will_paginate @client_versions
+  %br
+  %table.listing
+    %thead
+      %tr
+        %th Version
+        %th URL
+        %th Release Date
+    %tbody
+      - @client_versions.each do |version|
+        %tr
+          %td= version.version
+          %td= button_to "Download", version.url
+          %td= version.release_date
+  %br
+  = will_paginate @client_versions
+
