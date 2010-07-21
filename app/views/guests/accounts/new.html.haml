@@ -1,4 +1,4 @@
-%h2  Student Registration
+%h2  Guests Registration
 %p 
   Already a member? please
   = link_to "login", login_path
@@ -6,31 +6,49 @@
 
 - form_for @account, :url => guests_accounts_path, :method => :post do |f|
   = error_messages_for :account
-  .field
-    = f.label :login
-    = f.text_field :login
+  = f.hidden_field :group_code
 
-  .field
-    = f.label :first_name, "First Name"
-    = f.text_field :first_name
+  %fieldset
+    .field
+      = f.label :first_name, "First Name"
+      = f.text_field :first_name
 
-  .field
-    = f.label :last_name, "Last Name"
-    = f.text_field :last_name
+    .field
+      = f.label :last_name, "Last Name"
+      = f.text_field :last_name
 
-  .field
-    = f.label :email
-    = f.text_field :email
+  %fieldset
+    .field
+      = f.label :country
+      = f.country_select :country, ['United States', 'Canada']
 
-  .field
-    = f.label :password
-    = f.password_field :password, :size=>20,  :value=>""
+    .field#states
+      = f.label :state, "State/Region"
+      = f.text_field :state
 
-  .field
-    = f.label :password_confirmation, "Password Confirmation"	
-    = f.password_field :password_confirmation, :size=>20,  :value=>""
+    .field
+      = f.label :city
+      = f.text_field :city
+	
+  %fieldset		
+    .field
+      = f.label :login
+      = f.text_field :login
+
+    .field
+      = f.label :email
+      = f.text_field :email
+		
+    .field
+      = f.label :password
+      = f.password_field :password, :size=>20,  :value=>""
+
+    .field
+      = f.label :password_confirmation, "Password Confirmation"	
+      = f.password_field :password_confirmation, :size=>20,  :value=>""
 
   .actions
     = submit_tag "Create", :class=>'submitButton'
     &nbsp;|&nbsp;
     = link_to 'Cancel', "http://www.learnhvac.org/"
+
