@@ -1,5 +1,5 @@
 - content_for :head do
-  = render :partial => 'js'
+  = render :partial => 'shared/form_states_js', :locals => { :u => @user }
 
 = error_messages_for 'user'
 .field
