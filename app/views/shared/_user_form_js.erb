@@ -1,4 +1,6 @@
+<% autocomplete ||= false %>
 <% javascript_tag do %>
+ 
  $(document).ready(function(){
 	form = { 
 	  states: function() {
@@ -9,6 +11,12 @@
   $(function() { form.states(); })
 
   $('#user_country').change(function() {form.states()});
-		
+  
+  <% if autocomplete %>
+    $(function() {
+      $("#user_institution_name").autocomplete({ source: "/colleges"});
+    });
+	<% end %>
+	
 });
 <% end %>
