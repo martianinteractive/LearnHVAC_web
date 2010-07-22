@@ -1,3 +1,6 @@
+- content_for :head do
+  = render :partial => 'shared/form_states_js', :locals => { :u => @account }
+
 %h2  Guests Registration
 %p 
   Already a member? please
