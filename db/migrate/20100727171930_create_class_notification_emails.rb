@@ -4,14 +4,12 @@ class CreateClassNotificationEmails < ActiveRecord::Migration
       t.integer :class_id
       t.string :recipients
       t.string :subject
-      t.text :body_html
-      t.text :body_plain
+      t.text :body
 
       t.timestamps
     end
     
     add_index :class_notification_emails, :class_id
-    
   end
 
   def self.down

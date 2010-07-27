@@ -1,0 +1,9 @@
+Hello, 
+
+Please click the link below to join the <%= @group.name %> group.
+
+<%= membership_register_url(@group.code) %>
+
+Thanks,
+
+<%= @group.instructor.name %>

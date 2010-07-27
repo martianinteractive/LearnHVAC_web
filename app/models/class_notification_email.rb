@@ -1,9 +1,17 @@
 class ClassNotificationEmail < ActiveRecord::Base
   belongs_to :group, :foreign_key => "class_id"
-  validates_presence_of :body_html, :recipients, :subject
+  validates_presence_of :body, :recipients, :subject
+  validates_associated :group
   
   after_create :deliver_notification
   
+  def from
+    "#{group.instructor.name} <#{Site.config['from']}>"
+  end
+  
+  def subject
+    read_attribute(:subject) || "LearnHVAC class invitation"
+  end
   
   private
   

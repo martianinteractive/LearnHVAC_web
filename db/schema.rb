@@ -15,8 +15,7 @@ ActiveRecord::Schema.define(:version => 20100727171930) do
     t.integer  "class_id"
     t.string   "recipients"
     t.string   "subject"
-    t.text     "body_html"
-    t.text     "body_plain"
+    t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

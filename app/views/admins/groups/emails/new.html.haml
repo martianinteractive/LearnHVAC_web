@@ -6,18 +6,23 @@
   - form_for(@email, :url => [:admins, @group, :emails], :method => :post) do |f|
     = f.error_messages
     .field
+      = f.label :from
+      = f.text_field :from, :disabled => true
+    
+    .field
       = f.label :recipients
       = f.text_field :recipients
 
     .field 
       = f.label :subject
-      = f.text_field :subject
+      = f.text_field :subject, :value => @email.subject
 
     .field
-      = f.label :body_html
-      = f.text_area :body_html
+      = f.label :body
+      = f.text_area :body, :value => (@email.body || render(:partial => 'body')), :size => '100x100', :class => "class_email"
       
     .actions
       = f.submit
       &nbsp;or&nbsp;
       = link_to 'Cancel', :back
+      
