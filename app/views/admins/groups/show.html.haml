@@ -1,5 +1,7 @@
 - content_for :head do
   = javascript_include_tag 'tools/tooltip.min'
+  - javascript_tag do
+    $(document).ready(function() { $(".tip").tooltip(); });
 
 #tabs
   %ul
@@ -26,8 +28,8 @@
       %tr
         %th Invitation URL:
         %td= membership_register_url(@group.code)
+        %td= link_to image_tag("icon-discuss-small.png", :class => "tip", :title => "Send this Invitation URL to your students!"), [:new, :admins, @group, :email]
         
-
     %h3 Students
 
     - if @group.students.empty?

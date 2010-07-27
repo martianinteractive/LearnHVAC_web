@@ -1,3 +1,8 @@
+- content_for :head do
+  = javascript_include_tag 'tools/tooltip.min'
+  - javascript_tag do
+    $(document).ready(function() { $(".tip").tooltip(); });
+    
 #tabs
   %ul
     %li= link_to @group.name, [:admins, @group]
@@ -12,8 +17,9 @@
     .field
       = f.label :recipients
       = f.text_field :recipients
+      = image_tag("icon-discuss-small.png", :class => "tip", :title => "Please enter the emails comma separated.")
 
-    .field 
+    .field
       = f.label :subject
       = f.text_field :subject, :value => @email.subject
 
