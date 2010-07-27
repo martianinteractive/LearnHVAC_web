@@ -9,7 +9,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100610213228) do
+ActiveRecord::Schema.define(:version => 20100727171930) do
+
+  create_table "class_notification_emails", :force => true do |t|
+    t.integer  "class_id"
+    t.string   "recipients"
+    t.string   "subject"
+    t.text     "body_html"
+    t.text     "body_plain"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "class_notification_emails", ["class_id"], :name => "index_class_notification_emails_on_class_id"
 
   create_table "client_versions", :force => true do |t|
     t.string   "version"
