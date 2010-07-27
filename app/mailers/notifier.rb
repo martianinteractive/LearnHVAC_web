@@ -18,7 +18,7 @@ class Notifier < ActionMailer::Base
   end
   
   def join_class_notification(cn)
-    mail(:to => cn.recipients, :subject => cn.subject) do |format|
+    mail(:from => cn.from, :to => cn.recipients, :subject => cn.subject) do |format|
       format.text { cn.body }
     end
   end
