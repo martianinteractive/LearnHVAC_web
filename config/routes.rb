@@ -123,7 +123,7 @@ Learnhvac::Application.routes.draw do |map|
       #TODO: move students to groups scope.
       resources :students, :only => [:index]
       
-      scope :groups do
+      scope :module => :groups do
         resources :emails, :only => [:index, :new, :show, :create]
       end
     end
