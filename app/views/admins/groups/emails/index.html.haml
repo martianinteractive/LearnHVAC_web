@@ -13,7 +13,7 @@
     - @emails.each do |email|
       %tr
         %td= link_to email.subject, admins_group_email_path(@group, email)
-        %td= email.created_at
+        %td= email.created_at.to_formatted_s(:long)
   %br
   = will_paginate @emails
 

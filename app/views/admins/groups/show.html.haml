@@ -10,10 +10,13 @@
     
   #page_header
     #subject_actions
+      - if @group.notification_emails.any?
+        = link_to 'Emails', [:admins, @group, :emails]
+        &nbsp;
       = link_to 'Edit', edit_admins_group_path(@group)
       &nbsp;
       = link_to 'Delete', admins_group_path(@group), :confirm => 'Are you sure?', :method => :delete
-
+      
     #subject_info
       %h2= @group.name
       .subject_details

@@ -5,6 +5,7 @@ class Admins::Groups::EmailsController < Admins::Groups::BaseController
   end
 
   def show
+    @email = @group.notification_emails.find(params[:id])
   end
 
   def new
