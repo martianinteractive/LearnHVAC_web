@@ -1,3 +1,6 @@
+- content_for :head do
+  = javascript_include_tag 'tools/tooltip.min'
+
 #tabs
   %ul
     %li= link_to "Groups", admins_groups_path
@@ -62,5 +65,4 @@
             %td= link_to scenario.user.name, admins_user_path(scenario.user)
             %td= scenario.scenario_variables.count
             %td= scenario.created_at.to_formatted_s(:long)
-            
             
