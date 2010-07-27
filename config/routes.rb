@@ -120,12 +120,12 @@ Learnhvac::Application.routes.draw do |map|
     end
     
     resources :groups do
-      #TODO: move students to groups namespace.
+      #TODO: move students to groups scope.
       resources :students, :only => [:index]
-    end
-    
-    namespace :groups do
-      resources :emails, :only => [:index, :new, :show, :create]
+      
+      scope :groups do
+        resources :emails, :only => [:index, :new, :show, :create]
+      end
     end
     
     scope ":role" do
