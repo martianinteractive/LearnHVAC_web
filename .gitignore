@@ -7,3 +7,4 @@ db/*.sqlite3
 public/stylesheets/*
 .bundle/environment.rb
 .rvmrc
+vendor/cache/*
