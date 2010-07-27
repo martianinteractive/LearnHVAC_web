@@ -3,7 +3,8 @@ class Group < ActiveRecord::Base
   has_many :memberships, :dependent => :destroy
   has_many :students, :through => :memberships  
   has_many :group_scenarios, :dependent => :destroy
-  
+  has_many :notification_emails, :class_name => "ClassNotificationEmail", :foreign_key => "class_id"
+
   accepts_nested_attributes_for :group_scenarios, :allow_destroy => true
   
   # Define in module

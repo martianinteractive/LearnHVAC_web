@@ -1,5 +1,5 @@
 class Admins::Groups::EmailsController < Admins::Groups::BaseController
-  
+    
   def index
   end
 
@@ -7,6 +7,7 @@ class Admins::Groups::EmailsController < Admins::Groups::BaseController
   end
 
   def new
+    @email = @group.notification_emails.new
   end
 
 end

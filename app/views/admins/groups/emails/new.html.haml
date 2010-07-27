@@ -1,0 +1,23 @@
+#tabs
+  %ul
+    %li= link_to @group.name, [:admins, @group]
+    %li.ui-tabs-selected= link_to "Class Email", [:admins, @group, :emails]
+
+  - form_for(@email, :url => [:admins, @group, :emails], :method => :post) do |f|
+    = f.error_messages
+    .field
+      = f.label :recipients
+      = f.text_field :recipients
+
+    .field 
+      = f.label :subject
+      = f.text_field :subject
+
+    .field
+      = f.label :body_html
+      = f.text_area :body_html
+      
+    .actions
+      = f.submit
+      &nbsp;or&nbsp;
+      = link_to 'Cancel', :back
