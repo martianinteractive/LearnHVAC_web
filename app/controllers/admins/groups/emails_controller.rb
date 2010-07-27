@@ -1,6 +1,7 @@
 class Admins::Groups::EmailsController < Admins::Groups::BaseController
     
   def index
+    @emails = @group.notification_emails.paginate(:page => params[:page], :per_page => 25, :order => "id desc")
   end
 
   def show

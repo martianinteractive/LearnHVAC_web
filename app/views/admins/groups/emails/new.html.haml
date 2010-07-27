@@ -6,7 +6,8 @@
 #tabs
   %ul
     %li= link_to @group.name, [:admins, @group]
-    %li.ui-tabs-selected= link_to "Class Email", [:admins, @group, :emails]
+    %li= link_to "Emails", [:admins, @group, :emails]
+    %li.ui-tabs-selected= link_to "New Email", [:admins, @group, :emails]
 
   - form_for(@email, :url => [:admins, @group, :emails], :method => :post) do |f|
     = f.error_messages
@@ -30,5 +31,5 @@
     .actions
       = f.submit "Send"
       &nbsp;or&nbsp;
-      = link_to 'Cancel', :back
+      = link_to 'Cancel', [:admins, @group]
       
