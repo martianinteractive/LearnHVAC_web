@@ -1,4 +1,5 @@
-class Admins::Groups::EmailsController < ApplicationController
+class Admins::Groups::EmailsController < Admins::Groups::BaseController
+  
   def index
   end
 
