@@ -22,7 +22,7 @@
       = f.text_area :body, :value => (@email.body || render(:partial => 'body')), :size => '100x100', :class => "class_email"
       
     .actions
-      = f.submit
+      = f.submit "Send"
       &nbsp;or&nbsp;
       = link_to 'Cancel', :back
       
