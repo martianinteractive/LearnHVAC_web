@@ -5,11 +5,14 @@ gem "compass", "0.10.2"
 gem "authlogic", "2.1.5"
 gem "mysql"
 gem "will_paginate", "3.0.pre"
-gem "mongoid", "2.0.0.beta6"
-gem "bson_ext", "1.0.1"
 gem 'acts-as-taggable-on', '2.0.0.rc1'
 gem "addressable", "2.1.1"
 gem "builder"
+
+#mongo
+gem "mongo", "1.0.4"
+gem "mongoid", "2.0.0.beta6"
+gem "bson_ext", "1.0.4"
 
 group :test do
   gem "rspec-rails", ">= 2.0.0.beta.8"
