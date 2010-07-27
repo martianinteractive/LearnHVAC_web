@@ -5,6 +5,7 @@ class Admins::Groups::BaseController < Admins::ApplicationController
   
   def find_group
     @group = Group.find(params[:group_id])
+    add_crumb @group.name, [:admins, @group]
   end
   
 end
