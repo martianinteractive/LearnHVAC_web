@@ -12,10 +12,10 @@ class Scenario < ActiveRecord::Base
   validates_format_of :longterm_start_date, :longterm_stop_date, :realtime_start_date, :with => /\d{2}\/\d{2}\/\d{4}/, :message => "is invalid"
   # validate :longterm_validator
   
-  named_scope :recently_created, where(:created_at.gt => (30.days.ago.utc))
-  named_scope :recently_updated, where(:updated_at.gt => (30.days.ago.utc))
-  named_scope :public, where(:public => true)
-  named_scope :with_unread_alerts, where("scenario_alerts.read" => false)
+  scope :recently_created, where(["created_at > ?", 30.days.ago.utc])
+  scope :recently_updated, where(["updated_at > ?", 30.days.ago.utc])
+  scope :public, where(:public => true)
+  scope :with_unread_alerts, where("scenario_alerts.read" => false)
   
   # belongs_to_related :user
   # belongs_to_related :master_scenario
