@@ -1,8 +1,9 @@
 class Admins::TagsController < Admins::ApplicationController
   
   def index
-    @tags = MasterScenario.tagged_like(params[:term].split(",").last.strip) if params[:term]
-    render :js => @tags.try(:to_json) || []
+    last_tag = params[:term].split(",").last.strip if params[:term]
+    @tags = Tag.where(["name like ?", "#{last_tag}%"])
+    render :js => @tags.collect{|t| t.name}.to_json
   end
   
 end
