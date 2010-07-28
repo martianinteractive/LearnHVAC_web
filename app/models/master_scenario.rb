@@ -35,7 +35,7 @@ class MasterScenario < ActiveRecord::Base
     clon = MasterScenario.new(clon_atts)
     clon.user = usr || self.user
     sys_vars = []
-    self.system_variables.each { |sv| sys_vars << sv.attributes.except("_id") }
+    self.variables.each { |sv| sys_vars << sv.attributes.except("_id") }
     clon.system_variables = sys_vars
     clon.save
     clon
