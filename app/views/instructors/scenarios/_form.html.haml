@@ -11,7 +11,7 @@
 
     .field.clearfix
       = f.label :master_scenario_id, "Master Scenario"
-      = f.select :master_scenario_id, MasterScenario.select(:name, :id).collect { |ms| [ ms.name.capitalize, ms.id ] }, {:prompt => "Please select..."}
+      = f.select :master_scenario_id, MasterScenario.select("name, id").collect { |ms| [ ms.name.capitalize, ms.id ] }, {:prompt => "Please select..."}
 
 
 %fieldset
