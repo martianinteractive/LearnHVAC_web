@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100728172853) do
+ActiveRecord::Schema.define(:version => 20100728202513) do
 
   create_table "class_notification_emails", :force => true do |t|
     t.integer  "class_id"
@@ -94,6 +94,35 @@ ActiveRecord::Schema.define(:version => 20100728172853) do
   end
 
   add_index "regions", ["country"], :name => "index_regions_on_country"
+
+  create_table "scenarios", :force => true do |t|
+    t.string   "name"
+    t.string   "short_description"
+    t.text     "description"
+    t.string   "goal"
+    t.date     "longterm_start_date",            :default => '2010-01-01'
+    t.date     "longterm_stop_date",             :default => '2010-07-31'
+    t.date     "realtime_start_datetime",        :default => '2010-01-15'
+    t.integer  "level",                          :default => 1
+    t.boolean  "public",                         :default => false
+    t.boolean  "inputs_visible",                 :default => true
+    t.boolean  "inputs_enabled",                 :default => true
+    t.boolean  "faults_visible",                 :default => true
+    t.boolean  "faults_enabled",                 :default => true
+    t.boolean  "valve_info_enabled",             :default => true
+    t.boolean  "allow_longterm_date_change",     :default => false
+    t.boolean  "allow_realtime_datetime_change", :default => false
+    t.boolean  "student_debug_access",           :default => false
+    t.integer  "desktop_id"
+    t.integer  "master_scenario_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "scenarios", ["desktop_id"], :name => "index_scenarios_on_desktop_id"
+  add_index "scenarios", ["master_scenario_id"], :name => "index_scenarios_on_master_scenario_id"
+  add_index "scenarios", ["user_id"], :name => "index_scenarios_on_user_id"
 
   create_table "system_variables", :force => true do |t|
     t.string   "name"
