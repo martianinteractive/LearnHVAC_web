@@ -160,19 +160,6 @@ module SortHelper
     content_tag('th', sort_link(column, text, options), options)
   end
   
-  def doc_sort_clause
-    sort_clause.split(" ").collect { |x| x.to_sym }
-  end
-  
-  # Ruby Sort for Mongoid embedded documents as collections.
-  # Uses the current sort_clause by default.
-  def doc_sort(collection, _sort_clause = sort_clause)
-    attribute, order = _sort_clause.split(" ")
-    co = collection.sort_by { |item| item.send(attribute) }
-    co.reverse! if order == "desc"
-    co
-  end
-
   private
 
     # Return n non-breaking spaces.
