@@ -2,14 +2,14 @@ class Admins::SystemVariablesController < Admins::ApplicationController
   helper :sort
   include SortHelper
   before_filter :find_master_scenario, :add_crumbs
-  before_filter :check_version_notes, :except => [:index, :yaml_dump]
+  # before_filter :check_version_notes, :except => [:index, :yaml_dump]
   before_filter :find_system_variable, :only => [:show, :edit, :update]
   before_filter :initialize_variables_sort, :only => [:index]
-  before_filter :store_location, :only => [:update]
+  # before_filter :store_location, :only => [:update]
   before_filter :check_system_variables, :only => [:update_status]
   
   def index
-    @system_variables = params[:filter].present? ? @master_scenario.system_variables.filter(params[:filter]).to_a : doc_sort(@master_scenario.system_variables)
+    @system_variables = params[:filter].present? ? @master_scenario.variables.filter(params[:filter]) : @master_scenario.variables
     @system_variables = @system_variables.paginate(:page => params[:page], :per_page => 25)
   end
   
@@ -30,7 +30,8 @@ class Admins::SystemVariablesController < Admins::ApplicationController
     
     if @system_variable.save
       session[:return_to] = admins_master_scenario_system_variable_path(@master_scenario, @system_variable)
-      redirect_to(new_admins_master_scenario_version_note_path(@master_scenario), :notice => 'System Variable was successfully created.')
+      redirect_to([:admins, @master_scenario, @system_variable], :notice => 'System Variable was successfully created.')
+      # redirect_to(new_admins_master_scenario_version_note_path(@master_scenario), :notice => 'System Variable was successfully created.')
     else
       render :action => :new
     end
@@ -38,35 +39,32 @@ class Admins::SystemVariablesController < Admins::ApplicationController
 
   def update
     if @system_variable.update_attributes(params[:system_variable])
-      redirect_to(new_admins_master_scenario_version_note_path(@master_scenario), :notice => 'System Variable was successfully updated.')
+      redirect_to([:admins, @master_scenario, @system_variable], :notice => 'System Variable was successfully created.')
+      # redirect_to(new_admins_master_scenario_version_note_path(@master_scenario), :notice => 'System Variable was successfully updated.')
     else
       render :action => :edit
     end
   end
   
   def update_status
-    @master_scenario.system_variables.criteria.in("_id" => params["system_variables"]).each do |sv|
-      sv.skip_notify!
-      sv.update_attributes(:disabled => params[:disable].present?)
-    end
-    
-    if @master_scenario.save
-      session[:return_to] = admins_master_scenario_system_variables_path(@master_scenario)
-      redirect_to(new_admins_master_scenario_version_note_path(@master_scenario), :notice => "Please describe the changes You've just made")
+    if @master_scenario.variables.update_all("disabled = #{params[:disable].present?}", ["system_variables.id in (?)", params[:system_variables]])
+      redirect_to([:admins, @master_scenario, :system_variables], :notice => 'System Variable was successfully created.')
+      # session[:return_to] = admins_master_scenario_system_variables_path(@master_scenario)
+      # redirect_to(new_admins_master_scenario_version_note_path(@master_scenario), :notice => "Please describe the changes You've just made")
     else
       redirect_to(:back, :notice => "There were problems updating the variables status.")
     end
   end
   
   def destroy
-    @master_scenario.system_variables.find(params[:id]).destroy
+    @master_scenario.variables.find(params[:id]).destroy
     session[:return_to] = admins_master_scenario_system_variables_path(@master_scenario)
     redirect_to(new_admins_master_scenario_version_note_path(@master_scenario), :notice => 'System Variable was successfully deleted.')
   end
   
   def yaml_dump
     @vars = {}
-    @master_scenario.system_variables.each do |var|
+    @master_scenario.variables.each do |var|
       @vars[var.name.to_s] = var.attributes.except("_id").to_hash
     end
     @vars
@@ -81,11 +79,7 @@ class Admins::SystemVariablesController < Admins::ApplicationController
   end
   
   def find_master_scenario
-    if params[:action] =! "update"
-      @master_scenario = MasterScenario.for_display(params[:master_scenario_id], :add => [:system_variables, :version_note])
-    else
-      @master_scenario = MasterScenario.find(params[:master_scenario_id])
-    end
+    @master_scenario = MasterScenario.find(params[:master_scenario_id])
   end
   
   def check_version_notes
@@ -93,7 +87,7 @@ class Admins::SystemVariablesController < Admins::ApplicationController
   end
   
   def find_system_variable
-    @system_variable = @master_scenario.system_variables.find(params[:id])
+    @system_variable = @master_scenario.variables.find(params[:id])
   end
   
   def check_system_variables
