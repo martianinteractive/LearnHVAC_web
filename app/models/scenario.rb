@@ -23,7 +23,7 @@ class Scenario < ActiveRecord::Base
   
   def copy_variables
     master_scenario.variables.each do |sys_var|
-      variables.create sys_var.attributes.except("id", "created_at", "updated_at", "master_scenario_id")
+      variables.create sys_var.attributes.except("id", "created_at", "updated_at", "scenario_id")
     end
   end
   
