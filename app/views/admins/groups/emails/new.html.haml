@@ -26,7 +26,7 @@
 
     .field
       = f.label :body
-      = f.text_area :body, :value => (@email.body || render(:partial => 'body')), :size => '100x100', :class => "class_email"
+      = f.text_area :body, :value => (@email.body || render(:partial => 'shared/group_email_body')), :size => '100x100', :class => "class_email"
       
     .actions
       = f.submit "Send"
