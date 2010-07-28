@@ -26,4 +26,6 @@
         %td= @email.recipients
         
     
-    %div= simple_format @email.body
+    .class_email
+      %b Sent email
+      = simple_format @email.body
