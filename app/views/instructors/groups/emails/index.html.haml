@@ -1,0 +1,19 @@
+#tabs
+  %ul
+    %li= link_to @group.name, [:instructors, @group]
+    %li.ui-tabs-selected= link_to "Emails", [:instructors, @group, :emails]
+    %li= link_to "New Email", [:new, :instructors, @group, :email]
+  
+  %br
+  %table.listing
+    %thead
+      %tr
+        %th Subject
+        %th Sent At
+    - @emails.each do |email|
+      %tr
+        %td= link_to email.subject, instructors_group_email_path(@group, email)
+        %td= email.created_at.to_formatted_s(:long)
+  %br
+  = will_paginate @emails
+
