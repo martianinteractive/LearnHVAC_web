@@ -1,4 +1,3 @@
 class ScenarioVariable < Variable
-  belongs_to :scenario  
-  
+  belongs_to :scenario
 end
