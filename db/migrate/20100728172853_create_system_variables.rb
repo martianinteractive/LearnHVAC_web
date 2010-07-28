@@ -1,6 +1,6 @@
 class CreateSystemVariables < ActiveRecord::Migration
   def self.up
-    create_table :system_variables do |t|
+    create_table :variables do |t|
       t.string :name
       t.string :display_name
       t.text :description
@@ -26,30 +26,34 @@ class CreateSystemVariables < ActiveRecord::Migration
       t.boolean :is_percentage,     :default => false
       t.boolean :disabled,          :default => false
       t.boolean :fault_is_active,   :default => false
-      t.integer :master_scenario_id 
+      
+      t.string  :type
+      t.integer :scenario_id 
 
       t.timestamps
     end
     
-    add_index :system_variables, :master_scenario_id
-    add_index :system_variables, :component_code
-    add_index :system_variables, :name
-    add_index :system_variables, :low_value
-    add_index :system_variables, :high_value
-    add_index :system_variables, :initial_value
-    add_index :system_variables, :io_type
+    add_index :variables, :scenario_id
+    add_index :variables, :type
+    add_index :variables, :component_code
+    add_index :variables, :name
+    add_index :variables, :low_value
+    add_index :variables, :high_value
+    add_index :variables, :initial_value
+    add_index :variables, :io_type
     
   end
 
   def self.down
-    remove_index :system_variables, :io_type
-    remove_index :system_variables, :initial_value
-    remove_index :system_variables, :high_value
-    remove_index :system_variables, :low_value
-    remove_index :system_variables, :name
-    remove_index :system_variables, :component_code
-    remove_index :system_variables, :master_scenario_id
+    remove_index :variables, :io_type
+    remove_index :variables, :initial_value
+    remove_index :variables, :high_value
+    remove_index :variables, :low_value
+    remove_index :variables, :name
+    remove_index :variables, :component_code
+    remove_index :variables, :type
+    remove_index :variables, :master_scenario_id
     
-    drop_table :system_variables
+    drop_table :variables
   end
 end

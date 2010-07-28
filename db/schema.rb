@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100728222837) do
+ActiveRecord::Schema.define(:version => 20100728202513) do
 
   create_table "class_notification_emails", :force => true do |t|
     t.integer  "class_id"
@@ -95,45 +95,6 @@ ActiveRecord::Schema.define(:version => 20100728222837) do
 
   add_index "regions", ["country"], :name => "index_regions_on_country"
 
-  create_table "scenario_variables", :force => true do |t|
-    t.string   "name"
-    t.string   "display_name"
-    t.text     "description"
-    t.string   "unit_si"
-    t.string   "unit_ip"
-    t.string   "si_to_ip"
-    t.string   "left_label"
-    t.string   "right_label"
-    t.string   "subsection"
-    t.string   "zone_position"
-    t.string   "fault_widget_type"
-    t.text     "notes"
-    t.string   "component_code"
-    t.string   "io_type"
-    t.string   "view_type",         :default => "public"
-    t.integer  "index"
-    t.integer  "lock_version",      :default => 0
-    t.integer  "node_sequence",     :default => 0
-    t.float    "low_value",         :default => 0.0
-    t.float    "high_value",        :default => 0.0
-    t.float    "initial_value",     :default => 0.0
-    t.boolean  "is_fault",          :default => false
-    t.boolean  "is_percentage",     :default => false
-    t.boolean  "disabled",          :default => false
-    t.boolean  "fault_is_active",   :default => false
-    t.integer  "scenario_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "scenario_variables", ["component_code"], :name => "index_scenario_variables_on_component_code"
-  add_index "scenario_variables", ["high_value"], :name => "index_scenario_variables_on_high_value"
-  add_index "scenario_variables", ["initial_value"], :name => "index_scenario_variables_on_initial_value"
-  add_index "scenario_variables", ["io_type"], :name => "index_scenario_variables_on_io_type"
-  add_index "scenario_variables", ["low_value"], :name => "index_scenario_variables_on_low_value"
-  add_index "scenario_variables", ["name"], :name => "index_scenario_variables_on_name"
-  add_index "scenario_variables", ["scenario_id"], :name => "index_scenario_variables_on_scenario_id"
-
   create_table "scenarios", :force => true do |t|
     t.string   "name"
     t.string   "short_description"
@@ -162,45 +123,6 @@ ActiveRecord::Schema.define(:version => 20100728222837) do
   add_index "scenarios", ["desktop_id"], :name => "index_scenarios_on_desktop_id"
   add_index "scenarios", ["master_scenario_id"], :name => "index_scenarios_on_master_scenario_id"
   add_index "scenarios", ["user_id"], :name => "index_scenarios_on_user_id"
-
-  create_table "system_variables", :force => true do |t|
-    t.string   "name"
-    t.string   "display_name"
-    t.text     "description"
-    t.string   "unit_si"
-    t.string   "unit_ip"
-    t.string   "si_to_ip"
-    t.string   "left_label"
-    t.string   "right_label"
-    t.string   "subsection"
-    t.string   "zone_position"
-    t.string   "fault_widget_type"
-    t.text     "notes"
-    t.string   "component_code"
-    t.string   "io_type"
-    t.string   "view_type",          :default => "public"
-    t.integer  "index"
-    t.integer  "lock_version",       :default => 0
-    t.integer  "node_sequence",      :default => 0
-    t.float    "low_value",          :default => 0.0
-    t.float    "high_value",         :default => 0.0
-    t.float    "initial_value",      :default => 0.0
-    t.boolean  "is_fault",           :default => false
-    t.boolean  "is_percentage",      :default => false
-    t.boolean  "disabled",           :default => false
-    t.boolean  "fault_is_active",    :default => false
-    t.integer  "master_scenario_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "system_variables", ["component_code"], :name => "index_system_variables_on_component_code"
-  add_index "system_variables", ["high_value"], :name => "index_system_variables_on_high_value"
-  add_index "system_variables", ["initial_value"], :name => "index_system_variables_on_initial_value"
-  add_index "system_variables", ["io_type"], :name => "index_system_variables_on_io_type"
-  add_index "system_variables", ["low_value"], :name => "index_system_variables_on_low_value"
-  add_index "system_variables", ["master_scenario_id"], :name => "index_system_variables_on_master_scenario_id"
-  add_index "system_variables", ["name"], :name => "index_system_variables_on_name"
 
   create_table "taggings", :force => true do |t|
     t.integer  "tag_id"
@@ -243,5 +165,46 @@ ActiveRecord::Schema.define(:version => 20100728222837) do
   end
 
   add_index "users", ["perishable_token"], :name => "index_users_on_perishable_token"
+
+  create_table "variables", :force => true do |t|
+    t.string   "name"
+    t.string   "display_name"
+    t.text     "description"
+    t.string   "unit_si"
+    t.string   "unit_ip"
+    t.string   "si_to_ip"
+    t.string   "left_label"
+    t.string   "right_label"
+    t.string   "subsection"
+    t.string   "zone_position"
+    t.string   "fault_widget_type"
+    t.text     "notes"
+    t.string   "component_code"
+    t.string   "io_type"
+    t.string   "view_type",         :default => "public"
+    t.integer  "index"
+    t.integer  "lock_version",      :default => 0
+    t.integer  "node_sequence",     :default => 0
+    t.float    "low_value",         :default => 0.0
+    t.float    "high_value",        :default => 0.0
+    t.float    "initial_value",     :default => 0.0
+    t.boolean  "is_fault",          :default => false
+    t.boolean  "is_percentage",     :default => false
+    t.boolean  "disabled",          :default => false
+    t.boolean  "fault_is_active",   :default => false
+    t.string   "type"
+    t.integer  "scenario_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "variables", ["component_code"], :name => "index_variables_on_component_code"
+  add_index "variables", ["high_value"], :name => "index_variables_on_high_value"
+  add_index "variables", ["initial_value"], :name => "index_variables_on_initial_value"
+  add_index "variables", ["io_type"], :name => "index_variables_on_io_type"
+  add_index "variables", ["low_value"], :name => "index_variables_on_low_value"
+  add_index "variables", ["name"], :name => "index_variables_on_name"
+  add_index "variables", ["scenario_id"], :name => "index_variables_on_scenario_id"
+  add_index "variables", ["type"], :name => "index_variables_on_type"
 
 end
