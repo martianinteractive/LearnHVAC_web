@@ -2,7 +2,7 @@ class Admins::Settings::ClientVersionsController < Admins::Settings::BaseControl
   add_crumb("Client Versions") { |instance| instance.send :admins_settings_client_versions_path }
   
   def index
-    @client_versions = ClientVersion.paginate :page => params[:page], :per_page => 25, :order => "version DESC"
+    @client_versions = ClientVersion.paginate :page => params[:page], :per_page => 10, :order => "release_date DESC"
   end
 
   def show
