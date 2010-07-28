@@ -1,33 +1,33 @@
-class MasterScenario
-  include Mongoid::Document
-  include Mongoid::Timestamps
-  include Mongoid::Versioning
-  include Mongoid::Document::Taggable
-  field :name
-  field :description
+class MasterScenario < ActiveRecord::Base
+  has_many :scenarios
+  has_many :variables, :class_name => "SystemVariable"
+  has_one :version_note
+  belongs_to :user
+  belongs_to :client_version, :foreign_key => "desktop_id"
   
-  embed_many :system_variables
-  embed_one :version_note
+  # embed_many :system_variables
+  # embed_one :version_note
   
-  has_many_related :scenarios
-  belongs_to_related :user
-  belongs_to_related :client_version
+  # has_many_related :scenarios
+  # belongs_to_related :user
+  # belongs_to_related :client_version
+  # 
+  # index :user_id
+  # index :client_version_id
   
-  index :user_id
-  index :client_version_id
-  
-  validates_presence_of :name, :user, :client_version
+  validates_presence_of :name, :user
+  validates_associated :client_version
   
   before_save :delete_version_note
   after_create :create_initial_version_note
     
   #skips embeded documents
-  def self.for_display(id_selector=nil, opts={})
-    f = fields.keys
-    opts[:add].is_a?(Array) ? opts[:add].each { |field| f << field } : f << opts[:add]
-    _only = criteria.only(f.compact)
-    id_selector ? _only.id(id_selector).first : _only
-  end
+  # def self.for_display(id_selector=nil, opts={})
+  #   f = fields.keys
+  #   opts[:add].is_a?(Array) ? opts[:add].each { |field| f << field } : f << opts[:add]
+  #   _only = criteria.only(f.compact)
+  #   id_selector ? _only.id(id_selector).first : _only
+  # end
   
   def clone!(usr=nil)
     clon_atts = self.attributes.except("_id", "user_id").merge(default_clon_attributes)
