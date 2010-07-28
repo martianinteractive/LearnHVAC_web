@@ -27,8 +27,8 @@
   = f.text_area :description
 
 .field
-  = f.label :client_version
-  = f.select :client_version_id, ClientVersion.all.collect { |cv| [cv.version, cv.id.to_s] }, :prompt => "Please select..."
+  = f.label :desktop_id, "Client Version"
+  = f.select :desktop_id, ClientVersion.all.collect { |cv| [cv.version, cv.id.to_s] }, :prompt => "Please select..."
 
 .field
   = f.label :tag_list, "Tags"

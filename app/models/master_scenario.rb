@@ -1,4 +1,5 @@
 class MasterScenario < ActiveRecord::Base
+  acts_as_taggable
   has_many :scenarios
   has_many :variables, :class_name => "SystemVariable"
   has_one :version_note
@@ -15,11 +16,11 @@ class MasterScenario < ActiveRecord::Base
   # index :user_id
   # index :client_version_id
   
-  validates_presence_of :name, :user
-  validates_associated :client_version
-  
-  before_save :delete_version_note
-  after_create :create_initial_version_note
+  # validates_presence_of :name, :user
+  # validates_associated :client_version
+  # 
+  # before_save :delete_version_note
+  # after_create :create_initial_version_note
     
   #skips embeded documents
   # def self.for_display(id_selector=nil, opts={})

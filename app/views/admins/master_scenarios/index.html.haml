@@ -1,7 +1,8 @@
 %h4 Tags
 %p 
-  - for tag in MasterScenario.tags do
-    = link_to tag, master_scenarios_tag_path(tag)
+  / Using Tag.all for now, only MasterScenarios are taggable
+  - for tag in Tag.all do
+    = link_to tag.name, master_scenarios_tag_path(tag.name)
 
 #tabs
   %ul
@@ -20,7 +21,7 @@
       %tr
         %td= link_to master_scenario.name, admins_master_scenario_path(master_scenario)
         %td= master_scenario.user.name
-        %td= link_to master_scenario.client_version.version, admins_settings_client_version_path(master_scenario.client_version_id)
+        %td= link_to master_scenario.client_version.version, admins_settings_client_version_path(master_scenario.client_version)
         %td= master_scenario.version > 0 ? master_scenario.version - 1 : 0
         
   %br
