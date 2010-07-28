@@ -54,6 +54,10 @@ Learnhvac::Application.routes.draw do |map|
     resources :groups do
       resources :students, :only => [:index, :show]
       resources :memberships, :only => [:destroy]
+      
+      scope :module => :groups do
+        resources :emails, :only => [:index, :new, :show, :create]
+      end
     end
   end
   
