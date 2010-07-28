@@ -60,7 +60,7 @@ class Admins::ScenariosController < Admins::ApplicationController
    private
    
    def find_scenario
-     @scenario = Scenario.only(Scenario.fields.keys).id(params[:id]).first
+     @scenario = Scenario.find(params[:id])
    end
    
 end

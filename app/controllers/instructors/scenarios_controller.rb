@@ -53,7 +53,7 @@ class Instructors::ScenariosController < Instructors::ApplicationController
   private
   
   def find_scenario
-    @scenario = Scenario.only(Scenario.fields.keys).where("_id" => params[:id], "user_id" => current_user.id.to_s).first
+    @scenario = current_user.scenarios.find(params[:id])
   end
   
 end
