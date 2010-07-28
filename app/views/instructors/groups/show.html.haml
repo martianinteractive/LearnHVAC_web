@@ -1,3 +1,8 @@
+- content_for :head do
+  = javascript_include_tag 'tools/tooltip.min'
+  - javascript_tag do
+    $(document).ready(function() { $(".tip").tooltip(); });
+
 #tabs
   %ul
     %li.ui-tabs-selected= link_to "Groups", instructors_groups_path
@@ -24,6 +29,7 @@
         %th Invitation URL:
         %td
           %input{:type => "text", :value => membership_register_url(@group.code), :style => "width: 400px", :spellcheck => false}
+        %td= link_to image_tag("icon-discuss-small.png", :class => "tip", :title => "Send this Invitation URL to your students!"), [:new, :instructors, @group, :email]
         
         
     %h3 Students
