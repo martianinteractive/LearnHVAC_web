@@ -51,6 +51,6 @@ class SystemVariable
   #     self.master_scenario.revise
   #     self.master_scenario.update(false)
   #   end
-  end
+  # end
   
 end
