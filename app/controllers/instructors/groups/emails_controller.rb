@@ -1,2 +1,2 @@
-class Instructors::Groups::EmailsController < ApplicationController
+class Instructors::Groups::EmailsController < Instructors::Groups::BaseController
 end
