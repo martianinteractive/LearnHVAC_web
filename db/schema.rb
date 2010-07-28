@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100728161530) do
+ActiveRecord::Schema.define(:version => 20100727171930) do
 
   create_table "class_notification_emails", :force => true do |t|
     t.integer  "class_id"
@@ -65,18 +65,6 @@ ActiveRecord::Schema.define(:version => 20100728161530) do
   end
 
   add_index "institutions", ["name"], :name => "index_institutions_on_name"
-
-  create_table "master_scenarios", :force => true do |t|
-    t.string   "name"
-    t.text     "description"
-    t.integer  "user_id"
-    t.integer  "desktop_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "master_scenarios", ["desktop_id"], :name => "index_master_scenarios_on_desktop_id"
-  add_index "master_scenarios", ["user_id"], :name => "index_master_scenarios_on_user_id"
 
   create_table "memberships", :force => true do |t|
     t.integer  "student_id"
