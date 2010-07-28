@@ -7,8 +7,7 @@ class CreateScenarios < ActiveRecord::Migration
       t.string :goal
       t.date :longterm_start_date,                :default => Date.today.beginning_of_year
       t.date :longterm_stop_date,                 :default => Date.today.end_of_month
-      # TODO: Check if datetime!
-      t.date :realtime_start_datetime,            :default => Date.today.beginning_of_year + 14.days
+      t.datetime :realtime_start_datetime,        :default => Date.today.beginning_of_year + 14.days
       t.integer :level,                           :default => 1
       t.boolean :public,                          :default => false
       t.boolean :inputs_visible,                  :default => true
