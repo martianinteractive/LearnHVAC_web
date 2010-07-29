@@ -6,7 +6,7 @@ class Admins::ScenarioVariablesController < Admins::ApplicationController
   before_filter :initialize_variables_sort, :only => [:index]
   
   def index
-    @scenario_variables = doc_sort(@scenario.scenario_variables).paginate :page => params[:page], :per_page => 25
+    @scenario_variables = @scenario.variables.paginate :page => params[:page], :per_page => 25
   end
   
   def new
@@ -40,7 +40,7 @@ class Admins::ScenarioVariablesController < Admins::ApplicationController
   end
 
   def destroy
-    @scenario.scenario_variables.find(params[:id]).destroy
+    @scenario.variables.find(params[:id]).destroy
     redirect_to(admins_scenario_scenario_variables_path(@scenario), :notice => 'ScenarioVariable was successfully deleted.')
   end
   
@@ -58,7 +58,7 @@ class Admins::ScenarioVariablesController < Admins::ApplicationController
   end
   
   def find_scenario_variable
-    @scenario_variable = @scenario.scenario_variables.find(params[:id])
+    @scenario_variable = @scenario.variables.find(params[:id])
     add_crumb @scenario_variable.name, admins_scenario_scenario_variable_path(@scenario, @scenario_variable)
   end
   

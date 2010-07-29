@@ -3,23 +3,27 @@ class Scenario < ActiveRecord::Base
       
   belongs_to :user
   belongs_to :master_scenario
-  
-  has_many :variables, :class_name => "ScenarioVariable"
+  belongs_to :client_version, :foreign_key => "desktop_id"
+  has_many :variables, :class_name => "ScenarioVariable", :dependent => :destroy
   has_many :alerts, :class_name => "ScenarioAlert"
   has_many :group_scenarios
   
-  validates_presence_of :name, :master_scenario_id, :user, :longterm_start_date, :longterm_stop_date, :realtime_start_date
-  validates_format_of :longterm_start_date, :longterm_stop_date, :realtime_start_date, :with => /\d{2}\/\d{2}\/\d{4}/, :message => "is invalid"
+  validates_presence_of :name, :master_scenario, :user, :longterm_start_date, :longterm_stop_date, :realtime_start_datetime
   validate :longterm_validator
+  
+  before_create :set_client_version
+  after_create :copy_variables
   
   scope :recently_created, where(["created_at > ?", 30.days.ago.utc])
   scope :recently_updated, where(["updated_at > ?", 30.days.ago.utc])
   scope :public, where(:public => true)
   scope :with_unread_alerts, where("scenario_alerts.read" => false)
-  
-  after_create :copy_variables
-  
+    
   private
+  
+  def set_client_version
+    self.client_version = master_scenario.client_version
+  end
   
   def copy_variables
     master_scenario.variables.each do |sys_var|
@@ -30,7 +34,7 @@ class Scenario < ActiveRecord::Base
   def longterm_validator
     errors.add(:longterm_start_date, "should be set before the longterm stop date") if longterm_start_date >= longterm_stop_date
     errors.add(:longterm_stop_date, "should be set after the longterm start date") if longterm_stop_date <= longterm_start_date
-    errors.add(:realtime_start_date, "should be set between start and stop dates") if (realtime_start_date < longterm_start_date) or (realtime_start_date > longterm_stop_date) 
+    errors.add(:realtime_start_datetime, "should be set between start and stop dates") if (realtime_start_datetime < longterm_start_date) or (realtime_start_datetime > longterm_stop_date) 
   end
   
   # def groups

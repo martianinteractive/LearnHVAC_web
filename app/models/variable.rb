@@ -4,7 +4,7 @@ class Variable < ActiveRecord::Base
                  "BOI" => "Boiler", "CHL" => "Chiller", "CTW" => "Cooling Tower", "DCT" => "Duct", 
                  "DIF" => "Diffuser", "FAN" => "Fan", "FLT" => "Filter", "PLT" => "Plant", "SYS" => "System", "VAV" => "VAV Box" }
   
-  validates_presence_of :name, :display_name, :low_value, :initial_value, :high_value, :master_scenario
+  validates_presence_of :name, :display_name, :low_value, :initial_value, :high_value, :scenario
   validates_numericality_of :low_value, :initial_value, :high_value
   validates :io_type, :inclusion => { :in => IO_TYPES }
   
