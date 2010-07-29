@@ -25,7 +25,11 @@
         %td= @scenario.created_at.to_formatted_s(:long)
       %tr
         %th Client version:
-        %td= link_to @scenario.client_version.version, @scenario.client_version.url
+        %td
+          - if @scenario.client_version
+            = link_to @scenario.client_version.version, @scenario.client_version.url
+          - else
+            %em No Client version associated
       %tr
         %th Level:
         %td= @scenario.level
