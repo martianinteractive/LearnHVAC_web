@@ -1,6 +1,7 @@
 module Admins::ScenariosHelper
   def link_to_master_scenario_for(scenario)
     ms = MasterScenario.only(:id, :version).id(scenario.master_scenario_id).first
+    return scenario.master_scenario_name unless ms
     ms_name = scenario.master_scenario_name
     ms_version = scenario.master_scenario_version
     if ms.version == ms_version
