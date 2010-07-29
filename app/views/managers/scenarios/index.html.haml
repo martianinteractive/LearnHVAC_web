@@ -14,7 +14,7 @@
       %tr
         %td= link_to scenario.name, managers_scenario_path(scenario)
         %td= link_to_if scenario.user.has_role?(:instructor), scenario.user.name, managers_instructor_path(scenario.user)
-        %td= scenario.master_scenario_name
+        %td= scenario.master_scenario.name
         %td= scenario.created_at.to_formatted_s(:long)
 
   %br

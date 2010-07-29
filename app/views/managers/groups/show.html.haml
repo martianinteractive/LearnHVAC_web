@@ -56,7 +56,7 @@
         - @group.scenarios.each do |scenario|
           %tr
             %td= link_to scenario.name, instructors_scenario_path(scenario)
-            %td= scenario.scenario_variables.count
+            %td= scenario.variables.count
             %td= scenario.created_at.to_formatted_s(:long)
 
 

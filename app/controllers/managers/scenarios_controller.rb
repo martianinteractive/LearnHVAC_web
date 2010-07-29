@@ -21,7 +21,7 @@ class Managers::ScenariosController < Managers::ApplicationController
   private 
   
   def find_scenario
-    @scenario = current_user.institution.scenarios.find { |s| s.id == params[:id] }
+    @scenario = current_user.institution.scenarios.find(params[:id])
   end
   
 end

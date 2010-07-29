@@ -14,7 +14,7 @@
         %th Recently Updated
     %tbody
       %tr
-        %td Scenarios
+        %td= link_to "Scenarios", [:managers, :scenarios]
         %td= current_user.institution.scenarios.count
         %td= current_user.institution.scenarios.recently_created.count
         %td= current_user.institution.scenarios.recently_updated.count
