@@ -1,8 +1,7 @@
 uber_master_scenario:
-  _id : "1"
-  client_version_id: 1
+  id : 1
+  desktop_id: 1
   name: Uber-Master Scenario
   description: "This scenario has all the variables from the latest development of Learn HVAC. Once development is finished, other scenarios can be successfully cloned from it."
-  user_id: "2"
-  tags: ["summer", "phoenix", "day"]
+  user_id: 2
   
