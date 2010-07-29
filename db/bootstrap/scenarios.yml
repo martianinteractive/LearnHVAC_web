@@ -6,10 +6,7 @@ joe_scenario:
   name: "Joe's Scenario"
   longterm_start_date: "04/06/2010"
   longterm_stop_date: "04/19/2010"
-  realtime_start_date: "04/06/2010"
-  realtime_start_hour: "12"
-  realtime_start_minute: "00"
-  realtime_meridiem: "PM"
+  realtime_start_datetime: "04/06/2010 24:00:00"
   
 daniel_scenario:
   _id: "2"
@@ -19,8 +16,5 @@ daniel_scenario:
   name: "Daniel's Scenario"
   longterm_start_date: "04/06/2010"
   longterm_stop_date: "04/19/2010"
-  realtime_start_date: "04/06/2010"
-  realtime_start_hour: "12"
-  realtime_start_minute: "00"
-  realtime_meridiem: "PM"
+  realtime_start_datetime: "04/06/2010 24:00:00"
   

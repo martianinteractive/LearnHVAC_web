@@ -3,7 +3,17 @@ namespace :bootstrap do
   require 'active_record/fixtures'
   
   desc "load all"
-  task :all => ["bootstrap:institutions", "bootstrap:users", "bootstrap:regions", "bootstrap:colleges", "bootstrap:client_versions", "bootstrap:master_scenarios", "bootstrap:system_variables", "bootstrap:version_notes", "bootstrap:scenarios", "bootstrap:groups", "bootstrap:group_scenarios", "bootstrap:memberships"]
+  task :all => ["bootstrap:institutions", 
+                "bootstrap:users", 
+                "bootstrap:regions", 
+                "bootstrap:colleges", 
+                "bootstrap:client_versions", 
+                "bootstrap:master_scenarios", 
+                "bootstrap:system_variables", 
+                "bootstrap:scenarios", 
+                "bootstrap:groups", 
+                "bootstrap:group_scenarios", 
+                "bootstrap:memberships"]
   
   desc "load default institutions"
   task :institutions => :environment do
@@ -50,18 +60,17 @@ namespace :bootstrap do
       @system_variables = YAML.load(f)
     end
     MasterScenario.all.each do |ms|
-      sys_vars = []
       @system_variables.values.each { |sv| ms.system_variables.create(sv) }
     end
   end
   
-  desc "load a default version_note for each master_scenario and then resets the versions"
-  task :version_notes => :environment do
-    MasterScenario.all.each do |ms|
-      ms.update_attributes(:versions => [], :version => 2)
-      ms.create_version_note(:master_scenario_version => ms.version, :description => "#{ms.name} has been created.")
-    end
-  end
+  # desc "load a default version_note for each master_scenario and then resets the versions"
+  # task :version_notes => :environment do
+  #   MasterScenario.all.each do |ms|
+  #     ms.update_attributes(:versions => [], :version => 2)
+  #     ms.create_version_note(:master_scenario_version => ms.version, :description => "#{ms.name} has been created.")
+  #   end
+  # end
   
   desc "Load instructor scenarios for default users"
   task :scenarios => :environment do
