@@ -1,0 +1,39 @@
+- content_for :head do
+  = javascript_include_tag 'tools/tooltip.min'
+  - javascript_tag do
+    $(document).ready(function() { $(".tip").tooltip(); });
+    
+#tabs
+  %ul
+    %li= link_to @group.name, instructors_class_path(@group)
+    %li= link_to "Emails", instructors_class_emails_path(@group)
+    %li.ui-tabs-selected= link_to "New Email", new_instructors_class_email_path(@group)
+
+  - form_for(@email, :url => instructors_class_emails_path(@group), :method => :post) do |f|
+    = f.error_messages
+    .instructions
+      %p Use this form to invite students to join the #{@group.name} group. 
+      %p Please enter their email addresses separated by a comma.
+
+    .field
+      = f.label :from
+      = f.text_field :from, :disabled => true
+    
+    .field
+      = f.label :recipients, "Recipients"
+      = f.text_field :recipients
+      = image_tag('question.png', :class => 'tip', :title => 'Please enter emails separated by commas.')
+
+    .field
+      = f.label :subject
+      = f.text_field :subject, :value => @email.subject
+
+    .field
+      = f.label :body
+      = f.text_area :body, :value => (@email.body || render(:partial => 'shared/group_email_body')), :size => '100x100', :class => "class_email"
+      
+    .actions
+      = f.submit "Send"
+      &nbsp;or&nbsp;
+      = link_to 'Cancel', instructors_class_path(@group)
+      

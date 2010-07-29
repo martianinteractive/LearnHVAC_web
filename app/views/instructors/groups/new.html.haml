@@ -4,6 +4,7 @@
     %li.ui-tabs-selected= link_to "New Class", new_instructors_class_path
 
   - form_for(@group, :url => instructors_classes_path, :method => :post) do |f|
+    = f.error_messages
     .instructions
       %p To create a new class, enter the name of the class and select the scenarios you want to share. You may select more that one scenario to share. (Use Control+click to select more than one).
 
