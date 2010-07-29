@@ -7,7 +7,7 @@ class Instructors::VariablesController < Instructors::ApplicationController
   
   
   def index
-    @scenario_variables = doc_sort(@scenario.scenario_variables).paginate :page => params[:page], :per_page => 25
+    @scenario_variables = @scenario.variables.paginate :page => params[:page], :per_page => 25
   end
   
   def new
@@ -45,7 +45,7 @@ class Instructors::VariablesController < Instructors::ApplicationController
   end
 
   def destroy
-    @scenario.scenario_variables.find(params[:id]).destroy
+    @scenario.variables.find(params[:id]).destroy
     redirect_to(instructors_scenario_variables_path(@scenario))
   end
   
@@ -58,11 +58,11 @@ class Instructors::VariablesController < Instructors::ApplicationController
   end
   
   def find_scenario
-    @scenario = current_user.find_scenario(params[:scenario_id])
+    @scenario = current_user.scenarios.find(params[:scenario_id])
   end
   
   def find_scenario_variable
-    @scenario_variable = @scenario.scenario_variables.find(params[:id])
+    @scenario_variable = @scenario.variables.find(params[:id])
   end
   
 end

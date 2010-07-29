@@ -14,7 +14,7 @@
     - @scenarios.each do |scenario|
       %tr
         %td= link_to scenario.name, instructors_scenario_path(scenario)
-        %td= scenario.master_scenario_name
+        %td= scenario.master_scenario.name
         %td= scenario.created_at.to_formatted_s(:long)
 
   %br
