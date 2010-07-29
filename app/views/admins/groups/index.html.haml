@@ -1,7 +1,7 @@
 #tabs
   %ul
-    %li.ui-tabs-selected= link_to "Groups", admins_groups_path
-    %li= link_to "New Group", new_admins_group_path
+    %li.ui-tabs-selected= link_to "Groups", admins_classes_path
+    %li= link_to "New Group", new_admins_class_path
   
   %br
   %table.listing
@@ -12,7 +12,7 @@
         %th Students
     - @groups.each do |group|
       %tr
-        %td= link_to group.name, admins_group_path(group)
+        %td= link_to group.name, admins_class_path(group)
         %td= link_to group.instructor.name, admins_user_path(group.instructor, :role => group.instructor.role)
         %td= group.students.count
   %br
