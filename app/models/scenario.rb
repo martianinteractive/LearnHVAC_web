@@ -3,10 +3,11 @@ class Scenario < ActiveRecord::Base
       
   belongs_to :user
   belongs_to :master_scenario
-  belongs_to :client_version, :foreign_key => "desktop_id"
-  has_many :variables, :class_name => "ScenarioVariable", :dependent => :destroy
-  has_many :alerts, :class_name => "ScenarioAlert"
-  has_many :group_scenarios
+  belongs_to :client_version,   :foreign_key => "desktop_id"
+  has_many :variables,          :class_name => "ScenarioVariable", :dependent => :destroy
+  has_many :alerts,             :class_name => "ScenarioAlert"
+  has_many :group_scenarios,    :dependent => :destroy
+  has_many :groups,             :through => :group_scenarios
   
   validates_presence_of :name, :master_scenario, :user, :longterm_start_date, :longterm_stop_date, :realtime_start_datetime
   validate :longterm_validator
@@ -37,16 +38,4 @@ class Scenario < ActiveRecord::Base
     errors.add(:realtime_start_datetime, "should be set between start and stop dates") if (realtime_start_datetime < longterm_start_date) or (realtime_start_datetime > longterm_stop_date) 
   end
   
-  # def groups
-  #   groups_ids = group_scenarios.collect { |gs| gs.group_id }
-  #   Group.find(groups_ids)
-  # end
-  #   
-  # private
-  # 
-  # def copy_system_variables
-  #   self.master_scenario.system_variables.each do |sv|
-  #     self.scenario_variables.create sv.attributes.except("_id", "_type")
-  #   end
-  # end
 end

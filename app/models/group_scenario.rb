@@ -1,11 +1,9 @@
 class GroupScenario < ActiveRecord::Base
-  include BelongsToDocument
   belongs_to :group
-  belongs_to_document :scenario
+  belongs_to :scenario
   
-  validates :group, :presence => true, :on => :update
-  validates :scenario_id, :presence => true
-  
+  validates_presence_of :group, :scenario
+    
   # This validation is being ignored from groups#create/update
   validates_uniqueness_of :scenario_id, :scope => :group_id
 end
