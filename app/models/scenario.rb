@@ -15,8 +15,8 @@ class Scenario < ActiveRecord::Base
   before_create :set_client_version
   after_create :copy_variables
   
-  scope :recently_created, where(["created_at > ?", 30.days.ago.utc])
-  scope :recently_updated, where(["updated_at > ?", 30.days.ago.utc])
+  scope :recently_created, where(["scenarios.created_at > ?", 30.days.ago.utc])
+  scope :recently_updated, where(["scenarios.updated_at > ?", 30.days.ago.utc])
   scope :public, where(:public => true)
   scope :with_unread_alerts, where("scenario_alerts.read" => false)
     
