@@ -28,7 +28,7 @@
 
 .field
   = f.label :desktop_id, "Client Version"
-  = f.select :desktop_id, ClientVersion.all.collect { |cv| [cv.version, cv.id.to_s] }, :prompt => "Please select..."
+  = f.select :desktop_id, ClientVersion.all.collect { |cv| [cv.version, cv.id] }, :prompt => "Please select..."
 
 .field
   = f.label :tag_list, "Tags"
