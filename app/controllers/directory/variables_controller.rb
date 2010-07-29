@@ -5,7 +5,7 @@ class Directory::VariablesController < Directory::ApplicationController
   before_filter :initialize_variables_sort, :only => [:index]
   
   def index
-    @variables = @scenario.variables.paginate :page => params[:page], :per_page => 25
+    @variables = @scenario.variables.order(sort_clause).paginate :page => params[:page], :per_page => 25
   end
   
   def show

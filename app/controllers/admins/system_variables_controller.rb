@@ -2,15 +2,15 @@ class Admins::SystemVariablesController < Admins::ApplicationController
   helper :sort
   include SortHelper
   before_filter :find_master_scenario, :add_crumbs
-  # before_filter :check_version_notes, :except => [:index, :yaml_dump]
   before_filter :find_system_variable, :only => [:show, :edit, :update]
   before_filter :initialize_variables_sort, :only => [:index]
+  # before_filter :check_version_notes, :except => [:index, :yaml_dump]
   # before_filter :store_location, :only => [:update]
   before_filter :check_system_variables, :only => [:update_status]
   
   def index
     @system_variables = params[:filter].present? ? @master_scenario.variables.filter(params[:filter]) : @master_scenario.variables
-    @system_variables = @system_variables.paginate(:page => params[:page], :per_page => 25)
+    @system_variables = @system_variables.order(sort_clause).paginate(:page => params[:page], :per_page => 25)
   end
   
   def show

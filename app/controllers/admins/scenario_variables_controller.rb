@@ -6,7 +6,7 @@ class Admins::ScenarioVariablesController < Admins::ApplicationController
   before_filter :initialize_variables_sort, :only => [:index]
   
   def index
-    @scenario_variables = @scenario.variables.paginate :page => params[:page], :per_page => 25
+    @scenario_variables = @scenario.variables.order(sort_clause).paginate :page => params[:page], :per_page => 25
   end
   
   def new
