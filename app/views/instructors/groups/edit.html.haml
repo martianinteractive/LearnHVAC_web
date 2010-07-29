@@ -1,7 +1,7 @@
 #tabs
   %ul
-    %li= link_to "Groups", instructors_groups_path
-    %li= link_to "New Group", new_instructors_group_path
+    %li= link_to "Classes", instructors_classes_path
+    %li= link_to "New Class", new_instructors_class_path
 
-  - form_for(@group, :url => instructors_group_path(@group), :method => :group) do |f|
+  - form_for(@group, :url => instructors_class_path(@group)) do |f|
     = render :partial => "form", :locals => { :f => f }

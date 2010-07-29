@@ -20,11 +20,15 @@
   .main
     .dl10.navigation
       - if logged_in?
+        %h3 Instructor
+        %ul
+          %li
+            = link_to "Your Scenarios", instructors_scenarios_path
+            = link_to "Your Classes", instructors_classes_path
+
         %h3 System
         %ul
           %li
-            = link_to "Scenarios", instructors_scenarios_path
-            = link_to "Groups", instructors_groups_path
             = link_to "Client Versions", instructors_client_versions_path
             = link_to "Community Directory", directory_path
 

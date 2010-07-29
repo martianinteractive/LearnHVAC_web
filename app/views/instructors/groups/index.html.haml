@@ -1,7 +1,7 @@
 #tabs
   %ul
-    %li.ui-tabs-selected= link_to "Groups", instructors_groups_path
-    %li= link_to "New Group", new_instructors_group_path
+    %li.ui-tabs-selected= link_to "Classes", instructors_classes_path
+    %li= link_to "New Class", new_instructors_class_path
 
   %br
   %table.listing
@@ -9,11 +9,13 @@
       %tr
         %th Name
         %th Students
+        %th Shared Scenarios
         %th Created on
     - @groups.each do |group|
       %tr
-        %td= link_to group.name, instructors_group_path(group)
+        %td= link_to group.name, instructors_class_path(group)
         %td= group.students.count
+        %td= group.group_scenarios.count
         %td= group.created_at.to_formatted_s(:long)
   %br
   = will_paginate @groups

@@ -15,7 +15,7 @@ Learnhvac::Application.routes.draw do |map|
   match 'activate/:id' => 'activations#create', :as => 'activate'
   match 'students/signup' => 'students/accounts#new', :as => 'students_signup'
   match 'guests/signup' => 'guests/accounts#new', :as => 'guests_signup'
-  match 'groups/register/(:code)' => 'memberships#create', :as => 'membership_register'
+  match 'classes/register/(:code)' => 'memberships#create', :as => 'membership_register'
   match 'admins/master_scenarios/tagged/:tag' => "admin/master_scenarios#tag", :as => 'master_scenarios_tag'
   match 'admins/dashboard' => 'admins/dashboard#show', :as => 'admins_dashboard'
   match 'directory' => 'directory/dashboard#index', :as => 'directory'
@@ -51,13 +51,10 @@ Learnhvac::Application.routes.draw do |map|
         get :observers
       end
     end
-    resources :groups do
+    resources :classes, :controller => :groups do
       resources :students, :only => [:index, :show]
       resources :memberships, :only => [:destroy]
-      
-      scope :module => :groups do
-        resources :emails, :only => [:index, :new, :show, :create]
-      end
+      resources :emails
     end
   end
   

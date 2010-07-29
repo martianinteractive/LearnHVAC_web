@@ -1,6 +1,6 @@
 class Admins::GroupsController < Admins::ApplicationController
   before_filter :build_instructor, :only => [:new, :create]
-  add_crumb("Groups") { |instance| instance.send :admins_groups_path }
+  add_crumb("Classes") { |instance| instance.send :admins_groups_path }
   
   def index
     @groups = Group.paginate :page => params[:page], :per_page => 25, :include => { :students => :institution }
