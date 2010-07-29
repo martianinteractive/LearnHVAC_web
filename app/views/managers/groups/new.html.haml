@@ -8,11 +8,13 @@
 
 #tabs
   %ul
-    %li= link_to "Groups", managers_classes_path
-    %li.ui-tabs-selected= link_to "New Group", new_managers_class_path
+    %li= link_to "Classes", managers_classes_path
+    %li.ui-tabs-selected= link_to "New Class", new_managers_class_path
     
   - form_for(@group, :url => managers_classes_path, :method => :post) do |f|
     = f.error_messages
+    .instructions
+      %p To create a new class, enter the name of the class, then select an instructor. A list of available scenarios for that instructions will appear on the scenario menu. You may select more that one scenario to share. (Use Control+click to select more than one).
 
     .field
       = f.label :name
