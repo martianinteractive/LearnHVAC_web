@@ -6,9 +6,9 @@ xml.scenario do
   xml.goal({:type => "String"}, @scenario.goal)
   xml.level({:type => "Integer"}, @scenario.level)
   xml.client do
-    xml.version({:type => "String"}, @scenario.master_scenario.client_version.version)
-    xml.url({:type => "String"}, @scenario.master_scenario.client_version.url)
-    xml.release_date({:type => "Date"}, @scenario.master_scenario.client_version.release_date)
+    xml.version({:type => "String"}, @scenario.client_version.version)
+    xml.url({:type => "String"}, @scenario.client_version.url)
+    xml.release_date({:type => "Date"}, @scenario.client_version.release_date)
   end
   xml.shortDescription({:type => "String"}, @scenario.short_description)
   xml.description({:type => "String"}, @scenario.description)
@@ -24,9 +24,9 @@ xml.scenario do
   xml.longtermStopDate({:type => "Time"},  @scenario.longterm_stop_date)
   xml.realtimeStartDateTime({:type => "Time"},  @scenario.realtime_start_datetime)
     xml.sysVars do
-      SystemVariableFields::COMPONENTS.each_pair do |code, name|
+      Variable::COMPONENTS.each_pair do |code, name|
         xml.systemNode({:id => code, :name => name}) do
-          @scenario.scenario_variables.where("component_code" => code).each do |variable|
+          @scenario.variables.where("component_code" => code).each do |variable|
               xml.sysVar do
                 xml.name({:type => "String"}, variable.name)
                 xml.displayName({:type => "String"}, variable.display_name)
