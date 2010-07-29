@@ -9,7 +9,7 @@ class Directory::VariablesController < Directory::ApplicationController
   end
   
   def show
-    @variable = @scenario.scenario_variables.find(params[:id])
+    @variable = @scenario.variables.find(params[:id])
   end
   
   private
