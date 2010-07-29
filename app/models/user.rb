@@ -1,26 +1,17 @@
 require 'search'
 
 class User < ActiveRecord::Base
-  include ManyDocuments
   ROLES = { :guest => 0, :student => 1, :instructor => 2, :manager => 3, :admin => 4 }
   acts_as_authentic
   
-  # Dynamically creates scopes for each role.
-  ROLES.keys.each { |role| scope role.to_s.singularize, where("role_code = #{ROLES[role]}") }
-  scope :admin_instructor, where("role_code = #{User::ROLES[:admin]} OR role_code = #{User::ROLES[:instructor]}")
-  scope :recently_created, where("created_at > '#{(30.days.ago).to_formatted_s(:db)}'")
-  scope :recently_updated, where("updated_at > '#{(30.days.ago).to_formatted_s(:db)}'")
-    
   belongs_to :institution
-  
+  has_many :scenarios
+  has_many :master_scenarios
   #Maybe we should use simple table inheritance if this type of relationships continue to grow.
   has_many :managed_groups, :class_name => "Group", :foreign_key => "instructor_id", :dependent => :destroy
   has_many :memberships, :foreign_key => "student_id"
   has_many :groups, :through => :memberships
   
-  has_many_documents :scenarios
-  has_many_documents :master_scenarios
-    
   attr_accessor :group_code, :require_group_code
   attr_protected :active, :role_code, :enabled
   
@@ -28,6 +19,11 @@ class User < ActiveRecord::Base
   validates_length_of :phone, :in => 7..32, :allow_blank => true
   validate :group_presence,  :on => :create, :if => :require_group_code
   
+  # Dynamically creates scopes for each role.
+  ROLES.keys.each { |role| scope role.to_s.singularize, where("role_code = #{ROLES[role]}") }
+  scope :admin_instructor, where("role_code = #{User::ROLES[:admin]} OR role_code = #{User::ROLES[:instructor]}")
+  scope :recently_created, where(["created_at > ?", 30.days.ago])
+  scope :recently_updated, where(["updated_at > ?", 30.days.ago])
   scope :recent, :limit => 10, :order => "created_at DESC"
   
   before_save :set_institution, :on => :create, :if => Proc.new { |user| user.has_role?(:student) }

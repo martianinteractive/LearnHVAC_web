@@ -68,6 +68,6 @@
           %tr
             %td= link_to scenario.name, admins_scenario_path(scenario)
             %td= link_to scenario.user.name, admins_user_path(scenario.user)
-            %td= scenario.scenario_variables.count
+            %td= scenario.variables.count
             %td= scenario.created_at.to_formatted_s(:long)
             
