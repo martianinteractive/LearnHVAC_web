@@ -21,7 +21,7 @@ MXLeakRetDmpr:
   unit_si: "%"
   right_label: 100% open
   display_name: Leaky return air damper
-  disable: false
+  
   description: ""
   component_code: MX
   zone_position: NO_GRADIENT
@@ -43,7 +43,7 @@ CCAirFlwd:
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  disable: false
+  
   component_code: CC
   display_name: cooling coil design air flow rate
   unit_si: kg/s
@@ -64,7 +64,7 @@ HCTLiqLvg:
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  disable: false
+  
   component_code: HC
   display_name: Heating coil leaving hot water temp
   unit_si: C
@@ -117,7 +117,7 @@ VAVBadZoneMeas:
   unit_si: C
   right_label: Positive
   display_name: Room temp sensor error
-  disable: false
+  
   description: ""
   component_code: VAV
   zone_position: CENTER
@@ -145,7 +145,7 @@ HCBootLeak:
   unit_si: "%"
   right_label: 100% open
   display_name: Heating coil valve boot leakage
-  disable: false
+  
   description: ""
   component_code: HC
   zone_position: NO_GRADIENT
@@ -166,7 +166,7 @@ VAVDampPos:
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  disable: false
+  
   component_code: VAV
   display_name: VAV box damper position
   unit_si: "%"
@@ -192,7 +192,7 @@ VAVHCBootLeak:
   unit_si: "%"
   right_label: Leaky
   display_name: VAV reheat coil valve boot leakage
-  disable: false
+  
   description: ""
   component_code: VAV
   zone_position: LEFT
@@ -220,7 +220,7 @@ HCStuckVlv:
   unit_si: "%"
   right_label: 100% open
   display_name: Stuck heating coil valve
-  disable: false
+  
   description: ""
   component_code: HC
   zone_position: NO_GRADIENT
@@ -247,7 +247,7 @@ CCFouledCoil:
   unit_si: "%"
   right_label: Fouled
   display_name: Fouled cooling coil
-  disable: false
+  
   description: ""
   component_code: CC
   zone_position: LEFT
@@ -275,7 +275,7 @@ VAVBadFlowMeas:
   unit_si: m3/s
   right_label: Positive
   display_name: VAV box air flow calibration error
-  disable: false
+  
   description: ""
   component_code: VAV
   zone_position: CENTER
@@ -303,7 +303,7 @@ CCKp:
   fault_is_active: false
   display_name: Cooling coil valve controller P gain
   disabled: true
-  disable: false
+  
   description: ""
   component_code: CC
   zone_position: ""
@@ -330,7 +330,7 @@ CCBootLeak:
   unit_si: "%"
   right_label: Leaky
   display_name: Cooling coil valve boot leakage
-  disable: false
+  
   description: ""
   component_code: CC
   zone_position: LEFT
@@ -352,7 +352,7 @@ HCPDd:
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  disable: false
+  
   component_code: HC
   display_name: heating coil design air side pressure drop
   unit_si: Pa
@@ -373,7 +373,7 @@ CHLLiqFlw:
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  disable: false
+  
   component_code: CHL
   display_name: Chilled water flow rate
   unit_si: m3/s
@@ -394,7 +394,7 @@ CCPDd:
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  disable: false
+  
   component_code: CC
   display_name: cooling coil design air side pressure drop
   unit_si: Pa
@@ -420,7 +420,7 @@ VAVHCLeakyVlv:
   unit_si: "%"
   right_label: Leaky
   display_name: Leaky VAV reheat coil valve
-  disable: false
+  
   description: ""
   component_code: VAV
   zone_position: CENTER
@@ -442,7 +442,7 @@ SYSRmQSens:
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  disable: false
+  
   component_code: SYS
   display_name: design room sensible heat gain
   unit_si: W
@@ -468,7 +468,7 @@ VAVHCStuckVlv:
   unit_si: "%"
   right_label: open
   display_name: Stuck VAV reheat coil valve
-  disable: false
+  
   description: ""
   component_code: VAV
   zone_position: CENTER
@@ -489,7 +489,7 @@ VAVDmprKi:
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  disable: false
+  
   component_code: VAV
   display_name: VAV damper controller integrator time constant
   unit_si: second
@@ -510,7 +510,7 @@ CCLiqFlwd:
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  disable: false
+  
   component_code: CC
   display_name: Cooling coil chilled water design mass flow rate
   unit_si: kg/s
@@ -531,7 +531,7 @@ RMTemp:
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  disable: false
+  
   component_code: RM
   display_name: Room temp
   unit_si: C
@@ -557,7 +557,7 @@ CCStuckVlv:
   unit_si: "%"
   right_label: Stuck
   display_name: Stuck cooling coil valve
-  disable: false
+  
   description: ""
   component_code: CC
   zone_position: LEFT
@@ -579,7 +579,7 @@ BOITLiqEnt:
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  disable: false
+  
   component_code: BOI
   display_name: Boiler entering water temp
   unit_si: C
@@ -599,7 +599,7 @@ HCPos:
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  disable: false
+  
   component_code: HC
   display_name: Heating coil valve position
   unit_si: "%"
@@ -646,7 +646,7 @@ BOITLiqSup:
   disabled: true
   low_value: 60.0
   node_sequence: 0
-  disable: false
+  
   component_code: BOI
   display_name: design hot water supply temperature
   unit_si: C
@@ -672,7 +672,7 @@ VAVHCFouledCoil:
   unit_si: "%"
   right_label: Fouled
   display_name: VAV fouled reheat coil
-  disable: false
+  
   description: ""
   component_code: VAV
   zone_position: LEFT
@@ -693,7 +693,7 @@ CCPos:
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  disable: false
+  
   component_code: CC
   display_name: Cooling coil valve position
   unit_si: "%"
@@ -714,7 +714,7 @@ FLTPDrop:
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  disable: false
+  
   component_code: FLT
   display_name: filter pressure drop
   unit_si: Pa
@@ -735,7 +735,7 @@ FANAirFlw:
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  disable: false
+  
   component_code: FAN
   display_name: Fan air flow rate
   unit_si: m3/s
@@ -756,7 +756,7 @@ MXTAirMix:
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  disable: false
+  
   component_code: MX
   display_name: Economizer mixed air temperature
   unit_si: C
@@ -776,7 +776,7 @@ FANPwr:
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  disable: false
+  
   component_code: FAN
   display_name: Fan Power
   unit_si: W
@@ -803,7 +803,7 @@ CCUA:
   fault_is_active: false
   display_name: Cooling coil design cooling capacity
   disabled: true
-  disable: false
+  
   description: ""
   component_code: CC
   zone_position: ""
@@ -824,7 +824,7 @@ VAVRhcKi:
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  disable: false
+  
   component_code: VAV
   display_name: VAV reheat coil controller integrator time constant
   unit_si: second
@@ -850,7 +850,7 @@ CCLeakyVlv:
   unit_si: "%"
   right_label: Leaky
   display_name: Leaky cooling coil valve
-  disable: false
+  
   description: ""
   component_code: CC
   zone_position: LEFT
@@ -878,7 +878,7 @@ HCKp:
   fault_is_active: false
   display_name: Heating coil valve controller P gain
   disabled: true
-  disable: false
+  
   description: ""
   component_code: HC
   zone_position: ""
@@ -899,7 +899,7 @@ MXKi:
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  disable: false
+  
   component_code: MX
   display_name: Economizer PI controller integrator time constant
   unit_si: second
@@ -920,7 +920,7 @@ CCTAirLvg:
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  disable: false
+  
   component_code: CC
   display_name: Cooling coil leaving air temp
   unit_si: C
@@ -947,7 +947,7 @@ VAVAirFlw:
   unit_si: m3/s
   right_label: ""
   display_name: VAV Air flow rate
-  disable: false
+  
   description: ""
   component_code: VAV
   zone_position: ""
@@ -968,7 +968,7 @@ MXMinPos:
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  disable: false
+  
   component_code: MX
   display_name: Outside air damper min position
   unit_si: "%"
@@ -989,7 +989,7 @@ VAVTAirEnt:
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  disable: false
+  
   component_code: VAV
   display_name: VAV entering air temp
   unit_si: C
@@ -1010,7 +1010,7 @@ FANAirFlwd:
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  disable: false
+  
   component_code: FAN
   display_name: fan volume flow rate at design operating point
   unit_si: m3/s
@@ -1031,7 +1031,7 @@ CCTLiqLvg:
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  disable: false
+  
   component_code: CC
   display_name: Cooling coil leaving chilled water temp
   unit_si: C
@@ -1052,7 +1052,7 @@ HCTAirEnt:
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  disable: false
+  
   component_code: HC
   display_name: Heating coil entering air temp
   unit_si: C
@@ -1072,7 +1072,7 @@ MXIntDampPos:
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  disable: false
+  
   component_code: MX
   display_name: Economizer intake air damper position
   unit_si: "%"
@@ -1092,7 +1092,7 @@ FANSpd:
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  disable: false
+  
   component_code: FAN
   display_name: Fan speed
   unit_si: "%"
@@ -1113,7 +1113,7 @@ VAVAirFlwd:
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  disable: false
+  
   component_code: VAV
   display_name: VAV max cooling air flow rate
   unit_si: kg/s
@@ -1140,7 +1140,7 @@ HCUA:
   fault_is_active: false
   display_name: Heating coil design heating capacity
   disabled: false
-  disable: false
+  
   description: ""
   component_code: HC
   zone_position: ""
@@ -1162,7 +1162,7 @@ DCTStPre:
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  disable: false
+  
   component_code: DCT
   display_name: Duct static pressure
   unit_si: Pa
@@ -1183,7 +1183,7 @@ MXEnableTAirOut:
   disabled: true
   low_value: 15.0
   node_sequence: 0
-  disable: false
+  
   component_code: MX
   display_name: Economizer enable outside air temp
   unit_si: C
@@ -1210,7 +1210,7 @@ HCLeakyVlv:
   unit_si: "%"
   right_label: 100% leaky
   display_name: Leaky heating coil valve
-  disable: false
+  
   description: ""
   component_code: HC
   zone_position: LEFT
@@ -1238,7 +1238,7 @@ SYSTRmSPHeat:
   unit_si: C
   right_label: ""
   display_name: Room temp heating set point
-  disable: false
+  
   description: ""
   component_code: SYS
   zone_position: ""
@@ -1286,7 +1286,7 @@ VAVRhcPDd:
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  disable: false
+  
   component_code: VAV
   display_name: VAV reheat coil air side pressure drop at design condition
   unit_si: Pa
@@ -1307,7 +1307,7 @@ MXTAirRet:
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  disable: false
+  
   component_code: MX
   display_name: Economizer return air temperature
   unit_si: C
@@ -1328,7 +1328,7 @@ CHLTLiqSup:
   disabled: true
   low_value: 2.0
   node_sequence: 0
-  disable: false
+  
   component_code: CHL
   display_name: design chilled water supply temperature
   unit_si: C
@@ -1355,7 +1355,7 @@ MXReverseActionAct:
   unit_si: ""
   right_label: ""
   display_name: Reverse Acting Damper
-  disable: false
+  
   description: ""
   component_code: MX
   zone_position: ""
@@ -1383,7 +1383,7 @@ VAVDmprKp:
   fault_is_active: false
   display_name: VAV damper controller P gain
   disabled: true
-  disable: false
+  
   description: ""
   component_code: VAV
   zone_position: ""
@@ -1405,7 +1405,7 @@ HCAirFlwd:
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  disable: false
+  
   component_code: HC
   display_name: heating coil design air flow rate
   unit_si: kg/s
@@ -1426,7 +1426,7 @@ SYSTAirDB:
   disabled: true
   low_value: -40.0
   node_sequence: 0
-  disable: false
+  
   component_code: SYS
   display_name: Outside air dry bulb
   unit_si: C
@@ -1452,7 +1452,7 @@ VAVHCUndersizedCoil:
   unit_si: ""
   right_label: Undersized
   display_name: VAV undersized reheat coil
-  disable: false
+  
   description: ""
   component_code: VAV
   zone_position: LEFT
@@ -1474,7 +1474,7 @@ SYSTSupS:
   disabled: true
   low_value: 13.0
   node_sequence: 0
-  disable: false
+  
   component_code: SYS
   display_name: Supply air temp set point
   unit_si: C
@@ -1495,7 +1495,7 @@ VAVPDd:
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  disable: false
+  
   component_code: VAV
   display_name: VAV air side pressure drop at max cooling
   unit_si: Pa
@@ -1515,7 +1515,7 @@ FANSpdMin:
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  disable: false
+  
   component_code: FAN
   display_name: Fan minimum speed ratio
   unit_si: "%"
@@ -1535,7 +1535,7 @@ VAVRhcPos:
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  disable: false
+  
   component_code: VAV
   display_name: VAV box reheat coil position
   unit_si: "%"
@@ -1555,7 +1555,7 @@ MXExDampPos:
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  disable: false
+  
   component_code: MX
   display_name: Economizer exhaust air damper position
   unit_si: "%"
@@ -1582,7 +1582,7 @@ MXStuckActuator:
   unit_si: ""
   right_label: 100% open
   display_name: Damper/actuator stuck position
-  disable: false
+  
   description: ""
   component_code: MX
   zone_position: NO_GRADIENT
@@ -1610,7 +1610,7 @@ VAVRhcKp:
   fault_is_active: false
   display_name: VAV reheat coil controller P gain
   disabled: true
-  disable: false
+  
   description: ""
   component_code: VAV
   zone_position: ""
@@ -1631,7 +1631,7 @@ FANki:
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  disable: false
+  
   component_code: FAN
   display_name: Fan speed controller integrator time constant
   unit_si: second
@@ -1658,7 +1658,7 @@ VAVMinFlwRatio:
   unit_si: "%"
   right_label: ""
   display_name: VAV min volume flow rate ratio
-  disable: false
+  
   description: ""
   component_code: VAV
   zone_position: ""
@@ -1680,7 +1680,7 @@ FANTAirLvg:
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  disable: false
+  
   component_code: FAN
   display_name: Fan leaving air temp
   unit_si: C
@@ -1707,7 +1707,7 @@ HCFouledCoil:
   unit_si: "%"
   right_label: 100% fouled
   display_name: Fouled heating coil
-  disable: false
+  
   description: ""
   component_code: HC
   zone_position: LEFT
@@ -1728,7 +1728,7 @@ CCKi:
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  disable: false
+  
   component_code: CC
   display_name: Cooling coil valve controller integrator time constant
   unit_si: second
@@ -1749,7 +1749,7 @@ CHLTLiqEnt:
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  disable: false
+  
   component_code: CHL
   display_name: Chiller entering water temp
   unit_si: C
@@ -1776,7 +1776,7 @@ MXKp:
   fault_is_active: false
   display_name: Economizer PI controller P gain
   disabled: true
-  disable: false
+  
   description: ""
   component_code: MX
   zone_position: ""
@@ -1804,7 +1804,7 @@ VAVTAirLvg:
   unit_si: C
   right_label: ""
   display_name: VAV box leaving air temp
-  disable: false
+  
   description: ""
   component_code: VAV
   zone_position: ""
@@ -1826,7 +1826,7 @@ HCLiqFlwd:
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  disable: false
+  
   component_code: HC
   display_name: Heating coil hot water design flow rate
   unit_si: kg/s
@@ -1846,7 +1846,7 @@ VAVRhcQd:
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  disable: false
+  
   component_code: VAV
   display_name: Reheat coil design heating capacity
   unit_si: W
@@ -1872,7 +1872,7 @@ SYSRHOutside:
   unit_si: "%"
   right_label: ""
   display_name: Outside air relative humidity
-  disable: false
+  
   description: ""
   component_code: SYS
   zone_position: ""
@@ -1900,7 +1900,7 @@ HCUndersizedCoil:
   unit_si: "%"
   right_label: 100% undersized
   display_name: Under sized coil
-  disable: false
+  
   description: ""
   component_code: HC
   zone_position: LEFT
@@ -1928,7 +1928,7 @@ FANFailedFanSensor:
   unit_si: Pa
   right_label: ""
   display_name: Duct static press sensor offset
-  disable: false
+  
   description: ""
   component_code: FAN
   zone_position: CENTER
@@ -1949,7 +1949,7 @@ MXRtnDampPos:
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  disable: false
+  
   component_code: MX
   display_name: Economizer return air damper position
   unit_si: "%"
@@ -1970,7 +1970,7 @@ BOILiqFlw:
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  disable: false
+  
   component_code: BOI
   display_name: Hot water flow rate
   unit_si: m3/s
@@ -1991,7 +1991,7 @@ FANHd:
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  disable: false
+  
   component_code: FAN
   display_name: fan head at design operating point
   unit_si: Pa
@@ -2011,7 +2011,7 @@ HCKi:
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  disable: false
+  
   component_code: HC
   display_name: Heating coil valve controller integrator time constant
   unit_si: second
@@ -2032,7 +2032,7 @@ HCTAirLvg:
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  disable: false
+  
   component_code: HC
   display_name: Heating coil leaving air temp
   unit_si: C
@@ -2053,7 +2053,7 @@ CCTAirEnt:
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  disable: false
+  
   component_code: CC
   display_name: Cooling coil entering air temp
   unit_si: C
@@ -2079,7 +2079,7 @@ CCUndersizedCoil:
   unit_si: "%"
   right_label: Undersized
   display_name: Undersized cooling coil
-  disable: false
+  
   description: ""
   component_code: CC
   zone_position: LEFT
@@ -2101,7 +2101,7 @@ DCTPstSP:
   disabled: true
   low_value: 50.0
   node_sequence: 0
-  disable: false
+  
   component_code: DCT
   display_name: Supply duct static pressure set point
   unit_si: Pa
@@ -2128,7 +2128,7 @@ FANKp:
   fault_is_active: false
   display_name: Fan speed controller P gain
   disabled: true
-  disable: false
+  
   description: ""
   component_code: FAN
   zone_position: ""
@@ -2150,8 +2150,8 @@ SYSTRmSPCool:
   disabled: true
   low_value: 16.0
   node_sequence: 0
-  disable: false
+  
   component_code: SYS
   display_name: Room temp cooling set point
   unit_si: C
-
+  

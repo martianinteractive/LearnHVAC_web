@@ -13,7 +13,9 @@ namespace :bootstrap do
                 "bootstrap:scenarios", 
                 "bootstrap:groups", 
                 "bootstrap:group_scenarios", 
-                "bootstrap:memberships"]
+                "bootstrap:memberships",
+                "bootstrap:class_notification_emails",
+                "bootstrap:tags"]
   
   desc "load default institutions"
   task :institutions => :environment do
@@ -87,4 +89,12 @@ namespace :bootstrap do
     Fixtures.create_fixtures('db/bootstrap', 'client_versions')
   end
   
+  task :class_notification_emails => :environment do 
+    ClassNotificationEmail.delete_all
+  end
+  
+  task :tags => :environment do
+    Tag.delete_all
+    Tagging.delete_all
+  end
 end
