@@ -3,6 +3,7 @@ class Institution < ActiveRecord::Base
   validates :name, :presence => true, :length => { :maximum => 200 }, :uniqueness => true
   has_many :users, :dependent => :destroy
   has_many :groups, :through => :users, :source => :managed_groups
+  has_many :scenarios, :through => :users
   
   scope :recent, :limit => 10, :order => "created_at DESC"
   
@@ -10,10 +11,7 @@ class Institution < ActiveRecord::Base
     CATEGORIES.index(read_attribute(:category_code))
   end
   
-  def scenarios
-    Scenario.criteria.in("user_id" => user_ids.collect { |uid| uid.to_s })
-  end
-  
+  # TODO: replace with AR query.
   def self.with_public_scenarios
     self.all.collect { |i| i if i.scenarios.public.any? }.compact
   end
