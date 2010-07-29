@@ -41,7 +41,7 @@ describe Admins::ScenariosController do
   
   describe "GET observers" do
     before(:each) do
-      @group = Factory(:group, :instructor => @instructor, :scenarios_ids => [@scenario.id])
+      @group = Factory(:group, :instructor => @instructor, :scenario_ids => [@scenario.id])
     end
     
     it "" do

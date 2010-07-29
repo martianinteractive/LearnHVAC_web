@@ -1,14 +1,15 @@
 class Group < ActiveRecord::Base
-  belongs_to :instructor, :class_name => "User", :foreign_key => "instructor_id"
-  has_many :memberships, :dependent => :destroy
-  has_many :students, :through => :memberships  
-  has_many :group_scenarios, :dependent => :destroy
-  has_many :notification_emails, :class_name => "ClassNotificationEmail", :foreign_key => "class_id"
+  belongs_to :instructor,         :class_name => "User", :foreign_key => "instructor_id"
+  has_many :memberships,          :dependent => :destroy
+  has_many :students,             :through => :memberships  
+  has_many :group_scenarios,      :dependent => :destroy
+  has_many :scenarios,            :through => :group_scenarios
+  has_many :notification_emails,  :class_name => "ClassNotificationEmail", :foreign_key => "class_id"
 
   accepts_nested_attributes_for :group_scenarios, :allow_destroy => true
   
   # Define in module
-  attr_writer :scenarios_ids
+  # attr_writer :scenarios_ids
   
   validates :name, :presence => true, :length => { :maximum => 200 }, :uniqueness => true
   validates :code, :presence => true, :length => { :maximum => 200 }, :uniqueness => true, :on => :update
@@ -19,13 +20,13 @@ class Group < ActiveRecord::Base
   before_save  :handle_scenarios
     
   # Define this later using has_many_documents :scenarios, :through => :group_scenarios
-  def scenarios
-    Scenario.criteria.in("_id" => scenarios_ids)
-  end
+  # def scenarios
+  #   Scenario.criteria.in("_id" => scenarios_ids)
+  # end
   
-  def scenarios_ids
-    @scenarios_ids.try(:uniq) || group_scenarios.all.collect { |gs| gs.scenario_id }
-  end
+  # def scenarios_ids
+  #   @scenarios_ids.try(:uniq) || group_scenarios.all.collect { |gs| gs.scenario_id }
+  # end
   
   private
   

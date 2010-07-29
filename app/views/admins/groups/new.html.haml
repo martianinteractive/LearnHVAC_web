@@ -2,7 +2,7 @@
   :plain
     $(document).ready(function() { 
       $("#group_instructor_id").change(function() { 
-        $.get("#{list_admins_scenarios_path}", { user_id: $(this).val() }, function(r) { $("#group_scenarios_ids_").html(r) }) 
+        $.get("#{list_admins_scenarios_path}", { user_id: $(this).val() }, function(r) { $("#group_scenario_ids_").html(r) }) 
       }) 
     })
     
@@ -24,7 +24,7 @@
     .field
       = f.label :scenarios
       %br
-      = select_tag "group[scenarios_ids][]", options_from_collection_for_select(@instructor.scenarios, :id, :name, @group.scenarios_ids || []), :multiple => true
+      = select_tag "group[scenario_ids][]", options_from_collection_for_select(@instructor.scenarios, :id, :name, @group.scenario_ids || []), :multiple => true
 
     .actions
       = f.submit

@@ -5,7 +5,7 @@ describe Group do
     @instructor       = Factory(:user)
     @master_scenario  = Factory(:master_scenario, :user => user_with_role(:admin))
     @scenario1        = Factory(:scenario, :name => "scene 1", :user => @instructor, :master_scenario => @master_scenario)
-    @group            = Factory(:group, :instructor => @instructor, :scenarios_ids => [@scenario1.id])
+    @group            = Factory(:group, :instructor => @instructor, :scenario_ids => [@scenario1.id])
   end
   
   it "" do
@@ -36,7 +36,7 @@ describe Group do
       before(:each) { @scenario2 = Factory(:scenario, :name => "scene 2", :user => @instructor, :master_scenario => @master_scenario) }
       
       it "should show the current scenarios, but make db associations changes only when saving" do
-        @group.scenarios_ids = [@scenario2.id]
+        @group.scenario_ids = [@scenario2.id]
         @group.scenarios.should eq([@scenario2])
         @group.group_scenarios.where(:scenario_id => @scenario1.id).should have(1).group_scenario
         @group.save
@@ -46,7 +46,7 @@ describe Group do
       end
       
       it "" do
-        @group.scenarios_ids = [@scenario1.id, @scenario2.id]
+        @group.scenario_ids = [@scenario1.id, @scenario2.id]
         @group.save
         @group.scenarios.should eq([@scenario1, @scenario2])
       end
@@ -54,14 +54,14 @@ describe Group do
       it "should not assign scenarios that don't belong to the group instructor" do
         @scenario2.user = user_with_role(:instructor, 1, :login => "instructor2", :email => "inst2@inst.com")
         @scenario2.save
-        @group.scenarios_ids = [@scenario2.id]
+        @group.scenario_ids = [@scenario2.id]
         @group.should_not be_valid
         @group.errors[:base].should == ["invalid scenario"]
       end
       
       it "should uniquify documents_ids" do
-        @group.scenarios_ids = [@scenario1.id, @scenario1.id]
-        @group.scenarios_ids.should eq([@scenario1.id])
+        @group.scenario_ids = [@scenario1.id, @scenario1.id]
+        @group.scenario_ids.should eq([@scenario1.id])
       end
       
     end
@@ -86,8 +86,8 @@ describe Group do
   describe "Callbacks" do    
     describe "After create" do
       before(:each) do
-        @group2 = Factory(:group, :name => "class2", :instructor => @instructor, :scenarios_ids => [@scenario1.id])
-        @group3 = Factory(:group, :name => "class3", :instructor => @instructor, :scenarios_ids => [@scenario1.id])
+        @group2 = Factory(:group, :name => "class2", :instructor => @instructor, :scenario_ids => [@scenario1.id])
+        @group3 = Factory(:group, :name => "class3", :instructor => @instructor, :scenario_ids => [@scenario1.id])
       end
       
       it "should set a unique valid code" do
