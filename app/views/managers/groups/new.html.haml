@@ -8,10 +8,10 @@
 
 #tabs
   %ul
-    %li= link_to "Groups", managers_groups_path
-    %li.ui-tabs-selected= link_to "New Group", new_managers_group_path
+    %li= link_to "Groups", managers_classes_path
+    %li.ui-tabs-selected= link_to "New Group", new_managers_class_path
     
-  - form_for(@group, :url => managers_groups_path, :method => :post) do |f|
+  - form_for(@group, :url => managers_classes_path, :method => :post) do |f|
     = f.error_messages
 
     .field

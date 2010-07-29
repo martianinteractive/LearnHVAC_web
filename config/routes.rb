@@ -75,7 +75,7 @@ Learnhvac::Application.routes.draw do |map|
     resources :instructors
     resource :dashboard, :only => [:show]
     
-    resources :groups do
+    resources :classes, :controller => :groups do
       resources :memberships
     end
     

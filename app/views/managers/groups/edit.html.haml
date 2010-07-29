@@ -1,9 +1,9 @@
 #tabs
   %ul
-    %li= link_to "Groups", managers_groups_path
-    %li= link_to "New Group", new_managers_group_path
+    %li= link_to "Groups", managers_classes_path
+    %li= link_to "New Group", new_managers_class_path
 
-  - form_for(@group, :url => managers_group_path(@group), :method => :put) do |f|
+  - form_for(@group, :url => managers_class_path(@group), :method => :put) do |f|
     = f.error_messages
 
     .field
