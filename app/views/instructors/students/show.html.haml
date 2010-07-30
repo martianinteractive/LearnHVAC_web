@@ -1,33 +1,40 @@
-%h2= @student.name.capitalize
+#tabs
+  %ul
+    %li= link_to @group.name, instructors_class_path(@group)
 
-%p
-  = link_to "Back", instructors_group_path(@group)
+  #page_header
+    #subject_actions
 
-%hr
-
-%p
-  %b
-    Login:
-  = h @student.login
-%p
-  %b
-    Role:
-  = h @student.role
-%p
-  %b
-    First Name:
-  = h @student.first_name
-%p
-  %b
-    Last Name:
-  = h @student.last_name
-%p
-  %b
-    E-Mail:
-  = mail_to @student.email, @student.email
-
-%p
-  %b
-    Group member since:
-  = @member_since
+    #subject_info
+      %h2= @student.name
+      .subject_details
+        - if @student.institution
+          #{@student.role} at #{link_to @student.institution.name, admins_institution_path(@student.institution)}
+        - else
+          #{@student.role}
+  
+  #location.ui-widget.ui-widget-content.ui-corner-all
+    %h4 location
+    %p
+      = image_tag "globe_32.png"
+      = location_for(@student)
+	
+  #inner_column
+    %table
+      %tr
+        %th Login:
+        %td= @student.login
+      %tr
+        %th E-Mail:
+        %td= mail_to @student.email
+      - if @student.phone.present?
+        %tr
+          %th Phone:
+          %td= @student.phone
+      %tr
+        %th Status:
+        %td= @student.enabled? ? "Enabled" : "Disabled"
+      %tr
+        %th Created on:
+        %td= @student.created_at.to_formatted_s(:long)
 

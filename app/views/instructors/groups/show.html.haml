@@ -11,7 +11,7 @@
   #page_header
     #subject_actions
       - if @group.notification_emails.any?
-        = link_to 'Emails', [:instructors, @group, :emails]
+        = link_to 'Emails', instructors_class_emails_path(@group)
         &nbsp;
       = link_to 'Edit', edit_instructors_class_path(@group)
       &nbsp;
@@ -23,12 +23,11 @@
   #inner_column
     %table
       %tr
-        %th Code:
-        %td= @group.code
-      %tr
         %th Invitation URL:
         %td
-          %p Use the invitation URL to allow your students to join this group. You may copy and paste it on an email or use the online form to invite them.
+          %p Use the invitation URL to let your students join this group. 
+          %p You may copy and paste it on an email or use the #{link_to "online form", new_instructors_class_email_path(@group)} to invite them.
+
           %input{:type => "text", :value => membership_register_url(@group.code), :style => "width: 400px", :spellcheck => false}        
 
     %h3 Students

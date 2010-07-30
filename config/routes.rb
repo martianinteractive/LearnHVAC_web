@@ -67,7 +67,7 @@ Learnhvac::Application.routes.draw do |map|
   ## Student Routes.
   namespace :students do
     resources :accounts
-    resources :groups
+    resources :classes, :controller => :groups
   end
   
   ## Manager Routes.
@@ -75,7 +75,7 @@ Learnhvac::Application.routes.draw do |map|
     resources :instructors
     resource :dashboard, :only => [:show]
     
-    resources :groups do
+    resources :classes, :controller => :groups do
       resources :memberships
     end
     
@@ -120,13 +120,9 @@ Learnhvac::Application.routes.draw do |map|
       end
     end
     
-    resources :groups do
+    resources :classes, :controller => :groups do
       #TODO: move students to groups scope.
       resources :students, :only => [:index]
-      
-      scope :module => :groups do
-        resources :emails, :only => [:index, :new, :show, :create]
-      end
     end
     
     scope ":role" do

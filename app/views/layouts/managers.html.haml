@@ -1,6 +1,6 @@
 =render "layouts/head"
 
-%body.bp
+%body.bp.manager_site
   .header
     %h1.siteTitle
       %span
@@ -24,7 +24,7 @@
         %ul
           %li
             = link_to "Instructors", managers_instructors_path
-            = link_to "Groups", managers_groups_path
+            = link_to "Classes", managers_classes_path
             = link_to "Scenarios", managers_scenarios_path
         %h3
         %ul

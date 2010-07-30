@@ -5,17 +5,14 @@
 
 #tabs
   %ul
-    %li= link_to "Groups", admins_groups_path
-    %li= link_to "New Group", new_admins_group_path
+    %li= link_to "Groups", admins_classes_path
+    %li= link_to "New Group", new_admins_class_path
     
   #page_header
     #subject_actions
-      - if @group.notification_emails.any?
-        = link_to 'Emails', [:admins, @group, :emails]
-        &nbsp;
-      = link_to 'Edit', edit_admins_group_path(@group)
+      = link_to 'Edit', edit_admins_class_path(@group)
       &nbsp;
-      = link_to 'Delete', admins_group_path(@group), :confirm => 'Are you sure?', :method => :delete
+      = link_to 'Delete', admins_class_path(@group), :confirm => 'Are you sure?', :method => :delete
       
     #subject_info
       %h2= @group.name
@@ -31,7 +28,6 @@
       %tr
         %th Invitation URL:
         %td= membership_register_url(@group.code)
-        %td= link_to image_tag("icon-discuss-small.png", :class => "tip", :title => "Send this Invitation URL to your students!"), [:new, :admins, @group, :email]
         
     %h3 Students
 
