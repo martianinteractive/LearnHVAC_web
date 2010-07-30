@@ -1,5 +1,42 @@
-joes_group:
-  id : 1
-  instructor_id: 1
+groups_004: 
+  name: test group
+  created_at: 2010-07-12 18:01:53
+  code: 486cc1
+  updated_at: 2010-07-12 18:01:53
+  id: "4"
+  instructor_id: "5"
+groups_005: 
+  name: HVAC 201
+  created_at: 2010-07-18 01:44:25
+  code: b0bfaa
+  updated_at: 2010-07-18 01:44:25
+  id: "5"
+  instructor_id: "1"
+groups_006: 
+  name: JoeInstructor HVAC 201 TestClass1
+  created_at: 2010-07-22 18:20:07
+  code: "322595"
+  updated_at: 2010-07-22 18:20:07
+  id: "6"
+  instructor_id: "17"
+groups_001: 
   name: Joe's Group
+  created_at: 2010-06-25 21:24:04
   code: 6581bf
+  updated_at: 2010-06-25 21:24:04
+  id: "1"
+  instructor_id: "1"
+groups_002: 
+  name: MattKTestGroup
+  created_at: 2010-07-06 17:22:34
+  code: 6f9638
+  updated_at: 2010-07-06 17:22:34
+  id: "2"
+  instructor_id: "10"
+groups_003: 
+  name: student test
+  created_at: 2010-07-09 16:46:26
+  code: a521ce
+  updated_at: 2010-07-09 16:46:26
+  id: "3"
+  instructor_id: "11"
