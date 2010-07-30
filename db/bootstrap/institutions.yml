@@ -1,9 +1,56 @@
-administration:
-  id: 1
+institutions_008: 
+  name: UC Merced
+  created_at: 2010-07-28 20:46:19
+  updated_at: 2010-07-28 20:46:19
+  category_code: 
+  id: "8"
+  description: 
+institutions_001: 
   name: Administration
+  created_at: 2010-06-25 21:22:26
+  updated_at: 2010-06-25 21:22:26
+  category_code: 
+  id: "1"
   description: Administration
-  
-laney:
-  id: 2
+institutions_002: 
   name: Laney College
+  created_at: 2010-06-25 21:22:26
+  updated_at: 2010-06-25 21:22:26
+  category_code: 
+  id: "2"
   description: Laney College in Oakland, CA
+institutions_003: 
+  name: Merced
+  created_at: 2010-07-06 17:14:15
+  updated_at: 2010-07-06 17:14:15
+  category_code: 
+  id: "3"
+  description: 
+institutions_004: 
+  name: Merced2
+  created_at: 2010-07-06 17:14:53
+  updated_at: 2010-07-06 17:14:53
+  category_code: 
+  id: "4"
+  description: 
+institutions_005: 
+  name: Massachusetts School of Law
+  created_at: 2010-07-06 17:31:32
+  updated_at: 2010-07-06 17:31:32
+  category_code: 
+  id: "5"
+  description: 
+institutions_006: 
+  name: Montgomery College
+  created_at: 2010-07-06 18:19:23
+  updated_at: 2010-07-06 18:19:23
+  category_code: 
+  id: "6"
+  description: 
+institutions_007: 
+  name: University of California, Merced
+  created_at: 2010-07-09 19:51:21
+  updated_at: 2010-07-09 19:51:21
+  category_code: 
+  id: "7"
+  description: 
