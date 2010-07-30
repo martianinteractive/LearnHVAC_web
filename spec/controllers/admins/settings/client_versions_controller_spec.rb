@@ -89,7 +89,7 @@ describe Admins::Settings::ClientVersionsController do
   
     it "redirects to the client versions index" do
       delete :destroy, :id => @client_version.id
-      response.should redirect_to(admins_setttings_client_versions_path)
+      response.should redirect_to(admins_settings_client_versions_path)
     end
   end
   
@@ -100,7 +100,7 @@ describe Admins::Settings::ClientVersionsController do
     end
     
     it "should require an admin user for all actions" do
-      authorize_actions do
+      authorize_actions(:id => @client_version.id) do
         response.should redirect_to(default_path_for(@admin))
         flash[:notice].should == "You don't have privileges to access that page"
       end
