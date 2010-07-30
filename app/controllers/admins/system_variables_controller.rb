@@ -59,7 +59,8 @@ class Admins::SystemVariablesController < Admins::ApplicationController
   def destroy
     @master_scenario.variables.find(params[:id]).destroy
     session[:return_to] = admins_master_scenario_system_variables_path(@master_scenario)
-    redirect_to(new_admins_master_scenario_version_note_path(@master_scenario), :notice => 'System Variable was successfully deleted.')
+    redirect_to([:admins, @master_scenario, :system_variables], :notice => 'System Variable was successfully deleted.')
+    # redirect_to(new_admins_master_scenario_version_note_path(@master_scenario), :notice => 'System Variable was successfully deleted.')
   end
   
   def yaml_dump
