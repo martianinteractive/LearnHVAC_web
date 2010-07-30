@@ -54,7 +54,7 @@ describe Admins::MasterScenariosController do
   
   describe "POST create" do
     describe "with valid params" do
-      before(:each) { @valid_params = Factory.attributes_for(:master_scenario, :name => "new scenario", :client_version_id => @master_scenario.client_version_id) }
+      before(:each) { @valid_params = Factory.attributes_for(:master_scenario, :name => "new scenario", :desktop_id => @master_scenario.client_version.id) }
       
       it "should change the MasterScenario count" do
         proc{ post :create, :master_scenario => @valid_params }.should change(MasterScenario, :count).by(1)
@@ -133,7 +133,7 @@ describe Admins::MasterScenariosController do
     end
     
     it "should require an admin user for all actions" do
-      authorize_actions do
+      authorize_actions(:id => @master_scenario.id) do
         response.should redirect_to(default_path_for(@admin))
         flash[:notice].should == "You don't have privileges to access that page"
       end
