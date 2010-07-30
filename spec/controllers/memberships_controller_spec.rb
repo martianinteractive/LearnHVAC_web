@@ -62,30 +62,12 @@ describe MembershipsController do
         end
       end
       
-      pending "fix the 404 response."
-      # describe "Trying to register a non-existent group" do
-      #   it "" do
-      #     post :create, :code => "fakecode"
-      #     response.should render_template("#{Rails.root}/public/404.html")
-      #   end
-      # end
-    end
-  end
-    
-    
-  describe "DELETE :destroy" do
-    before(:each) do 
-      @membership = Membership.create(:group => @group, :student => @student)
-      login_as(@instructor)
-    end
-    
-    it "" do
-      proc { delete :destroy, :group_id => @group.id, :id => @membership.id }.should change(Membership, :count).by(-1)
-    end
-    
-    it "" do
-      delete :destroy, :group_id => @group.id, :id => @membership.id
-      response.should redirect_to(instructors_class_path(@group))
+      describe "Trying to register a non-existent group" do
+        it "" do
+          post :create, :code => "fakecode"
+          response.should render_template("#{Rails.root}/public/404.html")
+        end
+      end
     end
   end
   
