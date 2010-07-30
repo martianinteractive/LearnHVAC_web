@@ -98,9 +98,7 @@ namespace :bootstrap do
     Tagging.delete_all
   end
   
-  
   namespace :fixtures do
-
     desc 'Create YAML fixtures from data in an existing database.  
     Defaults to development database.  Set RAILS_ENV to override.'
     task :dump => :environment do
