@@ -1,5 +1,4 @@
 class Scenario < ActiveRecord::Base
-  include Xml
       
   belongs_to :user
   belongs_to :master_scenario
