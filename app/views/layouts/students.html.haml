@@ -18,15 +18,10 @@
   .main
     .dl10.navigation
       - if logged_in?
-        %h3 System
         %ul
           %li
-            = link_to "Groups", students_groups_path
-            = link_to "Scenarios", "#"
-        %h3 Community
-        %ul
-          %li
-            = link_to "Directory", directory_path
+            = link_to "Your Classes", students_classes_path
+            = link_to "Community Directory", directory_path
         
     .fluid
       .content

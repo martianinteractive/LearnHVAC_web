@@ -67,7 +67,7 @@ Learnhvac::Application.routes.draw do |map|
   ## Student Routes.
   namespace :students do
     resources :accounts
-    resources :groups
+    resources :classes, :controller => :groups
   end
   
   ## Manager Routes.

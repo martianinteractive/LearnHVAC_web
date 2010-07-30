@@ -1,16 +1,21 @@
 #tabs
   %ul
-    %li.ui-tabs-selected= link_to "Groups", students_groups_path
+    %li.ui-tabs-selected= link_to "Classes", students_classes_path
+
+  .instructions
+    You are a member of the following groups.
 
   %br
   %table.listing
     %thead
       %tr
         %th Name
+        %th Lead By
         %th Member since
     - @groups.each do |group|
       %tr
-        %td= link_to group.name, students_group_path(group)
+        %td= link_to group.name, students_class_path(group)
+        %td= group.instructor.name
         %td= group.memberships.where(:student_id => current_user.id).first.created_at.to_formatted_s(:long)
   %br
   = will_paginate @groups
