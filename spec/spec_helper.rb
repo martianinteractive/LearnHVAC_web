@@ -61,10 +61,10 @@ module AuthlogicTestHelper
 end
 
 module AuthorizationTestHelper
-  def authorize_actions(method_actions= default_actions)
+  def authorize_actions(params={}, method_actions= default_actions)
     method_actions.each { |method, actions|
       actions.each { |action|
-        send(method, action)
+        send(method, action, params)
         yield
       }
     }
