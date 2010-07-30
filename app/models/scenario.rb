@@ -1,6 +1,4 @@
-class Scenario < ActiveRecord::Base
-  include Xml
-      
+class Scenario < ActiveRecord::Base      
   belongs_to :user
   belongs_to :master_scenario
   belongs_to :client_version,   :foreign_key => "desktop_id"

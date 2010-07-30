@@ -15,7 +15,6 @@ Rspec.configure do |config|
   config.use_transactional_fixtures = true
   config.include Rspec::Matchers
   config.mock_with :mocha
-  config.before(:each) { Mongoid.master.collections.each(&:drop) }
 end
 
 module AuthlogicTestHelper 
