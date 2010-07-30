@@ -9,7 +9,7 @@ describe ActivationsController do
   end
   
   describe "GET new" do
-    describe "a not active user" do
+    describe "an inactive user" do
       it "" do
         get :new, :activation_code => @user.perishable_token
         response.should render_template(:new)
