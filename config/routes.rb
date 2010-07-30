@@ -16,7 +16,7 @@ Learnhvac::Application.routes.draw do |map|
   match 'students/signup' => 'students/accounts#new', :as => 'students_signup'
   match 'guests/signup' => 'guests/accounts#new', :as => 'guests_signup'
   match 'classes/register/(:code)' => 'memberships#create', :as => 'membership_register'
-  match 'admins/master_scenarios/tagged/:tag' => "admin/master_scenarios#tag", :as => 'master_scenarios_tag'
+  match 'admins/master_scenarios/tagged/:tag' => "admins/master_scenarios#tag", :as => 'master_scenarios_tag'
   match 'admins/dashboard' => 'admins/dashboard#show', :as => 'admins_dashboard'
   match 'directory' => 'directory/dashboard#index', :as => 'directory'
   match 'reset_password' => 'password_resets#new', :as => 'reset_password'
