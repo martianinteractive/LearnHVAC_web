@@ -1,21 +1,21 @@
 - content_for :head do
   = javascript_include_tag 'tools/tooltip.min'
-  - javascript_tag do
+  = javascript_tag do
     $(document).ready(function() { $(".tip").tooltip(); });
 
 #tabs
   %ul
-    %li.ui-tabs-selected= link_to "Groups", instructors_groups_path
-    %li= link_to "New Group", new_instructors_group_path
+    %li.ui-tabs-selected= link_to "Classes", instructors_classes_path
+    %li= link_to "New Class", new_instructors_class_path
     
   #page_header
     #subject_actions
       - if @group.notification_emails.any?
         = link_to 'Emails', [:instructors, @group, :emails]
         &nbsp;
-      = link_to 'Edit', edit_instructors_group_path(@group)
+      = link_to 'Edit', edit_instructors_class_path(@group)
       &nbsp;
-      = link_to 'Delete', instructors_group_path(@group), :confirm => 'Are you sure?', :method => :delete
+      = link_to 'Delete', instructors_class_path(@group), :confirm => 'Are you sure?', :method => :delete
 
     #subject_info
       %h2= @group.name
@@ -28,10 +28,9 @@
       %tr
         %th Invitation URL:
         %td
-          %input{:type => "text", :value => membership_register_url(@group.code), :style => "width: 400px", :spellcheck => false}
-        %td= link_to image_tag("icon-discuss-small.png", :class => "tip", :title => "Send this Invitation URL to your students!"), [:new, :instructors, @group, :email]
-        
-        
+          %p Use the invitation URL to allow your students to join this group. You may copy and paste it on an email or use the online form to invite them.
+          %input{:type => "text", :value => membership_register_url(@group.code), :style => "width: 400px", :spellcheck => false}        
+
     %h3 Students
 
     - if @group.students.empty?
@@ -46,7 +45,7 @@
             %th 
         - @group.students.each do |student|
           %tr
-            %td= link_to student.name, instructors_group_student_path(@group, student)
+            %td= link_to student.name, instructors_class_student_path(@group, student)
             %td= student.institution.name
             %td= mail_to student.email
 
