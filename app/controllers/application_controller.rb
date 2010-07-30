@@ -38,7 +38,7 @@ class ApplicationController < ActionController::Base
   end
   
   def redirect_back_or_default(default)
-    back = session[:return_to] if session[:return_to] != request.request_uri
+    back = session[:return_to] if session[:return_to] != request.fullpath
     session[:return_to] = nil
     redirect_to(back || default)
   end
