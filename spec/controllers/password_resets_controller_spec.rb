@@ -47,14 +47,14 @@ describe PasswordResetsController do
   describe "GET :edit" do
     describe "with valid perishable_token" do
       it "" do
-        get :edit, :id => @user.id
+        get :edit, :id => @user.perishable_token
         response.should render_template(:edit)
       end
     end
     
     describe "with invalid perishable_token" do
       it "" do
-        get :edit, :id => @user.id
+        get :edit, :id => "nonexistingperishabletoken"
         flash[:notice].should =~ /we could not locate your account/
         response.should redirect_to(login_path)
       end
@@ -65,7 +65,7 @@ describe PasswordResetsController do
     
     describe "with valid password" do
       it "should update the password" do
-        put :update, :id => @user.id, :user => { :password => "newpassword", :password_confirmation => "newpassword" }
+        put :update, :id => @user.perishable_token, :user => { :password => "newpassword", :password_confirmation => "newpassword" }
         flash[:notice].should == "Password successfully updated"
         response.should redirect_to(default_path_for(@user))
       end
@@ -73,7 +73,7 @@ describe PasswordResetsController do
     
     describe "with invalid password" do
       it "should not update the password" do
-        put :update, :id => @user.id, :user => { :password => "newpassword", :password_confirmation => "newnewpassword" }
+        put :update, :id => @user.perishable_token, :user => { :password => "newpassword", :password_confirmation => "newnewpassword" }
          response.should render_template(:edit)
       end
     end

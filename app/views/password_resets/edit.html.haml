@@ -1,15 +1,15 @@
-%h2 Change My Password
+%h2 Reseting Your Password
 %p Please enter a new password.
 - form_for @user, :url => password_reset_path(@user.perishable_token), :html => {:method => :put } do |f|
   = f.error_messages
-  = f.label :password
-  %br
-  = f.password_field :password
-  %br
-  %br
-  = f.label :password_confirmation
-  %br
-  = f.password_field :password_confirmation
-  %br
-  %br
-  = f.submit "Update my password and log me in"
+
+  .field
+    = f.label :password
+    = f.password_field :password
+
+  .field
+    = f.label :password_confirmation
+    = f.password_field :password_confirmation
+
+  .actions
+    = f.submit "Update my password and log me in"
