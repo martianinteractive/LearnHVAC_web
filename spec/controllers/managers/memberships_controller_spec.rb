@@ -20,7 +20,7 @@ describe Managers::MembershipsController do
     
     it "" do
       delete :destroy, :group_id => @group.id, :id => @membership.id
-      response.should redirect_to(managers_group_path(@group))
+      response.should redirect_to(managers_class_path(@group))
     end
   end
   

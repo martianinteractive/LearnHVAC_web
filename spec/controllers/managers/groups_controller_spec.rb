@@ -56,7 +56,7 @@ describe Managers::GroupsController do
       
       it "redirects to the created group" do
         post :create, :group => @params
-        response.should redirect_to(managers_group_path(assigns(:group)))
+        response.should redirect_to(managers_class_path(assigns(:group)))
       end
     end
   
@@ -77,7 +77,7 @@ describe Managers::GroupsController do
       
       it "" do
         put :update, :id => @group.id, :group => { }
-        response.should redirect_to(managers_group_path(@group))
+        response.should redirect_to(managers_class_path(@group))
       end
     end
     

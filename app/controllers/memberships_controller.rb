@@ -12,7 +12,7 @@ class MembershipsController < ApplicationController
       elsif !@membership.new_record?
         flash[:notice] = @membership.recently_created? ? "Registered" : "You are already a member of this group."
       end
-      redirect_to students_group_path(@group)
+      redirect_to students_class_path(@group)
     else
       # This is looking through app/views instead of the absolute path.
       render :file => "#{Rails.root}/public/404.html", :layout => false, :status => 404
@@ -24,7 +24,7 @@ class MembershipsController < ApplicationController
   def destroy
     @membership = @group.memberships.find(params[:id])
     @membership.destroy
-    redirect_to instructors_group_path(@group) 
+    redirect_to instructors_class_path(@group) 
   end
   
   private 
@@ -41,7 +41,7 @@ class MembershipsController < ApplicationController
     if logged_as?(:instructor)
       if current_user == @group.instructor
         flash[:notice] = "You already have joined this group as instructor."
-        redirect_to instructors_group_path(@group)
+        redirect_to instructors_class_path(@group)
       else
         flash[:notice] = "You need to login as student to join groups."
         redirect_to default_path_for(current_user)

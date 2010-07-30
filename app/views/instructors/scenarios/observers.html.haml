@@ -33,7 +33,7 @@
               %th Code
           - @scenario.groups.each do |group|
             %tr
-              %td= link_to group.name, instructors_group_path(group)
+              %td= link_to group.name, instructors_class_path(group)
               %td= group.students.count
               %td= group.scenarios.count
               %td= group.code
