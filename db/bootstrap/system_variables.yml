@@ -7,25 +7,25 @@ MXLeakRetDmpr:
   notes: ""
   lock_version: 0
   view_type: public
-  unit_ip: "%"
-  si_to_ip: ""
   fault_widget_type: SLIDER
+  si_to_ip: ""
+  unit_ip: "%"
+  
   subsection: ""
-  type: SystemVariable
   is_percentage: true
   index: 22
   fault_is_active: false
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  unit_si: "%"
-  right_label: 100% open
-  display_name: Leaky return air damper
-  
-  description: ""
   component_code: MX
-  zone_position: NO_GRADIENT
+  description: ""
+  disable: false
+  display_name: Leaky return air damper
+  right_label: 100% open
+  unit_si: "%"
   left_label: 0% open
+  zone_position: NO_GRADIENT
 CCAirFlwd: 
   initial_value: 2.0
   high_value: 6.0
@@ -34,19 +34,19 @@ CCAirFlwd:
   is_fault: false
   lock_version: 0
   view_type: public
-  unit_ip: CFM
   si_to_ip: "1653.46"
-  type: SystemVariable
+  unit_ip: CFM
+  
   is_percentage: false
   index: 10
   fault_is_active: false
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  
-  component_code: CC
-  display_name: cooling coil design air flow rate
   unit_si: kg/s
+  display_name: cooling coil design air flow rate
+  component_code: CC
+  disable: false
 HCTLiqLvg: 
   initial_value: 0.0
   high_value: 0.0
@@ -55,19 +55,19 @@ HCTLiqLvg:
   is_fault: false
   lock_version: 0
   view_type: public
-  unit_ip: F
   si_to_ip: SI*1.8+32
-  type: SystemVariable
+  unit_ip: F
+  
   is_percentage: false
   index: 6
   fault_is_active: false
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  
-  component_code: HC
-  display_name: Heating coil leaving hot water temp
   unit_si: C
+  display_name: Heating coil leaving hot water temp
+  component_code: HC
+  disable: false
 CCTLiqEnt: 
   initial_value: 0.0
   high_value: 0.0
@@ -77,9 +77,9 @@ CCTLiqEnt:
   notes: ""
   lock_version: 0
   view_type: public
-  unit_ip: F
-  si_to_ip: SI*1.8+32
   fault_widget_type: ""
+  si_to_ip: SI*1.8+32
+  unit_ip: F
   subsection: ""
   is_percentage: false
   index: 32
@@ -87,13 +87,13 @@ CCTLiqEnt:
   disabled: false
   low_value: 0.0
   node_sequence: 0
-  unit_si: C
-  right_label: ""
-  display_name: Cooling coil chilled water entering temp
-  description: ""
   component_code: CC
-  zone_position: ""
+  description: ""
+  display_name: Cooling coil chilled water entering temp
+  right_label: ""
+  unit_si: C
   left_label: ""
+  zone_position: ""
 VAVBadZoneMeas: 
   initial_value: 0.0
   high_value: 200.0
@@ -103,25 +103,25 @@ VAVBadZoneMeas:
   notes: ""
   lock_version: 0
   view_type: public
-  unit_ip: F
-  si_to_ip: ""
   fault_widget_type: SLIDER
+  si_to_ip: ""
+  unit_ip: F
+  
   subsection: ""
-  type: SystemVariable
   is_percentage: false
   index: 32
   fault_is_active: false
   disabled: true
   low_value: -200.0
   node_sequence: 0
-  unit_si: C
-  right_label: Positive
-  display_name: Room temp sensor error
-  
-  description: ""
   component_code: VAV
-  zone_position: CENTER
+  description: ""
+  disable: false
+  display_name: Room temp sensor error
+  right_label: Positive
+  unit_si: C
   left_label: Negative
+  zone_position: CENTER
 HCBootLeak: 
   initial_value: 0.0
   high_value: 100.0
@@ -131,25 +131,25 @@ HCBootLeak:
   notes: ""
   lock_version: 0
   view_type: public
-  unit_ip: "%"
-  si_to_ip: ""
   fault_widget_type: SLIDER
+  si_to_ip: ""
+  unit_ip: "%"
+  
   subsection: Valve
-  type: SystemVariable
   is_percentage: true
   index: 25
   fault_is_active: false
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  unit_si: "%"
-  right_label: 100% open
-  display_name: Heating coil valve boot leakage
-  
-  description: ""
   component_code: HC
-  zone_position: NO_GRADIENT
+  description: ""
+  disable: false
+  display_name: Heating coil valve boot leakage
+  right_label: 100% open
+  unit_si: "%"
   left_label: 0% open
+  zone_position: NO_GRADIENT
 VAVDampPos: 
   initial_value: 0.0
   high_value: 0.0
@@ -159,17 +159,17 @@ VAVDampPos:
   lock_version: 0
   view_type: public
   unit_ip: "%"
-  type: SystemVariable
+  
   is_percentage: false
   index: 15
   fault_is_active: false
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  
-  component_code: VAV
-  display_name: VAV box damper position
   unit_si: "%"
+  display_name: VAV box damper position
+  component_code: VAV
+  disable: false
 VAVHCBootLeak: 
   initial_value: 0.0
   high_value: 100.0
@@ -179,9 +179,9 @@ VAVHCBootLeak:
   notes: ""
   lock_version: 0
   view_type: public
-  unit_ip: "%"
-  si_to_ip: ""
   fault_widget_type: SLIDER
+  si_to_ip: ""
+  unit_ip: "%"
   subsection: ""
   is_percentage: true
   index: 33
@@ -189,14 +189,14 @@ VAVHCBootLeak:
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  unit_si: "%"
-  right_label: Leaky
-  display_name: VAV reheat coil valve boot leakage
-  
-  description: ""
   component_code: VAV
-  zone_position: LEFT
+  description: ""
+  disable: false
+  display_name: VAV reheat coil valve boot leakage
+  right_label: Leaky
+  unit_si: "%"
   left_label: Leaky
+  zone_position: LEFT
 HCStuckVlv: 
   initial_value: 0.0
   high_value: 100.0
@@ -206,25 +206,25 @@ HCStuckVlv:
   notes: ""
   lock_version: 0
   view_type: public
-  unit_ip: "%"
-  si_to_ip: ""
   fault_widget_type: SLIDER
+  si_to_ip: ""
+  unit_ip: "%"
+  
   subsection: Valve
-  type: SystemVariable
   is_percentage: true
   index: 27
   fault_is_active: false
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  unit_si: "%"
-  right_label: 100% open
-  display_name: Stuck heating coil valve
-  
-  description: ""
   component_code: HC
-  zone_position: NO_GRADIENT
+  description: ""
+  disable: false
+  display_name: Stuck heating coil valve
+  right_label: 100% open
+  unit_si: "%"
   left_label: 0% open
+  zone_position: NO_GRADIENT
 CCFouledCoil: 
   initial_value: 0.0
   high_value: 100.0
@@ -234,9 +234,9 @@ CCFouledCoil:
   notes: ""
   lock_version: 0
   view_type: public
-  unit_ip: "%"
-  si_to_ip: ""
   fault_widget_type: SLIDER
+  si_to_ip: ""
+  unit_ip: "%"
   subsection: ""
   is_percentage: true
   index: 41
@@ -244,70 +244,70 @@ CCFouledCoil:
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  unit_si: "%"
-  right_label: Fouled
-  display_name: Fouled cooling coil
-  
-  description: ""
   component_code: CC
-  zone_position: LEFT
+  description: ""
+  disable: false
+  display_name: Fouled cooling coil
+  right_label: Fouled
+  unit_si: "%"
   left_label: Fouled
+  zone_position: LEFT
 VAVBadFlowMeas: 
   initial_value: 0.0
-  high_value: 2.0
+  high_value: 0.2
   name: VAVBadFlowMeas
   io_type: INPUT
   is_fault: true
   notes: ""
   lock_version: 0
   view_type: public
-  unit_ip: CFM
-  si_to_ip: ""
   fault_widget_type: SLIDER
+  si_to_ip: ""
+  unit_ip: CFM
+  
   subsection: ""
-  type: SystemVariable
   is_percentage: false
   index: 31
   fault_is_active: false
   disabled: true
-  low_value: -2.0
+  low_value: -0.2
   node_sequence: 0
-  unit_si: m3/s
-  right_label: Positive
-  display_name: VAV box air flow calibration error
-  
-  description: ""
   component_code: VAV
-  zone_position: CENTER
+  description: ""
+  disable: false
+  display_name: VAV box air flow calibration error
+  right_label: Positive
+  unit_si: m3/s
   left_label: Negative
+  zone_position: CENTER
 CCKp: 
-  name: CCKp
   initial_value: 1.0
   high_value: 100.0
+  name: CCKp
   io_type: INPUT
   is_fault: false
   notes: ""
-  view_type: public
-  unit_ip: ""
-  si_to_ip: ""
   lock_version: 0
+  view_type: public
   fault_widget_type: ""
+  si_to_ip: ""
+  unit_ip: ""
+  
   subsection: ""
-  type: SystemVariable
   is_percentage: false
   index: 15
-  unit_si: ""
-  right_label: ""
-  node_sequence: 0
-  low_value: 0.01
   fault_is_active: false
-  display_name: Cooling coil valve controller P gain
   disabled: true
-  
-  description: ""
+  low_value: 0.01
+  node_sequence: 0
   component_code: CC
-  zone_position: ""
+  description: ""
+  disable: false
+  display_name: Cooling coil valve controller P gain
+  right_label: ""
+  unit_si: ""
   left_label: ""
+  zone_position: ""
 CCBootLeak: 
   initial_value: 0.0
   high_value: 100.0
@@ -317,9 +317,9 @@ CCBootLeak:
   notes: ""
   lock_version: 0
   view_type: public
-  unit_ip: "%"
-  si_to_ip: ""
   fault_widget_type: SLIDER
+  si_to_ip: ""
+  unit_ip: "%"
   subsection: ""
   is_percentage: true
   index: 38
@@ -327,14 +327,14 @@ CCBootLeak:
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  unit_si: "%"
-  right_label: Leaky
-  display_name: Cooling coil valve boot leakage
-  
-  description: ""
   component_code: CC
-  zone_position: LEFT
+  description: ""
+  disable: false
+  display_name: Cooling coil valve boot leakage
+  right_label: Leaky
+  unit_si: "%"
   left_label: Leaky
+  zone_position: LEFT
 HCPDd: 
   initial_value: 29.0
   high_value: 100.0
@@ -343,19 +343,45 @@ HCPDd:
   is_fault: false
   lock_version: 0
   view_type: public
-  unit_ip: In.W
   si_to_ip: SI/249.1
-  type: SystemVariable
+  unit_ip: In.W
+  
   is_percentage: false
   index: 7
   fault_is_active: false
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  
-  component_code: HC
-  display_name: heating coil design air side pressure drop
   unit_si: Pa
+  display_name: heating coil design air side pressure drop
+  component_code: HC
+  disable: false
+MXMARH: 
+  initial_value: 0.0
+  high_value: 0.0
+  name: MXMARH
+  io_type: OUTPUT
+  is_fault: false
+  notes: ""
+  lock_version: 0
+  view_type: public
+  unit_ip: "%"
+  si_to_ip: ""
+  fault_widget_type: ""
+  subsection: ""
+  is_percentage: false
+  index: 34
+  fault_is_active: false
+  disabled: false
+  low_value: 0.0
+  node_sequence: 0
+  display_name: Mixed air relative humidity
+  description: Mixed air relative humidity
+  component_code: MX
+  unit_si: "%"
+  right_label: ""
+  left_label: ""
+  zone_position: ""
 CHLLiqFlw: 
   initial_value: 0.0
   high_value: 0.0
@@ -364,19 +390,19 @@ CHLLiqFlw:
   is_fault: false
   lock_version: 0
   view_type: public
-  unit_ip: GPM
   si_to_ip: SI*15850.32
-  type: SystemVariable
+  unit_ip: GPM
+  
   is_percentage: false
   index: 18
   fault_is_active: false
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  
-  component_code: CHL
-  display_name: Chilled water flow rate
   unit_si: m3/s
+  display_name: Chilled water flow rate
+  component_code: CHL
+  disable: false
 CCPDd: 
   initial_value: 165.0
   high_value: 400.0
@@ -385,19 +411,19 @@ CCPDd:
   is_fault: false
   lock_version: 0
   view_type: public
-  unit_ip: In.W
   si_to_ip: SI/249.1
-  type: SystemVariable
+  unit_ip: In.W
+  
   is_percentage: false
   index: 11
   fault_is_active: false
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  
-  component_code: CC
-  display_name: cooling coil design air side pressure drop
   unit_si: Pa
+  display_name: cooling coil design air side pressure drop
+  component_code: CC
+  disable: false
 VAVHCLeakyVlv: 
   initial_value: 0.0
   high_value: 100.0
@@ -407,9 +433,9 @@ VAVHCLeakyVlv:
   notes: ""
   lock_version: 0
   view_type: public
-  unit_ip: "%"
-  si_to_ip: ""
   fault_widget_type: SLIDER
+  si_to_ip: ""
+  unit_ip: "%"
   subsection: ""
   is_percentage: true
   index: 34
@@ -417,14 +443,14 @@ VAVHCLeakyVlv:
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  unit_si: "%"
-  right_label: Leaky
-  display_name: Leaky VAV reheat coil valve
-  
-  description: ""
   component_code: VAV
-  zone_position: CENTER
+  description: ""
+  disable: false
+  display_name: Leaky VAV reheat coil valve
+  right_label: Leaky
+  unit_si: "%"
   left_label: Leaky
+  zone_position: CENTER
 SYSRmQSens: 
   initial_value: 8000.0
   high_value: 30000.0
@@ -433,19 +459,19 @@ SYSRmQSens:
   is_fault: false
   lock_version: 0
   view_type: public
-  unit_ip: Btu/h
   si_to_ip: SI*0.2931
-  type: SystemVariable
+  unit_ip: Btu/h
+  
   is_percentage: false
   index: 1
   fault_is_active: false
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  
-  component_code: SYS
-  display_name: design room sensible heat gain
   unit_si: W
+  display_name: design room sensible heat gain
+  component_code: SYS
+  disable: false
 VAVHCStuckVlv: 
   initial_value: 0.0
   high_value: 100.0
@@ -455,9 +481,9 @@ VAVHCStuckVlv:
   notes: ""
   lock_version: 0
   view_type: public
-  unit_ip: "%"
-  si_to_ip: ""
   fault_widget_type: SLIDER
+  si_to_ip: ""
+  unit_ip: "%"
   subsection: ""
   is_percentage: true
   index: 35
@@ -465,34 +491,42 @@ VAVHCStuckVlv:
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  unit_si: "%"
-  right_label: open
-  display_name: Stuck VAV reheat coil valve
-  
-  description: ""
   component_code: VAV
-  zone_position: CENTER
+  description: ""
+  disable: false
+  display_name: Stuck VAV reheat coil valve
+  right_label: open
+  unit_si: "%"
   left_label: open
+  zone_position: CENTER
 VAVDmprKi: 
+  name: VAVDmprKi
   initial_value: 60.0
   high_value: 1000.0
-  name: VAVDmprKi
   io_type: INPUT
   is_fault: false
-  lock_version: 0
+  notes: ""
   view_type: public
   unit_ip: second
-  type: SystemVariable
+  si_to_ip: ""
+  lock_version: 0
+  fault_widget_type: ""
+  subsection: ""
+  
   is_percentage: false
   index: 18
-  fault_is_active: false
-  disabled: true
-  low_value: 0.0
-  node_sequence: 0
-  
-  component_code: VAV
-  display_name: VAV damper controller integrator time constant
   unit_si: second
+  right_label: ""
+  node_sequence: 0
+  low_value: 0.01
+  fault_is_active: false
+  display_name: VAV damper controller integrator time constant
+  disabled: true
+  disable: false
+  description: ""
+  component_code: VAV
+  zone_position: ""
+  left_label: ""
 CCLiqFlwd: 
   initial_value: 1.0
   high_value: 3.0
@@ -501,19 +535,19 @@ CCLiqFlwd:
   is_fault: false
   lock_version: 0
   view_type: public
-  unit_ip: GPM
   si_to_ip: SI*15.88
-  type: SystemVariable
+  unit_ip: GPM
+  
   is_percentage: false
   index: 8
   fault_is_active: false
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  
-  component_code: CC
-  display_name: Cooling coil chilled water design mass flow rate
   unit_si: kg/s
+  display_name: Cooling coil chilled water design mass flow rate
+  component_code: CC
+  disable: false
 RMTemp: 
   initial_value: 0.0
   high_value: 0.0
@@ -522,19 +556,19 @@ RMTemp:
   is_fault: false
   lock_version: 0
   view_type: public
-  unit_ip: F
   si_to_ip: SI*1.8+32
-  type: SystemVariable
+  unit_ip: F
+  
   is_percentage: false
   index: 1
   fault_is_active: false
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  
-  component_code: RM
-  display_name: Room temp
   unit_si: C
+  display_name: Room temp
+  component_code: RM
+  disable: false
 CCStuckVlv: 
   initial_value: 0.0
   high_value: 100.0
@@ -544,9 +578,9 @@ CCStuckVlv:
   notes: ""
   lock_version: 0
   view_type: public
-  unit_ip: "%"
-  si_to_ip: ""
   fault_widget_type: SLIDER
+  si_to_ip: ""
+  unit_ip: "%"
   subsection: ""
   is_percentage: true
   index: 40
@@ -554,14 +588,14 @@ CCStuckVlv:
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  unit_si: "%"
-  right_label: Stuck
-  display_name: Stuck cooling coil valve
-  
-  description: ""
   component_code: CC
-  zone_position: LEFT
+  description: ""
+  disable: false
+  display_name: Stuck cooling coil valve
+  right_label: Stuck
+  unit_si: "%"
   left_label: Stuck
+  zone_position: LEFT
 BOITLiqEnt: 
   initial_value: 0.0
   high_value: 0.0
@@ -570,19 +604,19 @@ BOITLiqEnt:
   is_fault: false
   lock_version: 0
   view_type: public
-  unit_ip: F
   si_to_ip: SI*1.8+32
-  type: SystemVariable
+  unit_ip: F
+  
   is_percentage: false
   index: 28
   fault_is_active: false
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  
-  component_code: BOI
-  display_name: Boiler entering water temp
   unit_si: C
+  display_name: Boiler entering water temp
+  component_code: BOI
+  disable: false
 HCPos: 
   initial_value: 0.0
   high_value: 0.0
@@ -592,17 +626,17 @@ HCPos:
   lock_version: 0
   view_type: public
   unit_ip: "%"
-  type: SystemVariable
+  
   is_percentage: false
   index: 20
   fault_is_active: false
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  
-  component_code: HC
-  display_name: Heating coil valve position
   unit_si: "%"
+  display_name: Heating coil valve position
+  component_code: HC
+  disable: false
 FANTAirEnt: 
   initial_value: 0.0
   high_value: 0.0
@@ -612,9 +646,9 @@ FANTAirEnt:
   notes: ""
   lock_version: 0
   view_type: public
-  unit_ip: F
-  si_to_ip: SI*1.8+32
   fault_widget_type: ""
+  si_to_ip: SI*1.8+32
+  unit_ip: F
   subsection: ""
   is_percentage: false
   index: 23
@@ -622,13 +656,13 @@ FANTAirEnt:
   disabled: false
   low_value: 0.0
   node_sequence: 0
-  display_name: Fan entering air temp
-  description: ""
-  component_code: FAN
-  unit_si: C
   right_label: ""
-  left_label: ""
+  unit_si: C
+  component_code: FAN
+  description: ""
+  display_name: Fan entering air temp
   zone_position: ""
+  left_label: ""
 BOITLiqSup: 
   initial_value: 82.0
   high_value: 95.0
@@ -637,19 +671,19 @@ BOITLiqSup:
   is_fault: false
   lock_version: 0
   view_type: public
-  unit_ip: F
   si_to_ip: SI*1.8+32
-  type: SystemVariable
+  unit_ip: F
+  
   is_percentage: false
   index: 17
   fault_is_active: false
   disabled: true
   low_value: 60.0
   node_sequence: 0
-  
-  component_code: BOI
-  display_name: design hot water supply temperature
   unit_si: C
+  display_name: design hot water supply temperature
+  component_code: BOI
+  disable: false
 VAVHCFouledCoil: 
   initial_value: 0.0
   high_value: 100.0
@@ -659,9 +693,9 @@ VAVHCFouledCoil:
   notes: ""
   lock_version: 0
   view_type: public
-  unit_ip: "%"
-  si_to_ip: ""
   fault_widget_type: SLIDER
+  si_to_ip: ""
+  unit_ip: "%"
   subsection: ""
   is_percentage: true
   index: 36
@@ -669,14 +703,14 @@ VAVHCFouledCoil:
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  unit_si: "%"
-  right_label: Fouled
-  display_name: VAV fouled reheat coil
-  
-  description: ""
   component_code: VAV
-  zone_position: LEFT
+  description: ""
+  disable: false
+  display_name: VAV fouled reheat coil
+  right_label: Fouled
+  unit_si: "%"
   left_label: Fouled
+  zone_position: LEFT
 CCPos: 
   initial_value: 0.0
   high_value: 0.0
@@ -686,17 +720,17 @@ CCPos:
   lock_version: 0
   view_type: public
   unit_ip: "%"
-  type: SystemVariable
+  
   is_percentage: false
   index: 21
   fault_is_active: false
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  
-  component_code: CC
-  display_name: Cooling coil valve position
   unit_si: "%"
+  display_name: Cooling coil valve position
+  component_code: CC
+  disable: false
 FLTPDrop: 
   initial_value: 0.0
   high_value: 0.0
@@ -705,19 +739,19 @@ FLTPDrop:
   is_fault: false
   lock_version: 0
   view_type: public
-  unit_ip: In.W
   si_to_ip: SI/249.1
-  type: SystemVariable
+  unit_ip: In.W
+  
   is_percentage: false
   index: 3
   fault_is_active: false
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  
-  component_code: FLT
-  display_name: filter pressure drop
   unit_si: Pa
+  display_name: filter pressure drop
+  component_code: FLT
+  disable: false
 FANAirFlw: 
   initial_value: 0.0
   high_value: 0.0
@@ -726,19 +760,19 @@ FANAirFlw:
   is_fault: false
   lock_version: 0
   view_type: public
-  unit_ip: CFM
   si_to_ip: SI*2118.88
-  type: SystemVariable
+  unit_ip: CFM
+  
   is_percentage: false
   index: 13
   fault_is_active: false
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  
-  component_code: FAN
-  display_name: Fan air flow rate
   unit_si: m3/s
+  display_name: Fan air flow rate
+  component_code: FAN
+  disable: false
 MXTAirMix: 
   initial_value: 0.0
   high_value: 0.0
@@ -747,19 +781,19 @@ MXTAirMix:
   is_fault: false
   lock_version: 0
   view_type: public
-  unit_ip: F
   si_to_ip: SI*1.8+32
-  type: SystemVariable
+  unit_ip: F
+  
   is_percentage: false
   index: 27
   fault_is_active: false
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  
-  component_code: MX
-  display_name: Economizer mixed air temperature
   unit_si: C
+  display_name: Economizer mixed air temperature
+  component_code: MX
+  disable: false
 FANPwr: 
   initial_value: 0.0
   high_value: 0.0
@@ -769,65 +803,73 @@ FANPwr:
   lock_version: 0
   view_type: public
   unit_ip: W
-  type: SystemVariable
+  
   is_percentage: false
   index: 11
   fault_is_active: false
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  
-  component_code: FAN
-  display_name: Fan Power
   unit_si: W
+  display_name: Fan Power
+  component_code: FAN
+  disable: false
 CCUA: 
-  name: CCUA
   initial_value: 29454.0
   high_value: 50000.0
+  name: CCUA
   io_type: PARAMETER
   is_fault: false
   notes: ""
+  lock_version: 0
   view_type: public
-  unit_ip: Btu/h
+  fault_widget_type: ""
   si_to_ip: SI*3.412
+  unit_ip: Btu/h
+  
+  subsection: ""
+  is_percentage: false
+  index: 9
+  fault_is_active: false
+  disabled: true
+  low_value: 0.0
+  node_sequence: 0
+  component_code: CC
+  description: ""
+  disable: false
+  display_name: Cooling coil design cooling capacity
+  right_label: ""
+  unit_si: W
+  left_label: ""
+  zone_position: ""
+VAVRhcKi: 
+  name: VAVRhcKi
+  initial_value: 60.0
+  high_value: 1000.0
+  io_type: INPUT
+  is_fault: false
+  notes: ""
+  view_type: public
+  unit_ip: second
+  si_to_ip: ""
   lock_version: 0
   fault_widget_type: ""
   subsection: ""
-  type: SystemVariable
-  is_percentage: false
-  index: 9
-  unit_si: W
-  right_label: ""
-  node_sequence: 0
-  low_value: 0.0
-  fault_is_active: false
-  display_name: Cooling coil design cooling capacity
-  disabled: true
   
-  description: ""
-  component_code: CC
-  zone_position: ""
-  left_label: ""
-VAVRhcKi: 
-  initial_value: 60.0
-  high_value: 1000.0
-  name: VAVRhcKi
-  io_type: INPUT
-  is_fault: false
-  lock_version: 0
-  view_type: public
-  unit_ip: second
-  type: SystemVariable
   is_percentage: false
   index: 21
-  fault_is_active: false
-  disabled: true
-  low_value: 0.0
-  node_sequence: 0
-  
-  component_code: VAV
-  display_name: VAV reheat coil controller integrator time constant
   unit_si: second
+  right_label: ""
+  node_sequence: 0
+  low_value: 0.01
+  fault_is_active: false
+  display_name: VAV reheat coil controller integrator time constant
+  disabled: true
+  disable: false
+  description: ""
+  component_code: VAV
+  zone_position: ""
+  left_label: ""
 CCLeakyVlv: 
   initial_value: 0.0
   high_value: 100.0
@@ -837,9 +879,9 @@ CCLeakyVlv:
   notes: ""
   lock_version: 0
   view_type: public
-  unit_ip: "%"
-  si_to_ip: ""
   fault_widget_type: SLIDER
+  si_to_ip: ""
+  unit_ip: "%"
   subsection: ""
   is_percentage: true
   index: 39
@@ -847,62 +889,96 @@ CCLeakyVlv:
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  unit_si: "%"
-  right_label: Leaky
-  display_name: Leaky cooling coil valve
-  
-  description: ""
   component_code: CC
-  zone_position: LEFT
+  description: ""
+  disable: false
+  display_name: Leaky cooling coil valve
+  right_label: Leaky
+  unit_si: "%"
   left_label: Leaky
+  zone_position: LEFT
 HCKp: 
-  name: HCKp
-  initial_value: 1.0
+  initial_value: 0.08
   high_value: 100.0
+  name: HCKp
+  io_type: INPUT
+  is_fault: false
+  notes: ""
+  lock_version: 0
+  view_type: public
+  fault_widget_type: ""
+  si_to_ip: ""
+  unit_ip: ""
+  
+  subsection: ""
+  is_percentage: false
+  index: 13
+  fault_is_active: false
+  disabled: true
+  low_value: 0.01
+  node_sequence: 0
+  component_code: HC
+  description: ""
+  disable: false
+  display_name: Heating coil valve controller P gain
+  right_label: ""
+  unit_si: ""
+  left_label: ""
+  zone_position: ""
+FANOutRH: 
+  initial_value: 0.0
+  high_value: 0.0
+  name: FANOutRH
+  io_type: OUTPUT
+  is_fault: false
+  notes: ""
+  lock_version: 0
+  view_type: public
+  unit_ip: "%"
+  si_to_ip: ""
+  fault_widget_type: ""
+  subsection: ""
+  is_percentage: false
+  index: 37
+  fault_is_active: false
+  disabled: false
+  low_value: 0.0
+  node_sequence: 0
+  display_name: Fan outlet air relative humidity
+  description: Fan outlet air relative humidity
+  component_code: FAN
+  unit_si: "%"
+  right_label: ""
+  left_label: ""
+  zone_position: ""
+MXKi: 
+  name: MXKi
+  initial_value: 60.0
+  high_value: 1000.0
   io_type: INPUT
   is_fault: false
   notes: ""
   view_type: public
-  unit_ip: ""
+  unit_ip: second
   si_to_ip: ""
   lock_version: 0
   fault_widget_type: ""
   subsection: ""
-  type: SystemVariable
+  
   is_percentage: false
-  index: 13
-  unit_si: ""
+  index: 8
+  unit_si: second
   right_label: ""
   node_sequence: 0
   low_value: 0.01
   fault_is_active: false
-  display_name: Heating coil valve controller P gain
+  display_name: Economizer PI controller integrator time constant
   disabled: true
-  
+  disable: false
   description: ""
-  component_code: HC
+  component_code: MX
   zone_position: ""
   left_label: ""
-MXKi: 
-  initial_value: 60.0
-  high_value: 1000.0
-  name: MXKi
-  io_type: INPUT
-  is_fault: false
-  lock_version: 0
-  view_type: public
-  unit_ip: second
-  type: SystemVariable
-  is_percentage: false
-  index: 8
-  fault_is_active: false
-  disabled: true
-  low_value: 0.0
-  node_sequence: 0
-  
-  component_code: MX
-  display_name: Economizer PI controller integrator time constant
-  unit_si: second
 CCTAirLvg: 
   initial_value: 0.0
   high_value: 0.0
@@ -911,19 +987,19 @@ CCTAirLvg:
   is_fault: false
   lock_version: 0
   view_type: public
-  unit_ip: F
   si_to_ip: SI*1.8+32
-  type: SystemVariable
+  unit_ip: F
+  
   is_percentage: false
   index: 8
   fault_is_active: false
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  
-  component_code: CC
-  display_name: Cooling coil leaving air temp
   unit_si: C
+  display_name: Cooling coil leaving air temp
+  component_code: CC
+  disable: false
 VAVAirFlw: 
   initial_value: 0.0
   high_value: 0.0
@@ -933,25 +1009,25 @@ VAVAirFlw:
   notes: ""
   lock_version: 0
   view_type: public
-  unit_ip: CFM
-  si_to_ip: SI*2118.88
   fault_widget_type: ""
+  si_to_ip: SI*2118.88
+  unit_ip: CFM
+  
   subsection: ""
-  type: SystemVariable
   is_percentage: false
   index: 14
   fault_is_active: false
   disabled: false
   low_value: 0.0
   node_sequence: 0
-  unit_si: m3/s
-  right_label: ""
-  display_name: VAV Air flow rate
-  
-  description: ""
   component_code: VAV
-  zone_position: ""
+  description: ""
+  disable: false
+  display_name: VAV Air flow rate
+  right_label: ""
+  unit_si: m3/s
   left_label: ""
+  zone_position: ""
 MXMinPos: 
   initial_value: 10.0
   high_value: 100.0
@@ -961,17 +1037,17 @@ MXMinPos:
   lock_version: 0
   view_type: public
   unit_ip: "%"
-  type: SystemVariable
+  
   is_percentage: false
   index: 5
   fault_is_active: false
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  
-  component_code: MX
-  display_name: Outside air damper min position
   unit_si: "%"
+  display_name: Outside air damper min position
+  component_code: MX
+  disable: false
 VAVTAirEnt: 
   initial_value: 0.0
   high_value: 0.0
@@ -980,19 +1056,19 @@ VAVTAirEnt:
   is_fault: false
   lock_version: 0
   view_type: public
-  unit_ip: F
   si_to_ip: SI*1.8+32
-  type: SystemVariable
+  unit_ip: F
+  
   is_percentage: false
   index: 30
   fault_is_active: false
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  
-  component_code: VAV
-  display_name: VAV entering air temp
   unit_si: C
+  display_name: VAV entering air temp
+  component_code: VAV
+  disable: false
 FANAirFlwd: 
   initial_value: 2.0
   high_value: 6.0
@@ -1001,19 +1077,19 @@ FANAirFlwd:
   is_fault: false
   lock_version: 0
   view_type: public
-  unit_ip: CFM
   si_to_ip: SI*2118.88
-  type: SystemVariable
+  unit_ip: CFM
+  
   is_percentage: false
   index: 3
   fault_is_active: false
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  
-  component_code: FAN
-  display_name: fan volume flow rate at design operating point
   unit_si: m3/s
+  display_name: fan volume flow rate at design operating point
+  component_code: FAN
+  disable: false
 CCTLiqLvg: 
   initial_value: 0.0
   high_value: 0.0
@@ -1022,19 +1098,19 @@ CCTLiqLvg:
   is_fault: false
   lock_version: 0
   view_type: public
-  unit_ip: F
   si_to_ip: SI*1.8+32
-  type: SystemVariable
+  unit_ip: F
+  
   is_percentage: false
   index: 9
   fault_is_active: false
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  
-  component_code: CC
-  display_name: Cooling coil leaving chilled water temp
   unit_si: C
+  display_name: Cooling coil leaving chilled water temp
+  component_code: CC
+  disable: false
 HCTAirEnt: 
   initial_value: 0.0
   high_value: 0.0
@@ -1043,19 +1119,19 @@ HCTAirEnt:
   is_fault: false
   lock_version: 0
   view_type: public
-  unit_ip: F
   si_to_ip: SI*1.8+32
-  type: SystemVariable
+  unit_ip: F
+  
   is_percentage: false
   index: 4
   fault_is_active: false
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  
-  component_code: HC
-  display_name: Heating coil entering air temp
   unit_si: C
+  display_name: Heating coil entering air temp
+  component_code: HC
+  disable: false
 MXIntDampPos: 
   initial_value: 0.0
   high_value: 0.0
@@ -1065,17 +1141,17 @@ MXIntDampPos:
   lock_version: 0
   view_type: public
   unit_ip: "%"
-  type: SystemVariable
+  
   is_percentage: false
   index: 25
   fault_is_active: false
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  
-  component_code: MX
-  display_name: Economizer intake air damper position
   unit_si: "%"
+  display_name: Economizer intake air damper position
+  component_code: MX
+  disable: false
 FANSpd: 
   initial_value: 0.0
   high_value: 0.0
@@ -1085,17 +1161,17 @@ FANSpd:
   lock_version: 0
   view_type: public
   unit_ip: "%"
-  type: SystemVariable
+  
   is_percentage: false
   index: 10
   fault_is_active: false
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  
-  component_code: FAN
-  display_name: Fan speed
   unit_si: "%"
+  display_name: Fan speed
+  component_code: FAN
+  disable: false
 VAVAirFlwd: 
   initial_value: 2.0
   high_value: 6.0
@@ -1104,47 +1180,47 @@ VAVAirFlwd:
   is_fault: false
   lock_version: 0
   view_type: public
-  unit_ip: CFM
   si_to_ip: "1653.46"
-  type: SystemVariable
+  unit_ip: CFM
+  
   is_percentage: false
   index: 12
   fault_is_active: false
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  
-  component_code: VAV
-  display_name: VAV max cooling air flow rate
   unit_si: kg/s
+  display_name: VAV max cooling air flow rate
+  component_code: VAV
+  disable: false
 HCUA: 
-  name: HCUA
   initial_value: 37015.0
   high_value: 60000.0
+  name: HCUA
   io_type: PARAMETER
   is_fault: false
   notes: ""
-  view_type: public
-  unit_ip: Btu/h
-  si_to_ip: SI*0.2931
   lock_version: 0
+  view_type: public
   fault_widget_type: ""
+  si_to_ip: SI*0.2931
+  unit_ip: Btu/h
+  
   subsection: ""
-  type: SystemVariable
   is_percentage: false
   index: 5
-  unit_si: W
-  right_label: ""
-  node_sequence: 0
-  low_value: 0.0
   fault_is_active: false
-  display_name: Heating coil design heating capacity
   disabled: false
-  
-  description: ""
+  low_value: 0.0
+  node_sequence: 0
   component_code: HC
-  zone_position: ""
+  description: ""
+  disable: false
+  display_name: Heating coil design heating capacity
+  right_label: ""
+  unit_si: W
   left_label: ""
+  zone_position: ""
 DCTStPre: 
   initial_value: 0.0
   high_value: 0.0
@@ -1153,19 +1229,19 @@ DCTStPre:
   is_fault: false
   lock_version: 0
   view_type: public
-  unit_ip: In.W
   si_to_ip: SI/249.1
-  type: SystemVariable
+  unit_ip: In.W
+  
   is_percentage: false
   index: 12
   fault_is_active: false
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  
-  component_code: DCT
-  display_name: Duct static pressure
   unit_si: Pa
+  display_name: Duct static pressure
+  component_code: DCT
+  disable: false
 MXEnableTAirOut: 
   initial_value: 24.0
   high_value: 30.0
@@ -1174,19 +1250,19 @@ MXEnableTAirOut:
   is_fault: false
   lock_version: 0
   view_type: public
-  unit_ip: F
   si_to_ip: SI*1.8+32
-  type: SystemVariable
+  unit_ip: F
+  
   is_percentage: false
   index: 6
   fault_is_active: false
   disabled: true
   low_value: 15.0
   node_sequence: 0
-  
-  component_code: MX
-  display_name: Economizer enable outside air temp
   unit_si: C
+  display_name: Economizer enable outside air temp
+  component_code: MX
+  disable: false
 HCLeakyVlv: 
   initial_value: 0.0
   high_value: 100.0
@@ -1196,25 +1272,25 @@ HCLeakyVlv:
   notes: ""
   lock_version: 0
   view_type: public
-  unit_ip: "%"
-  si_to_ip: ""
   fault_widget_type: SLIDER
+  si_to_ip: ""
+  unit_ip: "%"
+  
   subsection: Valve
-  type: SystemVariable
   is_percentage: true
   index: 26
   fault_is_active: false
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  unit_si: "%"
-  right_label: 100% leaky
-  display_name: Leaky heating coil valve
-  
-  description: ""
   component_code: HC
-  zone_position: LEFT
+  description: ""
+  disable: false
+  display_name: Leaky heating coil valve
+  right_label: 100% leaky
+  unit_si: "%"
   left_label: 0% leaky
+  zone_position: LEFT
 SYSTRmSPHeat: 
   initial_value: 18.0
   high_value: 100.0
@@ -1224,25 +1300,25 @@ SYSTRmSPHeat:
   notes: ""
   lock_version: 0
   view_type: public
-  unit_ip: F
-  si_to_ip: SI*1.8+32
   fault_widget_type: ""
+  si_to_ip: SI*1.8+32
+  unit_ip: F
+  
   subsection: ""
-  type: SystemVariable
   is_percentage: false
   index: 2
   fault_is_active: false
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  unit_si: C
-  right_label: ""
-  display_name: Room temp heating set point
-  
-  description: ""
   component_code: SYS
-  zone_position: ""
+  description: ""
+  disable: false
+  display_name: Room temp heating set point
+  right_label: ""
+  unit_si: C
   left_label: ""
+  zone_position: ""
 HCTLiqEnt: 
   initial_value: 0.0
   high_value: 0.0
@@ -1252,9 +1328,9 @@ HCTLiqEnt:
   notes: ""
   lock_version: 0
   view_type: public
-  unit_ip: F
-  si_to_ip: SI*1.8+32
   fault_widget_type: ""
+  si_to_ip: SI*1.8+32
+  unit_ip: F
   subsection: ""
   is_percentage: false
   index: 31
@@ -1262,13 +1338,13 @@ HCTLiqEnt:
   disabled: false
   low_value: 0.0
   node_sequence: 0
-  display_name: Heating coil hot water entering temp
-  description: ""
-  component_code: HC
-  unit_si: C
   right_label: ""
-  left_label: ""
+  unit_si: C
+  component_code: HC
+  description: ""
+  display_name: Heating coil hot water entering temp
   zone_position: ""
+  left_label: ""
 VAVRhcPDd: 
   initial_value: 87.0
   high_value: 300.0
@@ -1277,19 +1353,19 @@ VAVRhcPDd:
   is_fault: false
   lock_version: 0
   view_type: public
-  unit_ip: In.W
   si_to_ip: SI/249.1
-  type: SystemVariable
+  unit_ip: In.W
+  
   is_percentage: false
   index: 14
   fault_is_active: false
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  
-  component_code: VAV
-  display_name: VAV reheat coil air side pressure drop at design condition
   unit_si: Pa
+  display_name: VAV reheat coil air side pressure drop at design condition
+  component_code: VAV
+  disable: false
 MXTAirRet: 
   initial_value: 0.0
   high_value: 0.0
@@ -1298,19 +1374,45 @@ MXTAirRet:
   is_fault: false
   lock_version: 0
   view_type: public
-  unit_ip: F
   si_to_ip: SI*1.8+32
-  type: SystemVariable
+  unit_ip: F
+  
   is_percentage: false
   index: 26
   fault_is_active: false
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  
-  component_code: MX
-  display_name: Economizer return air temperature
   unit_si: C
+  display_name: Economizer return air temperature
+  component_code: MX
+  disable: false
+RMRH: 
+  initial_value: 0.0
+  high_value: 0.0
+  name: RMRH
+  io_type: OUTPUT
+  is_fault: false
+  notes: ""
+  lock_version: 0
+  view_type: public
+  unit_ip: "%"
+  si_to_ip: ""
+  fault_widget_type: ""
+  subsection: ""
+  is_percentage: false
+  index: 33
+  fault_is_active: false
+  disabled: false
+  low_value: 0.0
+  node_sequence: 0
+  display_name: Room relative humidity
+  description: Room relative humidity
+  component_code: RM
+  unit_si: "%"
+  right_label: ""
+  left_label: ""
+  zone_position: ""
 CHLTLiqSup: 
   initial_value: 7.0
   high_value: 13.0
@@ -1319,19 +1421,19 @@ CHLTLiqSup:
   is_fault: false
   lock_version: 0
   view_type: public
-  unit_ip: F
   si_to_ip: SI*1.8+32
-  type: SystemVariable
+  unit_ip: F
+  
   is_percentage: false
   index: 16
   fault_is_active: false
   disabled: true
   low_value: 2.0
   node_sequence: 0
-  
-  component_code: CHL
-  display_name: design chilled water supply temperature
   unit_si: C
+  display_name: design chilled water supply temperature
+  component_code: CHL
+  disable: false
 MXReverseActionAct: 
   initial_value: 0.0
   high_value: 1.0
@@ -1341,53 +1443,53 @@ MXReverseActionAct:
   notes: ""
   lock_version: 0
   view_type: public
-  unit_ip: ""
-  si_to_ip: ""
   fault_widget_type: CHECKBOX
+  si_to_ip: ""
+  unit_ip: ""
+  
   subsection: ""
-  type: SystemVariable
   is_percentage: false
   index: 23
   fault_is_active: false
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  unit_si: ""
-  right_label: ""
-  display_name: Reverse Acting Damper
-  
-  description: ""
   component_code: MX
-  zone_position: ""
+  description: ""
+  disable: false
+  display_name: Reverse Acting Damper
+  right_label: ""
+  unit_si: ""
   left_label: ""
+  zone_position: ""
 VAVDmprKp: 
-  name: VAVDmprKp
   initial_value: 1.0
   high_value: 100.0
+  name: VAVDmprKp
   io_type: INPUT
   is_fault: false
   notes: ""
-  view_type: public
-  unit_ip: ""
-  si_to_ip: ""
   lock_version: 0
+  view_type: public
   fault_widget_type: ""
+  si_to_ip: ""
+  unit_ip: ""
+  
   subsection: ""
-  type: SystemVariable
   is_percentage: false
   index: 17
-  unit_si: ""
-  right_label: ""
-  node_sequence: 0
-  low_value: 0.01
   fault_is_active: false
-  display_name: VAV damper controller P gain
   disabled: true
-  
-  description: ""
+  low_value: 0.01
+  node_sequence: 0
   component_code: VAV
-  zone_position: ""
+  description: ""
+  disable: false
+  display_name: VAV damper controller P gain
+  right_label: ""
+  unit_si: ""
   left_label: ""
+  zone_position: ""
 HCAirFlwd: 
   initial_value: 2.0
   high_value: 6.0
@@ -1396,19 +1498,19 @@ HCAirFlwd:
   is_fault: false
   lock_version: 0
   view_type: public
-  unit_ip: CFM
   si_to_ip: SI*1653.46
-  type: SystemVariable
+  unit_ip: CFM
+  
   is_percentage: false
   index: 6
   fault_is_active: false
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  
-  component_code: HC
-  display_name: heating coil design air flow rate
   unit_si: kg/s
+  display_name: heating coil design air flow rate
+  component_code: HC
+  disable: false
 SYSTAirDB: 
   initial_value: 30.0
   high_value: 50.0
@@ -1417,19 +1519,19 @@ SYSTAirDB:
   is_fault: false
   lock_version: 0
   view_type: public
-  unit_ip: F
   si_to_ip: SI*1.8+32
-  type: SystemVariable
+  unit_ip: F
+  
   is_percentage: false
   index: 1
   fault_is_active: false
   disabled: true
   low_value: -40.0
   node_sequence: 0
-  
-  component_code: SYS
-  display_name: Outside air dry bulb
   unit_si: C
+  display_name: Outside air dry bulb
+  component_code: SYS
+  disable: false
 VAVHCUndersizedCoil: 
   initial_value: 0.0
   high_value: 100.0
@@ -1439,9 +1541,9 @@ VAVHCUndersizedCoil:
   notes: ""
   lock_version: 0
   view_type: public
-  unit_ip: ""
-  si_to_ip: ""
   fault_widget_type: SLIDER
+  si_to_ip: ""
+  unit_ip: ""
   subsection: ""
   is_percentage: true
   index: 37
@@ -1449,14 +1551,14 @@ VAVHCUndersizedCoil:
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  unit_si: ""
-  right_label: Undersized
-  display_name: VAV undersized reheat coil
-  
-  description: ""
   component_code: VAV
-  zone_position: LEFT
+  description: ""
+  disable: false
+  display_name: VAV undersized reheat coil
+  right_label: Undersized
+  unit_si: ""
   left_label: Undersized
+  zone_position: LEFT
 SYSTSupS: 
   initial_value: 15.0
   high_value: 25.0
@@ -1465,60 +1567,19 @@ SYSTSupS:
   is_fault: false
   lock_version: 0
   view_type: public
-  unit_ip: F
   si_to_ip: SI*1.8+32
-  type: SystemVariable
+  unit_ip: F
+  
   is_percentage: false
   index: 3
   fault_is_active: false
   disabled: true
   low_value: 13.0
   node_sequence: 0
-  
-  component_code: SYS
-  display_name: Supply air temp set point
   unit_si: C
-VAVPDd: 
-  initial_value: 3.0
-  high_value: 10.0
-  name: VAVPDd
-  io_type: PARAMETER
-  is_fault: false
-  lock_version: 0
-  view_type: public
-  unit_ip: In.W
-  si_to_ip: SI/249.1
-  type: SystemVariable
-  is_percentage: false
-  index: 13
-  fault_is_active: false
-  disabled: true
-  low_value: 0.0
-  node_sequence: 0
-  
-  component_code: VAV
-  display_name: VAV air side pressure drop at max cooling
-  unit_si: Pa
-FANSpdMin: 
-  initial_value: 30.0
-  high_value: 100.0
-  name: FANSpdMin
-  io_type: INPUT
-  is_fault: false
-  lock_version: 0
-  view_type: public
-  unit_ip: "%"
-  type: SystemVariable
-  is_percentage: false
-  index: 9
-  fault_is_active: false
-  disabled: true
-  low_value: 0.0
-  node_sequence: 0
-  
-  component_code: FAN
-  display_name: Fan minimum speed ratio
-  unit_si: "%"
+  display_name: Supply air temp set point
+  component_code: SYS
+  disable: false
 VAVRhcPos: 
   initial_value: 0.0
   high_value: 0.0
@@ -1528,17 +1589,58 @@ VAVRhcPos:
   lock_version: 0
   view_type: public
   unit_ip: "%"
-  type: SystemVariable
+  
   is_percentage: false
   index: 16
   fault_is_active: false
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  
-  component_code: VAV
-  display_name: VAV box reheat coil position
   unit_si: "%"
+  display_name: VAV box reheat coil position
+  component_code: VAV
+  disable: false
+FANSpdMin: 
+  initial_value: 30.0
+  high_value: 100.0
+  name: FANSpdMin
+  io_type: INPUT
+  is_fault: false
+  lock_version: 0
+  view_type: public
+  unit_ip: "%"
+  
+  is_percentage: false
+  index: 9
+  fault_is_active: false
+  disabled: true
+  low_value: 0.0
+  node_sequence: 0
+  unit_si: "%"
+  display_name: Fan minimum speed ratio
+  component_code: FAN
+  disable: false
+VAVPDd: 
+  initial_value: 3.0
+  high_value: 10.0
+  name: VAVPDd
+  io_type: PARAMETER
+  is_fault: false
+  lock_version: 0
+  view_type: public
+  si_to_ip: SI/249.1
+  unit_ip: In.W
+  
+  is_percentage: false
+  index: 13
+  fault_is_active: false
+  disabled: true
+  low_value: 0.0
+  node_sequence: 0
+  unit_si: Pa
+  display_name: VAV air side pressure drop at max cooling
+  component_code: VAV
+  disable: false
 MXExDampPos: 
   initial_value: 0.0
   high_value: 0.0
@@ -1548,17 +1650,17 @@ MXExDampPos:
   lock_version: 0
   view_type: public
   unit_ip: "%"
-  type: SystemVariable
+  
   is_percentage: false
   index: 2
   fault_is_active: false
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  
-  component_code: MX
-  display_name: Economizer exhaust air damper position
   unit_si: "%"
+  display_name: Economizer exhaust air damper position
+  component_code: MX
+  disable: false
 MXStuckActuator: 
   initial_value: 0.0
   high_value: 100.0
@@ -1568,73 +1670,81 @@ MXStuckActuator:
   notes: ""
   lock_version: 0
   view_type: public
-  unit_ip: ""
-  si_to_ip: ""
   fault_widget_type: SLIDER
+  si_to_ip: ""
+  unit_ip: ""
+  
   subsection: ""
-  type: SystemVariable
   is_percentage: true
   index: 24
   fault_is_active: false
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  unit_si: ""
-  right_label: 100% open
-  display_name: Damper/actuator stuck position
-  
-  description: ""
   component_code: MX
-  zone_position: NO_GRADIENT
+  description: ""
+  disable: false
+  display_name: Damper/actuator stuck position
+  right_label: 100% open
+  unit_si: ""
   left_label: 0% open
+  zone_position: NO_GRADIENT
 VAVRhcKp: 
-  name: VAVRhcKp
   initial_value: 1.0
   high_value: 100.0
+  name: VAVRhcKp
+  io_type: INPUT
+  is_fault: false
+  notes: ""
+  lock_version: 0
+  view_type: public
+  fault_widget_type: ""
+  si_to_ip: ""
+  unit_ip: ""
+  
+  subsection: ""
+  is_percentage: false
+  index: 20
+  fault_is_active: false
+  disabled: true
+  low_value: 0.01
+  node_sequence: 0
+  component_code: VAV
+  description: ""
+  disable: false
+  display_name: VAV reheat coil controller P gain
+  right_label: ""
+  unit_si: ""
+  left_label: ""
+  zone_position: ""
+FANki: 
+  name: FANki
+  initial_value: 60.0
+  high_value: 1000.0
   io_type: INPUT
   is_fault: false
   notes: ""
   view_type: public
-  unit_ip: ""
+  unit_ip: second
   si_to_ip: ""
   lock_version: 0
   fault_widget_type: ""
   subsection: ""
-  type: SystemVariable
+  
   is_percentage: false
-  index: 20
-  unit_si: ""
+  index: 11
+  unit_si: second
   right_label: ""
   node_sequence: 0
   low_value: 0.01
   fault_is_active: false
-  display_name: VAV reheat coil controller P gain
+  display_name: Fan speed controller integrator time constant
   disabled: true
-  
+  disable: false
   description: ""
-  component_code: VAV
+  component_code: FAN
   zone_position: ""
   left_label: ""
-FANki: 
-  initial_value: 60.0
-  high_value: 1000.0
-  name: FANki
-  io_type: INPUT
-  is_fault: false
-  lock_version: 0
-  view_type: public
-  unit_ip: second
-  type: SystemVariable
-  is_percentage: false
-  index: 11
-  fault_is_active: false
-  disabled: true
-  low_value: 0.0
-  node_sequence: 0
-  
-  component_code: FAN
-  display_name: Fan speed controller integrator time constant
-  unit_si: second
 VAVMinFlwRatio: 
   initial_value: 20.0
   high_value: 100.0
@@ -1644,25 +1754,25 @@ VAVMinFlwRatio:
   notes: ""
   lock_version: 0
   view_type: public
-  unit_ip: "%"
-  si_to_ip: ""
   fault_widget_type: ""
+  si_to_ip: ""
+  unit_ip: "%"
+  
   subsection: ""
-  type: SystemVariable
   is_percentage: false
   index: 19
   fault_is_active: false
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  unit_si: "%"
-  right_label: ""
-  display_name: VAV min volume flow rate ratio
-  
-  description: ""
   component_code: VAV
-  zone_position: ""
+  description: ""
+  disable: false
+  display_name: VAV min volume flow rate ratio
+  right_label: ""
+  unit_si: "%"
   left_label: ""
+  zone_position: ""
 FANTAirLvg: 
   initial_value: 0.0
   high_value: 0.0
@@ -1671,19 +1781,45 @@ FANTAirLvg:
   is_fault: false
   lock_version: 0
   view_type: public
-  unit_ip: F
   si_to_ip: SI*1.8+32
-  type: SystemVariable
+  unit_ip: F
+  
   is_percentage: false
   index: 22
   fault_is_active: false
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  
-  component_code: FAN
-  display_name: Fan leaving air temp
   unit_si: C
+  display_name: Fan leaving air temp
+  component_code: FAN
+  disable: false
+CCLARH: 
+  initial_value: 0.0
+  high_value: 0.0
+  name: CCLARH
+  io_type: OUTPUT
+  is_fault: false
+  notes: ""
+  lock_version: 0
+  view_type: public
+  unit_ip: ""
+  si_to_ip: ""
+  fault_widget_type: ""
+  subsection: ""
+  is_percentage: false
+  index: 35
+  fault_is_active: false
+  disabled: false
+  low_value: 0.0
+  node_sequence: 0
+  display_name: CC leaving air relative humidity
+  description: Cooling coil leaving air relative humidity
+  component_code: CC
+  unit_si: ""
+  right_label: ""
+  left_label: ""
+  zone_position: ""
 HCFouledCoil: 
   initial_value: 0.0
   high_value: 100.0
@@ -1693,45 +1829,53 @@ HCFouledCoil:
   notes: ""
   lock_version: 0
   view_type: public
-  unit_ip: "%"
-  si_to_ip: ""
   fault_widget_type: SLIDER
+  si_to_ip: ""
+  unit_ip: "%"
+  
   subsection: Coil
-  type: SystemVariable
   is_percentage: true
   index: 28
   fault_is_active: false
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  unit_si: "%"
-  right_label: 100% fouled
-  display_name: Fouled heating coil
-  
-  description: ""
   component_code: HC
-  zone_position: LEFT
+  description: ""
+  disable: false
+  display_name: Fouled heating coil
+  right_label: 100% fouled
+  unit_si: "%"
   left_label: 0% fouled
+  zone_position: LEFT
 CCKi: 
+  name: CCKi
   initial_value: 60.0
   high_value: 1000.0
-  name: CCKi
   io_type: INPUT
   is_fault: false
-  lock_version: 0
+  notes: ""
   view_type: public
   unit_ip: second
-  type: SystemVariable
+  si_to_ip: ""
+  lock_version: 0
+  fault_widget_type: ""
+  subsection: ""
+  
   is_percentage: false
   index: 16
-  fault_is_active: false
-  disabled: true
-  low_value: 0.0
-  node_sequence: 0
-  
-  component_code: CC
-  display_name: Cooling coil valve controller integrator time constant
   unit_si: second
+  right_label: ""
+  node_sequence: 0
+  low_value: 0.01
+  fault_is_active: false
+  display_name: Cooling coil valve controller integrator time constant
+  disabled: true
+  disable: false
+  description: ""
+  component_code: CC
+  zone_position: ""
+  left_label: ""
 CHLTLiqEnt: 
   initial_value: 0.0
   high_value: 0.0
@@ -1740,47 +1884,47 @@ CHLTLiqEnt:
   is_fault: false
   lock_version: 0
   view_type: public
-  unit_ip: F
   si_to_ip: SI*1.8+32
-  type: SystemVariable
+  unit_ip: F
+  
   is_percentage: false
   index: 29
   fault_is_active: false
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  
-  component_code: CHL
-  display_name: Chiller entering water temp
   unit_si: C
+  display_name: Chiller entering water temp
+  component_code: CHL
+  disable: false
 MXKp: 
-  name: MXKp
   initial_value: 1.0
   high_value: 100.0
+  name: MXKp
   io_type: INPUT
   is_fault: false
   notes: ""
-  view_type: public
-  unit_ip: ""
-  si_to_ip: ""
   lock_version: 0
+  view_type: public
   fault_widget_type: ""
+  si_to_ip: ""
+  unit_ip: ""
+  
   subsection: ""
-  type: SystemVariable
   is_percentage: false
   index: 7
-  unit_si: ""
-  right_label: ""
-  node_sequence: 0
-  low_value: 0.01
   fault_is_active: false
-  display_name: Economizer PI controller P gain
   disabled: true
-  
-  description: ""
+  low_value: 0.01
+  node_sequence: 0
   component_code: MX
-  zone_position: ""
+  description: ""
+  disable: false
+  display_name: Economizer PI controller P gain
+  right_label: ""
+  unit_si: ""
   left_label: ""
+  zone_position: ""
 VAVTAirLvg: 
   initial_value: 0.0
   high_value: 0.0
@@ -1790,25 +1934,25 @@ VAVTAirLvg:
   notes: ""
   lock_version: 0
   view_type: public
-  unit_ip: F
-  si_to_ip: SI*1.8+32
   fault_widget_type: ""
+  si_to_ip: SI*1.8+32
+  unit_ip: F
+  
   subsection: ""
-  type: SystemVariable
   is_percentage: false
   index: 17
   fault_is_active: false
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  unit_si: C
-  right_label: ""
-  display_name: VAV box leaving air temp
-  
-  description: ""
   component_code: VAV
-  zone_position: ""
+  description: ""
+  disable: false
+  display_name: VAV box leaving air temp
+  right_label: ""
+  unit_si: C
   left_label: ""
+  zone_position: ""
 HCLiqFlwd: 
   initial_value: 1.0
   high_value: 2.0
@@ -1817,19 +1961,19 @@ HCLiqFlwd:
   is_fault: false
   lock_version: 0
   view_type: public
-  unit_ip: GPM
   si_to_ip: SI*15.88
-  type: SystemVariable
+  unit_ip: GPM
+  
   is_percentage: false
   index: 4
   fault_is_active: false
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  
-  component_code: HC
-  display_name: Heating coil hot water design flow rate
   unit_si: kg/s
+  display_name: Heating coil hot water design flow rate
+  component_code: HC
+  disable: false
 VAVRhcQd: 
   initial_value: 20000.0
   high_value: 50000.0
@@ -1839,17 +1983,17 @@ VAVRhcQd:
   lock_version: 0
   view_type: public
   unit_ip: W
-  type: SystemVariable
+  
   is_percentage: false
   index: 15
   fault_is_active: false
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  
-  component_code: VAV
-  display_name: Reheat coil design heating capacity
   unit_si: W
+  display_name: Reheat coil design heating capacity
+  component_code: VAV
+  disable: false
 SYSRHOutside: 
   initial_value: 30.0
   high_value: 100.0
@@ -1859,9 +2003,9 @@ SYSRHOutside:
   notes: ""
   lock_version: 0
   view_type: public
-  unit_ip: "%"
-  si_to_ip: ""
   fault_widget_type: ""
+  si_to_ip: ""
+  unit_ip: "%"
   subsection: ""
   is_percentage: false
   index: 43
@@ -1869,14 +2013,14 @@ SYSRHOutside:
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  unit_si: "%"
-  right_label: ""
-  display_name: Outside air relative humidity
-  
-  description: ""
   component_code: SYS
-  zone_position: ""
+  description: ""
+  disable: false
+  display_name: Outside air relative humidity
+  right_label: ""
+  unit_si: "%"
   left_label: ""
+  zone_position: ""
 HCUndersizedCoil: 
   initial_value: 0.0
   high_value: 100.0
@@ -1886,25 +2030,25 @@ HCUndersizedCoil:
   notes: ""
   lock_version: 0
   view_type: public
-  unit_ip: "%"
-  si_to_ip: ""
   fault_widget_type: SLIDER
+  si_to_ip: ""
+  unit_ip: "%"
+  
   subsection: Coil
-  type: SystemVariable
   is_percentage: true
   index: 29
   fault_is_active: false
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  unit_si: "%"
-  right_label: 100% undersized
-  display_name: Under sized coil
-  
-  description: ""
   component_code: HC
-  zone_position: LEFT
+  description: ""
+  disable: false
+  display_name: Under sized coil
+  right_label: 100% undersized
+  unit_si: "%"
   left_label: 0% undersized
+  zone_position: LEFT
 FANFailedFanSensor: 
   initial_value: 0.0
   high_value: 500.0
@@ -1914,25 +2058,25 @@ FANFailedFanSensor:
   notes: ""
   lock_version: 0
   view_type: public
-  unit_ip: In.W
-  si_to_ip: ""
   fault_widget_type: SLIDER
+  si_to_ip: ""
+  unit_ip: In.W
+  
   subsection: Negative
-  type: SystemVariable
   is_percentage: false
   index: 30
   fault_is_active: false
   disabled: true
   low_value: -500.0
   node_sequence: 0
-  unit_si: Pa
-  right_label: ""
-  display_name: Duct static press sensor offset
-  
-  description: ""
   component_code: FAN
-  zone_position: CENTER
+  description: ""
+  disable: false
+  display_name: Duct static press sensor offset
+  right_label: ""
+  unit_si: Pa
   left_label: Positive
+  zone_position: CENTER
 MXRtnDampPos: 
   initial_value: 0.0
   high_value: 0.0
@@ -1942,17 +2086,17 @@ MXRtnDampPos:
   lock_version: 0
   view_type: public
   unit_ip: "%"
-  type: SystemVariable
+  
   is_percentage: false
   index: 24
   fault_is_active: false
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  
-  component_code: MX
-  display_name: Economizer return air damper position
   unit_si: "%"
+  display_name: Economizer return air damper position
+  component_code: MX
+  disable: false
 BOILiqFlw: 
   initial_value: 0.0
   high_value: 0.0
@@ -1961,19 +2105,19 @@ BOILiqFlw:
   is_fault: false
   lock_version: 0
   view_type: public
-  unit_ip: GPM
   si_to_ip: SI*15850.32
-  type: SystemVariable
+  unit_ip: GPM
+  
   is_percentage: false
   index: 19
   fault_is_active: false
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  
-  component_code: BOI
-  display_name: Hot water flow rate
   unit_si: m3/s
+  display_name: Hot water flow rate
+  component_code: BOI
+  disable: false
 FANHd: 
   initial_value: 461.0
   high_value: 1000.0
@@ -1982,39 +2126,47 @@ FANHd:
   is_fault: false
   lock_version: 0
   view_type: public
-  unit_ip: In.W
   si_to_ip: SI/249.1
-  type: SystemVariable
+  unit_ip: In.W
+  
   is_percentage: false
   index: 2
   fault_is_active: false
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  
-  component_code: FAN
-  display_name: fan head at design operating point
   unit_si: Pa
+  display_name: fan head at design operating point
+  component_code: FAN
+  disable: false
 HCKi: 
+  name: HCKi
   initial_value: 60.0
   high_value: 1000.0
-  name: HCKi
   io_type: INPUT
   is_fault: false
-  lock_version: 0
+  notes: ""
   view_type: public
   unit_ip: second
-  type: SystemVariable
+  si_to_ip: ""
+  lock_version: 0
+  fault_widget_type: ""
+  subsection: ""
+  
   is_percentage: false
   index: 14
-  fault_is_active: false
-  disabled: true
-  low_value: 0.0
-  node_sequence: 0
-  
-  component_code: HC
-  display_name: Heating coil valve controller integrator time constant
   unit_si: second
+  right_label: ""
+  node_sequence: 0
+  low_value: 0.01
+  fault_is_active: false
+  display_name: Heating coil valve controller integrator time constant
+  disabled: true
+  disable: false
+  description: ""
+  component_code: HC
+  zone_position: ""
+  left_label: ""
 HCTAirLvg: 
   initial_value: 0.0
   high_value: 0.0
@@ -2023,19 +2175,19 @@ HCTAirLvg:
   is_fault: false
   lock_version: 0
   view_type: public
-  unit_ip: F
   si_to_ip: SI*1.8+32
-  type: SystemVariable
+  unit_ip: F
+  
   is_percentage: false
   index: 5
   fault_is_active: false
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  
-  component_code: HC
-  display_name: Heating coil leaving air temp
   unit_si: C
+  display_name: Heating coil leaving air temp
+  component_code: HC
+  disable: false
 CCTAirEnt: 
   initial_value: 0.0
   high_value: 0.0
@@ -2044,19 +2196,45 @@ CCTAirEnt:
   is_fault: false
   lock_version: 0
   view_type: public
-  unit_ip: F
   si_to_ip: SI*1.8+32
-  type: SystemVariable
+  unit_ip: F
+  
   is_percentage: false
   index: 7
   fault_is_active: false
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  
-  component_code: CC
-  display_name: Cooling coil entering air temp
   unit_si: C
+  display_name: Cooling coil entering air temp
+  component_code: CC
+  disable: false
+VAVSARH: 
+  initial_value: 0.0
+  high_value: 0.0
+  name: VAVSARH
+  io_type: OUTPUT
+  is_fault: false
+  notes: ""
+  lock_version: 0
+  view_type: public
+  unit_ip: "%"
+  si_to_ip: ""
+  fault_widget_type: ""
+  subsection: ""
+  is_percentage: false
+  index: 36
+  fault_is_active: false
+  disabled: false
+  low_value: 0.0
+  node_sequence: 0
+  display_name: VAV box leaving air relative humidity
+  description: VAV box leaving air relative humidity
+  component_code: VAV
+  unit_si: "%"
+  right_label: ""
+  left_label: ""
+  zone_position: ""
 CCUndersizedCoil: 
   initial_value: 0.0
   high_value: 100.0
@@ -2066,9 +2244,9 @@ CCUndersizedCoil:
   notes: ""
   lock_version: 0
   view_type: public
-  unit_ip: "%"
-  si_to_ip: ""
   fault_widget_type: SLIDER
+  si_to_ip: ""
+  unit_ip: "%"
   subsection: ""
   is_percentage: true
   index: 42
@@ -2076,14 +2254,14 @@ CCUndersizedCoil:
   disabled: true
   low_value: 0.0
   node_sequence: 0
-  unit_si: "%"
-  right_label: Undersized
-  display_name: Undersized cooling coil
-  
-  description: ""
   component_code: CC
-  zone_position: LEFT
+  description: ""
+  disable: false
+  display_name: Undersized cooling coil
+  right_label: Undersized
+  unit_si: "%"
   left_label: Undersized
+  zone_position: LEFT
 DCTPstSP: 
   initial_value: 190.0
   high_value: 800.0
@@ -2092,47 +2270,47 @@ DCTPstSP:
   is_fault: false
   lock_version: 0
   view_type: public
-  unit_ip: In.W
   si_to_ip: SI/249.1
-  type: SystemVariable
+  unit_ip: In.W
+  
   is_percentage: false
   index: 12
   fault_is_active: false
   disabled: true
   low_value: 50.0
   node_sequence: 0
-  
-  component_code: DCT
-  display_name: Supply duct static pressure set point
   unit_si: Pa
+  display_name: Supply duct static pressure set point
+  component_code: DCT
+  disable: false
 FANKp: 
-  name: FANKp
   initial_value: 1.0
   high_value: 100.0
+  name: FANKp
   io_type: INPUT
   is_fault: false
   notes: ""
-  view_type: public
-  unit_ip: ""
-  si_to_ip: ""
   lock_version: 0
+  view_type: public
   fault_widget_type: ""
+  si_to_ip: ""
+  unit_ip: ""
+  
   subsection: ""
-  type: SystemVariable
   is_percentage: false
   index: 10
-  unit_si: ""
-  right_label: ""
-  node_sequence: 0
-  low_value: 0.01
   fault_is_active: false
-  display_name: Fan speed controller P gain
   disabled: true
-  
-  description: ""
+  low_value: 0.01
+  node_sequence: 0
   component_code: FAN
-  zone_position: ""
+  description: ""
+  disable: false
+  display_name: Fan speed controller P gain
+  right_label: ""
+  unit_si: ""
   left_label: ""
+  zone_position: ""
 SYSTRmSPCool: 
   initial_value: 24.0
   high_value: 26.0
@@ -2141,17 +2319,17 @@ SYSTRmSPCool:
   is_fault: false
   lock_version: 0
   view_type: public
-  unit_ip: F
   si_to_ip: SI*1.8+32
-  type: SystemVariable
+  unit_ip: F
+  
   is_percentage: false
   index: 4
   fault_is_active: false
   disabled: true
   low_value: 16.0
   node_sequence: 0
-  
-  component_code: SYS
-  display_name: Room temp cooling set point
   unit_si: C
-  
+  display_name: Room temp cooling set point
+  component_code: SYS
+  disable: false
+
