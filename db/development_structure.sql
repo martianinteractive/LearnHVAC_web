@@ -1,3 +1,15 @@
+CREATE TABLE `class_notification_emails` (
+  `id` int(11) NOT NULL auto_increment,
+  `class_id` int(11) default NULL,
+  `recipients` varchar(255) collate utf8_unicode_ci default NULL,
+  `subject` varchar(255) collate utf8_unicode_ci default NULL,
+  `body` text collate utf8_unicode_ci,
+  `created_at` datetime default NULL,
+  `updated_at` datetime default NULL,
+  PRIMARY KEY  (`id`),
+  KEY `index_class_notification_emails_on_class_id` (`class_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 CREATE TABLE `client_versions` (
   `id` int(11) NOT NULL auto_increment,
   `version` varchar(255) collate utf8_unicode_ci default NULL,
@@ -25,7 +37,7 @@ CREATE TABLE `group_scenarios` (
   `created_at` datetime default NULL,
   `updated_at` datetime default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 CREATE TABLE `groups` (
   `id` int(11) NOT NULL auto_increment,
@@ -36,7 +48,7 @@ CREATE TABLE `groups` (
   `updated_at` datetime default NULL,
   PRIMARY KEY  (`id`),
   KEY `index_groups_on_instructor_id` (`instructor_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 CREATE TABLE `institutions` (
   `id` int(11) NOT NULL auto_increment,
@@ -49,6 +61,19 @@ CREATE TABLE `institutions` (
   KEY `index_institutions_on_name` (`name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+CREATE TABLE `master_scenarios` (
+  `id` int(11) NOT NULL auto_increment,
+  `name` varchar(255) collate utf8_unicode_ci default NULL,
+  `description` text collate utf8_unicode_ci,
+  `user_id` int(11) default NULL,
+  `desktop_id` int(11) default NULL,
+  `created_at` datetime default NULL,
+  `updated_at` datetime default NULL,
+  PRIMARY KEY  (`id`),
+  KEY `index_master_scenarios_on_user_id` (`user_id`),
+  KEY `index_master_scenarios_on_desktop_id` (`desktop_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 CREATE TABLE `memberships` (
   `id` int(11) NOT NULL auto_increment,
   `student_id` int(11) default NULL,
@@ -58,7 +83,7 @@ CREATE TABLE `memberships` (
   PRIMARY KEY  (`id`),
   KEY `index_memberships_on_student_id` (`student_id`),
   KEY `index_memberships_on_group_id` (`group_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 CREATE TABLE `regions` (
   `id` int(11) NOT NULL auto_increment,
@@ -67,6 +92,36 @@ CREATE TABLE `regions` (
   PRIMARY KEY  (`id`),
   KEY `index_regions_on_country` (`country`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1000199270 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE `scenarios` (
+  `id` int(11) NOT NULL auto_increment,
+  `name` varchar(255) collate utf8_unicode_ci default NULL,
+  `short_description` varchar(255) collate utf8_unicode_ci default NULL,
+  `description` text collate utf8_unicode_ci,
+  `goal` varchar(255) collate utf8_unicode_ci default NULL,
+  `longterm_start_date` date default '2010-01-01',
+  `longterm_stop_date` date default '2010-07-31',
+  `realtime_start_datetime` datetime default '2010-01-15 00:00:00',
+  `level` int(11) default '1',
+  `public` tinyint(1) default '0',
+  `inputs_visible` tinyint(1) default '1',
+  `inputs_enabled` tinyint(1) default '1',
+  `faults_visible` tinyint(1) default '1',
+  `faults_enabled` tinyint(1) default '1',
+  `valve_info_enabled` tinyint(1) default '1',
+  `allow_longterm_date_change` tinyint(1) default '0',
+  `allow_realtime_datetime_change` tinyint(1) default '0',
+  `student_debug_access` tinyint(1) default '0',
+  `desktop_id` int(11) default NULL,
+  `master_scenario_id` int(11) default NULL,
+  `user_id` int(11) default NULL,
+  `created_at` datetime default NULL,
+  `updated_at` datetime default NULL,
+  PRIMARY KEY  (`id`),
+  KEY `index_scenarios_on_desktop_id` (`desktop_id`),
+  KEY `index_scenarios_on_master_scenario_id` (`master_scenario_id`),
+  KEY `index_scenarios_on_user_id` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 CREATE TABLE `schema_migrations` (
   `version` varchar(255) collate utf8_unicode_ci NOT NULL,
@@ -117,7 +172,49 @@ CREATE TABLE `users` (
   `phone` varchar(255) collate utf8_unicode_ci default NULL,
   PRIMARY KEY  (`id`),
   KEY `index_users_on_perishable_token` (`perishable_token`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE `variables` (
+  `id` int(11) NOT NULL auto_increment,
+  `name` varchar(255) collate utf8_unicode_ci default NULL,
+  `display_name` varchar(255) collate utf8_unicode_ci default NULL,
+  `description` text collate utf8_unicode_ci,
+  `unit_si` varchar(255) collate utf8_unicode_ci default NULL,
+  `unit_ip` varchar(255) collate utf8_unicode_ci default NULL,
+  `si_to_ip` varchar(255) collate utf8_unicode_ci default NULL,
+  `left_label` varchar(255) collate utf8_unicode_ci default NULL,
+  `right_label` varchar(255) collate utf8_unicode_ci default NULL,
+  `subsection` varchar(255) collate utf8_unicode_ci default NULL,
+  `zone_position` varchar(255) collate utf8_unicode_ci default NULL,
+  `fault_widget_type` varchar(255) collate utf8_unicode_ci default NULL,
+  `notes` text collate utf8_unicode_ci,
+  `component_code` varchar(255) collate utf8_unicode_ci default NULL,
+  `io_type` varchar(255) collate utf8_unicode_ci default NULL,
+  `view_type` varchar(255) collate utf8_unicode_ci default 'public',
+  `index` int(11) default NULL,
+  `lock_version` int(11) default '0',
+  `node_sequence` int(11) default '0',
+  `low_value` float default '0',
+  `high_value` float default '0',
+  `initial_value` float default '0',
+  `is_fault` tinyint(1) default '0',
+  `is_percentage` tinyint(1) default '0',
+  `disabled` tinyint(1) default '0',
+  `fault_is_active` tinyint(1) default '0',
+  `type` varchar(255) collate utf8_unicode_ci default NULL,
+  `scenario_id` int(11) default NULL,
+  `created_at` datetime default NULL,
+  `updated_at` datetime default NULL,
+  PRIMARY KEY  (`id`),
+  KEY `index_variables_on_scenario_id` (`scenario_id`),
+  KEY `index_variables_on_type` (`type`),
+  KEY `index_variables_on_component_code` (`component_code`),
+  KEY `index_variables_on_name` (`name`),
+  KEY `index_variables_on_low_value` (`low_value`),
+  KEY `index_variables_on_high_value` (`high_value`),
+  KEY `index_variables_on_initial_value` (`initial_value`),
+  KEY `index_variables_on_io_type` (`io_type`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 INSERT INTO schema_migrations (version) VALUES ('20100302150214');
 
@@ -152,3 +249,11 @@ INSERT INTO schema_migrations (version) VALUES ('20100419224135');
 INSERT INTO schema_migrations (version) VALUES ('20100420225816');
 
 INSERT INTO schema_migrations (version) VALUES ('20100610213228');
+
+INSERT INTO schema_migrations (version) VALUES ('20100727171930');
+
+INSERT INTO schema_migrations (version) VALUES ('20100728161530');
+
+INSERT INTO schema_migrations (version) VALUES ('20100728172853');
+
+INSERT INTO schema_migrations (version) VALUES ('20100728202513');
