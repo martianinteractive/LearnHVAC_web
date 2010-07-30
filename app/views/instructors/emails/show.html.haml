@@ -1,8 +1,8 @@
 #tabs
   %ul
-    %li= link_to @group.name, [:instructors, @group]
-    %li.ui-tabs-selected= link_to "Emails", [:instructors, @group, :emails]
-    %li= link_to "New Email", [:new, :instructors, @group, :email]
+    %li= link_to @group.name, instructors_class_path(@group)
+    %li= link_to "Emails", instructors_class_emails_path(@group)
+    %li= link_to "New Email", new_instructors_class_email_path(@group)
     
   #page_header
     #subject_actions
