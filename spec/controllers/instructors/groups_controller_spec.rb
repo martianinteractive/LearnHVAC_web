@@ -54,7 +54,7 @@ describe Instructors::GroupsController do
       
       it "redirects to the created group" do
         post :create, :group => @params
-        response.should redirect_to(instructors_group_path(assigns(:group)))
+        response.should redirect_to(instructors_class_path(assigns(:group)))
       end
     end
   
@@ -75,7 +75,7 @@ describe Instructors::GroupsController do
       
       it "redirects to the group" do
         put :update, :id => @group.id, :group => { }
-        response.should redirect_to(instructors_group_path(@group))
+        response.should redirect_to(instructors_class_path(@group))
       end
     end
     
@@ -94,7 +94,7 @@ describe Instructors::GroupsController do
   
     it "redirects to the instructor groups list" do
       delete :destroy, :id => @group.id
-      response.should redirect_to(instructors_groups_path)
+      response.should redirect_to(instructors_classes_path)
     end
   end
   
