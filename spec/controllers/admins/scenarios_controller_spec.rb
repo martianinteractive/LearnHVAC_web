@@ -154,7 +154,7 @@ describe Admins::ScenariosController do
     end
     
     it "should require an admin user for all actions" do
-      authorize_actions do
+      authorize_actions(:id => @scenario.id) do
         response.should redirect_to(default_path_for(@instructor))
         flash[:notice].should == "You don't have privileges to access that page"
       end
