@@ -50,7 +50,7 @@ module AuthlogicTestHelper
    when :institution_manager
      institution_managers_instructors_path
    when :student
-     students_groups_path
+     students_classes_path
    when :guest
      guests_dashboard_path
    else
