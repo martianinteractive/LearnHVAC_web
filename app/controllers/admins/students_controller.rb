@@ -8,6 +8,6 @@ class Admins::StudentsController < Admins::ApplicationController
   private
   
   def find_group
-    @group = Group.find(params[:group_id])
+    @group = Group.find(params[:class_id])
   end
 end
