@@ -1,119 +1,506 @@
-# All default passwords are => "password"
-# All default users belongs_to "Administration" (Institution)
-# All default users are Administrators.
-joseph:
-  id: 1
-  first_name: Joseph
-  last_name: Deringer
-  login: jjderinger
-  email: jjderinger@lbl.gov
-  city: Berkeley
+users_015: 
+  city: Merced
+  role_code: "1"
+  student_id: 
+  created_at: 2010-07-09 22:07:38
+  last_request_at: 2010-07-26 21:09:02
+  country: United States
+  crypted_password: 76c95f6ac5c739bdc118907f3727f1ebd54e73cd37c8fd06d7feb8299c53168a119330ae07434eedbe10225147a17f1ec193f69a9998ce1b0fc307795a566166
+  perishable_token: jFxG8FBRvL1Gm2TAiplu
+  updated_at: 2010-07-26 21:09:02
+  enabled: "1"
+  id: "15"
+  password_salt: 9JqDiGbVa3O4MOcLl6Mv
+  institution_id: "3"
+  phone: 
+  persistence_token: 3911dc1fe9a54e60e7a6b0d1de2ae53fe23e7d54e45f2463a5bc154c8f3220a0f5d0fcb5dc52c6f735a858e8b04d4ea9d27a21d72d191345618cb573c1df7792
+  last_name: burkard
+  login: Cburkard
   state: California
-  country: United States
-  enabled: true
-  password_salt: 6_BCHsGsNvzCACSvL1EF
-  crypted_password: de09a2edb7ae7936ca80d64c2857093e80e5521553bd486ee0e66376276aee735a8909b9dcfc9b90280613697c1859db8068188aa6bec0966f1d9d1e13a23382 
-  persistence_token: da9e4d10c4ca18c27b12434daa4224c3eb0ba4b5f3d30c4c6df6507b6c5692cd11b6184508d3f91a78a50aad1f7c3e01afa5e5445275922bbc279ab0388a8721
-  perishable_token: 6pYLQO5c3R-W9jD3T6Ux
-  role_code: 4
-  institution_id: 1
-
-daniel:
-  id: 2
-  first_name: Daniel
-  last_name: McQuillen 
-  login: daniel.mcquillen
-  email: daniel.mcquillen@gmail.com
-  city: Berkeley
-  state: California
-  country: United States
-  enabled: true
-  password_salt: 6_BCHsGsNvzCACSvL1EF
-  crypted_password: de09a2edb7ae7936ca80d64c2857093e80e5521553bd486ee0e66376276aee735a8909b9dcfc9b90280613697c1859db8068188aa6bec0966f1d9d1e13a23382 
-  persistence_token: da9e4d10c4ca18c27b12434daa4224c3eb0ba4b5f3d30c4c6df6507b6c5692cd11b6184508d3f91a78a50aad1f7c3e01afa5e5445275922bbc279ab0388a8721
-  perishable_token: 6pYLQO5c3R-W9jD3T6Ux
-  role_code: 4
-  institution_id: 1
-  
-sergio:
-  id: 3
-  first_name: Sergio
-  last_name: Bayona 
-  login: sbayona
-  email: sbayona@martianinteractive.com
-  city: Atlanta
-  state: Georgia
-  country: United States
-  enabled: true
-  password_salt: P7suzIavXn8CUL6Vqg-X
-  crypted_password: 07f840a3815be1775be9dc5059bc544e8c3bd16abd9294c531dfcfc80923e84166e364baf2c0b75c0be58611fa4ea3898fa36bbd5880d769f5304bb3afc68213 
-  persistence_token: e9f892b8283c562729301116647da494dd88a2ab2e810424dfcc57c369b713e1f19c1c47a0c5d245c921aa633829cfa1d596f84cf9843e58426946c49be0df9f
-  perishable_token: gw8R6GGi8wM0tHgLpYS6
-  role_code: 4
-  institution_id: 1
-  
-juan:
-  id: 4
-  first_name: Juan
-  last_name: Pemberthy 
-  login: jpemberthy
-  email: jpemberthy@martianinteractive.com
+  email: Cburkard@ucmerced.edu
+  active: "1"
+  first_name: christien
+users_004: 
   city: Medellin
-  state: Antioquia
+  role_code: "4"
+  student_id: 
+  created_at: 2010-06-25 21:22:26
+  last_request_at: 2010-07-29 21:57:07
   country: Colombia
-  enabled: true
+  crypted_password: de09a2edb7ae7936ca80d64c2857093e80e5521553bd486ee0e66376276aee735a8909b9dcfc9b90280613697c1859db8068188aa6bec0966f1d9d1e13a23382
+  perishable_token: I5ISm02pS6iDCwC_Sv9O
+  updated_at: 2010-07-29 21:57:07
+  enabled: "1"
+  id: "4"
   password_salt: 6_BCHsGsNvzCACSvL1EF
-  crypted_password: de09a2edb7ae7936ca80d64c2857093e80e5521553bd486ee0e66376276aee735a8909b9dcfc9b90280613697c1859db8068188aa6bec0966f1d9d1e13a23382 
+  institution_id: "1"
+  phone: 
   persistence_token: da9e4d10c4ca18c27b12434daa4224c3eb0ba4b5f3d30c4c6df6507b6c5692cd11b6184508d3f91a78a50aad1f7c3e01afa5e5445275922bbc279ab0388a8721
-  perishable_token: 6pYLQO5c3R-W9jD3T6Ux
-  role_code: 4
-  institution_id: 1
-  
-jane:
-  id: 5
-  first_name: Jane
+  last_name: Pemberthy
+  login: jpemberthy
+  state: Antioquia
+  email: jpemberthy@martianinteractive.com
+  active: "1"
+  first_name: Juan
+users_016: 
+  city: Merced
+  role_code: "1"
+  student_id: 
+  created_at: 2010-07-13 23:00:59
+  last_request_at: 2010-07-19 18:37:56
+  country: Uruguay
+  crypted_password: 20aba81e662c48a6b22cd19d7886cbf297513a1a55118fe43195786b00ac821265cab17966e0b27d5f5d832e51a641a23a392ed9e62772a8c4bad3dfbdbc9b18
+  perishable_token: StA4BauFXQkQ_9QoE21A
+  updated_at: 2010-07-19 18:37:56
+  enabled: "1"
+  id: "16"
+  password_salt: lT6FR_Mcv8fe_IS5NcCg
+  institution_id: "4"
+  phone: 
+  persistence_token: 5c475e68ed9de5871716429032a3651af51d2d18b7985ca41a5449db2ee939543aa8b701be32bc9cb8ceff966ef00afc3d9fbb4b6d6aac859659f5d6b893a6ca
+  last_name: Egbikuadje
+  login: dwightyorke2
+  state: CA
+  email: ruudvannistelrooy19@gmail.com
+  active: "1"
+  first_name: Edirin
+users_005: 
+  city: Berkeley
+  role_code: "2"
+  student_id: 
+  created_at: 2010-06-25 21:22:26
+  last_request_at: 2010-07-30 15:08:58
+  country: United States
+  crypted_password: 870e39d96886aa5de89c257c9fe54f1347db73f395f8bba56a4b50ac3430d0509b4ea6bad2008c2f8f1cc4329d6512c4dc7ef67497806d3474a79f89e2f491ea
+  perishable_token: sDjoOPVM7CLZqsgdoMzz
+  updated_at: 2010-07-30 15:08:58
+  enabled: "1"
+  id: "5"
+  password_salt: aAlmZVZOWCHVPYXBd9OH
+  institution_id: "2"
+  phone: ""
+  persistence_token: 3209199cb82d3ef07a065159036878a6a0542aee55bb08df89e485e28e8d686c4843b24365de5d241197ae5aa469c9a3799f1d89890dcff126221e238a9abc0c
   last_name: Doe
   login: jdoe
-  email: test@martianinteractive.com
-  city: Berkeley
   state: California
+  email: test@martianinteractive.com
+  active: "1"
+  first_name: Jane
+users_017: 
+  city: Berkeley
+  role_code: "2"
+  student_id: 
+  created_at: 2010-07-17 00:33:49
+  last_request_at: 2010-07-30 01:10:33
   country: United States
-  enabled: true
-  password_salt: 6Sl4nIQnsP0DBXTjCL0u
-  persistence_token: 9725123e7f43b2cc1d5dcddb758cd8de8536350dce5f7bbdf8469846efa3ea96262d644044013cbd5890e13914187ed469b9ae0ee5527873f6bc3e0944aacffb
+  crypted_password: 0f05884415e5ece696c232675a6f6726371ef3995f1c1d99f9a54888553b2d71d4937ca1a17bcd04964c971b16cce0a9ad279e5d92584863c8e91c5250c33275
+  perishable_token: bh8MDPLpEdjPE88EeMaR
+  updated_at: 2010-07-30 01:10:33
+  enabled: "1"
+  id: "17"
+  password_salt: UGMbWxxFndmu_FT5bHOy
+  institution_id: "1"
+  phone: JJDeringer
+  persistence_token: 36c02509114ef7e601ad45284079fb6e6bd218a26223a2803d484deb73a719b90d9e36d21249bafcdfb82a725a3b3288c7a11256e38a46cdbb95322ab7f267d6
+  last_name: Deringer
+  login: JoeInstructor
+  state: California
+  email: jderinger@su-per-b.org
+  active: "1"
+  first_name: Joe
+users_006: 
+  city: Atlanta
+  role_code: "1"
+  student_id: 
+  created_at: 2010-06-25 21:22:26
+  last_request_at: 
+  country: United States
+  crypted_password: 
   perishable_token: C9fHQBrj729FRCBysk17
-  role_code: 2
-  institution_id: 2
-
-james:
-  id: 6
-  first_name: James
+  updated_at: 2010-06-25 21:22:26
+  enabled: "1"
+  id: "6"
+  password_salt: 6Sl4nIQnsP0DBXTjCL0u
+  institution_id: "1"
+  phone: 
+  persistence_token: 9725123e7f43b2cc1d5dcddb758cd8de8536350dce5f7bbdf8469846efa3ea96262d644044013cbd5890e13914187ed469b9ae0ee5527873f6bc3e0944aacffb
   last_name: Smith
   login: james
-  email: james@martianinteractive.com
-  city: Atlanta
   state: Georgia
+  email: james@martianinteractive.com
+  active: "1"
+  first_name: James
+users_018: 
+  city: Merced
+  role_code: "1"
+  student_id: 
+  created_at: 2010-07-22 18:53:16
+  last_request_at: 2010-07-22 19:13:54
   country: United States
-  enabled: true
-  password_salt: 6Sl4nIQnsP0DBXTjCL0u
-  persistence_token: 9725123e7f43b2cc1d5dcddb758cd8de8536350dce5f7bbdf8469846efa3ea96262d644044013cbd5890e13914187ed469b9ae0ee5527873f6bc3e0944aacffb
+  crypted_password: 350ea2d2bc4c64a8de3d2364a6060d80399519604b1a645bd57dcf77d946e2fa4fc89a1a628432d512d49273c3497492438c33b5d8c4b3332573eba93da8afb3
+  perishable_token: 1951tHpWEQR9LI3XQldH
+  updated_at: 2010-07-22 19:13:54
+  enabled: "1"
+  id: "18"
+  password_salt: VP6bSNFy1IinlwXMEWKg
+  institution_id: "1"
+  phone: 
+  persistence_token: d944116294c0a56c22134b8cc16b2707e86e56242859a4cd383a6710bb86d4c6f226b9df7a7ea0b5ce298b48371a901ce63341ad2ae7e82c0bb7441691d8b34f
+  last_name: K
+  login: mattknowles
+  state: California
+  email: mattknowles5@gmail.com
+  active: "1"
+  first_name: Matt
+users_007: 
+  city: Miami
+  role_code: "1"
+  student_id: 
+  created_at: 2010-06-25 21:22:26
+  last_request_at: 
+  country: United States
+  crypted_password: 
   perishable_token: C9fHQBrj729FRCBysk17
-  role_code: 1
-  institution_id: 1
-  
-student:
-  id: 7
-  first_name: Jimmy
+  updated_at: 2010-06-25 21:22:26
+  enabled: "1"
+  id: "7"
+  password_salt: 6Sl4nIQnsP0DBXTjCL0u
+  institution_id: "1"
+  phone: 
+  persistence_token: 9725123e7f43b2cc1d5dcddb758cd8de8536350dce5f7bbdf8469846efa3ea96262d644044013cbd5890e13914187ed469b9ae0ee5527873f6bc3e0944aacffb
   last_name: Jones
   login: jimmy
-  email: jimmy@martianinteractive.com
-  city: Miami
   state: Florida
+  email: jimmy@martianinteractive.com
+  active: "1"
+  first_name: Jimmy
+users_020: 
+  city: Atlanta
+  role_code: "0"
+  student_id: 
+  created_at: 2010-07-26 15:02:51
+  last_request_at: 
   country: United States
-  enabled: true
-  password_salt: 6Sl4nIQnsP0DBXTjCL0u
-  persistence_token: 9725123e7f43b2cc1d5dcddb758cd8de8536350dce5f7bbdf8469846efa3ea96262d644044013cbd5890e13914187ed469b9ae0ee5527873f6bc3e0944aacffb
-  perishable_token: C9fHQBrj729FRCBysk17
-  role_code: 1
-  institution_id: 1
-  
+  crypted_password: 700fa603e49e7854ae450ab7d45d25805510f2848fea3550f747a23eb400782d6692fb191ade3b3a5839ab4f1633aac0f6c79249665c8209b249f43e98217d1f
+  perishable_token: y7XD1TbW9u70baQmgkqV
+  updated_at: 2010-07-26 15:03:11
+  enabled: "1"
+  id: "20"
+  password_salt: E-Y_w1verq8ZSuy_HQIz
+  institution_id: 
+  phone: 
+  persistence_token: c8cc04cc688525d33792a3a8c3f4057df72c047fd83a831e503a6fc3c60074a536afdf713a3d40b1bd601159f37790a2ff852e4d638f9c943a6832fd5d1caecc
+  last_name: Doe
+  login: frankd
+  state: Georgia
+  email: bla@martianinteractive.com
+  active: "1"
+  first_name: Frank
+users_019: 
+  city: Merced
+  role_code: "1"
+  student_id: 
+  created_at: 2010-07-23 15:51:33
+  last_request_at: 2010-07-28 19:10:49
+  country: United States
+  crypted_password: f1b36c27fd1686e132688da6706219d0abef8584f8a963f971d5135f6aa53e6dd15ffc9e487920332a8a7f977e8d7e8695e397f8341018c72ee6467ebe934946
+  perishable_token: aTLYVVDiQLgNsP001zfB
+  updated_at: 2010-07-28 19:10:49
+  enabled: "1"
+  id: "19"
+  password_salt: V8PFe7v9RvUQg6SzCP8e
+  institution_id: "1"
+  phone: 
+  persistence_token: 52c09bb3a47ac4715e3817f15fc44ef63f52a943463a9b6ed25a52652e7defbd75d19a5d92f9d4df99c69cdc779eff035d6f1da6723f14c5952a66fffa855a47
+  last_name: Robinson
+  login: bethanyrobinson
+  state: California
+  email: bethanyrobinson1@gmail.com
+  active: "1"
+  first_name: Bethany
+users_008: 
+  city: Sacramento
+  role_code: "3"
+  student_id: 
+  created_at: 2010-07-03 22:51:22
+  last_request_at: 
+  country: United States
+  crypted_password: 0b5ccb5fce7616d176bdb0c5130e3a53b079dcc336a6c15812aa6144755ca7647e6d25c69955a98b2762cae612738a8d81bdd0121a79773d0b4ae6d5f99fb33e
+  perishable_token: 7lcXnnLIh94o45h7lEBG
+  updated_at: 2010-07-03 22:51:22
+  enabled: "1"
+  id: "8"
+  password_salt: 9Wpsc5OwCQ0rPJ15JP-7
+  institution_id: "1"
+  phone: JJDeringer
+  persistence_token: f5e0eada8a9c40a907c3291d1340fa820ae19af7d00314d4995485007c7b2641f65b52cfd580cbacd5c241497535d4bbfe1dbd5ca90acc98cd6b574020869665
+  last_name: Smith
+  login: Janes
+  state: California
+  email: jderinger@insbp.org
+  active: "1"
+  first_name: Jane
+users_021: 
+  city: Berkeley
+  role_code: "0"
+  student_id: 
+  created_at: 2010-07-27 13:11:12
+  last_request_at: 
+  country: United States
+  crypted_password: 2c8bfb5996980fd8231bf1f3d0396dc747f61883ed7bfa1fc79684556332f366d6ffee33ae6919f80a1e6b8618edddcaf2627e5067be3d957f2bb4d3cfa730d8
+  perishable_token: LcHm_2M_dabS07VqA6Xw
+  updated_at: 2010-07-27 13:11:12
+  enabled: "1"
+  id: "21"
+  password_salt: SWXP6Y6HSIwG211HoGwy
+  institution_id: 
+  phone: 
+  persistence_token: fde3a32aff02d235346a269f9b749147f4e99d2752d33c414f733041dacf4bddb5c453b974363e8be938deee79261cda12180a65c8e19008ea59fb6d2beadbf3
+  last_name: Deringer
+  login: jjamesderinger
+  state: California
+  email: jderinger@berkeleycbp.org
+  active: "0"
+  first_name: J James
+users_010: 
+  city: Merced
+  role_code: "2"
+  student_id: 
+  created_at: 2010-07-06 17:14:15
+  last_request_at: 2010-07-28 20:12:31
+  country: United States
+  crypted_password: d7df3ff95dd8f89decb9ec6f02c96c91fe682b1d567e9fa9f2900a6962f27a11f77c111ac83336c69e10e20398e8d4c962d2ff6594e9b1edce3679a11f48ffb4
+  perishable_token: liCOij8UshS4zmQka2B1
+  updated_at: 2010-07-28 20:12:31
+  enabled: "1"
+  id: "10"
+  password_salt: JN_pU-Kq2pgR8O3_OCG5
+  institution_id: "3"
+  phone: "9512371119"
+  persistence_token: 1d8bdcc6595dc271cae598653598b249beb7c55474562a6ca7ab738334e1b46e078adea859f971aa2a8114e86a7ecb6bf859e841c166f0ed6ec3bb8538e91265
+  last_name: Knowles
+  login: mknowles
+  state: California
+  email: mknowles@ucmerced.edu
+  active: "1"
+  first_name: Matt
+users_009: 
+  city: Sacramento
+  role_code: "2"
+  student_id: 
+  created_at: 2010-07-03 22:53:20
+  last_request_at: 
+  country: United States
+  crypted_password: eef16b3766962926cff5a0fb418fed88b49a41fdb38eacfe83cf2c674547ab4f4f42962d2ca308f4b00705123eb8e589a87e3850c0ad6b91d72d2924c8a6c063
+  perishable_token: ohfB6bqR27mKJ7bLOshu
+  updated_at: 2010-07-03 22:53:20
+  enabled: "1"
+  id: "9"
+  password_salt: TL2GLROekkuAAxTB67_D
+  institution_id: "1"
+  phone: JJDeringer
+  persistence_token: 07e49539a548cdcc3bb0a69ef460aceaf38076f2ab404e7381e7a09bcda858690b9738ad39e39ec7675c58b317390b8cc1f8e40175a277ea6e86fa644998aa1e
+  last_name: Castle
+  login: newc
+  state: California
+  email: josephderinger@yahoo.com
+  active: "1"
+  first_name: New
+users_022: 
+  city: Merced
+  role_code: "0"
+  student_id: 
+  created_at: 2010-07-28 19:11:47
+  last_request_at: 2010-07-28 19:20:40
+  country: United States
+  crypted_password: 40282a90c54ddb37db4807ce7eae551ef86efbac2dff5a550bda20d0567f3487533e7355a57ff2d38aff964380e29d720410b3c729101546d4ab36c546fce098
+  perishable_token: LbqSLa1wDYVFzUrtT1o1
+  updated_at: 2010-07-28 19:20:40
+  enabled: "1"
+  id: "22"
+  password_salt: rSOu3pK1eLou3fJ_JaNK
+  institution_id: 
+  phone: 
+  persistence_token: 62953e254329adb9dc94909d41f10a35e80561606b5ecb5128ca6067b4d74759f9cdbe8789c5d3d8e790bf39c68195824e07e65b7c206a7c1748d7c34e7769c8
+  last_name: Robinson
+  login: bethanyrobinson1
+  state: California
+  email: waterbee@sbcglobal.net
+  active: "1"
+  first_name: Bethany
+users_011: 
+  city: Merced
+  role_code: "2"
+  student_id: 
+  created_at: 2010-07-06 17:14:53
+  last_request_at: 2010-07-28 20:10:19
+  country: United States
+  crypted_password: 7345dcd9ef4f639bc79793f754c82c1a7076de7907527d04b029d247bf21d555e62c8482fc78d65b0138fb3f430864cb8e1306578c23da30f1495c7c9c964bb6
+  perishable_token: ItP3d3tY0ukMMAwjs0xN
+  updated_at: 2010-07-28 20:10:19
+  enabled: "1"
+  id: "11"
+  password_salt: RYIWWrxvh1QMlZo_UDFc
+  institution_id: "4"
+  phone: 209-988-7823
+  persistence_token: 7efc74c48a818101c6863694314422a7930fba4862a42dbfb2c57ab1edb6a0fd5722f0cdc041e2efefc9a8c729a257d85f8d20b01916d228238b70df0d1f8bc6
+  last_name: Robinson
+  login: brobinson
+  state: California
+  email: brobinson@ucmerced.edu
+  active: "1"
+  first_name: Bethany
+users_023: 
+  city: merced
+  role_code: "2"
+  student_id: 
+  created_at: 2010-07-28 20:46:19
+  last_request_at: 
+  country: United States
+  crypted_password: bc3cb3c510e04d5b42d876c245f2b688fce2e031d8acf0f54e41efa5425f4bbe1f1c63c5675fdfa28ad8b669d1f41307979e35e30e475972c976b45194646ea2
+  perishable_token: GXJKo7C7eaLupVcSQmtF
+  updated_at: 2010-07-28 20:46:19
+  enabled: "1"
+  id: "23"
+  password_salt: q4p6dY5fDgGPWA9RTUaT
+  institution_id: "8"
+  phone: "5106912904"
+  persistence_token: a6ee0a2ec90d9e97fca02a834cfdf4e9e42e7bcea97d5ed369c43b6fc2969f1bc1ab01df04f784f76671cc87f2289590683e5b255ad9a8e50beeabe08cd55813
+  last_name: burkard
+  login: cburkard3
+  state: California
+  email: cburkard822@gmail.com
+  active: "0"
+  first_name: christien
+users_012: 
+  city: Boston
+  role_code: "2"
+  student_id: 
+  created_at: 2010-07-06 17:31:32
+  last_request_at: 
+  country: United States
+  crypted_password: f3d9cfedc4e9de5b9e217223b60fa5794a164ce8a2651bcef4ded3ae1c4c8c2c7c9367fbcd108801b15c8ed6e523d30bbeefcfb123c13f57e2a84cdd396ac7a1
+  perishable_token: SSE7p2IzycwnvIGmzM9A
+  updated_at: 2010-07-27 15:51:59
+  enabled: "1"
+  id: "12"
+  password_salt: eYnLWHM9Oq-mnB-k23co
+  institution_id: "5"
+  phone: 555 44 55
+  persistence_token: be1d6b0e4ea5170a94e3e1b74545e940098b8d83ee8212665b6651cd77a3367975648ae99b9935f291dc4dc29ab4a9adb9c484aa86c6a347c2cdd289433faf71
+  last_name: Doe
+  login: jasondoe
+  state: Massachusetts
+  email: j.pemberthy@gmail.com
+  active: "0"
+  first_name: Jason
+users_001: 
+  city: Berkeley
+  role_code: "4"
+  student_id: 
+  created_at: 2010-06-25 21:22:26
+  last_request_at: 2010-07-30 01:03:10
+  country: United States
+  crypted_password: de09a2edb7ae7936ca80d64c2857093e80e5521553bd486ee0e66376276aee735a8909b9dcfc9b90280613697c1859db8068188aa6bec0966f1d9d1e13a23382
+  perishable_token: knYX3vSgubcyAIIR1lAc
+  updated_at: 2010-07-30 01:03:10
+  enabled: "1"
+  id: "1"
+  password_salt: 6_BCHsGsNvzCACSvL1EF
+  institution_id: "1"
+  phone: 
+  persistence_token: da9e4d10c4ca18c27b12434daa4224c3eb0ba4b5f3d30c4c6df6507b6c5692cd11b6184508d3f91a78a50aad1f7c3e01afa5e5445275922bbc279ab0388a8721
+  last_name: Deringer
+  login: jjderinger
+  state: California
+  email: jjderinger@lbl.gov
+  active: "1"
+  first_name: Joseph
+users_013: 
+  city: Washington
+  role_code: "2"
+  student_id: 
+  created_at: 2010-07-06 18:19:23
+  last_request_at: 2010-07-27 15:53:45
+  country: United States
+  crypted_password: 321605b87653072f23f0cf77c5eef3d4fc6bdeefba90a6ade43cbd11b401bd59ef07e20d74961279f7d0f8436dacabd60eb0ce924ffe71c5eb4f73045c54f45c
+  perishable_token: as2Xen28K6dO4L7bhwVv
+  updated_at: 2010-07-27 15:53:45
+  enabled: "1"
+  id: "13"
+  password_salt: dPps1pg0Ejxssech7brS
+  institution_id: "6"
+  phone: 555 55 55
+  persistence_token: 68f17f7690246b3a6048f60b02ab663cf32b87a4b0fed9002c33d7e4a2abfd661acfcea25d8633a034eb54e58774d7e912a3397fb2b00db38d42a1552a227eb3
+  last_name: Doe
+  login: jacksondoe
+  state: District of Columbia
+  email: jp.emberthy@gmail.com
+  active: "1"
+  first_name: Jackson
+users_002: 
+  city: Berkeley
+  role_code: "4"
+  student_id: 
+  created_at: 2010-06-25 21:22:26
+  last_request_at: 2010-07-28 00:40:22
+  country: United States
+  crypted_password: de09a2edb7ae7936ca80d64c2857093e80e5521553bd486ee0e66376276aee735a8909b9dcfc9b90280613697c1859db8068188aa6bec0966f1d9d1e13a23382
+  perishable_token: wy8IVKVMNYkhC4CS8mwY
+  updated_at: 2010-07-28 00:40:22
+  enabled: "1"
+  id: "2"
+  password_salt: 6_BCHsGsNvzCACSvL1EF
+  institution_id: "1"
+  phone: 
+  persistence_token: da9e4d10c4ca18c27b12434daa4224c3eb0ba4b5f3d30c4c6df6507b6c5692cd11b6184508d3f91a78a50aad1f7c3e01afa5e5445275922bbc279ab0388a8721
+  last_name: McQuillen
+  login: daniel.mcquillen
+  state: California
+  email: daniel.mcquillen@gmail.com
+  active: "1"
+  first_name: Daniel
+users_014: 
+  city: Merced
+  role_code: "2"
+  student_id: 
+  created_at: 2010-07-09 19:52:05
+  last_request_at: 2010-07-19 21:52:26
+  country: United States
+  crypted_password: 878d417231fa6870e8205418076ef48593a43353887d8c72ac6401ab8b163fa0e2d8497134ca8c2b65e8a127fa880594e0efe2eeb24745c9c8c8a20a65c6128a
+  perishable_token: syglaTZs6G79lqe35mEj
+  updated_at: 2010-07-19 21:52:26
+  enabled: "1"
+  id: "14"
+  password_salt: XdFpinXpAi6jRslOxjh9
+  institution_id: "7"
+  phone: 209 2011405
+  persistence_token: 2ed160d6ef672bcd719feb2eb400814e809ac8c065d1e1541f5e1edf0b898a4787f63227c36d61a4507ff6a0dcc58f336deee7a55544e093016ba324437d2e5f
+  last_name: Wu
+  login: siyu
+  state: California
+  email: siyu.wu@gmail.com
+  active: "1"
+  first_name: Siyu
+users_003: 
+  city: Atlanta
+  role_code: "4"
+  student_id: 
+  created_at: 2010-06-25 21:22:26
+  last_request_at: 2010-07-30 01:03:38
+  country: United States
+  crypted_password: 07f840a3815be1775be9dc5059bc544e8c3bd16abd9294c531dfcfc80923e84166e364baf2c0b75c0be58611fa4ea3898fa36bbd5880d769f5304bb3afc68213
+  perishable_token: fyeiAr5Q8WV2zISvDwf8
+  updated_at: 2010-07-30 01:03:38
+  enabled: "1"
+  id: "3"
+  password_salt: P7suzIavXn8CUL6Vqg-X
+  institution_id: "1"
+  phone: 
+  persistence_token: e9f892b8283c562729301116647da494dd88a2ab2e810424dfcc57c369b713e1f19c1c47a0c5d245c921aa633829cfa1d596f84cf9843e58426946c49be0df9f
+  last_name: Bayona
+  login: sbayona
+  state: Georgia
+  email: sbayona@martianinteractive.com
+  active: "1"
+  first_name: Sergio
