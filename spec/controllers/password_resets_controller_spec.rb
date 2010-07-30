@@ -47,7 +47,6 @@ describe PasswordResetsController do
   describe "GET :edit" do
     describe "with valid perishable_token" do
       it "" do
-        User.stubs(:find_using_perishable_token).with(@user.id.to_s).returns(@user)
         get :edit, :id => @user.id
         response.should render_template(:edit)
       end
@@ -55,7 +54,6 @@ describe PasswordResetsController do
     
     describe "with invalid perishable_token" do
       it "" do
-        User.expects(:find_using_perishable_token).with(@user.id.to_s).returns(nil)
         get :edit, :id => @user.id
         flash[:notice].should =~ /we could not locate your account/
         response.should redirect_to(login_path)
@@ -64,7 +62,6 @@ describe PasswordResetsController do
   end
   
   describe "PUT :update" do
-    before(:each) { User.stubs(:find_using_perishable_token).with(@user.id.to_s).returns(@user) }
     
     describe "with valid password" do
       it "should update the password" do
