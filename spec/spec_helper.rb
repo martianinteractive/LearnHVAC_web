@@ -41,23 +41,6 @@ module AuthlogicTestHelper
   user
  end
  
- def default_path_for(user)
-   case user.role
-   when :admin
-     admins_dashboard_path
-   when :instructor
-     instructors_dashboard_path
-   when :institution_manager
-     institution_managers_instructors_path
-   when :student
-     students_classes_path
-   when :guest
-     guests_dashboard_path
-   else
-     raise ArgumentError, "role is required"
-   end
- end
- 
 end
 
 module AuthorizationTestHelper
