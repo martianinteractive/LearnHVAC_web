@@ -89,7 +89,7 @@ describe Admins::Settings::ClientVersionsController do
   
     it "redirects to the client versions index" do
       delete :destroy, :id => @client_version.id
-      response.should redirect_to(admins_setttings_client_versions_path)
+      response.should redirect_to(admins_settings_client_versions_path)
     end
   end
   
