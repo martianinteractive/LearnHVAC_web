@@ -24,7 +24,7 @@ describe Instructors::ClientVersionsController do
     
     it "should require an admin user for all actions" do
       authorize_actions(:get => [:index]) do
-        response.should redirect_to(default_path_for(@instructor))
+        response.should be_redirect
         flash[:notice].should == "You don't have privileges to access that page"
       end
     end

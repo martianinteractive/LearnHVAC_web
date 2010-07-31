@@ -57,7 +57,7 @@ describe MembershipsController do
           it "" do
             post :create, :code => @group.code
             flash[:notice].should == "You need to login as student to join groups."
-            response.should redirect_to(default_path_for(@instructor2))
+            response.should be_redirect
           end
         end
       end

@@ -64,11 +64,25 @@ describe PasswordResetsController do
   describe "PUT :update" do
     
     describe "with valid password" do
-      it "should update the password" do
-        put :update, :id => @user.perishable_token, :user => { :password => "newpassword", :password_confirmation => "newpassword" }
-        flash[:notice].should == "Password successfully updated"
-        response.should redirect_to(default_path_for(@user))
+      
+      before(:each) do
+        controller.stubs(:default_path).returns("/")
       end
+      
+      it "should change the password" do
+        lambda do 
+          put :update, 
+              :id => @user.perishable_token, 
+              :user => { :password => "newpassword", :password_confirmation => "newpassword" }
+          assigns(:user).should be_valid
+        end.should change(@user, :password).to("newpassword")
+      end
+        
+      it "should redirect" do
+         put :update, :id => @user.perishable_token, :user => { :password => "newpassword", :password_confirmation => "newpassword" }
+         response.should be_redirect
+      end
+
     end
     
     describe "with invalid password" do

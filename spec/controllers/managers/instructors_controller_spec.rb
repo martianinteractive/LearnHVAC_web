@@ -128,7 +128,7 @@ describe Managers::InstructorsController do
     
     it "should require a manager for all actions" do
       authorize_actions do
-        response.should redirect_to(default_path_for(@manager))
+        response.should be_redirect
         flash[:notice].should == "You don't have privileges to access that page"
       end
     end
