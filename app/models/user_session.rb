@@ -5,7 +5,7 @@ class UserSession < Authlogic::Session::Base
   
   def check_enabled
     user = User.find_by_login(login) if login
-    errors.add(:base, "You have been temporary disabled") if user and !user.enabled?
+    errors.add(:base, "Your account has been temporary disabled") if user and !user.enabled?
   end
   
   
