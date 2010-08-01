@@ -4,7 +4,7 @@ Factory.define :system_variable do |system_variable|
   system_variable.low_value 0
   system_variable.initial_value 1
   system_variable.high_value 10
-  system_variable.io_type 'input'
+  system_variable.io_type 'INPUT'
 end
 
 Factory.define :scenario_variable do |scenario_variable|
@@ -13,5 +13,5 @@ Factory.define :scenario_variable do |scenario_variable|
   scenario_variable.low_value 0
   scenario_variable.initial_value 1
   scenario_variable.high_value 10
-  scenario_variable.io_type 'input'
+  scenario_variable.io_type 'INPUT'
 end

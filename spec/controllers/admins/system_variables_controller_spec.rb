@@ -42,10 +42,10 @@ describe Admins::SystemVariablesController do
   
   describe "POST create" do
     describe "with valid params" do
-      it "should change the master_scenario.system_variables count" do
-        system_variables_count = @master_scenario.system_variables.count
+      it "should change the master_scenario.variables count" do
+        variables_count = @master_scenario.variables.count
         post :create, :master_scenario_id => @master_scenario.id, :system_variable => Factory.attributes_for(:system_variable, :name => "_new system var")
-        MasterScenario.find(@master_scenario.id).system_variables.count.should == system_variables_count + 1
+        MasterScenario.find(@master_scenario.id).variables.count.should == variables_count + 1
       end
   
       it "redirects to the created system_variable" do
@@ -58,7 +58,7 @@ describe Admins::SystemVariablesController do
       it "" do
         proc { 
           post :create, :master_scenario_id => @master_scenario.id, :system_variable => { } 
-        }.should_not change(@master_scenario.reload.system_variables, :count)
+        }.should_not change(@master_scenario.reload.variables, :count)
       end
       
       it "" do
@@ -70,9 +70,9 @@ describe Admins::SystemVariablesController do
   
   describe "PUT update" do    
     describe "with valid params" do      
-      it "updates the requested master_scenario.system_variables count" do
+      it "updates the requested master_scenario.variables count" do
         put :update, :master_scenario_id => @master_scenario.id, :id => @system_variable.id, :system_variable => { :name => "Cold var" }
-        MasterScenario.find(@master_scenario.id).system_variables.first.name.should == "Cold var"
+        MasterScenario.find(@master_scenario.id).variables.first.name.should == "Cold var"
       end
       
       it "redirects to the system_variable" do
@@ -92,14 +92,14 @@ describe Admins::SystemVariablesController do
   
   describe "DELETE destroy" do
     it "destroys the requested SystemVariable" do
-      system_variables_count = @master_scenario.system_variables.count
+      variables_count = @master_scenario.variables.count
       delete :destroy, :master_scenario_id => @master_scenario.id, :id => @system_variable.id
-      MasterScenario.find(@master_scenario.id).system_variables.count.should == system_variables_count - 1
+      MasterScenario.find(@master_scenario.id).variables.count.should == variables_count - 1
     end
   
-    it "redirects to the system_variables list" do
+    it "redirects to the variables list" do
       delete :destroy, :master_scenario_id => @master_scenario.id, :id => @system_variable.id
-      response.should redirect_to(admins_master_scenario_system_variables_path(@master_scenario))
+      response.should redirect_to([:admins, @master_scenario, :system_variables])
     end
   end
   
@@ -107,7 +107,7 @@ describe Admins::SystemVariablesController do
     it "should require an authenticated admin for all actions" do
       user_logout
       
-      authorize_actions do
+      authorize_actions(:master_scenario_id => @master_scenario.id, :id => @system_variable.id) do
         response.should redirect_to(login_path)
         flash[:notice].should == "You must be logged in to access this page"
       end

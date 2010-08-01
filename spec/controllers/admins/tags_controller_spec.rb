@@ -8,22 +8,15 @@ describe Admins::TagsController do
   end
   
   
-  describe "GET index" do
-        
+  describe "GET index" do 
     it "" do
       get :index, :term => "ma"
       assigns(:tags).should_not be_empty
-      assigns(:tags).should eq(["master"])
+      assigns(:tags).first.name.should == "master"
     end
     
     it "" do
       get :index, :term => "a"
-      assigns(:tags).should_not be_empty
-      assigns(:tags).should eq(["master", "scenario", "bar", "baz"])
-    end
-    
-    it "" do
-      get :index, :term => "x"
       assigns(:tags).should be_empty
     end
   end

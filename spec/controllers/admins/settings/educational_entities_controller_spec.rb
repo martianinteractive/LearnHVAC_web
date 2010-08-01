@@ -88,7 +88,7 @@ describe Admins::Settings::EducationalEntitiesController do
   
     it "redirects to colleges#index" do
       delete :destroy, :id => @college.id
-      response.should redirect_to(admins_colleges_url)
+      response.should redirect_to(admins_settings_educational_entities_path)
     end
   end
   
@@ -99,7 +99,7 @@ describe Admins::Settings::EducationalEntitiesController do
     end
     
     it "should require an admin user for all actions" do
-      authorize_actions do
+      authorize_actions(:id => @college.id) do
         response.should be_redirect
         flash[:notice].should == "You don't have privileges to access that page"
       end

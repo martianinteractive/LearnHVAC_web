@@ -12,7 +12,7 @@ describe Admins::StudentsController do
   
   describe "GET index" do
     it "" do
-      get :index, :group_id => @group.id
+      get :index, :class_id => @group.id
       response.should render_template(:index)
       assigns(:students).should_not be_empty
     end
@@ -25,7 +25,7 @@ describe Admins::StudentsController do
     end
     
     it "should require an admin for all actions" do
-      authorize_actions({:get => [:index]}) do
+      authorize_actions({:class_id => @group.id}, {:get => [:index]}) do
         response.should be_redirect
         flash[:notice].should == "You don't have privileges to access that page"
       end

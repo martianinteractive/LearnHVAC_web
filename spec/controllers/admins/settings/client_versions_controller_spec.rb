@@ -100,7 +100,7 @@ describe Admins::Settings::ClientVersionsController do
     end
     
     it "should require an admin user for all actions" do
-      authorize_actions do
+      authorize_actions(:id => @client_version.id) do
         response.should be_redirect
         flash[:notice].should == "You don't have privileges to access that page"
       end

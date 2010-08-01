@@ -46,8 +46,7 @@ class Admins::Settings::EducationalEntitiesController < Admins::Settings::BaseCo
   end
 
   def destroy
-    @college = College.find(params[:id])
-    
+    @college = College.find(params[:id])    
     @college.destroy
     redirect_to(admins_settings_educational_entities_path, :notice => "College was successfully deleted.")
   end
