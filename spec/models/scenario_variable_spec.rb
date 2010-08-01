@@ -2,8 +2,8 @@ require File.dirname(__FILE__) + "/../spec_helper"
 
 describe ScenarioVariable do
   before(:each) do
-    @master_scenario    = Factory(:master_scenario, :user => user_with_role(:admin))
-    @scenario           = Factory(:scenario, :user => user_with_role(:instructor), :master_scenario => @master_scenario)
+    @master_scenario    = Factory(:master_scenario, :user => Factory(:admin))
+    @scenario           = Factory(:scenario, :user => Factory(:instructor), :master_scenario => @master_scenario)
     @scenario_variable  = Factory.build(:scenario_variable, :scenario => @scenario)
   end
   

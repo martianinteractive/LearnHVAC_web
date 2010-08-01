@@ -3,7 +3,7 @@ require File.dirname(__FILE__) + "/../../spec_helper"
 describe Admins::ScenariosController do
   before(:each) do
     admins_login #makes @admin available
-    @instructor      = user_with_role(:instructor)
+    @instructor      = Factory(:instructor)
     @master_scenario = Factory(:master_scenario, :user => @admin)
     @scenario        = Factory(:scenario, :user => @instructor, :master_scenario => @master_scenario)
   end

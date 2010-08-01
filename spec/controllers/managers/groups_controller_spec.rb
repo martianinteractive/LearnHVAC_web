@@ -3,9 +3,9 @@ require File.dirname(__FILE__) + "/../../spec_helper"
 describe Managers::GroupsController do
   before(:each) do
     institution = Factory(:institution)
-    @manager    = user_with_role(:manager, 1, :institution => institution)
-    instructor  = user_with_role(:instructor, 1, :institution => institution)
-    @group      = Factory(:group, :name => "Class 01", :instructor => instructor)
+    @manager    = Factory(:manager, :institution => institution)
+    @instructor  = Factory(:instructor, :institution => institution)
+    @group      = Factory(:group, :name => "Class 01", :instructor => @instructor)
     login_as(@manager)
   end
   
@@ -44,25 +44,22 @@ describe Managers::GroupsController do
   
   describe "POST create" do
     describe "with valid params" do
-      before(:each) do
-        @mocked_group = Group.new
-        Group.expects(:new).returns(@mocked_group)
-        @mocked_group.expects(:valid?).returns(true)
-      end
       
       it "should change the Group count" do
-        proc{ post :create, :group => @params }.should change(Group, :count).by(1)
+        proc{ post :create, 
+              :group => {:name => "monkeygroup", :code => "0973872", :instructor => @instructor} 
+            }.should change(Group, :count).by(1)
       end
       
       it "redirects to the created group" do
-        post :create, :group => @params
+        post :create, :group => {:name => "monkeygroup", :code => "0973872", :instructor => @instructor} 
         response.should redirect_to(managers_class_path(assigns(:group)))
       end
     end
   
     describe "with invalid params" do
-      it "" do
-        post :create, :group => Factory.attributes_for(:group, :name => @group.name, :instructor_id => @group.instructor.id)
+      it "should render new template" do
+        post :create, :group => {:name => "", :code => "0973872"}
         response.should render_template(:new)
       end
     end
@@ -96,21 +93,7 @@ describe Managers::GroupsController do
   
     it "redirects to the instructor groups list" do
       delete :destroy, :id => @group.id
-      response.should redirect_to(managers_groups_path)
-    end
-  end
-  
-  describe "Authentication" do
-    before(:each) do
-      @manager.role_code = User::ROLES[:instructor]
-      @manager.save
-    end
-    
-    it "should require an admin user for all actions" do
-      authorize_actions do
-        response.should be_redirect
-        flash[:notice].should == "You don't have privileges to access that page"
-      end
+      response.should redirect_to(managers_class_path)
     end
   end
   

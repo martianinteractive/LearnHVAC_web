@@ -2,10 +2,8 @@ require File.dirname(__FILE__) + "/../../spec_helper"
 
 describe Admins::GroupsController do
   before(:each) do
-    @instructor = user_with_role(:instructor)
-    @group      = Factory.build(:group, :name => "Class 01", :instructor => @instructor)
-    @group.expects(:scenario_validator).returns(true) #skip scenarios assignment.
-    @group.save
+    @instructor = Factory(:instructor)
+    @group      = Factory(:group, :name => "Class 01", :instructor => @instructor)
     admins_login
   end
   
@@ -13,7 +11,6 @@ describe Admins::GroupsController do
     it "" do
       get :index
       response.should render_template(:index)
-      assigns(:groups).should_not be_empty
       assigns(:groups).should eq([@group])
     end
   end
@@ -102,8 +99,7 @@ describe Admins::GroupsController do
   
   describe "Authentication" do
     before(:each) do
-      @admin.role_code = User::ROLES[:student]
-      @admin.save
+      students_login
     end
     
     it "should require an admin user for all actions" do

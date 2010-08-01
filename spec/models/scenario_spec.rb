@@ -3,8 +3,8 @@ require File.dirname(__FILE__) + "/../spec_helper"
 describe Scenario do
   
   before(:each) do
-    @user            = user_with_role(:instructor)
-    @admin           = user_with_role(:admin)
+    @user            = Factory(:instructor)
+    @admin           = Factory(:admin)
     @master_scenario = Factory(:master_scenario, :user => @admin)
     @scenario        = Factory.build(:scenario, :user => @user, :master_scenario => @master_scenario)
   end
@@ -50,7 +50,7 @@ describe Scenario do
     pending "Fix scenario.groups spec"
     describe "groups" do
       # it "should find groups based on the groups_scenarios association" do
-      #   @group = Factory(:group, :instructor => @user, :scenario_ids => [@scenario.id])
+      #   @group = Factory(:group, :instructor => @user, :scenarios_ids => [@scenario.id])
       #   @scenario.reload.groups.should_not  be_empty
       #   @scenario.reload.groups.first.should eq(@group)
       # end

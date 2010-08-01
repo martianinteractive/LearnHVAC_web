@@ -2,7 +2,7 @@ require File.dirname(__FILE__) + "/../../spec_helper"
 
 describe Instructors::GroupsController do
   before(:each) do
-    @instructor = user_with_role(:instructor)
+    @instructor = Factory(:instructor)
     @group      = Factory(:group, :name => "Class 01", :instructor => @instructor)
     login_as(@instructor)
   end
@@ -95,20 +95,6 @@ describe Instructors::GroupsController do
     it "redirects to the instructor groups list" do
       delete :destroy, :id => @group.id
       response.should redirect_to(instructors_classes_path)
-    end
-  end
-  
-  describe "Authentication" do
-    before(:each) do
-      @instructor.role_code = User::ROLES[:student]
-      @instructor.save
-    end
-    
-    it "should require an admin user for all actions" do
-      authorize_actions do
-        response.should be_redirect
-        flash[:notice].should == "You don't have privileges to access that page"
-      end
     end
   end
   

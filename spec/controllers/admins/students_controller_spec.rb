@@ -3,7 +3,7 @@ require File.dirname(__FILE__) + "/../../spec_helper"
 describe Admins::StudentsController do
   before(:each) do
     admins_login
-    @student      = user_with_role(:student)
+    @student      = Factory(:student)
     @group        = Factory.build(:group, :name => "Class 01", :instructor => @admin)
     @group.expects(:scenario_validator).returns(true)
     @group.save

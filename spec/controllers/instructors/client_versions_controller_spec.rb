@@ -2,7 +2,7 @@ require File.dirname(__FILE__) + "/../../spec_helper"
 
 describe Instructors::ClientVersionsController do
   before(:each) do
-    @instructor     = user_with_role(:instructor)
+    @instructor     = Factory(:instructor)
     @client_version = Factory(:client_version)
     login_as(@instructor)
   end
@@ -20,13 +20,6 @@ describe Instructors::ClientVersionsController do
     before(:each) do
       @instructor.role_code = User::ROLES[:student]
       @instructor.save
-    end
-    
-    it "should require an admin user for all actions" do
-      authorize_actions(:get => [:index]) do
-        response.should be_redirect
-        flash[:notice].should == "You don't have privileges to access that page"
-      end
     end
   end
   

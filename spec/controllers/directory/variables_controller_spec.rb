@@ -3,8 +3,8 @@ require File.dirname(__FILE__) + "/../../spec_helper"
 describe Directory::VariablesController do
   before(:each) do
     @institution          = Factory(:institution)
-    @instructor           = user_with_role(:instructor, 1, :institution => @institution)
-    @master_scenario      = Factory(:master_scenario, :user => user_with_role(:admin))
+    @instructor           = Factory(:instructor, :institution => @institution)
+    @master_scenario      = Factory(:master_scenario, :user => Factory(:admin))
     @public_scenario      = Factory(:scenario, :user => @instructor, :master_scenario => @master_scenario, :public => true)
     @variable             = Factory(:scenario_variable, :scenario => @public_scenario)
     login_as(@instructor)

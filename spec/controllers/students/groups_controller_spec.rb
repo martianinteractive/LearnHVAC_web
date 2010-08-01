@@ -2,10 +2,9 @@ require File.dirname(__FILE__) + "/../../spec_helper"
 
 describe Students::GroupsController do
   before(:each) do
-    @student    = user_with_role(:student)
-    @group      = Factory.build(:group, :name => "Class 01", :instructor => user_with_role(:instructor))
-    @group.expects(:scenario_validator).returns(true) #skip scenarios assignment.
-    @group.save
+    @student    = Factory(:student)
+    @instructor = Factory(:instructor)
+    @group      = Factory(:group, :name => "Class 01", :instructor => @instructor)
     @membership = Factory(:membership, :group => @group, :student => @student)
     login_as(@student)
   end
@@ -14,7 +13,6 @@ describe Students::GroupsController do
     it "" do
       get :index
       response.should render_template(:index)
-      assigns(:groups).should_not be_empty
       assigns(:groups).should eq([@group])
     end
   end
@@ -33,7 +31,7 @@ describe Students::GroupsController do
     end
     
     it "should require a student for all actions" do
-      authorize_actions({:get => [:index, :show]}) do
+      authorize_actions({:id => @group.id}, {:get => [:index, :show]}) do
         response.should redirect_to(login_path)
         flash[:notice].should == "You must be logged in to access this page"
       end

@@ -15,12 +15,11 @@ describe UserSessionsController do
   describe "create session with enabled user" do
     before(:each) do
       user = Factory(:user, :role_code => 4, :enabled => true)
-      controller.stubs(:default_path).returns("/")
       post :create, :user_session => { :login => user.login, :password => user.password }
     end
     
     it { assigns(:user_session).should be_valid }
-    it { response.should redirect_to("/") }
+    it { response.should be_redirect }
   end
 
 end

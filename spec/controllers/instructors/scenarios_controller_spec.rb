@@ -2,8 +2,8 @@ require File.dirname(__FILE__) + "/../../spec_helper"
 
 describe Instructors::ScenariosController do
   before(:each) do
-    @admin           = user_with_role(:admin)
-    @user            = user_with_role(:instructor)
+    @admin           = Factory(:admin)
+    @user            = Factory(:instructor)
     @master_scenario = Factory(:master_scenario, :user => @admin)
     @scenario        = Factory(:scenario, :user => @user, :master_scenario => @master_scenario) 
     login_as(@user)
@@ -28,7 +28,7 @@ describe Instructors::ScenariosController do
   describe "GET :obververs" do
     it "" do
       get :observers, :id => @scenario.id
-      response.should render_template(:obververs)
+      response.should render_template(:observers)
       assigns(:scenario).should eq(@scenario)
       assigns(:scenario).groups.should be_empty
     end
@@ -106,19 +106,6 @@ describe Instructors::ScenariosController do
     it "redirects to the scenarios list" do
       delete :destroy, :id => @scenario.id
       response.should redirect_to(instructors_scenarios_path)
-    end
-  end
-  
-  describe "Authentication" do
-    before(:each) do
-      user_logout
-    end
-    
-    it "should require an admin user for all actions" do
-      authorize_actions do
-        response.should redirect_to(login_path)
-        flash[:notice].should == "You must be logged in to access this page"
-      end
     end
   end
 end

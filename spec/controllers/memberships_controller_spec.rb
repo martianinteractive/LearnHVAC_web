@@ -3,9 +3,9 @@ require File.dirname(__FILE__) + "/../spec_helper"
 describe MembershipsController do
   
   before(:each) do
-    @instructor   = user_with_role(:instructor)
+    @instructor   = Factory(:instructor)
     @group        = Factory(:group, :name => "Class 01", :instructor => @instructor)
-    @student      = user_with_role(:student)
+    @student      = Factory(:student)
     login_as(@student)
   end
   
@@ -50,7 +50,7 @@ describe MembershipsController do
         
         describe "and the instructor isn't the group instructor." do
           before(:each) do
-            @instructor2 = user_with_role(:instructor, 1, { :login => "instructor2", :email => "inst2@inst.com"})
+            @instructor2 = Factory(:instructor, :login => "instructor2", :email => "inst2@inst.com")
             login_as(@instructor2)
           end
           

@@ -3,15 +3,14 @@ require File.dirname(__FILE__) + "/../../spec_helper"
 describe Managers::InstructorsController do
   before(:each) do
     @institution = Factory(:institution)
-    @instructor  = user_with_role(:instructor, 1, :institution => @institution)
-    @manager     = user_with_role(:manager, 1, :institution => @institution)
+    @instructor  = Factory(:instructor, :institution => @institution)
+    @manager     = Factory(:manager, :institution => @institution)
     login_as(@manager)
   end
   
   describe "GET :index" do
     it "" do
       get :index
-      assigns(:instructors).should_not be_empty
       assigns(:instructors).should eq([@instructor])
       response.should render_template(:index)
     end
@@ -40,11 +39,7 @@ describe Managers::InstructorsController do
       assigns(:instructor).should eq(@instructor)
     end
   end
-  
-  describe "GET :edit" do
-    it "should description" do
-    end
-  end
+
   
   describe "POST create" do
   
@@ -117,20 +112,6 @@ describe Managers::InstructorsController do
     it "" do
       proc { delete :destroy, :id => @instructor.id }.should change(User, :count).by(-1)
       response.should redirect_to(managers_instructors_path)
-    end
-  end
-  
-  describe "Authentication" do
-    before(:each) do
-      @manager.role_code = User::ROLES[:instructor]
-      @manager.save
-    end
-    
-    it "should require a manager for all actions" do
-      authorize_actions do
-        response.should be_redirect
-        flash[:notice].should == "You don't have privileges to access that page"
-      end
     end
   end
   

@@ -3,7 +3,7 @@ require File.dirname(__FILE__) + "/../spec_helper"
 describe Group do
   before(:each) do
     @instructor       = Factory(:user)
-    @master_scenario  = Factory(:master_scenario, :user => user_with_role(:admin))
+    @master_scenario  = Factory(:master_scenario, :user => Factory(:admin))
     @scenario1        = Factory(:scenario, :name => "scene 1", :user => @instructor, :master_scenario => @master_scenario)
     @group            = Factory(:group, :instructor => @instructor, :scenario_ids => [@scenario1.id])
   end
@@ -52,7 +52,7 @@ describe Group do
       end
       
       it "should not assign scenarios that don't belong to the group instructor" do
-        @scenario2.user = user_with_role(:instructor, 1, :login => "instructor2", :email => "inst2@inst.com")
+        @scenario2.user = Factory(:instructor, :login => "instructor2", :email => "inst2@inst.com")
         @scenario2.save
         @group.scenario_ids = [@scenario2.id]
         @group.should_not be_valid
@@ -70,8 +70,8 @@ describe Group do
   describe "Destroy" do
     before(:each) do
       @group.save
-      @group.memberships << Factory(:membership, :group => @group, :student => user_with_role(:student, 1, { :group_code => @group.code }))
-      @group.memberships << Factory(:membership, :group => @group, :student => user_with_role(:student, 1, { :login => "student2", :email => "st2@st.com", :group_code => @group.code }))
+      @group.memberships << Factory(:membership, :group => @group, :student => Factory(:student, :group_code => @group.code)
+      @group.memberships << Factory(:membership, :group => @group, :student => Factory(:student, :login => "student2", :email => "st2@st.com", :group_code => @group.code)
     end
     
     it "should destroy the associated memberships" do

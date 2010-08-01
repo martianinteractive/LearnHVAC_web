@@ -2,7 +2,7 @@ require File.dirname(__FILE__) + "/../spec_helper"
 
 describe MasterScenario do
   before(:each) do
-    @admin           = user_with_role(:admin)
+    @admin           = Factory(:admin)
     @master_scenario = Factory(:master_scenario, :user => @admin)
   end
   

@@ -3,8 +3,8 @@ require File.dirname(__FILE__) + "/../../spec_helper"
 describe Instructors::VariablesController do
 
   before(:each) do
-    @user                     = user_with_role(:instructor)
-    @admin                    = user_with_role(:admin)
+    @user                     = Factory(:instructor)
+    @admin                    = Factory(:admin)
     @master_scenario          = Factory(:master_scenario, :user => @admin)
     @scenario                 = Factory(:scenario, :user => @user, :master_scenario => @master_scenario)
     @scenario_variable        = Factory(:scenario_variable, :scenario => @scenario)
@@ -46,9 +46,10 @@ describe Instructors::VariablesController do
     describe "with valid params" do
       
       it "should change the scenario.scenario_variables count" do
-        @scenario_sys_vars = Scenario.find(@scenario.id).scenario_variables.size
-        post :create, :scenario_id => @scenario.id, :scenario_variable => Factory.attributes_for(:scenario_variable, :name => "new scen. sys var")
-        Scenario.find(@scenario.id).scenario_variables.size.should == @scenario_sys_vars + 1
+        proc do
+          post :create, :scenario_id => @scenario.id, 
+               :scenario_variable => Factory.attributes_for(:scenario_variable, :name => "new scen. sys var")
+        end.should change(@scenario.variables, :size).by(+1)
       end
       
       it "redirects to the created scenario_variable" do
@@ -58,7 +59,13 @@ describe Instructors::VariablesController do
     end
   
     describe "with invalid params (i.e. empty name)" do
-      it "should render #new with errors" do
+      it "should not change the scenario variables size" do
+        proc do
+          post :create, :scenario_id => @scenario.id, :scenario_variable => Factory.attributes_for(:scenario_variable, :name => "")
+        end.should_not change(@scenario.variables, :size)
+      end
+      
+      it "shoud render the new template" do
         post :create, :scenario_id => @scenario.id, :scenario_variable => Factory.attributes_for(:scenario_variable, :name => "")
         response.should render_template(:new)
       end
@@ -70,7 +77,7 @@ describe Instructors::VariablesController do
     describe "with valid params" do      
       it "updates the requested scenario_variable" do
         put :update, :scenario_id => @scenario.id, :id => @scenario_variable.id, :scenario_variable => { :name => "updated var name" }
-        Scenario.find(@scenario.id).reload.scenario_variables.first.name.should == "updated var name"
+        Scenario.find(@scenario.id).variables.first.name.should == "updated var name"
       end
       
       it "redirects to the scenario_variable" do
@@ -89,26 +96,15 @@ describe Instructors::VariablesController do
   
   
   describe "DELETE destroy" do    
-    it "destroys the requested scenario_variable" do
-      @scenario_sys_vars = Scenario.find(@scenario.id).scenario_variables.size
-      delete :destroy, :scenario_id => @scenario.id, :id => @scenario_variable.id
-      Scenario.find(@scenario.id).scenario_variables.size.should == @scenario_sys_vars - 1
+    it "destroys the requested scenario_variable" do      
+      proc do
+        delete :destroy, :scenario_id => @scenario.id, :id => @scenario_variable.id
+      end.should change(@scenario.variables, :count).by(-1)
     end
   
     it "redirects to the scenario_variables list" do
       delete :destroy, :scenario_id => @scenario.id, :id => @scenario_variable.id
       response.should redirect_to(instructors_scenario_variables_path(@scenario))
-    end
-  end
-  
-  describe "Authentication" do
-    before(:each) { user_logout }
-    
-    it "should require a logged user" do
-      authorize_actions do 
-        response.should redirect_to(login_path)
-        flash[:notice].should == "You must be logged in to access this page"
-      end
     end
   end
   

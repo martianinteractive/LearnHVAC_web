@@ -3,7 +3,7 @@ require File.dirname(__FILE__) + "/../../spec_helper"
 describe Guests::DashboardController do
   before(:each) do
     @client_version = Factory(:client_version)
-    @guest          = user_with_role(:guest)
+    @guest          = Factory(:guest)
     login_as(@guest)
   end
   

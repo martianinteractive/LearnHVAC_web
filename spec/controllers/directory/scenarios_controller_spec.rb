@@ -4,8 +4,8 @@ describe Directory::ScenariosController do
   before(:each) do
     @institution      = Factory(:institution)
     @private_inst     = Factory(:institution, :name => "EAFIT")
-    @instructor       = user_with_role(:instructor, 1, :institution => @institution)
-    master_scenario   = Factory(:master_scenario, :user => user_with_role(:admin))
+    @instructor       = Factory(:instructor, :institution => @institution)
+    master_scenario   = Factory(:master_scenario, :user => Factory(:admin))
     @public_scenario  = Factory(:scenario, :user => @instructor, :master_scenario => master_scenario, :public => true)
     @private_scenario = Factory(:scenario, :user => @instructor, :master_scenario => master_scenario, :public => false)
     login_as(@instructor)

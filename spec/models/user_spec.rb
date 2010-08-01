@@ -31,15 +31,15 @@ describe User do
   end
   
   it "should be valid if group_code is required and code is valid" do
-    group = build_group(:instructor => user_with_role(:instructor))
-    @user = user_with_role(:student, 1, { :group_code => group.code })
+    group = build_group(:instructor => Factory(:instructor))
+    @user = Factory(:student, :group_code => group.code)
     @user.require_group_code!
     @user.should be_valid
   end
   
   it "should register an student as a member of the group's instructor institution" do
-    group = build_group( :instructor => user_with_role(:instructor, 1, { :institution => Factory(:institution) }))
-    @user = user_with_role(:student, 1, { :group_code => group.code })
+    group = build_group( :instructor => Factory(:instructor, :institution => Factory(:institution))
+    @user = Factory(:student, :group_code => group.code)
     @user.should be_valid
     @user.save
     @user.reload.institution.should == group.instructor.institution
@@ -47,8 +47,8 @@ describe User do
   
   context "Group Register" do 
     before(:each) do
-      @group = build_group(:instructor => user_with_role(:instructor, 1, { :institution => Factory(:institution) }))
-      @user  = user_with_role(:student, 1, { :group_code => @group.code })
+      @group = build_group(:instructor => Factory(:instructor, :institution => Factory(:institution))
+      @user  = Factory(:student, :group_code => @group.code)
     end
   
     it "" do
@@ -85,22 +85,6 @@ describe User do
       User::ROLES.should have(5).roles
     end
   end
-  
-  # context "Scopes" do
-  #   before(:each) do
-  #     @student    = create_user_with_role(:student)
-  #     @instructor = create_user_with_role(:instructor)
-  #     @admin      = create_user_with_role(:admin)
-  #   end
-  #   
-  #   context "instructor" do
-  #     it "should return only instructors" do
-  #       
-  #     end
-  #   end
-  #   
-  #   
-  # end
   
   context "Delivering emails" do
     before(:each) do

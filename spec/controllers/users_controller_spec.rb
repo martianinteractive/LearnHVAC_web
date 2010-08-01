@@ -7,7 +7,7 @@ describe UsersController do
     login_as(@user)
   end
   
-  describe "GET show" do
+  describe "GET profile" do
     it "" do
       get :show
       response.should render_template(:show)
@@ -16,7 +16,7 @@ describe UsersController do
 
   describe "GET edit" do
     it "" do
-      get :edit
+      get :edit, :id => @user.id
       response.should render_template(:edit)
     end
   end
@@ -24,14 +24,14 @@ describe UsersController do
   describe "PUT update" do    
     describe "with valid params" do      
       it "should redirect to profile_path" do
-        put :update, :user => { :last_name => "Doex" }
+        put :update, :id => @user.id, :user => { :last_name => "Doex" }
         response.should redirect_to(profile_path)
       end
     end
       
     describe "with invalid params" do        
       it "should render the 'edit' template" do
-        put :update, :user => { :first_name => "Jame$", :last_name => "" }
+        put :update, :id => @user.id, :user => { :first_name => "Jame$", :last_name => "" }
         response.should render_template('edit')
       end
     end

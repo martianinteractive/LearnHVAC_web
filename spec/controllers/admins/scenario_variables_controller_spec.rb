@@ -4,7 +4,7 @@ describe Admins::ScenarioVariablesController do
   
   before(:each) do
     admins_login
-    @instructor               = user_with_role(:instructor)
+    @instructor               = Factory(:instructor)
     @master_scenario          = Factory(:master_scenario, :user => @admin)
     @scenario                 = Factory(:scenario, :user => @instructor, :master_scenario => @master_scenario)
     @scenario_variable        = Factory(:scenario_variable, :scenario => @scenario)
