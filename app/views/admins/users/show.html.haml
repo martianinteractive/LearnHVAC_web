@@ -5,7 +5,9 @@
 
   #page_header
     #subject_actions
-      = link_to 'Edit this person', edit_admins_user_path(@user, :role => @user.role)
+      = link_to 'Edit', edit_admins_user_path(@user, :role => @user.role)
+      &nbsp;|&nbsp;
+      = link_to 'Delete', admins_user_path(@user, :role => @user.role), :method => :delete, :confirm => "Are you sure?"
 
     #subject_info
       %h2= @user.name

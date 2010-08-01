@@ -40,7 +40,7 @@ class Managers::GroupsController < Managers::ApplicationController
   
   def destroy
     @group.destroy
-    redirect_to(managers_groups_path)
+    redirect_to(managers_class_path)
   end
   
   

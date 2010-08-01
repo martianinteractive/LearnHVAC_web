@@ -6,11 +6,6 @@ class Admins::UsersController < Admins::ApplicationController
     @users = User.where(:role_code => @role).order('last_name DESC').paginate(:page => params[:page], :per_page => 25)
   end
   
-  def list
-    @users = User.where(:role_code => @role).order('last_name DESC').paginate(:page => params[:page], :per_page => 25)
-    render :layout => false
-  end
-  
   def search
     conditions = ["role_code = #{@role} AND (first_name LIKE :q OR last_name LIKE :q OR login LIKE :q OR email LIKE :q)", {:q => '%'+params[:q]+'%'}]
     @users = User.where(conditions).order('last_name DESC').paginate(:page => params[:page], :per_page => 25)
@@ -48,8 +43,8 @@ class Admins::UsersController < Admins::ApplicationController
 
   def update
     @user = User.find(params[:id])
-    @user.role_code = params[:user][:role_code]
-    @user.enabled = params[:user][:enabled]
+    @user.role_code = params[:user][:role_code] if params[:user][:role_code]
+    @user.enabled = params[:user][:enabled] if params[:user][:enabled]
     
     if @user.update_attributes(params[:user])
       redirect_to(admins_user_path(@user, :role => params[:role]), :notice => 'User was successfully updated.')

@@ -128,6 +128,17 @@ CREATE TABLE `schema_migrations` (
   UNIQUE KEY `unique_schema_migrations` (`version`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+CREATE TABLE `sessions` (
+  `id` int(11) NOT NULL auto_increment,
+  `session_id` varchar(255) collate utf8_unicode_ci NOT NULL,
+  `data` text collate utf8_unicode_ci,
+  `created_at` datetime default NULL,
+  `updated_at` datetime default NULL,
+  PRIMARY KEY  (`id`),
+  KEY `index_sessions_on_session_id` (`session_id`),
+  KEY `index_sessions_on_updated_at` (`updated_at`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 CREATE TABLE `taggings` (
   `id` int(11) NOT NULL auto_increment,
   `tag_id` int(11) default NULL,
@@ -172,7 +183,7 @@ CREATE TABLE `users` (
   `phone` varchar(255) collate utf8_unicode_ci default NULL,
   PRIMARY KEY  (`id`),
   KEY `index_users_on_perishable_token` (`perishable_token`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 CREATE TABLE `variables` (
   `id` int(11) NOT NULL auto_increment,
@@ -257,3 +268,5 @@ INSERT INTO schema_migrations (version) VALUES ('20100728161530');
 INSERT INTO schema_migrations (version) VALUES ('20100728172853');
 
 INSERT INTO schema_migrations (version) VALUES ('20100728202513');
+
+INSERT INTO schema_migrations (version) VALUES ('20100730165247');
