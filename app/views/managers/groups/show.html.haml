@@ -34,7 +34,7 @@
             %th 
         - @group.members.each do |member|
           %tr
-            %td= link_to member.name, instructors_class_student_path(@group, member) if member.has_role?(:student)
+            %td= member.name
             %td= member.institution.try(:name)
             %td= mail_to member.email
 
@@ -51,6 +51,6 @@
             %th Created on
         - @group.scenarios.each do |scenario|
           %tr
-            %td= link_to scenario.name, instructors_scenario_path(scenario)
+            %td= link_to scenario.name, managers_scenario_path(scenario)
             %td= scenario.variables.count
             %td= scenario.created_at.to_formatted_s(:long)
