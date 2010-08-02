@@ -21,7 +21,7 @@ class Managers::ScenarioVariablesController < Managers::ApplicationController
   def add_crumbs
     add_crumb "Scenarios", managers_scenarios_path
     add_crumb @scenario.name, managers_scenario_path(@scenario)
-    add_crumb "Simulation Variables", managers_scenario_variables_path(@scenario)
+    add_crumb "Variables", managers_scenario_variables_path(@scenario)
   end
   
 end

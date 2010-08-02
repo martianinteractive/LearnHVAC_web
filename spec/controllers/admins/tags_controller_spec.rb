@@ -2,7 +2,8 @@ require File.dirname(__FILE__) + "/../../spec_helper"
 
 describe Admins::TagsController do
   before(:each) do
-    admins_login
+    @admin = Factory(:admin)
+    login_as(@admin)
     Factory(:master_scenario, :user => @admin, :tag_list => "master, scenario, bar, baz")
     Factory(:master_scenario, :user => @admin, :tag_list => "master, scenario, foo, noez")
   end

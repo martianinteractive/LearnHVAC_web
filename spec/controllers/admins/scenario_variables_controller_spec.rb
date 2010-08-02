@@ -3,11 +3,12 @@ require File.dirname(__FILE__) + "/../../spec_helper"
 describe Admins::ScenarioVariablesController do
   
   before(:each) do
-    admins_login
-    @instructor               = Factory(:instructor)
-    @master_scenario          = Factory(:master_scenario, :user => @admin)
-    @scenario                 = Factory(:scenario, :user => @instructor, :master_scenario => @master_scenario)
-    @scenario_variable        = Factory(:scenario_variable, :scenario => @scenario)
+    @admin              = Factory(:admin)
+    @instructor         = Factory(:instructor)
+    @master_scenario    = Factory(:master_scenario, :user => @admin)
+    @scenario           = Factory(:scenario, :user => @instructor, :master_scenario => @master_scenario)
+    @scenario_variable  = Factory(:scenario_variable, :scenario => @scenario)
+    login_as(@admin)
   end
   
   describe "GET index" do

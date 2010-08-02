@@ -48,7 +48,7 @@ Learnhvac::Application.routes.draw do |map|
       resources :alerts, :only => [:index, :show, :update]
       resources :variables
       member do
-        get :observers
+        get :access
       end
     end
     resources :classes, :controller => :groups do
@@ -85,7 +85,7 @@ Learnhvac::Application.routes.draw do |map|
         get :list
       end
       member do
-        get :observers
+        get :access
       end
     end
   end
@@ -139,7 +139,7 @@ Learnhvac::Application.routes.draw do |map|
         get :list
       end
       member do
-        get :observers
+        get :access
       end
     end
   

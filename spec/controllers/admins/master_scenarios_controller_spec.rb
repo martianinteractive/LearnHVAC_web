@@ -2,8 +2,9 @@ require File.dirname(__FILE__) + "/../../spec_helper"
 
 describe Admins::MasterScenariosController do
   before(:each) do
-    admins_login
+    @admin = Factory(:admin)
     @master_scenario = Factory(:master_scenario, :user => @admin)
+    login_as(@admin)
   end
   
   describe "GET index" do

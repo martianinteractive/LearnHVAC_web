@@ -4,7 +4,8 @@ describe Admins::InstitutionsController do
   
   before(:each) do
     @institution = Factory(:institution, :name => "MI")
-    admins_login
+    @admin = Factory(:admin)
+    login_as(@admin)
   end
   
   describe "GET index" do
