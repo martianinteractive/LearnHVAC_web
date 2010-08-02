@@ -1,6 +1,8 @@
 require File.dirname(__FILE__) + "/../../spec_helper"
 
 describe Admins::GroupsController do
+  render_views
+  
   before(:each) do
     @instructor = Factory(:instructor)
     @group      = Factory(:group, :name => "Class 01", :instructor => @instructor)
@@ -14,8 +16,12 @@ describe Admins::GroupsController do
       assigns(:groups).should eq([@group])
     end
   end
-
+  
   describe "GET show" do
+    before(:each) do
+      Factory(:membership, :group => @group, :member => Factory(:student))
+    end
+    
     it "" do
       get :show, :id => @group.id
       response.should render_template(:show)

@@ -1,11 +1,13 @@
 require File.dirname(__FILE__) + "/../../spec_helper"
 
 describe Students::GroupsController do
+  render_views
+  
   before(:each) do
     @student    = Factory(:student)
     @instructor = Factory(:instructor)
     @group      = Factory(:group, :name => "Class 01", :instructor => @instructor)
-    @membership = Factory(:membership, :group => @group, :student => @student)
+    @membership = Factory(:membership, :group => @group, :member => @student)
     login_as(@student)
   end
   

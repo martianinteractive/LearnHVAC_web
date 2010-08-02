@@ -16,5 +16,5 @@
     = javascript_include_tag "http://www.google.com/friendconnect/script/friendconnect.js" if @show_connection
 
     = yield :head
-    - javascript_tag do
+    = javascript_tag do
       = yield :js_templates

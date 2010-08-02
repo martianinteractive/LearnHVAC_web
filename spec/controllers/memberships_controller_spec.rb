@@ -24,7 +24,7 @@ describe MembershipsController do
     describe "with invalid params" do
       describe "Trying to register an existing membership" do
         before(:each) do
-          Membership.create(:group => @group, :student => @student)
+          Membership.create(:group => @group, :member => @student)
         end
         
         it { proc { post :create, :code => @group.code }.should_not change(Membership, :count) }

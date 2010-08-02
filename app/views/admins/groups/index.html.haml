@@ -9,12 +9,12 @@
       %tr
         %th Name
         %th Instructor
-        %th Students
+        %th Members
     - @groups.each do |group|
       %tr
         %td= link_to group.name, admins_class_path(group)
         %td= link_to group.instructor.name, admins_user_path(group.instructor, :role => group.instructor.role)
-        %td= group.students.count
+        %td= group.members.count
   %br
   = will_paginate @groups
 

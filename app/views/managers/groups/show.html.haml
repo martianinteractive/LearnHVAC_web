@@ -20,10 +20,10 @@
           %input{:type => "text", :value => membership_register_url(@group.code), :style => "width: 400px", :spellcheck => false}
 
 
-    %h3 Students
+    %h3 Members
 
-    - if @group.students.empty?
-      %p There are no students registered under this group.
+    - if @group.members.empty?
+      %p There are no members registered under this group.
     - else
       %table
         %thead
@@ -32,12 +32,11 @@
             %th Institution
             %th Email
             %th 
-        - @group.students.each do |student|
+        - @group.members.each do |member|
           %tr
-            %td= link_to student.name, instructors_class_student_path(@group, student)
-            %td= student.institution.name
-            %td= mail_to student.email
-
+            %td= member.name
+            %td= member.institution.try(:name)
+            %td= mail_to member.email
 
     %h3 Scenarios
 
@@ -52,8 +51,6 @@
             %th Created on
         - @group.scenarios.each do |scenario|
           %tr
-            %td= link_to scenario.name, instructors_scenario_path(scenario)
+            %td= link_to scenario.name, managers_scenario_path(scenario)
             %td= scenario.variables.count
             %td= scenario.created_at.to_formatted_s(:long)
-
-

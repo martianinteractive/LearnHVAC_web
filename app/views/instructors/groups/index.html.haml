@@ -8,13 +8,13 @@
     %thead
       %tr
         %th Name
-        %th Students
+        %th Members
         %th Shared Scenarios
         %th Created on
     - @groups.each do |group|
       %tr
         %td= link_to group.name, instructors_class_path(group)
-        %td= group.students.count
+        %td= group.members.count
         %td= group.group_scenarios.count
         %td= group.created_at.to_formatted_s(:long)
   %br

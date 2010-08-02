@@ -28,13 +28,13 @@ module AuthlogicTestHelper
  end
  
  def admins_login
-   admin = Factory(:admin)
-   login_as(admin)
+   @admin = Factory(:admin)
+   login_as(@admin)
  end
  
  def students_login
-   student = Factory(:student)
-   login_as(student)
+   @student = Factory(:student)
+   login_as(@student)
  end
  
 end

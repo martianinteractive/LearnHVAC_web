@@ -2,8 +2,7 @@ class Instructors::StudentsController < Instructors::ApplicationController
   before_filter :find_group
     
   def show
-    @student = @group.students.find(params[:id])
-    @member_since = @student.memberships.where(:group_id => @group.id).first.created_at.to_formatted_s(:long)
+    @student = @group.members.student.find(params[:id])
   end
   
   private

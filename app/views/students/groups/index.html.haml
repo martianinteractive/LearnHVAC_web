@@ -16,6 +16,6 @@
       %tr
         %td= link_to group.name, students_class_path(group)
         %td= group.instructor.name
-        %td= group.memberships.where(:student_id => current_user.id).first.created_at.to_formatted_s(:long)
+        %td= group.memberships.where(:member_id => current_user.id).first.created_at.to_formatted_s(:long)
   %br
   = will_paginate @groups

@@ -4,5 +4,5 @@
     %li= link_to "Desktop Application Versions", admins_settings_client_versions_path
     %li.ui-tabs-selected= link_to "New Desktop Application Version", new_admins_settings_client_version_path
 
-  - form_for(@client_version, :url => admins_settings_client_version_path(@client_version), :method => :post) do |f|
+  = form_for(@client_version, :url => admins_settings_client_version_path(@client_version), :method => :post) do |f|
     = render :partial => "form", :locals => { :f => f }

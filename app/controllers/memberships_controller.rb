@@ -5,7 +5,7 @@ class MembershipsController < ApplicationController
   
   def create    
     if @group
-      @membership = Membership.find_or_initialize_by_group_id_and_student_id(:group_id => @group.id, :student_id => current_user.id)
+      @membership = Membership.find_or_initialize_by_group_id_and_member_id(:group_id => @group.id, :member_id => current_user.id)
       
       if @membership.new_record? and @membership.save
         flash[:notice] = "Registered"
@@ -19,8 +19,6 @@ class MembershipsController < ApplicationController
     end
   end
   
-  # This destroy could support a student-membership remove as student. 
-  # For now only instructors can remove memberships.
   def destroy
     @membership = @group.memberships.find(params[:id])
     @membership.destroy

@@ -1,7 +1,7 @@
 .ui-widget.ui-widget-content.ui-corner-all
   %h2 Edit your profile
   
-  - form_for(current_user, :url => user_path(current_user), :method => :put) do |f|
+  = form_for(current_user, :url => user_path(current_user), :method => :put) do |f|
     = error_messages_for 'current_user'
     .field
       = f.label :login
