@@ -85,11 +85,11 @@ class User < ActiveRecord::Base
   end
   
   # Assumes the user has a code_group,
-  # Used only from students register.
+  # Used only from students registration.
   def register_group!
     return false unless self.group_code
     group = Group.find_by_code(self.group_code)
-    Membership.create(:group => group, :student => self)
+    Membership.create(:group => group, :member => self)
   end
   
   private
