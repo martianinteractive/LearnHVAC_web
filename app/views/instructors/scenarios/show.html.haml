@@ -1,17 +1,17 @@
 #tabs
   %ul
-    %li= link_to "Scenarios", instructors_scenarios_path
+    %li.ui-tabs-selected= link_to "Scenarios", instructors_scenarios_path
     %li= link_to "New Scenario", new_instructors_scenario_path
     
   #page_header
     #subject_actions
-      = link_to 'Edit', edit_instructors_scenario_path(@scenario)
+      = link_to 'Edit Scenario', edit_instructors_scenario_path(@scenario)
       &nbsp;
-      = link_to "Variables", instructors_scenario_variables_path(@scenario)
+      = link_to "Manage Variables", instructors_scenario_variables_path(@scenario)
       &nbsp;
       = link_to 'Who has access?', access_instructors_scenario_path(@scenario)
       &nbsp;
-      = link_to 'Delete', instructors_scenario_path(@scenario), :confirm => 'Are you sure?', :method => :delete
+      = link_to 'Delete Scenario', instructors_scenario_path(@scenario), :confirm => 'Are you sure?', :method => :delete
 
     #subject_info
       %h2= @scenario.name

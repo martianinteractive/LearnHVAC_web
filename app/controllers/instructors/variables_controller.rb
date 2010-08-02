@@ -54,7 +54,7 @@ class Instructors::VariablesController < Instructors::ApplicationController
   def add_crumbs
     add_crumb "Scenarios", instructors_scenarios_path
     add_crumb @scenario.name, instructors_scenario_path(@scenario)
-    add_crumb "Simulation Variables", instructors_scenario_variables_path(@scenario)
+    add_crumb "Variables", instructors_scenario_variables_path(@scenario)
   end
   
   def find_scenario
