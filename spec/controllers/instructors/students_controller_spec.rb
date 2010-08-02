@@ -4,7 +4,7 @@ describe Instructors::StudentsController do
   before(:each) do
     @instructor = Factory(:instructor)
     @student    = Factory(:student)
-    @group      = Factory(:group, :name => "Class 01", :instructor => @instructor)
+    @group      = Factory(:group, :name => "Class 01", :creator => @instructor)
     @membership = Factory(:membership, :group => @group, :member => @student)
     login_as(@instructor)
   end

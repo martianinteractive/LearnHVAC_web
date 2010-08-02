@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   has_many :scenarios
   has_many :master_scenarios
   #Maybe we should use simple table inheritance if this type of relationships continue to grow.
-  has_many :managed_groups, :class_name => "Group", :foreign_key => "instructor_id", :dependent => :destroy
+  has_many :managed_groups, :class_name => "Group", :foreign_key => "creator_id", :dependent => :destroy
   has_many :memberships, :foreign_key => "member_id"
   has_many :groups, :through => :memberships
   
@@ -102,7 +102,7 @@ class User < ActiveRecord::Base
     # Only needed from students/sign_up
     if self.group_code
       group = Group.find_by_code(self.group_code)
-      self.institution = group.instructor.institution
+      self.institution = group.creator.institution
     end
   end
 

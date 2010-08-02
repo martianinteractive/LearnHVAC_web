@@ -50,7 +50,7 @@ describe Scenario do
     pending "Fix scenario.groups spec"
     describe "groups" do
       # it "should find groups based on the groups_scenarios association" do
-      #   @group = Factory(:group, :instructor => @user, :scenarios_ids => [@scenario.id])
+      #   @group = Factory(:group, :creator => @user, :scenarios_ids => [@scenario.id])
       #   @scenario.reload.groups.should_not  be_empty
       #   @scenario.reload.groups.first.should eq(@group)
       # end

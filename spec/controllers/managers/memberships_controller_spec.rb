@@ -6,7 +6,7 @@ describe Managers::MembershipsController do
     @manager      = Factory(:manager, :institution => institution)
     instructor    = Factory(:instructor, :institution => institution)
     @student      = Factory(:student)
-    @group        = Factory(:group, :name => "Class 01", :instructor => instructor)
+    @group        = Factory(:group, :name => "Class 01", :creator => instructor)
     @membership   = Factory(:membership, :group => @group, :member => @student)
     login_as(@manager)
   end

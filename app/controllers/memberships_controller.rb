@@ -25,7 +25,7 @@ class MembershipsController < ApplicationController
     @group = Group.find_by_code(params[:code])
     
     if logged_as?(:instructor)
-      if current_user == @group.instructor
+      if current_user == @group.creator
         flash[:notice] = "You already have joined this group as instructor."
         redirect_to instructors_class_path(@group)
       else

@@ -5,7 +5,7 @@ describe Instructors::GroupsController do
   
   before(:each) do
     @instructor = Factory(:instructor)
-    @group      = Factory(:group, :name => "Class 01", :instructor => @instructor)
+    @group      = Factory(:group, :name => "Class 01", :creator => @instructor)
     login_as(@instructor)
   end
   
@@ -30,7 +30,7 @@ describe Instructors::GroupsController do
     it "" do
       get :new
       response.should render_template(:new)
-      assigns(:group).instructor.should eq(@instructor)
+      assigns(:group).creator.should eq(@instructor)
     end
   end
   

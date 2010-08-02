@@ -31,23 +31,23 @@ describe User do
   end
   
   it "should be valid if group_code is required and code is valid" do
-    group = build_group(:instructor => Factory(:instructor))
+    group = build_group(:creator => Factory(:instructor))
     @user = Factory(:student, :group_code => group.code)
     @user.require_group_code!
     @user.should be_valid
   end
   
   it "should register an student as a member of the group's instructor institution" do
-    group = build_group( :instructor => Factory(:instructor, :institution => Factory(:institution))
+    group = build_group( :creator => Factory(:instructor, :institution => Factory(:institution))
     @user = Factory(:student, :group_code => group.code)
     @user.should be_valid
     @user.save
-    @user.reload.institution.should == group.instructor.institution
+    @user.reload.institution.should == group.creator.institution
   end
   
   context "Group Register" do 
     before(:each) do
-      @group = build_group(:instructor => Factory(:instructor, :institution => Factory(:institution))
+      @group = build_group(:creator => Factory(:instructor, :institution => Factory(:institution))
       @user  = Factory(:student, :group_code => @group.code)
     end
   
@@ -71,7 +71,7 @@ describe User do
     
     describe "on destroy" do
       before(:each) do
-        build_group(:instructor => @user)
+        build_group(:creator => @user)
       end
       
       it "should description" do

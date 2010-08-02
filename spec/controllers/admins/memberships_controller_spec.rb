@@ -5,7 +5,7 @@ describe Admins::MembershipsController do
     institution   = Factory(:institution)
     admin         = Factory(:admin)
     instructor    = Factory(:instructor, :institution => institution)
-    @group        = Factory(:group, :name => "Class 01", :instructor => instructor)
+    @group        = Factory(:group, :name => "Class 01", :creator => instructor)
     @instructor_membership  = Membership.where(:group_id => @group.id, :member_id => instructor.id).first
     login_as(admin)
   end
