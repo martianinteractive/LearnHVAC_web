@@ -7,7 +7,7 @@
   = link_to "login", login_path
 %hr
 
-- form_for @account, :url => guests_accounts_path, :method => :post do |f|
+= form_for @account, :url => guests_accounts_path, :method => :post do |f|
   = error_messages_for :account
   = f.hidden_field :group_code
 

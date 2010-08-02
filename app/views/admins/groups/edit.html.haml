@@ -3,7 +3,7 @@
     %li= link_to "Classes", admins_classes_path
     %li= link_to "New Class", new_admins_class_path
 
-  - form_for(@group, :url => admins_class_path(@group), :method => :put) do |f|
+  = form_for(@group, :url => admins_class_path(@group), :method => :put) do |f|
     = f.error_messages
 
     .field

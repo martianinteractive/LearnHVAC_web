@@ -19,7 +19,7 @@
       %b Group name:
       = @group.name
 
-- form_for @account, :url => { :controller => "students/accounts", :action => "create" } do |f|
+= form_for @account, :url => { :controller => "students/accounts", :action => "create" } do |f|
   = error_messages_for :account
   = f.hidden_field :group_code
 

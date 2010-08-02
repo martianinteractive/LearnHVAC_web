@@ -9,7 +9,7 @@
     %li= link_to "Emails", instructors_class_emails_path(@group)
     %li.ui-tabs-selected= link_to "New Email", new_instructors_class_email_path(@group)
 
-  - form_for(@email, :url => instructors_class_emails_path(@group), :method => :post) do |f|
+  = form_for(@email, :url => instructors_class_emails_path(@group), :method => :post) do |f|
     = f.error_messages
     .instructions
       %p Use this form to invite students to join the #{@group.name} group. 

@@ -7,5 +7,5 @@
   %br
   %p Note: System Variables are directly related to SPARK, so a good understanding of how Learn HVAC works with SPARK is required before adding or changing System Variables. 
   %hr
-  - form_for([@master_scenario, @system_variable], :url => admins_master_scenario_system_variables_path(@master_scenario), :method => :post) do |f|
+  = form_for([@master_scenario, @system_variable], :url => admins_master_scenario_system_variables_path(@master_scenario), :method => :post) do |f|
     = render :partial => "form", :locals => { :f => f }

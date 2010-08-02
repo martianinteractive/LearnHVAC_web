@@ -11,7 +11,7 @@
     %li= link_to "Classes", admins_classes_path
     %li.ui-tabs-selected= link_to "New Class", new_admins_class_path
 
-  - form_for(@group, :url => admins_classes_path, :method => :post) do |f|
+  = form_for(@group, :url => admins_classes_path, :method => :post) do |f|
     = f.error_messages
     .field
       = f.label :name

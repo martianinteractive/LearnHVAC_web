@@ -4,5 +4,5 @@
     %li= link_to "System Variables", admins_master_scenario_system_variables_path(@master_scenario)
     %li= link_to 'New System Variable', new_admins_master_scenario_system_variable_path(@master_scenario)
     
-  - form_for([@master_scenario, @system_variable], :url => admins_master_scenario_system_variable_path(@master_scenario, @system_variable), :method => :put) do |f|
+  = form_for([@master_scenario, @system_variable], :url => admins_master_scenario_system_variable_path(@master_scenario, @system_variable), :method => :put) do |f|
     = render :partial => "form", :locals => { :f => f }
