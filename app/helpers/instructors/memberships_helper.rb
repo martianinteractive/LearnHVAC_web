@@ -1,0 +1,2 @@
+module Instructors::MembershipsHelper
+end
