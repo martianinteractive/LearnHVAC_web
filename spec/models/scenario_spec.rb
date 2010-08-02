@@ -84,6 +84,12 @@ describe Scenario do
         @scenario.variables.each { |sv| sv.should be_instance_of(ScenarioVariable) }
       end
       
+      it "should create a membership for the group owner/instructor" do
+        proc { @scenario.save }.should change(UserScenario, :count).by(1)
+        user_scenario = UserScenario.last
+        user_scenario.user.should == @scenario.user
+        user_scenario.scenario.should == @scenario
+      end
     end
   end
   

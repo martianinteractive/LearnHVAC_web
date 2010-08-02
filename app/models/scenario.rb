@@ -13,6 +13,7 @@ class Scenario < ActiveRecord::Base
   
   before_create :set_client_version
   after_create :copy_variables
+  after_create :create_user_scenario
   
   scope :recently_created, where(["scenarios.created_at > ?", 30.days.ago.utc])
   scope :recently_updated, where(["scenarios.updated_at > ?", 30.days.ago.utc])
@@ -35,6 +36,10 @@ class Scenario < ActiveRecord::Base
     errors.add(:longterm_start_date, "should be set before the longterm stop date") if longterm_start_date >= longterm_stop_date
     errors.add(:longterm_stop_date, "should be set after the longterm start date") if longterm_stop_date <= longterm_start_date
     errors.add(:realtime_start_datetime, "should be set between start and stop dates") if (realtime_start_datetime < longterm_start_date) or (realtime_start_datetime > longterm_stop_date) 
+  end
+  
+  def create_user_scenario
+    UserScenario.create(:scenario => self, :user => self.user)
   end
   
 end
