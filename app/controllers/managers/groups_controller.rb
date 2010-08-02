@@ -4,7 +4,7 @@ class Managers::GroupsController < Managers::ApplicationController
   add_crumb("Classes") { |instance| instance.send :managers_classes_path }
   
   def index
-    @groups = current_user.institution.groups.paginate :page => params[:page], :per_page => 25, :order => "users.last_name", :include => :students
+    @groups = current_user.institution.groups.paginate :page => params[:page], :per_page => 25, :order => "users.last_name", :include => :members
   end
   
   def show
