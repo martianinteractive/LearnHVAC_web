@@ -8,4 +8,5 @@ class Membership < ActiveRecord::Base
   def recently_created?
     created_at > 20.minutes.ago
   end
+  
 end
