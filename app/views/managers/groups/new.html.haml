@@ -1,7 +1,7 @@
 - content_for :js_templates do
   :plain
     $(document).ready(function() { 
-      $("#group_instructor_id").change(function() { 
+      $("#group_creator_id").change(function() { 
         $.get("#{list_managers_scenarios_path}", { user_id: $(this).val() }, function(r) { $("#group_scenario_ids_").html(r) }) 
       }) 
     })
