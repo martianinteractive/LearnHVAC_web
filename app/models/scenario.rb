@@ -7,7 +7,8 @@ class Scenario < ActiveRecord::Base
   has_many :group_scenarios,    :dependent => :destroy
   has_many :groups,             :through => :group_scenarios
   
-  validates_presence_of :name, :master_scenario, :user, :longterm_start_date, :longterm_stop_date, :realtime_start_datetime
+  validates_presence_of :master_scenario, :user, :longterm_start_date, :longterm_stop_date, :realtime_start_datetime
+  validates :name, :presence => true, :length => {:within => 1..180}
   validate :longterm_validator
   
   before_create :set_client_version

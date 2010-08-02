@@ -26,10 +26,10 @@ describe Managers::ScenariosController do
     end
   end
   
-  describe "GET observers" do
+  describe "GET access" do
     it "" do
-      get :observers, :id => @scenario.id
-      response.should render_template(:observers)
+      get :access, :id => @scenario.id
+      response.should render_template(:access)
       assigns(:scenario).should eq(@scenario)
     end
   end

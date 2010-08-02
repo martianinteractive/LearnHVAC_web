@@ -27,8 +27,8 @@ describe Instructors::ScenariosController do
   
   describe "GET :obververs" do
     it "" do
-      get :observers, :id => @scenario.id
-      response.should render_template(:observers)
+      get :access, :id => @scenario.id
+      response.should render_template(:access)
       assigns(:scenario).should eq(@scenario)
       assigns(:scenario).groups.should be_empty
     end

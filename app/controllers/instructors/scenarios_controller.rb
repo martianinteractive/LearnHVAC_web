@@ -1,5 +1,5 @@
 class Instructors::ScenariosController < Instructors::ApplicationController
-  before_filter :find_scenario, :only => [:show, :edit, :observers, :update, :destroy]
+  before_filter :find_scenario, :only => [:show, :edit, :access, :update, :destroy]
   add_crumb("Scenarios") { |instance| instance.send :instructors_scenarios_path }
   
   def index
@@ -10,9 +10,9 @@ class Instructors::ScenariosController < Instructors::ApplicationController
     add_crumb @scenario.name, instructors_scenario_path(@scenario)
   end
   
-  def observers
+  def access
     add_crumb @scenario.name, instructors_scenario_path(@scenario)
-    add_crumb "Observers", observers_instructors_scenario_path(@scenario)
+    add_crumb "Observers", access_instructors_scenario_path(@scenario)
   end
 
   def new

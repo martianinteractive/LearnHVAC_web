@@ -1,12 +1,11 @@
 #tabs
   %ul
-    %li= link_to @scenario.name, managers_scenario_path(@scenario)
-    %li.ui-tabs-selected= link_to "Observers", observers_managers_scenario_path(@scenario)
+    %li= link_to @scenario.name, instructors_scenario_path(@scenario)
+    %li.ui-tabs-selected= link_to "Observers", access_instructors_scenario_path(@scenario)
     
   #page_header
     #subject_info
       %h2 Who has access?
-      .subject_details= "Instructor: #{@scenario.user.name}"
 
   #inner_column
     - if @scenario.public?
@@ -19,7 +18,7 @@
       %p
         This scenario is
         %b private
-        and can only be accessed by the instructor and:
+        and can only be accessed by you and:
 
       %h3 Groups
       - if @scenario.groups.empty?
@@ -34,7 +33,7 @@
               %th Code
           - @scenario.groups.each do |group|
             %tr
-              %td= link_to group.name, managers_class_path(group)
+              %td= link_to group.name, instructors_class_path(group)
               %td= group.students.count
               %td= group.scenarios.count
               %td= group.code

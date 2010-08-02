@@ -1,5 +1,5 @@
 class Managers::ScenariosController < Managers::ApplicationController
-  before_filter :find_scenario, :only => [:show, :observers]
+  before_filter :find_scenario, :only => [:show, :access]
   add_crumb("Scenarios") { |instance| instance.send :managers_scenarios_path }
   
   def index
@@ -10,7 +10,7 @@ class Managers::ScenariosController < Managers::ApplicationController
     add_crumb @scenario.name, managers_scenario_path(@scenario)
   end
   
-  def observers
+  def access
   end
   
   def list
