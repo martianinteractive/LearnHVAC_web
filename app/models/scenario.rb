@@ -6,6 +6,8 @@ class Scenario < ActiveRecord::Base
   has_many :alerts,             :class_name => "ScenarioAlert"
   has_many :group_scenarios,    :dependent => :destroy
   has_many :groups,             :through => :group_scenarios
+  has_many :user_scenarios,     :dependent => :destroy
+  has_many :users,              :through => :user_scenarios
   
   validates_presence_of :master_scenario, :user, :longterm_start_date, :longterm_stop_date, :realtime_start_datetime
   validates :name, :presence => true, :length => {:within => 1..180}

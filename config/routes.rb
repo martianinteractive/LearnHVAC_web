@@ -142,6 +142,8 @@ Learnhvac::Application.routes.draw do |map|
         get :access
       end
     end
+    
+    resources :public_scenarios, :only => [:create, :destroy]
   
   end
 
