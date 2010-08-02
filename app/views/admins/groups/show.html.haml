@@ -1,6 +1,6 @@
 - content_for :head do
   = javascript_include_tag 'tools/tooltip.min'
-  - javascript_tag do
+  = javascript_tag do
     $(document).ready(function() { $(".tip").tooltip(); });
 
 #tabs
@@ -29,10 +29,9 @@
         %th Invitation URL:
         %td= membership_register_url(@group.code)
         
-    %h3 Students
-
-    - if @group.students.empty?
-      %p There are no students registered under this group.
+    %h3 Members
+    - if @group.members.empty?
+      %p There are no members registered under this group.
     - else
       %table
         %thead
@@ -41,11 +40,11 @@
             %th Institution
             %th Email
             %th 
-        - @group.students.each do |student|
+        - @group.members.each do |member|
           %tr
-            %td= link_to student.name, admins_user_path(student, :role => student.role)
-            %td= link_to student.institution.name, admins_institution_path(student.institution)
-            %td= mail_to student.email
+            %td= link_to member.name, admins_user_path(member, :role => member.role)
+            %td= link_to member.institution.name, admins_institution_path(member.institution) if member.institution
+            %td= mail_to member.email
             
 
     %h3 Scenarios
