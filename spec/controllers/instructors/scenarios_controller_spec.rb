@@ -3,10 +3,13 @@ require File.dirname(__FILE__) + "/../../spec_helper"
 describe Instructors::ScenariosController do
   before(:each) do
     @admin           = Factory(:admin)
-    @user            = Factory(:instructor)
+    @instructor      = Factory(:instructor)
     @master_scenario = Factory(:master_scenario, :user => @admin)
-    @scenario        = Factory(:scenario, :user => @user, :master_scenario => @master_scenario) 
-    login_as(@user)
+    @scenario        = Factory(:scenario, :user => @instructor, :master_scenario => @master_scenario)
+    @group           = Factory(:group, :name => "test", :creator => @instructor)
+    @group_scenario  = Factory(:group_scenario, :scenario => @scenario, :group => @group)
+    @membership      = Factory(:membership, :member => @instructor, :group => @group)
+    login_as(@instructor)
   end
   
   describe "GET index" do
@@ -25,7 +28,7 @@ describe Instructors::ScenariosController do
     end
   end
   
-  describe "GET :obververs" do
+  describe "GET :access" do
     it "" do
       get :access, :id => @scenario.id
       response.should render_template(:access)
