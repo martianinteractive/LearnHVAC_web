@@ -1,6 +1,8 @@
 require File.dirname(__FILE__) + "/../../spec_helper"
 
 describe Instructors::GroupsController do
+  render_views
+  
   before(:each) do
     @instructor = Factory(:instructor)
     @group      = Factory(:group, :name => "Class 01", :instructor => @instructor)
