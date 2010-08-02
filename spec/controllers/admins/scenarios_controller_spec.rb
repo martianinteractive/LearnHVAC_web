@@ -2,10 +2,11 @@ require File.dirname(__FILE__) + "/../../spec_helper"
 
 describe Admins::ScenariosController do
   before(:each) do
-    admins_login #makes @admin available
+    @admin           = Factory(:admin)
     @instructor      = Factory(:instructor)
     @master_scenario = Factory(:master_scenario, :user => @admin)
     @scenario        = Factory(:scenario, :user => @instructor, :master_scenario => @master_scenario)
+    login_as(@admin)
   end
   
   describe "GET index" do
@@ -145,20 +146,5 @@ describe Admins::ScenariosController do
     end
   end
   
-  describe "Authorization" do
-    before(:each) do
-      user_logout
-      @instructor.role_code = User::ROLES[:instructor]
-      @instructor.save
-      login_as(@instructor)
-    end
-    
-    it "should require an admin user for all actions" do
-      authorize_actions(:id => @scenario.id) do
-        response.should be_redirect
-        flash[:notice].should == "You don't have privileges to access that page"
-      end
-    end
-  end
   
 end

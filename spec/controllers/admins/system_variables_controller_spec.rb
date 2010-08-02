@@ -3,7 +3,8 @@ require File.dirname(__FILE__) + "/../../spec_helper"
 describe Admins::SystemVariablesController do
 
   before(:each) do
-    admins_login
+    @admin = Factory(:admin)
+    login_as(@admin)
     @master_scenario = Factory(:master_scenario, :user => @admin)
     @system_variable = Factory(:system_variable, :master_scenario => @master_scenario)
   end

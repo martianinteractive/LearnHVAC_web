@@ -92,18 +92,4 @@ describe Admins::Settings::ClientVersionsController do
       response.should redirect_to(admins_settings_client_versions_path)
     end
   end
-  
-  describe "Authentication" do
-    before(:each) do
-      @admin.role_code = User::ROLES[:student]
-      @admin.save
-    end
-    
-    it "should require an admin user for all actions" do
-      authorize_actions(:id => @client_version.id) do
-        response.should be_redirect
-        flash[:notice].should == "You don't have privileges to access that page"
-      end
-    end
-  end
 end
