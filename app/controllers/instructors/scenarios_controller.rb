@@ -12,7 +12,7 @@ class Instructors::ScenariosController < Instructors::ApplicationController
   
   def access
     add_crumb @scenario.name, instructors_scenario_path(@scenario)
-    add_crumb "Observers", access_instructors_scenario_path(@scenario)
+    add_crumb "Access", access_instructors_scenario_path(@scenario)
   end
 
   def new
