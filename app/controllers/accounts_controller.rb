@@ -1,4 +1,5 @@
 class AccountsController < ApplicationController
+  before_filter :require_no_user, :only => [:new, :create]
   
   def new
     @account = User.new
