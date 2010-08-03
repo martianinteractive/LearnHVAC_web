@@ -25,6 +25,7 @@ class User < ActiveRecord::Base
   # Dynamically creates scopes for each role.
   ROLES.keys.each { |role| scope role.to_s.singularize, where("role_code = #{ROLES[role]}") }
   scope :admin_instructor, where("role_code = #{User::ROLES[:admin]} OR role_code = #{User::ROLES[:instructor]}")
+  scope :non_admin, where(["role_code != ?", User::ROLES[:admin]])
   scope :recently_created, where(["created_at > ?", 30.days.ago])
   scope :recently_updated, where(["updated_at > ?", 30.days.ago])
   scope :recent, :limit => 10, :order => "created_at DESC"

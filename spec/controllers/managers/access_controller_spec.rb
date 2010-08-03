@@ -25,12 +25,19 @@ describe Managers::AccessController do
   
   describe "POST :create" do
     it "" do
-      proc { post :create, :scenario_id => @scenario.id}.should change(UserScenario, :count).by(1)
+      proc { post :create, :scenario_id => @scenario.id }.should change(UserScenario, :count).by(1)
     end
     
     it "" do
       post :create, :scenario_id => @scenario.id
       redirect_to [:managers, @scenario, :access]
+    end
+  end
+  
+  describe "DELETE :destroy" do
+    it "" do
+      Factory(:user_scenario, :user => @manager, :scenario => @scenario)
+      proc { delete :destroy, :scenario_id => @scenario.id, :user_id => @manager.id }.should change(UserScenario, :count).by(-1)
     end
   end
   
