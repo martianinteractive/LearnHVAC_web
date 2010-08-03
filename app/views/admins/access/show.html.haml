@@ -3,18 +3,19 @@
     %li= link_to @scenario.name, admins_scenario_path(@scenario)
     %li.ui-tabs-selected= link_to "Access", [:admins, @scenario, :access]
     
-  #page_header
-    #subject_info
-      %h2 Who has access?
-      .subject_details= "Instructor: #{@scenario.user.name}"
-            
+  = render :partial => "/admins/scenarios/scenario_menu"
+              
   #inner_column
     - unless UserScenario.find_by_user_id_and_scenario_id(current_user.id, @scenario.id)
       %p
         Allow me to 
         = link_to "download", admins_scenario_access_path(@scenario.id), :method => :post
         this scenario.
-  
+        
+    %p 
+      Instructor:
+      %b= @scenario.user.name
+    
     - if @scenario.public?
       %p 
         This scenario is 
@@ -63,4 +64,5 @@
                 %td= link_to user.institution.name, admins_institution_path(user.institution) if user.institution
                 %td= mail_to user.email
                 %td= user.role
-  
+                %td= link_to image_tag("trashcan.gif"), admins_scenario_access_path(@scenario, :user_id => user.id), :method => :delete, :confirm => "Are you sure?"
+                

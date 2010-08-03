@@ -33,4 +33,11 @@ describe Admins::AccessController do
     end
   end
   
+  describe "DELETE :destroy" do
+    it "" do
+      Factory(:user_scenario, :user => @admin, :scenario => @scenario)
+      proc { delete :destroy, :scenario_id => @scenario.id, :user_id => @admin.id}.should change(UserScenario, :count).by(-1)
+    end
+  end
+  
 end
