@@ -1,20 +1,19 @@
 #tabs
   %ul
-    %li= link_to @scenario.name, admins_scenario_path(@scenario)
-    %li.ui-tabs-selected= link_to "Access", [:admins, @scenario, :access]
+    %li.ui-tabs-selected= link_to "Instructor Scenarios", admins_scenarios_path
+    %li= link_to "New Scenario", new_admins_scenario_path
     
   = render :partial => "/admins/scenarios/scenario_menu"
               
   #inner_column
     - unless UserScenario.find_by_user_id_and_scenario_id(current_user.id, @scenario.id)
-      %p
-        Allow me to 
-        = link_to "download", admins_scenario_access_path(@scenario.id), :method => :post
-        this scenario.
+      %fieldset.special
+        %legend Grant Me Access
+        %p After clicking the access button you will be able to access this scenario from the desktop application. 
+        .access-button.subject-buttons
+          = link_to admins_scenario_access_path(@scenario.id), :method => :post do
+            %button.button.large-plus-button{:type => "button"} Access
         
-    %p 
-      Instructor:
-      %b= @scenario.user.name
     
     - if @scenario.public?
       %p 
