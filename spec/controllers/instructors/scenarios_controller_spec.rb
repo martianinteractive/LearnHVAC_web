@@ -7,8 +7,8 @@ describe Instructors::ScenariosController do
     @master_scenario = Factory(:master_scenario, :user => @admin)
     @scenario        = Factory(:scenario, :user => @instructor, :master_scenario => @master_scenario)
     @group           = Factory(:group, :name => "test", :creator => @instructor)
+    @membership      = @group.memberships.first
     @group_scenario  = Factory(:group_scenario, :scenario => @scenario, :group => @group)
-    @membership      = Factory(:membership, :member => @instructor, :group => @group)
     login_as(@instructor)
   end
   
@@ -27,16 +27,7 @@ describe Instructors::ScenariosController do
       assigns(:scenario).should eq(@scenario)
     end
   end
-  
-  describe "GET :access" do
-    it "" do
-      get :access, :id => @scenario.id
-      response.should render_template(:access)
-      assigns(:scenario).should eq(@scenario)
-      assigns(:scenario).groups.should be_empty
-    end
-  end
-  
+    
   describe "GET new" do
     it "" do
       get :new
@@ -61,7 +52,7 @@ describe Instructors::ScenariosController do
       
       it "should assign the current user as the Scenario user" do
         post :create, :scenario => Factory.attributes_for(:scenario, :name => "new scenario", :master_scenario_id => @master_scenario.id)
-        assigns(:scenario).user.should == @user
+        assigns(:scenario).user.should == @instructor
       end
   
       it "redirects to the created scenario" do

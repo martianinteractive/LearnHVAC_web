@@ -1,7 +1,7 @@
 #tabs
   %ul
     %li= link_to @scenario.name, admins_scenario_path(@scenario)
-    %li.ui-tabs-selected= link_to "Access", access_admins_scenario_path(@scenario)
+    %li.ui-tabs-selected= link_to "Access", [:admins, @scenario, :access]
     
   #page_header
     #subject_info
@@ -12,7 +12,7 @@
     - unless UserScenario.find_by_user_id_and_scenario_id(current_user.id, @scenario.id)
       %p
         Allow me to 
-        = link_to "download", admins_public_scenarios_path(:scenario_id => @scenario.id), :method => :post
+        = link_to "download", admins_scenario_access_path(@scenario.id), :method => :post
         this scenario.
   
     - if @scenario.public?
@@ -64,4 +64,3 @@
                 %td= mail_to user.email
                 %td= user.role
   
-    

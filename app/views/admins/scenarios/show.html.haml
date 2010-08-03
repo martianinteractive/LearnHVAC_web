@@ -9,7 +9,7 @@
       &nbsp;
       = link_to "Variables", admins_scenario_scenario_variables_path(@scenario)
       &nbsp;
-      = link_to 'Who has access?', access_admins_scenario_path(@scenario)
+      = link_to 'Who has access?', [:admins, @scenario, :access]
       &nbsp;
       = link_to 'Delete', admins_scenario_path(@scenario), :confirm => 'Are you sure?', :method => :delete
 

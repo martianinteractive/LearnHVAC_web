@@ -1,6 +1,8 @@
 require File.dirname(__FILE__) + "/../../spec_helper"
 
 describe Admins::ScenariosController do
+  render_views 
+  
   before(:each) do
     @admin           = Factory(:admin)
     @instructor      = Factory(:instructor)
@@ -37,24 +39,6 @@ describe Admins::ScenariosController do
       get :show, :id => @scenario.id
       response.should render_template(:show)
       assigns(:scenario).should eq(@scenario)
-    end
-  end
-  
-  describe "GET access" do
-    before(:each) do
-      @group = Factory(:group, :creator => @instructor, :scenario_ids => [@scenario.id])
-    end
-    
-    it "" do
-      get :access, :id => @scenario.id
-      response.should render_template(:access)
-    end
-    
-    it "" do
-      get :access, :id => @scenario.id
-      assigns(:scenario).should eq(@scenario)
-      assigns(:scenario).groups.should_not be_empty
-      assigns(:scenario).groups.first.should eq(@group)
     end
   end
   

@@ -135,16 +135,13 @@ Learnhvac::Application.routes.draw do |map|
     
     resources :scenarios do
       resources :scenario_variables
+      resource  :access, :only => [:show, :create, :destroy], :controller => 'access'
+      
       collection do
         get :list
       end
-      member do
-        get :access
-      end
-    end
-    
-    resources :public_scenarios, :only => [:create, :destroy]
-  
+      
+    end  
   end
 
   root :to => 'dashboard#index'

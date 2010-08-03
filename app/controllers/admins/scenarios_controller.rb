@@ -15,11 +15,6 @@ class Admins::ScenariosController < Admins::ApplicationController
      add_crumb @scenario.name, admins_scenario_path(@scenario)
    end
    
-   def access
-     add_crumb @scenario.name, admins_scenario_path(@scenario)
-     add_crumb "Access", access_admins_scenario_path(@scenario)
-   end
-
    def new
      @scenario = Scenario.new
      add_crumb "New Scenario", new_admins_scenario_path
