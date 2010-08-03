@@ -79,13 +79,14 @@ Learnhvac::Application.routes.draw do |map|
     
     resources :scenarios do
       resources :variables, :controller => "scenario_variables"
+      resource  :access, :only => [:show, :create, :destroy], :controller => 'access'
+      
       collection do
         get :list
       end
-      member do
-        get :access
-      end
     end
+    
+    resources :public_scenarios, :only => [:create, :destroy]
   end
   
   ### Admin Routes.
@@ -137,11 +138,8 @@ Learnhvac::Application.routes.draw do |map|
       collection do
         get :list
       end
-      member do
-        get :access
-      end
-    end
-  
+      
+    end  
   end
 
   root :to => 'dashboard#index'

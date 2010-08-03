@@ -38,7 +38,7 @@ describe User do
   end
   
   it "should register an student as a member of the group's instructor institution" do
-    group = build_group( :creator => Factory(:instructor, :institution => Factory(:institution))
+    group = build_group( :creator => Factory(:instructor, :institution => Factory(:institution)))
     @user = Factory(:student, :group_code => group.code)
     @user.should be_valid
     @user.save
@@ -47,7 +47,7 @@ describe User do
   
   context "Group Register" do 
     before(:each) do
-      @group = build_group(:creator => Factory(:instructor, :institution => Factory(:institution))
+      @group = build_group(:creator => Factory(:instructor, :institution => Factory(:institution)))
       @user  = Factory(:student, :group_code => @group.code)
     end
   
@@ -64,9 +64,8 @@ describe User do
       proc { @user.register_group! }.should_not change(Membership, :count)
       proc { @user.register_group! }.should_not change(@user.reload.groups, :size)
     end
-    
   end
-  
+    
   context "on Callbacks" do
     
     describe "on destroy" do
