@@ -13,7 +13,7 @@
     - @groups.each do |group|
       %tr
         %td= link_to group.name, admins_class_path(group)
-        %td= link_to group.instructor.name, admins_user_path(group.instructor, :role => group.instructor.role)
+        %td= link_to group.creator.name, admins_user_path(group.creator, :role => group.creator.role)
         %td= group.members.count
   %br
   = will_paginate @groups

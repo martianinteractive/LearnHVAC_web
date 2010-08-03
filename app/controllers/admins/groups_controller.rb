@@ -52,7 +52,7 @@ class Admins::GroupsController < Admins::ApplicationController
   private
   
   def build_instructor
-    @instructor = User.find(params[:group][:instructor_id]) if params[:group] and params[:group][:instructor_id].present?
+    @instructor = User.find(params[:group][:creator_id]) if params[:group] and params[:group][:creator_id].present?
     @instructor ||= User.new 
   end
   

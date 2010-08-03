@@ -1,7 +1,7 @@
 - content_for :js_templates do
   :plain
     $(document).ready(function() { 
-      $("#group_instructor_id").change(function() { 
+      $("#group_creator_id").change(function() { 
         $.get("#{list_admins_scenarios_path}", { user_id: $(this).val() }, function(r) { $("#group_scenario_ids_").html(r) }) 
       }) 
     })
@@ -18,8 +18,8 @@
       = f.text_field :name
 
     .field 
-      = f.label :instructor
-      = f.select :instructor_id, User.admin_instructor.collect {|user| [ user.name, user.id ] }, { :prompt => 'Please select ...'}
+      = f.label :creator
+      = f.select :creator_id, User.admin_instructor.collect {|user| [ user.name, user.id ] }, { :prompt => 'Please select ...'}
 
     .field
       = f.label :scenarios

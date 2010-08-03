@@ -5,7 +5,7 @@ describe Group do
     @instructor       = Factory(:user)
     @master_scenario  = Factory(:master_scenario, :user => Factory(:admin))
     @scenario1        = Factory(:scenario, :name => "scene 1", :user => @instructor, :master_scenario => @master_scenario)
-    @group            = Factory(:group, :instructor => @instructor, :scenario_ids => [@scenario1.id])
+    @group            = Factory(:group, :creator => @instructor, :scenario_ids => [@scenario1.id])
   end
   
   it "" do
@@ -14,9 +14,9 @@ describe Group do
   
   it "should not be valid without instructor, name" do
     @group.name = ""
-    @group.instructor = nil
+    @group.creator = nil
     @group.should_not be_valid
-    [:name, :instructor].each { |gattr| @group.errors[gattr].sort.should == ["can't be blank"] }
+    [:name, :creator].each { |gattr| @group.errors[gattr].sort.should == ["can't be blank"] }
   end
   
   it "should validate code on update" do
@@ -30,9 +30,9 @@ describe Group do
   describe "Callbacks" do    
     describe "After create" do
       before(:each) do
-        @group2 = Factory(:group, :name => "class2", :instructor => @instructor)
-        @group3 = Factory(:group, :name => "class3", :instructor => @instructor)
-        @group4 = Factory.build(:group, :name => "class4", :instructor => @instructor)
+        @group2 = Factory(:group, :name => "class2", :creator => @instructor)
+        @group3 = Factory(:group, :name => "class3", :creator => @instructor)
+        @group4 = Factory.build(:group, :name => "class4", :creator => @instructor)
       end
       
       it "should set a unique valid code" do
@@ -47,7 +47,7 @@ describe Group do
       it "should create a membership for the group owner/instructor" do
         proc { @group4.save }.should change(Membership, :count).by(1)
         membership = Membership.last
-        membership.member.should == @group4.instructor
+        membership.member.should == @group4.creator
         membership.group.should == @group4        
       end
     end

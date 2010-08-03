@@ -1,7 +1,5 @@
 class MembershipsController < ApplicationController
   before_filter :require_student, :only => [:create]
-  before_filter :require_instructor, :only => [:destroy]
-  before_filter :find_group, :only => [:destroy]
   
   def create    
     if @group
@@ -19,25 +17,15 @@ class MembershipsController < ApplicationController
     end
   end
   
-  def destroy
-    @membership = @group.memberships.find(params[:id])
-    @membership.destroy
-    redirect_to instructors_class_path(@group) 
-  end
-  
   private 
-  
-  def find_group
-    @group = current_user.managed_groups.find(params[:group_id])
-  end
-  
+    
   # This method is re-defined here 'cause it's redirecting
   # to students_signup instead of login.
   def require_student
     @group = Group.find_by_code(params[:code])
     
     if logged_as?(:instructor)
-      if current_user == @group.instructor
+      if current_user == @group.creator
         flash[:notice] = "You already have joined this group as instructor."
         redirect_to instructors_class_path(@group)
       else

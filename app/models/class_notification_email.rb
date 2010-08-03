@@ -8,7 +8,7 @@ class ClassNotificationEmail < ActiveRecord::Base
   after_create :deliver_notification
   
   def from
-    "#{group.instructor.name} <#{Site.config['from']}>"
+    "#{group.creator.name} <#{Site.config['from']}>"
   end
   
   def subject

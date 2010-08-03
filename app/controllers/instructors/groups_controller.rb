@@ -21,7 +21,7 @@ class Instructors::GroupsController < Instructors::ApplicationController
 
   def create
     @group = Group.new(params[:group])
-    @group.instructor = current_user
+    @group.creator = current_user
     
     if @group.save
       redirect_to(instructors_class_path(@group), :notice => 'Group was successfully created.')

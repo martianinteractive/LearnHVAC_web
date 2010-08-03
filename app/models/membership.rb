@@ -5,6 +5,9 @@ class Membership < ActiveRecord::Base
   validates_presence_of :group, :member
   validates_uniqueness_of :member_id, :scope => :group_id 
   
+  scope :instructor_students, joins(:member).where("users.role_code in (?)", [User::ROLES[:student], User::ROLES[:admin]])
+  scope :for_students, joins(:member).where("users.role_code = #{User::ROLES[:student]}")
+  
   def recently_created?
     created_at > 20.minutes.ago
   end

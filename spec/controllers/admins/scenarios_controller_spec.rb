@@ -42,7 +42,7 @@ describe Admins::ScenariosController do
   
   describe "GET access" do
     before(:each) do
-      @group = Factory(:group, :instructor => @instructor, :scenario_ids => [@scenario.id])
+      @group = Factory(:group, :creator => @instructor, :scenario_ids => [@scenario.id])
     end
     
     it "" do

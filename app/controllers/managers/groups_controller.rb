@@ -12,7 +12,7 @@ class Managers::GroupsController < Managers::ApplicationController
   end
   
   def new
-    @group = Group.new(:instructor => @instructor)
+    @group = Group.new(:creator => @instructor)
     add_crumb "New Group", new_managers_class_path
   end
   
@@ -52,7 +52,7 @@ class Managers::GroupsController < Managers::ApplicationController
   
   def build_instructor 
     begin
-      @instructor = current_user.institution.users.instructor.find(params[:group][:instructor_id])
+      @instructor = current_user.institution.users.instructor.find(params[:group][:creator_id])
     rescue
       @instructor = User.new
     end

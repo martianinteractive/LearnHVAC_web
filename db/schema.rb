@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100802151348) do
+ActiveRecord::Schema.define(:version => 20100802205920) do
 
   create_table "class_notification_emails", :force => true do |t|
     t.integer  "class_id"
@@ -50,12 +50,12 @@ ActiveRecord::Schema.define(:version => 20100802151348) do
   create_table "groups", :force => true do |t|
     t.string   "name"
     t.string   "code"
-    t.integer  "instructor_id"
+    t.integer  "creator_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "groups", ["instructor_id"], :name => "index_groups_on_instructor_id"
+  add_index "groups", ["creator_id"], :name => "index_groups_on_instructor_id"
 
   create_table "institutions", :force => true do |t|
     t.string   "name"

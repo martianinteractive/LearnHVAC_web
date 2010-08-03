@@ -74,7 +74,7 @@ Learnhvac::Application.routes.draw do |map|
     resource :dashboard, :only => [:show]
     
     resources :classes, :controller => :groups do
-      resources :memberships
+      resources :memberships, :only => [:destroy]
     end
     
     resources :scenarios do
@@ -119,8 +119,7 @@ Learnhvac::Application.routes.draw do |map|
     end
     
     resources :classes, :controller => :groups do
-      #TODO: move students to groups scope.
-      resources :students, :only => [:index]
+      resources :memberships, :only => [:destroy], :shallow => true
     end
     
     scope ":role" do
