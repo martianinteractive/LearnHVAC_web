@@ -1,24 +1,9 @@
 class Instructors::AccessController < Instructors::ApplicationController
   before_filter :find_scenario, :add_crumbs
   inner_tabs :manage_access
-  subject_buttons :scenario, :only => :index
+  subject_buttons :scenario, :only => :show
   
-  def index
-  end
-  
-  def new
-  end
-  
-  def create
-  end
-  
-  def edit
-  end
-  
-  def update
-  end
-  
-  def destroy
+  def show
   end
   
   private
@@ -30,7 +15,7 @@ class Instructors::AccessController < Instructors::ApplicationController
   def add_crumbs
     add_crumb "Scenarios", instructors_scenarios_path
     add_crumb @scenario.name, instructors_scenario_path(@scenario)
-    add_crumb "Manage Access", instructors_scenario_accesses_path(@scenario)
+    add_crumb "Manage Access", instructors_scenario_access_path(@scenario)
   end
   
 end
