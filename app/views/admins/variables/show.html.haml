@@ -1,18 +1,13 @@
 #tabs
   %ul
-    %li= link_to @scenario.name, admins_scenario_path(@scenario) 
-    %li= link_to "Variables", admins_scenario_scenario_variables_path(@scenario)
-    %li= link_to 'New Variable', new_admins_scenario_scenario_variable_path(@scenario)
-    
-  #page_header
-    #subject_actions
-      = link_to 'Edit', edit_admins_scenario_scenario_variable_path(@scenario, @scenario_variable)
-      &nbsp;
-      = link_to 'Delete', admins_scenario_scenario_variable_path(@scenario, @scenario_variable), :confirm => 'Are you sure?', :method => :delete
+    %li= link_to "Instructor Scenarios", admins_scenarios_path
+    %li.ui-tabs-selected= link_to "New Scenario", new_admins_scenario_path
+  
+  = render :partial => "admins/scenarios/scenario_menu"
 
-    #subject_info
-      %h2= @scenario_variable.name
-      .subject_details=@scenario_variable.display_name
+  #subject_info
+    %h2= @scenario_variable.name
+    .subject_details=@scenario_variable.display_name
 
   #location.ui-widget.ui-widget-content.ui-corner-all
     %h4 Description

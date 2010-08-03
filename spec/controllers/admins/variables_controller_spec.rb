@@ -1,6 +1,7 @@
 require File.dirname(__FILE__) + "/../../spec_helper"
 
-describe Admins::ScenarioVariablesController do
+describe Admins::VariablesController do
+  render_views
   
   before(:each) do
     @admin              = Factory(:admin)
@@ -54,7 +55,7 @@ describe Admins::ScenarioVariablesController do
       
       it "redirects to the created scenario_variable" do
         post :create, :scenario_id => @scenario.id, :scenario_variable => Factory.attributes_for(:scenario_variable)
-        response.should redirect_to(admins_scenario_scenario_variable_path(@scenario, assigns(:scenario_variable)))
+        response.should redirect_to(admins_scenario_variable_path(@scenario, assigns(:scenario_variable)))
       end
     end
   
@@ -81,7 +82,7 @@ describe Admins::ScenarioVariablesController do
       
       it "redirects to the scenario_variable" do
         put :update, :scenario_id => @scenario.id, :id => @scenario_variable.id, :scenario_variable => { :name => "scenerio var" }
-        response.should redirect_to(admins_scenario_scenario_variable_path(@scenario, @scenario_variable))
+        response.should redirect_to(admins_scenario_variable_path(@scenario, @scenario_variable))
       end
     end
     
@@ -102,7 +103,7 @@ describe Admins::ScenarioVariablesController do
   
     it "redirects to the variables list" do
       delete :destroy, :scenario_id => @scenario.id, :id => @scenario_variable.id
-      response.should redirect_to(admins_scenario_scenario_variables_path(@scenario))
+      response.should redirect_to(admins_scenario_variables_path(@scenario))
     end
   end
   

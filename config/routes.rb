@@ -132,7 +132,8 @@ Learnhvac::Application.routes.draw do |map|
     end
     
     resources :scenarios do
-      resources :scenario_variables
+      resources :variables
+      resources :access
       collection do
         get :list
       end
