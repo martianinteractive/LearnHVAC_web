@@ -133,6 +133,10 @@ Learnhvac::Application.routes.draw do |map|
     end
     
     resources :scenarios do
+      resource :access, :only => [:show, :create, :destroy], :controller => 'access' do
+        resources :groups
+        resources :users
+      end
       resources :variables
       resource  :access, :only => [:show, :create, :destroy], :controller => :access
       

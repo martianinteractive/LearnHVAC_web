@@ -1,33 +1,42 @@
-.subject-buttons
-  - if @subject_buttons == :scenario
-    = link_to(edit_instructors_scenario_path(@scenario)) do
-      %button.button.large-green-button{:type=>"button"} Edit Scenario
+.subject-buttons.ui-helper-clearfix
+  %ul
+    - if @subject_buttons == :scenario
+      %li
+        = link_to(edit_instructors_scenario_path(@scenario)) do
+          %button.button.large-green-button{:type=>"button"} Edit Scenario
   
-    = link_to instructors_scenario_path(@scenario), :confirm => 'Are you sure?', :method => :delete do
-      %button.button.large-red-button{:type => "button"} Delete Scenario
+      %li
+        = link_to instructors_scenario_path(@scenario), :confirm => 'Are you sure?', :method => :delete do
+          %button.button.large-red-button{:type => "button"} Delete Scenario
 
-  - elsif @subject_buttons == :cancel_scenario
-    - if %(edit update).include?(controller.action_name)
-      = link_to(instructors_scenario_path(@scenario)) do
-        %button.button.medium-green-button{:type => "button"} Cancel
-    - elsif %(new create).include?(controller.action_name)
-      = link_to(instructors_scenarios_path) do
-        %button.button.medium-green-button{:type => "button"} Cancel
+    - elsif @subject_buttons == :cancel_scenario
+      %li
+        - if %(edit update).include?(controller.action_name)
+          = link_to(instructors_scenario_path(@scenario)) do
+            %button.button.medium-green-button{:type => "button"} Cancel
   
-  - elsif @subject_buttons == :variable
-    = link_to(edit_instructors_scenario_variable_path(@scenario, @scenario_variable)) do
-      %button.button.large-green-button{:type=>"button"} Edit Variable
+        - elsif %(new create).include?(controller.action_name)
+          = link_to(instructors_scenarios_path) do
+            %button.button.medium-green-button{:type => "button"} Cancel
   
-    = link_to instructors_scenario_variable_path(@scenario, @scenario_variable), :confirm => 'Are you sure?', :method => :delete do
-      %button.button.large-red-button{:type => "button"} Delete Variable
+    - elsif @subject_buttons == :variable
+      %li
+        = link_to(edit_instructors_scenario_variable_path(@scenario, @scenario_variable)) do
+          %button.button.large-green-button{:type=>"button"} Edit Variable
   
-  - elsif @subject_buttons == :cancel_variable
-    - if %(edit update).include?(controller.action_name)
-      = link_to(instructors_scenario_variable_path(@scenario, @scenario_variable)) do
-        %button.button.medium-green-button{:type => "button"} Cancel
-    - elsif %(new create).include?(controller.action_name)
-      = link_to(instructors_scenario_variables_path(@scenario)) do
-        %button.button.medium-green-button{:type => "button"} Cancel
+      %li
+        = link_to instructors_scenario_variable_path(@scenario, @scenario_variable), :confirm => 'Are you sure?', :method => :delete do
+          %button.button.large-red-button{:type => "button"} Delete Variable
+  
+    - elsif @subject_buttons == :cancel_variable
+      %li
+        - if %(edit update).include?(controller.action_name)
+          = link_to(instructors_scenario_variable_path(@scenario, @scenario_variable)) do
+            %button.button.medium-green-button{:type => "button"} Cancel
+
+        - elsif %(new create).include?(controller.action_name)
+          = link_to(instructors_scenario_variables_path(@scenario)) do
+            %button.button.medium-green-button{:type => "button"} Cancel
 
 
 - if @scenario.new_record?
