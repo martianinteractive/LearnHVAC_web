@@ -1,10 +1,9 @@
 class Admins::AccessController < Admins::ApplicationController
-  before_filter :find_scenario
+  before_filter :find_scenario, :add_crumbs
   subject_buttons :scenario, :only => [:show]
   inner_tabs :manage_access
   
   def show
-    add_crumb "Access", [:admins, @scenario, :access]
   end
   
   def create
@@ -28,6 +27,12 @@ class Admins::AccessController < Admins::ApplicationController
   
   def find_scenario
     @scenario = Scenario.find(params[:scenario_id])
+  end
+  
+  def add_crumbs
+    add_crumb "Scenarios", [:admins, :scenarios]
+    add_crumb @scenario.name, [:admins, @scenario]
+    add_crumb "Manage Access", [:admins, @scenario, :access]
   end
   
 end
