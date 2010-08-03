@@ -2,14 +2,8 @@ class Api::ScenariosController < Api::ApplicationController
   before_filter :require_http_auth_user
   
   def index
-    @scenarios = @current_user.groups.collect(&:scenarios).flatten
-    if @scenarios.any?
-      if @current_user.scenarios.any?
-        @scenarios << @current_user.scenarios
-      end
-    else
-      @scenarios = @current_user.scenarios
-    end
+    @scenarios = @current_user.all_scenarios
+    
     respond_to do |format| 
       format.xml
     end

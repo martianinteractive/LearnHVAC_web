@@ -95,6 +95,10 @@ class User < ActiveRecord::Base
     Membership.create(:group => group, :member => self)
   end
   
+  def all_scenarios
+    [scenarios, public_scenarios, groups.collect(&:scenarios)].flatten.uniq
+  end
+  
   private
   
   def group_presence
