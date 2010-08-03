@@ -27,7 +27,7 @@ describe Instructors::ScenariosController do
       assigns(:scenario).should eq(@scenario)
     end
   end
-    
+  
   describe "GET new" do
     it "" do
       get :new

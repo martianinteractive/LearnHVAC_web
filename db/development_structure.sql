@@ -19,7 +19,7 @@ CREATE TABLE `client_versions` (
   `updated_at` datetime default NULL,
   `description` text collate utf8_unicode_ci,
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 CREATE TABLE `colleges` (
   `id` int(11) NOT NULL auto_increment,
@@ -37,18 +37,18 @@ CREATE TABLE `group_scenarios` (
   `created_at` datetime default NULL,
   `updated_at` datetime default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 CREATE TABLE `groups` (
   `id` int(11) NOT NULL auto_increment,
   `name` varchar(255) collate utf8_unicode_ci default NULL,
   `code` varchar(255) collate utf8_unicode_ci default NULL,
-  `instructor_id` int(11) default NULL,
+  `creator_id` int(11) default NULL,
   `created_at` datetime default NULL,
   `updated_at` datetime default NULL,
   PRIMARY KEY  (`id`),
-  KEY `index_groups_on_instructor_id` (`instructor_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  KEY `index_groups_on_instructor_id` (`creator_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 CREATE TABLE `institutions` (
   `id` int(11) NOT NULL auto_increment,
@@ -59,7 +59,7 @@ CREATE TABLE `institutions` (
   `category_code` int(11) default NULL,
   PRIMARY KEY  (`id`),
   KEY `index_institutions_on_name` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 CREATE TABLE `master_scenarios` (
   `id` int(11) NOT NULL auto_increment,
@@ -72,18 +72,18 @@ CREATE TABLE `master_scenarios` (
   PRIMARY KEY  (`id`),
   KEY `index_master_scenarios_on_user_id` (`user_id`),
   KEY `index_master_scenarios_on_desktop_id` (`desktop_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 CREATE TABLE `memberships` (
   `id` int(11) NOT NULL auto_increment,
-  `student_id` int(11) default NULL,
+  `member_id` int(11) default NULL,
   `group_id` int(11) default NULL,
   `created_at` datetime default NULL,
   `updated_at` datetime default NULL,
   PRIMARY KEY  (`id`),
-  KEY `index_memberships_on_student_id` (`student_id`),
+  KEY `index_memberships_on_student_id` (`member_id`),
   KEY `index_memberships_on_group_id` (`group_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 CREATE TABLE `regions` (
   `id` int(11) NOT NULL auto_increment,
@@ -121,7 +121,7 @@ CREATE TABLE `scenarios` (
   KEY `index_scenarios_on_desktop_id` (`desktop_id`),
   KEY `index_scenarios_on_master_scenario_id` (`master_scenario_id`),
   KEY `index_scenarios_on_user_id` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 CREATE TABLE `schema_migrations` (
   `version` varchar(255) collate utf8_unicode_ci NOT NULL,
@@ -183,7 +183,7 @@ CREATE TABLE `users` (
   `phone` varchar(255) collate utf8_unicode_ci default NULL,
   PRIMARY KEY  (`id`),
   KEY `index_users_on_perishable_token` (`perishable_token`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 CREATE TABLE `variables` (
   `id` int(11) NOT NULL auto_increment,
@@ -225,7 +225,7 @@ CREATE TABLE `variables` (
   KEY `index_variables_on_high_value` (`high_value`),
   KEY `index_variables_on_initial_value` (`initial_value`),
   KEY `index_variables_on_io_type` (`io_type`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=486 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 INSERT INTO schema_migrations (version) VALUES ('20100302150214');
 
@@ -270,3 +270,7 @@ INSERT INTO schema_migrations (version) VALUES ('20100728172853');
 INSERT INTO schema_migrations (version) VALUES ('20100728202513');
 
 INSERT INTO schema_migrations (version) VALUES ('20100730165247');
+
+INSERT INTO schema_migrations (version) VALUES ('20100802151348');
+
+INSERT INTO schema_migrations (version) VALUES ('20100802205920');
