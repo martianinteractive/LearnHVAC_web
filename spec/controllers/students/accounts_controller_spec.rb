@@ -2,7 +2,7 @@ require File.dirname(__FILE__) + "/../../spec_helper"
 
 describe Students::AccountsController do
   before(:each) do
-    @group = Factory(:group, :name => "Class 01", :instructor => Factory(:instructor))
+    @group = Factory(:group, :name => "Class 01", :creator => Factory(:instructor))
   end
   
   describe "GET :new" do

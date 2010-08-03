@@ -1,5 +1,5 @@
 class Group < ActiveRecord::Base
-  belongs_to :instructor,         :class_name => "User", :foreign_key => "instructor_id"
+  belongs_to :creator,         :class_name => "User", :foreign_key => "creator_id"
   has_many :memberships,          :dependent => :destroy
   has_many :members,              :through => :memberships  
   has_many :group_scenarios,      :dependent => :destroy
@@ -10,7 +10,7 @@ class Group < ActiveRecord::Base
   
   validates :name, :presence => true, :length => { :maximum => 200 }, :uniqueness => true
   validates :code, :presence => true, :length => { :maximum => 200 }, :uniqueness => true, :on => :update
-  validates :instructor, :presence => true
+  validates :creator, :presence => true
   validate  :scenario_validator
   
   after_create :set_code
@@ -32,11 +32,11 @@ class Group < ActiveRecord::Base
   end
   
   def scenario_validator
-    scenarios.each {|scenario| errors.add(:base, "invalid scenario") if scenario.user != self.instructor }
+    scenarios.each {|scenario| errors.add(:base, "invalid scenario") if scenario.user != self.creator }
   end
   
   def create_owner_membership
-    Membership.create(:group => self, :member => self.instructor)
+    Membership.create(:group => self, :member => self.creator)
   end
   
 end

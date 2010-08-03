@@ -7,7 +7,7 @@ describe Managers::GroupsController do
     institution   = Factory(:institution)
     @manager      = Factory(:manager, :institution => institution)
     @instructor   = Factory(:instructor, :institution => institution)
-    @group        = Factory(:group, :name => "Class 01", :instructor => @instructor)
+    @group        = Factory(:group, :name => "Class 01", :creator => @instructor)
     login_as(@manager)
   end
   
@@ -49,12 +49,12 @@ describe Managers::GroupsController do
       
       it "should change the Group count" do
         proc{ post :create, 
-              :group => {:name => "monkeygroup", :code => "0973872", :instructor => @instructor} 
+              :group => {:name => "monkeygroup", :code => "0973872", :creator => @instructor} 
             }.should change(Group, :count).by(1)
       end
       
       it "redirects to the created group" do
-        post :create, :group => {:name => "monkeygroup", :code => "0973872", :instructor => @instructor} 
+        post :create, :group => {:name => "monkeygroup", :code => "0973872", :creator => @instructor} 
         response.should redirect_to(managers_class_path(assigns(:group)))
       end
     end

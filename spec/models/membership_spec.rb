@@ -3,7 +3,7 @@ require File.dirname(__FILE__) + "/../spec_helper"
 describe Membership do
   before(:each) do
     @student    = Factory(:student)
-    @group      = Factory(:group, :instructor => Factory(:instructor))
+    @group      = Factory(:group, :creator => Factory(:instructor))
     @membership = Factory.build(:membership, :group => @group, :student => @student)
   end
   

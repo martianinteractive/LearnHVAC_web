@@ -18,7 +18,7 @@
       %h2= @group.name
       .subject_details
         Lead by:
-        = link_to @group.instructor.name, admins_user_path(@group.instructor, :role => @group.instructor.role)
+        = link_to @group.creator.name, admins_user_path(@group.creator, :role => @group.creator.role)
         
   #inner_column
     %table
@@ -39,12 +39,15 @@
             %th Name
             %th Institution
             %th Email
+            %th Role
             %th 
         - @group.members.each do |member|
           %tr
             %td= link_to member.name, admins_user_path(member, :role => member.role)
             %td= link_to member.institution.name, admins_institution_path(member.institution) if member.institution
             %td= mail_to member.email
+            %td= member.role
+            %td= link_to image_tag("trashcan.gif"), admins_membership_path(@group.memberships.where(:member_id => member.id).first), :confirm => 'Are you sure?', :method => :delete
             
 
     %h3 Scenarios

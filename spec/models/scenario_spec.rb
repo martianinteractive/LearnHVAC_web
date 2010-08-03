@@ -15,21 +15,21 @@ describe Scenario do
     it "should be invalid without required attributes" do
       @scenario.should_not be_valid
       @scenario.errors[:user].should_not be_empty
-      @scenario.errors[:master_scenario_id].should_not be_empty
+      @scenario.errors[:master_scenario].should_not be_empty
       @scenario.errors[:name].should_not be_empty
     end
     
     it "should validate longterm dates" do
-      @scenario.update_attributes(:longterm_start_date => 1.day.from_now.strftime("%m/%d/%Y"), :longterm_stop_date => Time.now.strftime("%m/%d/%Y}"), :realtime_start_datetime => 10.minutes.from_now)
+      @scenario.update_attributes(:longterm_start_date => 1.day.from_now.strftime("%m/%d/%Y"), :longterm_stop_date => Time.now.strftime("%m/%d/%Y}"), :realtime_start_datetime => 25.hours.from_now)
       @scenario.should_not be_valid
       @scenario.errors[:longterm_start_date].should == ["should be set before the longterm stop date"]
       @scenario.errors[:longterm_stop_date].should == ["should be set after the longterm start date"]
-      @scenario.errors[:realtime_start_date].should == ["should be set between start and stop dates"]
-      @scenario.update_attributes(:longterm_stop_date => 2.day.from_now.strftime("%m/%d/%Y"), :name => "scenario", :user => @user, :master_scenario => @master_scenario)
+      @scenario.errors[:realtime_start_datetime].should == ["should be set between start and stop dates"]
+      @scenario.update_attributes(:longterm_stop_date => 2.days.from_now.strftime("%m/%d/%Y"), :name => "scenario", :user => @user, :master_scenario => @master_scenario)
       @scenario.should be_valid
-      @scenario.update_attributes(:realtime_start_date => 3.days.from_now.strftime("%m/%d/%Y}"))
+      @scenario.update_attributes(:realtime_start_datetime => 3.days.from_now.strftime("%m/%d/%Y}"))
       @scenario.should_not be_valid
-      @scenario.errors[:realtime_start_date].should == ["should be set between start and stop dates"]
+      @scenario.errors[:realtime_start_datetime].should == ["should be set between start and stop dates"]
     end
     
     it "" do
@@ -42,20 +42,6 @@ describe Scenario do
     end
   end
   
-  context "related associations" do
-    before(:each) do
-      @scenario.save
-    end
-    
-    pending "Fix scenario.groups spec"
-    describe "groups" do
-      # it "should find groups based on the groups_scenarios association" do
-      #   @group = Factory(:group, :instructor => @user, :scenarios_ids => [@scenario.id])
-      #   @scenario.reload.groups.should_not  be_empty
-      #   @scenario.reload.groups.first.should eq(@group)
-      # end
-    end
-  end
   
   context "scopes" do
     before(:each) do
@@ -80,24 +66,30 @@ describe Scenario do
       end
       
       it "should make a copy of the master_scenario.system_variables as scenario_variables" do
-        @master_scenario.system_variables.should have_at_least(3).variables
-        scenario_variables_count = @scenario.scenario_variables.count
+        @master_scenario.variables.should have_at_least(3).variables
+        scenario_variables_count = @scenario.variables.count
         @scenario.save
-        @scenario.scenario_variables.count.should == scenario_variables_count + @master_scenario.system_variables.count
+        @scenario.variables.count.should == scenario_variables_count + @master_scenario.variables.count
       end
       
       it "should copy the system_variables attributes" do
         @scenario.save
-        @scenario.scenario_variables.size.times do |i|
-          @scenario.scenario_variables[i].name.should == @master_scenario.system_variables[i].name
+        @scenario.variables.size.times do |i|
+          @scenario.variables[i].name.should == @master_scenario.variables[i].name
         end
       end
       
       it "should create the syste_variables copies as istance of ScenarioVariable" do
         @scenario.save
-        @scenario.scenario_variables.each { |sv| sv.should be_instance_of(ScenarioVariable) }
+        @scenario.variables.each { |sv| sv.should be_instance_of(ScenarioVariable) }
       end
       
+      it "should create a membership for the group owner/instructor" do
+        proc { @scenario.save }.should change(UserScenario, :count).by(1)
+        user_scenario = UserScenario.last
+        user_scenario.user.should == @scenario.user
+        user_scenario.scenario.should == @scenario
+      end
     end
   end
   

@@ -31,12 +31,17 @@
             %th Name
             %th Institution
             %th Email
+            %th Role
             %th 
         - @group.members.each do |member|
           %tr
             %td= member.name
             %td= member.institution.try(:name)
             %td= mail_to member.email
+            %td= member.role
+            %td
+              - if member.has_role?(:student) or member.has_role?(:instructor)
+                =link_to image_tag("trashcan.gif"), managers_class_membership_path(@group, @group.memberships.where(:member_id => member.id).first), :confirm => 'Are you sure?', :method => :delete
 
     %h3 Scenarios
 

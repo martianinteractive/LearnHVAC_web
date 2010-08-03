@@ -9,6 +9,12 @@
       .subject_details= "Instructor: #{@scenario.user.name}"
             
   #inner_column
+    - unless UserScenario.find_by_user_id_and_scenario_id(current_user.id, @scenario.id)
+      %p
+        Allow me to 
+        = link_to "download", admins_public_scenarios_path(:scenario_id => @scenario.id), :method => :post
+        this scenario.
+  
     - if @scenario.public?
       %p 
         This scenario is 
@@ -24,17 +30,38 @@
       %h3 Groups
       - if @scenario.groups.empty?
         %b This scenario hasn't been yet assigned to a group.
+        %br
+        %br
       - else
         %table.listing
           %thead
             %tr
               %th Name
               %th Students
-              %th Scenarios
+              %th Members
               %th Code
           - @scenario.groups.each do |group|
             %tr
               %td= link_to group.name, admins_class_path(group)
-              %td= group.students.count
+              %td= group.members.count
               %td= group.scenarios.count
               %td= group.code  
+              
+      - if @scenario.users.any?
+        %h3 People
+        %table
+          %thead
+            %tr
+              %th Name
+              %th Institution
+              %th Email
+              %th Role
+              %th 
+            - @scenario.users.each do |user|
+              %tr
+                %td= link_to user.name, admins_user_path(user, :role => user.role)
+                %td= link_to user.institution.name, admins_institution_path(user.institution) if user.institution
+                %td= mail_to user.email
+                %td= user.role
+  
+    

@@ -5,7 +5,7 @@ describe Admins::GroupsController do
   
   before(:each) do
     @instructor = Factory(:instructor)
-    @group      = Factory(:group, :name => "Class 01", :instructor => @instructor)
+    @group      = Factory(:group, :name => "Class 01", :creator => @instructor)
     admins_login
   end
   
@@ -65,7 +65,7 @@ describe Admins::GroupsController do
   
     describe "with invalid params" do
       it "" do
-        post :create, :group => Factory.attributes_for(:group, :name => @group.name, :instructor_id => @instructor.id)
+        post :create, :group => Factory.attributes_for(:group, :name => @group.name, :creator_id => @instructor.id)
         response.should render_template(:new)
       end
     end
