@@ -100,6 +100,12 @@ class User < ActiveRecord::Base
     [scenarios, public_scenarios, groups.collect(&:scenarios)].flatten.uniq
   end
   
+  def has_access_to?(scenario)
+    return true if user_scenarios.exists?(:scenario_id => scenario.id)
+    return true if groups.any? && groups.collect(&:scenarios).include?(scenario)
+    false
+  end
+  
   private
   
   def group_presence
