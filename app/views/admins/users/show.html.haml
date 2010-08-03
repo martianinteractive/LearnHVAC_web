@@ -1,21 +1,24 @@
 #tabs
   %ul
-    %li= link_to "Manage #{@user.role.to_s.pluralize.humanize}", admins_users_path(:role => @user.role)
+    %li.ui-tabs-selected= link_to "Manage #{@user.role.to_s.pluralize.humanize}", admins_users_path(:role => @user.role)
     %li= link_to "New #{@user.role.to_s.humanize}", new_admins_user_path(:role => @user.role)
 
-  #page_header
-    #subject_actions
-      = link_to 'Edit', edit_admins_user_path(@user, :role => @user.role)
-      &nbsp;|&nbsp;
-      = link_to 'Delete', admins_user_path(@user, :role => @user.role), :method => :delete, :confirm => "Are you sure?"
+  .subject-buttons.ui-helper-clearfix
+    %ul
+      %li
+        = link_to(edit_admins_user_path(@user, :role => @user.role)) do
+          %button.button.large-green-button{:type=>"button"} Edit User
+       
+      %li
+        = link_to admins_user_path(@user, :role => @user.role), :confirm => 'Are you sure?', :method => :delete do
+          %button.button.large-red-button{:type => "button"} Delete User
 
-    #subject_info
-      %h2= @user.name
-      .subject_details
-        - if @user.institution
-          #{@user.role} at #{link_to @user.institution.name, admins_institution_path(@user.institution)}
-        - else
-          #{@user.role}
+  %h2.subject-name= @user.name
+  .subject_details
+    - if @user.institution
+      #{@user.role} at #{link_to @user.institution.name, admins_institution_path(@user.institution)}
+    - else
+      = @user.role
   
   #location.ui-widget.ui-widget-content.ui-corner-all
     %h4 location

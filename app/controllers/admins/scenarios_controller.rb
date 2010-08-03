@@ -15,6 +15,9 @@ class Admins::ScenariosController < Admins::ApplicationController
     @scenarios = User.find(params[:user_id]).scenarios if params[:user_id].present?
     render :layout => false
   end
+  
+  def access
+  end
 
   def show
     add_crumb @scenario.name, admins_scenario_path(@scenario)

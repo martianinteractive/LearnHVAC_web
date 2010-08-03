@@ -3,8 +3,17 @@
     %li= link_to "Manage #{params[:role].pluralize.humanize}", admins_users_path("role" => params[:role])
     %li.ui-tabs-selected= link_to "New #{params[:role].humanize}", new_admins_user_path("role" => params[:role])
 
+  .subject-buttons.ui-helper-clearfix
+    %ul
+      %li
+        = link_to(admins_users_path(:role => params[:role])) do
+          %button.button.large-green-button{:type=>"button"} Cancel
+
   = form_for(@user,:url => admins_users_path(:role => params[:role]), :method => :post) do |f|
+    .form-instructions
+      %p Complete form below to create a new user.
     = render :partial => "form", :locals => { :f => f }
+
     .actions
       = submit_tag "Create"
       &nbsp;or&nbsp;
