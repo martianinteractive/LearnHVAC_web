@@ -15,7 +15,7 @@ class Instructors::AlertsController < Instructors::ApplicationController
   private
   
   def find_scenario
-    @scenario = current_user.scenarios.with_unread_alerts.criteria.id(params[:scenario_id]).first
+    @scenario = current_user.created_scenarios.with_unread_alerts.criteria.id(params[:scenario_id]).first
     add_crumb(@scenario.name, instructors_scenario_path(@scenario))
   end
   

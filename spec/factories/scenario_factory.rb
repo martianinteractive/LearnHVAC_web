@@ -13,5 +13,3 @@ Factory.define :master_scenario do |master_scenario|
   master_scenario.association :client_version, :factory => :client_version
 end
 
-Factory.define :user_scenario do |user_scenario|
-end

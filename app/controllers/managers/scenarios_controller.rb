@@ -11,7 +11,7 @@ class Managers::ScenariosController < Managers::ApplicationController
   end
     
   def list
-    @scenarios = current_user.institution.users.instructor.find(params[:user_id]).scenarios if params[:user_id].present?
+    @scenarios = current_user.institution.users.instructor.find(params[:user_id]).created_scenarios if params[:user_id].present?
     render :layout => false
   end
   
