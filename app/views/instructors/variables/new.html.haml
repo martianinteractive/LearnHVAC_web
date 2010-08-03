@@ -1,8 +1,9 @@
 #tabs
   %ul
-    %li= link_to @scenario.name, instructors_scenario_path(@scenario) 
-    %li= link_to "Variables", instructors_scenario_variables_path(@scenario)
-    %li.ui-tabs-selected= link_to 'New Variable', new_instructors_scenario_variable_path(@scenario)
+    %li.ui-tabs-selected= link_to "Scenarios", instructors_scenarios_path
+    %li= link_to "New Scenario", new_instructors_scenario_path
+
+  = render :partial => "instructors/scenarios/scenario_menu"
 
   = form_for([@scenario, @scenario_variable], :url => instructors_scenario_variables_path(@scenario)) do |f|
     = render :partial => "form", :locals => { :f => f }

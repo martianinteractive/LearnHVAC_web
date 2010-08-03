@@ -2,18 +2,8 @@
   %ul
     %li.ui-tabs-selected= link_to "Scenarios", instructors_scenarios_path
     %li= link_to "New Scenario", new_instructors_scenario_path
-    
-  #page_header
-    #subject_actions
-      = link_to "Scenario", instructors_scenario_path(@scenario)
-      &nbsp;
-      = link_to "Manage Variables", instructors_scenario_variables_path(@scenario)
-      &nbsp;
-      = link_to 'Who has access?', access_instructors_scenario_path(@scenario)
 
-    #subject_info
-      %h2= @scenario.name
-      .subject_details= @scenario.public? ? "Public" : "Private"
+  = render :partial => "instructors/scenarios/scenario_menu"
 
   %br
   %table.listing
@@ -38,6 +28,7 @@
         %td= variable.high_value
         %td
           = link_to image_tag('edit.gif'), edit_instructors_scenario_variable_path(@scenario, variable)
+          &nbsp;&nbsp;
           = link_to image_tag('trashcan.gif'), instructors_scenario_variable_path(@scenario, variable), :confirm => 'Are you sure?', :method => :delete
 
   %br

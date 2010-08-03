@@ -1,4 +1,7 @@
 class Instructors::ScenariosController < Instructors::ApplicationController
+  subject_buttons :scenario, :only => [:index, :show]
+  subject_buttons :cancel_scenario, :only => [:new, :edit, :create, :update]
+  inner_tabs :scenario_details
   before_filter :find_scenario, :only => [:show, :edit, :access, :update, :destroy]
   add_crumb("Scenarios") { |instance| instance.send :instructors_scenarios_path }
   
