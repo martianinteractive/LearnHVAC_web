@@ -59,4 +59,18 @@ describe Students::AccountsController do
       end
     end
   end
+  
+  describe "Authentication" do
+    before(:each) do
+      @user = Factory(:admin)
+      login_as @user
+    end
+    
+    it "should require NO user" do
+      authorize_actions({}, {:get => [:new], :post => [:create]}) do
+        response.should be_redirect
+        flash[:notice].should == "You must be logged out to access this page"
+      end
+    end
+  end
 end

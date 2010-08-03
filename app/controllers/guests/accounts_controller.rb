@@ -1,4 +1,5 @@
 class Guests::AccountsController < ApplicationController
+  before_filter :require_no_user
   
   def new
     @account = User.new

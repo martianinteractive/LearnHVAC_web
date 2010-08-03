@@ -16,7 +16,7 @@ describe AccountsController do
     end
     
     describe "a valid account" do
-      it "should save an not-active account" do
+      it "should save an non-active account" do
         post :create, :user => Factory.attributes_for(:user)
         assigns(:account).active?.should_not be(true)
       end
@@ -44,4 +44,17 @@ describe AccountsController do
     end
   end
   
+  describe "Authentication" do
+    before(:each) do
+      @user = Factory(:admin)
+      login_as @user
+    end
+    
+    it "should require NO user" do
+      authorize_actions({}, {:get => [:new], :post => [:create]}) do
+        response.should be_redirect
+        flash[:notice].should == "You must be logged out to access this page"
+      end
+    end
+  end
 end

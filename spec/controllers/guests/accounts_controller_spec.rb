@@ -1,6 +1,7 @@
 require File.dirname(__FILE__) + "/../../spec_helper"
 
 describe Guests::AccountsController do
+  render_views
   
   describe "GET :new" do
     it "should assign as @account" do
@@ -17,7 +18,7 @@ describe Guests::AccountsController do
     end
     
     describe "a valid account" do
-      it "should save an not-active account" do
+      it "should save an non-active account" do
         post :create, :user => Factory.attributes_for(:user)
         assigns(:account).active?.should_not be(true)
       end
@@ -44,6 +45,20 @@ describe Guests::AccountsController do
       it "" do
         post :create
         response.should render_template(:new)
+      end
+    end
+  end
+  
+  describe "Authentication" do
+    before(:each) do
+      @user = Factory(:admin)
+      login_as @user
+    end
+    
+    it "should require NO user" do
+      authorize_actions({}, {:get => [:new], :post => [:create]}) do
+        response.should be_redirect
+        flash[:notice].should == "You must be logged out to access this page"
       end
     end
   end
