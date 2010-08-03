@@ -38,12 +38,12 @@
             %tr
               %th Name
               %th Students
-              %th Scenarios
+              %th Members
               %th Code
           - @scenario.groups.each do |group|
             %tr
               %td= link_to group.name, admins_class_path(group)
-              %td= group.students.count
+              %td= group.members.count
               %td= group.scenarios.count
               %td= group.code  
               
