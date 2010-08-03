@@ -13,6 +13,11 @@ describe Admins::PublicScenariosController do
     it "" do
       proc { post :create, :scenario_id => @scenario.id}.should change(UserScenario, :count).by(1)
     end
+    
+    it "" do
+      post :create, :scenario_id => @scenario.id
+      response.should redirect_to([:access, :admins, @scenario])
+    end
   end
   
 end

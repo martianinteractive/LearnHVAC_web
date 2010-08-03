@@ -17,7 +17,7 @@ describe Managers::PublicScenariosController do
     
     it "" do
       post :create, :scenario_id => @scenario.id
-      redirect_to [:instructors, assigns(:user_scenario)]
+      redirect_to [:access, :instructors, assigns(:user_scenario)]
     end
   end
   

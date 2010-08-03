@@ -9,7 +9,7 @@ class Managers::PublicScenariosController < Managers::ApplicationController
       flash[:notice] = "There were problems while trying to grant you access to this scenario."
     end
     
-    redirect_to [:managers, @user_scenario.scenario]
+    redirect_to [:access, :managers, @user_scenario.scenario]
   end
   
   def destroy
