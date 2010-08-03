@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100802221501) do
+ActiveRecord::Schema.define(:version => 20100803161059) do
 
   create_table "class_notification_emails", :force => true do |t|
     t.integer  "class_id"
@@ -74,6 +74,7 @@ ActiveRecord::Schema.define(:version => 20100802221501) do
     t.integer  "desktop_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.time     "deleted_at"
   end
 
   add_index "master_scenarios", ["desktop_id"], :name => "index_master_scenarios_on_desktop_id"
