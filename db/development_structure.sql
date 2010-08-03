@@ -121,7 +121,7 @@ CREATE TABLE `scenarios` (
   KEY `index_scenarios_on_desktop_id` (`desktop_id`),
   KEY `index_scenarios_on_master_scenario_id` (`master_scenario_id`),
   KEY `index_scenarios_on_user_id` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 CREATE TABLE `schema_migrations` (
   `version` varchar(255) collate utf8_unicode_ci NOT NULL,
@@ -157,6 +157,17 @@ CREATE TABLE `tags` (
   `id` int(11) NOT NULL auto_increment,
   `name` varchar(255) collate utf8_unicode_ci default NULL,
   PRIMARY KEY  (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE `user_scenarios` (
+  `id` int(11) NOT NULL auto_increment,
+  `user_id` int(11) default NULL,
+  `scenario_id` int(11) default NULL,
+  `created_at` datetime default NULL,
+  `updated_at` datetime default NULL,
+  PRIMARY KEY  (`id`),
+  KEY `index_user_scenarios_on_user_id` (`user_id`),
+  KEY `index_user_scenarios_on_scenario_id` (`scenario_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 CREATE TABLE `users` (
@@ -225,7 +236,7 @@ CREATE TABLE `variables` (
   KEY `index_variables_on_high_value` (`high_value`),
   KEY `index_variables_on_initial_value` (`initial_value`),
   KEY `index_variables_on_io_type` (`io_type`)
-) ENGINE=InnoDB AUTO_INCREMENT=486 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2620 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 INSERT INTO schema_migrations (version) VALUES ('20100302150214');
 
@@ -274,3 +285,5 @@ INSERT INTO schema_migrations (version) VALUES ('20100730165247');
 INSERT INTO schema_migrations (version) VALUES ('20100802151348');
 
 INSERT INTO schema_migrations (version) VALUES ('20100802205920');
+
+INSERT INTO schema_migrations (version) VALUES ('20100802221501');

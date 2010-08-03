@@ -1,6 +1,13 @@
-class Admins::ScenarioVariablesController < Admins::ApplicationController
+class Admins::VariablesController < Admins::ApplicationController
   helper :sort
   include SortHelper
+  
+  subject_buttons :scenario, :only => :index
+  subject_buttons :variable, :only => :show
+  subject_buttons :cancel_variable, :only => [:new, :edit, :create, :update]
+  inner_tabs :manage_variables, :except => [:new]
+  inner_tabs :new_variable, :only => [:new]
+  
   before_filter :find_scenario, :add_crumbs
   before_filter :find_scenario_variable, :only => [:show, :edit, :update]
   before_filter :initialize_variables_sort, :only => [:index]
@@ -17,7 +24,7 @@ class Admins::ScenarioVariablesController < Admins::ApplicationController
   end
 
   def edit
-    add_crumb "Edit", edit_admins_scenario_scenario_variable_path(@scenario, @scenario_variable)
+    add_crumb "Edit", edit_admins_scenario_variable_path(@scenario, @scenario_variable)
   end
 
   def create
@@ -25,7 +32,7 @@ class Admins::ScenarioVariablesController < Admins::ApplicationController
     @scenario_variable.scenario = @scenario
 
     if @scenario_variable.save
-      redirect_to(admins_scenario_scenario_variable_path(@scenario, @scenario_variable), :notice => 'ScenarioVariable was successfully created.')
+      redirect_to(admins_scenario_variable_path(@scenario, @scenario_variable), :notice => 'Variable was successfully created.')
     else
       render :action => "new"
     end
@@ -33,7 +40,7 @@ class Admins::ScenarioVariablesController < Admins::ApplicationController
 
   def update
     if @scenario_variable.update_attributes(params[:scenario_variable])
-      redirect_to(admins_scenario_scenario_variable_path(@scenario, @scenario_variable), :notice => 'ScenarioVariable was successfully updated.')
+      redirect_to(admins_scenario_variable_path(@scenario, @scenario_variable), :notice => 'Variable was successfully updated.')
     else
       render :action => "edit"
     end
@@ -41,7 +48,7 @@ class Admins::ScenarioVariablesController < Admins::ApplicationController
 
   def destroy
     @scenario.variables.find(params[:id]).destroy
-    redirect_to(admins_scenario_scenario_variables_path(@scenario), :notice => 'ScenarioVariable was successfully deleted.')
+    redirect_to(admins_scenario_variables_path(@scenario), :notice => 'Variable was successfully deleted.')
   end
   
   
@@ -50,7 +57,7 @@ class Admins::ScenarioVariablesController < Admins::ApplicationController
   def add_crumbs
     add_crumb "Instructor Scenarios", admins_scenarios_path
     add_crumb @scenario.name, admins_scenario_path(@scenario)
-    add_crumb "Variables", admins_scenario_scenario_variables_path(@scenario)
+    add_crumb "Variables", admins_scenario_variables_path(@scenario)
   end
   
   def find_scenario
@@ -59,7 +66,7 @@ class Admins::ScenarioVariablesController < Admins::ApplicationController
   
   def find_scenario_variable
     @scenario_variable = @scenario.variables.find(params[:id])
-    add_crumb @scenario_variable.name, admins_scenario_scenario_variable_path(@scenario, @scenario_variable)
+    add_crumb @scenario_variable.name, admins_scenario_variable_path(@scenario, @scenario_variable)
   end
   
 end

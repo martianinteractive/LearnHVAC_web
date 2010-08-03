@@ -1,8 +1,9 @@
 #tabs
   %ul
-    %li= link_to @scenario.name, admins_scenario_path(@scenario) 
-    %li.ui-tabs-selected= link_to "Variables", admins_scenario_scenario_variables_path(@scenario)
-    %li= link_to 'New Variable', new_admins_scenario_scenario_variable_path(@scenario)
+    %li= link_to "Instructor Scenarios", admins_scenarios_path
+    %li.ui-tabs-selected= link_to "New Scenario", new_admins_scenario_path
+
+  = render :partial => "admins/scenarios/scenario_menu"
 
   %br
   %table.listing
@@ -20,14 +21,14 @@
       %tr
         %td= scenario_system_variable.index
         %td= scenario_system_variable.component
-        %td= link_to scenario_system_variable.name, admins_scenario_scenario_variable_path(@scenario, scenario_system_variable)
+        %td= link_to scenario_system_variable.name, admins_scenario_variable_path(@scenario, scenario_system_variable)
         %td= scenario_system_variable.io_type.to_s.upcase
         %td= scenario_system_variable.low_value
         %td= scenario_system_variable.initial_value
         %td= scenario_system_variable.high_value
         %td
-          = link_to image_tag('edit.gif'), edit_admins_scenario_scenario_variable_path(@scenario, scenario_system_variable)
-          = link_to image_tag('trashcan.gif'), admins_scenario_scenario_variable_path(@scenario, scenario_system_variable), :confirm => 'Are you sure?', :method => :delete
+          = link_to image_tag('edit.gif'), edit_admins_scenario_variable_path(@scenario, scenario_system_variable)
+          = link_to image_tag('trashcan.gif'), admins_scenario_variable_path(@scenario, scenario_system_variable), :confirm => 'Are you sure?', :method => :delete
         
   %br
   = will_paginate @scenario_variables
