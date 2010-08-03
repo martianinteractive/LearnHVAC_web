@@ -1,4 +1,5 @@
 class Students::AccountsController < ApplicationController
+  before_filter :require_no_user
   
   def new
     @group = Group.find_by_code(params[:code])
