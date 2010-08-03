@@ -12,7 +12,8 @@ class Admins::ScenariosController < Admins::ApplicationController
   end
 
   def list
-    @scenarios = User.find(params[:user_id]).scenarios if params[:user_id].present?
+    user = User.find(params[:user_id]) if params[:user_id]
+    @scenarios = user.created_scenarios if user
     render :layout => false
   end
 

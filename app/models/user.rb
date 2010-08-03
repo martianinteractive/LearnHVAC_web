@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   acts_as_authentic
   
   belongs_to :institution
-  has_many :scenarios
+  has_many :created_scenarios, :class_name => "Scenario"
   has_many :master_scenarios
   has_many :managed_groups, :class_name => "Group", :foreign_key => "creator_id", :dependent => :destroy
   has_many :memberships, :foreign_key => "member_id"
@@ -97,7 +97,7 @@ class User < ActiveRecord::Base
   end
   
   def all_scenarios
-    [scenarios, public_scenarios, groups.collect(&:scenarios)].flatten.uniq
+    [created_scenarios, public_scenarios, groups.collect(&:scenarios)].flatten.uniq
   end
   
   def has_access_to?(scenario)

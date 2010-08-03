@@ -6,7 +6,7 @@ class Instructors::ScenariosController < Instructors::ApplicationController
   add_crumb("Scenarios") { |instance| instance.send :instructors_scenarios_path }
   
   def index
-    @scenarios = current_user.scenarios.paginate :page => params[:page], :per_page => 25
+    @scenarios = current_user.created_scenarios.paginate :page => params[:page], :per_page => 25
   end
 
   def show
@@ -56,7 +56,7 @@ class Instructors::ScenariosController < Instructors::ApplicationController
   private
   
   def find_scenario
-    @scenario = current_user.scenarios.find(params[:id])
+    @scenario = current_user.created_scenarios.find(params[:id])
   end
   
 end

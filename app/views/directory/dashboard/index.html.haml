@@ -17,7 +17,7 @@
       .info
         = link_to user.name, directory_person_path(user)
         %span= role_and_institution_for(user)
-        %span= "scenarios #{user.scenarios.public.count}"
+        %span= "scenarios #{user.created_scenarios.public.count}"
     %br
     = link_to "view all", directory_people_path
     

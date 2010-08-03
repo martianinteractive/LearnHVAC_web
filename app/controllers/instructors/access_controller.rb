@@ -9,7 +9,7 @@ class Instructors::AccessController < Instructors::ApplicationController
   private
   
   def find_scenario
-    @scenario = current_user.scenarios.find(params[:scenario_id])
+    @scenario = current_user.created_scenarios.find(params[:scenario_id])
   end
   
   def add_crumbs
