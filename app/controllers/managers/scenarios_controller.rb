@@ -9,10 +9,7 @@ class Managers::ScenariosController < Managers::ApplicationController
   def show
     add_crumb @scenario.name, managers_scenario_path(@scenario)
   end
-  
-  def access
-  end
-  
+    
   def list
     @scenarios = current_user.institution.users.instructor.find(params[:user_id]).scenarios if params[:user_id].present?
     render :layout => false

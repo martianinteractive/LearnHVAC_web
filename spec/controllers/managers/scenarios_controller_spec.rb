@@ -1,6 +1,8 @@
 require File.dirname(__FILE__) + "/../../spec_helper"
 
 describe Managers::ScenariosController do
+  render_views
+  
   before(:each) do
     institution       = Factory(:institution)
     manager           = Factory(:manager, :institution => institution)
@@ -22,14 +24,6 @@ describe Managers::ScenariosController do
     it "" do
       get :show, :id => @scenario.id
       response.should render_template(:show)
-      assigns(:scenario).should eq(@scenario)
-    end
-  end
-  
-  describe "GET access" do
-    it "" do
-      get :access, :id => @scenario.id
-      response.should render_template(:access)
       assigns(:scenario).should eq(@scenario)
     end
   end
