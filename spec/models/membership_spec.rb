@@ -46,28 +46,4 @@ describe Membership do
     @membership.should_not be_recently_created
   end
   
-  describe ".to_group_memberships!" do
-    before(:each) do
-      @scenario_2 = Factory(:scenario, :master_scenario => @ms, :user => @instructor, :name => 'scenario_2')
-      @scenario_3 = Factory(:scenario, :master_scenario => @ms, :user => @instructor, :name => 'scenario_3')
-      
-      Factory(:group_scenario, :group => @group, :scenario => @scenario)
-      Factory(:group_scenario, :group => @group, :scenario => @scenario_2)
-      Factory(:group_scenario, :group => @group, :scenario => @scenario_3)
-      
-      @membership.group = @group.reload
-    end
-    
-    it "should create new group_memberships based on the group associated scenarios" do
-      proc { @membership.to_group_memberships! }.should change(GroupMembership, :count).by(3)
-    end
-    
-    it "should assign each scenario to group_memberships" do
-      group_memberships = @membership.to_group_memberships!
-      group_memberships.first.scenario.should == @scenario
-      group_memberships.second.scenario.should == @scenario_2
-      group_memberships.third.scenario.should == @scenario_3
-    end
-  end
-  
 end

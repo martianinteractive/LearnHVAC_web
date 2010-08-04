@@ -6,13 +6,20 @@ describe MembershipsController do
     @instructor   = Factory(:instructor)
     @group        = Factory(:group, :name => "Class 01", :creator => @instructor)
     @student      = Factory(:student)
+    ms            = Factory(:master_scenario, :user => Factory(:admin))
+    @scenario_1   = Factory(:scenario, :master_scenario => ms, :name => 'scenario 1', :user => @instructor)
+    @scenario_2   = Factory(:scenario, :master_scenario => ms, :name => 'scenario 2', :user => @instructor)
+    
+    Factory(:group_scenario, :group => @group, :scenario => @scenario_1)
+    Factory(:group_scenario, :group => @group, :scenario => @scenario_2)
+    
     login_as(@student)
   end
   
   describe "POST :create" do
     describe "with valid params" do
       it "" do
-        proc { post :create, :code => @group.code }.should change(GroupMembership, :count).by(1)
+        proc { post :create, :code => @group.code }.should change(GroupMembership, :count).by(2)
       end
       
       it "" do
@@ -24,7 +31,7 @@ describe MembershipsController do
     describe "with invalid params" do
       describe "Trying to register an existing membership" do
         before(:each) do
-          GroupMembership.create(:group => @group, :member => @student)
+          GroupMembership.create(:group => @group, :member => @student, :scenario => @scenario_1)
         end
         
         it { proc { post :create, :code => @group.code }.should_not change(GroupMembership, :count) }

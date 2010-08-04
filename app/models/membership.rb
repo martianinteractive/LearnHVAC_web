@@ -3,20 +3,14 @@ class Membership < ActiveRecord::Base
   belongs_to :scenario
   belongs_to :group
   
-  validates_presence_of :member, :scenario
+  validates_presence_of :member
+  validates_presence_of :scenario
   
   scope :instructor_students, joins(:member).where("users.role_code in (?)", [User::ROLES[:student], User::ROLES[:admin]])
   scope :for_students, joins(:member).where("users.role_code = #{User::ROLES[:student]}")
   
   def recently_created?
     created_at > 20.minutes.ago
-  end
-  
-  def to_group_memberships!
-    group.scenarios.each do |s|
-      GroupMembership.create(:member => self.member, :group => self.group, :scenario => s)
-    end
-    group.memberships
-  end
+  end  
   
 end

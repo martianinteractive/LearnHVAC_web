@@ -3,9 +3,9 @@ class MembershipsController < ApplicationController
   
   def create    
     if @group
-      @membership = Membership.find_or_initialize_by_group_id_and_member_id(:group_id => @group.id, :member_id => current_user.id)
+      @membership = GroupMembership.find_or_initialize_by_group_id_and_member_id(:group_id => @group.id, :member_id => current_user.id)
       
-      if @membership.new_record? and @membership.save
+      if @membership.new_record? and @membership.split!
         flash[:notice] = "Registered"
       elsif !@membership.new_record?
         flash[:notice] = @membership.recently_created? ? "Registered" : "You are already a member of this group."
