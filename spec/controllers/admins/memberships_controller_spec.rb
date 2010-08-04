@@ -24,11 +24,11 @@ describe Admins::MembershipsController do
   
   describe "DELETE :destroy" do
     it "should delete all the group memberships for the given user." do
-      proc { delete :destroy, :id => @student.id, :group_id => @group.id }.should change(GroupMembership, :count).by(-2)
+      proc { delete :destroy, :id => @student.id, :class_id => @group.id }.should change(GroupMembership, :count).by(-2)
     end
     
     it "" do
-      delete :destroy, :id => @student.id, :group_id => @group.id
+      delete :destroy, :id => @student.id, :class_id => @group.id
       response.should redirect_to(admins_class_path(@group))
     end
   end
