@@ -19,7 +19,7 @@ describe Admins::GroupsController do
   
   describe "GET show" do
     before(:each) do
-      Factory(:membership, :group => @group, :member => Factory(:student))
+      Factory(:membership, :group => @group, :member => Factory(:student), :scenario => Factory.stub(:scenario))
     end
     
     it "" do
