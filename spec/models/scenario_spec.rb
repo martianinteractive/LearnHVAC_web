@@ -85,8 +85,8 @@ describe Scenario do
       end
       
       it "should create a membership for the group owner/instructor" do
-        proc { @scenario.save }.should change(UserScenario, :count).by(1)
-        user_scenario = UserScenario.last
+        proc { @scenario.save }.should change(IndividualMembership, :count).by(1)
+        user_scenario = IndividualMembership.last
         user_scenario.user.should == @scenario.user
         user_scenario.scenario.should == @scenario
       end
