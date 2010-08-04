@@ -6,13 +6,13 @@ describe Admins::MembershipsController do
     admin         = Factory(:admin)
     instructor    = Factory(:instructor, :institution => institution)
     @group        = Factory(:group, :name => "Class 01", :creator => instructor)
-    @instructor_membership  = Membership.where(:group_id => @group.id, :member_id => instructor.id).first
+    @instructor_membership  = GroupMembership.where(:group_id => @group.id, :member_id => instructor.id).first
     login_as(admin)
   end
   
   describe "DELETE :destroy" do
     it "should delete a student membership" do
-      proc { delete :destroy, :id => @instructor_membership.id }.should change(Membership, :count).by(-1)
+      proc { delete :destroy, :id => @instructor_membership.id }.should change(GroupMembership, :count).by(-1)
     end
     
     it "" do

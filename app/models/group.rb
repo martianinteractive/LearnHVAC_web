@@ -1,6 +1,6 @@
 class Group < ActiveRecord::Base
-  belongs_to :creator,         :class_name => "User", :foreign_key => "creator_id"
-  has_many :memberships,          :dependent => :destroy
+  belongs_to :creator,            :class_name => "User", :foreign_key => "creator_id"
+  has_many :memberships,          :class_name => "GroupMembership", :dependent => :destroy
   has_many :members,              :through => :memberships  
   has_many :group_scenarios,      :dependent => :destroy
   has_many :scenarios,            :through => :group_scenarios
@@ -14,7 +14,7 @@ class Group < ActiveRecord::Base
   validate  :scenario_validator
   
   after_create :set_code
-  after_create :create_owner_membership
+  # after_create :create_owner_membership
   
   private
   
@@ -35,8 +35,8 @@ class Group < ActiveRecord::Base
     scenarios.each {|scenario| errors.add(:base, "invalid scenario") if scenario.user != self.creator }
   end
   
-  def create_owner_membership
-    Membership.create(:group => self, :member => self.creator)
-  end
+  # def create_owner_membership
+  #   Membership.create(:group => self, :member => self.creator)
+  # end
   
 end

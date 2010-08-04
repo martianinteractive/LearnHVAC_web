@@ -2,33 +2,36 @@ require File.dirname(__FILE__) + "/../spec_helper"
 
 describe Membership do
   before(:each) do
-    @student    = Factory(:student)
-    @group      = Factory(:group, :creator => Factory(:instructor))
-    @membership = Factory.build(:membership, :group => @group, :student => @student)
+    @admin      = Factory(:admin)
+    @instructor = Factory(:instructor)
+    @group      = Factory(:group, :creator => @instructor)
+    @ms         = Factory(:master_scenario, :user => @admin, :client_version => Factory(:client_version))
+    @scenario   = Factory(:scenario, :master_scenario => @ms, :user => @instructor)
+    @membership = Factory.build(:membership, :scenario => @scenario, :member => @admin)
   end
   
   it "" do
     @membership.should be_valid
   end
   
-  it "should not be valid without group" do
-    @membership.group = nil
+  it "should not be valid without scenario" do
+    @membership.scenario = nil
     @membership.should_not be_valid
-    @membership.errors[:group].should_not be_empty
+    @membership.errors[:scenario].should_not be_empty
   end
   
-  it "should not be valid without student" do
-    @membership.student = nil
+  it "should not be valid without member" do
+    @membership.member = nil
     @membership.should_not be_valid
-    @membership.errors[:student].should_not be_empty
+    @membership.errors[:member].should_not be_empty
   end
   
-  it "should validates uniqueness of group_student" do
-    @membership.save
-    membership = Factory.build(:membership, :group => @group, :student => @student)
-    membership.should_not be_valid
-    membership.errors[:student_id].should_not be_empty
-  end
+  # it "should validates uniqueness of group_student" do
+  #   @membership.save
+  #   membership = Factory.build(:membership, :group => @group, :student => @student)
+  #   membership.should_not be_valid
+  #   membership.errors[:student_id].should_not be_empty
+  # end
   
   it "should be recently_created if created less than 20 minutes ago" do
     @membership.save
@@ -41,6 +44,30 @@ describe Membership do
     @membership.save
     @membership.expects(:created_at).returns(20.minutes.ago)
     @membership.should_not be_recently_created
+  end
+  
+  describe ".to_group_memberships!" do
+    before(:each) do
+      @scenario_2 = Factory(:scenario, :master_scenario => @ms, :user => @instructor, :name => 'scenario_2')
+      @scenario_3 = Factory(:scenario, :master_scenario => @ms, :user => @instructor, :name => 'scenario_3')
+      
+      Factory(:group_scenario, :group => @group, :scenario => @scenario)
+      Factory(:group_scenario, :group => @group, :scenario => @scenario_2)
+      Factory(:group_scenario, :group => @group, :scenario => @scenario_3)
+      
+      @membership.group = @group.reload
+    end
+    
+    it "should create new group_memberships based on the group associated scenarios" do
+      proc { @membership.to_group_memberships! }.should change(GroupMembership, :count).by(3)
+    end
+    
+    it "should assign each scenario to group_memberships" do
+      group_memberships = @membership.to_group_memberships!
+      group_memberships.first.scenario.should == @scenario
+      group_memberships.second.scenario.should == @scenario_2
+      group_memberships.third.scenario.should == @scenario_3
+    end
   end
   
 end

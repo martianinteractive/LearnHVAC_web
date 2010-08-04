@@ -12,7 +12,7 @@ describe MembershipsController do
   describe "POST :create" do
     describe "with valid params" do
       it "" do
-        proc { post :create, :code => @group.code }.should change(Membership, :count).by(1)
+        proc { post :create, :code => @group.code }.should change(GroupMembership, :count).by(1)
       end
       
       it "" do
@@ -24,10 +24,10 @@ describe MembershipsController do
     describe "with invalid params" do
       describe "Trying to register an existing membership" do
         before(:each) do
-          Membership.create(:group => @group, :member => @student)
+          GroupMembership.create(:group => @group, :member => @student)
         end
         
-        it { proc { post :create, :code => @group.code }.should_not change(Membership, :count) }
+        it { proc { post :create, :code => @group.code }.should_not change(GroupMembership, :count) }
         
         it "" do
           post :create, :code => @group.code
@@ -39,7 +39,7 @@ describe MembershipsController do
         describe "and the instructor is the group instructor" do
           before { login_as(@instructor) }
         
-          it { proc { post :create, :code => @group.code }.should_not change(Membership, :count) }
+          it { proc { post :create, :code => @group.code }.should_not change(GroupMembership, :count) }
         
           it "" do
             post :create, :code => @group.code

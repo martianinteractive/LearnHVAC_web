@@ -42,7 +42,7 @@ describe Students::AccountsController do
       end
       
       it "should create membership if a valid group code is given" do
-        proc { post :create, :code => @group.code, :user => Factory.attributes_for(:user, :group_code => @group.code) }.should change(Membership, :count).by(1)
+        proc { post :create, :code => @group.code, :user => Factory.attributes_for(:user, :group_code => @group.code) }.should change(GroupMembership, :count).by(1)
       end
       
       it "should assign the user to the group" do

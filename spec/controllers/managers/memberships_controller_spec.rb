@@ -13,7 +13,7 @@ describe Managers::MembershipsController do
   
   describe "DELETE :destroy" do
     it "" do
-      proc { delete :destroy, :class_id => @group.id, :id => @membership.id }.should change(Membership, :count).by(-1)
+      proc { delete :destroy, :class_id => @group.id, :id => @membership.id }.should change(GroupMembership, :count).by(-1)
     end
     
     it "" do

@@ -13,7 +13,7 @@ describe Instructors::MembershipsController do
   
   describe "DELETE :destroy" do
     it "should delete a student membership" do
-      proc { delete :destroy, :class_id => @group.id, :id => @student_membership.id }.should change(Membership, :count).by(-1)
+      proc { delete :destroy, :class_id => @group.id, :id => @student_membership.id }.should change(GroupMembership, :count).by(-1)
     end
     
     it "" do

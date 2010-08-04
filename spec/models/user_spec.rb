@@ -52,7 +52,7 @@ describe User do
   #   end
   # 
   #   it "" do
-  #     proc { @user.register_group! }.should change(Membership, :count).by(1)
+  #     proc { @user.register_group! }.should change(GroupMembership, :count).by(1)
   #   end
   # 
   #   it "" do
@@ -61,7 +61,7 @@ describe User do
   #   
   #   it "should not register a student without group_code" do
   #     @user.group_code = nil
-  #     proc { @user.register_group! }.should_not change(Membership, :count)
+  #     proc { @user.register_group! }.should_not change(GroupMembership, :count)
   #     proc { @user.register_group! }.should_not change(@user.reload.groups, :size)
   #   end
   # end
