@@ -7,7 +7,7 @@ class GroupMembership < Membership
     group.scenarios.each do |s|
       self.class.create(:member => self.member, :group => self.group, :scenario => s)
     end
-    group.memberships
+    group.memberships.where(:member_id => member.id)
   end
   
 end
