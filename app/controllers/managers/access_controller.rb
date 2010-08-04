@@ -5,9 +5,9 @@ class Managers::AccessController < Managers::ApplicationController
   end
   
   def create
-    @user_scenario = @scenario.user_scenarios.new(:user => current_user)
+    @individual_membership = @scenario.individual_memberships.new(:member => current_user)
     
-    if @user_scenario.save
+    if @individual_membership.save
       flash[:notice] = "You can now download the #{@scenario.name} scenario."
     else
       flash[:notice] = "There were problems while trying to grant you access to this scenario."
@@ -17,9 +17,9 @@ class Managers::AccessController < Managers::ApplicationController
   end
   
   def destroy
-    user = current_user.institution.users.non_admin.find(params[:user_id])
-    @user_scenario = @scenario.user_scenarios.where(:user_id => user.id, :scenario_id => @scenario.id).first
-    @user_scenario.destroy
+    user = current_user.institution.users.non_admin.find(params[:member_id])
+    @individual_membership = @scenario.individual_memberships.where(:member_id => user.id, :scenario_id => @scenario.id).first
+    @individual_membership.destroy
     redirect_to([:managers, @scenario, :access])
   end
   

@@ -9,7 +9,7 @@
       .subject_details= "Instructor: #{@scenario.user.name}"
 
   #inner_column
-    - unless current_user.public_scenarios.where('user_scenarios.scenario_id' => @scenario.id).first
+    - unless current_user.individual_scenarios.where('memberships.scenario_id' => @scenario.id).first
       %p
         Allow me to 
         = link_to "download", managers_scenario_access_path('scenario_id' => @scenario.id), :method => :post
@@ -61,4 +61,4 @@
                 %td= user.institution.try(:name)
                 %td= mail_to user.email
                 %td= user.role
-                %td= link_to(image_tag("trashcan.gif"), managers_scenario_access_path(@scenario, :user_id => user.id), :method => :delete, :confirm => "Are you sure?") unless user.has_role?(:admin)
+                %td= link_to(image_tag("trashcan.gif"), managers_scenario_access_path(@scenario, :member_id => user.id), :method => :delete, :confirm => "Are you sure?") unless user.has_role?(:admin)

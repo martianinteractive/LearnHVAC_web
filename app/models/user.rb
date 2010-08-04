@@ -11,9 +11,9 @@ class User < ActiveRecord::Base
   has_many :memberships, :foreign_key => "member_id"
   has_many :groups, :through => :memberships, :uniq => true
   
-  has_many :user_scenarios
+  has_many :individual_memberships, :foreign_key => "member_id"
   # let's name 'em public scenarios for now.
-  has_many :public_scenarios, :through => :user_scenarios, :source => :scenario
+  has_many :individual_scenarios, :through => :individual_memberships, :source => :scenario
   
   attr_accessor :group_code, :require_group_code
   attr_protected :active, :role_code, :enabled
@@ -98,7 +98,7 @@ class User < ActiveRecord::Base
   end
   
   def all_scenarios
-    [created_scenarios, public_scenarios, groups.collect(&:scenarios)].flatten.uniq
+    [created_scenarios, individual_scenarios, groups.collect(&:scenarios)].flatten.uniq
   end
   
   def has_access_to?(scenario)

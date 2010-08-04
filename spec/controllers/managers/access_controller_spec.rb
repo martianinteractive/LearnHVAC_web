@@ -25,7 +25,7 @@ describe Managers::AccessController do
   
   describe "POST :create" do
     it "" do
-      proc { post :create, :scenario_id => @scenario.id }.should change(UserScenario, :count).by(1)
+      proc { post :create, :scenario_id => @scenario.id }.should change(IndividualMembership, :count).by(1)
     end
     
     it "" do
@@ -36,8 +36,8 @@ describe Managers::AccessController do
   
   describe "DELETE :destroy" do
     it "" do
-      Factory(:user_scenario, :user => @manager, :scenario => @scenario)
-      proc { delete :destroy, :scenario_id => @scenario.id, :user_id => @manager.id }.should change(UserScenario, :count).by(-1)
+      Factory(:individual_membership, :member => @manager, :scenario => @scenario)
+      proc { delete :destroy, :scenario_id => @scenario.id, :member_id => @manager.id }.should change(IndividualMembership, :count).by(-1)
     end
   end
   
