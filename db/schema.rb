@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100804224613) do
+ActiveRecord::Schema.define(:version => 20100804231452) do
 
   create_table "class_notification_emails", :force => true do |t|
     t.integer  "class_id"
@@ -86,7 +86,7 @@ ActiveRecord::Schema.define(:version => 20100804224613) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "type"
-    t.string   "member_type"
+    t.string   "member_role"
     t.integer  "scenario_id"
   end
 

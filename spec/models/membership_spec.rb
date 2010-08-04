@@ -25,14 +25,7 @@ describe Membership do
     @membership.should_not be_valid
     @membership.errors[:member].should_not be_empty
   end
-  
-  # it "should validates uniqueness of group_student" do
-  #   @membership.save
-  #   membership = Factory.build(:membership, :group => @group, :student => @student)
-  #   membership.should_not be_valid
-  #   membership.errors[:student_id].should_not be_empty
-  # end
-  
+    
   it "should be recently_created if created less than 20 minutes ago" do
     @membership.save
     @membership.should be_recently_created
@@ -44,6 +37,16 @@ describe Membership do
     @membership.save
     @membership.expects(:created_at).returns(20.minutes.ago)
     @membership.should_not be_recently_created
+  end
+  
+  describe "callbacks" do
+    describe "before_create" do
+      it "should set the member role" do
+        @membership.member_role.should be_nil
+        @membership.save
+        @membership.member_role.should == @admin.role.to_s
+      end
+    end
   end
   
 end
