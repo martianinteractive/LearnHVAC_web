@@ -8,8 +8,8 @@ class User < ActiveRecord::Base
   has_many :created_scenarios, :class_name => "Scenario"
   has_many :master_scenarios
   has_many :managed_groups, :class_name => "Group", :foreign_key => "creator_id", :dependent => :destroy
-  has_many :memberships, :foreign_key => "member_id"
-  has_many :groups, :through => :memberships, :uniq => true
+  has_many :group_memberships, :foreign_key => "member_id"
+  has_many :groups, :through => :group_memberships, :uniq => true
   
   has_many :individual_memberships, :foreign_key => "member_id"
   # let's name 'em public scenarios for now.
