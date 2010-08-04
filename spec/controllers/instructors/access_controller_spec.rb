@@ -8,7 +8,7 @@ describe Instructors::AccessController do
     master_scenario   = Factory(:master_scenario, :user => @admin)
     @scenario         = Factory(:scenario, :user => @instructor, :master_scenario => master_scenario)
     @group            = Factory(:group, :creator => @instructor, :scenario_ids => [@scenario.id])
-    @user_scenario    = Factory(:user_scenario, :user => @admin, :scenario => @scenario)
+    @individual_membership  = Factory(:individual_membership, :member => @admin, :scenario => @scenario)
     login_as @instructor
   end
   
