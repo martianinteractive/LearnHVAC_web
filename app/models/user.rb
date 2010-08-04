@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   has_many :master_scenarios
   has_many :managed_groups, :class_name => "Group", :foreign_key => "creator_id", :dependent => :destroy
   has_many :memberships, :foreign_key => "member_id"
-  has_many :groups, :through => :memberships
+  has_many :groups, :through => :memberships, :uniq => true
   
   has_many :user_scenarios
   # let's name 'em public scenarios for now.
