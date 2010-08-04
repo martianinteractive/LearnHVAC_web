@@ -24,7 +24,7 @@ describe Admins::AccessController do
   
   describe "POST :create" do
     it "" do
-      proc { post :create, :scenario_id => @scenario.id}.should change(UserScenario, :count).by(1)
+      proc { post :create, :scenario_id => @scenario.id}.should change(IndividualMembership, :count).by(1)
     end
     
     it "" do
@@ -35,8 +35,8 @@ describe Admins::AccessController do
   
   describe "DELETE :destroy" do
     it "" do
-      Factory(:user_scenario, :user => @admin, :scenario => @scenario)
-      proc { delete :destroy, :scenario_id => @scenario.id, :user_id => @admin.id}.should change(UserScenario, :count).by(-1)
+      Factory(:individual_membership, :member => @admin, :scenario => @scenario)
+      proc { delete :destroy, :scenario_id => @scenario.id, :member_id => @admin.id}.should change(IndividualMembership, :count).by(-1)
     end
   end
   
