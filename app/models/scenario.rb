@@ -6,8 +6,8 @@ class Scenario < ActiveRecord::Base
   has_many :alerts,             :class_name => "ScenarioAlert"
   has_many :group_scenarios,    :dependent => :destroy
   has_many :groups,             :through => :group_scenarios
-  has_many :user_scenarios,     :dependent => :destroy
-  has_many :users,              :through => :user_scenarios
+  has_many :memberships,        :dependent => :destroy
+  has_many :users,              :through => :memberships, :source => :member
   
   validates_presence_of :master_scenario, :user, :longterm_start_date, :longterm_stop_date, :realtime_start_datetime
   validates :name, :presence => true, :length => {:within => 1..180}
@@ -15,7 +15,7 @@ class Scenario < ActiveRecord::Base
   
   before_create :set_client_version
   after_create :copy_variables
-  after_create :create_user_scenario
+  # after_create :create_user_scenario
   
   scope :recently_created, where(["scenarios.created_at > ?", 30.days.ago.utc])
   scope :recently_updated, where(["scenarios.updated_at > ?", 30.days.ago.utc])
@@ -40,8 +40,8 @@ class Scenario < ActiveRecord::Base
     errors.add(:realtime_start_datetime, "should be set between start and stop dates") if (realtime_start_datetime < longterm_start_date) or (realtime_start_datetime > longterm_stop_date) 
   end
   
-  def create_user_scenario
-    UserScenario.create(:scenario => self, :user => self.user)
-  end
+  # def create_user_scenario
+  #   UserScenario.create(:scenario => self, :user => self.user)
+  # end
   
 end
