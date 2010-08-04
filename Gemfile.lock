@@ -1,11 +1,3 @@
-GIT
-  remote: http://github.com/voxxit/authlogic.git
-  revision: 6044f6b
-  branch: rails3
-  specs:
-    authlogic (2.1.5)
-      activesupport
-
 GEM
   remote: http://rubygems.org/
   specs:
@@ -116,7 +108,6 @@ PLATFORMS
 DEPENDENCIES
   acts-as-taggable-on (= 2.0.0.rc1)
   addressable (= 2.1.1)
-  authlogic!
   builder
   compass (= 0.10.2)
   factory_girl_rails
