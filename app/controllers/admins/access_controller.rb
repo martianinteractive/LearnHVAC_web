@@ -3,7 +3,7 @@ class Admins::AccessController < Admins::ApplicationController
   subject_buttons :scenario, :only => [:show]
   inner_tabs :manage_access
   
-  def show
+  def index
     @memberships = @scenario.memberships.includes(:member).paginate(:page => params[:page], :per_page => 50)
   end
   
@@ -15,13 +15,13 @@ class Admins::AccessController < Admins::ApplicationController
     else
       flash[:notice] = "There were problems while trying to grant you access to this scenario."
     end
-    redirect_to [:admins, @scenario, :access]
+    redirect_to [:admins, @scenario, :accesses]
   end
   
   def destroy
     @individual_membership = IndividualMembership.find(params[:id])
     @individual_membership.destroy
-    redirect_to [:admins, @scenario, :access]
+    redirect_to [:admins, @scenario, :accesses]
   end
   
   private
@@ -33,7 +33,7 @@ class Admins::AccessController < Admins::ApplicationController
   def add_crumbs
     add_crumb "Scenarios", [:admins, :scenarios]
     add_crumb @scenario.name, [:admins, @scenario]
-    add_crumb "Manage Access", [:admins, @scenario, :access]
+    add_crumb "Manage Access", [:admins, @scenario, :accesses]
   end
   
 end

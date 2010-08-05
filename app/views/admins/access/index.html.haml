@@ -11,7 +11,7 @@
         %legend Grant Me Access
         %p After clicking the access button you will be able to access this scenario from the desktop application. 
         .access-button.subject-buttons
-          = link_to admins_scenario_access_path(@scenario.id), :method => :post do
+          = link_to [:admins, @scenario, :accesses], :method => :post do
             %button.button.large-plus-button{:type => "button"} Access
         
     
@@ -64,7 +64,7 @@
                 %td= link_to member.institution.name, admins_institution_path(member.institution) if member.institution
                 %td= mail_to member.email
                 %td= member.role
-                %td= link_to image_tag("trashcan.gif"), admins_scenario_access_path(membership), :method => :delete, :confirm => "Are you sure?"
+                %td= link_to image_tag("trashcan.gif"), [:admins, @scenario, :accesses], :method => :delete, :confirm => "Are you sure?"
                 
         %br
         = will_paginate @memberships

@@ -131,9 +131,8 @@ Learnhvac::Application.routes.draw do |map|
     end
     
     resources :scenarios do
-      resource :access, :only => [:show, :create, :destroy], :controller => 'access'
       resources :variables
-      resource  :access, :only => [:show, :create, :destroy], :controller => :access
+      resources :access, :only => [:index, :create, :destroy]
       
       collection do
         get :list
