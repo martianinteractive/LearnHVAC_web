@@ -64,7 +64,7 @@
                 %td= link_to member.institution.name, admins_institution_path(member.institution) if member.institution
                 %td= mail_to member.email
                 %td= member.role
-                %td= link_to image_tag("trashcan.gif"), [:admins, @scenario, :accesses], :method => :delete, :confirm => "Are you sure?"
+                %td= link_to image_tag("trashcan.gif"), admins_scenario_acces_path(membership, @scenario), :method => :delete, :confirm => "Are you sure?"
                 
         %br
         = will_paginate @memberships
