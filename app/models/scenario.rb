@@ -9,6 +9,7 @@ class Scenario < ActiveRecord::Base
   has_many :memberships,        :dependent => :destroy
   has_many :users,              :through => :memberships, :source => :member
   has_many :individual_memberships
+  has_many :group_memberships
   
   validates_presence_of :master_scenario, :user, :longterm_start_date, :longterm_stop_date, :realtime_start_datetime
   validates :name, :presence => true, :length => {:within => 1..180}
