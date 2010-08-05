@@ -4,6 +4,7 @@ class Admins::AccessController < Admins::ApplicationController
   inner_tabs :manage_access
   
   def show
+    @memberships = @scenario.memberships.includes(:member).paginate(:page => params[:page], :per_page => 50)
   end
   
   def create
@@ -18,7 +19,7 @@ class Admins::AccessController < Admins::ApplicationController
   end
   
   def destroy
-    @individual_membership = IndividualMembership.where(:member_id => params[:member_id], :scenario_id => @scenario.id).first
+    @individual_membership = IndividualMembership.find(params[:id])
     @individual_membership.destroy
     redirect_to [:admins, @scenario, :access]
   end

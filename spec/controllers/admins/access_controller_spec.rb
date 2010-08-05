@@ -35,8 +35,8 @@ describe Admins::AccessController do
   
   describe "DELETE :destroy" do
     it "" do
-      Factory(:individual_membership, :member => @admin, :scenario => @scenario)
-      proc { delete :destroy, :scenario_id => @scenario.id, :member_id => @admin.id}.should change(IndividualMembership, :count).by(-1)
+      m = Factory(:individual_membership, :member => @admin, :scenario => @scenario)
+      proc { delete :destroy, :id => m.id, :scenario_id => @scenario.id }.should change(IndividualMembership, :count).by(-1)
     end
   end
   
