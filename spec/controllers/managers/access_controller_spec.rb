@@ -12,11 +12,11 @@ describe Managers::AccessController do
     login_as @manager
   end
   
-  describe "GET :show" do
+  describe "GET :index" do
     it "" do
       group = Factory(:group, :creator => @instructor, :scenario_ids => [@scenario.id])
-      get :show, :scenario_id => @scenario.id
-      response.should render_template(:show)
+      get :index, :scenario_id => @scenario.id
+      response.should render_template(:index)
       assigns(:scenario).should == @scenario
       assigns(:scenario).groups.should_not be_empty
       assigns(:scenario).groups.first.should eq(group)
@@ -30,15 +30,28 @@ describe Managers::AccessController do
     
     it "" do
       post :create, :scenario_id => @scenario.id
-      redirect_to [:managers, @scenario, :access]
+      response.should redirect_to([:managers, @scenario, :accesses])
     end
   end
   
   describe "DELETE :destroy" do
-    it "" do
-      Factory(:individual_membership, :member => @manager, :scenario => @scenario)
-      proc { delete :destroy, :scenario_id => @scenario.id, :member_id => @manager.id }.should change(IndividualMembership, :count).by(-1)
+    before(:each) do
+      @membership = Factory(:individual_membership, :member => @manager, :scenario => @scenario)
     end
-  end
-  
+    
+    it "" do
+      proc { delete :destroy, :id => @membership.id, :scenario_id => @scenario.id }.should change(IndividualMembership, :count).by(-1)
+    end
+    
+    it "" do
+      delete :destroy, :id => @membership.id, :scenario_id => @scenario
+      response.should redirect_to([:managers, @scenario, :accesses])
+    end
+    
+    
+    it "should not destroy an admin membership" do
+      admin_membership = Factory(:individual_membership, :member => Factory(:admin), :scenario => @scenario)
+      proc { delete :destroy, :id => admin_membership.id, :scenario_id => @scenario.id }.should raise_error      
+    end
+  end  
 end

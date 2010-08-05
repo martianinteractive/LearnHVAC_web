@@ -1,7 +1,8 @@
 class Managers::AccessController < Managers::ApplicationController
   before_filter :find_scenario, :add_crumbs
   
-  def show
+  def index
+    @memberships = @scenario.memberships.includes(:member).paginate(:page => params[:page], :per_page => 50)
   end
   
   def create
@@ -13,14 +14,13 @@ class Managers::AccessController < Managers::ApplicationController
       flash[:notice] = "There were problems while trying to grant you access to this scenario."
     end
     
-    redirect_to [:managers, @scenario, :access]
+    redirect_to [:managers, @scenario, :accesses]
   end
   
   def destroy
-    user = current_user.institution.users.non_admin.find(params[:member_id])
-    @individual_membership = @scenario.individual_memberships.where(:member_id => user.id, :scenario_id => @scenario.id).first
-    @individual_membership.destroy
-    redirect_to([:managers, @scenario, :access])
+    @membership = @scenario.memberships.non_admin.find(params[:id])
+    @membership.destroy
+    redirect_to([:managers, @scenario, :accesses])
   end
   
   private
@@ -32,7 +32,7 @@ class Managers::AccessController < Managers::ApplicationController
   def add_crumbs
     add_crumb "Scenarios", [:managers, :scenarios]
     add_crumb @scenario.name, [:managers, @scenario]
-    add_crumb "Manage Access", [:managers, @scenario, :access]
+    add_crumb "Manage Access", [:managers, @scenario, :accesses]
   end
   
 end

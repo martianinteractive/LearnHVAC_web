@@ -7,6 +7,8 @@ class Membership < ActiveRecord::Base
   
   before_create :set_member_role
   
+  scope :non_admin, includes(:member).where("users.role_code != #{User::ROLES[:admin]}")
+  
   def recently_created?
     created_at > 20.minutes.ago
   end  

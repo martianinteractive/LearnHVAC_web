@@ -1,7 +1,7 @@
 #tabs
   %ul
     %li= link_to @scenario.name, managers_scenario_path(@scenario)
-    %li.ui-tabs-selected= link_to "Access", [:managers, @scenario, :access]
+    %li.ui-tabs-selected= link_to "Access", [:managers, @scenario, :accesses]
     
   #page_header
     #subject_info
@@ -12,7 +12,7 @@
     - unless current_user.individual_scenarios.where('memberships.scenario_id' => @scenario.id).first
       %p
         Allow me to 
-        = link_to "download", managers_scenario_access_path('scenario_id' => @scenario.id), :method => :post
+        = link_to "download", [:managers, @scenario, :accesses], :method => :post
         this scenario.
         
     - if @scenario.public?
@@ -45,7 +45,7 @@
               %td= group.scenarios.count
               %td= group.code
               
-      - if @scenario.users.any?
+      - if @memberships.any?
         %h3 People
         %table
           %thead
@@ -55,10 +55,11 @@
               %th Email
               %th Role
               %th 
-            - @scenario.users.each do |user|
+            - @memberships.each do |membership|
+              - member = membership.member
               %tr
-                %td= user.name
-                %td= user.institution.try(:name)
-                %td= mail_to user.email
-                %td= user.role
-                %td= link_to(image_tag("trashcan.gif"), managers_scenario_access_path(@scenario, :member_id => user.id), :method => :delete, :confirm => "Are you sure?") unless user.has_role?(:admin)
+                %td= member.name
+                %td= member.institution.try(:name)
+                %td= mail_to member.email
+                %td= member.role
+                %td= link_to(image_tag("trashcan.gif"), managers_scenario_acces_path(membership, @scenario), :method => :delete, :confirm => "Are you sure?") unless member.has_role?(:admin)
