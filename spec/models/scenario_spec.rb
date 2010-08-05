@@ -89,6 +89,19 @@ describe Scenario do
         membership = IndividualMembership.last
         membership.member.should == @scenario.user
         membership.scenario.should == @scenario
+      end 
+      
+      it "should update the creator membership when the creator changes" do
+        @scenario.save
+        membership = @scenario.individual_memberships.find_by_member_id(@user.id)
+        @scenario.update_attributes(:user => @admin)
+        membership.reload.member_id.should == @admin.id
+      end
+      
+      it "should destroy the creator membership when the creator changes AND the new creator already has membership" do
+        @scenario.save
+        Factory(:individual_membership, :member => @admin, :scenario => @scenario)
+        proc { @scenario.update_attributes(:user => @admin) }.should change(IndividualMembership, :count).by(-1)
       end
     end
   end
