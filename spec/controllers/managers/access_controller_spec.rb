@@ -48,7 +48,6 @@ describe Managers::AccessController do
       response.should redirect_to([:managers, @scenario, :accesses])
     end
     
-    
     it "should not destroy an admin membership" do
       admin_membership = Factory(:individual_membership, :member => Factory(:admin), :scenario => @scenario)
       proc { delete :destroy, :id => admin_membership.id, :scenario_id => @scenario.id }.should raise_error      
