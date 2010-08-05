@@ -88,11 +88,8 @@ class User < ActiveRecord::Base
     @require_group_code = true
   end
   
-  # Assumes the user has a code_group,
-  # Used only from students registration.
-  def register_group_memberships!
-    group = Group.find_by_code(self.group_code)
-    group.create_memberships(self)
+  def _group
+    Group.find_by_code(group_code)
   end
   
   def all_scenarios
