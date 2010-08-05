@@ -91,10 +91,8 @@ class User < ActiveRecord::Base
   # Assumes the user has a code_group,
   # Used only from students registration.
   def register_group_memberships!
-    return false unless self.group_code
     group = Group.find_by_code(self.group_code)
-    membership = GroupMembership.new(:group => group, :member => self)
-    membership.split!
+    group.create_memberships(self)
   end
   
   def all_scenarios

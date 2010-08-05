@@ -16,6 +16,11 @@ class Group < ActiveRecord::Base
   after_create :set_code
   # after_create :create_owner_membership
   
+  def create_memberships(user)
+    scenarios.each { |s| memberships.create(:member => user, :scenario => s) }
+    memberships.where(:member_id => user.id)
+  end
+  
   private
   
   def set_code

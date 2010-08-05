@@ -41,16 +41,6 @@ describe GroupMembership do
       group_memberships.second.scenario.should == @scenario_2
       group_memberships.third.scenario.should == @scenario_3
     end
-    
-    it "should return false if group is not present" do
-      @group_membership.group = nil
-      @group_membership.split!.should == false
-    end
-    
-    it "should return false if member is not present" do
-      @group_membership.member = nil
-      @group_membership.split!.should == false
-    end
   end
   
 end
