@@ -41,12 +41,7 @@ namespace :bootstrap do
   task :group_scenarios => :environment do
     Fixtures.create_fixtures('db/bootstrap', 'group_scenarios')
   end
-  
-  desc "memberships"
-  task :memberships => :environment do
-    Fixtures.create_fixtures('db/bootstrap', 'memberships')
-  end
-  
+    
   desc "load default master scenarios"
   task :master_scenarios => :environment do
     Fixtures.create_fixtures('db/bootstrap', 'master_scenarios')
@@ -82,6 +77,11 @@ namespace :bootstrap do
   task :groups => :environment do
     Group.destroy_all # needed to destroy dependent records.
     Fixtures.create_fixtures('db/bootstrap', 'groups')
+  end
+  
+  desc "memberships"
+  task :memberships => :environment do
+    Fixtures.create_fixtures('db/bootstrap', 'memberships')
   end
   
   task :client_versions => :environment do
