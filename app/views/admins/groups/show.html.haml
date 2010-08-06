@@ -40,6 +40,7 @@
             %th Institution
             %th Email
             %th Role
+            %th
             %th 
         - @group.members.each do |member|
           %tr
@@ -48,8 +49,8 @@
             %td= mail_to member.email
             %td= member.role
             %td= link_to image_tag("trashcan.gif"), admins_membership_path(member, :class_id => @group.id), :confirm => 'Are you sure?', :method => :delete
+            %td= content_tag(:em, "Pending Email Confirmation") unless member.active?
             
-
     %h3 Scenarios
 
     - if @group.group_scenarios.empty?
