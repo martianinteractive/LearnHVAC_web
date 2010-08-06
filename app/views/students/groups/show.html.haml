@@ -23,7 +23,7 @@
         - @group.scenarios.each do |scenario|
           %tr
             %td= scenario.name
-            %td= scenario.scenario_variables.count
+            %td= scenario.variables.count
             %td= scenario.created_at.to_formatted_s(:long)
             %td
               - if scenario.client_version
