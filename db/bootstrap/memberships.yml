@@ -1,42 +1,6 @@
-memberships_006: 
-  member_id: "15"
-  created_at: 2010-07-22 20:16:00
-  updated_at: 2010-07-22 20:16:00
-  group_id: "6"
-  id: "6"
-memberships_007: 
-  member_id: "19"
-  created_at: 2010-07-23 15:51:33
-  updated_at: 2010-07-23 15:51:33
-  group_id: "6"
-  id: "7"
 memberships_001: 
-  member_id: "6"
-  created_at: 2010-06-25 21:24:04
-  updated_at: 2010-06-25 21:24:04
-  group_id: "1"
-  id: "1"
-memberships_002: 
-  member_id: "7"
-  created_at: 2010-06-25 21:24:04
-  updated_at: 2010-06-25 21:24:04
-  group_id: "1"
-  id: "2"
-memberships_003: 
-  member_id: "15"
-  created_at: 2010-07-09 22:07:38
-  updated_at: 2010-07-09 22:07:38
-  group_id: "2"
-  id: "3"
-memberships_004: 
-  member_id: "16"
-  created_at: 2010-07-13 23:00:59
-  updated_at: 2010-07-13 23:00:59
-  group_id: "3"
-  id: "4"
-memberships_005: 
-  member_id: "18"
-  created_at: 2010-07-22 18:53:16
-  updated_at: 2010-07-22 18:53:16
-  group_id: "6"
-  id: "5"
+  id: 6
+  member_id: 15
+  group_id: 1
+  scenario_id: 1
+
