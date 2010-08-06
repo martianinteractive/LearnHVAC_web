@@ -74,11 +74,7 @@ class User < ActiveRecord::Base
     reset_perishable_token!
     Notifier.activation_confirmation(self).deliver
   end
-  
-  def active?
-    active
-  end
-  
+    
   def activate!
     self.active = true
     save
