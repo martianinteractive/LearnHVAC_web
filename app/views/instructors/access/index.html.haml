@@ -43,7 +43,7 @@
                 %td= member.institution.try(:name)
                 %td= mail_to member.email
                 %td= member.role
-                %td= link_to(image_tag("trashcan.gif"), instructors_scenario_acces_path(membership, @scenario), :method => :delete, :confirm => "Are you sure?") unless member.has_role?(:student)
+                %td= link_to(image_tag("trashcan.gif"), instructors_scenario_acces_path(membership, @scenario), :method => :delete, :confirm => "Are you sure?") if member.has_role?(:student)
 
         %br
         = will_paginate @memberships
