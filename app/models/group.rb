@@ -14,7 +14,6 @@ class Group < ActiveRecord::Base
   validate  :scenario_validator
   
   after_create :set_code
-  # after_create :create_owner_membership
   
   def create_memberships(user)
     scenarios.each { |s| memberships.create(:member => user, :scenario => s) }
@@ -39,9 +38,5 @@ class Group < ActiveRecord::Base
   def scenario_validator
     scenarios.each {|scenario| errors.add(:base, "invalid scenario") if scenario.user != self.creator }
   end
-  
-  # def create_owner_membership
-  #   Membership.create(:group => self, :member => self.creator)
-  # end
-  
+    
 end
