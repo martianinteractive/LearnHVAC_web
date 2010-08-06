@@ -5,8 +5,10 @@ describe Admins::GroupsController do
   
   before(:each) do
     @instructor = Factory(:instructor)
-    @group      = Factory(:group, :name => "Class 01", :creator => @instructor)
-    admins_login
+    admin       = Factory(:admin)
+    scenario    = Factory(:scenario, :user => @instructor, :master_scenario => Factory(:master_scenario, :user => admin))
+    @group      = Factory(:group, :name => "Class 01", :creator => @instructor, :scenario_ids => [scenario.id])
+    login_as admin
   end
   
   describe "GET index" do

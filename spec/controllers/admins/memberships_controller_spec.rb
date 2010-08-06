@@ -7,11 +7,8 @@ describe Admins::MembershipsController do
     ms            = Factory(:master_scenario, :user => admin)
     scenario_1    = Factory(:scenario, :master_scenario => ms, :name => 'scenario 1', :user => instructor)
     scenario_2    = Factory(:scenario, :master_scenario => ms, :name => 'scenario 2', :user => instructor)
-    @group        = Factory(:group, :name => "Class 01", :creator => instructor)
+    @group        = Factory(:group, :name => "Class 01", :creator => instructor, :scenario_ids => [scenario_1.id, scenario_2.id])
     @student      = Factory(:student)
-    
-    Factory(:group_scenario, :group => @group, :scenario => scenario_1)
-    Factory(:group_scenario, :group => @group, :scenario => scenario_2)
     
     Factory(:group_membership, :group => @group, :member => @student, :scenario => scenario_1)
     Factory(:group_membership, :group => @group, :member => @student, :scenario => scenario_2)

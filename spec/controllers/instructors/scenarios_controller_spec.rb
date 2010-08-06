@@ -6,9 +6,8 @@ describe Instructors::ScenariosController do
     @instructor      = Factory(:instructor)
     @master_scenario = Factory(:master_scenario, :user => @admin)
     @scenario        = Factory(:scenario, :user => @instructor, :master_scenario => @master_scenario)
-    @group           = Factory(:group, :name => "test", :creator => @instructor)
+    @group           = Factory(:group, :name => "test", :creator => @instructor, :scenario_ids => [@scenario.id])
     @membership      = @group.memberships.first
-    @group_scenario  = Factory(:group_scenario, :scenario => @scenario, :group => @group)
     login_as(@instructor)
   end
   
