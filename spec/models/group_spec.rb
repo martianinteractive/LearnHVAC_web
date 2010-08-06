@@ -4,7 +4,7 @@ describe Group do
   before(:each) do
     @instructor       = Factory(:user)
     @master_scenario  = Factory(:master_scenario, :user => Factory(:admin))
-    @scenario_1        = Factory(:scenario, :name => "scene 1", :user => @instructor, :master_scenario => @master_scenario)
+    @scenario_1       = Factory(:scenario, :name => "scene 1", :user => @instructor, :master_scenario => @master_scenario)
     @group            = Factory(:group, :creator => @instructor, :scenario_ids => [@scenario_1.id])
   end
   
@@ -55,26 +55,17 @@ describe Group do
   describe "Callbacks" do    
     describe "After create" do
       before(:each) do
-        @group2 = Factory(:group, :name => "class2", :creator => @instructor)
-        @group3 = Factory(:group, :name => "class3", :creator => @instructor)
-        @group4 = Factory.build(:group, :name => "class4", :creator => @instructor)
+        @group2 = Factory(:group, :name => "class2", :creator => @instructor, :scenario_ids => [@scenario_1.id])
+        @group3 = Factory(:group, :name => "class3", :creator => @instructor, :scenario_ids => [@scenario_1.id])
       end
       
       it "should set a unique valid code" do
         @group2.code.should_not be_nil
         @group2.code.should be_present
         @group3.code.should_not be_nil
-        @group3.code.should be_present
-        
+        @group3.code.should be_present  
         @group2.code.should_not equal(@group3.code)
       end
-      
-      # it "should create a membership for the group owner/instructor" do
-      #   proc { @group4.save }.should change(Membership, :count).by(1)
-      #   membership = Membership.last
-      #   membership.member.should == @group4.creator
-      #   membership.group.should == @group4        
-      # end
     end
   end
   

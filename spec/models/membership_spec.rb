@@ -4,9 +4,9 @@ describe Membership do
   before(:each) do
     @admin      = Factory(:admin)
     @instructor = Factory(:instructor)
-    @group      = Factory(:group, :creator => @instructor)
     @ms         = Factory(:master_scenario, :user => @admin, :client_version => Factory(:client_version))
     @scenario   = Factory(:scenario, :master_scenario => @ms, :user => @instructor)
+    @group      = Factory(:group, :creator => @instructor, :scenario_ids => [@scenario.id])
     @membership = Factory.build(:membership, :scenario => @scenario, :member => @admin)
   end
   
