@@ -1,6 +1,6 @@
 #tabs
   %ul
-    %li= link_to "Master Scenarios", [:admins, :master_scenarios]
+    %li.ui-tabs-selected= link_to "Master Scenarios", [:admins, :master_scenarios]
     %li= link_to 'New Master Scenario', [:new, :admins, :master_scenario]
   
   = render :partial => "admins/master_scenarios/master_scenario_menu"

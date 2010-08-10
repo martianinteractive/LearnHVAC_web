@@ -1,12 +1,13 @@
 class Admins::ScenariosController < Admins::ApplicationController
-  subject_buttons :scenario, :only => [:show]
+  before_filter :find_scenario, :only => [:show, :edit, :update, :destroy]
+  
+  subject_buttons :scenario, :only => :show
   subject_buttons :cancel_scenario, :only => [:new, :edit, :create, :update]
+  
   inner_tabs :scenario_details
-  before_filter :find_scenario, :only => [:show, :edit, :access, :update, :destroy]
-
+  
   add_crumb("Instructor Scenarios") { |instance| instance.send :admins_scenarios_path }
-  before_filter :find_scenario, :except => [:index, :list, :create, :new]
-
+  
   def index
     @scenarios = Scenario.paginate :page => params[:page], :per_page => 25
   end
