@@ -2,15 +2,17 @@ class Admins::VariablesController < Admins::ApplicationController
   helper :sort
   include SortHelper
   
-  subject_buttons :scenario, :only => :index
-  subject_buttons :variable, :only => :show
-  subject_buttons :cancel_variable, :only => [:new, :edit, :create, :update]
-  inner_tabs :manage_variables, :except => [:new]
-  inner_tabs :new_variable, :only => [:new]
-  
   before_filter :find_scenario, :add_crumbs
   before_filter :find_scenario_variable, :only => [:show, :edit, :update]
   before_filter :initialize_variables_sort, :only => [:index]
+  
+  subject_buttons :scenario, :only => :index
+  subject_buttons :variable, :only => :show
+  subject_buttons :cancel_variable, :only => [:new, :edit, :create, :update]
+  
+  inner_tabs :manage_variables, :only => :index
+  inner_tabs :new_variable, :only => [:new, :create]
+  inner_tabs :variable_name, :only => [:show, :edit, :update]
   
   def index
     @scenario_variables = @scenario.variables.order(sort_clause).paginate :page => params[:page], :per_page => 25

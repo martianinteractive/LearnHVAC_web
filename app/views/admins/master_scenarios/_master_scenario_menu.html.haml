@@ -54,4 +54,6 @@
     %ul
       %li{:class => ("ui-tabs-selected" if @inner_tabs == :master_scenario_details)}= link_to "Master Scenario Details", [:admins, @master_scenario]
       %li{:class => ("ui-tabs-selected" if @inner_tabs == :manage_variables)}= link_to "Manage Variables", [:admins, @master_scenario, :system_variables]
+      - if @inner_tabs == :variable_name
+        %li{:class => "ui-tabs-selected"}= link_to((@system_variable.name.present? ? @system_variable.name : "Var"), [:admins, @master_scenario, @system_variable])
       %li{:class => ("ui-tabs-selected" if @inner_tabs == :new_variable)}= link_to 'New Variable', [:new, :admins, @master_scenario, :system_variable]
