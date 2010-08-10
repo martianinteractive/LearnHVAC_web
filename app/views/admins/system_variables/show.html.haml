@@ -1,18 +1,13 @@
 #tabs
   %ul
-    %li= link_to @master_scenario.name, admins_master_scenario_path(@master_scenario) 
-    %li= link_to "System Variables", admins_master_scenario_system_variables_path(@master_scenario)
-    %li= link_to 'New System Variable', new_admins_master_scenario_system_variable_path(@master_scenario)
+    %li= link_to "Master Scenarios", [:admins, :master_scenarios]
+    %li= link_to 'New Master Scenario', [:new, :admins, :master_scenario]
     
-  #page_header
-    #subject_actions
-      = link_to 'Edit', edit_admins_master_scenario_system_variable_path(@master_scenario, @system_variable)
-      &nbsp;
-      = link_to 'Delete', admins_master_scenario_system_variable_path(@master_scenario, @system_variable), :confirm => 'Are you sure?', :method => :delete
+  = render :partial => "admins/master_scenarios/master_scenario_menu"
       
-    #subject_info
-      %h2= @system_variable.name
-      .subject_details=@system_variable.display_name
+  #subject_info
+    %h2= @system_variable.name
+    .subject_details=@system_variable.display_name
 
   #location.ui-widget.ui-widget-content.ui-corner-all
     %h4 Description

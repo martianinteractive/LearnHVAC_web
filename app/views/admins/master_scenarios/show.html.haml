@@ -1,29 +1,9 @@
 #tabs
   %ul
-    %li= link_to "Master Scenarios", admins_master_scenarios_path
+    %li.ui-tabs-selected= link_to "Master Scenarios", admins_master_scenarios_path
     %li= link_to 'New Master Scenario', new_admins_master_scenario_path
     
-  #page_header
-    #subject_actions
-      = link_to 'Edit', edit_admins_master_scenario_path(@master_scenario)
-      &nbsp;
-      = link_to 'Delete', admins_master_scenario_path(@master_scenario), :confirm => 'Are you sure?', :method => :delete
-      &nbsp;
-      = link_to "Clone", clone_admins_master_scenario_path(@master_scenario), :method => :post
-      &nbsp;
-      = link_to "Variables", admins_master_scenario_system_variables_path(@master_scenario)
-      &nbsp;
-      =# link_to "Revisions", admins_master_scenario_revisions_path(@master_scenario)
-      &nbsp;
-      = link_to "Dump", yaml_dump_admins_master_scenario_system_variables_path(@master_scenario)
-    
-    #subject_info
-      %h2= @master_scenario.name
-      .subject_details=#pluralize(@master_scenario.version - 1, "revision")
-      
-  #location.ui-widget.ui-widget-content.ui-corner-all
-    %h4 Description
-    %p= @master_scenario.description
+  = render :partial => 'master_scenario_menu'
 
   #inner_column
     %table

@@ -1,5 +1,5 @@
 class Admins::ScenariosController < Admins::ApplicationController
-  subject_buttons :scenario, :only => [:index, :show]
+  subject_buttons :scenario, :only => [:show]
   subject_buttons :cancel_scenario, :only => [:new, :edit, :create, :update]
   inner_tabs :scenario_details
   before_filter :find_scenario, :only => [:show, :edit, :access, :update, :destroy]
