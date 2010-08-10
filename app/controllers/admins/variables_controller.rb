@@ -10,9 +10,8 @@ class Admins::VariablesController < Admins::ApplicationController
   subject_buttons :variable, :only => :show
   subject_buttons :cancel_variable, :only => [:new, :edit, :create, :update]
   
-  inner_tabs :manage_variables, :only => :index
+  inner_tabs :manage_variables, :only => [:index, :show, :edit]
   inner_tabs :new_variable, :only => [:new, :create]
-  inner_tabs :variable_name, :only => [:show, :edit, :update]
   
   def index
     @scenario_variables = @scenario.variables.order(sort_clause).paginate :page => params[:page], :per_page => 25

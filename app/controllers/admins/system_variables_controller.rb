@@ -11,9 +11,8 @@ class Admins::SystemVariablesController < Admins::ApplicationController
   subject_buttons :variable, :only => :show
   subject_buttons :cancel_variable, :only => [:new, :edit, :create, :update]
   
-  inner_tabs :manage_variables, :only => :index
+  inner_tabs :manage_variables, :only => [:index, :show]
   inner_tabs :new_variable, :only => [:new, :create]
-  inner_tabs :variable_name, :only => [:show, :edit, :update]
   
   def index
     @system_variables = params[:filter].present? ? @master_scenario.variables.filter(params[:filter]) : @master_scenario.variables
