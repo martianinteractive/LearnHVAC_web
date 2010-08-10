@@ -1,0 +1,380 @@
+/* line 1, ../../app/stylesheets/table.sass */
+.paging_two_button .fg-button {
+  float: left;
+  cursor: pointer;
+  cursor: hand;
+}
+
+/* line 7, ../../app/stylesheets/table.sass */
+.paging_full_numbers {
+  width: 350px !important;
+}
+/* line 10, ../../app/stylesheets/table.sass */
+.paging_full_numbers .fg-button {
+  padding: 2px 6px;
+  cursor: pointer;
+  cursor: hand;
+}
+
+/* line 16, ../../app/stylesheets/table.sass */
+.fg-toolbar {
+  padding: 5px;
+}
+
+/* line 20, ../../app/stylesheets/table.sass */
+.dataTables_paginate {
+  width: auto;
+}
+
+/* line 24, ../../app/stylesheets/table.sass */
+table.display thead th {
+  padding: 3px 0px 3px 10px;
+  cursor: pointer;
+  cursor: hand;
+}
+
+/* line 30, ../../app/stylesheets/table.sass */
+.dataTables_wrapper {
+  position: relative;
+  min-height: 302px;
+  _height: 302px;
+  clear: both;
+}
+
+/* line 37, ../../app/stylesheets/table.sass */
+.dataTables_processing {
+  position: absolute;
+  top: 0px;
+  left: 50%;
+  width: 250px;
+  margin-left: -125px;
+  border: 1px solid #dddddd;
+  text-align: center;
+  color: #999999;
+  font-size: 11px;
+  padding: 2px 0;
+}
+
+/* line 50, ../../app/stylesheets/table.sass */
+.dataTables_length {
+  width: 40%;
+  float: left;
+}
+
+/* line 55, ../../app/stylesheets/table.sass */
+.dataTables_filter {
+  width: 50%;
+  float: right;
+  text-align: right;
+}
+
+/* line 61, ../../app/stylesheets/table.sass */
+.dataTables_info {
+  width: 50%;
+  float: left;
+}
+
+/* line 66, ../../app/stylesheets/table.sass */
+.dataTables_paginate {
+  float: right;
+  text-align: right;
+}
+
+/* line 71, ../../app/stylesheets/table.sass */
+.paginate_disabled_previous, .paginate_enabled_previous, .paginate_disabled_next, .paginate_enabled_next {
+  height: 19px;
+  width: 19px;
+  margin-left: 3px;
+  float: left;
+}
+
+/* line 78, ../../app/stylesheets/table.sass */
+.paginate_disabled_previous {
+  background-image: url("/images/back_disabled.jpg");
+}
+
+/* line 82, ../../app/stylesheets/table.sass */
+.paginate_enabled_previous {
+  background-image: url("/images/back_enabled.jpg");
+}
+
+/* line 86, ../../app/stylesheets/table.sass */
+.paginate_disabled_next {
+  background-image: url("/images/forward_disabled.jpg");
+}
+
+/* line 90, ../../app/stylesheets/table.sass */
+.paginate_enabled_next {
+  background-image: url("/images/forward_enabled.jpg");
+}
+
+/* line 94, ../../app/stylesheets/table.sass */
+table.display {
+  margin: 0 auto;
+  width: 100%;
+  clear: both;
+}
+/* line 99, ../../app/stylesheets/table.sass */
+table.display tfoot th {
+  padding: 3px 10px;
+  border-top: 1px solid black;
+  font-weight: bold;
+}
+/* line 104, ../../app/stylesheets/table.sass */
+table.display tr.heading2 td {
+  border-bottom: 1px solid #aaaaaa;
+}
+/* line 107, ../../app/stylesheets/table.sass */
+table.display td {
+  padding: 3px 10px;
+}
+/* line 110, ../../app/stylesheets/table.sass */
+table.display td.center {
+  text-align: center;
+}
+
+/* line 114, ../../app/stylesheets/table.sass */
+.sorting_asc {
+  background: url("/images/sort_asc.jpg") no-repeat center right;
+}
+
+/* line 118, ../../app/stylesheets/table.sass */
+.sorting_desc {
+  background: url("/images/sort_desc.jpg") no-repeat center right;
+}
+
+/* line 122, ../../app/stylesheets/table.sass */
+.sorting {
+  background: url("/images/sort_both.jpg") no-repeat center right;
+}
+
+/* line 127, ../../app/stylesheets/table.sass */
+table.display tr.odd.gradeA {
+  background-color: #ddffdd;
+}
+/* line 130, ../../app/stylesheets/table.sass */
+table.display tr.even.gradeA {
+  background-color: #eeffee;
+}
+/* line 133, ../../app/stylesheets/table.sass */
+table.display tr.odd.gradeA {
+  background-color: #ddffdd;
+}
+/* line 136, ../../app/stylesheets/table.sass */
+table.display tr.even.gradeA {
+  background-color: #eeffee;
+}
+/* line 139, ../../app/stylesheets/table.sass */
+table.display tr.odd.gradeC {
+  background-color: #ddddff;
+}
+/* line 142, ../../app/stylesheets/table.sass */
+table.display tr.even.gradeC {
+  background-color: #eeeeff;
+}
+/* line 145, ../../app/stylesheets/table.sass */
+table.display tr.odd.gradeX {
+  background-color: #ffdddd;
+}
+/* line 148, ../../app/stylesheets/table.sass */
+table.display tr.even.gradeX {
+  background-color: #ffeeee;
+}
+/* line 151, ../../app/stylesheets/table.sass */
+table.display tr.odd.gradeU {
+  background-color: #dddddd;
+}
+/* line 154, ../../app/stylesheets/table.sass */
+table.display tr.even.gradeU {
+  background-color: #eeeeee;
+}
+
+/* line 159, ../../app/stylesheets/table.sass */
+tr.odd {
+  background-color: #e2e4ff;
+}
+/* line 162, ../../app/stylesheets/table.sass */
+tr.even {
+  background-color: white;
+}
+
+/* line 166, ../../app/stylesheets/table.sass */
+.top, .bottom {
+  padding: 15px;
+  background-color: #f5f5f5;
+  border: 1px solid #cccccc;
+}
+
+/* line 172, ../../app/stylesheets/table.sass */
+.top .dataTables_info {
+  float: none;
+}
+
+/* line 176, ../../app/stylesheets/table.sass */
+.clear {
+  clear: both;
+}
+
+/* line 180, ../../app/stylesheets/table.sass */
+.dataTables_empty {
+  text-align: center;
+}
+
+/* line 184, ../../app/stylesheets/table.sass */
+tfoot input {
+  margin: 0.5em 0;
+  width: 100%;
+  color: #444444;
+}
+/* line 189, ../../app/stylesheets/table.sass */
+tfoot input.search_init {
+  color: #999999;
+}
+
+/* line 194, ../../app/stylesheets/table.sass */
+td.group {
+  background-color: #d1cfd0;
+  border-bottom: 2px solid #a19b9e;
+  border-top: 2px solid #a19b9e;
+}
+/* line 199, ../../app/stylesheets/table.sass */
+td.details {
+  background-color: #d1cfd0;
+  border: 2px solid #a19b9e;
+}
+
+/* line 204, ../../app/stylesheets/table.sass */
+.example_alt_pagination div.dataTables_info {
+  width: 40%;
+}
+
+/* line 209, ../../app/stylesheets/table.sass */
+.paging_full_numbers span.paginate_button, .paging_full_numbers span.paginate_active {
+  border: 1px solid #aaaaaa;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  padding: 2px 5px;
+  margin: 0 3px;
+  cursor: pointer;
+  *cursor: hand;
+}
+/* line 218, ../../app/stylesheets/table.sass */
+.paging_full_numbers span.paginate_button {
+  background-color: #dddddd;
+}
+/* line 221, ../../app/stylesheets/table.sass */
+.paging_full_numbers span.paginate_button:hover {
+  background-color: #cccccc;
+}
+/* line 224, ../../app/stylesheets/table.sass */
+.paging_full_numbers span.paginate_active {
+  background-color: #99b3ff;
+}
+
+/* line 229, ../../app/stylesheets/table.sass */
+table.display tr.even.row_selected td {
+  background-color: #b0bed9;
+}
+/* line 232, ../../app/stylesheets/table.sass */
+table.display tr.odd.row_selected td {
+  background-color: #9fafd1;
+}
+
+/* line 238, ../../app/stylesheets/table.sass */
+tr.odd td.sorting_1 {
+  background-color: #d3d6ff;
+}
+/* line 241, ../../app/stylesheets/table.sass */
+tr.odd td.sorting_2 {
+  background-color: #dadcff;
+}
+/* line 244, ../../app/stylesheets/table.sass */
+tr.odd td.sorting_3 {
+  background-color: #e0e2ff;
+}
+/* line 248, ../../app/stylesheets/table.sass */
+tr.even td.sorting_1 {
+  background-color: #eaebff;
+}
+/* line 251, ../../app/stylesheets/table.sass */
+tr.even td.sorting_2 {
+  background-color: #f2f3ff;
+}
+/* line 254, ../../app/stylesheets/table.sass */
+tr.even td.sorting_3 {
+  background-color: #f9f9ff;
+}
+/* line 258, ../../app/stylesheets/table.sass */
+tr.odd.gradeA td.sorting_1 {
+  background-color: #c4ffc4;
+}
+/* line 261, ../../app/stylesheets/table.sass */
+tr.odd.gradeA td.sorting_2, tr.odd.gradeA td.sorting_3 {
+  background-color: #d1ffd1;
+}
+/* line 265, ../../app/stylesheets/table.sass */
+tr.even.gradeA td.sorting_1 {
+  background-color: #d5ffd5;
+}
+/* line 268, ../../app/stylesheets/table.sass */
+tr.even.gradeA td.sorting_2, tr.even.gradeA td.sorting_3 {
+  background-color: #e2ffe2;
+}
+/* line 272, ../../app/stylesheets/table.sass */
+tr.odd.gradeC td.sorting_1 {
+  background-color: #c4c4ff;
+}
+/* line 275, ../../app/stylesheets/table.sass */
+tr.odd.gradeC td.sorting_2, tr.odd.gradeC td.sorting_3 {
+  background-color: #d1d1ff;
+}
+/* line 279, ../../app/stylesheets/table.sass */
+tr.even.gradeC td.sorting_1 {
+  background-color: #d5d5ff;
+}
+/* line 282, ../../app/stylesheets/table.sass */
+tr.even.gradeC td.sorting_2, tr.even.gradeC td.sorting_3 {
+  background-color: #e2e2ff;
+}
+/* line 286, ../../app/stylesheets/table.sass */
+tr.odd.gradeX td.sorting_1 {
+  background-color: #ffc4c4;
+}
+/* line 289, ../../app/stylesheets/table.sass */
+tr.odd.gradeX td.sorting_2, tr.odd.gradeX td.sorting_3 {
+  background-color: #ffd1d1;
+}
+/* line 293, ../../app/stylesheets/table.sass */
+tr.even.gradeX td.sorting_1 {
+  background-color: #ffd5d5;
+}
+/* line 296, ../../app/stylesheets/table.sass */
+tr.even.gradeX td.sorting_2, tr.even.gradeX td.sorting_3 {
+  background-color: #ffe2e2;
+}
+/* line 300, ../../app/stylesheets/table.sass */
+tr.odd.gradeU td.sorting_1 {
+  background-color: #c4c4c4;
+}
+/* line 303, ../../app/stylesheets/table.sass */
+tr.odd.gradeU td.sorting_2, tr.odd.gradeU td.sorting_3 {
+  background-color: #d1d1d1;
+}
+/* line 307, ../../app/stylesheets/table.sass */
+tr.even.gradeU td.sorting_1 {
+  background-color: #d5d5d5;
+}
+/* line 310, ../../app/stylesheets/table.sass */
+tr.even.gradeU td.sorting_2, tr.even.gradeU td.sorting_3 {
+  background-color: #e2e2e2;
+}
+
+/* line 314, ../../app/stylesheets/table.sass */
+.ex_highlight #example tbody tr.even:hover, #example tbody tr.even td.highlighted {
+  background-color: #ecffb3;
+}
+
+/* line 318, ../../app/stylesheets/table.sass */
+.ex_highlight #example tbody tr.odd:hover, #example tbody tr.odd td.highlighted {
+  background-color: #e6ff99;
+}

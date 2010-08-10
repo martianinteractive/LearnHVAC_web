@@ -1,0 +1,31 @@
+/* line 1, ../../app/stylesheets/ie7.sass */
+.column {
+  width: 44%;
+}
+
+/* line 5, ../../app/stylesheets/ie7.sass */
+.clear {
+  height: 1px;
+  overflow: hidden;
+}
+
+/* line 10, ../../app/stylesheets/ie7.sass */
+.wizard {
+  white-space: nowrap;
+}
+/* line 13, ../../app/stylesheets/ie7.sass */
+.wizard li {
+  text-align: left;
+  width: 180px;
+  float: left;
+}
+
+/* line 19, ../../app/stylesheets/ie7.sass */
+hr {
+  clear: both;
+}
+
+/* line 23, ../../app/stylesheets/ie7.sass */
+.provider {
+  width: 653px;
+}
