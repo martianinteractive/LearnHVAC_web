@@ -31,6 +31,7 @@
     %li= link_to 'New Master Scenario', [:new, :admins, :master_scenario]
     
   = render :partial => "admins/master_scenarios/master_scenario_menu"
+  %br
     
   - form_tag(update_status_admins_master_scenario_system_variables_path(@master_scenario), :method => :put, :class => "variables") do
     %table.listing
