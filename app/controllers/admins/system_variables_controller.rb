@@ -51,7 +51,7 @@ class Admins::SystemVariablesController < Admins::ApplicationController
   end
   
   def update_status
-    if @master_scenario.variables.update_all("disabled = #{params[:disable].present?}", ["system_variables.id in (?)", params[:system_variables]])
+    if @master_scenario.variables.update_all("disabled = #{params[:disable].present?}", ["variables.id in (?)", params[:system_variables]])
       redirect_to([:admins, @master_scenario, :system_variables], :notice => 'System Variable was successfully created.')
     else
       redirect_to(:back, :notice => "There were problems updating the variables status.")
