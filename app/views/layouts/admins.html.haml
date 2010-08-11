@@ -6,13 +6,9 @@
     = csrf_meta_tag
     %title
       Learn HVAC
-    = stylesheet_link_tag "admin.css"
-    = stylesheet_link_tag "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/themes/smoothness/jquery-ui.css"
+    = stylesheet_link_tag "admin.css", "jquery-ui"
     = stylesheet_link_tag "print.css", :media => "print"
-    = javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"
-    = javascript_include_tag "http://cdn.jquerytools.org/1.1.2/jquery.tools.min.js"
-    = javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"
-    = javascript_include_tag 'rails', 'jquery.cookie', 'jquery.ui.no-ajax-tabs', 'jquery.dataTables.min', 'application'
+    = javascript_include_tag 'jquery.min.js', 'jquery-ui.min.js', 'jquery.tools.min.js', 'rails', 'jquery.cookie', 'jquery.ui.no-ajax-tabs', 'jquery.dataTables.min', 'application'
     = javascript_include_tag "http://www.google.com/friendconnect/script/friendconnect.js" if @show_connection
 
     = yield :head
