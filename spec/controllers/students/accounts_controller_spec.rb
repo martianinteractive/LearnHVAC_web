@@ -2,7 +2,10 @@ require File.dirname(__FILE__) + "/../../spec_helper"
 
 describe Students::AccountsController do
   before(:each) do
-    @group = Factory(:group, :name => "Class 01", :creator => Factory(:instructor))
+    @instructor = Factory(:instructor)
+    @admin      = Factory(:admin)
+    scenario    = Factory(:scenario, :user => @instructor, :master_scenario => Factory(:master_scenario, :user => @admin))
+    @group      = Factory(:group, :name => "Class 01", :creator => @instructor, :scenario_ids => [scenario.id])
   end
   
   describe "GET :new" do
@@ -16,6 +19,13 @@ describe Students::AccountsController do
   
   describe "POST :create" do
     before(:each) do
+      ms            = Factory(:master_scenario, :user => @admin)
+      @scenario_1   = Factory(:scenario, :master_scenario => ms, :name => 'scenario 1', :user => @instructor)
+      @scenario_2   = Factory(:scenario, :master_scenario => ms, :name => 'scenario 2', :user => @instructor)
+
+      Factory(:group_scenario, :group => @group, :scenario => @scenario_1)
+      Factory(:group_scenario, :group => @group, :scenario => @scenario_2)
+      
       ActionMailer::Base.deliveries = []
     end
     
@@ -41,8 +51,8 @@ describe Students::AccountsController do
         response.should redirect_to(login_path)
       end
       
-      it "should create membership if a valid group code is given" do
-        proc { post :create, :code => @group.code, :user => Factory.attributes_for(:user, :group_code => @group.code) }.should change(Membership, :count).by(1)
+      it "should create group_memberships if a valid group code is given" do
+        proc { post :create, :code => @group.code, :user => Factory.attributes_for(:user, :group_code => @group.code) }.should change(GroupMembership, :count).by(3)
       end
       
       it "should assign the user to the group" do
@@ -62,8 +72,7 @@ describe Students::AccountsController do
   
   describe "Authentication" do
     before(:each) do
-      @user = Factory(:admin)
-      login_as @user
+      login_as @admin
     end
     
     it "should require NO user" do

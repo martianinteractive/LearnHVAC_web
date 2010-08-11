@@ -1,32 +1,51 @@
-=render "layouts/head"
+!!! XML
+!!!
+%html{"xmlns" => "http://www.w3.org/1999/xhtml"}
+  %head
+    %meta{ "http-equiv" => "Content-type", :content => "text/html; charset=utf-8" }
+    = csrf_meta_tag
+    %title
+      Learn HVAC
+    = stylesheet_link_tag "admin.css"
+    = stylesheet_link_tag "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/themes/smoothness/jquery-ui.css"
+    = stylesheet_link_tag "print.css", :media => "print"
+    = javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"
+    = javascript_include_tag "http://cdn.jquerytools.org/1.1.2/jquery.tools.min.js"
+    = javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"
+    = javascript_include_tag 'rails', 'jquery.cookie', 'jquery.ui.no-ajax-tabs', 'jquery.dataTables.min', 'application'
+    = javascript_include_tag "http://www.google.com/friendconnect/script/friendconnect.js" if @show_connection
 
-%body.bp
-  .header
-    %h1.siteTitle
-    %ul.global_nav
-      - if logged_in?
-        %li.username
-          = link_to current_user.name, profile_path
-        - if current_user.has_role?(:admin)
-          %li
-            = link_to 'Admin Site', admins_dashboard_path
-        %li= link_to "Log-out", logout_path
-      - else
-        %li= link_to "Sign Up", signup_path
+    = yield :head
+    = javascript_tag do
+      = yield :js_templates
+
+  %body.bp
+    .header
+      %h1.siteTitle
+      %ul.global_nav
+        - if logged_in?
+          %li.username
+            = link_to current_user.name, profile_path
+          - if current_user.has_role?(:admin)
+            %li
+              = link_to 'Admin Site', admins_dashboard_path
+          %li= link_to "Log-out", logout_path
+        - else
+          %li= link_to "Sign Up", signup_path
       
-  .border
-    &nbsp; 
-  .main
-    .dl10.navigation
-      %h3 Community
-      %ul
-        %li
-          = link_to "Dashboard", [:guests, :dashboard]
-          = link_to "Directory", directory_path
+    .border
+      &nbsp; 
+    .main
+      .dl10.navigation
+        %h3 Community
+        %ul
+          %li
+            = link_to "Dashboard", [:guests, :dashboard]
+            = link_to "Directory", directory_path
         
 
-    .fluid
-      .content
-        = display_flash
-        = yield
-        = render :partial => "layouts/connection" if @show_connection
+      .fluid
+        .content
+          = display_flash
+          = yield
+          = render :partial => "layouts/connection" if @show_connection

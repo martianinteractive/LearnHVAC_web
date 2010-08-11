@@ -47,7 +47,7 @@ Learnhvac::Application.routes.draw do |map|
     resources :scenarios do
       resources :alerts, :only => [:index, :show, :update]
       resources :variables
-      resource  :access, :only => [:show], :controller => :access
+      resources :access, :only => [:index, :destroy]
     end
     resources :classes, :controller => :groups do
       resources :students, :only => [:index, :show]
@@ -79,14 +79,12 @@ Learnhvac::Application.routes.draw do |map|
     
     resources :scenarios do
       resources :variables, :controller => "scenario_variables"
-      resource  :access, :only => [:show, :create, :destroy], :controller => 'access'
+      resources :access, :only => [:index, :create, :destroy]
       
       collection do
         get :list
       end
     end
-    
-    resources :public_scenarios, :only => [:create, :destroy]
   end
   
   ### Admin Routes.
@@ -133,9 +131,8 @@ Learnhvac::Application.routes.draw do |map|
     end
     
     resources :scenarios do
-      resource :access, :only => [:show, :create, :destroy], :controller => 'access'
       resources :variables
-      resource  :access, :only => [:show, :create, :destroy], :controller => :access
+      resources :access, :only => [:index, :create, :destroy]
       
       collection do
         get :list

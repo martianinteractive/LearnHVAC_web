@@ -21,13 +21,7 @@ describe MasterScenario do
     end    
   end
   
-    
-  it "should reset some attributes for cloning." do
-    @master_scenario.default_clon_attributes.should == { "version" => 1, "versions" => nil, "system_variables" => nil, "name" => "#{@master_scenario.name}_clon" }      
-  end
-    
-  context "Cloning" do
-    
+  context "Cloning" do  
     before(:each) do
       Factory(:system_variable, :master_scenario => @master_scenario)
       Factory(:system_variable, :master_scenario => @master_scenario)
@@ -39,14 +33,13 @@ describe MasterScenario do
     
     it "should also clone the system variables" do
       ms_clon = @master_scenario.clone!
-      ms_clon.system_variables.should have(@master_scenario.system_variables.count).variables
+      ms_clon.variables.should have(@master_scenario.variables.count).variables
     end
     
     it "should name the cloned scenario as original_name_clon" do
       ms_clon = @master_scenario.clone!
       ms_clon.name.should == "#{@master_scenario.name}_clon"
     end
-    
   end
       
 end

@@ -3,24 +3,25 @@ class Admins::AccessController < Admins::ApplicationController
   subject_buttons :scenario, :only => [:show]
   inner_tabs :manage_access
   
-  def show
+  def index
+    @memberships = @scenario.memberships.includes(:member).paginate(:page => params[:page], :per_page => 50)
   end
   
   def create
-    @user_scenario = UserScenario.new(:user => current_user, :scenario => @scenario)
+    @individual_membership = IndividualMembership.new(:member => current_user, :scenario => @scenario)
     
-    if @user_scenario.save
-      flash[:notice] = "You can now download the #{@user_scenario.scenario.name} scenario."
+    if @individual_membership.save
+      flash[:notice] = "You can now download the #{@individual_membership.scenario.name} scenario."
     else
       flash[:notice] = "There were problems while trying to grant you access to this scenario."
     end
-    redirect_to [:admins, @scenario, :access]
+    redirect_to [:admins, @scenario, :accesses]
   end
   
   def destroy
-    @user_scenario = UserScenario.where(:user_id => params[:user_id], :scenario_id => @scenario.id).first
-    @user_scenario.destroy
-    redirect_to [:admins, @scenario, :access]
+    @individual_membership = IndividualMembership.find(params[:id])
+    @individual_membership.destroy
+    redirect_to [:admins, @scenario, :accesses]
   end
   
   private
@@ -32,7 +33,7 @@ class Admins::AccessController < Admins::ApplicationController
   def add_crumbs
     add_crumb "Scenarios", [:admins, :scenarios]
     add_crumb @scenario.name, [:admins, @scenario]
-    add_crumb "Manage Access", [:admins, @scenario, :access]
+    add_crumb "Manage Access", [:admins, @scenario, :accesses]
   end
   
 end

@@ -4,14 +4,17 @@ describe Instructors::StudentsController do
   before(:each) do
     @instructor = Factory(:instructor)
     @student    = Factory(:student)
-    @group      = Factory(:group, :name => "Class 01", :creator => @instructor)
-    @membership = Factory(:membership, :group => @group, :member => @student)
+    scenario    = Factory(:scenario, :user => @instructor, :master_scenario => Factory(:master_scenario, :user => Factory(:admin)))
+    @group      = Factory(:group, :name => "Class 01", :creator => @instructor, :scenario_ids => [scenario.id])
+    
+    Factory(:group_membership, :group => @group, :scenario => scenario, :member => @student)
+    
     login_as(@instructor)
   end
   
   describe "GET show" do
     it "" do
-      get :show, :class_id => @group.id, :id => @student.id
+      get :show, :id => @student.id, :class_id => @group.id
       response.should render_template(:show)
       assigns(:student).should eq(@student)
     end

@@ -3,7 +3,14 @@ class Instructors::AccessController < Instructors::ApplicationController
   inner_tabs :manage_access
   subject_buttons :scenario, :only => :show
   
-  def show
+  def index
+    @memberships = @scenario.memberships.includes(:member).paginate(:page => params[:page], :per_page => 50)
+  end
+  
+  def destroy
+    @membership = @scenario.group_memberships.find(params[:id])
+    @membership.destroy
+    redirect_to([:instructors, @scenario, :accesses])
   end
   
   private
@@ -15,7 +22,7 @@ class Instructors::AccessController < Instructors::ApplicationController
   def add_crumbs
     add_crumb "Scenarios", instructors_scenarios_path
     add_crumb @scenario.name, instructors_scenario_path(@scenario)
-    add_crumb "Manage Access", instructors_scenario_access_path(@scenario)
+    add_crumb "Manage Access", [:instructors, @scenario, :accesses]
   end
   
 end

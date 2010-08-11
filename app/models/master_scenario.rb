@@ -12,7 +12,7 @@ class MasterScenario < ActiveRecord::Base
   
   def clone!
     clon_atts = attributes.except("id", "created_at", "updated_at")
-    clon = MasterScenario.create(clon_atts.merge("name" => "#{name}_clone"))
+    clon = MasterScenario.create(clon_atts.merge("name" => "#{name}_clon"))
     variables.each { |var| clon.variables.create var.attributes.except("id", "scenario_id", "created_at", "updated_at") }
     clon
   end

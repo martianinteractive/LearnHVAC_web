@@ -4,15 +4,19 @@ describe MembershipsController do
   
   before(:each) do
     @instructor   = Factory(:instructor)
-    @group        = Factory(:group, :name => "Class 01", :creator => @instructor)
     @student      = Factory(:student)
+    ms            = Factory(:master_scenario, :user => Factory(:admin))
+    @scenario_1   = Factory(:scenario, :master_scenario => ms, :name => 'scenario 1', :user => @instructor)
+    @scenario_2   = Factory(:scenario, :master_scenario => ms, :name => 'scenario 2', :user => @instructor)
+    @group        = Factory(:group, :name => "Class 01", :creator => @instructor, :scenario_ids => [@scenario_1.id, @scenario_2.id])
+    
     login_as(@student)
   end
   
   describe "POST :create" do
     describe "with valid params" do
       it "" do
-        proc { post :create, :code => @group.code }.should change(Membership, :count).by(1)
+        proc { post :create, :code => @group.code }.should change(GroupMembership, :count).by(2)
       end
       
       it "" do
@@ -24,10 +28,10 @@ describe MembershipsController do
     describe "with invalid params" do
       describe "Trying to register an existing membership" do
         before(:each) do
-          Membership.create(:group => @group, :member => @student)
+          GroupMembership.create(:group => @group, :member => @student, :scenario => @scenario_1)
         end
         
-        it { proc { post :create, :code => @group.code }.should_not change(Membership, :count) }
+        it { proc { post :create, :code => @group.code }.should_not change(GroupMembership, :count) }
         
         it "" do
           post :create, :code => @group.code
@@ -39,7 +43,7 @@ describe MembershipsController do
         describe "and the instructor is the group instructor" do
           before { login_as(@instructor) }
         
-          it { proc { post :create, :code => @group.code }.should_not change(Membership, :count) }
+          it { proc { post :create, :code => @group.code }.should_not change(GroupMembership, :count) }
         
           it "" do
             post :create, :code => @group.code

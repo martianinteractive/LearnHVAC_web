@@ -41,7 +41,8 @@
             %th Name
             %th Institution
             %th Email
-            %th 
+            %th
+            %th
         - @group.members.each do |member|
           %tr
             %td= link_to_if member.has_role?(:student), member.name, instructors_class_student_path(@group, member)
@@ -49,7 +50,8 @@
             %td= mail_to member.email
             %td
               - if member.has_role?(:student)
-                =link_to image_tag("trashcan.gif"), instructors_class_membership_path(@group, @group.memberships.where(:member_id => member.id).first), :confirm => 'Are you sure?', :method => :delete
+                =link_to image_tag("trashcan.gif"), instructors_class_membership_path(member, :class_id => @group), :confirm => 'Are you sure?', :method => :delete
+            %td= content_tag(:em, "Pending Email Confirmation") unless member.active?
 
     %h3 Scenarios
 

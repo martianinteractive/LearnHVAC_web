@@ -26,7 +26,7 @@
             %tr
               %td= link_to group.name, instructors_class_path(group)
               
-      - if @scenario.users.any?
+      - if @memberships.any?
         %h3 People
         %table
           %thead
@@ -35,11 +35,17 @@
               %th Institution
               %th Email
               %th Role
-              %th 
-            - @scenario.users.each do |user|
+              %th
+              %th
+            - @memberships.each do |membership|
+              - member = membership.member
               %tr
-                %td= user.name
-                %td= user.institution.try(:name)
-                %td= mail_to user.email
-                %td= user.role
-      
+                %td= member.name
+                %td= member.institution.try(:name)
+                %td= mail_to member.email
+                %td= member.role
+                %td= link_to(image_tag("trashcan.gif"), instructors_scenario_acces_path(membership, @scenario), :method => :delete, :confirm => "Are you sure?") if member.has_role?(:student)
+                %td= content_tag(:em, "Pending Email Confirmation") unless member.active?
+
+        %br
+        = will_paginate @memberships

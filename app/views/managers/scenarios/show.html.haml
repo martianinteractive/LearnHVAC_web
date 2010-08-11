@@ -6,7 +6,7 @@
     #subject_actions
       = link_to "Variables", managers_scenario_variables_path(@scenario)
       &nbsp;
-      = link_to 'Who has access?', [:managers, @scenario, :access]
+      = link_to 'Who has access?', [:managers, @scenario, :accesses]
     #subject_info
       %h2= @scenario.name
       .subject_details= @scenario.public? ? "Public" : "Private"

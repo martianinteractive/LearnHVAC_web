@@ -11,11 +11,11 @@ describe Admins::AccessController do
     login_as @admin
   end
   
-  describe "GET :show" do
+  describe "GET :index" do
     it "" do
       group = Factory(:group, :creator => @instructor, :scenario_ids => [@scenario.id])
-      get :show, :scenario_id => @scenario.id
-      response.should render_template(:show)
+      get :index, :scenario_id => @scenario.id
+      response.should render_template(:index)
       assigns(:scenario).should == @scenario
       assigns(:scenario).groups.should_not be_empty
       assigns(:scenario).groups.first.should eq(group)
@@ -24,19 +24,19 @@ describe Admins::AccessController do
   
   describe "POST :create" do
     it "" do
-      proc { post :create, :scenario_id => @scenario.id}.should change(UserScenario, :count).by(1)
+      proc { post :create, :scenario_id => @scenario.id}.should change(IndividualMembership, :count).by(1)
     end
     
     it "" do
       post :create, :scenario_id => @scenario.id
-      response.should redirect_to([:admins, @scenario, :access])
+      response.should redirect_to([:admins, @scenario, :accesses])
     end
   end
   
   describe "DELETE :destroy" do
     it "" do
-      Factory(:user_scenario, :user => @admin, :scenario => @scenario)
-      proc { delete :destroy, :scenario_id => @scenario.id, :user_id => @admin.id}.should change(UserScenario, :count).by(-1)
+      m = Factory(:individual_membership, :member => @admin, :scenario => @scenario)
+      proc { delete :destroy, :id => m.id, :scenario_id => @scenario.id }.should change(IndividualMembership, :count).by(-1)
     end
   end
   

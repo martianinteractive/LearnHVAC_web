@@ -6,12 +6,12 @@
   = render :partial => "/admins/scenarios/scenario_menu"
               
   #inner_column
-    - unless UserScenario.find_by_user_id_and_scenario_id(current_user.id, @scenario.id)
+    - unless IndividualMembership.find_by_member_id_and_scenario_id(current_user.id, @scenario.id)
       %fieldset.special
         %legend Grant Me Access
         %p After clicking the access button you will be able to access this scenario from the desktop application. 
         .access-button.subject-buttons
-          = link_to admins_scenario_access_path(@scenario.id), :method => :post do
+          = link_to [:admins, @scenario, :accesses], :method => :post do
             %button.button.large-plus-button{:type => "button"} Access
         
     
@@ -47,7 +47,7 @@
               %td= group.scenarios.count
               %td= group.code  
               
-      - if @scenario.users.any?
+      - if @memberships.any?
         %h3 People
         %table
           %thead
@@ -57,11 +57,16 @@
               %th Email
               %th Role
               %th 
-            - @scenario.users.each do |user|
+              %th
+            - @memberships.each do |membership|
+              - member = membership.member
               %tr
-                %td= link_to user.name, admins_user_path(user, :role => user.role)
-                %td= link_to user.institution.name, admins_institution_path(user.institution) if user.institution
-                %td= mail_to user.email
-                %td= user.role
-                %td= link_to image_tag("trashcan.gif"), admins_scenario_access_path(@scenario, :user_id => user.id), :method => :delete, :confirm => "Are you sure?"
+                %td= link_to member.name, admins_user_path(member, :role => member.role)
+                %td= link_to member.institution.name, admins_institution_path(member.institution) if member.institution
+                %td= mail_to member.email
+                %td= member.role
+                %td= link_to image_tag("trashcan.gif"), admins_scenario_acces_path(membership, @scenario), :method => :delete, :confirm => "Are you sure?"
+                %td= content_tag(:em, "Pending Email Confirmation") unless member.active?
                 
+        %br
+        = will_paginate @memberships

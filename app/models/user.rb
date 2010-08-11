@@ -8,12 +8,12 @@ class User < ActiveRecord::Base
   has_many :created_scenarios, :class_name => "Scenario"
   has_many :master_scenarios
   has_many :managed_groups, :class_name => "Group", :foreign_key => "creator_id", :dependent => :destroy
-  has_many :memberships, :foreign_key => "member_id"
-  has_many :groups, :through => :memberships
+  has_many :group_memberships, :foreign_key => "member_id"
+  has_many :groups, :through => :group_memberships, :uniq => true
   
-  has_many :user_scenarios
+  has_many :individual_memberships, :foreign_key => "member_id"
   # let's name 'em public scenarios for now.
-  has_many :public_scenarios, :through => :user_scenarios, :source => :scenario
+  has_many :individual_scenarios, :through => :individual_memberships, :source => :scenario
   
   attr_accessor :group_code, :require_group_code
   attr_protected :active, :role_code, :enabled
@@ -74,11 +74,7 @@ class User < ActiveRecord::Base
     reset_perishable_token!
     Notifier.activation_confirmation(self).deliver
   end
-  
-  def active?
-    active
-  end
-  
+    
   def activate!
     self.active = true
     save
@@ -88,16 +84,12 @@ class User < ActiveRecord::Base
     @require_group_code = true
   end
   
-  # Assumes the user has a code_group,
-  # Used only from students registration.
-  def register_group!
-    return false unless self.group_code
-    group = Group.find_by_code(self.group_code)
-    Membership.create(:group => group, :member => self)
+  def _group
+    Group.find_by_code(group_code)
   end
   
   def all_scenarios
-    [created_scenarios, public_scenarios, groups.collect(&:scenarios)].flatten.uniq
+    [created_scenarios, individual_scenarios, groups.collect(&:scenarios)].flatten.uniq
   end
   
   def has_access_to?(scenario)

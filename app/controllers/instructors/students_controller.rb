@@ -2,7 +2,7 @@ class Instructors::StudentsController < Instructors::ApplicationController
   before_filter :find_group
     
   def show
-    @student = @group.members.student.find(params[:id])
+    @student = @group.members.find(params[:id])
   end
   
   private

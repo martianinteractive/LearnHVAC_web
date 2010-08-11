@@ -6,8 +6,9 @@ describe Students::GroupsController do
   before(:each) do
     @student    = Factory(:student)
     @instructor = Factory(:instructor)
-    @group      = Factory(:group, :name => "Class 01", :creator => @instructor)
-    @membership = Factory(:membership, :group => @group, :member => @student)
+    scenario    = Factory(:scenario, :user => @instructor, :master_scenario => Factory(:master_scenario, :user => Factory(:admin)))
+    @group      = Factory(:group, :name => "Class 01", :creator => @instructor, :scenario_ids => [scenario.id])
+    @membership = Factory(:group_membership, :group => @group, :member => @student, :scenario => Factory.stub(:scenario))
     login_as(@student)
   end
   
