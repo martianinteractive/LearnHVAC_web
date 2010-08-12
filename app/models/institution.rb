@@ -6,14 +6,10 @@ class Institution < ActiveRecord::Base
   has_many :scenarios, :through => :users, :source => :created_scenarios
   
   scope :recent, :limit => 10, :order => "created_at DESC"
+  scope :with_public_scenarios, joins(:scenarios) & Scenario.public
   
   def category
     CATEGORIES.index(read_attribute(:category_code))
-  end
-  
-  # TODO: replace with AR query.
-  def self.with_public_scenarios
-    self.all.collect { |i| i if i.scenarios.public.any? }.compact
   end
   
 end

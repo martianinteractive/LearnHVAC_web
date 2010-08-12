@@ -19,6 +19,27 @@ describe Institution do
     @institution.errors[:name].sort.should == ["can't be blank"]
   end
   
+  describe "scopes" do
+    describe "withwith_public_scenarios" do
+      before(:each) do
+        @institution.save
+        @mit        = Factory(:institution, :name => "MIT")
+        @willy      = Factory(:instructor, :institution => @institution)
+        @wally      = Factory(:instructor, :login => "wally", :email => "wally@hvac.org", :institution => @mit)
+        ms          = Factory(:master_scenario, :user => Factory(:admin))
+        
+        @willy_scenario   = Factory(:scenario, :public => false, :user => @willy, :master_scenario => ms)
+        @wally_scenario   = Factory(:scenario, :public => true, :user => @wally, :master_scenario => ms)
+      end
+      
+      it "should find institutions with public scenarios" do
+        with_public_scenarios = Institution.with_public_scenarios
+        with_public_scenarios.should have(1).institution
+        with_public_scenarios.first.should == @mit
+      end
+    end
+  end
+  
   describe "Destroy" do
     before(:each) do
       @institution.users << Factory(:user, :login => "james", :email => "james@lhvac.com")
