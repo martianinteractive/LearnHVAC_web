@@ -39,14 +39,16 @@
         %tr
           %th= check_box_tag "select_all"
           = sort_header_tag('index', :title => 'Index')
-          = sort_header_tag('component_code', :title => 'Component')
+          %th
+            = sort_header_tag('component_code', {:title => 'Component'}, false)
+            = filter_select_for(:component_code, Variable::COMPONENTS.to_a.map(&:reverse))
           = sort_header_tag('name', :title => 'Name')
           %th
             Disabled
             = filter_select_for(:disabled, [true, false])
           %th 
             Type
-            = filter_select_for(:io_type, SystemVariable::IO_TYPES)
+            = filter_select_for(:io_type, Variable::IO_TYPES)
           %th
             Fault
             = filter_select_for(:is_fault, [true, false])

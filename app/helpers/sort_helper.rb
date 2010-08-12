@@ -153,11 +153,11 @@ module SortHelper
   #     &nbsp;&nbsp;<img alt="Sort_asc" src="/images/sort_asc.png" />
   #   </th>
   #
-  def sort_header_tag(column, options = {})
+  def sort_header_tag(column, options = {}, table_header=true)
     text = options.delete(:text) || ActiveSupport::Inflector::titleize(column.humanize)
     options[:title]= "Sort by #{text}" unless options[:title]
     text = options[:title] || options.delete(:text) || ActiveSupport::Inflector::titleize(column.humanize)
-    content_tag('th', sort_link(column, text, options), options)
+    table_header ? content_tag('th', sort_link(column, text, options), options) : sort_link(column, text, options)
   end
   
   private
