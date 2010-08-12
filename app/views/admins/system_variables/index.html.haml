@@ -37,7 +37,9 @@
     %table.listing
       %thead
         %tr
-          %th= check_box_tag "select_all"
+          %th.select_all
+            = check_box_tag "select_all"
+            %label{:for => "select_all"} All
           = sort_header_tag('index', :title => 'Index')
           %th
             = sort_header_tag('component_code', {:title => 'Component'}, false)
