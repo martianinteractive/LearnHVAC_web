@@ -9,7 +9,9 @@ class Variable < ActiveRecord::Base
   validates :io_type, :inclusion => { :in => IO_TYPES }
   
   def self.filter(opts)
+    opts ||= {}
     opts.each { |k, v| opts[k] = eval(v) if %w(true false).include?(v) }
+    opts.delete_if {|k, v| v == "Any" }
     where(opts)
   end
   

@@ -15,8 +15,7 @@ class Admins::SystemVariablesController < Admins::ApplicationController
   inner_tabs :new_variable, :only => [:new, :create]
   
   def index
-    @system_variables = params[:filter].present? ? @master_scenario.variables.filter(params[:filter]) : @master_scenario.variables
-    @system_variables = @system_variables.order(sort_clause).paginate(:page => params[:page], :per_page => 25)
+    @system_variables = @master_scenario.variables.filter(params[:filter]).paginate(:page => params[:page], :per_page => 25)
   end
   
   def show

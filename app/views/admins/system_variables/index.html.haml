@@ -1,14 +1,6 @@
 - content_for :js_templates do
   :plain
-    $(document).ready(function() { 
-      $(".filter").change(function() { 
-        if($(this).val() == "Any") {
-          window.location.replace(window.location.pathname);
-        } else {
-          window.location.search =  "?" + $(this).attr('name') + "=" + $(this).val();
-        }
-      });
-      
+    $(document).ready(function() {       
       $("#select_all").click(function() {
         if ($(this).is(":checked")) {
           $(":checkbox[name=system_variables[]]").each(function() { $(this).attr('checked', true); })
@@ -19,10 +11,9 @@
       
       $("form.variables input[type=submit]").click(function(){ 
         if ($("form.variables input:checkbox:checked").length == 0) {
-          return false;
+          / return false;
         }
        }) 
-         
     })
 
 #tabs
@@ -33,7 +24,7 @@
   = render :partial => "admins/master_scenarios/master_scenario_menu"
   %br
     
-  - form_tag(update_status_admins_master_scenario_system_variables_path(@master_scenario), :method => :put, :class => "variables") do
+  - form_tag([:admins, @master_scenario, :system_variables], :method => :get, :class => "variables") do
     %table.listing
       %thead
         %tr
@@ -54,7 +45,7 @@
           %th
             Fault
             = filter_select_for(:is_fault, [true, false])
-          %th 
+          %th= submit_tag "Filter"
       - @system_variables.each do |system_variable|
         %tr
           %td= check_box_tag "system_variables[]", system_variable.id
