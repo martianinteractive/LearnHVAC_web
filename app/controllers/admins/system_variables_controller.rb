@@ -15,6 +15,8 @@ class Admins::SystemVariablesController < Admins::ApplicationController
   inner_tabs :new_variable, :only => [:new, :create]
   
   def index
+    params[:filter] = {} if params[:reset].present?
+    (update_status and return) if params[:disable].present? or params[:enable].present?
     @system_variables = @master_scenario.variables.filter(params[:filter]).paginate(:page => params[:page], :per_page => 25)
   end
   
@@ -94,5 +96,5 @@ class Admins::SystemVariablesController < Admins::ApplicationController
   def check_system_variables
     redirect_to(:back, :notice => "Please select at least one variable") unless params[:system_variables].present?
   end
-  
+    
 end

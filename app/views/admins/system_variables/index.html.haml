@@ -2,18 +2,28 @@
   :plain
     $(document).ready(function() {       
       $("#select_all").click(function() {
+      
         if ($(this).is(":checked")) {
           $(":checkbox[name=system_variables[]]").each(function() { $(this).attr('checked', true); })
         } else {
           $(":checkbox[name=system_variables[]]").each(function() { $(this).attr('checked', false); })
         }
-      })
+      });
       
-      $("form.variables input[type=submit]").click(function(){ 
-        if ($("form.variables input:checkbox:checked").length == 0) {
-          / return false;
+      $("form.variables input[type=submit]").click(function(){
+        name = $(this).attr("name");
+        
+        if(name == "disable" || name=="enable") {
+         if ($("form.variables input:checkbox:checked").length == 0) {
+           return false;
+         }
+        } else if(name == "reset") {
+          window.location.replace(window.location.pathname);
+          return false;
+        } else {
+          return true;
         }
-       }) 
+       }); 
     })
 
 #tabs
@@ -45,7 +55,9 @@
           %th
             Fault
             = filter_select_for(:is_fault, [true, false])
-          %th= submit_tag "Filter"
+          %th
+            = submit_tag "Filter", :name => "_filter"
+            = submit_tag "Reset", :name => "reset"
       - @system_variables.each do |system_variable|
         %tr
           %td= check_box_tag "system_variables[]", system_variable.id
