@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100804231452) do
+ActiveRecord::Schema.define(:version => 20100813145518) do
 
   create_table "class_notification_emails", :force => true do |t|
     t.integer  "class_id"
@@ -109,7 +109,7 @@ ActiveRecord::Schema.define(:version => 20100804231452) do
     t.text     "description"
     t.string   "goal"
     t.date     "longterm_start_date",            :default => '2010-01-01'
-    t.date     "longterm_stop_date",             :default => '2010-07-31'
+    t.date     "longterm_stop_date",             :default => '2010-08-31'
     t.datetime "realtime_start_datetime",        :default => '2010-01-15 00:00:00'
     t.integer  "level",                          :default => 1
     t.boolean  "public",                         :default => false
@@ -174,12 +174,13 @@ ActiveRecord::Schema.define(:version => 20100804231452) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "role_code",         :default => 0
-    t.string   "perishable_token",  :default => "",              :null => false
+    t.string   "perishable_token",  :default => "",                           :null => false
     t.boolean  "enabled",           :default => true
     t.string   "city"
     t.string   "state"
     t.string   "country",           :default => "United States"
     t.string   "phone"
+    t.string   "time_zone",         :default => "Pacific Time (US & Canada)"
   end
 
   add_index "users", ["perishable_token"], :name => "index_users_on_perishable_token"
