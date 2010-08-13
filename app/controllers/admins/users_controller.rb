@@ -1,7 +1,6 @@
 class Admins::UsersController < Admins::ApplicationController
   before_filter :get_role, :add_crumbs
   
-  
   def index
     @users = User.where(:role_code => @role).order('last_name DESC').paginate(:page => params[:page], :per_page => 25)
   end

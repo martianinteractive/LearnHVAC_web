@@ -49,6 +49,10 @@
 .field
   = f.label :institution_id
   = f.collection_select(:institution_id, Institution.all, :id, :name)
+  
+.field
+  = f.label :time_zone
+  = f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones
 
 .field
   = f.label :enabled
