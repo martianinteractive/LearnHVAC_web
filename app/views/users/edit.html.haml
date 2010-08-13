@@ -26,7 +26,11 @@
     .field
       = f.label :city
       = f.text_field :city
-
+      
+    .field
+      = f.label :time_zone
+      = f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones
+      
     .field
       = f.label :email
       = f.text_field :email

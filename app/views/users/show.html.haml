@@ -27,5 +27,9 @@
           %th Phone:
           %td= current_user.phone
       %tr
+        %th Time Zone:
+        %td= current_user.time_zone
+          
+      %tr
         %th Member since:
         %td= current_user.created_at.to_date.to_formatted_s(:long)
