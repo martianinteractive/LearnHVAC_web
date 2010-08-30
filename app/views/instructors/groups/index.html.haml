@@ -4,18 +4,22 @@
     %li= link_to "New Class", new_instructors_class_path
 
   %br
-  %table.listing
-    %thead
-      %tr
-        %th Name
-        %th Members
-        %th Shared Scenarios
-        %th Created on
-    - @groups.each do |group|
-      %tr
-        %td= link_to group.name, instructors_class_path(group)
-        %td= group.members.count
-        %td= group.group_scenarios.count
-        %td= group.created_at.to_formatted_s(:long)
-  %br
-  = will_paginate @groups
+  - if @groups.any?  
+    %table.listing
+      %thead
+        %tr
+          %th Name
+          %th Members
+          %th Shared Scenarios
+          %th Created on
+      - @groups.each do |group|
+        %tr
+          %td= link_to group.name, instructors_class_path(group)
+          %td= group.members.count
+          %td= group.group_scenarios.count
+          %td= group.created_at.to_formatted_s(:long)
+    %br
+    = will_paginate @groups
+  - else
+    %p You have no classes. Add a new class.
+  

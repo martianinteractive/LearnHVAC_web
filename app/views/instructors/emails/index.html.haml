@@ -12,7 +12,7 @@
         %th Sent At
     - @emails.each do |email|
       %tr
-        %td= link_to email.subject, instructors_group_email_path(@group, email)
+        %td= link_to email.subject, instructors_class_email_path(@group, email)
         %td= email.created_at.to_formatted_s(:long)
     - if @emails.blank?
       %tr
