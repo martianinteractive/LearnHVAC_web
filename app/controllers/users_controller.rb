@@ -1,11 +1,13 @@
 class UsersController < ApplicationController
   before_filter :require_user
-  before_filter :set_layout
+  before_filter :set_layout, :set_dashboard_crumb
   
   def show
+    add_crumb current_user.name, profile_path
   end
   
   def edit
+    add_crumb "Editing #{current_user.name}", edit_user_path(current_user)
   end
   
   def update
@@ -20,6 +22,10 @@ class UsersController < ApplicationController
   
   def set_layout
     self.class.layout current_user_layout
+  end
+  
+  def set_dashboard_crumb
+    add_crumb "Dashboard", current_dashboard_path
   end
   
 end

@@ -102,4 +102,12 @@ class ApplicationController < ActionController::Base
     current_user.role.to_s.pluralize
   end
   
+  def current_dashboard_path
+    begin
+      send("#{current_user_layout}_dashboard_path") 
+    rescue Exception => e
+      "#"
+    end
+  end
+  
 end
