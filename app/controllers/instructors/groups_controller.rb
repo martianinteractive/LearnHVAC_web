@@ -1,6 +1,8 @@
 class Instructors::GroupsController < Instructors::ApplicationController
   before_filter :find_group, :only => [:show, :edit, :update, :destroy]
   add_crumb("Classes") { |instance| instance.send :instructors_classes_path }
+  subject_buttons :group, :only => [:show]
+  inner_tabs :group_details, :only => [:show, :edit]
   
   def index
     @groups = current_user.managed_groups.paginate :page => params[:page], :per_page => 25, :include => { :members => :institution }

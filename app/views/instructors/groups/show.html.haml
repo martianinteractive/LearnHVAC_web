@@ -7,18 +7,8 @@
   %ul
     %li.ui-tabs-selected= link_to "Classes", instructors_classes_path
     %li= link_to "New Class", new_instructors_class_path
-    
-  #page_header
-    #subject_actions
-      - if @group.notification_emails.any?
-        = link_to 'Emails', instructors_class_emails_path(@group)
-        &nbsp;
-      = link_to 'Edit', edit_instructors_class_path(@group)
-      &nbsp;
-      = link_to 'Delete', instructors_class_path(@group), :confirm => 'Are you sure?', :method => :delete
-
-    #subject_info
-      %h2= @group.name
+  
+  = render :partial => 'group_menu'
 
   #inner_column
     %table
