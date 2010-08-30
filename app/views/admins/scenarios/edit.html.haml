@@ -7,7 +7,3 @@
 
   = form_for(@scenario, :url => admins_scenario_path(@scenario), :method => :put) do |f|
     = render :partial => "form", :locals => { :f => f }
-    .actions
-      = submit_tag "Update"
-      &nbsp;or&nbsp;
-      = link_to 'Cancel', :back
