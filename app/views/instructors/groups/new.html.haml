@@ -2,6 +2,8 @@
   %ul
     %li= link_to "Classes", instructors_classes_path
     %li.ui-tabs-selected= link_to "New Class", new_instructors_class_path
+    
+  = render :partial => 'group_menu'
 
   = form_for(@group, :url => instructors_classes_path, :method => :post) do |f|
     = f.error_messages
