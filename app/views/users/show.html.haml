@@ -1,6 +1,6 @@
 #tabs
   %ul
-    %li.ui-tabs-selected= link_to "Profile", profile_path
+    %li.ui-tabs-selected= link_to current_user.role.to_s.capitalize, profile_path
   
   .subject-buttons.ui-helper-clearfix
     %ul
