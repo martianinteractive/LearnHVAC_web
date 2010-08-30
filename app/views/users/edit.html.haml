@@ -1,4 +1,13 @@
-.ui-widget.ui-widget-content.ui-corner-all.profile-box
+#tabs
+  %ul
+    %li.ui-tabs-selected= link_to "Profile", profile_path
+  
+  .subject-buttons.ui-helper-clearfix
+    %ul
+      %li
+        = link_to(profile_path(current_user)) do
+          %button.button.medium-grey-button{:type => "button"} Cancel
+  
   %h2 Edit your profile
   
   = form_for(current_user, :url => user_path(current_user), :method => :put) do |f|

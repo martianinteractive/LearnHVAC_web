@@ -1,12 +1,14 @@
-.ui-widget.ui-widget-content.ui-corner-all.profile-box
-  #page_header
-    #subject_actions
-      = link_to 'Edit your profile', edit_user_path(current_user)
-
-    #subject_info
-      %h2= current_user.name
-      .subject_details
-      = current_user.role.to_s.capitalize
+#tabs
+  %ul
+    %li.ui-tabs-selected= link_to "Profile", profile_path
+  
+  .subject-buttons.ui-helper-clearfix
+    %ul
+      %li
+        = link_to(edit_user_path(current_user)) do
+          %button.button.medium-green-button{:type => "button"} Edit
+  
+  %h2= current_user.name
   
   #location.ui-widget.ui-widget-content.ui-corner-all
     %h4 location
