@@ -32,4 +32,4 @@
   
   #inner-tabs
     %ul
-      %li{:class => ("ui-tabs-selected" if @inner_tabs == :group_details)}= link_to "Group", instructors_class_path(@group)
+      %li{:class => ("ui-tabs-selected" if @inner_tabs == :group_details)}= link_to "Class Details", instructors_class_path(@group)
