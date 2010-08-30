@@ -5,3 +5,7 @@
 
   = form_for(@group, :url => instructors_class_path(@group)) do |f|
     = render :partial => "form", :locals => { :f => f }
+    .actions
+      = f.submit
+      &nbsp;or&nbsp;
+      = link_to 'Cancel', instructors_class_path(@group)

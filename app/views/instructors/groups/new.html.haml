@@ -11,3 +11,7 @@
       %p After creating the class, you will be able to invite students to join.
 
     = render :partial => "form", :locals => { :f => f }
+    .actions
+      = f.submit
+      &nbsp;or&nbsp;
+      = link_to 'Cancel', instructors_classes_path
