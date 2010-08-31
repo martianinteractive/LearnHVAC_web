@@ -105,9 +105,9 @@ module SortHelper
   #
   def sort_clause
     result = session[@sort_name][:key] + ' ' + session[@sort_name][:order]
-    result if result =~ /^[\w_]+ (asc|desc)$/i  # Validate sort.
+    "`#{result.split.first}` #{result.split.last}" if result =~ /^[\w_]+ (asc|desc)$/i  # safe quotes for column names like `index`. Validate sort.
   end
-
+  
   # Returns a link which sorts by the named column.
   #
   # - column is the name of an attribute in the sorted record collection.
