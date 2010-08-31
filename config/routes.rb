@@ -44,11 +44,13 @@ Learnhvac::Application.routes.draw do |map|
     resources :students, :only => [:show]
     resource :dashboard, :only => [:show]
     resources :client_versions
+    
     resources :scenarios do
       resources :alerts, :only => [:index, :show, :update]
-      resources :variables
       resources :access, :only => [:index, :destroy]
+      resources :variables
     end
+    
     resources :classes, :controller => :groups do
       resources :students, :only => [:index, :show]
       resources :memberships, :only => [:destroy]
@@ -106,7 +108,6 @@ Learnhvac::Application.routes.draw do |map|
       resources :system_variables do
         collection do
           get :yaml_dump
-          put :update_status
         end
       end
       resources :revisions do

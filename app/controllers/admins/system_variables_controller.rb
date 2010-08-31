@@ -5,7 +5,6 @@ class Admins::SystemVariablesController < Admins::ApplicationController
   before_filter :find_master_scenario, :add_crumbs
   before_filter :find_system_variable, :only => [:show, :edit, :update]
   before_filter :initialize_variables_sort, :only => [:index]
-  before_filter :check_system_variables, :only => [:update_status]
   
   subject_buttons :master_scenario, :only => :index
   subject_buttons :variable, :only => :show
@@ -52,6 +51,8 @@ class Admins::SystemVariablesController < Admins::ApplicationController
   end
   
   def update_status
+    redirect_to(:back, :notice => "Please select at least one variable") unless params[:variables_ids].present?
+    
     if @master_scenario.variables.update_all("disabled = #{params[:disable].present?}", ["variables.id in (?)", params[:variables_ids]])
       redirect_to([:admins, @master_scenario, :system_variables], :notice => 'Variables were successfully updated.')
     else
@@ -91,10 +92,6 @@ class Admins::SystemVariablesController < Admins::ApplicationController
   
   def find_system_variable
     @system_variable = @master_scenario.variables.find(params[:id])
-  end
-  
-  def check_system_variables
-    redirect_to(:back, :notice => "Please select at least one variable") unless params[:variables_ids].present?
   end
     
 end
