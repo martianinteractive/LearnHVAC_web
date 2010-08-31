@@ -21,5 +21,6 @@
     %br
     = will_paginate @groups
   - else
-    %p You have no classes. Add a new class.
-  
+    %p 
+      You have no classes.
+      = link_to("Add a new class", new_instructors_class_path) << "."
