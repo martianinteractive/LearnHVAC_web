@@ -15,6 +15,7 @@ class Admins::VariablesController < Admins::ApplicationController
   
   def index
     params[:filter] = {} if params[:reset].present?
+    (update_status and return) if params[:disable].present? or params[:enable].present?
     @scenario_variables = @scenario.variables.filter(params[:filter]).paginate(:page => params[:page], :per_page => 25, :order => sort_clause)
   end
   
@@ -45,6 +46,16 @@ class Admins::VariablesController < Admins::ApplicationController
       redirect_to(admins_scenario_variable_path(@scenario, @scenario_variable), :notice => 'Variable was successfully updated.')
     else
       render :action => "edit"
+    end
+  end
+  
+  def update_status
+    redirect_to(:back, :notice => "Please select at least one variable") unless params[:variables_ids].present?
+    
+    if @scenario.variables.update_all("disabled = #{params[:disable].present?}", ["variables.id in (?)", params[:variables_ids]])
+      redirect_to([:admins, @scenario, :variables], :notice => 'Variables were successfully updated.')
+    else
+      redirect_to(:back, :notice => "There were problems updating the variables status.")
     end
   end
 

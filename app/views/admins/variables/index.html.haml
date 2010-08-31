@@ -36,7 +36,7 @@
              
       - @scenario_variables.each do |variable|
         %tr
-          %td= check_box_tag "system_variables[]", variable.id
+          %td= check_box_tag "variables_ids[]", variable.id
           %td= variable.index
           %td= variable.component
           %td= link_to variable.name, admins_scenario_variable_path(@scenario, variable)
