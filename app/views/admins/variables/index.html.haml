@@ -1,34 +1,55 @@
+- content_for :js_templates do
+  = render :partial => "shared/variables_filter_js"
+
 #tabs
   %ul
     %li.ui-tabs-selected= link_to "Instructor Scenarios", admins_scenarios_path
     %li= link_to "New Scenario", new_admins_scenario_path
 
   = render :partial => "admins/scenarios/scenario_menu"
-
   %br
-  %table.listing
-    %thead
+  
+  - form_tag([:admins, @scenario, :variables], :method => :get, :class => "variables") do
+    %table.listing
+      %thead
+        %tr
+          %th.select_all
+            = check_box_tag "select_all"
+            %label{:for => "select_all"} All
+          = sort_header_tag('index', :title => 'Index')
+          %th
+            = sort_header_tag('component_code', {:title => 'Component'}, false)
+            = filter_select_for(:component_code, Variable::COMPONENTS.to_a.map(&:reverse))
+          = sort_header_tag('name', :title => 'Name')
+          %th
+            Disabled
+            = filter_select_for(:disabled, [true, false])
+          %th 
+            Type
+            = filter_select_for(:io_type, Variable::IO_TYPES)
+          %th
+            Fault
+            = filter_select_for(:is_fault, [true, false])
+          %th
+            = submit_tag "Filter", :name => "_filter"
+            = submit_tag "Reset", :name => "reset"
+             
+      - @scenario_variables.each do |variable|
+        %tr
+          %td= check_box_tag "system_variables[]", variable.id
+          %td= variable.index
+          %td= variable.component
+          %td= link_to variable.name, admins_scenario_variable_path(@scenario, variable)
+          %td= variable.disabled?
+          %td= variable.io_type.to_s.upcase
+          %td= variable.is_fault?
+          %td
+            = link_to image_tag('edit.gif'), edit_admins_scenario_variable_path(@scenario, variable)
+            = link_to image_tag('trashcan.gif'), admins_scenario_variable_path(@scenario, variable), :confirm => 'Are you sure?', :method => :delete
       %tr
-        = sort_header_tag('index', :title => 'Index')
-        = sort_header_tag('component_code', :title => 'Component')
-        = sort_header_tag('name', :title => 'Name')
-        = sort_header_tag('io_type', :title => 'Type')
-        %th Low
-        %th Initial
-        %th High
-        %th 
-    - @scenario_variables.each do |scenario_system_variable|
-      %tr
-        %td= scenario_system_variable.index
-        %td= scenario_system_variable.component
-        %td= link_to scenario_system_variable.name, admins_scenario_variable_path(@scenario, scenario_system_variable)
-        %td= scenario_system_variable.io_type.to_s.upcase
-        %td= scenario_system_variable.low_value
-        %td= scenario_system_variable.initial_value
-        %td= scenario_system_variable.high_value
         %td
-          = link_to image_tag('edit.gif'), edit_admins_scenario_variable_path(@scenario, scenario_system_variable)
-          = link_to image_tag('trashcan.gif'), admins_scenario_variable_path(@scenario, scenario_system_variable), :confirm => 'Are you sure?', :method => :delete
+          = submit_tag "Enable", :name => "enable"
+          = submit_tag "Disable", :name => "disable"
         
   %br
-  = will_paginate @scenario_variables
+  = will_paginate @scenario_variables, :params => params.slice(:filter)

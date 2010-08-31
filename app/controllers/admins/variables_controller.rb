@@ -14,7 +14,8 @@ class Admins::VariablesController < Admins::ApplicationController
   inner_tabs :new_variable, :only => [:new, :create]
   
   def index
-    @scenario_variables = @scenario.variables.order(sort_clause).paginate :page => params[:page], :per_page => 25
+    params[:filter] = {} if params[:reset].present?
+    @scenario_variables = @scenario.variables.filter(params[:filter]).paginate(:page => params[:page], :per_page => 25, :order => sort_clause)
   end
   
   def new
