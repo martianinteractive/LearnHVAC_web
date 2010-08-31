@@ -15,7 +15,8 @@ class Instructors::VariablesController < Instructors::ApplicationController
   inner_tabs :variable_name, :only => [:show, :edit, :update]
   
   def index
-    @scenario_variables = @scenario.variables.paginate :page => params[:page], :per_page => 25
+    params[:filter] = {} if params[:reset].present?
+    @scenario_variables = @scenario.variables.filter(params[:filter]).paginate(:page => params[:page], :per_page => 25, :order => sort_clause)
   end
   
   def new
