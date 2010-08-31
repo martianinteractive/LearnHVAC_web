@@ -29,7 +29,3 @@
 
 - else
   %h2.subject-name= link_to @group.name, instructors_class_path(@group)
-  
-  #inner-tabs
-    %ul
-      %li{:class => ("ui-tabs-selected" if @inner_tabs == :group_details)}= link_to "Class Details", instructors_class_path(@group)
