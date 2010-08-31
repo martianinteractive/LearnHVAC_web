@@ -100,7 +100,7 @@ describe Admins::SystemVariablesController do
       v2 = Factory(:system_variable, :disabled => false, :master_scenario => @master_scenario)
       v3 = Factory(:system_variable, :disabled => false, :master_scenario => @master_scenario)
       SystemVariable.where(:disabled => false).should have(4).vars
-      put :update_status, :master_scenario_id => @master_scenario.id, :system_variables => [v1.id, v2.id, v3.id], :disable => 1
+      put :update_status, :master_scenario_id => @master_scenario.id, :variables_ids => [v1.id, v2.id, v3.id], :disable => 1
       SystemVariable.where(:disabled => false).should have(1).var
       [v1.reload, v2.reload, v3.reload].each { |v| v.should be_disabled }
     end
@@ -109,7 +109,7 @@ describe Admins::SystemVariablesController do
       v1 = Factory(:system_variable, :disabled => true, :master_scenario => @master_scenario)
       v2 = Factory(:system_variable, :disabled => true, :master_scenario => @master_scenario)
       SystemVariable.where(:disabled => true).should have(2).vars
-      put :update_status, :master_scenario_id => @master_scenario.id, :system_variables => [v1.id, v2.id]
+      put :update_status, :master_scenario_id => @master_scenario.id, :variables_ids => [v1.id, v2.id]
       SystemVariable.where(:disabled => true).should have(0).vars
       [v1.reload, v2.reload].each { |v| v.should_not be_disabled }
     end

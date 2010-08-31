@@ -35,7 +35,7 @@
             = submit_tag "Reset", :name => "reset"
       - @system_variables.each do |system_variable|
         %tr
-          %td= check_box_tag "system_variables[]", system_variable.id
+          %td= check_box_tag "variables_ids[]", system_variable.id
           %td= system_variable.index
           %td= system_variable.component
           %td= link_to system_variable.name, admins_master_scenario_system_variable_path(@master_scenario, system_variable)
