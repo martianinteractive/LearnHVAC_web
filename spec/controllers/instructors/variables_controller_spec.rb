@@ -94,6 +94,35 @@ describe Instructors::VariablesController do
     end
   end
   
+  describe "GET :index redirecting to update_status" do
+    before(:each) do
+      @scenario_variable.update_attribute(:disabled, false)
+    end
+    
+    it "" do
+      get :index, :scenario_id => @scenario.id, :variables_ids => [@scenario_variable.id]
+      response.should render_template(:index)  
+    end
+    
+    it "should mass disable scenario variables" do
+      v1 = Factory(:scenario_variable, :disabled => false, :scenario => @scenario)
+      v2 = Factory(:scenario_variable, :disabled => false, :scenario => @scenario)
+      v3 = Factory(:scenario_variable, :disabled => false, :scenario => @scenario)
+      ScenarioVariable.where(:disabled => false).should have(4).vars
+      get :index, :scenario_id => @scenario.id, :variables_ids => [v1.id, v2.id, v3.id], :disable => 1
+      ScenarioVariable.where(:disabled => false).should have(1).var
+      [v1.reload, v2.reload, v3.reload].each { |v| v.should be_disabled }
+    end
+    
+    it "should mass enable scenario variables" do
+      v1 = Factory(:scenario_variable, :disabled => true, :scenario => @scenario)
+      v2 = Factory(:scenario_variable, :disabled => true, :scenario => @scenario)
+      ScenarioVariable.where(:disabled => true).should have(2).vars
+      get :index, :scenario_id => @scenario.id, :variables_ids => [v1.id, v2.id], :enable => 1
+      ScenarioVariable.where(:disabled => true).should have(0).vars
+      [v1.reload, v2.reload].each { |v| v.should_not be_disabled }
+    end
+  end
   
   describe "DELETE destroy" do    
     it "destroys the requested scenario_variable" do      

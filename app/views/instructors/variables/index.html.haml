@@ -13,6 +13,9 @@
     %table.listing
       %thead
         %tr
+          %th.select_all
+            = check_box_tag "select_all"
+            %label{:for => "select_all"} All
           = sort_header_tag('index', :title => 'Index')
           %th
             = sort_header_tag('component_code', {:title => 'Component'}, false)
@@ -32,6 +35,7 @@
             = submit_tag "Reset", :name => "reset"
       - @scenario_variables.each do |variable|
         %tr
+          %td= check_box_tag "variables_ids[]", variable.id
           %td= variable.index
           %td= variable.component
           %td= link_to variable.name, instructors_scenario_variable_path(@scenario, variable)
@@ -42,6 +46,10 @@
             = link_to image_tag('edit.gif'), edit_instructors_scenario_variable_path(@scenario, variable)
             &nbsp;&nbsp;
             = link_to image_tag('trashcan.gif'), instructors_scenario_variable_path(@scenario, variable), :confirm => 'Are you sure?', :method => :delete
+      %tr
+        %td
+          = submit_tag "Enable", :name => "enable"
+          = submit_tag "Disable", :name => "disable"
 
   %br
   = will_paginate @scenario_variables, :params => params.slice(:filter)

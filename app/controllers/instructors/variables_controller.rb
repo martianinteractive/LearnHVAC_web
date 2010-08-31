@@ -16,6 +16,7 @@ class Instructors::VariablesController < Instructors::ApplicationController
   
   def index
     params[:filter] = {} if params[:reset].present?
+    (update_status and return) if params[:disable].present? or params[:enable].present?
     @scenario_variables = @scenario.variables.filter(params[:filter]).paginate(:page => params[:page], :per_page => 25, :order => sort_clause)
   end
   
@@ -52,6 +53,16 @@ class Instructors::VariablesController < Instructors::ApplicationController
       add_crumb "Editing #{@scenario_variable.display_name}", edit_instructors_scenario_variable_path(@scenario, @scenario_variable)
     end
   end
+  
+  def update_status
+    redirect_to(:back, :notice => "Please select at least one variable") unless params[:variables_ids].present?
+    
+    if @scenario.variables.update_all("disabled = #{params[:disable].present?}", ["variables.id in (?)", params[:variables_ids]])
+      redirect_to([:instructors, @scenario, :variables], :notice => 'Variables were successfully updated.')
+    else
+      redirect_to(:back, :notice => "There were problems updating the variables status.")
+    end
+  end
 
   def destroy
     @scenario.variables.find(params[:id]).destroy
@@ -73,5 +84,5 @@ class Instructors::VariablesController < Instructors::ApplicationController
   def find_scenario_variable
     @scenario_variable = @scenario.variables.find(params[:id])
   end
-  
+    
 end
