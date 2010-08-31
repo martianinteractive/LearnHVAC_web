@@ -1,21 +1,5 @@
 - content_for :js_templates do
-  :plain
-    $(document).ready(function() {       
-      $("form.variables input[type=submit]").click(function(){
-        name = $(this).attr("name");
-        
-        if(name == "disable" || name=="enable") {
-         if ($("form.variables input:checkbox:checked").length == 0) {
-           return false;
-         }
-        } else if(name == "reset") {
-          window.location.replace(window.location.pathname);
-          return false;
-        } else {
-          return true;
-        }
-       }); 
-    })
+  = render :partial => "shared/variables_filter_js"
 
 #tabs
   %ul
