@@ -63,7 +63,7 @@
                 %td= member.institution.try(:name)
                 %td= mail_to member.email
                 %td= member.role
-                %td= link_to(image_tag("trashcan.gif"), managers_scenario_acces_path(membership, @scenario), :method => :delete, :confirm => "Are you sure?") unless member.has_role?(:admin)
+                %td= link_to(image_tag("trashcan.gif"), managers_scenario_access_path(membership, @scenario), :method => :delete, :confirm => "Are you sure?") unless member.has_role?(:admin)
                 %td= content_tag(:em, "Pending Email Confirmation") unless member.active?
                 
         %br
