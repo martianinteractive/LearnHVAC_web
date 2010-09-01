@@ -16,7 +16,7 @@ class Admins::UsersController < Admins::ApplicationController
   end
   
   def show
-    @user = User.find(params[:id])
+    @user = params[:role] != 'student' ? User.find(params[:id]) : User.includes(:groups).find(params[:id])
     add_crumb @user.name, admins_user_path(@user)
   end
 

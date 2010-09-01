@@ -46,6 +46,12 @@ describe Admins::UsersController do
       response.should render_template(:show)
       assigns(:user).should eq(@admin)
     end
+    
+    it "" do
+      student = Factory(:student, :institution_name => "MIT")
+      get :show, :id => student.id, :role => 'student', :requirements => { :role => /[a-z]/ }
+      response.should render_template(:show)
+    end
   end
   
   describe "GET new" do

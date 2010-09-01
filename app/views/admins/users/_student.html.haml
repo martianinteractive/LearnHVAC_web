@@ -1,0 +1,28 @@
+- content_for :head do
+  = javascript_tag do
+    :plain
+      $(document).ready(function() { 
+        $(".sub-tabs").tabs();
+      });
+      
+.sub-tabs
+  %ul
+    %li
+      %a{:href => "#u-details"} Student Details
+    %li
+      %a{:href => "#u-classes"} Classes
+
+  %div#u-details.tab-pane
+    = render @user
+
+  %div#u-classes.tab-pane
+    %table.listing
+      %thead
+        %tr
+          %th Name
+          %th Instructor
+      - @user.groups.each do |group|
+        %tr
+          %td= link_to group.name, admins_class_path(group)
+          %td= link_to group.creator.name, admins_user_path(group.creator, :role => group.creator.role)
+          

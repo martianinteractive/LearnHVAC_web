@@ -7,41 +7,16 @@
     %ul
       %li
         = link_to(edit_admins_user_path(@user, :role => @user.role)) do
-          %button.button.large-green-button{:type=>"button"} Edit User
+          %button.button.medium-green-button{:type=>"button"} Edit
        
       %li
         = link_to admins_user_path(@user, :role => @user.role), :confirm => 'Are you sure?', :method => :delete do
-          %button.button.large-red-button{:type => "button"} Delete User
+          %button.button.medium-red-button{:type => "button"} Delete
 
   %h2.subject-name= @user.name
-  .subject_details
-    - if @user.institution
-      #{@user.role} at #{link_to @user.institution.name, admins_institution_path(@user.institution)}
-    - else
-      = @user.role
   
-  #location.ui-widget.ui-widget-content.ui-corner-all
-    %h4 location
-    %p
-      = image_tag "globe_32.png"
-      = location_for(@user)
-	
-  #inner_column
-    %table
-      %tr
-        %th Login:
-        %td= @user.login
-      %tr
-        %th E-Mail:
-        %td= mail_to @user.email
-      - if @user.phone.present?
-        %tr
-          %th Phone:
-          %td= @user.phone
-      %tr
-        %th Status:
-        %td= @user.enabled? ? "Enabled" : "Disabled"
-      %tr
-        %th Created on:
-        %td= @user.created_at.to_formatted_s(:long)
+  - unless @user.has_role?(:student)
+    = render @user
+  - else
+    = render :partial => 'student'
 
