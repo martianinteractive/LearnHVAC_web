@@ -14,7 +14,7 @@
   - if ['manager', 'instructor', 'student'].include?(params[:role])
     - form_tag(filter_admins_users_path(:role => params[:role]), :class => "search") do
       = label_tag :institution_id
-      = select_tag(:institution_id, options_from_collection_for_select(Institution.all, "id", "name", params[:institution_id]), { :include_blank => true })
+      = select_tag(:institution_id, options_from_collection_for_select(Institution.all, "id", "name", params[:institution_id]), { :include_blank => "Please select..." })
       = submit_tag "Filter!"
       &nbsp;&nbsp;
       = link_to "Reset", admins_users_path(:role => params[:role]) if controller.action_name == 'filter'
