@@ -45,25 +45,45 @@ describe User do
     @user.reload.institution.should == group.creator.institution
   end
   
-  describe ".search" do
+  describe "finders" do
     before(:each) do
-      @toby  = Factory(:instructor, :first_name => "toby", :last_name => "doe", :login => "tobydoe", :email => "toby@lhvac.org")
-      @bob   = Factory(:instructor, :first_name => "bob", :last_name => "doe", :login => "bobdoe", :email => "bob@lhvac.org")
-      @bubba = Factory(:student, :first_name => "buba", :last_name => "doe", :login => "bubbadoe", :email => "bubba@lhvac.org", :state => "west virginia")
+      @killing_fields = Factory(:institution, :name => "The Killing Fields")
+      @big_oak        = Factory(:institution, :name => "The Big Oak")
+      @toby  = Factory(:instructor, :first_name => "toby", :last_name => "doe", :login => "tobydoe", :email => "toby@lhvac.org", :institution => @killing_fields)
+      @bob   = Factory(:instructor, :first_name => "bob", :last_name => "doe", :login => "bobdoe", :email => "bob@lhvac.org", :institution => @big_oak)
+      @bubba = Factory(:student, :first_name => "buba", :last_name => "doe", :login => "bubbadoe", :email => "bubba@lhvac.org", :state => "west virginia", :institution => @killing_fields)
     end
     
-    it "should find users based on role" do
-      users = User.search(User::ROLES[:instructor], "doe")
-      users.should have(2).users
-      users.should == [@toby, @bob]
-      users = User.search(User::ROLES[:student], "doe")
-      users.should have(1).user
-      users.should == [@bubba]
+    describe ".search" do
+      it "should find users based on role" do
+        users = User.search(User::ROLES[:instructor], "doe")
+        users.should have(2).users
+        users.should == [@toby, @bob]
+        users = User.search(User::ROLES[:student], "doe")
+        users.should have(1).user
+        users.should == [@bubba]
+      end
+
+      it "should only find users by name, login or email" do
+        users = User.search(User::ROLES[:student], "virginia")
+        users.should be_empty
+      end
     end
     
-    it "should only find users by name, login or email" do
-      users = User.search(User::ROLES[:student], "virginia")
-      users.should be_empty
+    describe ".filter" do
+      it "should filter users based on role and institution" do
+        users = User.filter(User::ROLES[:instructor], @killing_fields.id)
+        users.should have(1).user
+        users.should == [@toby]
+        users = User.filter(User::ROLES[:instructor], @big_oak.id)
+        users.should have(1).user
+        users.should == [@bob]
+        users = User.filter(User::ROLES[:student], @killing_fields.id)
+        users.should have(1).user
+        users.should == [@bubba]
+        users = User.filter(User::ROLES[:student], @big_oak.id)
+        users.should be_empty
+      end
     end
   end
   

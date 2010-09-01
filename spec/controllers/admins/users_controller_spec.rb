@@ -19,6 +19,26 @@ describe Admins::UsersController do
     it { response.should render_template(:index) }
     it { assigns(:users).should == [@admin] }
   end
+  
+  describe "POST filter" do
+    before(:each) do
+      @institution = Factory(:institution)
+      @instructor  = Factory(:instructor, :institution => @institution)
+      @admin.update_attributes(:institution_id => @institution.id)
+    end
+    
+    it "" do
+      post :filter, :institution_id => @institution.id, :role => 'instructor', :requirements=>{:role => /[a-z]/}
+      response.should render_template(:index)
+      assigns(:users).should == [@instructor]
+    end
+    
+    it "" do
+      institution = Factory(:institution, :name => "The Killing Fields")
+      post :filter, :institution_id => institution.id, :role => 'instructor', :requirements=>{:role => /[a-z]/}
+      assigns(:users).should be_empty      
+    end
+  end
    
   describe "GET show" do
     it "assigns the requested user as @user" do

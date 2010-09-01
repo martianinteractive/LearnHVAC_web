@@ -126,6 +126,7 @@ Learnhvac::Application.routes.draw do |map|
       resources :users, :requirements => { :role => /[a-z]/ }  do 
         collection do
           post :search
+          post :filter
           get :list
         end
       end

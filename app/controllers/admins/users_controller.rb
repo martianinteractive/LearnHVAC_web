@@ -7,7 +7,12 @@ class Admins::UsersController < Admins::ApplicationController
   
   def search
     @users = User.search(@role, params[:q]).order('last_name DESC').paginate(:page => params[:page], :per_page => 25)
-    render :action => "index"
+    render :action => :index
+  end
+  
+  def filter
+    @users = User.filter(@role, params[:institution_id]).order('last_name DESC').paginate(:page => params[:page], :per_page => 25)
+    render :action => :index
   end
   
   def show
