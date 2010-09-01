@@ -32,6 +32,11 @@ class User < ActiveRecord::Base
   
   before_save :set_institution, :on => :create, :if => Proc.new { |user| user.has_role?(:student) }
   
+  
+  def self.search(role, q)
+    where(["role_code = #{role} AND (first_name LIKE :q OR last_name LIKE :q OR login LIKE :q OR email LIKE :q)", {:q => '%'+q+'%'}])
+  end
+  
   def name
     first_name.capitalize + " " + last_name.capitalize
   end

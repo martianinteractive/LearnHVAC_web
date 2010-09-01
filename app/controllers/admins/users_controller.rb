@@ -6,8 +6,7 @@ class Admins::UsersController < Admins::ApplicationController
   end
   
   def search
-    conditions = ["role_code = #{@role} AND (first_name LIKE :q OR last_name LIKE :q OR login LIKE :q OR email LIKE :q)", {:q => '%'+params[:q]+'%'}]
-    @users = User.where(conditions).order('last_name DESC').paginate(:page => params[:page], :per_page => 25)
+    @users = User.search(@role, params[:q]).order('last_name DESC').paginate(:page => params[:page], :per_page => 25)
     render :action => "index"
   end
   

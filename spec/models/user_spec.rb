@@ -45,6 +45,28 @@ describe User do
     @user.reload.institution.should == group.creator.institution
   end
   
+  describe ".search" do
+    before(:each) do
+      @toby  = Factory(:instructor, :first_name => "toby", :last_name => "doe", :login => "tobydoe", :email => "toby@lhvac.org")
+      @bob   = Factory(:instructor, :first_name => "bob", :last_name => "doe", :login => "bobdoe", :email => "bob@lhvac.org")
+      @bubba = Factory(:student, :first_name => "buba", :last_name => "doe", :login => "bubbadoe", :email => "bubba@lhvac.org", :state => "west virginia")
+    end
+    
+    it "should find users based on role" do
+      users = User.search(User::ROLES[:instructor], "doe")
+      users.should have(2).users
+      users.should == [@toby, @bob]
+      users = User.search(User::ROLES[:student], "doe")
+      users.should have(1).user
+      users.should == [@bubba]
+    end
+    
+    it "should only find users by name, login or email" do
+      users = User.search(User::ROLES[:student], "virginia")
+      users.should be_empty
+    end
+  end
+  
   context "on Callbacks" do    
     describe "on destroy" do
       before(:each) do
