@@ -10,8 +10,7 @@ class User < ActiveRecord::Base
   has_many :managed_groups,           :class_name => "Group", :foreign_key => "creator_id", :dependent => :destroy
   has_many :group_memberships,        :foreign_key => "member_id"
   has_many :groups,                   :through => :group_memberships, :uniq => true
-  has_many :group_scenarios,          :through => :group_memberships, :source => :scenario
-  
+  has_many :group_scenarios,          :through => :group_memberships, :source => :scenario  
   has_many :individual_memberships,   :foreign_key => "member_id"
   has_many :individual_scenarios,     :through => :individual_memberships, :source => :scenario
   
