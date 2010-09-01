@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
-gem 'rails', '3.0.0.rc'
-gem "haml", "3.0.15"
+gem 'rails', '3'
+gem "haml", "3.0.18"
 gem "compass", "0.10.2"
 gem "mysql"
 gem "will_paginate", "3.0.pre2"
@@ -9,7 +9,7 @@ gem "addressable", "2.1.1"
 gem "builder"
 
 group :test do
-	gem "rspec-rails", ">= 2.0.0.beta.19"
+	gem "rspec-rails", ">= 2.0.0.beta.20"
   gem "mocha"
 	gem "factory_girl_rails"
 end
