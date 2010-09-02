@@ -12,10 +12,11 @@ $(document).ready(function() {
 		variables_ids = []
 		$.each($(".variables_ids:checked"), function(i, v) { variables_ids[i] = $(v).val(); });
 
-		$.post('<%= update_status_admins_master_scenario_system_variables_path(@master_scenario) %>', 
-					 {  "_method": "put", "variables_ids": variables_ids, "status" : $(this).attr("name") }, 
-					 null,
-					 "script")
+		$.post('<%= status_path %>', 
+			{  "_method": "put", "variables_ids": variables_ids, "status" : $(this).attr("name") }, 
+			null,
+			"script"
+		);
 					
 		return false;
    });

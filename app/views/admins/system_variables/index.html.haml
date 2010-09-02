@@ -1,5 +1,5 @@
 - content_for :js_templates do
-  = render :partial => "shared/variables_filter_js"
+  = render :partial => "shared/variables_js", :locals => { :status_path => update_status_admins_master_scenario_system_variables_path(@master_scenario) }
 
 #tabs
   %ul
@@ -9,18 +9,18 @@
   = render :partial => "admins/master_scenarios/master_scenario_menu"
   %br
     
+  %div.actions_header
+    %ul
+      %li
+        = check_box_tag "select_all"
+        %label{:for => "select_all"} All
+      %li.update_status
+        = submit_tag "Enable", :name => "enable"
+        = submit_tag "Disable", :name => "disable"
+      %li
+        = submit_tag "Delete", :name => "delete"
+    
   - form_tag([:admins, @master_scenario, :system_variables], :method => :get, :class => "variables") do
-    %div.form-table-menus
-      %ul
-        %li
-          = check_box_tag "select_all"
-          %label{:for => "select_all"} All
-        %li
-          = submit_tag "Enable", :name => "enable"
-          = submit_tag "Disable", :name => "disable"
-        %li
-          = submit_tag "Delete", :name => "delete"
-
     %table.listing
       %thead
         %tr
