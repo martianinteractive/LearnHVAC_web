@@ -17,7 +17,6 @@ class Admins::VariablesController < Admins::ApplicationController
   
   def index
     params[:filter] = {} if params[:reset].present?
-    (update_status and return) if params[:disable].present? or params[:enable].present?
     @scenario_variables = @scenario.variables.filter(params[:filter]).paginate(:page => params[:page], :per_page => 25, :order => sort_clause)
   end
   
