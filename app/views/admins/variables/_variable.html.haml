@@ -1,0 +1,12 @@
+- checked ||= false
+%tr{:id => "variable-#{variable.id}"}
+  %td= check_box_tag "variables_ids[]", variable.id, checked, :class => "variables_ids", :id => "v-#{variable.id}"
+  %td= variable.index
+  %td= variable.component
+  %td= link_to variable.name, admins_scenario_variable_path(@scenario, variable)
+  %td= variable.disabled?
+  %td= variable.io_type.to_s.upcase
+  %td= variable.is_fault?
+  %td
+    = link_to image_tag('edit.gif'), edit_admins_scenario_variable_path(@scenario, variable)
+    = link_to image_tag('trashcan.gif'), admins_scenario_variable_path(@scenario, variable), :confirm => 'Are you sure?', :method => :delete

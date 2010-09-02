@@ -134,13 +134,17 @@ Learnhvac::Application.routes.draw do |map|
     end
     
     resources :scenarios do
-      resources :variables
       resources :accesses, :only => [:index, :create, :destroy], :controller => :access
+      
+      resources :variables do
+        collection do
+          put :update_status
+        end
+      end
       
       collection do
         get :list
       end
-      
     end  
   end
 

@@ -1,0 +1,3 @@
+<% for variable in @variables %>
+  $("#variable-" + <%= variable.id %>).replaceWith("<%= escape_javascript(render(:partial => 'variable', :locals => { :variable => variable, :checked => true })) %>");
+<% end %>
