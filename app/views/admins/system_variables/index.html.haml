@@ -10,12 +10,21 @@
   %br
     
   - form_tag([:admins, @master_scenario, :system_variables], :method => :get, :class => "variables") do
+    %div.form-table-menus
+      %ul
+        %li
+          = check_box_tag "select_all"
+          %label{:for => "select_all"} All
+        %li
+          = submit_tag "Enable", :name => "enable"
+          = submit_tag "Disable", :name => "disable"
+        %li
+          = submit_tag "Delete", :name => "delete"
+
     %table.listing
       %thead
         %tr
-          %th.select_all
-            = check_box_tag "select_all"
-            %label{:for => "select_all"} All
+          %th
           = sort_header_tag('index', :title => 'Index')
           %th
             = sort_header_tag('component_code', {:title => 'Component'}, false)
@@ -34,22 +43,8 @@
             = submit_tag "Filter", :name => "_filter"
             = submit_tag "Reset", :name => "reset"
       - @system_variables.each do |system_variable|
-        %tr
-          %td= check_box_tag "variables_ids[]", system_variable.id
-          %td= system_variable.index
-          %td= system_variable.component
-          %td= link_to system_variable.name, admins_master_scenario_system_variable_path(@master_scenario, system_variable)
-          %td= system_variable.disabled?
-          %td= system_variable.io_type.to_s.upcase
-          %td= system_variable.is_fault?
-          %td
-            = link_to image_tag("edit.gif"), edit_admins_master_scenario_system_variable_path(@master_scenario, system_variable)
-            &nbsp;
-            = link_to image_tag("trashcan.gif"), admins_master_scenario_system_variable_path(@master_scenario, system_variable), :confirm => 'Are you sure?', :method => :delete
-      %tr
-        %td
-          = submit_tag "Enable", :name => "enable"
-          = submit_tag "Disable", :name => "disable"
+        = render :partial => 'system_variable', :locals => { :system_variable => system_variable }
+
   %br
   = will_paginate @system_variables, :params => params.slice(:filter)
   %br
