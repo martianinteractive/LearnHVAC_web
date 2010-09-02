@@ -11,15 +11,21 @@ $(document).ready(function() {
   $("form.variables input[type=submit]").click(function(){
     name = $(this).attr("name");
     
-    if(name == "disable" || name=="enable") {
-     if ($("form.variables input:checkbox:checked").length == 0) {
-       return false;
-     }
-    } else if(name == "reset") {
+    if(name == "disable" || name == "enable") {
+	  variables_ids = []
+	  $.each($(".variables_ids:checked"), function(i, v) { variables_ids[i] = $(v).val(); });
+	  $.post('<%= update_status_admins_master_scenario_system_variables_path(@master_scenario) %>', 
+	  			 {  "_method": "put", "variables_ids": variables_ids, "status" : name  }, 
+	  			 function(data) { eval(data) }
+	  )
+		
+	  return false;
+
+    } else if (name == "reset") {
       window.location.replace(window.location.pathname);
       return false;
     } else {
       return true;
     }
-   }); 
+   });
 })

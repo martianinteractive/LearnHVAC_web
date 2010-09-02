@@ -13,9 +13,10 @@ class Admins::SystemVariablesController < Admins::ApplicationController
   inner_tabs :manage_variables, :only => [:index, :show]
   inner_tabs :new_variable, :only => [:new, :create]
   
+  respond_to :js, :only => [:update_status]
+  
   def index
     params[:filter] = {} if params[:reset].present?
-    (update_status and return) if params[:disable].present? or params[:enable].present?
     @system_variables = @master_scenario.variables.filter(params[:filter]).paginate(:page => params[:page], :per_page => 25, :order => sort_clause)
   end
   
@@ -50,13 +51,15 @@ class Admins::SystemVariablesController < Admins::ApplicationController
     end
   end
   
-  def update_status
-    redirect_to(:back, :notice => "Please select at least one variable") unless params[:variables_ids].present?
+  def update_status        
+    disable = params[:status] == "disable"
     
-    if @master_scenario.variables.update_all("disabled = #{params[:disable].present?}", ["variables.id in (?)", params[:variables_ids]])
-      redirect_to([:admins, @master_scenario, :system_variables], :notice => 'Variables were successfully updated.')
-    else
-      redirect_to(:back, :notice => "There were problems updating the variables status.")
+    if @master_scenario.variables.update_all("disabled = #{disable}", ["variables.id in (?)", params[:variables_ids]])
+      @system_variables = @master_scenario.variables.find(params[:variables_ids])
+      
+      respond_to do |wants|
+        wants.js
+      end
     end
   end
   
