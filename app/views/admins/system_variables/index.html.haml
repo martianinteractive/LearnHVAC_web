@@ -1,5 +1,7 @@
 - content_for :js_templates do
-  = render :partial => "shared/variables_js", :locals => { :status_path => update_status_admins_master_scenario_system_variables_path(@master_scenario) }
+  ~ render :partial => "shared/variables_js", 
+           :locals => { :status_path => update_status_admins_master_scenario_system_variables_path(@master_scenario),
+                        :drop_path => drop_admins_master_scenario_system_variables_path(@master_scenario) }
 
 #tabs
   %ul

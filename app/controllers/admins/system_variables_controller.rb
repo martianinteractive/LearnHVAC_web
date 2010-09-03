@@ -13,7 +13,7 @@ class Admins::SystemVariablesController < Admins::ApplicationController
   inner_tabs :manage_variables, :only => [:index, :show]
   inner_tabs :new_variable, :only => [:new, :create]
   
-  respond_to :js, :only => [:update_status]
+  respond_to :js, :only => [:update_status, :drop]
   
   def index
     params[:filter] = {} if params[:reset].present?
@@ -67,6 +67,11 @@ class Admins::SystemVariablesController < Admins::ApplicationController
     @master_scenario.variables.find(params[:id]).destroy
     session[:return_to] = admins_master_scenario_system_variables_path(@master_scenario)
     redirect_to([:admins, @master_scenario, :system_variables], :notice => 'System Variable was successfully deleted.')
+  end
+  
+  def drop
+    # calling delete_all (since we don't have callbacks or depedant associations on variables) to speed-up this request.
+    @master_scenario.variables.where(["variables.id in (?)", params[:variables_ids]]).delete_all
   end
   
   def yaml_dump

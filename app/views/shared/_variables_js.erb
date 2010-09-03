@@ -8,16 +8,27 @@ $(document).ready(function() {
     }
   });
   
-  $("li.update_status input[type=submit]").click(function(){
-		variables_ids = []
-		$.each($(".variables_ids:checked"), function(i, v) { variables_ids[i] = $(v).val(); });
-
-		$.post('<%= status_path %>', 
-			{  "_method": "put", "variables_ids": variables_ids, "status" : $(this).attr("name") }, 
-			null,
-			"script"
-		);
-					
+  $("div.actions_header input[type=submit]").click(function(){
+	  if ($(".variables_ids:checked").length > 0) {
+			variables_ids = []
+			$.each($(".variables_ids:checked"), function(i, v) { variables_ids[i] = $(v).val(); });
+			
+			if ($(this).attr("name") == "disable" || $(this).attr("name") == "enable") {
+				$.post('<%= status_path %>', 
+							 { "_method": "put", "variables_ids": variables_ids, "status": $(this).attr("name") }, 
+							 null,
+							 "script"
+				);	
+			} else {
+				$.post('<%= drop_path %>', 
+							 { "_method": "delete", "variables_ids": variables_ids },
+							 null,
+							 "script"
+				);
+			}	
+		}
+		
 		return false;
-   });
+	});
+	
 })

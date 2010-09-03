@@ -1,0 +1,3 @@
+<% for variable_id in params[:variables_ids] %>
+  $("#variable-" + <%= variable_id %>).remove();
+<% end %>
