@@ -146,6 +146,7 @@ Learnhvac::Application.routes.draw do |map|
       resources :variables do
         collection do
           put :update_status
+          delete :drop
         end
       end
       

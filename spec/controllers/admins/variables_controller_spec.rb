@@ -138,6 +138,20 @@ describe Admins::VariablesController do
     end
   end
   
+  describe "DELETE drop" do
+    it "should mass delete sys vars" do
+      v1 = Factory(:scenario_variable, :scenario => @scenario)
+      proc { 
+        xhr(:delete, :drop, :scenario_id => @scenario.id, :variables_ids => [@scenario_variable.id, v1.id]) 
+      }.should change(ScenarioVariable, :count).by(-2)
+    end
+    
+    it "" do
+      xhr(:delete, :drop, :scenario_id => @scenario.id, :variables_ids => [@scenario_variable.id])
+      response.should render_template(:drop)
+    end
+  end
+  
   describe "Authentication" do
     before(:each) { user_logout; login_as(@instructor) }
     

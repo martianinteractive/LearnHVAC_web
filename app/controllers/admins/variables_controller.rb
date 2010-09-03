@@ -13,7 +13,7 @@ class Admins::VariablesController < Admins::ApplicationController
   inner_tabs :manage_variables, :only => [:index, :show, :edit]
   inner_tabs :new_variable, :only => [:new, :create]
   
-  respond_to :js, :only => [:update_status]
+  respond_to :js, :only => [:update_status, :drop]
   
   def index
     params[:filter] = {} if params[:reset].present?
@@ -63,6 +63,9 @@ class Admins::VariablesController < Admins::ApplicationController
     redirect_to(admins_scenario_variables_path(@scenario), :notice => 'Variable was successfully deleted.')
   end
   
+  def drop
+    @scenario.variables.where(["variables.id in (?)", params[:variables_ids]]).delete_all
+  end
   
   private
   
