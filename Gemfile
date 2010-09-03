@@ -15,7 +15,7 @@ group :test do
 	gem "factory_girl_rails"
 end
 
-group :development do
+group :development, :development_cached do
   gem "ruby-debug" if RUBY_VERSION == "1.8.7"
   gem "ruby-debug19" if RUBY_VERSION == "1.9.1"
   gem "hirb"
