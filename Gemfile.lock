@@ -32,6 +32,8 @@ GEM
     addressable (2.1.1)
     arel (1.0.1)
       activesupport (~> 3.0.0)
+    authlogic (2.1.6)
+      activesupport
     builder (2.1.2)
     columnize (0.3.1)
     compass (0.10.2)
@@ -102,6 +104,7 @@ PLATFORMS
 DEPENDENCIES
   acts-as-taggable-on (= 2.0.0.rc1)
   addressable (= 2.1.1)
+  authlogic (= 2.1.6)
   builder
   compass (= 0.10.2)
   factory_girl_rails

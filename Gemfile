@@ -2,6 +2,7 @@ source 'http://rubygems.org'
 gem 'rails', '3'
 gem "haml", "3.0.18"
 gem "compass", "0.10.2"
+gem "authlogic", "2.1.6"
 gem "mysql"
 gem "will_paginate", "3.0.pre2"
 gem 'acts-as-taggable-on', '2.0.0.rc1'
