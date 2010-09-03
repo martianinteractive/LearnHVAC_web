@@ -110,4 +110,8 @@ class ApplicationController < ActionController::Base
     end
   end
   
+  def flash_empty?
+    flash.empty?
+  end
+  
 end

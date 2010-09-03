@@ -1,11 +1,18 @@
 class Admins::MasterScenariosController < Admins::ApplicationController 
-  before_filter :find_master_scenario, :only => [:show, :edit, :clone, :update, :destroy]
+  before_filter :find_master_scenario, :only => [ :show, :edit, :clone, :update, :destroy ]
+  
+  cache_sweeper :master_scenario_sweeper, :only => [ :create, :update, :clone, :destroy ]
+  
+  caches_action :index, 
+                :cache_path => proc { |c| c.send(:admins_master_scenarios_path) }, 
+                :if => proc { |c| c.send(:flash_empty?) and (c.params[:page].blank? or c.params[:page] == "1") }
+  
   subject_buttons :master_scenario, :only => [:show]
-  subject_buttons :cancel_master_scenario, :only => [:new, :edit, :create, :update]
-  inner_tabs :master_scenario_details, :only => [:show, :edit]
+  subject_buttons :cancel_master_scenario, :only => [ :new, :edit, :create, :update ]
+  inner_tabs :master_scenario_details, :only => [ :show, :edit ]
   
   add_crumb("Master Scenarios") { |instance| instance.send :admins_master_scenarios_path }
-   
+  
   def index
     @master_scenarios = MasterScenario.paginate :page => params[:page], :per_page => 25
   end
