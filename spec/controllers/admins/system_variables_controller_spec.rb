@@ -133,6 +133,20 @@ describe Admins::SystemVariablesController do
     end
   end
   
+  describe "DELETE drop" do
+    it "should mass delete sys vars" do
+      v1 = Factory(:system_variable, :master_scenario => @master_scenario)
+      proc { 
+        xhr(:delete, :drop, :master_scenario_id => @master_scenario.id, :variables_ids => [@system_variable.id, v1.id]) 
+      }.should change(SystemVariable, :count).by(-2)
+    end
+    
+    it "" do
+      xhr(:delete, :drop, :master_scenario_id => @master_scenario.id, :variables_ids => [@system_variable.id])
+      response.should render_template(:drop)
+    end
+  end
+  
   describe "Authorization" do
     it "should require an authenticated admin for all actions" do
       user_logout
