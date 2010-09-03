@@ -137,6 +137,20 @@ describe Instructors::VariablesController do
     end
   end
   
+  describe "DELETE drop" do
+    it "should mass delete vars" do
+      v1 = Factory(:scenario_variable, :scenario => @scenario)
+      proc { 
+        xhr(:delete, :drop, :scenario_id => @scenario.id, :variables_ids => [@scenario_variable.id, v1.id]) 
+      }.should change(ScenarioVariable, :count).by(-2)
+    end
+    
+    it "" do
+      xhr(:delete, :drop, :scenario_id => @scenario.id, :variables_ids => [@scenario_variable.id])
+      response.should render_template(:drop)
+    end
+  end
+  
   def mock_scenario_variable(attrs = {})
     @mock_scenario_variable ||= Factory(:scenario_variable, {:user => @user}.merge(attrs))
   end

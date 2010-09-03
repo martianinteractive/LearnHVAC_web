@@ -139,7 +139,7 @@ describe Admins::VariablesController do
   end
   
   describe "DELETE drop" do
-    it "should mass delete sys vars" do
+    it "should mass delete vars" do
       v1 = Factory(:scenario_variable, :scenario => @scenario)
       proc { 
         xhr(:delete, :drop, :scenario_id => @scenario.id, :variables_ids => [@scenario_variable.id, v1.id]) 

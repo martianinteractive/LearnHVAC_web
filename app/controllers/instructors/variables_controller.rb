@@ -68,6 +68,10 @@ class Instructors::VariablesController < Instructors::ApplicationController
     redirect_to(instructors_scenario_variables_path(@scenario))
   end
   
+  def drop
+    @scenario.variables.where(["variables.id in (?)", params[:variables_ids]]).delete_all
+  end
+  
   private
   
   def add_crumbs
