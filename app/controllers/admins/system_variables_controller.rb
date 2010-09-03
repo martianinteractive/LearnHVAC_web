@@ -56,10 +56,6 @@ class Admins::SystemVariablesController < Admins::ApplicationController
     
     if @master_scenario.variables.update_all("disabled = #{disable}", ["variables.id in (?)", params[:variables_ids]])
       @system_variables = @master_scenario.variables.find(params[:variables_ids])
-      
-      respond_to do |wants|
-        wants.js
-      end
     end
   end
   

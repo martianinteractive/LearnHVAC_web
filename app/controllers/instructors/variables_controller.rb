@@ -60,10 +60,6 @@ class Instructors::VariablesController < Instructors::ApplicationController
     
     if @scenario.variables.update_all("disabled = #{disable}", ["variables.id in (?)", params[:variables_ids]])
       @variables = @scenario.variables.find(params[:variables_ids])
-      
-      respond_to do |wants|
-        wants.js
-      end
     end
   end
 
