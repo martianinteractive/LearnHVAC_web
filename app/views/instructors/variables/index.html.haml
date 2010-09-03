@@ -1,5 +1,5 @@
 - content_for :js_templates do
-  = render :partial => "shared/variables_js"
+  = render :partial => "shared/variables_js", :locals => { :status_path => update_status_instructors_scenario_variables_path(@scenario) }
 
 #tabs
   %ul
@@ -9,13 +9,22 @@
   = render :partial => "instructors/scenarios/scenario_menu"
   %br
   
+  %div.actions_header
+    %ul
+      %li
+        = check_box_tag "select_all"
+        %label{:for => "select_all"} All
+      %li.update_status
+        = submit_tag "Enable", :name => "enable"
+        = submit_tag "Disable", :name => "disable"
+      %li
+        = submit_tag "Delete", :name => "delete"
+  
   - form_tag([:instructors, @scenario, :variables], :method => :get, :class => "variables") do
     %table.listing
       %thead
         %tr
-          %th.select_all
-            = check_box_tag "select_all"
-            %label{:for => "select_all"} All
+          %th
           = sort_header_tag('index', :title => 'Index')
           %th
             = sort_header_tag('component_code', {:title => 'Component'}, false)
@@ -34,22 +43,7 @@
             = submit_tag "Filter", :name => "_filter"
             = submit_tag "Reset", :name => "reset"
       - @scenario_variables.each do |variable|
-        %tr
-          %td= check_box_tag "variables_ids[]", variable.id
-          %td= variable.index
-          %td= variable.component
-          %td= link_to variable.name, instructors_scenario_variable_path(@scenario, variable)
-          %td= variable.disabled?
-          %td= variable.io_type.to_s.upcase
-          %td= variable.is_fault?
-          %td
-            = link_to image_tag('edit.gif'), edit_instructors_scenario_variable_path(@scenario, variable)
-            &nbsp;&nbsp;
-            = link_to image_tag('trashcan.gif'), instructors_scenario_variable_path(@scenario, variable), :confirm => 'Are you sure?', :method => :delete
-      %tr
-        %td
-          = submit_tag "Enable", :name => "enable"
-          = submit_tag "Disable", :name => "disable"
+        = render :partial => 'variable', :locals => { :variable => variable }
 
   %br
   = will_paginate @scenario_variables, :params => params.slice(:filter)

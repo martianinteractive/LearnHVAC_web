@@ -48,7 +48,12 @@ Learnhvac::Application.routes.draw do |map|
     resources :scenarios do
       resources :alerts, :only => [:index, :show, :update]
       resources :accesses, :only => [:index, :destroy], :controller => :access
-      resources :variables
+      
+      resources :variables do
+        collection do
+          put :update_status
+        end
+      end
     end
     
     resources :classes, :controller => :groups do
