@@ -6,6 +6,12 @@ class Admins::VariablesController < Admins::ApplicationController
   before_filter :find_scenario_variable, :only => [:show, :edit, :update]
   before_filter :initialize_variables_sort, :only => [:index]
   
+  cache_sweeper :scenario_variable_sweeper, :only => [:create, :update, :update_status, :destroy, :drop]
+  
+  caches_action :index,
+                :cache_path => proc { |c| c.send(:admins_scenario_variables_path, @scenario) },
+                :if => proc { |c| c.send(:can_cache_variables?) }
+  
   subject_buttons :scenario, :only => :index
   subject_buttons :variable, :only => :show
   subject_buttons :cancel_variable, :only => [:new, :edit, :create, :update]
@@ -51,11 +57,9 @@ class Admins::VariablesController < Admins::ApplicationController
   end
   
   def update_status        
-    disable = params[:status] == "disable"
-    
-    if @scenario.variables.update_all("disabled = #{disable}", ["variables.id in (?)", params[:variables_ids]])
-      @variables = @scenario.variables.find(params[:variables_ids])
-    end
+    @variables = @scenario.variables.find(params[:variables_ids])
+    #lets trigger callbacks.
+    @variables.each { |var| var.update_attribute(:disabled, params[:status] == "disable" ) }
   end
 
   def destroy
@@ -64,7 +68,7 @@ class Admins::VariablesController < Admins::ApplicationController
   end
   
   def drop
-    @scenario.variables.where(["variables.id in (?)", params[:variables_ids]]).delete_all
+    @scenario.variables.where(["variables.id in (?)", params[:variables_ids]]).destroy_all
   end
   
   private
@@ -82,6 +86,10 @@ class Admins::VariablesController < Admins::ApplicationController
   def find_scenario_variable
     @scenario_variable = @scenario.variables.find(params[:id])
     add_crumb @scenario_variable.name, admins_scenario_variable_path(@scenario, @scenario_variable)
+  end
+  
+  def can_cache_variables?
+    can_cache_action? and params[:filter].blank?
   end
   
 end

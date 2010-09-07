@@ -6,6 +6,8 @@ class Instructors::VariablesController < Instructors::ApplicationController
   before_filter :find_scenario_variable, :only => [:show, :edit, :update]
   before_filter :initialize_variables_sort, :only => :index
   
+  cache_sweeper :scenario_variable_sweeper, :only => [:create, :update, :update_status, :destroy, :drop]
+  
   subject_buttons :scenario, :only => :index
   subject_buttons :variable, :only => :show
   subject_buttons :cancel_variable, :only => [:new, :edit, :create, :update]
@@ -56,11 +58,9 @@ class Instructors::VariablesController < Instructors::ApplicationController
   end
   
   def update_status        
-    disable = params[:status] == "disable"
-    
-    if @scenario.variables.update_all("disabled = #{disable}", ["variables.id in (?)", params[:variables_ids]])
-      @variables = @scenario.variables.find(params[:variables_ids])
-    end
+    @variables = @scenario.variables.find(params[:variables_ids])
+    #lets trigger callbacks.
+    @variables.each { |var| var.update_attribute(:disabled, params[:status] == "disable" ) }
   end
 
   def destroy
@@ -69,7 +69,7 @@ class Instructors::VariablesController < Instructors::ApplicationController
   end
   
   def drop
-    @scenario.variables.where(["variables.id in (?)", params[:variables_ids]]).delete_all
+    @scenario.variables.where(["variables.id in (?)", params[:variables_ids]]).destroy_all
   end
   
   private
