@@ -2,6 +2,12 @@ class UsersController < ApplicationController
   before_filter :require_user
   before_filter :set_layout, :set_dashboard_crumb
   
+  cache_sweeper :user_sweeper, :only => :update
+  
+  caches_action :show,
+                :cache_path => proc { |c| "profile/#{c.send(:current_user).login }" },
+                :if => proc { |c| c.send(:flash_empty?) }
+  
   def show
     add_crumb current_user.name, profile_path
   end
