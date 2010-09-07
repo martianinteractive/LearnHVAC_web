@@ -114,4 +114,12 @@ class ApplicationController < ActionController::Base
     flash.empty?
   end
   
+  def paginated?
+    params[:page].present? and params[:page] != "1"
+  end
+  
+  def can_cache_action?
+    flash_empty? and !paginated?
+  end
+  
 end

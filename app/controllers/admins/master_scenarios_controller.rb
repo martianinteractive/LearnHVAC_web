@@ -5,7 +5,7 @@ class Admins::MasterScenariosController < Admins::ApplicationController
   
   caches_action :index, 
                 :cache_path => proc { |c| c.send(:admins_master_scenarios_path) }, 
-                :if => proc { |c| c.send(:flash_empty?) and (c.params[:page].blank? or c.params[:page] == "1") }
+                :if => proc { |c| c.send(:can_cache_action?) }
   
   subject_buttons :master_scenario, :only => [:show]
   subject_buttons :cancel_master_scenario, :only => [ :new, :edit, :create, :update ]

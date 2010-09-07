@@ -11,7 +11,8 @@ class Scenario < ActiveRecord::Base
   has_many :individual_memberships
   has_many :group_memberships
   
-  validates_presence_of :master_scenario, :user, :longterm_start_date, :longterm_stop_date, :realtime_start_datetime
+  validates_presence_of :user, :longterm_start_date, :longterm_stop_date, :realtime_start_datetime
+  validates_presence_of :master_scenario, :on => :create
   validates :name, :presence => true, :length => {:within => 1..180}
   validate :longterm_validator
   
