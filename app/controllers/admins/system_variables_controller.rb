@@ -6,6 +6,12 @@ class Admins::SystemVariablesController < Admins::ApplicationController
   before_filter :find_system_variable, :only => [:show, :edit, :update]
   before_filter :initialize_variables_sort, :only => [:index]
   
+  cache_sweeper :system_variable_sweeper, :only => [:create, :update, :update_status, :destroy, :drop]
+  
+  caches_action :index,
+                :cache_path => proc { |c| c.send(:admins_master_scenario_system_variables_path, @master_scenario) },
+                :if => proc { |c| c.send(:can_cache_variables?) }
+  
   subject_buttons :master_scenario, :only => :index
   subject_buttons :variable, :only => :show
   subject_buttons :cancel_variable, :only => [:new, :edit, :create, :update]
@@ -51,12 +57,9 @@ class Admins::SystemVariablesController < Admins::ApplicationController
     end
   end
   
-  def update_status        
-    disable = params[:status] == "disable"
-    
-    if @master_scenario.variables.update_all("disabled = #{disable}", ["variables.id in (?)", params[:variables_ids]])
-      @system_variables = @master_scenario.variables.find(params[:variables_ids])
-    end
+  def update_status
+    @system_variables = @master_scenario.variables.find(params[:variables_ids])
+    @system_variables.each { |var| var.update_attribute(:disabled, params[:status] == "disable" ) }
   end
   
   def destroy
@@ -66,8 +69,7 @@ class Admins::SystemVariablesController < Admins::ApplicationController
   end
   
   def drop
-    # calling delete_all (since we don't have callbacks or depedant associations on variables) to speed-up this request.
-    @master_scenario.variables.where(["variables.id in (?)", params[:variables_ids]]).delete_all
+    @master_scenario.variables.where(["variables.id in (?)", params[:variables_ids]]).destroy_all
   end
   
   def yaml_dump
@@ -98,4 +100,8 @@ class Admins::SystemVariablesController < Admins::ApplicationController
     @system_variable = @master_scenario.variables.find(params[:id])
   end
     
+  def can_cache_variables?
+    can_cache_action? and params[:filter].blank?
+  end
+  
 end
