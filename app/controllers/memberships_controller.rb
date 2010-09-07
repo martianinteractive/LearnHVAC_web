@@ -1,6 +1,8 @@
 class MembershipsController < ApplicationController
   before_filter :require_student, :only => [:create]
   
+  cache_sweeper :membership_sweeper, :only => [:create]
+  
   def create    
     if @group
       @membership = @group.memberships.find_or_initialize_by_group_id_and_member_id(:group_id => @group.id, :member_id => current_user.id)
