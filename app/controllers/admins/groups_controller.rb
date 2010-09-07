@@ -1,5 +1,8 @@
 class Admins::GroupsController < Admins::ApplicationController
   before_filter :build_instructor, :only => [:new, :create]
+  
+  cache_sweeper :group_sweeper, :only => [:create, :update, :destroy]
+  
   add_crumb("Classes") { |instance| instance.send :admins_classes_path }
   
   def index

@@ -1,8 +1,13 @@
 class Instructors::GroupsController < Instructors::ApplicationController
   before_filter :find_group, :only => [:show, :edit, :update, :destroy]
+  
+  cache_sweeper :group_sweeper, :only => [:create, :update, :destroy]
+  
   add_crumb("Classes") { |instance| instance.send :instructors_classes_path }
+  
   subject_buttons :group, :only => [:show]
   subject_buttons :cancel_group, :only => [:new, :edit, :create, :update]
+  
   inner_tabs :group_details, :only => [:show, :edit]
   
   def index
