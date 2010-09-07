@@ -1,7 +1,11 @@
 class Admins::UsersController < Admins::ApplicationController
   before_filter :get_role, :add_crumbs
   
-  cache_sweeper :user_sweeper, :only => [:update, :destroy]
+  cache_sweeper :user_sweeper, :only => [:create, :update, :destroy]
+  
+  caches_action :index,
+                :cache_path => proc { |c| c.send(:admins_users_path, :role => c.params[:role]) }, 
+                :if => proc { |c| c.send(:can_cache_action?) }
   
   def index
     @users = User.where(:role_code => @role).order('last_name DESC').paginate(:page => params[:page], :per_page => 25)
