@@ -1,6 +1,8 @@
 class Instructors::ScenariosController < Instructors::ApplicationController
   before_filter :find_scenario, :only => [:show, :edit, :access, :update, :destroy]
   
+  cache_sweeper :scenario_sweeper, :only => [:create, :update, :destroy]
+  
   subject_buttons :scenario, :only => :show
   subject_buttons :cancel_scenario, :only => [:new, :edit, :create, :update]
   
