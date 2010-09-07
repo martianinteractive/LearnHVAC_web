@@ -1,6 +1,8 @@
 class Admins::InstitutionsController < Admins::ApplicationController
   add_crumb("Institutions") { |instance| instance.send :admins_institutions_path }
   
+  cache_sweeper :institution_sweeper, :only => [:create, :update, :destroy]
+  
   def index
     @institutions = Institution.paginate :page => params[:page], :per_page => 25
   end
