@@ -26,7 +26,7 @@ class Admins::AccessController < Admins::ApplicationController
   end
   
   def destroy
-    @individual_membership = IndividualMembership.find(params[:id])
+    @individual_membership = Membership.find(params[:id])
     @individual_membership.destroy
     redirect_to [:admins, @scenario, :accesses]
   end
