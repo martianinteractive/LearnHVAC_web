@@ -16,7 +16,7 @@ class Instructors::VariablesController < Instructors::ApplicationController
   inner_tabs :new_variable, :only => [:new, :create]
   inner_tabs :variable_name, :only => [:show, :edit, :update]
   
-  respond_to :js, :only => [:update_status]
+  respond_to :js, :only => [:update_status, :drop]
   
   def index
     params[:filter] = {} if params[:reset].present?
