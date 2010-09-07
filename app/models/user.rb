@@ -5,8 +5,8 @@ class User < ActiveRecord::Base
   acts_as_authentic
   
   belongs_to :institution
-  has_many :created_scenarios,        :class_name => "Scenario"
-  has_many :master_scenarios
+  has_many :created_scenarios,        :class_name => "Scenario", :dependent => :destroy
+  has_many :master_scenarios,         :dependent => :destroy
   has_many :managed_groups,           :class_name => "Group", :foreign_key => "creator_id", :dependent => :destroy
   has_many :group_memberships,        :foreign_key => "member_id"
   has_many :groups,                   :through => :group_memberships, :uniq => true
