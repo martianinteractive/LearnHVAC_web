@@ -1,5 +1,7 @@
 class Managers::AccessController < Managers::ApplicationController
   before_filter :find_scenario, :add_crumbs
+
+  cache_sweeper :membership_sweeper, :only => [:create, :destroy]
   
   def index
     @memberships = @scenario.memberships.includes(:member).paginate(:page => params[:page], :per_page => 50)

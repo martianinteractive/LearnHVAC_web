@@ -1,5 +1,12 @@
 class Admins::AccessController < Admins::ApplicationController
   before_filter :find_scenario, :add_crumbs
+  
+  cache_sweeper :membership_sweeper, :only => [:create, :destroy]
+  
+  caches_action :index,
+                :cache_path => proc { |c| c.send(:admins_scenario_accesses_path, @scenario) },
+                :if => proc { |c| c.send(:can_cache_action?) }
+  
   subject_buttons :scenario, :only => [:show]
   inner_tabs :manage_access
   

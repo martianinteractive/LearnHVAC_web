@@ -3,6 +3,8 @@ class Instructors::AccessController < Instructors::ApplicationController
   inner_tabs :manage_access
   subject_buttons :scenario, :only => :show
   
+  cache_sweeper :membership_sweeper, :only => [:destroy]
+  
   def index
     @memberships = @scenario.memberships.includes(:member).paginate(:page => params[:page], :per_page => 50)
   end
