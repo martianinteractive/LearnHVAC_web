@@ -63,8 +63,6 @@ class Admins::MasterScenariosController < Admins::ApplicationController
 
   def destroy
     @master_scenario.destroy
-    # Temporal and ugly solution, but rails3_acts_as_paranoid doesn't triggers callbacks defined in sweepers.
-    expire_action(admins_master_scenarios_path)
     redirect_to(admins_master_scenarios_url)
   end
   

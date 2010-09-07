@@ -6,4 +6,8 @@ class MasterScenarioSweeper < ActionController::Caching::Sweeper
     expire_action(admins_master_scenarios_path)
   end
   
+  def after_destroy(master_scenario)
+    expire_action(admins_master_scenarios_path)
+  end
+  
 end
