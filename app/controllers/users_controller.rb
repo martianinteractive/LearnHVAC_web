@@ -13,12 +13,12 @@ class UsersController < ApplicationController
   end
   
   def edit
-    add_crumb "Editing #{current_user.name}", edit_user_path(current_user)
+    add_crumb "Editing #{current_user.name}", edit_profile_path
   end
   
   def update
     if current_user.update_attributes(params[:user])
-      redirect_to(profile_path(@user), :notice => 'Your profile was successfully updated.')
+      redirect_to(profile_path, :notice => 'Your profile was successfully updated.')
     else
       render :action => "edit"
     end

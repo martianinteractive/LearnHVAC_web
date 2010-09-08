@@ -4,7 +4,7 @@ Learnhvac::Application.routes.draw do |map|
   resources :user_sessions
   resources :password_resets
   resources :client_versions, :only => [:index]
-  resources :users, :only => [:update, :edit]
+  resources :users, :only => [:update]
     
   match 'login'   => 'user_sessions#new', :as => 'login'
   match 'logout'  => 'user_sessions#destroy', :as => 'logout'
@@ -21,6 +21,7 @@ Learnhvac::Application.routes.draw do |map|
   match 'directory' => 'directory/dashboard#index', :as => 'directory'
   match 'reset_password' => 'password_resets#new', :as => 'reset_password'
   match 'profile' => 'users#show', :as => 'profile'
+  match 'profile/edit' => 'users#edit', :as => 'edit_profile'
  
  ## API ROUTES
  namespace :api do
