@@ -11,7 +11,7 @@ xml.scenario do
     xml.release_date do 
       xml.year({:type => "Integer"}, @scenario.client_version.release_date.year)
       xml.month({:type => "Integer"}, @scenario.client_version.release_date.month)
-      xml.day({:type => "Integer"}, @scenario.client_version.release_date.day)
+      xml.date({:type => "Integer"}, @scenario.client_version.release_date.day)
     end
   end
   xml.shortDescription({:type => "String"}, @scenario.short_description)
@@ -27,17 +27,17 @@ xml.scenario do
   xml.longtermStartDate do 
     xml.year({:type => "Integer"}, @scenario.longterm_start_date.year)
     xml.month({:type => "Integer"}, @scenario.longterm_start_date.month)
-    xml.day({:type => "Integer"}, @scenario.longterm_start_date.day)
+    xml.date({:type => "Integer"}, @scenario.longterm_start_date.day)
   end
   xml.longtermStopDate do
     xml.year({:type => "Integer"},  @scenario.longterm_stop_date.year)
     xml.month({:type => "Integer"},  @scenario.longterm_stop_date.month)
-    xml.day({:type => "Integer"},  @scenario.longterm_stop_date.day)
+    xml.date({:type => "Integer"},  @scenario.longterm_stop_date.day)
   end
   xml.realtimeStartDateTime do
     xml.year({:type => "Integer"},  @scenario.realtime_start_datetime.year)
     xml.month({:type => "Integer"},  @scenario.realtime_start_datetime.month)
-    xml.day({:type => "Integer"},  @scenario.realtime_start_datetime.day)
+    xml.date({:type => "Integer"},  @scenario.realtime_start_datetime.day)
     xml.hour({:type => "Integer"},  @scenario.realtime_start_datetime.hour)
     xml.minute({:type => "Integer"},  @scenario.realtime_start_datetime.min)
   end
