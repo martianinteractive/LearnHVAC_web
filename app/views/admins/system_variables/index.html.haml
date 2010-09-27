@@ -22,7 +22,7 @@
       %li
         = submit_tag "Delete", :name => "delete"
     
-  - form_tag([:admins, @master_scenario, :system_variables], :method => :get, :class => "variables") do
+  = form_tag([:admins, @master_scenario, :system_variables], :method => :get, :class => "variables") do
     %table.listing
       %thead
         %tr
