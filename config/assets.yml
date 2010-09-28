@@ -10,8 +10,8 @@ javascripts:
     - public/javascripts/jquery.cookie.js
     - public/javascripts/jquery.ui.no-ajax-tabs.js
     - public/javascripts/jquery.dataTables.min.js
+    - public/javascripts/tools/tooltip.min.js
     - public/javascripts/application.js
-  support:
 
 stylesheets:
   application:
