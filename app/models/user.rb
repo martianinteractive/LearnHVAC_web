@@ -33,11 +33,11 @@ class User < ActiveRecord::Base
   
   
   def self.search(role, q)
-    where(["role_code = #{role} AND (first_name LIKE :q OR last_name LIKE :q OR login LIKE :q OR email LIKE :q)", {:q => '%'+q+'%'}])
+    where(["role_code = #{role} AND (first_name LIKE :q OR last_name LIKE :q OR login LIKE :q OR email LIKE :q)", {:q => '%'+q+'%'}]).includes(:institution).order('last_name DESC')
   end
   
   def self.filter(role, institution_id)
-    where(["institution_id = ? and role_code = ?", institution_id, role])
+    where(["institution_id = ? and role_code = ?", institution_id, role]).includes(:institution).order('last_name DESC')
   end
   
   def name
