@@ -32,4 +32,4 @@
           %td= user.institution.try(:name).try(:capitalize)
              
   %br
-  = search_pagination_for(@users)
+  = search_pagination_for(@users, :params => {:q => params[:q], :institution_id => params[:institution_id] })
