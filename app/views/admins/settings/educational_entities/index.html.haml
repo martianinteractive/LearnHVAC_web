@@ -11,8 +11,8 @@
     &nbsp;&nbsp;
     = link_to "Reset", admins_settings_educational_entities_path if controller.action_name == 'search'
   
-  %br
-  = will_paginate @colleges
+  %br/
+  = paginate
   %table.listing
     %thead
       %tr
@@ -26,5 +26,5 @@
           = link_to image_tag('trashcan.gif'), admins_settings_educational_entity_path(college), :confirm => 'Are you sure?', :method => :delete
           &nbsp;&nbsp;
           = link_to image_tag('edit.gif'), edit_admins_settings_educational_entity_path(college)
-  %br
-  = will_paginate @colleges
+  %br/
+  = paginate
