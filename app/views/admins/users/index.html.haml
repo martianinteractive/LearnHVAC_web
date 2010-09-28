@@ -32,4 +32,4 @@
           %td= user.institution.try(:name).try(:capitalize)
              
   %br
-  = will_paginate @users
+  = search_pagination_for(@users)

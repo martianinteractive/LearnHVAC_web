@@ -12,7 +12,7 @@
     = link_to "Reset", admins_settings_educational_entities_path if controller.action_name == 'search'
   
   %br/
-  = paginate
+  = search_pagination_for(@colleges)
   %table.listing
     %thead
       %tr
@@ -27,4 +27,4 @@
           &nbsp;&nbsp;
           = link_to image_tag('edit.gif'), edit_admins_settings_educational_entity_path(college)
   %br/
-  = paginate
+  = search_pagination_for(@colleges)
