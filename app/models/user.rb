@@ -106,6 +106,10 @@ class User < ActiveRecord::Base
     false
   end
   
+  def last_request_changed?
+    self.changes.keys.sort == ["last_request_at", "perishable_token", "updated_at"]
+  end
+  
   private
   
   def group_presence
