@@ -8,6 +8,7 @@ gem "will_paginate", "3.0.pre2"
 gem 'acts-as-taggable-on', '2.0.0.rc1'
 gem "addressable", "2.1.1"
 gem "builder"
+gem "jammit"
 
 group :test do
 	gem "rspec-rails", ">= 2.0.0.beta.20"

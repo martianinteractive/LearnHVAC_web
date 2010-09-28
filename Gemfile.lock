@@ -35,6 +35,7 @@ GEM
     authlogic (2.1.6)
       activesupport
     builder (2.1.2)
+    closure-compiler (0.3.3)
     columnize (0.3.1)
     compass (0.10.2)
       haml (>= 3.0.4)
@@ -48,6 +49,9 @@ GEM
     haml (3.0.18)
     hirb (0.3.2)
     i18n (0.4.1)
+    jammit (0.5.3)
+      closure-compiler (>= 0.1.0)
+      yui-compressor (>= 0.9.1)
     linecache (0.43)
     mail (2.2.5)
       activesupport (>= 2.3.6)
@@ -97,6 +101,7 @@ GEM
       polyglot (>= 0.3.1)
     tzinfo (0.3.23)
     will_paginate (3.0.pre2)
+    yui-compressor (0.9.1)
 
 PLATFORMS
   ruby
@@ -110,6 +115,7 @@ DEPENDENCIES
   factory_girl_rails
   haml (= 3.0.18)
   hirb
+  jammit
   mocha
   mysql
   rails (= 3)
