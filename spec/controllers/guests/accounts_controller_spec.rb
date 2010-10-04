@@ -33,10 +33,10 @@ describe Guests::AccountsController do
         proc { post :create, :user => Factory.attributes_for(:user) }.should change(ActionMailer::Base.deliveries, :size).by(1)
       end
       
-      it "should redirect to the login action" do
+      it "should redirect to the guests/dashboard#show action" do
         post :create, :user => Factory.attributes_for(:user)
         flash[:notice].should match(/Your account has been created/)
-        response.should redirect_to(login_path)
+        response.should redirect_to(guests_dashboard_path(:token => assigns(:account).perishable_token))
       end
       
     end

@@ -17,7 +17,7 @@ class Guests::AccountsController < ApplicationController
     if @account.save_without_session_maintenance
       @account.deliver_activation_instructions!
       flash[:notice] = "Your account has been created. Before login you have to activate your account. Please check your e-mail for account activation instructions!"
-      redirect_to login_path
+      redirect_to guests_dashboard_path(:token => @account.perishable_token)
     else
       render :action => :new
     end
