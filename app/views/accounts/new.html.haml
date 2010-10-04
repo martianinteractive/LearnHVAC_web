@@ -1,0 +1,24 @@
+%h2 
+  Registration
+
+%p Register to start using the LearnHVAC website.
+
+= form_tag accounts_path, :class => "signup" do
+  .field
+    Please choose the role you want to signup as:
+  .field
+    = label_tag :role, "Instructor", :for => "role_instructor"
+    = radio_button_tag :role, "instructor"
+  .field
+    = label_tag :role, "Guest", :for => "role_guest"
+    = radio_button_tag :role, "guest"
+  .field
+    = label_tag :role, "Student", :for => "role_student"
+    = radio_button_tag :role, "student"
+      
+  .actions
+    = submit_tag "Next", :class=>'submitButton'
+    
+      
+
+  
