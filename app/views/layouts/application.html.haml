@@ -2,7 +2,7 @@
 !!!
 %html{"xmlns" => "http://www.w3.org/1999/xhtml"}
   %head
-    %meta{ "http-equiv" => "Content-type", :content => "text/html; charset=utf-8" }
+    <meta content="text/html; charset=utf-8" http-equiv="Content-type" />
     = csrf_meta_tag
     %title
       Learn HVAC
@@ -27,10 +27,10 @@
               = link_to 'Admin Site', admins_dashboard_path
           %li= link_to "Log-out", logout_path
         - else
-          - if request.path_info == "/signup"
+          - if request.path_info =~ /signup/
             %li= link_to "Log-in", login_path
           - else
-            %li= link_to "Instructor Registration", signup_path
+            %li= link_to "Registration", signup_path
       
     .border
       &nbsp; 
