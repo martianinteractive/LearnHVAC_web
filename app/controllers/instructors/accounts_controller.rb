@@ -1,4 +1,4 @@
-class AccountsController < ApplicationController
+class Instructors::AccountsController < ApplicationController
   before_filter :require_no_user, :only => [:new, :create]
   
   def new
@@ -26,11 +26,7 @@ class AccountsController < ApplicationController
       render :nothing => true
     end
   end
-  
-  
-  # Saving without session maintenance to skip
-  # auto-login which can't happen here because
-  # the User has not yet been activated
+
   def create
     @account = User.new(params[:user])
     @account.active = false

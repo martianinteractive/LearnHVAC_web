@@ -7,7 +7,7 @@
 %p Register to start using the LearnHVAC instructors website where you do things like create and manage scenarios, share scenarios with students.
 %p You will receive an email confirmation after you submit this form.
 
-= form_for @account, :url => { :controller => :accounts, :action => :create } do |f|
+= form_for @account, :url => instructors_accounts_path do |f|
   = error_messages_for :account
   
   %fieldset

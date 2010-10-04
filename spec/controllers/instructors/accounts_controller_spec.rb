@@ -1,7 +1,8 @@
-require File.dirname(__FILE__) + "/../spec_helper"
+require File.dirname(__FILE__) + "/../../spec_helper"
 
-describe AccountsController do
-
+describe Instructors::AccountsController do
+  render_views
+  
   describe "GET :new" do
     it "should assign as @account" do
       get :new

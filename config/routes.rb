@@ -1,7 +1,6 @@
 Learnhvac::Application.routes.draw do |map|
   
   Jammit::Routes.draw(map)
-  resources :accounts
   resources :user_sessions
   resources :password_resets
   resources :client_versions, :only => [:index]
@@ -9,11 +8,12 @@ Learnhvac::Application.routes.draw do |map|
     
   match 'login'   => 'user_sessions#new', :as => 'login'
   match 'logout'  => 'user_sessions#destroy', :as => 'logout'
-  match 'signup' => 'accounts#new', :as => 'signup'
+  # match 'signup' => 'accounts#new', :as => 'signup'
   match 'colleges' => 'accounts#colleges'
   match 'states'  => 'accounts#states'
   match 'register/:activation_code' => 'activations#new', :as => 'register'
   match 'activate/:id' => 'activations#create', :as => 'activate'
+  match 'instructors/signup' => 'instructors/accounts#new', :as => 'instructors_signup'
   match 'students/signup' => 'students/accounts#new', :as => 'students_signup'
   match 'guests/signup' => 'guests/accounts#new', :as => 'guests_signup'
   match 'classes/register/(:code)' => 'memberships#create', :as => 'membership_register'
@@ -43,6 +43,7 @@ Learnhvac::Application.routes.draw do |map|
  
   ## Instructors Routes 
   namespace :instructors do
+    resources :accounts, :only => [:create]
     resources :students, :only => [:show]
     resource :dashboard, :only => [:show]
     resources :client_versions
