@@ -37,8 +37,8 @@
         %ul
           %li
             = link_to "Dashboard", [:guests, :dashboard]
-            = link_to "Directory", directory_path
-        
+            - if logged_in?
+              = link_to "Directory", directory_path
 
       .fluid
         .content
