@@ -1,5 +1,5 @@
 - content_for :head do
-  = render :partial => 'shared/user_form_js', :locals => { :u => @account }
+  = render :partial => 'shared/user_form_js', :locals => { :u => @account, :autocomplete => true }
 
 %h2  Guests Registration
 %p 
@@ -9,8 +9,14 @@
 
 = form_for @account, :url => guests_accounts_path, :method => :post do |f|
   = error_messages_for :account
-  = f.hidden_field :group_code
-
+  
+  %fieldset
+    .field
+      Enter the name of your institution and select the name if available.
+    .field
+      = f.label :institution_name
+      = f.text_field :institution_name
+  
   %fieldset
     .field
       = f.label :first_name, "First Name"
