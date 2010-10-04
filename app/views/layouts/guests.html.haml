@@ -36,7 +36,7 @@
         %h3 Community
         %ul
           %li
-            = link_to "Dashboard", [:guests, :dashboard]
+            = link_to "Dashboard", guests_dashboard_path(:token => params[:token])
             - if logged_in?
               = link_to "Directory", directory_path
 
