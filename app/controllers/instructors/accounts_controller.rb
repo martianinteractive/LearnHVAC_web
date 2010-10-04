@@ -9,6 +9,7 @@ class Instructors::AccountsController < ApplicationController
     @account = User.new(params[:user])
     @account.active = false
     @account.role_code = User::ROLES[:instructor]
+    @account.require_agreement_acceptance!
     
     if @account.save_without_session_maintenance
       @account.deliver_activation_instructions!

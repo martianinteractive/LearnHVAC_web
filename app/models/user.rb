@@ -14,12 +14,14 @@ class User < ActiveRecord::Base
   has_many :individual_memberships,   :foreign_key => "member_id"
   has_many :individual_scenarios,     :through => :individual_memberships, :source => :scenario
   
-  attr_accessor :group_code, :require_group_code
+  attr_accessor :group_code, :require_group_code, :terms_agreement
+  attr_reader :require_agreement
   attr_protected :active, :role_code, :enabled
   
   validates :first_name, :last_name, :role_code, :city, :state, :country, :presence => true, :length => { :maximum => 200 }, :format => { :with => /^[A-Za-z0-9\s]+$/ }
   validates_length_of :phone, :in => 7..32, :allow_blank => true
   validate :group_presence,  :on => :create, :if => :require_group_code
+  validates_acceptance_of :terms_agreement, :on => :create, :if => :require_agreement, :message => "must be accepted."
   
   # Dynamically creates scopes for each role.
   ROLES.keys.each { |role| scope role.to_s.singularize, where("role_code = #{ROLES[role]}") }
@@ -90,6 +92,10 @@ class User < ActiveRecord::Base
   
   def require_group_code!
     @require_group_code = true
+  end
+  
+  def require_agreement_acceptance!
+    @require_agreement = true
   end
   
   def _group

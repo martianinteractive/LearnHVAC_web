@@ -37,6 +37,12 @@ describe User do
     @user.should be_valid
   end
   
+  it "should not be valid if acceptance terms is required and terms_agreement is not present/accepted" do
+    @user.terms_agreement = false
+    @user.require_agreement_acceptance!
+    @user.should_not be_valid
+  end
+  
   it "should register an student as a member of the group's instructor institution" do
     group = build_group( :creator => Factory(:instructor, :institution => Factory(:institution)))
     @user = Factory(:student, :group_code => group.code)

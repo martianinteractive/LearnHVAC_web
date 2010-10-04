@@ -62,6 +62,7 @@
 
       = f.password_field :password_confirmation, :size=>20,  :value=>""
   
-
+  = render :partial => "shared/terms_agreement", :locals => { :f => f }
+             			
   .actions
     = submit_tag "Register", :class=>'submitButton'
