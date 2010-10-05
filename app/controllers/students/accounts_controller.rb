@@ -3,7 +3,7 @@ class Students::AccountsController < ApplicationController
   
   def new
     @group = Group.find_by_code(params[:code])
-    @account = User.new(:group_code => @group.code)
+    @account = User.new(:group_code => @group.try(:code))
   end
   
   def create
