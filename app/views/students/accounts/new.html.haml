@@ -5,7 +5,6 @@
 %p 
   Already a member? please
   = link_to "login", login_path
-%hr
 
 - if @group
   #group_info
@@ -61,8 +60,10 @@
     .field
       = f.label :password_confirmation, "Password Confirmation"	
       = f.password_field :password_confirmation, :size=>20,  :value=>""
-
+  
+  = render :partial => "shared/terms_agreement", :locals => { :f => f }
+  
   .actions
     = submit_tag "Create", :class=>'submitButton'
     &nbsp;|&nbsp;
-    = link_to 'Cancel', "http://www.learnhvac.org/"
+    = link_to 'Cancel', signup_path

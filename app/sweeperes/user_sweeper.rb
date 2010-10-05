@@ -3,13 +3,17 @@ class UserSweeper < ActionController::Caching::Sweeper
   observe User
   
   def after_save(user)
-    expire_user_actions(user)
-    expire_scenarios(user.all_scenarios)
+    unless user.last_request_changed?
+      expire_user_actions(user)
+      expire_scenarios(user.all_scenarios)
+    end
   end
   
   def after_destroy(user)
-    expire_user_actions(user)
-    expire_scenarios(user.all_scenarios)
+    unless user.last_request_changed?
+      expire_user_actions(user)
+      expire_scenarios(user.all_scenarios)
+    end
   end
   
   private

@@ -14,12 +14,14 @@ class User < ActiveRecord::Base
   has_many :individual_memberships,   :foreign_key => "member_id"
   has_many :individual_scenarios,     :through => :individual_memberships, :source => :scenario
   
-  attr_accessor :group_code, :require_group_code
+  attr_accessor :group_code, :require_group_code, :terms_agreement
+  attr_reader :require_agreement
   attr_protected :active, :role_code, :enabled
   
   validates :first_name, :last_name, :role_code, :city, :state, :country, :presence => true, :length => { :maximum => 200 }, :format => { :with => /^[A-Za-z0-9\s]+$/ }
   validates_length_of :phone, :in => 7..32, :allow_blank => true
   validate :group_presence,  :on => :create, :if => :require_group_code
+  validates_acceptance_of :terms_agreement, :on => :create, :if => :require_agreement, :message => "must be accepted."
   
   # Dynamically creates scopes for each role.
   ROLES.keys.each { |role| scope role.to_s.singularize, where("role_code = #{ROLES[role]}") }
@@ -33,11 +35,11 @@ class User < ActiveRecord::Base
   
   
   def self.search(role, q)
-    where(["role_code = #{role} AND (first_name LIKE :q OR last_name LIKE :q OR login LIKE :q OR email LIKE :q)", {:q => '%'+q+'%'}])
+    where(["role_code = #{role} AND (first_name LIKE :q OR last_name LIKE :q OR login LIKE :q OR email LIKE :q)", {:q => '%'+q+'%'}]).includes(:institution).order('last_name DESC')
   end
   
   def self.filter(role, institution_id)
-    where(["institution_id = ? and role_code = ?", institution_id, role])
+    where(["institution_id = ? and role_code = ?", institution_id, role]).includes(:institution).order('last_name DESC')
   end
   
   def name
@@ -92,6 +94,10 @@ class User < ActiveRecord::Base
     @require_group_code = true
   end
   
+  def require_agreement_acceptance!
+    @require_agreement = true
+  end
+  
   def _group
     Group.find_by_code(group_code)
   end
@@ -104,6 +110,10 @@ class User < ActiveRecord::Base
     return true if user_scenarios.exists?(:scenario_id => scenario.id)
     return true if groups.any? && groups.collect(&:scenarios).include?(scenario)
     false
+  end
+  
+  def last_request_changed?
+    self.changes.keys.sort == ["last_request_at", "perishable_token", "updated_at"]
   end
   
   private

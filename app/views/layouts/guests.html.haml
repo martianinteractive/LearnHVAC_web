@@ -6,9 +6,9 @@
     = csrf_meta_tag
     %title
       Learn HVAC Guest
-    = stylesheet_link_tag "admin.css", "jquery-ui"
-    = stylesheet_link_tag "print.css", :media => "print"
-    = javascript_include_tag 'jquery.min.js', 'jquery-ui.min.js', 'jquery.tools.min.js', 'rails', 'jquery.cookie', 'jquery.ui.no-ajax-tabs', 'jquery.dataTables.min', 'application'
+    = include_stylesheets :application
+    = include_stylesheets :print, :media => "print"
+    = include_javascripts :application
     = javascript_include_tag "http://www.google.com/friendconnect/script/friendconnect.js" if @show_connection
 
     = yield :head
@@ -36,9 +36,9 @@
         %h3 Community
         %ul
           %li
-            = link_to "Dashboard", [:guests, :dashboard]
-            = link_to "Directory", directory_path
-        
+            = link_to "Dashboard", guests_dashboard_path(:token => params[:token])
+            - if logged_in?
+              = link_to "Directory", directory_path
 
       .fluid
         .content

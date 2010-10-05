@@ -1,60 +1,37 @@
 require File.dirname(__FILE__) + "/../spec_helper"
 
 describe AccountsController do
-
+  render_views
+  
   describe "GET :new" do
-    it "should assign as @account" do
+    it "" do
       get :new
-      response.should render_template(:new)      
-      assigns(:account).should be_instance_of(User)
+      response.should render_template(:new)
     end
   end
   
   describe "POST :create" do
     before(:each) do
-      ActionMailer::Base.deliveries = []
+      @expected_instructor_redirect = instructors_signup_path
+      @expected_guest_redirect = guests_signup_path
+      @expected_student_redirect = students_signup_path
     end
     
-    describe "a valid account" do
-      it "should save an non-active account" do
-        post :create, :user => Factory.attributes_for(:user)
-        assigns(:account).active?.should_not be(true)
-      end
-      
-      it "should save set the role as :instructor" do
-        post :create, :user => Factory.attributes_for(:user)
-        assigns(:account).role_code.should == User::ROLES[:instructor]
-      end
-      
-      it "should send an activation information mail" do
-        proc { post :create, :user => Factory.attributes_for(:user) }.should change(ActionMailer::Base.deliveries, :size).by(1)
-      end
-      
-      it "should redirect to the login action" do
-        post :create, :user => Factory.attributes_for(:user)
-        response.should redirect_to(login_path)
-      end
+    it "should redirect according to role" do
+      post :create, :role => 'instructor'
+      response.should redirect_to(@expected_instructor_redirect)
+      post :create , :role => 'guest'
+      response.should redirect_to(@expected_guest_redirect)
+      post :create, :role => 'student'
+      response.should redirect_to(@expected_student_redirect)
     end
     
-    describe "an invalid account" do
-      it "" do
-        post :create
-        response.should render_template(:new)
-      end
+    it "should render :new if an invalid role is given" do
+      post :create, :role => 'admin'
+      response.should render_template(:new)
+      post :create
+      response.should render_template(:new)
     end
   end
   
-  describe "Authentication" do
-    before(:each) do
-      @user = Factory(:admin)
-      login_as @user
-    end
-    
-    it "should require NO user" do
-      authorize_actions({}, {:get => [:new], :post => [:create]}) do
-        response.should be_redirect
-        flash[:notice].should == "You must be logged out to access this page"
-      end
-    end
-  end
 end

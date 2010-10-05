@@ -1,13 +1,13 @@
 - content_for :head do
   = render :partial => 'shared/user_form_js', :locals => { :u => @account, :autocomplete => true }
 
-%h2  Guests Registration
-%p 
-  Already a member? please
-  = link_to "login", login_path
-%hr
+%h2 
+  Instructor Registration
 
-= form_for @account, :url => guests_accounts_path, :method => :post do |f|
+%p Register to start using the LearnHVAC instructors website where you do things like create and manage scenarios, share scenarios with students.
+%p You will receive an email confirmation after you submit this form.
+
+= form_for @account, :url => instructors_accounts_path do |f|
   = error_messages_for :account
   
   %fieldset
@@ -20,10 +20,11 @@
   %fieldset
     .field
       = f.label :first_name, "First Name"
-      = f.text_field :first_name
 
+      = f.text_field :first_name
     .field
       = f.label :last_name, "Last Name"
+
       = f.text_field :last_name
 
   %fieldset
@@ -38,28 +39,32 @@
     .field
       = f.label :city
       = f.text_field :city
-	
-  %fieldset		
+
+  %fieldset
     .field
       = f.label :login
-      = f.text_field :login
 
+      = f.text_field :login
     .field
-      = f.label :email
+      = f.label :email, "Email address"
+
       = f.text_field :email
-		
+    .field
+      = f.label :phone
+      
+      = f.text_field :phone
     .field
       = f.label :password
-      = f.password_field :password, :size=>20,  :value=>""
 
+      = f.password_field :password, :size=>20,  :value=>""
     .field
       = f.label :password_confirmation, "Password Confirmation"	
+
       = f.password_field :password_confirmation, :size=>20,  :value=>""
-      
-  = render :partial => "shared/terms_agreement", :locals => { :f => f }
   
+  = render :partial => "shared/terms_agreement", :locals => { :f => f }
+             			
   .actions
-    = submit_tag "Create", :class=>'submitButton'
+    = submit_tag "Register", :class=>'submitButton'
     &nbsp;|&nbsp;
     = link_to 'Cancel', signup_path
-

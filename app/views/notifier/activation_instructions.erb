@@ -2,4 +2,10 @@ Thank you for creating an account! Click the url below to activate your account!
 
 <%= register_url(@user.perishable_token) %>
 
+<% if @user.has_role?(:guest) %>
+If you wish to download a specific version of the client application right now click the url below (don't need activation).
+
+<%= guests_dashboard_url(:token => @user.perishable_token) %>
+<% end %>
+
 If the above URL does not work try copying and pasting it into your browser. If you continue to have problem, please feel free to contact us.

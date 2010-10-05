@@ -2,15 +2,15 @@
   %ul
     - if @subject_buttons == :master_scenario
       %li
-        - link_to [:clone, :admins, @master_scenario], :confirm => 'Are you sure?', :method => :post do
+        = link_to [:clone, :admins, @master_scenario], :confirm => 'Are you sure?', :method => :post do
           %button.button.medium-grey-button{:type => "button"} Clone
           
       %li
-        - link_to([:edit, :admins, @master_scenario]) do
+        = link_to([:edit, :admins, @master_scenario]) do
           %button.button.medium-green-button{:type=>"button"} Edit
     
       %li    
-        - link_to [:admins, @master_scenario], :confirm => 'Are you sure?', :method => :delete do
+        = link_to [:admins, @master_scenario], :confirm => 'Are you sure?', :method => :delete do
           %button.button.medium-red-button{:type => "button"} Delete
   
     - elsif @subject_buttons == :cancel_master_scenario

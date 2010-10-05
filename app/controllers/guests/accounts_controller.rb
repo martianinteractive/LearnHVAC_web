@@ -12,11 +12,12 @@ class Guests::AccountsController < ApplicationController
     @account = User.new(params[:user])
     @account.active = false
     @account.role_code = User::ROLES[:guest]
+    @account.require_agreement_acceptance!
     
     if @account.save_without_session_maintenance
       @account.deliver_activation_instructions!
-      flash[:notice] = "Your account has been created. Before login you have to activate your account. Please check your e-mail for account activation instructions!"
-      redirect_to login_path
+      flash[:notice] = "Your account has been created. In order to grant you access to more sections you have to activate your account. Please check your e-mail for account activation instructions!"
+      redirect_to guests_dashboard_path(:token => @account.perishable_token)
     else
       render :action => :new
     end

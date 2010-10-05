@@ -6,7 +6,7 @@ class Admins::Settings::EducationalEntitiesController < Admins::Settings::BaseCo
   end
   
   def search
-    @colleges = College.where("value LIKE '%#{params[:q]}%'").paginate(:page => params[:page], :per_page => 50)
+    @colleges = College.search(params[:q]).paginate(:page => params[:page], :per_page => 50)
     render :action => :index
   end
 

@@ -19,5 +19,14 @@ module ApplicationHelper
   def generate_template(form_builder, method, options = {})
     escape_javascript generate_html(form_builder, method, options)
   end
-    
+  
+  def search_pagination_for(collection, opts={})
+    if params[:action] == "index"
+      will_paginate collection
+    else
+      defaults = {:renderer => "PostLinkRenderer", :params => { :q => params[:q] }}
+      will_paginate collection, defaults.merge(opts)
+    end
+  end
+  
 end

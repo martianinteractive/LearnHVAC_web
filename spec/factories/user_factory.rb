@@ -9,6 +9,7 @@ Factory.define :user do |user|
   user.country 'United States'
   user.city 'Bethesda'
   user.state 'Maryland'
+  user.terms_agreement "1"
 end
 
 Factory.define :student, :class => User do |user|
@@ -23,6 +24,7 @@ Factory.define :student, :class => User do |user|
   user.country 'United States'
   user.city 'Bethesda'
   user.state 'Maryland'
+  user.terms_agreement "1"
 end
 
 Factory.define :instructor, :class => User do |user|
@@ -37,6 +39,7 @@ Factory.define :instructor, :class => User do |user|
   user.country 'United States'
   user.city 'Bethesda'
   user.state 'Maryland'
+  user.terms_agreement "1"
 end
 
 Factory.define :manager, :class => User do |user|
@@ -51,6 +54,7 @@ Factory.define :manager, :class => User do |user|
   user.country 'United States'
   user.city 'Bethesda'
   user.state 'Maryland'
+  user.terms_agreement "1"
 end
 
 Factory.define :admin, :class => User do |user|
@@ -65,6 +69,7 @@ Factory.define :admin, :class => User do |user|
   user.country 'United States'
   user.city 'Bethesda'
   user.state 'Maryland'
+  user.terms_agreement "1"
 end
 
 Factory.define :guest, :class => User do |user|
@@ -79,4 +84,5 @@ Factory.define :guest, :class => User do |user|
   user.country 'United States'
   user.city 'Bethesda'
   user.state 'Maryland'
+  user.terms_agreement "1"
 end

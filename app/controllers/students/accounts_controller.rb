@@ -3,17 +3,15 @@ class Students::AccountsController < ApplicationController
   
   def new
     @group = Group.find_by_code(params[:code])
-    @account = User.new(:group_code => @group.code)
+    @account = User.new(:group_code => @group.try(:code))
   end
   
-  # Saving without session maintenance to skip
-  # auto-login which can't happen here because
-  # the User has not yet been activated
   def create
     @account = User.new(params[:user])
     @account.active = false
     @account.role_code = User::ROLES[:student]
     @account.require_group_code!
+    @account.require_agreement_acceptance!
     
     if @account.valid? and @account.save_without_session_maintenance
       @account._group.create_memberships(@account)

@@ -8,16 +8,16 @@ class Admins::UsersController < Admins::ApplicationController
                 :if => proc { |c| c.send(:can_cache_action?) }
   
   def index
-    @users = User.where(:role_code => @role).order('last_name DESC').paginate(:page => params[:page], :per_page => 25)
+    @users = User.where(:role_code => @role).includes(:institution).order('last_name DESC').paginate(:page => params[:page], :per_page => 25)
   end
   
   def search
-    @users = User.search(@role, params[:q]).order('last_name DESC').paginate(:page => params[:page], :per_page => 25)
+    @users = User.search(@role, params[:q]).paginate(:page => params[:page], :per_page => 25)
     render :action => :index
   end
   
   def filter
-    @users = User.filter(@role, params[:institution_id]).order('last_name DESC').paginate(:page => params[:page], :per_page => 25)
+    @users = User.filter(@role, params[:institution_id]).paginate(:page => params[:page], :per_page => 25)
     render :action => :index
   end
   
