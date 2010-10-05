@@ -1,15 +1,23 @@
 class AccountsController < ApplicationController
   before_filter :require_no_user
+  before_filter :get_role, :only => [:create]
   
   def new
+    @account = User.new
   end
   
   def create
-    if params[:role].present? and %w(instructor guest student).include?(params[:role])
-      redirect_to send("#{params[:role].pluralize}_signup_path") 
+    @account = User.new(params[:user])
+    @account.active = false
+    @account.role_code = @role
+    @account.require_agreement_acceptance!
+    
+    if @account.save_without_session_maintenance
+      @account.deliver_activation_instructions!
+      flash[:notice] = "Your account has been created. Before login you have to activate your account. Please check your e-mail for account activation instructions!"
+      redirect_to @account.has_role?(:instructor) ? login_path : guests_dashboard_path(:token => @account.perishable_token)
     else
-      flash[:notice] = "Please select a role"
-      render :action => "new"
+      render :action => :new
     end
   end
   
@@ -34,4 +42,12 @@ class AccountsController < ApplicationController
       render :nothing => true
     end
   end
+  
+  private
+  
+  def get_role
+    role = params[:user][:role_code].try(:to_i)
+    @role = role if role and [User::ROLES[:instructor], User::ROLES[:guest]].include?(role)
+  end
+  
 end

@@ -1,26 +1,81 @@
-%h2 
-  Registration
+- content_for :head do
+  = render :partial => 'shared/user_form_js', :locals => { :u => @account, :autocomplete => true }
 
-%p Register to start using the LearnHVAC website.
+%h2 Instructor Registration
 
-= form_tag accounts_path, :class => "signup" do
-  .field
-    Please choose the role you want to signup as:
-  .field
-    = label_tag :role, "Instructor", :for => "role_instructor"
-    = radio_button_tag :role, "instructor"
-  .field
-    = label_tag :role, "Guest", :for => "role_guest"
-    = radio_button_tag :role, "guest"
-  .field
-    = label_tag :role, "Student", :for => "role_student"
-    = radio_button_tag :role, "student"
+%p Register to start using the LearnHVAC instructors website where you do things like create and manage scenarios, share scenarios with students.
+%p You will receive an email confirmation after you submit this form.
+%p If you are an student please ask your instructor for a registration link.
+
+= form_for @account, :url => accounts_path, :html => { :class => "signup" } do |f|
+  = error_messages_for :account
+  
+  %fieldset
+    .field
+      Enter the role you want to signup as:
+    .field
+      = f.label :role_code, "Instructor", :for => "user_role_code_#{User::ROLES[:instructor]}"
+      = f.radio_button :role_code, User::ROLES[:instructor]
+    .field
+      = f.label :role_code, "Guest", :for => "user_role_code_#{User::ROLES[:guest]}"
+      = f.radio_button :role_code, User::ROLES[:guest]
+  
+  %fieldset
+    .field
+      Enter the name of your institution and select the name if available.
+    .field
+      = f.label :institution_name
+      = f.text_field :institution_name
+  
+  %fieldset
+    .field
+      = f.label :first_name, "First Name"
+
+      = f.text_field :first_name
+    .field
+      = f.label :last_name, "Last Name"
+
+      = f.text_field :last_name
+
+  %fieldset
+    .field
+      = f.label :country
+      = f.country_select :country, ['United States', 'Canada']
+
+    .field#states
+      = f.label :state, "State/Region"
+      = f.text_field :state
+
+    .field
+      = f.label :city
+      = f.text_field :city
+
+  %fieldset
+    .field
+      = f.label :login
+
+      = f.text_field :login
+    .field
+      = f.label :email, "Email address"
+
+      = f.text_field :email
+    .field
+      = f.label :phone
       
+      = f.text_field :phone
+    .field
+      = f.label :password
+
+      = f.password_field :password, :size=>20,  :value=>""
+    .field
+      = f.label :password_confirmation, "Password Confirmation"	
+
+      = f.password_field :password_confirmation, :size=>20,  :value=>""
+  
+  = render :partial => "shared/terms_agreement", :locals => { :f => f }
+             			
   .actions
-    = submit_tag "Next", :class=>'submitButton'
+    = submit_tag "Register", :class=>'submitButton'
     &nbsp;|&nbsp;
     = link_to 'Cancel', "http://www.learnhvac.org/"
-    
-      
-
   

@@ -10,6 +10,7 @@ Factory.define :user do |user|
   user.city 'Bethesda'
   user.state 'Maryland'
   user.terms_agreement "1"
+  user.role_code User::ROLES[:instructor]
 end
 
 Factory.define :student, :class => User do |user|
