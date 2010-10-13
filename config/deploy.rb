@@ -27,7 +27,16 @@ namespace(:deploy) do
   task :restart, :roles => :app do
     run "touch #{release_path}/tmp/restart.txt"
   end
+  
+  desc "Bundle and minify the JS and CSS files"
+  task :generate_assets, :roles => :web do
+    root_path = File.expand_path(File.dirname(__FILE__) + '/..')
+    assets_path = "#{root_path}/public/minified"
+    run_locally "jammit #{root_path}/config/assets.yml"
+    top.upload assets_path, "#{current_release}/public", :via => :scp, :recursive => true
+  end
 end
+after("deploy:update_code", "deploy:generate_assets")
 
 namespace :bundler do
   desc "Run bundler, installing gems"
