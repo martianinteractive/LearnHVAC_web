@@ -3,15 +3,22 @@
 
   = error_messages_for :user_session
 
-  .field
-    = f.label :login
-    = f.text_field :login, :size=>15
+  .loginPanel
+    .field
+      = f.label :login
+      = f.text_field :login, :size=>15
   
-  .field
-    = f.label :password
-    = f.password_field :password, :size=>15
+    .field
+      = f.label :password
+      = f.password_field :password, :size=>15
 
-  .actions
-    = submit_tag "Log In"
-    &nbsp;or&nbsp;
-    = link_to "Forgot your password?", reset_password_path
+    .actions
+      = submit_tag "Log In"
+      &nbsp;or&nbsp;
+      = link_to "Forgot your password?", reset_password_path
+
+  .loginPanel
+    %h3 Create a new account.
+    %p By creating an account, you will be able to download and use the Learn HVAC client.
+    
+    %p= link_to "Create a new account now!", signup_path
