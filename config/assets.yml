@@ -3,8 +3,8 @@ compress_assets: on
 
 javascripts:
   application:
-    - public/javascripts/jquery.min.js
-    - public/javascripts/jquery-ui.min.js
+    - public/javascripts/jquery-1.4.4.min.js
+    - public/javascripts/jquery-ui-1.8.9.custom.min.js
     - public/javascripts/jquery.tools.min.js
     - public/javascripts/rails.js
     - public/javascripts/jquery.cookie.js
