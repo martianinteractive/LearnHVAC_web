@@ -1,120 +1,137 @@
 require File.dirname(__FILE__) + "/../../spec_helper"
 
 describe Admins::GroupsController do
-  render_views
-  
+
+  let(:group) { mock_model(Group) }
+
   before(:each) do
-    @instructor = Factory(:instructor)
-    admin       = Factory(:admin)
-    scenario    = Factory(:scenario, :user => @instructor, :master_scenario => Factory(:master_scenario, :user => admin))
-    @group      = Factory(:group, :name => "Class 01", :creator => @instructor, :scenario_ids => [scenario.id])
+    admin = Factory(:admin)
     login_as admin
   end
-  
-  describe "GET index" do
+
+  context "GET index" do
     it "" do
+      Group.should_receive(:paginate).and_return([group])
       get :index
       response.should render_template(:index)
-      assigns(:groups).should eq([@group])
+      assigns[:groups].should eq([group])
     end
   end
-  
-  describe "GET show" do
-    before(:each) do
-      Factory(:membership, :group => @group, :member => Factory(:student), :scenario => Factory.stub(:scenario))
-    end
-    
+
+  context "GET show" do
     it "" do
-      get :show, :id => @group.id
+      Group.should_receive(:find).with("37").and_return(group)
+      get :show, :id => "37"
       response.should render_template(:show)
-      assigns(:group).should eq(@group)
+      assigns(:group).should eq(group)
     end
   end
-  
-  describe "GET new" do
+
+  context "GET new" do
     it "" do
+      Group.should_receive(:new).and_return(group)
       get :new
       response.should render_template(:new)
-      assigns(:group).should be_instance_of(Group)
+      assigns(:group).should eq(group)
     end
   end
-  
-  describe "GET edit" do
+
+  context "GET edit" do
     it "" do
-      get :edit, :id => @group.id
+      Group.should_receive(:find).with("37").and_return(group)
+      group.should_receive(:name)
+      get :edit, :id => '37'
       response.should render_template(:edit)
-      assigns(:group).should eq(@group)
+      assigns(:group).should eq(group)
     end
   end
-  
-  describe "POST create" do
-    describe "with valid params" do
-      before(:each) do
-        @mocked_group = Group.new
-        Group.expects(:new).returns(@mocked_group)
-        @mocked_group.expects(:valid?).returns(true)
+
+  context "POST create" do
+    context "with valid params" do
+
+      it "should create a group" do
+        Group.should_receive(:new).with({'these' => 'params'}).and_return(group)
+        group.should_receive(:save).and_return(:true)
+        post :create, :group => {:these => 'params'}
+        assigns(:group).should equal(group)
       end
-      
-      it "should change the Group count" do
-        proc{ post :create, :group => @params }.should change(Group, :count).by(1)
-      end
-      
+
       it "redirects to the created group" do
-        post :create, :group => @params
+        Group.stub!(:new).and_return(mock_model(Group, :save => true))
+        post :create, :group => {}
         response.should redirect_to(admins_class_path(assigns(:group)))
       end
     end
-  
-    describe "with invalid params" do
-      it "" do
-        post :create, :group => Factory.attributes_for(:group, :name => @group.name, :creator_id => @instructor.id)
+
+    context "with invalid params" do
+      let(:group) { mock_model(Group, :save => false) }
+
+      it "should expose a newly created but unsaved invoice as @group" do
+        Group.stub!(:new).with({'these' => 'params'}).and_return(group)
+        post :create, :group => {:these => 'params'}
+        assigns(:group).should equal(group)
+
+      end
+
+      it "should re-render the 'new' template" do
+        Group.stub!(:new).with({'these' => 'params'}).and_return(group)
+        post :create, :group => {:these => 'params'}
         response.should render_template(:new)
       end
     end
+
   end
-  
-  describe "PUT update" do    
-    describe "with valid params" do      
+
+  context "PUT update" do
+    let(:group) { mock_model(Group, :update_attributes => true) }
+
+    context "with valid params" do
       it "updates the requested group" do
-        put :update, :id => @group.id, :group => { :name => "CS Group" }
-        @group.reload.name.should == "CS Group"
+        Group.should_receive(:find).with("37").and_return(group)
+        group.should_receive(:update_attributes).with({'these' => 'params'})
+        put :update, :id => "37", :group => {:these => 'params'}
       end
-      
+
+      it "should expose the requested invoice as @group" do
+        Group.stub!(:find).and_return(group)
+        put :update, :id => "1"
+        assigns(:group).should equal(group)
+      end
+
       it "redirects to the group" do
-        put :update, :id => @group.id, :group => { }
-        response.should redirect_to(admins_class_path(@group))
+        Group.stub!(:find).and_return(group)
+        put :update, :id => '37', :group => { }
+        response.should redirect_to(admins_class_path(group))
       end
     end
-    
-    describe "with invalid params" do  
-      it "" do
-        put :update, :id => @group.id, :group => { :name => "" }
-        response.should render_template(:edit)
+
+    context "with invalid params" do
+      let(:group) { mock_model(Group, :update_attributes => false) }
+
+      it "should re-render the 'edit' template" do
+        Group.stub!(:find).and_return(group)
+        group.should_receive(:name)
+        put :update, :id => "1"
+        response.should render_template('edit')
       end
     end
   end
-  
-  describe "DELETE destroy" do    
-    it "destroys the requested group" do
-      proc { delete :destroy, :id => @group.id }.should change(Group, :count).by(-1)
+
+
+  describe "responding to DELETE destroy" do
+    let(:group) { mock_model(Group, :destroy => true)}
+
+    it "should destroy the requested group" do
+      Group.should_receive(:find).with("37").and_return(group)
+      group.should_receive(:destroy)
+      delete :destroy, :id => "37"
     end
-  
-    it "redirects to the instructor groups list" do
-      delete :destroy, :id => @group.id
+
+    it "should redirect to the invoices list" do
+      Group.stub!(:find).and_return(group)
+      delete :destroy, :id => "1"
       response.should redirect_to(admins_classes_path)
     end
   end
-  
-  describe "Authentication" do
-    before(:each) do
-      students_login
-    end
-    
-    it "should require an admin user for all actions" do
-      authorize_actions(:id => @group.id) do
-        response.should be_redirect
-        flash[:notice].should == "You don't have privileges to access that page"
-      end
-    end
-  end
+
 end
