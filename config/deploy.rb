@@ -44,5 +44,51 @@ namespace :bundler do
     run("cd #{release_path} && /usr/local/bin/bundle install")
   end
 end
-
 # after "deploy:update_code", "bundler:install"
+
+namespace :db do
+ desc "Load production data into development database"
+ task :fetch_remote_db, :roles => :db, :only => { :primary => true } do
+   require 'yaml'
+   
+   pdb_file = capture "cat #{deploy_to}/current/config/database.yml"
+   pdb = YAML::load(pdb_file)
+   ddb = YAML::load_file('config/database.yml')
+
+   filename = "dump.#{Time.now.strftime '%Y-%m-%d_%H:%M:%S'}.sql"
+
+   on_rollback do 
+     delete "/tmp/#{filename}" 
+     delete "/tmp/#{filename}.gz" 
+   end
+   cmd = "mysqldump -u #{pdb['production']['username']} --password=#{pdb['production']['password']} #{pdb['production']['database']} > /tmp/#{filename}"
+   puts "Dumping remote database"
+   run(cmd) do |channel, stream, data|
+     puts data
+   end
+
+   # compress the file on the server
+   puts "Compressing remote data"
+   run "gzip -9 /tmp/#{filename}"
+   puts "Fetching remote data"
+   get "/tmp/#{filename}.gz", "dump.sql.gz"
+
+   # build the import command
+   # no --password= needed if password is nil. 
+   if ddb['development']['password'].nil?
+     cmd = "mysql -u #{ddb['development']['username']} #{ddb['development']['database']} < dump.sql"
+   else
+     cmd = "mysql -u #{ddb['development']['username']} --password=#{ddb['development']['password']} #{ddb['development']['database']} < dump.sql"
+   end
+
+   # unzip the file. Can't use exec() for some reason so backticks will do
+   puts "Uncompressing dump"
+   `gzip -d dump.sql.gz`
+   puts "Executing : #{cmd}"
+   `#{cmd}`
+   puts "Cleaning up"
+   `rm -f dump.sql`
+
+   puts "Be sure to run rake db:migrate to ensure your database schema is up to date!"
+ end
+end
