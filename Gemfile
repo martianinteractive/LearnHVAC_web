@@ -1,17 +1,18 @@
 source 'http://rubygems.org'
-gem 'rails', '3'
-gem "haml", "3.0.18"
-gem "compass", "0.10.2"
-gem "authlogic", "2.1.6"
-gem "mysql"
-gem "will_paginate", "3.0.pre2"
-gem 'acts-as-taggable-on', '2.0.0.rc1'
-gem "addressable", "2.1.1"
+gem 'rails'
+gem "haml"
+gem "compass"
+gem 'authlogic', :git => 'git://github.com/odorcicd/authlogic.git', :branch => 'rails3'
+gem "mysql2"
+gem "will_paginate", "~> 3.0.pre2"
+gem 'acts-as-taggable-on'
+gem "addressable"
 gem "builder"
 gem "jammit"
+gem "compass"
 
 group :test do
-	gem "rspec-rails", ">= 2.0.0.beta.20"
+	gem "rspec-rails"
   gem "mocha"
 	gem "factory_girl_rails"
 end

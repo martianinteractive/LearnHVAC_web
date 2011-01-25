@@ -2,11 +2,11 @@
   %ul
     - if @subject_buttons == :scenario
       %li
-        - link_to(edit_admins_scenario_path(@scenario)) do
+        = link_to(edit_admins_scenario_path(@scenario)) do
           %button.button.large-green-button{:type=>"button"} Edit Scenario
     
       %li    
-        - link_to admins_scenario_path(@scenario), :confirm => 'Are you sure?', :method => :delete do
+        = link_to admins_scenario_path(@scenario), :confirm => 'Are you sure?', :method => :delete do
           %button.button.large-red-button{:type => "button"} Delete Scenario
   
     - elsif @subject_buttons == :cancel_scenario
