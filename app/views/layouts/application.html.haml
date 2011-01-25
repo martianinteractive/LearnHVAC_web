@@ -6,8 +6,8 @@
     = csrf_meta_tag
     %title
       Learn HVAC
-    = include_stylesheets :application
-    = include_stylesheets :print, :media => "print"
+    = stylesheet_link_tag :application
+    = stylesheet_link_tag :print, :media => "print"
     = include_javascripts :application
     = javascript_include_tag "http://www.google.com/friendconnect/script/friendconnect.js" if @show_connection
 
