@@ -16,6 +16,6 @@ javascripts:
 stylesheets:
   application:
     - public/stylesheets/admin.css
-    - public/stylesheets/jquery-ui.css
+    - public/stylesheets/jquery-ui-1.8.9.custom.css
   print:
     - public/stylesheets/print.css
