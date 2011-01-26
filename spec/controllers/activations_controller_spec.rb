@@ -1,71 +1,102 @@
 require File.dirname(__FILE__) + "/../spec_helper"
 
 describe ActivationsController do
-  
-  before(:each) do
-    @user = Factory.build(:user, :perishable_token => "perishabletoken")
-    @user.active = false
-    @user.save
-  end
-  
-  describe "GET new" do
-    describe "an inactive user" do
-      it "" do
-        get :new, :activation_code => @user.perishable_token
+  let(:user) { mock_model(User, :active? => false) }
+
+  context "GET New" do
+    context "for inactive user" do
+      it "should expose a user as @user" do
+        User.should_receive(:find_using_perishable_token).with('abc123', 1.week).and_return(user)
+        get :new, :activation_code => 'abc123'
+        assigns[:user].should eq(user)
+      end
+
+      it "should render the new template" do
+        User.stub(:find_using_perishable_token).and_return(user)
+        get :new, :activation_code => 'abc123'
         response.should render_template(:new)
       end
-    end
-    
-    describe "an already active user" do      
-      it "should raise an exception" do
-        @user.activate!
-        proc { get :new, :activation_code => @user.perishable_token }.should raise_error(Exception)
-      end
-    end
-  end
-  
-  describe "POST create" do
-    before(:each) do
-      ActionMailer::Base.deliveries = []
-    end
-    
-    describe "a not active user" do
-      it "should activate the user" do
-        @user.reload.active.should be(false)
-        post :create, :id => @user.id
-        @user.reload.active.should be(true)
-      end
-      
-      it "should send an activation email" do
-        # mail detailed specs in user_spec.
-        proc { post :create, :id => @user.id }.should change(ActionMailer::Base.deliveries, :size).by(1)
-      end
-            
-      it "should redirect to the login action" do
-        post :create, :id => @user.id
-        flash[:notice].should match(/activated/)
+
+      it "should redirect to login page with flash message" do
+        User.stub(:find_using_perishable_token).and_return(nil)
+        get :new, :activation_code => 'abc123'
         response.should redirect_to(login_path)
+        flash[:notice].should eq('Unable to find your account')
       end
     end
-    
-    describe "an already active user" do
-      before(:each) do
-        @user.activate!
-      end
-      
-      it "should raise an exception" do
-        proc { post :create, :id => @user.id }.should raise_error(Exception)
-      end
-      
-      it "should render :new if there are problems activating" do
-        User.expects(:find).with("99").returns(@user)
-        @user.expects("active?").returns(false)
-        @user.expects("activate!").returns(false)
-        post :create, :id => "99"
-        response.should render_template(:new)
+
+    context "for active user" do
+      let(:user) { mock_model(User, :active? => true) }
+
+      it "should redirect to the login page" do
+        User.stub(:find_using_perishable_token).and_return(user)
+        get :new, :activation_code => 'abc123'
+        response.should redirect_to(login_path)
+        flash[:notice].should eq('Your account is already active')
       end
     end
-    
+  end
+
+  context "POST create" do
+    context "for an inactive user" do
+      it "should expose the user as @user" do
+        User.should_receive(:find).with('37').and_return(user)
+        user.stub(:activate!)
+        post :create, :id => '37'
+        assigns[:user].should eq(user)
+      end
+
+      it "should instruct to activate the user" do
+        User.stub(:find).with('37').and_return(user)
+        user.should_receive(:activate!)
+        post :create, :id => '37'
+      end
+
+      it "should instruct to deliver activation confirmation" do
+        User.stub(:find).with('37').and_return(user)
+        user.stub(:activate!).and_return(true)
+        user.should_receive(:deliver_activation_confirmation!)
+        post :create, :id => '37'
+      end
+
+      it "should deliver activation email" do
+        user = Factory.build(:user, :perishable_token => "perishabletoken")
+        user.active = false
+        user.save
+        proc { post :create, :id => user.id }.should change(ActionMailer::Base.deliveries, :size).by(1)
+      end
+
+      context "that cannot be activated" do
+        it "should render the new template" do
+          User.stub(:find).with('37').and_return(user)
+          user.stub(:activate!).and_return(false)
+          post :create, :id => '37'
+          response.should render_template('new')
+        end
+      end
+    end
+
+    context "for an active user" do
+      let(:user) { mock_model(User, :active? => true) }
+
+      it "should redirect to the login page with a flash notice" do
+        User.should_receive(:find).with('37').and_return(user)
+        user.stub(:activate!)
+        post :create, :id => '37'
+        response.should redirect_to(login_path)
+        flash[:notice].should eq('Your account is alredy active')
+      end
+    end
+
+    context "for a user that cannot be found" do
+
+      it "should redirect to the login page with a flash notice" do
+        User.should_receive(:find).with('37').and_return(nil)
+        post :create, :id => '37'
+        response.should redirect_to(login_path)
+        flash[:notice].should eq('Unable to find your account')
+      end
+    end
   end
 
 end
