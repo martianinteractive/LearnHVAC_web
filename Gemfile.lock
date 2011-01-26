@@ -9,6 +9,7 @@ GIT
 GEM
   remote: http://rubygems.org/
   specs:
+    ZenTest (4.4.2)
     abstract (1.0.0)
     actionmailer (3.0.3)
       actionpack (= 3.0.3)
@@ -39,6 +40,8 @@ GEM
     acts-as-taggable-on (2.0.6)
     addressable (2.2.3)
     arel (2.0.7)
+    autotest-rails (4.1.0)
+      ZenTest
     builder (2.1.2)
     closure-compiler (1.0.0)
     columnize (0.3.2)
@@ -116,9 +119,11 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  ZenTest
   acts-as-taggable-on
   addressable
   authlogic!
+  autotest-rails
   builder
   compass
   factory_girl_rails

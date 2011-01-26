@@ -15,6 +15,8 @@ group :test do
 	gem "rspec-rails"
   gem "mocha"
 	gem "factory_girl_rails"
+	gem "ZenTest"
+	gem "autotest-rails"
 end
 
 group :development, :development_cached do
