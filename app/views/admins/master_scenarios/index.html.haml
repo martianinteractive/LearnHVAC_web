@@ -1,9 +1,3 @@
-%h4 Tags
-%p 
-  / Using Tag.all for now, only MasterScenarios are taggable
-  - for tag in Tag.all do
-    = link_to tag.name, master_scenarios_tag_path(tag.name)
-
 #tabs
   %ul
     %li.ui-tabs-selected= link_to "Master Scenarios", admins_master_scenarios_path
