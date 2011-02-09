@@ -121,9 +121,7 @@ Learnhvac::Application.routes.draw do |map|
           delete :drop
         end
       end
-      resources :revisions do
-        resources :variables, :controller => "system_variable_versions"
-      end  
+
       member do
         post :clone
       end
