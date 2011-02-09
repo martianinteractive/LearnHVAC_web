@@ -1,5 +1,5 @@
 source 'http://rubygems.org'
-gem 'rails'
+gem 'rails', '3.0.4'
 gem "haml"
 gem "compass"
 gem 'authlogic', :git => 'git://github.com/odorcicd/authlogic.git', :branch => 'rails3'
