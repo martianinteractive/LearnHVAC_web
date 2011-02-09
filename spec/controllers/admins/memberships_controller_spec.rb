@@ -1,32 +1,28 @@
 require File.dirname(__FILE__) + "/../../spec_helper"
 
 describe Admins::MembershipsController do
+  let(:current_user) { Factory.stub(:admin) }
+  
   before(:each) do
-    admin         = Factory(:admin)
-    instructor    = Factory(:instructor, :institution => Factory(:institution))
-    ms            = Factory(:master_scenario, :user => admin)
-    scenario_1    = Factory(:scenario, :master_scenario => ms, :name => 'scenario 1', :user => instructor)
-    scenario_2    = Factory(:scenario, :master_scenario => ms, :name => 'scenario 2', :user => instructor)
-    @group        = Factory(:group, :name => "Class 01", :creator => instructor, :scenario_ids => [scenario_1.id, scenario_2.id])
-    @student      = Factory(:student)
-    
-    Factory(:group_membership, :group => @group, :member => @student, :scenario => scenario_1)
-    Factory(:group_membership, :group => @group, :member => @student, :scenario => scenario_2)
-    
-    Factory(:group_membership, :group => @group, :member => Factory(:guest), :scenario => scenario_2)
-    Factory(:membership, :member => admin, :scenario => scenario_1)
-    
-    login_as(admin)
+    controller.stub!(:current_user).and_return(current_user)
+  end
+  
+  def mock_group(stubs={})
+    @mock_group ||= mock_model(Group, stubs).as_null_object
   end
   
   describe "DELETE :destroy" do
-    it "should delete all the group memberships for the given user." do
-      proc { delete :destroy, :id => @student.id, :class_id => @group.id }.should change(GroupMembership, :count).by(-2)
+    it "should destroy the membership" do
+      Group.should_receive(:find).with('37').and_return(mock_group)
+      mock_group.stub_chain(:memberships, :where, :destroy_all)
+      mock_group.should_receive(:memberships)
+      delete :destroy, :class_id => '37', :id => '1'
     end
     
-    it "" do
-      delete :destroy, :id => @student.id, :class_id => @group.id
-      response.should redirect_to(admins_class_path(@group))
+    it "should redirect back" do
+      Group.should_receive(:find).with('37').and_return(mock_group)
+      delete :destroy, :class_id => '37', :id => '1'
+      response.should redirect_to admins_class_path(assigns[:group])
     end
   end
 end

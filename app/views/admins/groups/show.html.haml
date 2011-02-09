@@ -41,14 +41,14 @@
             %th Role
             %th
             %th 
-        - @group.members.each do |member|
+        - @group.memberships.each do |membership|
           %tr
-            %td= link_to member.name, admins_user_path(member, :role => member.role)
-            %td= link_to member.institution.name, admins_institution_path(member.institution) if member.institution
-            %td= mail_to member.email
-            %td= member.role
-            %td= link_to image_tag("trashcan.gif"), admins_membership_path(member, :class_id => @group.id), :confirm => 'Are you sure?', :method => :delete
-            %td= content_tag(:em, "Pending Email Confirmation") unless member.active?
+            %td= link_to membership.member.name, admins_user_path(membership.member, :role => membership.member.role)
+            %td= link_to membership.member.institution.name, admins_institution_path(membership.member.institution) if membership.member.institution
+            %td= mail_to membership.member.email
+            %td= membership.member.role
+            %td= link_to image_tag("trashcan.gif"), admins_class_membership_path(@group, membership), :confirm => 'Are you sure?', :method => :delete
+            %td= content_tag(:em, "Pending Email Confirmation") unless membership.member.active?
             
     %h3 Scenarios
 

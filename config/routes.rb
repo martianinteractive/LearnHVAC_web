@@ -130,7 +130,7 @@ Learnhvac::Application.routes.draw do |map|
     end
     
     resources :classes, :controller => :groups do
-      resources :memberships, :only => [:destroy], :shallow => true
+      resources :memberships, :only => [:destroy]
     end
     
     scope ":role" do
