@@ -1,143 +1,146 @@
 require File.dirname(__FILE__) + "/../../spec_helper"
 
 describe Admins::MasterScenariosController do
+  let(:master_scenario) { mock_model(MasterScenario, :name => 'bla') }
+  let(:current_user) { Factory.stub(:admin) }
+  
   before(:each) do
-    @admin = Factory(:admin)
-    @master_scenario = Factory(:master_scenario, :user => @admin)
-    login_as(@admin)
+    controller.stub!(:current_user).and_return(current_user)
   end
   
   describe "GET index" do
-    it "" do
+    it "should expose master_scenarios and render the template" do
+      MasterScenario.should_receive(:paginate).and_return([master_scenario])
       get :index
       response.should render_template(:index)
-      assigns(:master_scenarios).should_not be_empty
-    end
-  end
-  
-  describe "GET tag" do
-    it "" do
-      get :tag, :tag => @master_scenario.tags.first
-      response.should render_template(:tag)
-      assigns(:master_scenarios).should_not be_empty
-    end
-    
-    it "" do
-      get :tag, :tag => "faketag"
-      response.should render_template(:tag)
-      assigns(:master_scenarios).should be_empty
+      assigns[:master_scenarios].should eq([master_scenario])
     end
   end
   
   describe "GET show" do
-    it "" do
-      get :show, :id => @master_scenario.id
+    it "should expose master_scenario and render the show template" do
+      MasterScenario.should_receive(:find).with('37').and_return(master_scenario)
+      get :show, :id => '37'
       response.should render_template(:show)
-      assigns(:master_scenario).should eq(@master_scenario)
+      assigns[:master_scenario].should eq(master_scenario)
     end
   end
   
   describe "GET new" do
-    it "" do
+    it "should expose a new instance of master_scenario and render the new template" do
+      MasterScenario.should_receive(:new).and_return(master_scenario)
       get :new
+      assigns[:master_scenario].should eq(master_scenario)
       response.should render_template(:new)
-      assigns(:master_scenario).should be_instance_of(MasterScenario)
     end
   end
   
   describe "GET edit" do
-    it "" do
-      get :edit, :id => @master_scenario.id
+    it "should expose the master_scenario and render the edit template" do
+      MasterScenario.should_receive(:find).with('37').and_return(master_scenario)
+      get :edit, :id => '37'
+      assigns[:master_scenario].should eq(master_scenario)
       response.should render_template(:edit)
-      assigns(:master_scenario).should eq(@master_scenario)
+    end
+  end
+  
+  describe "GET clone" do
+    it "should clone a master scenario" do
+      MasterScenario.should_receive(:find).with('37').and_return(master_scenario)
+      master_scenario.should_receive(:clone!).and_return(mock_model(MasterScenario, :valid? => true))
+      get :clone, :id => '37'
     end
   end
   
   describe "POST create" do
-    describe "with valid params" do
-      before(:each) { @valid_params = Factory.attributes_for(:master_scenario, :name => "new scenario", :desktop_id => @master_scenario.client_version.id) }
-      
-      it "should change the MasterScenario count" do
-        proc{ post :create, :master_scenario => @valid_params }.should change(MasterScenario, :count).by(1)
+    let(:master_scenario) {mock_model(MasterScenario, :save => true, :user= => current_user) }
+    
+    describe "with valid attrs" do
+      it "should expose the master scenario" do
+        MasterScenario.should_receive(:new).with('these' => 'params').and_return(master_scenario)
+        master_scenario.should_receive(:save).and_return(:true)
+        post :create, :master_scenario => {:these => 'params'}
+        assigns[:master_scenario].should eq(master_scenario)
       end
       
-      it "should assign the current admin as the master_scenario creator" do
-        post :create, :master_scenario => @valid_params
-        assigns(:master_scenario).user.should == @admin
-      end
-      
-      it "redirects to the created admins_master_scenario" do
-        post :create, :master_scenario => @valid_params
-        response.should redirect_to(admins_master_scenario_path(assigns(:master_scenario)))
+      it "should redirect to the master scenario" do
+        MasterScenario.stub!(:new).and_return(master_scenario)
+        post :create, :master_scenario => {}
+        response.should redirect_to(admins_master_scenario_url(assigns[:master_scenario]))
       end
     end
-  
-    describe "with invalid params" do
-      it "" do
-        proc { post :create, :master_scenario => {} }.should_not change(MasterScenario, :count)
+    
+    describe "with invalid attrs" do
+      let(:master_scenario) { mock_model(MasterScenario, :save => false) }
+      
+      it "should expose the master scenario" do
+        MasterScenario.should_receive(:new).with('these' => 'params').and_return(master_scenario)
+        master_scenario.should_receive(:save).and_return(:false)
+        master_scenario.should_receive(:user=).and_return(current_user)
+        post :create, :master_scenario => {:these => 'params'}
+        assigns[:master_scenario].should eq(master_scenario)
       end
       
-      it "" do
+      it "should redirect to the master scenario" do
+        MasterScenario.stub!(:new).and_return(master_scenario)
+        master_scenario.stub!(:user=)
         post :create, :master_scenario => {}
         response.should render_template(:new)
       end
     end
   end
   
-  describe "POST clone" do
-    it "" do
-      proc { post :clone, :id => @master_scenario.id }.should change(MasterScenario, :count).by(1)
-    end
+  describe "PUT update" do
+    let(:master_scenario) { mock_model(MasterScenario, :update_attributes => true) }
     
-    it "" do
-      post :clone, :id => @master_scenario.id
-      response.should redirect_to(admins_master_scenarios_path)
-    end
-  end
-  
-  describe "PUT update" do 
-    describe "with valid params" do      
-      it "updates the requested scenario" do
-        put :update, :id => @master_scenario.id, :master_scenario => { :name => "new scenario" }
-        @master_scenario.reload.name.should == "new scenario"
-      end
+    describe "with valid params" do
+      it "should expose the master scenario" do
+        MasterScenario.should_receive(:find).with('37').and_return(master_scenario)
+        master_scenario.should_receive(:update_attributes).with({'these' => 'params'})
+        put :update, :id => '37', :master_scenario => {:these => 'params'}
+        assigns[:master_scenario].should eq(master_scenario)
+      end    
       
-      it "redirects to the master_scenario" do
-        put :update, :id => @master_scenario.id, :master_scenario => { :name => "new scenairo" }
-        response.should redirect_to(admins_master_scenario_path(@master_scenario))
+      it "should redirect to master scenario" do
+        MasterScenario.stub!(:find).and_return(master_scenario)
+        put :update, :id => '37'
+        response.should redirect_to(admins_master_scenario_url(assigns[:master_scenario]))
       end
     end
     
     describe "with invalid params" do
-      it "" do
-        put :update, :id => @master_scenario.id, :master_scenario => { :name => "" }
+      let(:master_scenario) { mock_model(MasterScenario, :update_attributes => false) }
+      
+      it "should expose the master scenario" do
+        MasterScenario.should_receive(:find).with('37').and_return(master_scenario)
+        master_scenario.should_receive(:update_attributes).with({'these' => 'params'})
+        master_scenario.stub!(:name)
+        put :update, :id => '37', :master_scenario => {:these => 'params'}
+        assigns[:master_scenario].should eq(master_scenario)
+      end    
+      
+      it "should redirect to master scenario" do
+        MasterScenario.stub!(:find).and_return(master_scenario)
+        master_scenario.stub!(:name)
+        put :update, :id => '37'
         response.should render_template(:edit)
       end
     end
   end
   
   describe "DELETE destroy" do
-    it "destroys the requested scenario" do
-      proc { delete :destroy, :id => @master_scenario.id }.should change(MasterScenario, :count).by(-1)
-    end
-
-    it "redirects to the master_scenarios list" do
-      delete :destroy, :id => @master_scenario.id
-      response.should redirect_to(admins_master_scenarios_path)
-    end
-  end
-  
-  describe "Authorization" do
-    before(:each) do
-      @admin.role_code = User::ROLES[:instructor]
-      @admin.save
+    let(:master_scenario) { mock_model(Institution, :destroy => true) }
+    
+    it "should destroy the master scenario" do
+      MasterScenario.should_receive(:find).with('37').and_return(master_scenario)
+      master_scenario.should_receive(:destroy).and_return(true)
+      delete :destroy, :id => '37'
     end
     
-    it "should require an admin user for all actions" do
-      authorize_actions(:id => @master_scenario.id) do
-        response.should be_redirect
-        flash[:notice].should == "You don't have privileges to access that page"
-      end
+    it "should redirect to index" do
+      MasterScenario.stub!(:find).and_return(master_scenario)
+      delete :destroy, :id => '37'
+      response.should redirect_to(admins_master_scenarios_url)
     end
   end
 end

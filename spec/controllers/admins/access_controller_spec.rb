@@ -65,7 +65,7 @@ describe Admins::AccessController do
       end
       
       it "should redirect with an error message" do
-        IndividualMembership.stub(:new).with(:member => current_user, :scenario => scenario).and_return(individual_membership)
+        IndividualMembership.stub!(:new).with(:member => current_user, :scenario => scenario).and_return(individual_membership)
         post :create, :scenario_id => '30'
         response.should redirect_to admins_scenario_accesses_path(scenario)
         flash[:notice].should include('There were problems')

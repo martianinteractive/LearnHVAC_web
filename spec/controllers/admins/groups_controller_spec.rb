@@ -106,11 +106,10 @@ describe Admins::GroupsController do
     end
 
     context "with invalid params" do
-      let(:group) { mock_model(Group, :update_attributes => false) }
+      let(:group) { mock_model(Group, :update_attributes => false, :name => 'bla') }
 
       it "should re-render the 'edit' template" do
         Group.stub!(:find).and_return(group)
-        group.should_receive(:name)
         put :update, :id => "1"
         response.should render_template('edit')
       end
