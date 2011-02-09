@@ -1,94 +1,126 @@
 require File.dirname(__FILE__) + "/../../../spec_helper"
 
 describe Admins::Settings::ClientVersionsController do
+  let(:current_user) { Factory.stub(:admin) }
+  
   before(:each) do
-    @client_version = Factory(:client_version)
-    admins_login
+    controller.stub!(:current_user).and_return(current_user)
+  end
+  
+  def mock_client_version(stubs={})
+    @mock_client_version ||= mock_model(ClientVersion, stubs)
   end
   
   describe "GET index" do
-    it "" do
+    it "should expose client versions and render the template" do
+      ClientVersion.should_receive(:paginate).and_return([mock_client_version])
       get :index
       response.should render_template(:index)
-      assigns(:client_versions).should_not be_empty
-      assigns(:client_versions).should eq([@client_version])
+      assigns[:client_versions].should eq([mock_client_version])
+    end
+  end
+  
+  describe "GET show" do
+    it "should client version and render the show template" do
+      ClientVersion.should_receive(:find).with('37').and_return(mock_client_version({:version => 'bla'}))
+      get :show, :id => '37'
+      response.should render_template(:show)
+      assigns[:client_version].should eq(mock_client_version)
+    end
+  end
+    
+  describe "GET new" do
+    it "should expose a new instance of client version and render the new template" do
+      ClientVersion.should_receive(:new).and_return(mock_client_version)
+      get :new
+      assigns[:client_version].should eq(mock_client_version)
+      response.should render_template(:new)
     end
   end
 
-  describe "GET show" do
-    it "" do
-      get :show, :id => @client_version.id
-      response.should render_template(:show)
-      assigns(:client_version).should eq(@client_version)
-    end
-  end
-  
-  describe "GET new" do
-    it "" do
-      get :new
-      response.should render_template(:new)
-      assigns(:client_version).should be_instance_of(ClientVersion)
-    end
-  end
-  
   describe "GET edit" do
-    it "" do
-      get :edit, :id => @client_version.id
+    it "should expose the a new client version render the edit template" do
+      ClientVersion.should_receive(:find).with('37').and_return(mock_client_version({:version => 'bla'}))
+      get :edit, :id => '37'
+      assigns[:client_version].should eq(mock_client_version)
       response.should render_template(:edit)
-      assigns(:client_version).should eq(@client_version)
     end
   end
-  
+
   describe "POST create" do
-    describe "with valid params" do
-      before(:each) { @valid_params =  { :version => "0.99.16", :url => "http://lhvac.com/client99.16.exe", :release_date => Time.now.to_date.to_s } }
-              
-      it "should change the version count" do
-        proc{ post :create, :client_version => @valid_params }.should change(ClientVersion, :count).by(1)
+    describe "with valid attrs" do
+      it "should expose the master client_version" do
+        ClientVersion.should_receive(:new).with('these' => 'params').and_return(mock_client_version({:save => true}))
+        mock_client_version.should_receive(:save).and_return(:true)
+        post :create, :client_version => {:these => 'params'}
+        assigns[:client_version].should eq(mock_client_version)
       end
-      
-      it "redirects to the created version" do
-        post :create, :client_version => @valid_params
-        response.should redirect_to(admins_settings_client_version_path(assigns(:client_version)))
+
+      it "should redirect to the master client_version" do
+        ClientVersion.stub!(:new).and_return(mock_client_version({:user= => current_user, :save => true}))
+        post :create, :client_version => {}
+        response.should redirect_to(admins_settings_client_version_url(assigns[:client_version]))
       end
     end
-  
-    describe "with invalid params" do
-      it "" do
-        post :create, :client_version => { }
+
+    describe "with invalid attrs" do
+      it "should expose the client_version" do
+        ClientVersion.should_receive(:new).with('these' => 'params').and_return(mock_client_version({:save => false}))
+        mock_client_version.should_receive(:save).and_return(:false)
+        post :create, :client_version => {:these => 'params'}
+        assigns[:client_version].should eq(mock_client_version)
+      end
+
+      it "should redirect to the client_version" do
+        ClientVersion.stub!(:new).and_return(mock_client_version({:save => false}))
+        post :create, :client_version => {}
         response.should render_template(:new)
       end
     end
   end
-  
-  describe "PUT update" do    
-    describe "with valid params" do      
-      it "updates the requested client_version" do
-        put :update, :id => @client_version.id, :client_version => { :version => "0.99.17" }
-        @client_version.reload.version.should == "0.99.17"
+
+  describe "PUT update" do
+    describe "with valid params" do
+      it "should expose the client_version" do
+        ClientVersion.should_receive(:find).with('37').and_return(mock_client_version({:update_attributes => true}))
+        mock_client_version.should_receive(:update_attributes).with({'these' => 'params'})
+        put :update, :id => '37', :client_version => {:these => 'params'}
+        assigns[:client_version].should eq(mock_client_version)
       end
-      
-      it "redirects to the version" do
-        put :update, :id => @client_version.id, :client_version => { }
-        response.should redirect_to(admins_settings_client_version_path(@client_version))
+
+      it "should redirect to client_version" do
+        ClientVersion.stub!(:find).and_return(mock_client_version({:update_attributes => true}))
+        put :update, :id => '37'
+        response.should redirect_to(admins_settings_client_version_url(assigns[:client_version]))
       end
     end
-    
-    describe "with invalid params" do  
-      it "" do
-        put :update, :id => @client_version.id, :client_version => { :version => "" }
+
+    describe "with invalid params" do
+      it "should expose the client_version" do
+        ClientVersion.should_receive(:find).with('37').and_return(mock_client_version({:update_attributes => false, :name => 'bla'}))
+        mock_client_version.should_receive(:update_attributes).with({'these' => 'params'})
+        put :update, :id => '37', :client_version => {:these => 'params'}
+        assigns[:client_version].should eq(mock_client_version)
+      end
+
+      it "should redirect to client_version" do
+        ClientVersion.stub!(:find).and_return(mock_client_version({:name => 'bla', :update_attributes => false}))
+        put :update, :id => '37'
         response.should render_template(:edit)
       end
     end
   end
-  
-  describe "DELETE destroy" do    
-    it "destroys the requested client_version" do
-      proc { delete :destroy, :id => @client_version.id }.should change(ClientVersion, :count).by(-1)
+
+  describe "DELETE destroy" do
+    it "should destroy the scenario" do
+      ClientVersion.should_receive(:find).with('37').and_return(mock_client_version({:destroy => false}))
+      mock_client_version.should_receive(:destroy).and_return(true)
+      delete :destroy, :id => '37'
     end
-  
-    it "redirects to the client versions index" do
-      delete :destroy, :id => @client_version.id
+
+    it "should redirect to index" do
+      ClientVersion.stub!(:find).and_return(mock_client_version)
+      delete :destroy, :id => '37'
       response.should redirect_to(admins_settings_client_versions_path)
     end
   end
