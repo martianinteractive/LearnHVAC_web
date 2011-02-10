@@ -129,7 +129,7 @@ describe Admins::ScenariosController do
 
   describe "DELETE destroy" do
     it "should destroy the scenario" do
-      Scenario.should_receive(:find).with('37').and_return(mock_scenario({:destroy => false}))
+      Scenario.should_receive(:find).with('37').and_return(mock_scenario({:destroy => true}))
       mock_scenario.should_receive(:destroy).and_return(true)
       delete :destroy, :id => '37'
     end
