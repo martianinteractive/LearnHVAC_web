@@ -210,6 +210,7 @@ describe Admins::SystemVariablesController do
         response.should redirect_to(admins_master_scenario_system_variables_path(assigns[:master_scenario], assigns[:system_variable]))
       end
     end
+    
   end
    
 end
