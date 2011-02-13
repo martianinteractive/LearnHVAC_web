@@ -33,7 +33,6 @@ class User < ActiveRecord::Base
   
   before_save :set_institution, :on => :create, :if => Proc.new { |user| user.has_role?(:student) }
   
-  
   def self.search(role, q)
     where(["role_code = #{role} AND (first_name LIKE :q OR last_name LIKE :q OR login LIKE :q OR email LIKE :q)", {:q => '%'+q+'%'}]).includes(:institution).order('last_name DESC')
   end

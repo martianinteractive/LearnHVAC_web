@@ -1,6 +1,8 @@
 require File.dirname(__FILE__) + "/../../spec_helper"
 
 describe Admins::UsersController do
+  let(:current_user) { Factory.stub(:admin) }
+  
   before(:each) do
     @admin = Factory(:admin)
     login_as(@admin)
