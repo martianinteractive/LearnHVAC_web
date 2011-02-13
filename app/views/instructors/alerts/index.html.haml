@@ -1,0 +1,21 @@
+%h2 Original Scenario Changes
+%hr
+
+%table
+  %tr
+    %th Scenario
+    %th Master Scenario
+    %th Changes Description
+    %th Changes Date
+  - @alerts.each do |alert|
+    %tr
+      %td= alert.scenario.name
+      %td= alert.master_scenario.try(:name)
+      %td= alert.description
+      %td= alert.created_at.to_s(:db)
+      %td= link_to "close", instructors_scenario_alert_path(alert.scenario, alert), :method => :put
+
+%br
+= will_paginate @alerts
+%br
+

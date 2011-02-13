@@ -1,81 +1,132 @@
-require 'digest/sha1'
+require 'search'
 
 class User < ActiveRecord::Base
-	include SavageBeast::UserInit
-	belongs_to :institution
-  belongs_to :role
-  has_many :activities
-  attr_protected :id, :salt
+  ROLES = { :guest => 0, :student => 1, :instructor => 2, :manager => 3, :admin => 4 }
+  acts_as_authentic
   
-  # Virtual attribute for the unencrypted password
-  attr_accessor :password, :password_confirmation
+  belongs_to :institution
+  has_many :created_scenarios,        :class_name => "Scenario", :dependent => :destroy
+  has_many :master_scenarios,         :dependent => :destroy
+  has_many :managed_groups,           :class_name => "Group", :foreign_key => "creator_id", :dependent => :destroy
+  has_many :group_memberships,        :foreign_key => "member_id"
+  has_many :groups,                   :through => :group_memberships, :uniq => true
+  has_many :group_scenarios,          :through => :group_memberships, :source => :scenario  
+  has_many :individual_memberships,   :foreign_key => "member_id"
+  has_many :individual_scenarios,     :through => :individual_memberships, :source => :scenario
   
-  validates_length_of :login, :within => 3..40, :message => "Login must be between 3 and 40 characters."
-  validates_format_of :email, :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i, :message => "Invalid email"  
-  validates_uniqueness_of :login, :on => :create, :message => "That login name is already taken. Please choose another login name."
+  attr_accessor :group_code, :require_group_code, :terms_agreement
+  attr_reader :require_agreement
+  attr_protected :active, :role_code, :enabled
   
-  validates_presence_of :password, :on=>:create, :if => :password_required?, :message => "Password must be between 5 and 20 characters."
-  validates_presence_of :password_confirmation, :on=>:create, :if => :password_required?, :message => "Please enter the password in the confirmation field."
-  validates_length_of :password, :on=>:create, :within => 5..20, :message => "Password must be between 5 and 20 characters."
-  validates_confirmation_of :password, :on => :create, :message => "Please make sure the password and password confirmation match."
+  validates :first_name, :last_name, :role_code, :city, :state, :country, :presence => true, :length => { :maximum => 200 }, :format => { :with => /^[A-Za-z0-9\s]+$/ }
+  validates_length_of :phone, :in => 7..32, :allow_blank => true
+  validate :group_presence,  :on => :create, :if => :require_group_code
+  validates_acceptance_of :terms_agreement, :on => :create, :if => :require_agreement, :message => "must be accepted."
   
-  before_save :encrypt_password
-  cattr_accessor :current_user
+  # Dynamically creates scopes for each role.
+  ROLES.keys.each { |role| scope role.to_s.singularize, where("role_code = #{ROLES[role]}") }
+  scope :admin_instructor, where("role_code = #{User::ROLES[:admin]} OR role_code = #{User::ROLES[:instructor]}")
+  scope :non_admin, where(["role_code != ?", User::ROLES[:admin]])
+  scope :recently_created, where(["created_at > ?", 30.days.ago])
+  scope :recently_updated, where(["updated_at > ?", 30.days.ago])
+  scope :recent, :limit => 10, :order => "created_at DESC"
   
-
-  def self.authenticate(login, password)
-    u = find_by_login(login) # need to get the salt
-    u && u.authenticated?(password) ? u : nil
-  end  
+  before_save :set_institution, :on => :create, :if => Proc.new { |user| user.has_role?(:student) }
   
-  # This is the authentication routine used by the Flex client via remoting. 
-  def self.remote_authenticate(login, pass)
-    u = find_by_login(login) # need to get the salt
-    u && u.authenticated?(password) ? u : nil
-  end 
-
-
-  # Encrypts some data with the salt.
-  def self.encrypt(password, salt)
-    Digest::SHA1.hexdigest(salt+password)
+  def self.search(role, q)
+    where(["role_code = #{role} AND (first_name LIKE :q OR last_name LIKE :q OR login LIKE :q OR email LIKE :q)", {:q => '%'+q+'%'}]).includes(:institution).order('last_name DESC')
   end
   
-  # Encrypts the password with the user salt
-  def encrypt(password)
-    self.class.encrypt(password, salt)
+  def self.filter(role, institution_id)
+    where(["institution_id = ? and role_code = ?", institution_id, role]).includes(:institution).order('last_name DESC')
   end
   
-  def authenticated?(password)
-    hashed_password == encrypt(password)
+  def name
+    first_name.capitalize + " " + last_name.capitalize
   end
   
-  def authorize()    
-    self.role.name=="administrator"
-  end
-
-  def send_new_password
-    new_pass = User.random_string(10)
-    self.password = self.password_confirmation = new_pass
-    self.save
-    Notifications.deliver_forgot_password(self.email, self.login, new_pass)
+  def role
+    ROLES.index(read_attribute(:role_code))
   end
   
-  def display_name
-    "#{first_name.capitalize} #{last_name.capitalize}"
+  def has_role?(_role)
+    _role.to_sym == role
   end
-
-  protected
-
-     # before filter 
-    def encrypt_password
-      return if password.blank?
-      self.salt = Digest::SHA1.hexdigest("--#{Time.now.to_s}--#{login}--") if new_record?
-      self.hashed_password = encrypt(password)
+  
+  def institution_name
+    self.institution.name if self.institution
+  end
+  
+  def institution_name=(name)
+    self.institution = Institution.find_or_create_by_name(name)
+  end
+  
+  def unread_scenario_alerts
+    alerts = []
+    scenarios.with_unread_alerts.order_by("created_at DESC").each do |scenario|
+      alerts << scenario.scenario_alerts.unread
     end
+    alerts.flatten
+  end
+  
+  def deliver_password_reset_instructions!  
+    reset_perishable_token!  
+    Notifier.password_reset_instructions(self).deliver
+  end
+  
+  def deliver_activation_instructions!
+    reset_perishable_token!
+    Notifier.activation_instructions(self).deliver
+  end
+  
+  def deliver_activation_confirmation!
+    reset_perishable_token!
+    Notifier.activation_confirmation(self).deliver
+  end
     
-    def password_required?
-      hashed_password.blank? || !password.blank?
+  def activate!
+    self.active = true
+    save
+  end
+  
+  def require_group_code!
+    @require_group_code = true
+  end
+  
+  def require_agreement_acceptance!
+    @require_agreement = true
+  end
+  
+  def _group
+    Group.find_by_code(group_code)
+  end
+  
+  def all_scenarios
+    [created_scenarios, individual_scenarios, group_scenarios].flatten.uniq
+  end
+  
+  def has_access_to?(scenario)
+    return true if user_scenarios.exists?(:scenario_id => scenario.id)
+    return true if groups.any? && groups.collect(&:scenarios).include?(scenario)
+    false
+  end
+  
+  def last_request_changed?
+    self.changes.keys.sort == ["last_request_at", "perishable_token", "updated_at"]
+  end
+  
+  private
+  
+  def group_presence
+    self.errors.add(:group_code, "invalid") unless Group.find_by_code(self.group_code)
+  end
+  
+  def set_institution
+    # Only used from students/sign_up
+    if self.group_code
+      group = Group.find_by_code(self.group_code)
+      self.institution = group.creator.institution
     end
+  end
 
-	
 end

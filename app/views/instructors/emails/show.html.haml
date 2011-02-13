@@ -1,0 +1,31 @@
+#tabs
+  %ul
+    %li= link_to @group.name, instructors_class_path(@group)
+    %li= link_to "Emails", instructors_class_emails_path(@group)
+    %li= link_to "New Email", new_instructors_class_email_path(@group)
+    
+  #page_header
+    #subject_actions
+      
+    #subject_info
+      %h2= @email.subject
+      .subject_details
+        Sent at:
+        = @email.created_at.to_formatted_s(:long)
+    
+  #inner_column
+    %table
+      %tr
+        %th From:
+        %td= @email.from
+      %tr
+        %th Subject:
+        %td= @email.subject
+      %tr
+        %th Recipients:
+        %td= @email.recipients
+        
+    
+    .class_email
+      %b Sent email
+      = simple_format @email.body

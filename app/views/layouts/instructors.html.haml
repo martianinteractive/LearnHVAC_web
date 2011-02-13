@@ -1,0 +1,52 @@
+!!! XML
+!!!
+%html{"xmlns" => "http://www.w3.org/1999/xhtml"}
+  %head
+    <meta content="text/html; charset=utf-8" http-equiv="Content-type" />
+    = csrf_meta_tag
+    %title
+      Learn HVAC Instructors
+    = include_stylesheets :application
+    = include_stylesheets :print, :media => "print"
+    = include_javascripts :application
+    = javascript_include_tag "http://www.google.com/friendconnect/script/friendconnect.js" if @show_connection
+
+    = yield :head
+    = javascript_tag do
+      = yield :js_templates
+
+  %body.bp.instructor_site
+    .header
+      %h1.siteTitle
+        %span
+        = link_to "Instructor Site", "/"
+      %ul.global_nav
+        - if logged_in?
+          %li.username= link_to current_user.name, profile_path
+          - if current_user.has_role?(:admin)
+            %li
+              = link_to 'Admin Site', admins_dashboard_path
+          %li= link_to "Log-out", logout_path
+        - else
+          %li= link_to "Sign Up", signup_path
+      
+    .border
+      &nbsp; 
+    .main
+      .dl10.navigation
+        - if logged_in?
+          %h3 Instructor
+          %ul
+            %li
+              = link_to "Your Scenarios", instructors_scenarios_path
+              = link_to "Your Classes", instructors_classes_path
+              = link_to "Community Directory", directory_path
+
+
+
+      .fluid
+        .content
+          = render_crumbs.html_safe
+          = display_flash
+          = yield
+          = render :partial => "layouts/connection" if @show_connection

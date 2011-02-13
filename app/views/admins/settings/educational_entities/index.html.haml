@@ -1,0 +1,30 @@
+#tabs
+  %ul
+    %li= link_to "Settings", admins_settings_path
+    %li.ui-tabs-selected= link_to "Educational Entities", admins_settings_educational_entities_path
+    %li= link_to "New Educational Entity", new_admins_settings_educational_entity_path
+    
+  = form_tag(search_admins_settings_educational_entities_path, :class => "search") do
+    = label_tag :q, "Search"
+    = text_field_tag :q, params[:q]
+    = submit_tag "Search!"
+    &nbsp;&nbsp;
+    = link_to "Reset", admins_settings_educational_entities_path if controller.action_name == 'search'
+  
+  %br/
+  = search_pagination_for(@colleges)
+  %table.listing
+    %thead
+      %tr
+        %th Name
+        %th
+    %tbody
+    - for college in @colleges
+      %tr
+        %td= link_to college.value, admins_settings_educational_entity_path(college)
+        %td
+          = link_to image_tag('trashcan.gif'), admins_settings_educational_entity_path(college), :confirm => 'Are you sure?', :method => :delete
+          &nbsp;&nbsp;
+          = link_to image_tag('edit.gif'), edit_admins_settings_educational_entity_path(college)
+  %br/
+  = search_pagination_for(@colleges)

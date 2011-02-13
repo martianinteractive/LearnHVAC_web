@@ -1,0 +1,15 @@
+#tabs
+  %ul
+    %li= link_to "Settings", admins_settings_path
+    %li= link_to "Educational Entities", admins_settings_educational_entities_path
+    %li= link_to "New Educational Entity", new_admins_settings_educational_entity_path
+
+  #page_header
+    #subject_actions
+      = link_to 'Edit', edit_admins_settings_educational_entity_path(@college)
+      &nbsp;|&nbsp;
+      = link_to 'Delete', admins_settings_educational_entity_path(@college), :confirm => 'Are you sure?', :method => :delete
+
+    #subject_info
+      %h2= @college.value
+

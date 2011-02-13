@@ -1,0 +1,9 @@
+%h2= "Editing #{formatted_institution_name}" 
+%hr
+
+= form_for(@institution, :url => admins_institution_path(@institution), :method => :put) do |f|
+  = render :partial => "form", :locals => { :f => f }
+  .actions
+    = submit_tag "Update"
+    &nbsp;or&nbsp;
+    = link_to 'Cancel', :back

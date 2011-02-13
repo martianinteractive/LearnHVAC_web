@@ -1,0 +1,20 @@
+#tabs
+  %ul
+    %li.ui-tabs-selected= link_to "Classes", admins_classes_path
+    %li= link_to "New Class", new_admins_class_path
+  
+  %br
+  %table.listing
+    %thead
+      %tr
+        %th Name
+        %th Instructor
+        %th Members
+    - @groups.each do |group|
+      %tr
+        %td= link_to group.name, admins_class_path(group)
+        %td= link_to group.creator.name, admins_user_path(group.creator, :role => group.creator.role)
+        %td= group.members.count
+  %br
+  = will_paginate @groups
+

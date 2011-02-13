@@ -1,0 +1,21 @@
+#tabs
+  %ul
+    %li.ui-tabs-selected= link_to "Scenarios", managers_scenarios_path
+
+  %br
+  %table.listing
+    %thead
+      %tr
+        %th Name
+        %th Instructor
+        %th Master Scenario
+        %th Created on
+    - @scenarios.each do |scenario|
+      %tr
+        %td= link_to scenario.name, managers_scenario_path(scenario)
+        %td= link_to_if scenario.user.has_role?(:instructor), scenario.user.name, managers_instructor_path(scenario.user)
+        %td= scenario.master_scenario.try(:name)
+        %td= scenario.created_at.to_formatted_s(:long)
+
+  %br
+  = will_paginate @scenarios

@@ -1,0 +1,20 @@
+#tabs
+  %ul
+    %li.ui-tabs-selected= link_to "Master Scenarios", admins_master_scenarios_path
+    %li= link_to 'New Master Scenario', new_admins_master_scenario_path
+
+  %br
+  %table.listing
+    %thead
+      %tr
+        %th Name
+        %th Author
+        %th Client Version
+    - @master_scenarios.each do |master_scenario|
+      %tr
+        %td= link_to master_scenario.name, admins_master_scenario_path(master_scenario)
+        %td= master_scenario.user.name
+        %td= link_to master_scenario.client_version.version, admins_settings_client_version_path(master_scenario.client_version) if master_scenario.client_version
+        
+  %br
+  = will_paginate @master_scenarios

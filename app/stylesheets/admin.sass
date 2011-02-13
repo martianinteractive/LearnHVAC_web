@@ -1,0 +1,405 @@
+/// This import applies a global reset to any page that imports this stylesheet.
+@import blueprint/reset.sass
+@import blueprint/modules/form.sass
+@import compass/utilities.sass
+
+// Import all the default blueprint modules so that we can access their mixins.
+@import blueprint
+// Import the non-default scaffolding module.
+@import blueprint/scaffolding.sass
+
+// To generate css equivalent to the blueprint css but with your configuration applied, uncomment:
+// +blueprint
+
+//Recommended Blueprint configuration with scoping and semantic layout:
++blueprint-scaffolding("body.bp")
+body.bp
+  +blueprint-typography(true)
+
+@import application.sass
+@import common.sass
+
+.main
+  margin-top: 0
+  padding: 0
+  min-width: 760px
+  height: 500px
+  background: url(/images/layout/bg-sidebar.png) repeat-x left top
+
+
+body.bp
+  background: #FEFEFE
+  font-size: 85%
+  margin: 0
+  padding: 0
+
+  .dl10 ul
+    padding: 0
+
+  table.ui-datepicker-calendar td
+    padding: 1px
+
+  .header
+    background: #7E95B7
+    border-bottom: 1px solid #DDD
+    padding: 0
+    margin: 0
+    height: 47px
+
+    h1, h1 span
+      display: block
+      position: relative
+      z-index: 1
+      margin-bottom: -47px
+      width: 300px
+      height: 47px
+      background: url(/images/headers/generic.png) no-repeat left top
+
+  div.border
+    height: 5px
+    padding: 0
+    margin: 0
+    border: 0
+    background: #6B809E
+
+
+.bp.instructor_site
+
+  .header
+    background: #7E95B7
+    
+    h1, h1 span
+      background: url(/images/headers/instructors.png) no-repeat left top
+  
+  .border
+    background: #6B809E
+
+
+.bp.manager_site
+
+  .header
+    background: #65B879
+
+    h1, h1 span
+      background: url(/images/headers/institutions.png) no-repeat left top
+
+  .border
+    background: #1FA95A
+
+
+.bp.administration_site
+
+  .header
+    background: #545454
+
+    h1, h1 span
+      background: url(/images/headers/administration.png) no-repeat left top
+
+  .border
+    background: #363636
+
+
+.dl10
+  min-height: 400px
+  width: 150px
+  float: left
+  background: url(/images/layout/bg-side-border.png) no-repeat right top
+  padding: 40px 20px
+
+  li
+    margin-right: 1em
+    margin-bottom: 0.5em
+
+    a
+      color: #666
+      display: block
+
+  a:hover, li.here a
+    text-decoration: none
+    color: #333
+
+
+.dr20
+  float: right
+
+
+.dl10 ul, .dr20 ul
+  list-style: none
+  margin: 0 0 1.5em
+
+
+.fluid
+  width: auto
+  min-height: 400px
+  margin-left: 190px
+  padding-top: 30px
+  padding-left: 40px
+  padding-right: 40px
+  padding-bottom: 40px
+  background: #FEFEFE
+
+  .content
+    width: 100%
+    float: left
+
+h2
+  margin: 0 0 1em 0
+  padding: 10px 20px
+  text-align: left
+
+
+.small-text
+  height: 3em
+
+.bp .global_nav li
+  margin-top: 0
+  margin-left: 1em
+  padding: 0 0 0 1em
+  border-left: 1px solid #FFF
+
+  &:first-child
+    border-left: none
+
+
+.navigation h3
+  font: 1.3em
+  padding: 0 0 0.5em
+  margin-bottom: 0.5em
+  border-bottom: 1px solid #CCC
+
+
+.block
+  min-height: 300px
+
+input
+  &.email
+    width: 40em
+
+  &[type="submit"]
+    color: #333
+    background: #E9E9E9
+    padding: 4px 20px
+    border: 1px solid #999
+    border-top-color: #CCC
+    border-left-color: #CCC
+
+
+button
+  color: #333
+  background: #E9E9E9
+  padding: 4px 20px
+  border: 1px solid #999
+  border-top-color: #CCC
+  border-left-color: #CCC
+
+
+textarea
+  &#page_content
+    width: 50em
+
+  &.email
+    width: 40em
+    height: 25em
+
+
+#new_homepage label, .edit_homepage label
+  width: auto
+  text-align: left
+
+
+#new_homepage textarea, .edit_homepage textarea
+  width: 100%
+  height: 30em
+
+
+form[action="/admin/config"]
+  label
+    width: auto
+    text-align: left
+
+  textarea
+    width: 100%
+    height: 15em
+    font: 10px Monaco, Courier New, monospace
+    padding: 0
+    margin-bottom: 2em
+
+form.search
+  label
+    width: 100px
+
+form
+  .field
+    clear: both
+    margin-top: 0.5em
+  
+  .group_scenario
+    max-width: 475px  
+
+  .actions
+    margin-top: 2em
+    margin-left: 16.6em
+
+label
+  width: 16em
+
+  &.inline
+    display: inline
+    width: inherit
+    float: none
+
+
+ul.sortable
+  display: none
+
+  li
+    cursor: move
+
+table.plain
+  td
+    border: none
+    padding: 0
+
+/* Login FORM */
+.loginPanel
+  background-color: #F0F0F0
+  width: 90%
+  padding: 5px 10px
+  margin-top: 10px
+  min-width: 600px
+  max-width: 800px
+
+/* SIGNUP FORM */
+form.signup
+  label
+    margin-top: 4px
+
+#terms_of_use
+  height: 120px
+  width: 600px
+  overflow: scroll
+  background-color: #F5F5F5
+  border: 1px solid #F1F1F1
+
+/* CLASS EMAILS */
+form
+  textarea.class_email
+    font-size: 12px
+    width: 25em
+    height: 13em
+    
+div.class_email
+  padding: 4px 10px 4px 5px
+
+/* VARIABLES */
+form.variables, .actions_header
+  input
+    &[type="submit"]
+      font-size: 12px
+      padding: 0
+  .select_all
+    label
+      width: 20px
+      margin: 11px 0 0
+      float: right
+
+/* INSTRUCTOR SITE */
+table.scenarios
+  span
+    display: block
+    font-size: 12px
+
+/* STUDENTS SIGNUP */
+#group_info
+  margin-left: 230px
+ 
+/* DIRECTORY */
+#directory_dashboard
+  float: left
+  width: 65%
+
+  .institutions
+    float: left
+
+  .people
+    float: right
+
+  .column
+    width: 50%
+    padding: 0
+    .info
+      span
+        display: block
+        a
+          text-decoration: none
+
+#connect
+  float: right
+  width: 30%
+
+/* TABS */
+#tabs
+  margin-top: 20px
+
+/* INNER/SUB TABS */
+
+.sub-tabs .tab-pane
+  min-height: 300px
+  margin: 15px
+
+#page_header
+  margin-top: 10px
+  margin-bottom: 30px
+
+  #subject_info
+    margin-left: 10px
+
+    h2
+      margin: 0 0 5px 0
+      padding: 0
+  
+  #subject_actions
+    float: right
+    margin-right: 10px
+  
+    a:hover
+      background-color: #FF0000
+      color: #ffffff
+
+#inner_column
+  table
+    width: auto
+  
+    tr td, tr th
+      vertical-align: top
+
+#location
+  float: right
+  width: 300px
+  margin: 0 10px 0 0
+  padding: 1em
+
+  h4
+    text-align: center
+    margin: 0
+    padding: 0
+  
+  p
+    vertical-align: top
+
+/* TOOLTIPS */
+.tooltip
+  display: none
+  background: transparent url(/images/tools/black_arrow.png)
+  font-size: 12px
+  height: 70px
+  width: 160px
+  padding: 25px
+  color: #fff
+  
+img.tip
+  cursor: pointer
+
+.instructions
+  margin: 2em 2em 2em 2em
+  padding: 2px

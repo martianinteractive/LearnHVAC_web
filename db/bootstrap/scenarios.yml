@@ -1,0 +1,18 @@
+joe_scenario:
+  id: 1
+  user_id: 1
+  master_scenario_id: 1
+  name: "Joe's Scenario"
+  longterm_start_date: "04/06/2010"
+  longterm_stop_date: "04/19/2010"
+  realtime_start_datetime: "04/06/2010 24:00:00"
+  
+daniel_scenario:
+  id: 2
+  user_id: 2
+  master_scenario_id: 1
+  name: "Daniel's Scenario"
+  longterm_start_date: "04/06/2010"
+  longterm_stop_date: "04/19/2010"
+  realtime_start_datetime: "04/06/2010 24:00:00"
+  

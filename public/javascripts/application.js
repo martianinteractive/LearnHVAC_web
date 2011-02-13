@@ -1,2 +1,9 @@
-// Place your application-specific JavaScript functions and classes here
-// This file is automatically included by javascript_include_tag :defaults
+$(document).ready(function() {
+	$("#scenario_longterm_start_date").datepicker();
+	$("#scenario_longterm_stop_date").datepicker();	
+	
+	$(function() {
+		$("#tabs").no_ajax_tabs();
+		$("#inner-tabs").no_ajax_tabs();
+	});
+});

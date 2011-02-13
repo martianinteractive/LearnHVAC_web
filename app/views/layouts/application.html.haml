@@ -1,0 +1,43 @@
+!!! XML
+!!!
+%html{"xmlns" => "http://www.w3.org/1999/xhtml"}
+  %head
+    <meta content="text/html; charset=utf-8" http-equiv="Content-type" />
+    = csrf_meta_tag
+    %title
+      Learn HVAC
+    = include_stylesheets :application
+    = include_stylesheets :print, :media => "print"
+    = include_javascripts :application
+    = javascript_include_tag "http://www.google.com/friendconnect/script/friendconnect.js" if @show_connection
+
+    = yield :head
+    = javascript_tag do
+      = yield :js_templates
+
+  %body.bp
+    .header
+      %h1.siteTitle
+      %ul.global_nav
+        - if logged_in?
+          %li.username
+            = current_user.name
+          - if current_user.has_role?(:admin)
+            %li
+              = link_to 'Admin Site', admins_dashboard_path
+          %li= link_to "Log-out", logout_path
+        - else
+          - if request.path_info =~ /signup/
+            %li= link_to "Log-in", login_path
+          - else
+            %li= link_to "Registration", signup_path
+      
+    .border
+      &nbsp; 
+    .main
+      .dl10.navigation
+
+      .fluid
+        .content
+          = display_flash
+          = yield

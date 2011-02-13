@@ -1,0 +1,21 @@
+package_path: minified
+compress_assets: on
+
+javascripts:
+  application:
+    - public/javascripts/jquery-1.4.4.min.js
+    - public/javascripts/jquery-ui-1.8.9.custom.min.js
+    - public/javascripts/jquery.tools.min.js
+    - public/javascripts/rails.js
+    - public/javascripts/jquery.cookie.js
+    - public/javascripts/jquery.ui.no-ajax-tabs.js
+    - public/javascripts/jquery.dataTables.min.js
+    - public/javascripts/tools/tooltip.min.js
+    - public/javascripts/application.js
+
+stylesheets:
+  application:
+    - public/stylesheets/admin.css
+    - public/stylesheets/jquery-ui-1.8.9.custom.css
+  print:
+    - public/stylesheets/print.css

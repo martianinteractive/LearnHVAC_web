@@ -1,0 +1,9 @@
+= f.error_messages
+.field
+  = f.label :name
+  %br
+  = f.text_field :name
+.field
+  = f.label :scenarios
+  %br
+  = select_tag "group[scenario_ids][]", options_from_collection_for_select(current_user.created_scenarios, :id, :name, @group.scenario_ids.map(&:to_i)), :multiple => true, :style => "width: 240px;"

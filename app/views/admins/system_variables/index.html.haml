@@ -1,0 +1,52 @@
+- content_for :js_templates do
+  ~ render :partial => "shared/variables_js", 
+           :locals => { :status_path => update_status_admins_master_scenario_system_variables_path(@master_scenario),
+                        :drop_path => drop_admins_master_scenario_system_variables_path(@master_scenario) }
+
+#tabs
+  %ul
+    %li.ui-tabs-selected= link_to "Master Scenarios", [:admins, :master_scenarios]
+    %li= link_to 'New Master Scenario', [:new, :admins, :master_scenario]
+    
+  = render :partial => "admins/master_scenarios/master_scenario_menu"
+  %br
+    
+  %div.actions_header
+    %ul
+      %li
+        = check_box_tag "select_all"
+        %label{:for => "select_all"} All
+      %li.update_status
+        = submit_tag "Enable", :name => "enable"
+        = submit_tag "Disable", :name => "disable"
+      %li
+        = submit_tag "Delete", :name => "delete"
+    
+  = form_tag([:admins, @master_scenario, :system_variables], :method => :get, :class => "variables") do
+    %table.listing
+      %thead
+        %tr
+          %th
+          = sort_header_tag('index', :title => 'Index')
+          %th
+            = sort_header_tag('component_code', {:title => 'Component'}, false)
+            = filter_select_for(:component_code, Variable::COMPONENTS.to_a.map(&:reverse))
+          = sort_header_tag('name', :title => 'Name')
+          %th
+            Disabled
+            = filter_select_for(:disabled, [true, false])
+          %th 
+            Type
+            = filter_select_for(:io_type, Variable::IO_TYPES)
+          %th
+            Fault
+            = filter_select_for(:is_fault, [true, false])
+          %th
+            = submit_tag "Filter", :name => "_filter"
+            = submit_tag "Reset", :name => "reset"
+      - @system_variables.each do |system_variable|
+        = render :partial => 'system_variable', :locals => { :system_variable => system_variable }
+
+  %br
+  = will_paginate @system_variables, :params => params.slice(:filter)
+  %br

@@ -1,0 +1,15 @@
+memberships_001:
+  id: 1
+  member_id: 1
+  scenario_id: 1
+  type: IndividualMembership
+  member_role: admin
+
+memberships_002: 
+  id: 2
+  member_id: 15
+  group_id: 1
+  scenario_id: 1
+  type: GroupMembership
+  member_role: student
+  

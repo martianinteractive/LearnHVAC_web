@@ -1,0 +1,21 @@
+#tabs
+  %ul
+    %li.ui-tabs-selected= link_to "Manage institutions", admins_institutions_path
+    %li= link_to "New institution", new_admins_institution_path
+  
+  %br
+  %table
+    %thead
+      %tr
+        %th Name
+        %th Users
+        %th Category
+    %tbody
+      - @institutions.each do |institution|
+        %tr
+          %td= link_to formatted_institution_name(institution), admins_institution_path(institution)
+          %td= institution.users.count
+          %td= institution.category.try(:titleize)
+
+  %br
+  = will_paginate @institutions

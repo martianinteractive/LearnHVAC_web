@@ -1,0 +1,27 @@
+#tabs
+  %ul
+    %li.ui-tabs-selected= link_to "Master Scenarios", admins_master_scenarios_path
+    %li= link_to 'New Master Scenario', new_admins_master_scenario_path
+    
+  = render :partial => 'master_scenario_menu'
+
+  #inner_column
+    %table
+      %tr
+        %th Total Variables:
+        %td= @master_scenario.variables.size
+      %tr
+        %th Author:
+        %td= @master_scenario.user.name
+      %tr
+        %th Client Version:
+        %td= link_to @master_scenario.client_version.version, admins_settings_client_version_path(@master_scenario.client_version)
+      %tr
+        %th Tags:
+        %td= @master_scenario.tag_list
+      %tr
+        %th Created on:
+        %td= @master_scenario.created_at.to_formatted_s(:long)
+      %tr
+        %th Last updated:  
+        %td= @master_scenario.updated_at.to_formatted_s(:long)

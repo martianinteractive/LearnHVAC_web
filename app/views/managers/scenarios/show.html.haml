@@ -1,0 +1,74 @@
+#tabs
+  %ul
+    %li= link_to "Scenarios", managers_scenarios_path
+    
+  #page_header
+    #subject_actions
+      = link_to "Variables", managers_scenario_variables_path(@scenario)
+      &nbsp;
+      = link_to 'Who has access?', [:managers, @scenario, :accesses]
+    #subject_info
+      %h2= @scenario.name
+      .subject_details= @scenario.public? ? "Public" : "Private"
+
+  #location.ui-widget.ui-widget-content.ui-corner-all
+    %h4 Description
+    %p= @scenario.description
+
+  #inner_column
+    %table
+      %tr
+        %th Author:
+        %td= @scenario.user.name
+      %tr
+        %th Created on:
+        %td= @scenario.created_at.to_formatted_s(:long)
+      %tr
+        %th Client version:
+        %td
+          - if @scenario.client_version
+            = link_to @scenario.client_version.version, @scenario.client_version.url
+          - else
+            %em No associated
+      %tr
+        %th Level:
+        %td= @scenario.level
+      %tr
+        %th Inputs visible:
+        %td= @scenario.inputs_visible
+      %tr
+        %th Inputs enabled:
+        %td= @scenario.inputs_enabled
+      %tr
+        %th Faults visible:
+        %td= @scenario.faults_visible
+      %tr
+        %th Faults enabled:
+        %td= @scenario.faults_enabled
+      %tr
+        %th Longterm start date:
+        %td= @scenario.longterm_start_date
+      %tr
+        %th Longterm stop date:
+        %td= @scenario.longterm_stop_date
+      %tr
+        %th Allow longterm date change:
+        %td= @scenario.allow_longterm_date_change
+      %tr
+        %th Realtime start datetime:
+        %td= @scenario.realtime_start_datetime
+      %tr
+        %th Allow realtime datetime change:
+        %td= @scenario.allow_realtime_datetime_change
+      %tr
+        %th Valve info enabled:
+        %td= @scenario.valve_info_enabled
+      %tr
+        %th Student debug access:
+        %td= @scenario.student_debug_access
+      %tr
+        %th Short description:
+        %td= @scenario.short_description
+      %tr
+        %th Goal:
+        %td= @scenario.goal

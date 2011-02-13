@@ -1,0 +1,59 @@
+client_versions_001: 
+  created_at: 2010-06-25 21:22:57
+  updated_at: 2010-06-25 21:22:57
+  url: http://github.com/downloads/danielmcquillen/LearnHVAC_AIR/LearnHVAC_Installer_0_99_11.exe
+  id: "1"
+  version: 0_99.11
+  description: 
+  release_date: "2010-04-05"
+client_versions_002: 
+  created_at: 2010-06-25 21:22:57
+  updated_at: 2010-06-25 21:22:57
+  url: http://github.com/downloads/danielmcquillen/LearnHVAC_AIR/LearnHVAC_Installer_0_99_12.exe
+  id: "2"
+  version: 0_99.12
+  description: 
+  release_date: "2010-04-06"
+client_versions_003: 
+  created_at: 2010-06-25 21:22:57
+  updated_at: 2010-06-25 21:22:57
+  url: http://github.com/downloads/danielmcquillen/LearnHVAC_AIR/LearnHVAC_Installer_0_99.14.exe
+  id: "3"
+  version: 0_99.14
+  description: 
+  release_date: "2010-04-06"
+client_versions_004: 
+  created_at: 2010-06-25 21:22:57
+  updated_at: 2010-06-25 21:22:57
+  url: http://github.com/downloads/danielmcquillen/LearnHVAC_AIR/LearnHVAC_Installer_0_99.15.exe
+  id: "4"
+  version: 0_99.15
+  description: 
+  release_date: "2010-04-12"
+client_versions_005: 
+  created_at: 2010-07-06 17:53:25
+  updated_at: 2010-07-06 17:53:25
+  url: http://github.com/danielmcquillen/LearnHVAC_AIR/downloads
+  id: "5"
+  version: 0.99.29
+  description: |-
+    Client now points to URL :
+    
+    http://app.learnhvac.org/api/
+  release_date: "2010-07-06"
+client_versions_006: 
+  created_at: 2010-07-14 15:33:13
+  updated_at: 2010-07-14 15:33:13
+  url: http://github.com/danielmcquillen/LearnHVAC_AIR/downloads
+  id: "6"
+  version: 0.99.30
+  description: Client has new Modelica model with four new output variables (all relative humidity)
+  release_date: "2010-07-14"
+client_versions_007: 
+  created_at: 2010-07-21 22:41:34
+  updated_at: 2010-07-21 22:41:34
+  url: http://github.com/danielmcquillen/LearnHVAC_AIR/downloads
+  id: "7"
+  version: 0.99.31
+  description: New default setting for HCKp.
+  release_date: "2010-07-21"

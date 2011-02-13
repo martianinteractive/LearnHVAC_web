@@ -1,0 +1,29 @@
+#tabs
+  %ul
+    %li= link_to @scenario.name, managers_scenario_path(@scenario) 
+    %li.ui-tabs-selected= link_to "Variables", managers_scenario_variables_path(@scenario)
+    
+  %br
+  %table.listing
+    %thead
+      %tr
+        = sort_header_tag('index', :title => 'Index')
+        = sort_header_tag('component_code', :title => 'Component')
+        = sort_header_tag('name', :title => 'Name')
+        = sort_header_tag('io_type', :title => 'Type')
+        %th Low
+        %th Initial
+        %th High
+        %th 
+    - @scenario_variables.each do |scenario_variable|
+      %tr
+        %td= scenario_variable.index
+        %td= scenario_variable.component
+        %td= link_to scenario_variable.name, managers_scenario_variable_path(@scenario, scenario_variable)
+        %td= scenario_variable.io_type.to_s.upcase
+        %td= scenario_variable.low_value
+        %td= scenario_variable.initial_value
+        %td= scenario_variable.high_value
+
+  %br
+  = will_paginate @scenario_variables

@@ -1,0 +1,51 @@
+#tabs
+  %ul
+    %li.ui-tabs-selected= link_to "Scenarios", instructors_scenarios_path
+    %li= link_to "New Scenario", new_instructors_scenario_path
+
+  = render :partial => "instructors/scenarios/scenario_menu"
+  
+  #inner_column  
+    - if @scenario.public?
+      %p
+        This scenario is 
+        %b public and can be accessed by any user in the system.
+    - else
+      %p
+        This scenario is
+        %b private and can only be accessed by you and:
+        %h3 Groups
+      - if @scenario.groups.empty?
+        %b This scenario hasn't been yet assigned to a group.
+      - else
+        %table.listing
+          %thead
+            %tr
+              %th Name
+          - @scenario.groups.each do |group|
+            %tr
+              %td= link_to group.name, instructors_class_path(group)
+              
+      - if @memberships.any?
+        %h3 People
+        %table
+          %thead
+            %tr
+              %th Name
+              %th Institution
+              %th Email
+              %th Role
+              %th
+              %th
+            - @memberships.each do |membership|
+              - member = membership.member
+              %tr
+                %td= member.name
+                %td= member.institution.try(:name)
+                %td= mail_to member.email
+                %td= member.role
+                %td= link_to(image_tag("trashcan.gif"), instructors_scenario_access_path(@scenario, membership), :method => :delete, :confirm => "Are you sure?") if member.has_role?(:student)
+                %td= content_tag(:em, "Pending Email Confirmation") unless member.active?
+
+        %br
+        = will_paginate @memberships

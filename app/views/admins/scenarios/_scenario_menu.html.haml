@@ -1,0 +1,59 @@
+.subject-buttons.ui-helper-clearfix
+  %ul
+    - if @subject_buttons == :scenario
+      %li
+        = link_to(edit_admins_scenario_path(@scenario)) do
+          %button.button.large-green-button{:type=>"button"} Edit Scenario
+    
+      %li    
+        = link_to admins_scenario_path(@scenario), :confirm => 'Are you sure?', :method => :delete do
+          %button.button.large-red-button{:type => "button"} Delete Scenario
+  
+    - elsif @subject_buttons == :cancel_scenario
+      %li
+        - if %(edit update).include?(controller.action_name)
+          = link_to(admins_scenario_path(@scenario)) do
+            %button.button.medium-green-button{:type => "button"} Cancel
+
+        - elsif %(new create).include?(controller.action_name)
+          = link_to(admins_scenarios_path) do
+            %button.button.medium-green-button{:type => "button"} Cancel
+    
+    - elsif @subject_buttons == :variable
+      %li
+        = link_to(edit_admins_scenario_variable_path(@scenario, @scenario_variable)) do
+          %button.button.large-green-button{:type=>"button"} Edit Variable
+    
+      %li
+        = link_to admins_scenario_variable_path(@scenario, @scenario_variable), :confirm => 'Are you sure?', :method => :delete do
+          %button.button.large-red-button{:type => "button"} Delete Variable
+    
+    - elsif @subject_buttons == :cancel_variable
+      %li
+        - if %(edit update).include?(controller.action_name)
+          = link_to(admins_scenario_variable_path(@scenario, @scenario_variable)) do
+            %button.button.medium-green-button{:type => "button"} Cancel
+    
+        - elsif %(new create).include?(controller.action_name)
+          = link_to(admins_scenario_variables_path(@scenario)) do
+            %button.button.medium-green-button{:type => "button"} Cancel
+
+
+- if @scenario.new_record?
+  %h2.subject-name New Scenario
+
+- else
+  %h2.subject-name= link_to @scenario.name, admins_scenario_path(@scenario)
+  %p.subject-description
+    =@scenario.description
+  - if @scenario.master_scenario.blank?
+    %p.subject-description
+      %em The master scenario used to create this scenario has been deleted.
+  
+  #inner-tabs
+    %ul
+      %li{:class => ("ui-tabs-selected" if @inner_tabs == :scenario_details)}= link_to "Scenario Details", admins_scenario_path(@scenario)
+      %li{:class => ("ui-tabs-selected" if @inner_tabs == :manage_variables)}= link_to "Manage Variables", admins_scenario_variables_path(@scenario)
+      %li{:class => ("ui-tabs-selected" if @inner_tabs == :manage_access)}= link_to 'Manage Access', [:admins, @scenario, :accesses]
+      %li{:class => ("ui-tabs-selected" if @inner_tabs == :new_variable)}= link_to 'New Variable', new_admins_scenario_variable_path(@scenario)
+  

@@ -1,0 +1,40 @@
+<% drop_path ||= "/" %>
+$(document).ready(function() {
+	
+  $("#select_all").click(function() {
+    if ($(this).is(":checked")) {
+      $(".variables_ids").each(function() { $(this).attr('checked', true); })
+    } else {
+      $(".variables_ids").each(function() { $(this).attr('checked', false); })
+    }
+  });
+  
+  $("div.actions_header input[type=submit]").click(function(){
+	  if ($(".variables_ids:checked").length > 0) {
+			variables_ids = []
+			$.each($(".variables_ids:checked"), function(i, v) { variables_ids[i] = $(v).val(); });
+			
+			if ($(this).attr("name") == "disable" || $(this).attr("name") == "enable") {
+				$.post('<%= status_path %>', 
+							 { "_method": "put", "variables_ids": variables_ids, "status": $(this).attr("name") }, 
+							 null,
+							 "script"
+				);	
+			} else {
+				$.post('<%= drop_path %>', 
+							 { "_method": "delete", "variables_ids": variables_ids },
+							 null,
+							 "script"
+				);
+			}	
+		}
+		
+		return false;
+	});
+	
+	$("input[name='reset']").click(function() { 
+	  window.location.replace(window.location.pathname);
+		return false;
+	})
+	
+})

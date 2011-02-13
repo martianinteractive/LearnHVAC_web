@@ -1,0 +1,58 @@
+#tabs
+  %ul
+    %li.ui-tabs-selected= link_to current_user.role.to_s.capitalize, profile_path
+  
+  .subject-buttons.ui-helper-clearfix
+    %ul
+      %li
+        = link_to(profile_path) do
+          %button.button.medium-grey-button{:type => "button"} Cancel
+  
+  %h2 Edit your profile
+  
+  = form_for(current_user, :url => user_path(current_user), :method => :put) do |f|
+    = error_messages_for 'current_user'
+    .field
+      = f.label :login
+      = f.text_field :login
+
+    .field
+      = f.label :first_name, "First Name"
+      = f.text_field :first_name
+
+    .field
+      = f.label :last_name, "Last Name"
+      = f.text_field :last_name
+
+    .field
+      = f.label :country
+      = f.country_select :country, ['United States', 'Canada']
+
+    .field#states
+      = f.label :state, "State/Region"
+      = f.text_field :state
+
+    .field
+      = f.label :city
+      = f.text_field :city
+      
+    .field
+      = f.label :time_zone
+      = f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones
+      
+    .field
+      = f.label :email
+      = f.text_field :email
+
+    .field
+      = f.label :password
+      = f.password_field :password, :size=>20,  :value=>""
+
+    .field
+      = f.label :password_confirmation, "Password Confirmation"	
+      = f.password_field :password_confirmation, :size=>20,  :value=>""
+
+    .actions
+      = submit_tag "Update"
+      &nbsp;or&nbsp;
+      = link_to 'Cancel', profile_path

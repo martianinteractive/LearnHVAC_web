@@ -1,0 +1,9 @@
+#tabs
+  %ul
+    %li.ui-tabs-selected= link_to "Master Scenarios", [:admins, :master_scenarios]
+    %li= link_to 'New Master Scenario', [:new, :admins, :master_scenario]
+  
+  = render :partial => "admins/master_scenarios/master_scenario_menu"
+  
+  = form_for([@master_scenario, @system_variable], :url => admins_master_scenario_system_variable_path(@master_scenario, @system_variable), :method => :put) do |f|
+    = render :partial => "form", :locals => { :f => f }

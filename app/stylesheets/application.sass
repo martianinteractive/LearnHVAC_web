@@ -1,0 +1,428 @@
+body
+  font-size: 84%
+  background: url(/images/layout/bg-header.png) repeat-x left top
+
+
+.content, .shadow, .subnav, .footer
+  width: 960px
+
+
+.content
+  margin: 0 auto
+
+
+.header
+  margin-bottom: 0
+
+  h1
+    font-size: 1.3em
+    font-weight: normal
+
+    img
+      margin: 0 0 5px
+      border: none
+
+  a
+    border: none
+
+    &:hover
+      border: none
+
+
+.bp .global_nav
+  margin-top: 0.3em
+  
+  li
+    margin-left: 0.5em
+
+  a
+    padding: 0.2em 1em 0.3em
+    -moz-border-radius: 1em
+    -webkit-border-radius: 0.8em
+    color: #fff
+
+    &:hover
+      text-decoration: none
+      background: #6C819F
+      color: #fff
+    
+    &:visited
+      color: #fff
+
+.bp ul.ui-autocomplete
+  margin: 0.3em
+  padding: 0.3em
+
+li.username
+  margin-right: 1em
+
+
+.shadow
+  background: url(/images/layout/bg-body-shadow.png) no-repeat top center
+  padding: 7px
+  margin: 0 auto
+
+
+.bp .subnav
+  background: #FFFDDD
+  margin: 0 auto
+  min-height: 2.3em
+
+  h2
+    float: left
+    font-size: 1.6em
+    margin-left: 2em
+
+  ul
+    padding: 20px
+    text-align: right
+
+  li > a
+    color: #333
+    border: none
+    text-decoration: none
+    font-weight: bold
+    padding: 5px 10px
+    -moz-border-radius: 1em
+    -webkit-border-radius: 1em
+
+    &:hover
+      background: #E8DDA6
+
+
+.navigation ul
+  margin: 0
+
+  li
+    display: inline
+
+
+.main
+  margin: auto
+  padding: 0 50px 1em
+  min-height: 500px
+
+
+.column
+  width: 45%
+  padding-right: 5%
+  float: left
+
+
+.sidebar
+  width: 300px
+  float: right
+
+  h3
+    padding: 0 0 0.5em
+    border-bottom: 1px solid #A1BDC0
+
+  a
+    font-size: 0.95em
+
+  ul
+    border-bottom: 1px solid #CCC
+    padding-bottom: 1em
+    margin-bottom: 1.5em
+
+
+.actions li
+  padding-left: 1.7em
+  margin: 0.5em 0
+
+
+.dashboard
+  h3
+    border-bottom: 2px solid #59D8E5
+    padding-bottom: 0.5em
+    margin-bottom: 1.5em
+
+  .utility
+    font: 1.05em Georgia, Times New Roman, serif
+
+
+.footer
+  height: 5em
+  line-height: 1em
+  margin: 0 auto 2em
+  background: #FFF url(/images/layout/bg-body-shadow-foot.png) no-repeat center bottom
+
+  .content
+    width: 940px
+    padding-top: 1.5em
+    border-top: 1px solid #C9CfD0
+
+  a
+    color: #008C98
+    border-bottom: 1px dotted #008C98
+
+    &:hover
+      color: #000
+      border: none
+
+  ul
+    height: 1.5em
+
+    li
+      float: left
+
+  .nav
+    float: left
+
+    li
+      margin-left: 1em
+      padding-left: 1em
+      border-left: 1px solid #666
+
+      &:first-child
+        margin-left: 0
+        padding-left: 0
+        border: none
+
+  .attribution
+    float: right
+
+    img
+      float: none
+      margin: -1em 0 -0.7em
+
+    a
+      color: #91020C
+      border-bottom: 1px solid #91020C
+
+
+input[type="submit"]
+  font-weight: bold
+  color: #FFF
+  background: #858585 url(/images/layout/bg-btn.png) repeat-x left top
+  padding: 0.5em 1em
+  border: 1px solid #858585
+  -moz-border-radius: 4px
+  -webkit-border-radius: 4px
+
+
+input[type="submit"]:hover, button:hover
+  cursor: pointer
+
+  p
+    margin-top: 1em
+    margin-bottom: 1em
+
+
+textarea
+  width: 30em
+  height: 10em
+
+  &.contact_message
+    width: 20em
+
+
+.sidebar input
+  margin-left: 0
+
+
+hr
+  border: none
+  border-top: 1px solid #59D8E5
+  margin: 2em -20px
+
+
+.note
+  font-size: 0.9em
+  line-height: 1.3em
+  color: #999
+
+
+#tooltip
+  font-size: 0.8em
+  -moz-border-radius: 6px
+  -webkit-border-radius: 6px
+  border-radius: 6px
+  padding: 10px
+
+
+.threeColumn
+  clear: both
+  padding-top: 1.5em
+  margin: 0 -40px
+
+  .col1, .col2
+    width: 31%
+    float: left
+    margin-right: 3.5%
+
+  .col3
+    width: 31%
+    float: left
+    margin-right: 3.5%
+    margin-right: 0
+
+  h3
+    text-align: center
+    font-size: 1.4em
+    margin-bottom: 0.75em
+
+#tabs.ui-tabs
+  #inner-tabs.ui-tabs, .sub-tabs.ui-tabs
+    border: none
+    background: none
+
+    ul.ui-widget-header
+      background: none
+      border: none
+      border-bottom: 1px solid #AAAAAA
+
+.subject-buttons
+
+  ul
+    float: right
+  
+    li
+      float: left
+      margin-left: 10px
+
+
+body.bp .subject-description
+  margin-left: 20px
+
+body.bp .subject-buttons a
+  text-decoration: none
+
+
+button.button:hover
+  opacity: .8
+
+button.button
+  font-weight: bold
+  font-size: 12px
+  padding: 0 0 5px 5px
+  color: #fff
+  outline: none
+  opacity: 1
+  cursor: pointer
+
+  .small-green-button, .medium-green-button, .large-green-button, .small-red-button, .medium-red-button, .large-red-button, .small-grey-button, .medium-grey-button, .large-grey-button
+    padding: 0 5px 4px 5px
+	
+button.button.small-plus-button
+  background: url(/images/master.png) no-repeat transparent -8px -8px
+  width: 45px
+  height: 23px
+  border: none
+
+button.button.small-plus-button
+  background: url(/images/master.png) no-repeat transparent -8px -8px
+  width: 45px
+  height: 23px
+  border: none
+
+button.button.large-plus-button
+  background: url(/images/master.png) no-repeat transparent -61px -7px
+  width: 116px
+  height: 25px
+  border: none
+
+button.button.small-minus-button
+  background: url(/images/master.png) no-repeat transparent -8px -43px
+  width: 45px
+  height: 23px
+  border: none
+
+button.button.large-minus-button
+  background: url(/images/master.png) no-repeat transparent -61px -43px
+  width: 116px
+  height: 25px
+  border: none
+
+button.button.small-edit-button
+  background: url(/images/master.png) no-repeat transparent -8px -77px
+  width: 45px
+  height: 23px
+  border: none
+
+button.button.large-edit-button  
+  background: url(/images/master.png) no-repeat transparent -61px -77px
+  width: 116px
+  height: 25px
+  border: none
+
+button.button.publish-button  
+  background: url(/images/master.png) no-repeat transparent -187px -7px
+  width:  133px
+  height: 29px
+  border:  none
+
+button.button.subscribe-button  
+  background: url(/images/master.png) no-repeat transparent -187px -43px
+  width: 133px
+  height: 29px
+  border: none
+
+button.button.small-green-button  
+  background: url(/images/master.png) no-repeat transparent -8px -110px
+  width: 55px
+  height: 25px
+  border: none
+
+button.button.small-red-button  
+  background: url(/images/master.png) no-repeat transparent -70px -110px
+  width: 55px
+  height: 25px
+  border: none
+
+button.button.small-grey-button  
+  background: url(/images/master.png) no-repeat transparent -8px -143px
+  width: 55px
+  height: 25px
+  border: none
+
+button.button.medium-green-button  
+  background: url(/images/master.png) no-repeat transparent -71px -143px
+  width: 115px
+  height: 25px
+  border: none
+
+button.button.medium-red-button  
+  background: url(/images/master.png) no-repeat transparent -193px -143px
+  width: 115px
+  height: 25px
+  border: none
+
+button.button.medium-grey-button  
+  background: url(/images/master.png) no-repeat transparent -316px -143px
+  width: 115px
+  height: 25px
+  border: none
+
+button.button.large-green-button  
+  background: url(/images/master.png) no-repeat transparent -8px -176px
+  width: 155px
+  height: 25px
+  border: none
+
+button.button.large-red-button  
+  background: url(/images/master.png) no-repeat transparent -170px -176px
+  width: 155px
+  height: 25px
+  border: none
+
+button.button.large-grey-button  
+  background: url(/images/master.png) no-repeat transparent -333px -176px
+  width: 155px
+  height: 25px
+  border: none
+
+#inner_column 
+  margin: 20px
+
+fieldset.special
+  border: 2px solid #FFD700
+  background: #FFFFDD
+  
+  legend
+    background: #FFD700
+    padding: 2px 5px 2px 5px
+    margin-left: -2px
+
+.access-button
+  margin: 20px

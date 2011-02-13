@@ -1,0 +1,73 @@
+#tabs
+  %ul
+    %li.ui-tabs-selected= link_to "Master Scenarios", [:admins, :master_scenarios]
+    %li= link_to 'New Master Scenario', [:new, :admins, :master_scenario]
+    
+  = render :partial => "admins/master_scenarios/master_scenario_menu"
+      
+  #subject_info
+    %h2= @system_variable.name
+    .subject_details=@system_variable.display_name
+
+  #location.ui-widget.ui-widget-content.ui-corner-all
+    %h4 Description
+    %p= @system_variable.description
+    %h4 Notes
+    %p= @system_variable.notes
+    
+  #inner_column
+    %table
+      %tr
+        %th Index:
+        %td= @system_variable.index
+      %tr
+        %th I/O type:
+        %td= @system_variable.io_type
+      %tr
+        %th Component:
+        %td= @system_variable.component
+      %tr
+        %th Low value:
+        %td= @system_variable.low_value
+      %tr
+        %th Initial value:
+        %td= @system_variable.initial_value
+      %tr
+        %th High value:
+        %td= @system_variable.high_value
+      %tr
+        %th Unit SI:
+        %td= @system_variable.unit_si
+      %tr
+        %th Initial IP:
+        %td= @system_variable.unit_ip
+      %tr
+        %th SI to IP:
+        %td= @system_variable.si_to_ip
+      %tr
+        %th Fault?:
+        %td= @system_variable.is_fault
+      %tr
+        %th Left label:
+        %td= @system_variable.left_label
+      %tr
+        %th Right label:
+        %td= @system_variable.right_label
+      %tr
+        %th Subsection:
+        %td= @system_variable.subsection
+      %tr
+        %th Zone position:
+        %td= @system_variable.zone_position
+      %tr
+        %th Is percentage:
+        %td= @system_variable.is_percentage
+      %tr
+        %th Fault widget type:
+        %td= @system_variable.fault_widget_type
+      %tr
+        %th Lock version:
+        %td= @system_variable.lock_version
+      %tr
+        %th Notes sequence:
+        %td= @system_variable.node_sequence

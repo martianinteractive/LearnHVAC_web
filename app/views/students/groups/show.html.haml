@@ -1,0 +1,34 @@
+#tabs
+  %ul
+    %li= link_to "Classes", students_classes_path
+    
+  #page_header
+    #subject_info
+      %h2= @group.name
+      %p Lead by #{@group.creator.name}
+
+  #inner_column
+    %h3 Scenarios
+
+    - if @group.group_scenarios.empty?
+      %p There are no scenarios on this group.
+    - else
+      %table.listing
+        %thead
+          %tr
+            %th Name
+            %th Variables
+            %th Created on
+            %th Desktop Application
+        - @group.scenarios.each do |scenario|
+          %tr
+            %td= scenario.name
+            %td= scenario.variables.count
+            %td= scenario.created_at.to_formatted_s(:long)
+            %td
+              - if scenario.client_version
+                = link_to scenario.client_version.url do
+                  %button{:type => :button}="Download"
+              - else
+                ="Not available for  download"
+

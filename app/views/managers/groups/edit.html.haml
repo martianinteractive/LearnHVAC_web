@@ -1,0 +1,21 @@
+#tabs
+  %ul
+    %li= link_to "Groups", managers_classes_path
+    %li= link_to "New Group", new_managers_class_path
+
+  = form_for(@group, :url => managers_class_path(@group), :method => :put) do |f|
+    = f.error_messages
+
+    .field
+      = f.label :name
+      = f.text_field :name
+
+    .field
+      = f.label :scenarios
+      %br
+      = select_tag "group[scenario_ids][]", options_from_collection_for_select(@group.creator.created_scenarios, :id, :name, @group.scenario_ids.map(&:to_i).map(&:to_i)), :multiple => true
+
+    .actions
+      = submit_tag "Update"
+      &nbsp;or&nbsp;
+      = link_to 'Cancel', :back

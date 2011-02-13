@@ -1,0 +1,21 @@
+= f.error_messages
+.field
+  = f.label :version
+  = f.text_field :version
+
+.field 
+  = f.label :url
+  = f.text_field :url
+
+.field 
+  = f.label :release_date
+  = f.date_select :release_date
+
+.field
+  = f.label :description
+  = f.text_area :description
+
+.actions
+  = f.submit
+  &nbsp;or&nbsp;
+  = link_to 'Cancel', :back

@@ -1,0 +1,14 @@
+#tabs
+  %ul
+    %li.ui-tabs-selected= link_to "Instructor Scenarios", admins_scenarios_path
+    %li= link_to "New Scenario", new_admins_scenario_path
+
+  = render :partial => "admins/scenarios/scenario_menu"
+
+  = form_for([@scenario, @scenario_variable], :url => admins_scenario_variables_path(@scenario), :method => :post) do |f|
+    = render :partial => "form", :locals => { :f => f }
+    .actions
+      = submit_tag "Create"
+      &nbsp;or&nbsp;
+      = link_to 'Cancel', :back
+

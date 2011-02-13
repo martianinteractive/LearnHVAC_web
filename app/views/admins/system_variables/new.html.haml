@@ -1,0 +1,12 @@
+#tabs
+  %ul
+    %li.ui-tabs-selected= link_to "Master Scenarios", [:admins, :master_scenarios]
+    %li= link_to 'New Master Scenario', [:new, :admins, :master_scenario]
+  
+  = render :partial => "admins/master_scenarios/master_scenario_menu"
+  
+  %br
+  %p Note: System Variables are directly related to SPARK, so a good understanding of how Learn HVAC works with SPARK is required before adding or changing System Variables. 
+  %hr
+  = form_for([@master_scenario, @system_variable], :url => admins_master_scenario_system_variables_path(@master_scenario), :method => :post) do |f|
+    = render :partial => "form", :locals => { :f => f }

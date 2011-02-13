@@ -1,0 +1,70 @@
+- content_for :head do
+  = render :partial => 'shared/user_form_js', :locals => { :u => @account }
+  
+%h2  Student Registration
+%p 
+  Already a member? please
+  = link_to "login", login_path
+%hr
+
+- if @group
+  #group_info
+    %h4 Group Information
+  
+    %p
+      %b Lead by:
+      = @group.creator.name
+
+    %p
+      %b Group name:
+      = @group.name
+
+= form_for @account, :url => { :controller => "students/accounts", :action => "create" } do |f|
+  = error_messages_for :account
+  = f.hidden_field :group_code
+
+  %fieldset
+    .field
+      = f.label :first_name, "First Name"
+      = f.text_field :first_name
+
+    .field
+      = f.label :last_name, "Last Name"
+      = f.text_field :last_name
+
+  %fieldset
+    .field
+      = f.label :country
+      = f.country_select :country, ['United States', 'Canada']
+
+    .field#states
+      = f.label :state, "State/Region"
+      = f.text_field :state
+
+    .field
+      = f.label :city
+      = f.text_field :city
+	
+  %fieldset		
+    .field
+      = f.label :login
+      = f.text_field :login
+
+    .field
+      = f.label :email
+      = f.text_field :email
+		
+    .field
+      = f.label :password
+      = f.password_field :password, :size=>20,  :value=>""
+
+    .field
+      = f.label :password_confirmation, "Password Confirmation"	
+      = f.password_field :password_confirmation, :size=>20,  :value=>""
+  
+  = render :partial => "shared/terms_agreement", :locals => { :f => f }
+  
+  .actions
+    = submit_tag "Create", :class=>'submitButton'
+    &nbsp;|&nbsp;
+    = link_to 'Cancel', signup_path
