@@ -322,12 +322,12 @@ hr {
 }
 
 /* line 266, ../../app/stylesheets/application.sass */
-#tabs.ui-tabs #inner-tabs.ui-tabs {
+#tabs.ui-tabs #inner-tabs.ui-tabs, #tabs.ui-tabs .sub-tabs.ui-tabs {
   border: none;
   background: none;
 }
 /* line 270, ../../app/stylesheets/application.sass */
-#tabs.ui-tabs #inner-tabs.ui-tabs ul.ui-widget-header {
+#tabs.ui-tabs #inner-tabs.ui-tabs ul.ui-widget-header, #tabs.ui-tabs .sub-tabs.ui-tabs ul.ui-widget-header {
   background: none;
   border: none;
   border-bottom: 1px solid #aaaaaa;

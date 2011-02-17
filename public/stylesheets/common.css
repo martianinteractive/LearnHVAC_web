@@ -469,10 +469,32 @@ div.notice {
 
 /* line 396, ../../app/stylesheets/common.sass */
 .clearfix {
-  display: inline-block;
+  display: block;
 }
 
 /* line 399, ../../app/stylesheets/common.sass */
 a img {
   border: none;
+}
+
+/* VARIABLES MENU */
+/* line 403, ../../app/stylesheets/common.sass */
+div.actions_header {
+  background: #c3d9ff;
+  display: block;
+}
+/* line 407, ../../app/stylesheets/common.sass */
+div.actions_header input[type="submit"] {
+  display: inline;
+}
+/* line 410, ../../app/stylesheets/common.sass */
+div.actions_header ul {
+  margin: 0;
+  padding: 0 0 5px 5px;
+  border-bottom-style: solid;
+}
+/* line 415, ../../app/stylesheets/common.sass */
+div.actions_header ul li {
+  display: inline;
+  padding-right: 20px;
 }
