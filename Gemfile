@@ -13,7 +13,6 @@ gem "compass"
 
 group :test do
 	gem "rspec-rails"
-  gem "mocha"
   gem "shoulda-matchers"
 	gem "factory_girl_rails"
 	gem "ZenTest"

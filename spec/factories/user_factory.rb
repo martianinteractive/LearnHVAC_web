@@ -87,3 +87,19 @@ Factory.define :guest, :class => User do |user|
   user.state 'Maryland'
   user.terms_agreement "1"
 end
+
+Factory.define :ucla_user, :class => User do |user|
+  user.login 'timmy'
+  user.first_name 'Tim'
+  user.last_name 'Blum'
+  user.email 'tim@blum.com'
+  user.password 'jboe333'
+  user.password_confirmation 'jboe333'
+  user.role_code 2
+  user.enabled true
+  user.country 'United States'
+  user.city 'Bethesda'
+  user.state 'Maryland'
+  user.terms_agreement "1"
+  user.institution { Factory(:institution, :name => "UCLA") }
+end

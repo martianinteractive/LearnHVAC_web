@@ -10,7 +10,6 @@ class Students::AccountsController < ApplicationController
     @account = User.new(params[:user])
     @account.active = false
     @account.role_code = User::ROLES[:student]
-    @account.require_group_code!
     @account.require_agreement_acceptance!
     
     if @account.valid? and @account.save_without_session_maintenance

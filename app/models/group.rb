@@ -12,8 +12,6 @@ class Group < ActiveRecord::Base
   validates :code, :presence => true, :length => { :maximum => 200 }, :uniqueness => true, :on => :update
   validates_presence_of :creator, :scenarios
   
-  validate  :scenario_validator
-  
   after_create :set_code
   
   def create_memberships(user)
@@ -34,10 +32,6 @@ class Group < ActiveRecord::Base
   
   def secure_rand
     ActiveSupport::SecureRandom.hex(3)
-  end
-  
-  def scenario_validator
-    scenarios.each {|scenario| errors.add(:base, "invalid scenario") if scenario.user != self.creator }
   end
     
 end

@@ -14,14 +14,15 @@ class User < ActiveRecord::Base
   has_many :individual_memberships,   :foreign_key => "member_id"
   has_many :individual_scenarios,     :through => :individual_memberships, :source => :scenario
   
-  attr_accessor :group_code, :require_group_code, :terms_agreement
+  attr_accessor :group_code
   attr_reader :require_agreement
   attr_protected :active, :role_code, :enabled
   
   validates :first_name, :last_name, :role_code, :city, :state, :country, :presence => true, :length => { :maximum => 200 }, :format => { :with => /^[A-Za-z0-9\s]+$/ }
   validates_length_of :phone, :in => 7..32, :allow_blank => true
-  validate :group_presence,  :on => :create, :if => :require_group_code
-  validates_acceptance_of :terms_agreement, :on => :create, :if => :require_agreement, :message => "must be accepted."
+  validates :group_code,  :presence => true, :on => :create, :if => Proc.new { |user| user.has_role?(:student) }
+  validate :group_does_exist, :if => Proc.new { |user| user.has_role?(:student) }
+  validates_acceptance_of :terms_agreement, :on => :create, :if => :require_agreement, :message => "must be accepted"
   
   # Dynamically creates scopes for each role.
   ROLES.keys.each { |role| scope role.to_s.singularize, where("role_code = #{ROLES[role]}") }
@@ -85,12 +86,7 @@ class User < ActiveRecord::Base
   end
     
   def activate!
-    self.active = true
-    save
-  end
-  
-  def require_group_code!
-    @require_group_code = true
+    update_attribute(:active, true)
   end
   
   def require_agreement_acceptance!
@@ -117,9 +113,10 @@ class User < ActiveRecord::Base
   
   private
   
-  def group_presence
-    self.errors.add(:group_code, "invalid") unless Group.find_by_code(self.group_code)
+  def group_does_exist
+    self.errors.add(:group_code, "Group does not exist") unless Group.find_by_code(self.group_code) 
   end
+  
   
   def set_institution
     # Only used from students/sign_up
