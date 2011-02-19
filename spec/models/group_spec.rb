@@ -1,6 +1,8 @@
 require File.dirname(__FILE__) + "/../spec_helper"
 
 describe Group do
+  subject { Factory(:valid_group) }
+  
   it { should belong_to(:creator) }
   it { should have_many(:memberships).dependent(:destroy) }
   it { should have_many(:members).through(:memberships) }
@@ -11,7 +13,19 @@ describe Group do
   
   it { should validate_presence_of(:name) }
   it { should validate_uniqueness_of(:name) }
-
+  it { should ensure_length_of(:name).is_at_most(200) }
+  it { should validate_presence_of(:code) }
+  it { should validate_uniqueness_of(:code) }
+  it { should ensure_length_of(:code).is_at_most(200) }
+  it { should validate_presence_of(:creator) }
+  it { should validate_presence_of(:scenarios) }
+  
+  context "when creating a student group memberships" do
+    let(:student) { Factory(:student, :group_code => subject.code) }
+    
+    it { expect { subject.create_memberships(student) }.to change(student.group_scenarios, :count).by(1) }
+  end
+ 
 end
 
 # describe Group do

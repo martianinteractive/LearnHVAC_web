@@ -9,7 +9,7 @@ class Group < ActiveRecord::Base
   accepts_nested_attributes_for :group_scenarios, :allow_destroy => true
   
   validates :name, :presence => true, :length => { :maximum => 200 }, :uniqueness => true
-  validates :code, :presence => true, :length => { :maximum => 200 }, :uniqueness => true, :on => :update
+  validates :code, :presence => true, :length => { :maximum => 200 }, :uniqueness => true
   validates_presence_of :creator, :scenarios
   
   after_create :set_code
