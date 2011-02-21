@@ -7,14 +7,9 @@ class Students::AccountsController < ApplicationController
   end
   
   def create
-    @account = User.new(params[:user])
-    @account.active = false
-    @account.role_code = User::ROLES[:student]
-    @account.require_agreement_acceptance!
-    
-    if @account.valid? and @account.save_without_session_maintenance
-      @account._group.create_memberships(@account)
-      @account.deliver_activation_instructions!
+    @account = Student.new(params[:user])
+
+    if @account.save_without_session_maintenance
       redirect_to(login_path, :notice => "Your account has been created. Before login you have to activate your account. Please check your e-mail for account activation instructions!")
     else
       render :action => :new

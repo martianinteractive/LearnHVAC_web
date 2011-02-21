@@ -15,16 +15,13 @@ end
 
 module AuthlogicTestHelper
  def login_as(user)
-   @user_session = mock('user_session')
-   @user_session.stubs(:user).returns(user)
-   @user_session.stubs(:record).returns(user)
-   @user_session.stubs(:destroy)
-   UserSession.stubs(:find).returns(@user_session)
+   current_user = Factory.stub(user)
+   controller.stub!(:current_user).and_return(current_user)
  end
  
  def user_logout
    @user_session = nil
-   UserSession.stubs(:find).returns(nil)
+   UserSession.stub(:find)
  end
  
  def admins_login

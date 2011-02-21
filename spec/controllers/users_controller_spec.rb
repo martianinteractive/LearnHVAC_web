@@ -2,10 +2,9 @@ require File.dirname(__FILE__) + "/../spec_helper"
 
 describe UsersController do
   
-  before(:each) do
-    @user = Factory(:user, :login => "joedoe", :email => "jdoe@lhvac.com")
-    login_as(@user)
-  end
+  let(:current_user) { Factory(:user) }
+  
+  before { controller.stub!(:current_user).and_return(current_user) }
   
   describe "GET profile" do
     it "" do
@@ -16,7 +15,7 @@ describe UsersController do
 
   describe "GET edit" do
     it "" do
-      get :edit, :id => @user.id
+      get :edit, :id => current_user.id
       response.should render_template(:edit)
     end
   end
@@ -24,14 +23,14 @@ describe UsersController do
   describe "PUT update" do    
     describe "with valid params" do      
       it "should redirect to profile_path" do
-        put :update, :id => @user.id, :user => { :last_name => "Doex" }
+        put :update, :id => current_user.id, :user => { :last_name => "Doex" }
         response.should redirect_to(profile_path)
       end
     end
       
     describe "with invalid params" do        
       it "should render the 'edit' template" do
-        put :update, :id => @user.id, :user => { :first_name => "Jame$", :last_name => "" }
+        put :update, :id => current_user.id, :user => { :first_name => "Jame$", :last_name => "" }
         response.should render_template('edit')
       end
     end

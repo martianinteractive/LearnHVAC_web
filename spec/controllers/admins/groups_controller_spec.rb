@@ -4,10 +4,7 @@ describe Admins::GroupsController do
 
   let(:group) { mock_model(Group) }
 
-  before(:each) do
-    admin = Factory(:admin)
-    login_as admin
-  end
+  before{ login_as(:admin) }
 
   context "GET index" do
     it "" do
