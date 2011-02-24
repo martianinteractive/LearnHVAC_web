@@ -1,4 +1,4 @@
-class Managers::ScenarioVariablesController < Managers::ApplicationController
+class Managers::VariablesController < Managers::ApplicationController
   helper :sort
   include SortHelper
   before_filter :find_scenario, :add_crumbs

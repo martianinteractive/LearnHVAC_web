@@ -1,39 +1,42 @@
 require File.dirname(__FILE__) + "/../../spec_helper"
 
 describe Managers::ScenariosController do
-  render_views
-  
+  let(:current_user) { Factory.stub(:manager) }
+
   before(:each) do
-    institution       = Factory(:institution)
-    manager           = Factory(:manager, :institution => institution)
-    instructor        = Factory(:instructor, :institution => institution)
-    master_scenario   = Factory(:master_scenario, :user => Factory(:admin))
-    @scenario         = Factory(:scenario, :user => instructor, :master_scenario => master_scenario)
-    login_as(manager)
+    controller.stub!(:current_user).and_return(current_user)
   end
-  
+
+  def mock_scenario(stubs={})
+    @mock_scenario ||= mock_model(Scenario, {:name => "bla"}.merge(stubs))
+  end
+
   describe "GET index" do
-    it "" do
+    it "should expose scenarios and render the template" do
+      current_user.stub_chain(:institution, :scenarios, :paginate).with(:page => nil, :per_page => 25).and_return([mock_scenario])
       get :index
       response.should render_template(:index)
-      assigns(:scenarios).should eq([@scenario])
+      assigns[:scenarios].should eq([mock_scenario])
     end
   end
   
   describe "GET show" do
-    it "" do
-      get :show, :id => @scenario.id
+    it "should expose the scenario and render the template" do
+      current_user.stub_chain(:institution, :scenarios, :find).with('37').and_return(mock_scenario)
+      get :show, :id => "37"
       response.should render_template(:show)
-      assigns(:scenario).should eq(@scenario)
+      assigns[:scenario].should eq(mock_scenario)
     end
   end
   
   describe "GET list" do
-    it "" do
-      get :list, :user_id => @scenario.user.id
+    it "should expose the scenarios and render the template" do
+      current_user.stub_chain(:institution, :users, :instructor, :find, :created_scenarios).and_return([mock_scenario])
+      get :list, :user_id => '1'
       response.should render_template(:list)
-      assigns(:scenarios).should eq([@scenario])
+      assigns[:scenarios].should eq([mock_scenario])
     end
   end
   
 end
+

@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + "/../../spec_helper"
 
-describe Managers::ScenarioVariablesController do
+describe Managers::VariablesController do
   before(:each) do
     institution         = Factory(:institution)
     manager             = Factory(:manager, :institution => institution)
