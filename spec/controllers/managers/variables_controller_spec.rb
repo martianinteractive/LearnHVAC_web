@@ -1,30 +1,46 @@
 require File.dirname(__FILE__) + "/../../spec_helper"
 
 describe Managers::VariablesController do
+  let(:current_user) { Factory.stub(:manager) }
+  
   before(:each) do
-    institution         = Factory(:institution)
-    manager             = Factory(:manager, :institution => institution)
-    instructor          = Factory(:instructor, :institution => institution)
-    master_scenario     = Factory(:master_scenario, :user => Factory(:admin))
-    @scenario           = Factory(:scenario, :user => instructor, :master_scenario => master_scenario)
-    @scenario_variable  = Factory(:scenario_variable, :scenario => @scenario)
-    login_as(manager)
+    controller.stub!(:current_user).and_return(current_user)
+    current_user.stub_chain(:institution, :scenarios, :find).with("37").and_return(mock_scenario)
+  end
+  
+  def mock_variable(stubs={})
+    @mock_variable ||= mock_model(Variable, stubs)
+  end
+  
+  def mock_scenario(stubs={})
+    @mock_scenario ||= mock_model(Scenario, {:name => "bla"}.merge(stubs))
   end
   
   describe "GET index" do
-    it "" do    
-      get :index, :scenario_id => @scenario.id
+    it "should render the index template" do
+      mock_scenario.stub_chain(:variables, :order, :paginate).and_return([mock_variable])
+      get :index, :scenario_id => "37"
       response.should render_template(:index)
     end
-  end
-  
-  
-  describe "GET show" do
-    it "" do
-      get :show, :scenario_id => @scenario.id, :id => @scenario_variable.id
-      response.should render_template(:show)
-      assigns(:scenario_variable).should eq(@scenario_variable)
+    
+    it "should expose the scenario variables" do
+      mock_scenario.stub_chain(:variables, :order, :paginate).and_return([mock_variable])
+      get :index, :scenario_id => "37"
+      assigns[:scenario_variables].should eq([mock_variable])
     end
   end
   
+  describe "GET show" do
+    it "should expose the variables" do
+      mock_scenario.stub_chain(:variables, :find).and_return(mock_variable)
+      get :show, :scenario_id => "37", :id => "1"
+      assigns[:scenario_variable].should eq(mock_variable)
+    end
+    
+    it "should render the show template" do
+      mock_scenario.stub_chain(:variables, :find).and_return(mock_variable)
+      get :show, :scenario_id => "37", :id => "1"
+      response.should render_template(:show)
+    end
+  end
 end

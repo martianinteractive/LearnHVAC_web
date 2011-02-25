@@ -32,7 +32,7 @@ class Managers::InstructorsController < Managers::ApplicationController
     @instructor.role_code = User::ROLES[:instructor]
     
     if @instructor.update_attributes(params[:user])
-      redirect_to(managers_instructor_path(@instructor), :notice => 'Instructor was successfully created.')
+      redirect_to(managers_instructor_path(@instructor), :notice => 'Instructor was successfully updated.')
     else
       render :action => "edit"
     end
