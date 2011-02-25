@@ -37,8 +37,7 @@ class Instructors::VariablesController < Instructors::ApplicationController
   end
 
   def create
-    @scenario_variable = ScenarioVariable.new(params[:scenario_variable])
-    @scenario_variable.scenario = @scenario
+    @scenario_variable = @scenario.variables.build(params[:scenario_variable])
     
     if @scenario_variable.save
       redirect_to(instructors_scenario_variable_path(@scenario, @scenario_variable), :notice => 'ScenarioVariable was successfully created.')
