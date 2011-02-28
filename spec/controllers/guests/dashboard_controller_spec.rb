@@ -1,29 +1,27 @@
 require File.dirname(__FILE__) + "/../../spec_helper"
 
 describe Guests::DashboardController do
-  before(:each) do
-    @client_version = Factory(:client_version)
-    @guest          = Factory(:guest)
-  end
+  let(:current_user) { Factory.stub(:guest) }
+  let(:mock_client_version) { mock_model(ClientVersion) }
   
-  describe "GET :show" do
-    it "" do
-      login_as(@guest)
+  before { controller.stub(:current_user).and_return(current_user) }
+  
+  describe "GET show" do
+    before { ClientVersion.stub(:paginate).and_return([mock_client_version]) }
+    
+    it "should paginate client_versions" do
+      ClientVersion.should_receive(:paginate).and_return([mock_client_version])
+      get :show
+    end
+    
+    it "should expose client_versions" do
+      get :show
+      assigns[:client_versions].should eq([mock_client_version])
+    end
+    
+    it "should render the index template" do
       get :show
       response.should render_template(:show)
-      assigns(:client_versions).should_not be_empty
-    end
-    
-    it "should allow authorization via perishable token" do
-      get :show, :token => @guest.perishable_token
-      response.should render_template(:show)
-      assigns(:client_versions).should_not be_empty
-    end
-    
-    it "should not allow authorization for an invalid perishable token" do
-      student = Factory(:student)
-      get :show, :token => student.perishable_token
-      response.should redirect_to(login_path)
     end
   end
 end

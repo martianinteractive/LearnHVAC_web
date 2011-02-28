@@ -1,46 +1,48 @@
 require File.dirname(__FILE__) + "/../../spec_helper"
 
 describe Instructors::AccessController do
-  render_views
-  before(:each) do
-    @instructor       = Factory(:instructor)
-    @admin            = Factory(:admin)
-    @student          = Factory(:student)
-    master_scenario   = Factory(:master_scenario, :user => @admin)
-    @scenario         = Factory(:scenario, :user => @instructor, :master_scenario => master_scenario)
-    @group            = Factory(:group, :creator => @instructor, :scenario_ids => [@scenario.id])
-    
-    @admin_membership  = Factory(:individual_membership, :member => @admin, :scenario => @scenario)
-    @student_membership = Factory(:group_membership, :member => @student, :group => @group, :scenario => @scenario)
-    
-    login_as @instructor
-  end
+  let(:current_user) { Factory.stub(:instructor) }
+  let(:mock_membership) { mock_model(Membership) }
+  let(:mock_scenario) { mock_model(Scenario, {:name => ""}) }
   
-  describe "GET :index" do
-    it "should description" do
-      get :index, :scenario_id => @scenario.id
+  before { controller.stub(:current_user).and_return(current_user) }
+  
+  describe "GET index" do
+    before do
+      current_user.stub_chain(:created_scenarios, :find).and_return(mock_scenario)
+      mock_scenario.stub_chain(:memberships, :includes, :paginate).and_return([mock_membership])
+    end
+    
+    it "should expose memberships" do
+      get :index, :scenario_id => "37"
+      assigns[:memberships].should eq([mock_membership])
+    end
+    
+    it "should render index" do
+      get :index, :scenario_id => "37"
       response.should render_template(:index)
-      assigns(:scenario).should == @scenario
-      assigns(:scenario).groups.should_not be_empty
-      assigns(:scenario).groups.first.should == @group
-      assigns(:scenario).users.admin.first.should == @admin
-      assigns(:scenario).users.student.first.should == @student
     end
   end
   
-  describe "DELETE :destroy" do    
-    it "" do
-      proc { delete :destroy, :id => @student_membership.id, :scenario_id => @scenario.id }.should change(GroupMembership, :count).by(-1)
+  describe "DELETE destroy" do
+    before do
+      current_user.stub_chain(:created_scenarios, :find).and_return(mock_scenario)
+      mock_scenario.stub_chain(:group_memberships, :find).and_return(mock_membership)
     end
     
-    it "" do
-      delete :destroy, :id => @student_membership.id, :scenario_id => @scenario
-      response.should redirect_to([:instructors, @scenario, :accesses])
+    it "should expose the membership" do
+      delete :destroy, :id => "1", :scenario_id => "37"
+      assigns[:membership].should eq(mock_membership)
     end
     
-    it "should not destroy a NON student membership" do
-      proc { delete :destroy, :id => @admin_membership.id, :scenario_id => @scenario.id }.should raise_error      
+    it "should delete" do
+      mock_membership.should_receive(:destroy).and_return(true)
+      delete :destroy, :id => "1", :scenario_id => "37"
+    end
+    
+    it "should redirect" do
+      delete :destroy, :id => "1", :scenario_id => "37"
+      response.should redirect_to([:instructors, assigns[:scenario], :accesses])
     end
   end
-
 end

@@ -12,7 +12,7 @@ class Instructors::AccessController < Instructors::ApplicationController
   def destroy
     @membership = @scenario.group_memberships.find(params[:id])
     @membership.destroy
-    redirect_to([:instructors, @scenario, :accesses])
+    redirect_to([:instructors, @scenario, :accesses], :notice => "Membership was successfully deleted")
   end
   
   private
