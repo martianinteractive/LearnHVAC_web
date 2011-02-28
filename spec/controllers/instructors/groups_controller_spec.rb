@@ -1,105 +1,179 @@
 require File.dirname(__FILE__) + "/../../spec_helper"
 
 describe Instructors::GroupsController do
-  render_views
+  let(:current_user) { Factory.stub(:instructor) }
   
-  before(:each) do
-    @instructor = Factory(:instructor)
-    scenario    = Factory(:scenario, :user => @instructor, :master_scenario => Factory(:master_scenario, :user => Factory(:admin)))
-    @group      = Factory(:group, :name => "Class 01", :creator => @instructor, :scenario_ids => [scenario.id])
-    
-    login_as(@instructor)
+  before { controller.stub(:current_user).and_return(current_user) }
+  
+  def mock_group(stubs={})
+    @mock_group ||= mock_model(Group, {:name => ""}.merge(stubs))
   end
   
   describe "GET index" do
-    it "" do
+    before { current_user.stub_chain(:managed_groups, :paginate).and_return([mock_group]) }
+    
+    it "should expose groups" do
+      get :index
+      assigns[:groups].should eq([mock_group])
+    end
+    
+    it "should render index" do
       get :index
       response.should render_template(:index)
-      assigns(:groups).should_not be_empty
-      assigns(:groups).should eq([@group])
     end
   end
-
+  
   describe "GET show" do
-    it "" do
-      get :show, :id => @group.id
+    before { current_user.stub_chain(:managed_groups, :find).and_return(mock_group) }
+    
+    it "should expose group" do
+      get :show, :id => "37"
+      assigns[:group].should eq(mock_group)
+    end
+    
+    it "should render show template" do
+      get :show, :id => "37"
       response.should render_template(:show)
-      assigns(:group).should eq(@group)
     end
   end
   
   describe "GET new" do
-    it "" do
+    before { current_user.stub_chain(:managed_groups, :build).and_return(mock_group) }
+    
+    it "should expose new group" do
+      get :new
+      assigns[:group].should eq(mock_group)
+    end
+    
+    it "should render new" do
       get :new
       response.should render_template(:new)
-      assigns(:group).creator.should eq(@instructor)
     end
   end
   
   describe "GET edit" do
-    it "" do
-      get :edit, :id => @group.id
+    before { current_user.stub_chain(:managed_groups, :find).and_return(mock_group) }
+    
+    it "should exponse the group" do
+      get :edit, :id => "37"
+      assigns[:group].should eq(mock_group)
+    end
+    
+    it "should render edit template" do
+      get :edit, :id => "37"
       response.should render_template(:edit)
-      assigns(:group).should eq(@group)
     end
   end
   
   describe "POST create" do
-    describe "with valid params" do
-      before(:each) do
-        @mocked_group = Group.new
-        Group.expects(:new).returns(@mocked_group)
-        @mocked_group.expects(:valid?).returns(true)
+    describe "successfully" do
+      before do
+        mock_group(:creator= => "", :save => true)
+        Group.stub(:new).and_return(mock_group)
       end
       
-      it "should change the Group count" do
-        proc{ post :create, :group => @params }.should change(Group, :count).by(1)
+      it "should init group" do
+        post :create, :group => {}
       end
       
-      it "redirects to the created group" do
-        post :create, :group => @params
-        response.should redirect_to(instructors_class_path(assigns(:group)))
+      it "should exponse group" do
+        post :create, :group => {}
+        assigns[:group].should eq(mock_group)
+      end
+      
+      it "should redirect" do
+        post :create, :group => {}
+        response.should redirect_to(instructors_class_path(assigns[:group]))
       end
     end
-  
-    describe "with invalid params" do
-      it "" do
-        post :create, :group => Factory.attributes_for(:group, :name => @group.name)
+    
+    describe "unsuccessfully" do
+      before do
+        mock_group(:creator= => "", :save => false)
+        Group.stub(:new).and_return(mock_group)
+      end
+      
+      it "should init group" do
+        Group.should_receive(:new).and_return(mock_group)
+        post :create, :group => {}
+      end
+      
+      it "should exponse group" do
+        post :create, :group => {}
+        assigns[:group].should eq(mock_group)
+      end
+      
+      it "should render edit" do
+        post :create, :group => {}
         response.should render_template(:new)
       end
     end
   end
   
-  describe "PUT update" do    
-    describe "with valid params" do      
-      it "updates the requested group" do
-        put :update, :id => @group.id, :group => { :name => "CS Group" }
-        @group.reload.name.should == "CS Group"
+  describe "PUT update" do
+    describe "successfully" do
+      before do
+        mock_group(:update_attributes => true)
+        current_user.stub_chain(:managed_groups, :find).and_return(mock_group)
       end
       
-      it "redirects to the group" do
-        put :update, :id => @group.id, :group => { }
-        response.should redirect_to(instructors_class_path(@group))
+      it "should expose group" do
+        put :update, :id => "37", :group => {}
+        assigns[:group].should eq(mock_group)
+      end
+      
+      it "should update" do
+        mock_group.should_receive(:update_attributes).and_return(true)
+        put :update, :id => "37", :group => {}
+      end
+      
+      it "should redirect" do
+        put :update, :id => "37", :group => {}
+        response.should redirect_to(instructors_class_path(assigns[:group]))
       end
     end
     
-    describe "with invalid params" do  
-      it "" do
-        put :update, :id => @group.id, :group => { :name => "" }
+    describe "unssuccessfully" do
+      before do
+        mock_group(:update_attributes => false)
+        current_user.stub_chain(:managed_groups, :find).and_return(mock_group)
+      end
+      
+      it "should expose group" do
+        put :update, :id => "37", :group => {}
+        assigns[:group].should eq(mock_group)
+      end
+      
+      it "should update" do
+        mock_group.should_receive(:update_attributes).and_return(false)
+        put :update, :id => "37", :group => {}
+      end
+      
+      it "should render edit" do
+        put :update, :id => "37", :group => {}
         response.should render_template(:edit)
       end
     end
   end
   
-  describe "DELETE destroy" do    
-    it "destroys the requested group" do
-      proc { delete :destroy, :id => @group.id }.should change(Group, :count).by(-1)
+  describe "DELETE destroy" do
+    before do
+      current_user.stub_chain(:managed_groups, :find).and_return(mock_group)
     end
-  
-    it "redirects to the instructor groups list" do
-      delete :destroy, :id => @group.id
-      response.should redirect_to(instructors_classes_path)
+    
+    it "should expose group" do
+      delete :destroy, :id => "37"
+      assigns[:group].should eq(mock_group)
+    end
+    
+    it "should destroy" do
+      mock_group.should_receive(:destroy).and_return(true)
+      delete :destroy, :id => "37"
+    end
+    
+    it "should redirect" do
+      delete :destroy, :id => "37"
+      response.should redirect_to(instructors_classes_url)
     end
   end
-  
 end

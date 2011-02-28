@@ -40,8 +40,6 @@ class Instructors::GroupsController < Instructors::ApplicationController
   end
 
   def update
-    @group = Group.find(params[:id])
-
     if @group.update_attributes(params[:group])
       redirect_to(instructors_class_path(@group), :notice => 'Group was successfully updated.')
     else
@@ -51,9 +49,7 @@ class Instructors::GroupsController < Instructors::ApplicationController
   end
 
   def destroy
-    @group = Group.find(params[:id])
     @group.destroy
-    
     redirect_to(instructors_classes_url)
   end
   
