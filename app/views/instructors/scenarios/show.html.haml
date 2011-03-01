@@ -13,8 +13,11 @@
         %th Created on:
         %td= @scenario.created_at.to_formatted_s(:long)
       %tr
-        %th Client version:
-        %td= link_to @scenario.client_version.version, @scenario.client_version.url
+        %td
+          - if @scenario.client_version
+            = link_to @scenario.client_version.version, admins_settings_client_version_path(@scenario.client_version)
+          - else
+            %em No client selected.
       %tr
         %th Level:
         %td= @scenario.level
