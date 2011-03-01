@@ -5,7 +5,7 @@ set :keep_releases, 5
 set :deploy_via, :remote_cache
 set :git_shallow_clone, 1
 set :repository,  "git@github.com:martianinteractive/LearnHVAC_web.git"
-set :branch, 'rails3'
+set :branch, 'master'
 set :scm, 'git'
 set :user, 'deploy'
 set :deploy_to, "/var/www/app.learnhvac.org"
