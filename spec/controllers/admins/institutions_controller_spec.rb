@@ -4,8 +4,7 @@ describe Admins::InstitutionsController do
   let(:institution) { mock_model(Institution, :name => 'bla') }
 
   before(:each) do
-    admin = Factory(:admin)
-    login_as admin
+    login_as(:admin)
   end
 
   context "GET index" do
@@ -19,7 +18,7 @@ describe Admins::InstitutionsController do
 
   describe "GET show" do
     it "should expose an institution as @institution and render the show template" do
-      Institution.expects(:find).with("37").returns(institution)
+      Institution.stub(:find).with("37").and_return(institution)
       institution.should_receive(:users).and_return([mock, mock])
       get :show, :id => "37"
       response.should render_template(:show)
@@ -37,7 +36,7 @@ describe Admins::InstitutionsController do
 
   describe "GET edit" do
     it "" do
-      Institution.expects(:find).with("37").returns(institution)
+      Institution.stub(:find).with("37").and_return(institution)
       institution.should_receive(:name)
       get :edit, :id => "37"
       response.should render_template(:edit)

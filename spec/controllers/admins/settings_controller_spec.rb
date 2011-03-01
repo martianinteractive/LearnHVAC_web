@@ -4,7 +4,7 @@ describe Admins::SettingsController do
   
   describe "GET :index" do
     it "" do
-      admins_login
+      login_as(:admin)
       get :index
       response.should render_template(:index)
     end
