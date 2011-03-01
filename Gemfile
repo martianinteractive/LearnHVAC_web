@@ -12,6 +12,8 @@ gem "builder"
 gem "jammit"
 gem "compass"
 gem "capistrano"
+gem "exception_notification", :git => "http://github.com/rails/exception_notification.git", :require => 'exception_notifier'
+
 
 group :test do
 	gem "rspec-rails"

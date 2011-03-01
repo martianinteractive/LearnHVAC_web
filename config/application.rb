@@ -40,6 +40,8 @@ module Learnhvac
     config.encoding = "utf-8"
 
     # Configure sensitive parameters which will be filtered from the log file.
-    config.filter_parameters += [:password]
+    config.filter_parameters += [:password]    
+    config.middleware.use ExceptionNotifier, :sender_address => %{"notifier" <notifier@learnhvac.org>}, :exception_recipients => %w{error@martianinteractive.com}
   end
 end
+
