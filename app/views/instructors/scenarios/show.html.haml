@@ -16,7 +16,7 @@
         %th Client version:
         %td
           - if @scenario.client_version
-            = link_to @scenario.client_version.version, admins_settings_client_version_path(@scenario.client_version)
+            = @scenario.client_version.version
           - else
             %em No client selected.
       %tr
