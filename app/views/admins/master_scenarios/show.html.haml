@@ -15,7 +15,11 @@
         %td= @master_scenario.user.name
       %tr
         %th Client Version:
-        %td= link_to @master_scenario.client_version.version, admins_settings_client_version_path(@master_scenario.client_version)
+        %td
+          - if @master_scenario.client_version
+            = link_to @master_scenario.client_version.version, admins_settings_client_version_path(@master_scenario.client_version)
+          - else
+            %em No client selected.
       %tr
         %th Tags:
         %td= @master_scenario.tag_list
