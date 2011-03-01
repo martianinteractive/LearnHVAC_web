@@ -1,5 +1,5 @@
 source 'http://rubygems.org'
-gem 'rails', '3.0.4'
+gem 'rails', '3.0.5'
 gem "haml"
 gem "compass"
 gem 'authlogic', :git => 'git://github.com/odorcicd/authlogic.git', :branch => 'rails3'
@@ -10,11 +10,12 @@ gem "addressable"
 gem "builder"
 gem "jammit"
 gem "compass"
+gem "capistrano"
 
 group :test do
 	gem "rspec-rails"
   gem "shoulda-matchers"
-	gem "factory_girl_rails"
+	gem "factory_girl_rails", "1.0.1"
 	gem "ZenTest"
 	gem "autotest-rails"
 end

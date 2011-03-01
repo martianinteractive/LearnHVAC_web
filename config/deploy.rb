@@ -1,3 +1,5 @@
+require 'bundler/capistrano'
+
 set :application, "LearnHVAC Web"
 set :keep_releases, 5
 set :deploy_via, :remote_cache
@@ -11,7 +13,7 @@ set :rails_env, "production"
 # ssh_options[:port] = 8888
 set :use_sudo, false
 
-task :app do
+task :production do
   role :app, "app.learnhvac.org"
   role :web, "app.learnhvac.org"
   role :db,  "app.learnhvac.org", :primary => true
@@ -38,13 +40,6 @@ namespace(:deploy) do
 end
 after("deploy:update_code", "deploy:generate_assets")
 
-namespace :bundler do
-  desc "Run bundler, installing gems"
-  task :install do
-    run("cd #{release_path} && /usr/local/bin/bundle install")
-  end
-end
-# after "deploy:update_code", "bundler:install"
 
 namespace :db do
  desc "Load production data into development database"
