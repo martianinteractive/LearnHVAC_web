@@ -13,6 +13,7 @@
         %th Created on:
         %td= @scenario.created_at.to_formatted_s(:long)
       %tr
+        %th Client version:
         %td
           - if @scenario.client_version
             = link_to @scenario.client_version.version, admins_settings_client_version_path(@scenario.client_version)
