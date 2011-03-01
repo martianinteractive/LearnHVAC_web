@@ -1,29 +1,28 @@
 require File.dirname(__FILE__) + "/../../spec_helper"
 
 describe Directory::ScenariosController do
-  before(:each) do
-    @institution      = Factory(:institution)
-    @private_inst     = Factory(:institution, :name => "EAFIT")
-    @instructor       = Factory(:instructor, :institution => @institution)
-    master_scenario   = Factory(:master_scenario, :user => Factory(:admin))
-    @public_scenario  = Factory(:scenario, :user => @instructor, :master_scenario => master_scenario, :public => true)
-    @private_scenario = Factory(:scenario, :user => @instructor, :master_scenario => master_scenario, :public => false)
-    login_as(@instructor)
-  end
+  let(:current_user) { Factory.stub(:instructor) }
+  let(:mock_institution) { mock_model(Institution) }
+  let(:mock_scenario) { mock_model(Scenario) }
+  
+  before { controller.stub(:current_user).and_return(current_user) }
   
   describe "GET :show" do
-    
-    it "" do
-      get :show, :institution_id => @institution.id, :id => @public_scenario.id
-      response.should render_template(:show)
-      assigns(:scenario).should eq(@public_scenario)
+    before do
+      Institution.stub(:find).with('37').and_return(mock_institution)
+      mock_institution.stub_chain(:scenarios, :public, :find).and_return(mock_scenario)
     end
     
-    pending "respond if with 404 when trying to view a private scenario."
-    # it "should not show private scenarios" do
-    #   get :show, :institution_id => @institution.id, :id => @private_scenario.id
-    #   response.should render_template(:show)
-    #   assigns(:scenario).should be_nil
-    # end
+    it "should expose the institution and scenario" do
+      get :show, :institution_id => "37", :id => "1"
+      assigns[:institution].should eq(mock_institution)
+      assigns[:scenario].should eq(mock_scenario)
+    end
+    
+    it "should render template" do
+      get :show, :institution_id => "37", :id => "1"
+      response.should render_template(:show)
+    end
   end
+    
 end
