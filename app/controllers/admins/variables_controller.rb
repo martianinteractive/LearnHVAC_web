@@ -38,8 +38,7 @@ class Admins::VariablesController < Admins::ApplicationController
   end
 
   def create
-    @scenario_variable = ScenarioVariable.new(params[:scenario_variable])
-    @scenario_variable.scenario = @scenario
+    @scenario_variable = @scenario.varible.build(params[:scenario_variable])
 
     if @scenario_variable.save
       redirect_to(admins_scenario_variable_path(@scenario, @scenario_variable), :notice => 'Variable was successfully created.')

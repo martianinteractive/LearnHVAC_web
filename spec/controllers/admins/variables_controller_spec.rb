@@ -1,167 +1,212 @@
 require File.dirname(__FILE__) + "/../../spec_helper"
 
 describe Admins::VariablesController do
-  render_views
   
-  before(:each) do
-    @admin              = Factory(:admin)
-    @instructor         = Factory(:instructor)
-    @master_scenario    = Factory(:master_scenario, :user => @admin)
-    @scenario           = Factory(:scenario, :user => @instructor, :master_scenario => @master_scenario)
-    @scenario_variable  = Factory(:scenario_variable, :scenario => @scenario)
-    login_as(@admin)
+  let(:current_user) { Factory.stub(:admin) }
+  
+  before do
+    controller.stub!(:current_user).and_return(current_user)
+    Scenario.stub!(:find).with('37').and_return(mock_scenario)
   end
   
-  describe "GET index" do
-    it "" do
-      get :index, :scenario_id => @scenario.id
+  def mock_variable(stubs={})
+    @mock_variable ||= mock_model(Variable, {:name => ""}.merge(stubs))
+  end
+  
+  def mock_scenario(stubs={})
+    @mock_scenario ||= mock_model(Scenario, {:name => ""}.merge(stubs))
+  end
+  
+  context "GET index" do
+    before do
+      mock_scenario.stub_chain(:variables, :filter, :paginate).and_return([mock_variable])
+    end
+    
+    it "should expose variables" do
+      get :index, :scenario_id => "37"
+      assigns[:scenario_variables].should eq([mock_variable])
+    end
+    
+    it "should render index" do
+      get :index, :scenario_id => "37"
       response.should render_template(:index)
-      assigns(:scenario_variables).should eq(Scenario.find(@scenario.id).variables)
     end
   end
   
-  describe "GET new" do
-    it "" do
-      get :new, :scenario_id => @scenario.id
+  context "GET new" do
+    before { ScenarioVariable.stub(:new).and_return(mock_variable) }
+    
+    it "should init new variable" do
+      ScenarioVariable.should_receive(:new).and_return(mock_variable)
+      get :new, :scenario_id => "37"
+    end
+    
+    it "should expose new variable" do
+      get :new, :scenario_id => "37"
+      assigns[:scenario_variable].should eq(mock_variable)      
+    end
+    
+    it "should render new template" do
+      get :new, :scenario_id => "37"
       response.should render_template(:new)
-      assigns(:scenario_variable).should be_instance_of(ScenarioVariable)
     end
   end
   
-  describe "GET show" do
-    it "" do
-      get :show, :scenario_id => @scenario.id, :id => @scenario_variable.id
-      response.should render_template(:show)
-      assigns(:scenario_variable).should eq(@scenario_variable)
+  context "GET edit" do
+    before do
+      mock_scenario.stub_chain(:variables, :find).and_return(mock_variable)
     end
-  end
-  
-  describe "GET edit" do
-    it "" do
-      get :edit, :scenario_id => @scenario.id, :id => @scenario_variable.id
+    
+    it "should expose scenario and scenario var" do
+      get :edit, :scenario_id => "37", :id => "1"
+      assigns[:scenario].should eq(mock_scenario)
+      assigns[:scenario_variable].should eq(mock_variable)
+    end
+    
+    it "should render the edit template" do
+      get :edit, :scenario_id => "37", :id => "1"
       response.should render_template(:edit)
-      assigns(:scenario_variable).should eq(@scenario_variable)
     end
   end
   
-  describe "POST create" do
-    describe "with valid params" do
-      
-      it "should change the scenario.variables count" do
-        @scenario_sys_vars = Scenario.find(@scenario.id).variables.size
-        post :create, :scenario_id => @scenario.id, :scenario_variable => Factory.attributes_for(:scenario_variable, :name => "new scen. sys var")
-        Scenario.find(@scenario.id).variables.size.should == @scenario_sys_vars + 1
+  context "POST create" do
+    context "successfully" do
+      before do
+        mock_variable(:save => true)
+        mock_scenario.stub_chain(:varible, :build).and_return(mock_variable)
+      end
+    
+      it "should expose" do
+        post :create, :scenario_id => "37"
+        assigns[:scenario_variable].should eq(mock_variable)
       end
       
-      it "redirects to the created scenario_variable" do
-        post :create, :scenario_id => @scenario.id, :scenario_variable => Factory.attributes_for(:scenario_variable)
-        response.should redirect_to(admins_scenario_variable_path(@scenario, assigns(:scenario_variable)))
+      it "should save the variable" do
+        mock_variable.should_receive(:save).and_return(true)
+        post :create, :scenario_id => "37"
+      end
+    
+      it "should redirect" do
+        post :create, :scenario_id => "37"
+        response.should redirect_to(admins_scenario_variable_path(assigns[:scenario], assigns[:scenario_variable]))
       end
     end
-  
-    describe "with invalid params" do
-      it "" do
-        @scenario_sys_vars = Scenario.find(@scenario.id).variables.size
-        post :create, :scenario_id => @scenario.id, :scenario_variable => { }
-        Scenario.find(@scenario.id).variables.size.should == @scenario_sys_vars
+    
+    context "unsuccessfully" do
+      before do
+        mock_variable(:save => false)
+        mock_scenario.stub_chain(:varible, :build).and_return(mock_variable)
       end
       
-      it "" do
-        post :create, :scenario_id => @scenario.id, :scenario_variable => { }
+      it "should expose" do
+        post :create, :scenario_id => "37"
+        assigns[:scenario_variable].should eq(mock_variable)
+      end
+      
+      it "should save the variable" do
+        mock_variable.should_receive(:save).and_return(false)
+        post :create, :scenario_id => "37"
+      end
+    
+      it "should redirect" do
+        post :create, :scenario_id => "37"
         response.should render_template(:new)
       end
     end
   end
   
-  describe "PUT update" do    
-    describe "with valid params" do      
-      it "updates the requested scenario_variable" do
-        put :update, :scenario_id => @scenario.id, :id => @scenario_variable.id, :scenario_variable => { :name => "updated var name" }
-        Scenario.find(@scenario.id).variables.first.name.should == "updated var name"
+  context "PUT update" do
+    context "successfully" do
+      before do
+        mock_variable(:update_attributes => true)
+        mock_scenario.stub_chain(:variables, :find).and_return(mock_variable)
       end
       
-      it "redirects to the scenario_variable" do
-        put :update, :scenario_id => @scenario.id, :id => @scenario_variable.id, :scenario_variable => { :name => "scenerio var" }
-        response.should redirect_to(admins_scenario_variable_path(@scenario, @scenario_variable))
+      it "should expose the variable" do
+        put :update, :scenario_id => "37", :id => "1", :scenario_variable => {}
+        assigns[:scenario_variable].should eq(mock_variable)
+      end
+      
+      it "should update" do
+        mock_variable.should_receive(:update_attributes).and_return(true)
+        put :update, :scenario_id => "37", :id => "1", :scenario_variable => {}
+      end
+      
+      it "should redirect" do
+        put :update, :scenario_id => "37", :id => "1", :scenario_variable => {}
+        response.should redirect_to(admins_scenario_variable_path(assigns[:scenario], assigns[:scenario_variable]))
       end
     end
     
-    describe "with invalid params" do  
-      it "should description" do
-        put :update, :scenario_id => @scenario.id, :id => @scenario_variable.id, :scenario_variable => { :scenario_id => " " }
+    context "unsuccessfully" do
+      before do
+        mock_variable(:update_attributes => false)
+        mock_scenario.stub_chain(:variables, :find).and_return(mock_variable)
+      end
+      
+      it "should expose variable" do
+        put :update, :scenario_id => "37", :id => "1", :scenario_variable => {}
+        assigns[:scenario_variable].should eq(mock_variable)
+      end
+      
+      it "should update" do
+        mock_variable.should_receive(:update_attributes).and_return(false)
+        put :update, :scenario_id => "37", :id => "1", :scenario_variable => {}
+      end
+      
+      it "should render edit" do
+        put :update, :scenario_id => "37", :id => "1", :scenario_variable => {}
         response.should render_template(:edit)
       end
     end
   end
   
-  describe "PUT :update_status" do
-    
-    before(:each) do
-      @scenario_variable.update_attribute(:disabled, false)
+  context "PUT update status" do
+    before do
+      mock_scenario.stub_chain(:variables, :find).and_return([mock_variable])
+      mock_variable.stub(:update_attribute).and_return(true)
     end
     
-    it "" do
-      xhr(:put, :update_status, :scenario_id => @scenario.id, :variables_ids => [@scenario_variable.id])
-      response.should render_template(:update_status)  
+    it "should expose scenario variables" do
+      xhr(:put, :update_status, :scenario_id => "37", :variables_ids => ['1'])
+      assigns[:variables].should eq([mock_variable])
     end
     
-    it "should mass disable scenario variables" do
-      v1 = Factory(:scenario_variable, :disabled => false, :scenario => @scenario)
-      v2 = Factory(:scenario_variable, :disabled => false, :scenario => @scenario)
-      v3 = Factory(:scenario_variable, :disabled => false, :scenario => @scenario)
-      ScenarioVariable.where(:disabled => false).should have(4).vars
-      xhr(:put, :update_status, :scenario_id => @scenario.id, :variables_ids => [v1.id, v2.id, v3.id], :status => 'disable')
-      ScenarioVariable.where(:disabled => false).should have(1).var
-      [v1.reload, v2.reload, v3.reload].each { |v| v.should be_disabled }
-    end
-    
-    it "should mass enable scenario variables" do
-      v1 = Factory(:scenario_variable, :disabled => true, :scenario => @scenario)
-      v2 = Factory(:scenario_variable, :disabled => true, :scenario => @scenario)
-      ScenarioVariable.where(:disabled => true).should have(2).vars
-      xhr(:put, :update_status, :scenario_id => @scenario.id, :variables_ids => [v1.id, v2.id])
-      ScenarioVariable.where(:disabled => true).should have(0).vars
-      [v1.reload, v2.reload].each { |v| v.should_not be_disabled }
+    it "should not render" do
+      xhr(:put, :update_status, :scenario_id => "37", :variables_ids => ['1'])
+      response.should render_template(:update_status)
     end
   end
   
-  describe "DELETE destroy" do    
-    it "destroys the requested scenario_variable" do
-      @scenario_sys_vars = Scenario.find(@scenario.id).variables.size
-      delete :destroy, :scenario_id => @scenario.id, :id => @scenario_variable.id
-      Scenario.find(@scenario.id).variables.size.should == @scenario_sys_vars - 1
+  context "DELETE destroy" do
+    before do
+      mock_scenario.stub_chain(:variables, :find, :destroy).and_return(true)
     end
-  
-    it "redirects to the variables list" do
-      delete :destroy, :scenario_id => @scenario.id, :id => @scenario_variable.id
-      response.should redirect_to(admins_scenario_variables_path(@scenario))
+    
+    it "should expose scenario" do
+      delete :destroy, :scenario_id => "37", :id => "1"
+      assigns[:scenario].should eq(mock_scenario)
+    end
+    
+    it "should redirect" do
+      delete :destroy, :scenario_id => "37", :id => "1"
+      response.should redirect_to(admins_scenario_variables_path(assigns[:scenario]))
     end
   end
   
-  describe "DELETE drop" do
-    it "should mass delete vars" do
-      v1 = Factory(:scenario_variable, :scenario => @scenario)
-      proc { 
-        xhr(:delete, :drop, :scenario_id => @scenario.id, :variables_ids => [@scenario_variable.id, v1.id]) 
-      }.should change(ScenarioVariable, :count).by(-2)
+  context "DELETE drop" do
+    before do
+      mock_scenario.stub_chain(:variables, :where, :destroy_all).and_return(true)
     end
     
-    it "" do
-      xhr(:delete, :drop, :scenario_id => @scenario.id, :variables_ids => [@scenario_variable.id])
+    it "should expose scenario" do
+      xhr(:delete, :drop, :scenario_id => "37", :id => "1")
+      assigns[:scenario].should eq(mock_scenario)
+    end
+    
+    it "should render js template" do
+      xhr(:delete, :drop, :scenario_id => "37", :id => "1")
       response.should render_template(:drop)
     end
   end
-  
-  describe "Authentication" do
-    before(:each) { user_logout; login_as(@instructor) }
-    
-    it "should require a logged admin" do
-      authorize_actions(:scenario_id => @scenario.id, :id => @scenario_variable.id) do 
-        response.should be_redirect
-        flash[:notice].should == "You don't have privileges to access that page"
-      end
-    end
-  end
-  
-  
 end

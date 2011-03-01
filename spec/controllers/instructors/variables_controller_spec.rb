@@ -154,7 +154,6 @@ describe Instructors::VariablesController do
   
   context "DELETE destroy" do
     before do
-      mock_scenario.stub_chain(:variables, :find).and_return(mock_variable)
       mock_scenario.stub_chain(:variables, :find, :destroy).and_return(true)
     end
     
@@ -165,7 +164,7 @@ describe Instructors::VariablesController do
     
     it "should redirect" do
       delete :destroy, :scenario_id => mock_scenario.id, :id => "1"
-      response.should redirect_to(instructors_scenario_variables_path(assigns[:mock_scenario]))
+      response.should redirect_to(instructors_scenario_variables_path(assigns[:scenario]))
     end
   end
   
