@@ -12,7 +12,7 @@ describe Group do
   it { Group.instance_methods.should include('group_scenarios_attributes=') }
   
   it { should validate_presence_of(:name) }
-  it { should validate_uniqueness_of(:name) }
+  it { should validate_uniqueness_of(:name).scoped_to(:creator_id) }
   it { should ensure_length_of(:name).is_at_most(200) }
   it { should validate_presence_of(:code) }
   it { should validate_uniqueness_of(:code) }

@@ -8,10 +8,18 @@ class Group < ActiveRecord::Base
 
   accepts_nested_attributes_for :group_scenarios, :allow_destroy => true
   
-  validates :name, :code, :presence => true, :length => { :maximum => 200 }, :uniqueness => true
-  validates_presence_of :creator, :scenarios
+  validates :code, :presence => true, :length => { :maximum => 200 }, :uniqueness => true
+  validates :name, :length => {:maximum => 200 }
+  validates_uniqueness_of :name, :scope => :creator_id
+  validates_presence_of :name, :creator, :scenarios
   
-  before_create :set_code
+  before_validation(:on => :create) do
+    rcode = secure_rand
+    while(rcode)
+      self.code = rcode
+      rcode = Group.find_by_code(rcode) ? secure_rand : false
+    end
+  end
   
   def create_memberships(user)
     scenarios.each { |s| memberships.create(:member => user, :scenario => s) }
@@ -19,14 +27,6 @@ class Group < ActiveRecord::Base
   end
   
   private
-  
-  def set_code
-    rcode = secure_rand
-    while(rcode)
-      self.code = rcode
-      rcode = Group.find_by_code(rcode) ? secure_rand : false
-    end
-  end
   
   def secure_rand
     ActiveSupport::SecureRandom.hex(3)

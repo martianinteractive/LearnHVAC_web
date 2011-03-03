@@ -1,2 +1,1 @@
-te_on_use_flag=1
-rvm gemset use ruby-1.8.7-p72@lhvac
+rvm ruby-1.8.7-p334@lhvac
