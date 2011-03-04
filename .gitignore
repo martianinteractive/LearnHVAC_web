@@ -4,7 +4,6 @@ tmp/**/*
 config/database.yml
 config/newrelic.yml
 db/*.sqlite3
-public/stylesheets/*
 public/minified/*
 .bundle/environment.rb
 .rvmrc
