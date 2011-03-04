@@ -1,12 +1,6 @@
 class Admins::ScenariosController < Admins::ApplicationController
   before_filter :find_scenario, :only => [:show, :edit, :update, :destroy]
   
-  cache_sweeper :scenario_sweeper, :only => [:create, :update, :destroy]
-  
-  caches_action :index,
-                :cache_path => proc { |c| c.send(:admins_scenarios_path) },
-                :if => proc { |c| c.send(:can_cache_action?) }
-  
   subject_buttons :scenario, :only => :show
   subject_buttons :cancel_scenario, :only => [:new, :edit, :create, :update]
   
