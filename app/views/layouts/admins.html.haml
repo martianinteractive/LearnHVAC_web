@@ -10,6 +10,7 @@
     = include_stylesheets :print, :media => "print"
     = include_javascripts :application
     = javascript_include_tag "http://www.google.com/friendconnect/script/friendconnect.js" if @show_connection
+    = include_wice_grid_assets
 
     = yield :head
     = javascript_tag do

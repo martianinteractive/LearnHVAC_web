@@ -33,6 +33,7 @@ class User < ActiveRecord::Base
   scope :recent, :limit => 10, :order => "created_at DESC"
   
   before_save :set_institution, :on => :create, :if => Proc.new { |user| user.has_role?(:student) }
+  after_create :create_sample_scenarios, :if => Proc.new { |user| user.has_role?(:instructor) }
   
   def self.search(role, q)
     where(["role_code = #{role} AND (first_name LIKE :q OR last_name LIKE :q OR login LIKE :q OR email LIKE :q)", {:q => '%'+q+'%'}]).includes(:institution).order('last_name DESC')
@@ -123,6 +124,12 @@ class User < ActiveRecord::Base
     if self.group_code
       group = Group.find_by_code(self.group_code)
       self.institution = group.creator.institution
+    end
+  end
+  
+  def create_sample_scenarios
+    Scenario.sample.each do |scenario|
+      scenario.clone_for(self)
     end
   end
 

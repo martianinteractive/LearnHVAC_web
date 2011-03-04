@@ -13,7 +13,7 @@ gem "jammit"
 gem "compass"
 gem "capistrano"
 gem "exception_notification", :git => "http://github.com/rails/exception_notification.git", :require => 'exception_notifier'
-
+gem "wice_grid", '3.0.0.pre1'
 
 group :test do
 	gem "rspec-rails"

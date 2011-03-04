@@ -15,7 +15,7 @@ class Admins::ScenariosController < Admins::ApplicationController
   add_crumb("Instructor Scenarios") { |instance| instance.send :admins_scenarios_path }
   
   def index
-    @scenarios = Scenario.paginate :page => params[:page], :per_page => 25
+    @scenarios_grid = initialize_grid(Scenario, :include => [:users, :master_scenario], :per_page => 30)
   end
 
   def list

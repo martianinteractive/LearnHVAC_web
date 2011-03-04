@@ -25,6 +25,12 @@ class Scenario < ActiveRecord::Base
   scope :recently_updated, where(["scenarios.updated_at > ?", 30.days.ago.utc])
   scope :public, where(:public => true)
   scope :with_unread_alerts, where("scenario_alerts.read" => false)
+  scope :sample, where(:sample => true)
+  
+  def clone_for(user)
+    clon_atts = attributes.except("id", "created_at", "updated_at", "user_id", "sample")
+    clon = Scenario.create(clon_atts.merge(:user => user))
+  end
     
   private
     

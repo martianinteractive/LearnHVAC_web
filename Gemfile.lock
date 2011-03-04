@@ -131,6 +131,7 @@ GEM
     treetop (1.4.9)
       polyglot (>= 0.3.1)
     tzinfo (0.3.24)
+    wice_grid (3.0.0.pre1)
     will_paginate (3.0.pre2)
     yui-compressor (0.9.4)
 
@@ -156,4 +157,5 @@ DEPENDENCIES
   rspec-rails
   ruby-debug
   shoulda-matchers
+  wice_grid (= 3.0.0.pre1)
   will_paginate (~> 3.0.pre2)

@@ -13,6 +13,15 @@
       = f.label :master_scenario_id, "Master Scenario"
       = f.select :master_scenario_id, MasterScenario.select("name, id").collect { |ms| [ ms.name.capitalize, ms.id ] }, {:prompt => "Please select..."}
 
+
+%fieldset
+  %p
+    Designate as sample scenario. Sample scenarios are displayed when a new instructor signs up.
+
+  .field.clearfix
+    = f.label :sample, "Sample scenario"
+    = f.check_box :sample, {}, true, false
+
 %fieldset
   %p 
     Assing an instructor to the scenario.
@@ -20,6 +29,14 @@
   .field.clearfix
     = f.label :user_id, "Instructor"  
     = f.select :user_id, User.admin_instructor.collect {|user| [ user.name, user.id ] }, :prompt => "Please select..."
+
+%fieldset
+  %p 
+    Select Desktop version.
+
+  .field.clearfix
+    = f.label :desktop_id, "Desktop"
+    = f.select :desktop_id, ClientVersion.all.collect { |cv| [cv.version, cv.id] }, :prompt => "Please select..."
 
 %fieldset
   %p 

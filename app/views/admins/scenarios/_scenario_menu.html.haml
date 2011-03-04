@@ -46,6 +46,7 @@
   %h2.subject-name= link_to @scenario.name, admins_scenario_path(@scenario)
   %p.subject-description
     =@scenario.description
+
   - if @scenario.master_scenario.blank?
     %p.subject-description
       %em The master scenario used to create this scenario has been deleted.
