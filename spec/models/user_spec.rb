@@ -79,7 +79,7 @@ describe User do
   context "Delivering emails" do
     let(:user) { Factory(:guest) }
     let(:email) { ActionMailer::Base.deliveries.first }
-
+  
     before { ActionMailer::Base.deliveries = [] }
     
     it "should send password reset instructions with perishable token" do
@@ -99,4 +99,25 @@ describe User do
       email.subject.should match(/Activation Confirmation/)
     end
   end
+  
+  context "After creating a new instructor" do
+    before(:each) do
+      Factory(:valid_scenario, :sample => true)
+    end
+    
+    it "should create a sample scenario" do
+       expect { Factory.create(:instructor) }.to change(Scenario, :count).by(1)
+     end
+    
+    it "the sample scenario should be assigned to the user" do
+      instructor = Factory.create(:instructor)
+      instructor.created_scenarios.size.should eq(1)
+    end
+    
+    it "the sample scenario should have the same name as the instructor's sample scenario" do
+      instructor = Factory.create(:instructor)
+      instructor.created_scenarios.first.name.should == Scenario.sample.first.name
+    end
+  end
+  
 end
