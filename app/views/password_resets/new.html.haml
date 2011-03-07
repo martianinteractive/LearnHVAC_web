@@ -1,13 +1,18 @@
-%h2 Forgot Password
-%p Fill out the form below and instructions to reset your password will be emailed to you:
-
-= form_tag password_resets_path do
-  .field
-    %label Email:
-    = text_field_tag "email"
-
-  .actions
-    = submit_tag "Reset my password"
-    &nbsp; or back to
-    = link_to "login page", login_path
+.container
+  #login_content{"data-state" => "login"}
+    #reset_content_inner
+      .dialog_contents
+        #login_dialog.login_dialog.clearfix
+          %h3 Can't sign in? Forgot your password?
+          %p Enter your email address below and we'll send you password reset instructions.
+          = form_tag password_resets_path do
+            .field
+            %label Enter your email address:
+            %br 
+            %br
+            = text_field_tag "email"
+            .actions
+              = submit_tag "Send me reset instructions"
+              &nbsp; or back to
+              = link_to "login page", login_path
 

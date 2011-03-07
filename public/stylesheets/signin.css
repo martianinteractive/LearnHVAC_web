@@ -1,0 +1,51 @@
+body { font-family: helvetica,arial,sans-serif ! important; margin: 0pt; }
+.clearfix { display: inline-block; }
+.clearfix { display: block; }
+html, body.login { height: 100%; padding: 0pt; }
+
+body.login { padding: 0pt; text-align: center; border: medium none; background: url("/images/glossymetal.jpg") repeat scroll left top transparent; }
+body.login div#login_content { margin: 130px auto 20px; text-align: center; width: 100%; max-width: 988px; }
+body.login div#login_content_inner { text-align: center; width: 100%; max-width: 988px; }
+body.login.learnhvac div#login_content_inner { background: none repeat scroll 0% 0% transparent ! important; }
+body.login div.dialog_contents { padding: 6px 0pt; }
+body.login div.login_dialog { 
+width: 450px; 
+margin: 0pt auto; 
+background: none repeat scroll 0% 0% rgb(255, 255, 255); 
+padding: 10px 39px 19px; 
+box-shadow: 0 6px #999999;
+-webkit-box-shadow: 0 0 6px #999999;
+-moz-box-shadow: 0 0 6px #999999;
+border: 1px solid rgb(170, 170, 170); 
+-moz-border-radius: 8px; 
+-webkit-border-radius: 8px;
+border-radius: 8px; 
+}
+body.login:first-of-type div.login_dialog { border: medium none; }
+
+body.login div.login_dialog div.login_type input { font-size: 18px; padding: 3px; width: 200px; font-family: helvetica,arial,sans-serif; }
+body.login div.login_dialog p { margin: 0pt 0pt 10px; }
+body.login div.login_dialog div#user_name_login { display: none; }
+body.login div.login_dialog span.overlay_wrapper { position: relative; top: 0pt; left: 0pt; background: none repeat scroll 0% 0% white; }
+body.login div.login_dialog span.overlay_wrapper input { position: relative; background: none repeat scroll 0% 0% transparent; top: 0pt; z-index: 10; }
+body.login div.login_dialog span.overlay_wrapper label.overlabel { position: absolute; top: -2px; left: 6px; z-index: 1; color: rgb(153, 153, 153) ! important; font-size: 18px; }
+
+body.login div.login_dialog span.overlay_wrapper label.focus { color: rgb(204, 204, 204) ! important; }
+
+body.login div.help { margin: 10px auto; width: 300px; text-align: center; color: rgb(0, 0, 0); }
+body.login div.help ul { margin: 0pt; padding: 0pt; }
+body.login div.help ul li { list-style: none outside none; font-size: 12px; margin-bottom: 3px; }
+
+body.login div.help a { color: rgb(51, 160, 44); }
+
+body.login div#login_content[data-state="login"] div.login_dialog div#user_name_login, body.login div#login_content[data-state="login"] div.help ul#help_user_login, body.login div#login_content[data-state="login"] div.login { display: block; }
+body.login div#login_content[data-state="login"] div.dialog_contents { padding-top: 0pt; }
+
+body.login table.login_signin {margin-top: 10px}
+.logo {margin: 7px 0 14px 0;}
+
+body.login div#reset_content_inner { text-align: left; width: 100%; max-width: 988px; }
+
+.actions { margin: 10px 0 0 0;}
+#email { width: 300px; font-size: 1em; }
+.actions input[type="submit"] { font-size: 1.2em;}

@@ -81,6 +81,30 @@ a img {
   border: none;
 }
 
+/* incase an inverted custom gradient isn't specified */
+/* line 177, ../../../../Users/sergiobayona/.rvm/gems/ruby-1.8.7-p334@lhvac/gems/fancy-buttons-1.0.6/lib/stylesheets/_fancy-buttons.sass */
+.fancy-button-reset-base-class {
+  font-family: "Lucida Grande", Lucida, Arial, sans-serif;
+  background: url('/images/button_bg.png') repeat-x bottom left;
+  margin: 0;
+  width: auto;
+  overflow: visible;
+  display: inline-block;
+  cursor: pointer;
+  text-decoration: none;
+  border-style: solid;
+  font-weight: bold;
+}
+/* line 165, ../../../../Users/sergiobayona/.rvm/gems/ruby-1.8.7-p334@lhvac/gems/fancy-buttons-1.0.6/lib/stylesheets/_fancy-buttons.sass */
+.fancy-button-reset-base-class::-moz-focus-inner {
+  border: none;
+  padding: 0;
+}
+/* line 168, ../../../../Users/sergiobayona/.rvm/gems/ruby-1.8.7-p334@lhvac/gems/fancy-buttons-1.0.6/lib/stylesheets/_fancy-buttons.sass */
+.fancy-button-reset-base-class:focus {
+  outline: none;
+}
+
 /* line 41, ../../../../Users/sergiobayona/.rvm/gems/ruby-1.8.7-p334@lhvac/gems/compass-0.10.6/frameworks/blueprint/stylesheets/blueprint/_scaffolding.scss */
 body.bp .box {
   padding: 1.5em;
@@ -133,7 +157,7 @@ body.bp form.inline p {
   margin-bottom: 0;
 }
 
-/* line 16, ../../app/stylesheets/admin.sass */
+/* line 17, ../../app/stylesheets/admin.sass */
 body.bp {
   line-height: 1.5;
   font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
@@ -1381,7 +1405,7 @@ div.actions_header ul li {
   padding-right: 20px;
 }
 
-/* line 22, ../../app/stylesheets/admin.sass */
+/* line 23, ../../app/stylesheets/admin.sass */
 .main {
   margin-top: 0;
   padding: 0;
@@ -1390,22 +1414,22 @@ div.actions_header ul li {
   background: url(/images/layout/bg-sidebar.png) repeat-x left top;
 }
 
-/* line 30, ../../app/stylesheets/admin.sass */
+/* line 31, ../../app/stylesheets/admin.sass */
 body.bp {
   background: #fefefe;
   font-size: 85%;
   margin: 0;
   padding: 0;
 }
-/* line 36, ../../app/stylesheets/admin.sass */
+/* line 37, ../../app/stylesheets/admin.sass */
 body.bp .dl10 ul {
   padding: 0;
 }
-/* line 39, ../../app/stylesheets/admin.sass */
+/* line 40, ../../app/stylesheets/admin.sass */
 body.bp table.ui-datepicker-calendar td {
   padding: 1px;
 }
-/* line 42, ../../app/stylesheets/admin.sass */
+/* line 43, ../../app/stylesheets/admin.sass */
 body.bp .header {
   background: #7e95b7;
   border-bottom: 1px solid #dddddd;
@@ -1413,7 +1437,7 @@ body.bp .header {
   margin: 0;
   height: 47px;
 }
-/* line 49, ../../app/stylesheets/admin.sass */
+/* line 50, ../../app/stylesheets/admin.sass */
 body.bp .header h1, body.bp .header h1 span {
   display: block;
   position: relative;
@@ -1423,7 +1447,7 @@ body.bp .header h1, body.bp .header h1 span {
   height: 47px;
   background: url(/images/headers/generic.png) no-repeat left top;
 }
-/* line 58, ../../app/stylesheets/admin.sass */
+/* line 59, ../../app/stylesheets/admin.sass */
 body.bp div.border {
   height: 5px;
   padding: 0;
@@ -1432,46 +1456,46 @@ body.bp div.border {
   background: #6b809e;
 }
 
-/* line 68, ../../app/stylesheets/admin.sass */
+/* line 69, ../../app/stylesheets/admin.sass */
 .bp.instructor_site .header {
   background: #7e95b7;
 }
-/* line 71, ../../app/stylesheets/admin.sass */
+/* line 72, ../../app/stylesheets/admin.sass */
 .bp.instructor_site .header h1, .bp.instructor_site .header h1 span {
   background: url(/images/headers/instructors.png) no-repeat left top;
 }
-/* line 74, ../../app/stylesheets/admin.sass */
+/* line 75, ../../app/stylesheets/admin.sass */
 .bp.instructor_site .border {
   background: #6b809e;
 }
 
-/* line 80, ../../app/stylesheets/admin.sass */
+/* line 81, ../../app/stylesheets/admin.sass */
 .bp.manager_site .header {
   background: #65b879;
 }
-/* line 83, ../../app/stylesheets/admin.sass */
+/* line 84, ../../app/stylesheets/admin.sass */
 .bp.manager_site .header h1, .bp.manager_site .header h1 span {
   background: url(/images/headers/institutions.png) no-repeat left top;
 }
-/* line 86, ../../app/stylesheets/admin.sass */
+/* line 87, ../../app/stylesheets/admin.sass */
 .bp.manager_site .border {
   background: #1fa95a;
 }
 
-/* line 92, ../../app/stylesheets/admin.sass */
+/* line 93, ../../app/stylesheets/admin.sass */
 .bp.administration_site .header {
   background: #545454;
 }
-/* line 95, ../../app/stylesheets/admin.sass */
+/* line 96, ../../app/stylesheets/admin.sass */
 .bp.administration_site .header h1, .bp.administration_site .header h1 span {
   background: url(/images/headers/administration.png) no-repeat left top;
 }
-/* line 98, ../../app/stylesheets/admin.sass */
+/* line 99, ../../app/stylesheets/admin.sass */
 .bp.administration_site .border {
   background: #363636;
 }
 
-/* line 102, ../../app/stylesheets/admin.sass */
+/* line 103, ../../app/stylesheets/admin.sass */
 .dl10 {
   min-height: 400px;
   width: 150px;
@@ -1479,34 +1503,34 @@ body.bp div.border {
   background: url(/images/layout/bg-side-border.png) no-repeat right top;
   padding: 40px 20px;
 }
-/* line 109, ../../app/stylesheets/admin.sass */
+/* line 110, ../../app/stylesheets/admin.sass */
 .dl10 li {
   margin-right: 1em;
   margin-bottom: 0.5em;
 }
-/* line 113, ../../app/stylesheets/admin.sass */
+/* line 114, ../../app/stylesheets/admin.sass */
 .dl10 li a {
   color: #666666;
   display: block;
 }
-/* line 117, ../../app/stylesheets/admin.sass */
+/* line 118, ../../app/stylesheets/admin.sass */
 .dl10 a:hover, .dl10 li.here a {
   text-decoration: none;
   color: #333333;
 }
 
-/* line 122, ../../app/stylesheets/admin.sass */
+/* line 123, ../../app/stylesheets/admin.sass */
 .dr20 {
   float: right;
 }
 
-/* line 126, ../../app/stylesheets/admin.sass */
+/* line 127, ../../app/stylesheets/admin.sass */
 .dl10 ul, .dr20 ul {
   list-style: none;
   margin: 0 0 1.5em;
 }
 
-/* line 131, ../../app/stylesheets/admin.sass */
+/* line 132, ../../app/stylesheets/admin.sass */
 .fluid {
   width: auto;
   min-height: 400px;
@@ -1517,37 +1541,37 @@ body.bp div.border {
   padding-bottom: 40px;
   background: #fefefe;
 }
-/* line 141, ../../app/stylesheets/admin.sass */
+/* line 142, ../../app/stylesheets/admin.sass */
 .fluid .content {
   width: 100%;
   float: left;
 }
 
-/* line 145, ../../app/stylesheets/admin.sass */
+/* line 146, ../../app/stylesheets/admin.sass */
 h2 {
   margin: 0 0 1em 0;
   padding: 10px 20px;
   text-align: left;
 }
 
-/* line 151, ../../app/stylesheets/admin.sass */
+/* line 152, ../../app/stylesheets/admin.sass */
 .small-text {
   height: 3em;
 }
 
-/* line 154, ../../app/stylesheets/admin.sass */
+/* line 155, ../../app/stylesheets/admin.sass */
 .bp .global_nav li {
   margin-top: 0;
   margin-left: 1em;
   padding: 0 0 0 1em;
   border-left: 1px solid white;
 }
-/* line 160, ../../app/stylesheets/admin.sass */
+/* line 161, ../../app/stylesheets/admin.sass */
 .bp .global_nav li:first-child {
   border-left: none;
 }
 
-/* line 164, ../../app/stylesheets/admin.sass */
+/* line 165, ../../app/stylesheets/admin.sass */
 .navigation h3 {
   font: 1.3em;
   padding: 0 0 0.5em;
@@ -1555,16 +1579,16 @@ h2 {
   border-bottom: 1px solid #cccccc;
 }
 
-/* line 171, ../../app/stylesheets/admin.sass */
+/* line 172, ../../app/stylesheets/admin.sass */
 .block {
   min-height: 300px;
 }
 
-/* line 175, ../../app/stylesheets/admin.sass */
+/* line 176, ../../app/stylesheets/admin.sass */
 input.email {
   width: 40em;
 }
-/* line 178, ../../app/stylesheets/admin.sass */
+/* line 179, ../../app/stylesheets/admin.sass */
 input[type="submit"] {
   color: #333333;
   background: #e9e9e9;
@@ -1574,7 +1598,7 @@ input[type="submit"] {
   border-left-color: #cccccc;
 }
 
-/* line 187, ../../app/stylesheets/admin.sass */
+/* line 188, ../../app/stylesheets/admin.sass */
 button {
   color: #333333;
   background: #e9e9e9;
@@ -1584,34 +1608,34 @@ button {
   border-left-color: #cccccc;
 }
 
-/* line 197, ../../app/stylesheets/admin.sass */
+/* line 198, ../../app/stylesheets/admin.sass */
 textarea#page_content {
   width: 50em;
 }
-/* line 200, ../../app/stylesheets/admin.sass */
+/* line 201, ../../app/stylesheets/admin.sass */
 textarea.email {
   width: 40em;
   height: 25em;
 }
 
-/* line 205, ../../app/stylesheets/admin.sass */
+/* line 206, ../../app/stylesheets/admin.sass */
 #new_homepage label, .edit_homepage label {
   width: auto;
   text-align: left;
 }
 
-/* line 210, ../../app/stylesheets/admin.sass */
+/* line 211, ../../app/stylesheets/admin.sass */
 #new_homepage textarea, .edit_homepage textarea {
   width: 100%;
   height: 30em;
 }
 
-/* line 216, ../../app/stylesheets/admin.sass */
+/* line 217, ../../app/stylesheets/admin.sass */
 form[action="/admin/config"] label {
   width: auto;
   text-align: left;
 }
-/* line 220, ../../app/stylesheets/admin.sass */
+/* line 221, ../../app/stylesheets/admin.sass */
 form[action="/admin/config"] textarea {
   width: 100%;
   height: 15em;
@@ -1620,54 +1644,54 @@ form[action="/admin/config"] textarea {
   margin-bottom: 2em;
 }
 
-/* line 228, ../../app/stylesheets/admin.sass */
+/* line 229, ../../app/stylesheets/admin.sass */
 form.search label {
   width: 100px;
 }
 
-/* line 232, ../../app/stylesheets/admin.sass */
+/* line 233, ../../app/stylesheets/admin.sass */
 form .field {
   clear: both;
   margin-top: 0.5em;
 }
-/* line 236, ../../app/stylesheets/admin.sass */
+/* line 237, ../../app/stylesheets/admin.sass */
 form .group_scenario {
   max-width: 475px;
 }
-/* line 239, ../../app/stylesheets/admin.sass */
+/* line 240, ../../app/stylesheets/admin.sass */
 form .actions {
   margin-top: 2em;
   margin-left: 16.6em;
 }
 
-/* line 243, ../../app/stylesheets/admin.sass */
+/* line 244, ../../app/stylesheets/admin.sass */
 label {
   width: 16em;
 }
-/* line 246, ../../app/stylesheets/admin.sass */
+/* line 247, ../../app/stylesheets/admin.sass */
 label.inline {
   display: inline;
   width: inherit;
   float: none;
 }
 
-/* line 252, ../../app/stylesheets/admin.sass */
+/* line 253, ../../app/stylesheets/admin.sass */
 ul.sortable {
   display: none;
 }
-/* line 255, ../../app/stylesheets/admin.sass */
+/* line 256, ../../app/stylesheets/admin.sass */
 ul.sortable li {
   cursor: move;
 }
 
-/* line 259, ../../app/stylesheets/admin.sass */
+/* line 260, ../../app/stylesheets/admin.sass */
 table.plain td {
   border: none;
   padding: 0;
 }
 
 /* Login FORM */
-/* line 264, ../../app/stylesheets/admin.sass */
+/* line 265, ../../app/stylesheets/admin.sass */
 .loginPanel {
   background-color: #f0f0f0;
   width: 90%;
@@ -1678,12 +1702,12 @@ table.plain td {
 }
 
 /* SIGNUP FORM */
-/* line 274, ../../app/stylesheets/admin.sass */
+/* line 275, ../../app/stylesheets/admin.sass */
 form.signup label {
   margin-top: 4px;
 }
 
-/* line 277, ../../app/stylesheets/admin.sass */
+/* line 278, ../../app/stylesheets/admin.sass */
 #terms_of_use {
   height: 120px;
   width: 600px;
@@ -1693,25 +1717,25 @@ form.signup label {
 }
 
 /* CLASS EMAILS */
-/* line 286, ../../app/stylesheets/admin.sass */
+/* line 287, ../../app/stylesheets/admin.sass */
 form textarea.class_email {
   font-size: 12px;
   width: 25em;
   height: 13em;
 }
 
-/* line 291, ../../app/stylesheets/admin.sass */
+/* line 292, ../../app/stylesheets/admin.sass */
 div.class_email {
   padding: 4px 10px 4px 5px;
 }
 
 /* VARIABLES */
-/* line 297, ../../app/stylesheets/admin.sass */
+/* line 298, ../../app/stylesheets/admin.sass */
 form.variables input[type="submit"], .actions_header input[type="submit"] {
   font-size: 12px;
   padding: 0;
 }
-/* line 301, ../../app/stylesheets/admin.sass */
+/* line 302, ../../app/stylesheets/admin.sass */
 form.variables .select_all label, .actions_header .select_all label {
   width: 20px;
   margin: 11px 0 0;
@@ -1719,119 +1743,119 @@ form.variables .select_all label, .actions_header .select_all label {
 }
 
 /* INSTRUCTOR SITE */
-/* line 308, ../../app/stylesheets/admin.sass */
+/* line 309, ../../app/stylesheets/admin.sass */
 table.scenarios span {
   display: block;
   font-size: 12px;
 }
 
 /* STUDENTS SIGNUP */
-/* line 313, ../../app/stylesheets/admin.sass */
+/* line 314, ../../app/stylesheets/admin.sass */
 #group_info {
   margin-left: 230px;
 }
 
 /* DIRECTORY */
-/* line 317, ../../app/stylesheets/admin.sass */
+/* line 318, ../../app/stylesheets/admin.sass */
 #directory_dashboard {
   float: left;
   width: 65%;
 }
-/* line 321, ../../app/stylesheets/admin.sass */
+/* line 322, ../../app/stylesheets/admin.sass */
 #directory_dashboard .institutions {
   float: left;
 }
-/* line 324, ../../app/stylesheets/admin.sass */
+/* line 325, ../../app/stylesheets/admin.sass */
 #directory_dashboard .people {
   float: right;
 }
-/* line 327, ../../app/stylesheets/admin.sass */
+/* line 328, ../../app/stylesheets/admin.sass */
 #directory_dashboard .column {
   width: 50%;
   padding: 0;
 }
-/* line 331, ../../app/stylesheets/admin.sass */
+/* line 332, ../../app/stylesheets/admin.sass */
 #directory_dashboard .column .info span {
   display: block;
 }
-/* line 333, ../../app/stylesheets/admin.sass */
+/* line 334, ../../app/stylesheets/admin.sass */
 #directory_dashboard .column .info span a {
   text-decoration: none;
 }
 
-/* line 336, ../../app/stylesheets/admin.sass */
+/* line 337, ../../app/stylesheets/admin.sass */
 #connect {
   float: right;
   width: 30%;
 }
 
 /* TABS */
-/* line 341, ../../app/stylesheets/admin.sass */
+/* line 342, ../../app/stylesheets/admin.sass */
 #tabs {
   margin-top: 20px;
 }
 
 /* INNER/SUB TABS */
-/* line 346, ../../app/stylesheets/admin.sass */
+/* line 347, ../../app/stylesheets/admin.sass */
 .sub-tabs .tab-pane {
   min-height: 300px;
   margin: 15px;
 }
 
-/* line 350, ../../app/stylesheets/admin.sass */
+/* line 351, ../../app/stylesheets/admin.sass */
 #page_header {
   margin-top: 10px;
   margin-bottom: 30px;
 }
-/* line 354, ../../app/stylesheets/admin.sass */
+/* line 355, ../../app/stylesheets/admin.sass */
 #page_header #subject_info {
   margin-left: 10px;
 }
-/* line 357, ../../app/stylesheets/admin.sass */
+/* line 358, ../../app/stylesheets/admin.sass */
 #page_header #subject_info h2 {
   margin: 0 0 5px 0;
   padding: 0;
 }
-/* line 361, ../../app/stylesheets/admin.sass */
+/* line 362, ../../app/stylesheets/admin.sass */
 #page_header #subject_actions {
   float: right;
   margin-right: 10px;
 }
-/* line 365, ../../app/stylesheets/admin.sass */
+/* line 366, ../../app/stylesheets/admin.sass */
 #page_header #subject_actions a:hover {
   background-color: red;
   color: white;
 }
 
-/* line 370, ../../app/stylesheets/admin.sass */
+/* line 371, ../../app/stylesheets/admin.sass */
 #inner_column table {
   width: auto;
 }
-/* line 373, ../../app/stylesheets/admin.sass */
+/* line 374, ../../app/stylesheets/admin.sass */
 #inner_column table tr td, #inner_column table tr th {
   vertical-align: top;
 }
 
-/* line 376, ../../app/stylesheets/admin.sass */
+/* line 377, ../../app/stylesheets/admin.sass */
 #location {
   float: right;
   width: 300px;
   margin: 0 10px 0 0;
   padding: 1em;
 }
-/* line 382, ../../app/stylesheets/admin.sass */
+/* line 383, ../../app/stylesheets/admin.sass */
 #location h4 {
   text-align: center;
   margin: 0;
   padding: 0;
 }
-/* line 387, ../../app/stylesheets/admin.sass */
+/* line 388, ../../app/stylesheets/admin.sass */
 #location p {
   vertical-align: top;
 }
 
 /* TOOLTIPS */
-/* line 391, ../../app/stylesheets/admin.sass */
+/* line 392, ../../app/stylesheets/admin.sass */
 .tooltip {
   display: none;
   background: transparent url(/images/tools/black_arrow.png);
@@ -1842,12 +1866,12 @@ table.scenarios span {
   color: white;
 }
 
-/* line 400, ../../app/stylesheets/admin.sass */
+/* line 401, ../../app/stylesheets/admin.sass */
 img.tip {
   cursor: pointer;
 }
 
-/* line 403, ../../app/stylesheets/admin.sass */
+/* line 404, ../../app/stylesheets/admin.sass */
 .instructions {
   margin: 2em 2em 2em 2em;
   padding: 2px;

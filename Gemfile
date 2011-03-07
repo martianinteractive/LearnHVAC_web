@@ -3,6 +3,7 @@ gem 'rails', '3.0.5'
 gem "mysql2"
 gem "haml"
 gem "compass"
+gem "fancy-buttons"
 gem 'authlogic', :git => 'git://github.com/odorcicd/authlogic.git', :branch => 'rails3'
 gem "mysql2"
 gem "will_paginate", "~> 3.0.pre2"

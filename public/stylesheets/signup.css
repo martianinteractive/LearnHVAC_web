@@ -1,0 +1,92 @@
+/* Effective stylesheet produced by snapshot save */
+body.signup { margin: 0pt; padding: 0pt; font-family: "Lucida Grande","Lucida Sans Unicode",Verdana,Helvetica,Arial,sans-serif; line-height: 1.3em; font-size: 12px; background-color: rgb(245, 246, 247); text-align: left; }
+body.signup { background: url("/images/glossymetal.jpg") repeat scroll left top transparent}
+body.signup img {  }
+body.signup h1 { font-size: 16px; margin-bottom: 20px; }
+body.signup h4 { font-size: 14px; line-height: 1.3em; margin: 0pt; }
+body.signup a { color: rgb(0, 102, 204); }
+body.signup a:hover { color: rgb(0, 153, 255); }
+body.signup div.wrapper { width: 100%; }
+body.signup div.container { width: 980px; margin: 0pt auto; padding: 0pt; background-color: transparent; }
+body.signup div.rightcolumn { float: right; overflow: hidden; width: 310px; }
+body.signup div.leftcolumn { float: left; overflow: visible; width: 645px; margin-left: 25px; }
+body.signup div.clear { clear: right; }
+body.signup div.rule { border-top: 1px solid rgb(204, 204, 204); clear: right; padding-bottom: 20px; }
+body.signup div.top { border-top: 1px solid rgb(255, 255, 255); padding-bottom: 0pt; }
+body.signup div.both { clear: both; }
+body.signup div.last { padding-bottom: 0pt; }
+body.signup div.header { background-color: rgb(34, 34, 34); padding: 10px 0pt; overflow: hidden; text-align: left; }
+body.signup div.logo_product { float: left; overflow: hidden; }
+body.signup div.banner { background-image: url("/images/signup/shadow-plan.png"); height: 34px; padding: 20px 0pt 0pt 20px; margin-top: 20px; overflow: hidden; }
+body.signup div.banner h2 { margin: 0pt; font-size: 16px; line-height: 22px; }
+body.signup div.banner h2 span { display: block; color: rgb(204, 102, 0); font-size: 12px; font-weight: normal; line-height: 1.4em; }
+body.signup div.thanks { text-align: center; overflow: hidden; margin-top: 30px; margin-bottom: 20px; }
+body.signup div.thanks p { text-align: left; }
+body.signup ul { margin: 0px 0pt 10px; padding-left: 23px; list-style-image: url("/images/signup/icon_check.png"); }
+body.signup li { padding: 0pt 0pt 15px; color: rgb(102, 102, 102); font-size: 11px; }
+body.signup li strong { color: rgb(0, 0, 0); font-size: 13px; }
+body.signup div.footer { background-color: rgb(34, 34, 34); padding: 20px 0pt; margin-bottom: 0pt; color: rgb(204, 204, 204); font-size: 10px; line-height: 1.3em; overflow: hidden; text-align: center; }
+body.signup form div.section { border-bottom: 1px solid rgb(204, 204, 204); margin-bottom: 20px; padding-bottom: 5px; }
+body.signup form div.section.last { border-bottom: medium none; margin-bottom: 0pt; }
+body.signup div.contents form h3.step { font-size: 14px; color: rgb(55, 109, 0); padding: 8px 0pt 8px 36px; margin: 0pt 0pt 10px -10px; }
+body.signup form h3.step.one { background: url("/images/signup/step-1.png") no-repeat scroll left center transparent; }
+body.signup form h3.step.two { background: url("/images/signup/step-2.png") no-repeat scroll left center transparent; }
+body.signup form h3.step.three { background: url("/images/signup/step-3.png") no-repeat scroll left center transparent; }
+body.signup h4 { color: rgb(0, 0, 0); font-size: 12px; padding: 7px; margin: 0pt; }
+body.signup label { font-weight: normal; color: rgb(34, 34, 34); font-size: 12px; }
+body.signup input { color: rgb(0, 0, 0); font-weight: bold; font-size: 16px; padding: 3px; }
+body.signup fieldset { border-right: medium none; border-width: 1px medium medium; border-style: solid none none; border-color: rgb(204, 204, 204) -moz-use-text-color -moz-use-text-color; padding: 0pt 0pt 5px 15px; margin: 10px 0pt 0pt; }
+body.signup fieldset legend { font-weight: bold; color: rgb(0, 0, 0); padding: 7px; }
+body.signup table { padding: 0pt; margin: 0pt; border: medium none; }
+body.signup table tr { padding: 0pt; }
+body.signup table td { padding: 0pt 0pt 5px 5px; color: rgb(153, 153, 153); font-size: 11px; }
+body.signup table td.last { padding: 0pt 0pt 0pt 5px; }
+body.signup table td strong { color: rgb(102, 102, 102); }
+body.signup span.monospace { font-family: Courier; }
+body.signup div.contents { background-image: url("/images/signup/shadow-form.png"); padding: 20px 35px 20px 30px; overflow: visible; }
+body.signup div.contents img { margin-right: 8px; }
+body.signup div.contents p { margin: 15px 0pt; color: rgb(153, 153, 153); font-size: 11px; }
+body.signup div#coupon_status { margin: 0pt; }
+body.signup div.contents p.info, body.signup div.contents p.error { font-weight: bold; margin: -5px 0pt 15px; }
+body.signup div.contents p.info { color: green; background: none repeat scroll 0% 0% rgb(255, 255, 204); }
+body.signup div.contents p.error { color: red; }
+body.signup div.billingpoints p { font-size: 11px; line-height: 1.4em; color: rgb(102, 102, 102); margin-left: 10px; text-align: center; }
+body.signup div.contents p.coupon { margin-top: 0pt; }
+body.signup div.contents p.instruction { color: rgb(34, 34, 34); font-size: 12px; line-height: 1.4em; }
+body.signup div.contents p.instruction strong { color: rgb(0, 0, 0); }
+body.signup div.contents p.url { font-size: 16px; color: rgb(0, 0, 0); font-family: Helvetica,Verdana,sans-serif; }
+body.signup div.preset_value { font-size: 16px; padding: 3px; font-weight: bold; color: rgb(102, 102, 102); }
+body.signup div.activation_instructions { background-color: rgb(255, 255, 204); padding: 0pt 10px 15px; }
+body.signup div.contents div.amount p { margin-bottom: 0pt; }
+body.signup div.bottom { margin-bottom: 20px; }
+body.signup div.tip_container { float: right; overflow: visible; margin: 7px 0pt 15px; line-height: 1.2em; }
+body.signup div.tip { width: 200px; overflow: hidden; }
+body.signup div.cards { background-color: rgb(255, 255, 255); }
+body.signup div.tip_content { padding: 0pt 5px; }
+body.signup div.tip_content p { color: rgb(0, 0, 0); }
+body.signup a.referrer { color: rgb(136, 136, 136); }
+body.signup div.javascript_disabled_notification { width: 500px; margin: 50px auto; padding: 10px; background: none repeat scroll 0% 0% rgb(255, 255, 255); border: 10px solid rgb(204, 204, 204); }
+body.signup div.contents div.sign_in { background: none repeat scroll 0% 0% rgb(255, 255, 204); padding: 10px 15px; margin: 5px 0pt 15px -25px; line-height: 1.4em; display: inline-block; }
+body.signup div.contents div.sign_in p { color: rgb(0, 0, 0); font-size: 12px; margin: 0pt; }
+body.signup div.contents div.signed_in_explanation { background: none repeat scroll 0% 0% rgb(255, 255, 204); padding: 20px 15px 10px 20px; margin: -20px -25px 15px; overflow: hidden; }
+body.signup div.contents div.signed_in_explanation p { color: rgb(0, 0, 0); font-size: 12px; line-height: 1.4em; margin: 0pt 0pt 12px; }
+body.signup div.contents div.signed_in_explanation div.text { width: 270px; }
+body.signup div.contents div.signed_in_explanation div.text span.logout { color: rgb(187, 187, 187); }
+body.signup div.contents div.signed_in_explanation div.text span.logout a { padding: 1px; }
+body.signup div.queued_explanation { padding: 0pt 15px; }
+body.signup div.queued_explanation p { color: rgb(68, 68, 68); font-size: 14px; line-height: 1.5em; }
+body.signup div.flash_notice { border: 1px solid rgb(153, 204, 153); background: none repeat scroll 0% 0% rgb(226, 249, 227); color: rgb(0, 102, 0); padding: 10px; margin-bottom: 20px; }
+body.signup div.flash_alert, div.flash_error { background: none repeat scroll 0% 0% rgb(204, 0, 0); color: rgb(255, 255, 255); padding: 10px; margin-bottom: 20px; }
+body.signup div.error { background-color: rgb(255, 204, 204); margin-bottom: 25px; padding: 15px; color: red; border: 3px solid red; }
+body.signup div.error h1 { margin: 0pt 0pt 10px; }
+body.signup div.error ul { margin: 0px 0pt 10px; padding-left: 23px; list-style-image: none; }
+body.signup div.error li { padding: 0pt 0pt 2px; font-size: 11px; color: rgb(51, 51, 51); }
+body.signup div.error p { margin: 0pt; color: rgb(34, 34, 34); font-size: 12px; }
+body.signup .fieldWithErrors label { font-weight: bold; color: red; }
+body.signup .fieldWithErrors input { border: 2px solid red; }
+body.signup #username_error { margin-top: -10px; }
+body.signup div.login_overlay { width: 470px; padding: 10px 30px 20px; background: none repeat scroll 0% 0% rgb(255, 255, 255); border: 2px solid rgb(51, 51, 51); -moz-border-radius: 16px 16px 16px 16px; -moz-box-shadow: 0pt 0pt 16px rgb(51, 51, 51); }
+body.signup:first-of-type div.login_overlay { border: medium none; }
+:first-child + html body.signup div.login_overlay { padding-top: 25px; padding-bottom: 20px; }
+body.signup div.dim_zum_window div.controls { display: none; }
+body.signup div.login_overlay div.form h2 { margin-top: 20px; }

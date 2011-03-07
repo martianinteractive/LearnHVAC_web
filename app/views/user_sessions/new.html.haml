@@ -1,24 +1,30 @@
-= form_for @user_session, :as => :user_session, :url => user_sessions_path, :html => {:class => "bp"} do |f|
-  %h2 Welcome to Learn HVAC Tool Website.
-
-  = error_messages_for :user_session
-
-  .loginPanel
-    .field
-      = f.label :login
-      = f.text_field :login, :size=>15
-  
-    .field
-      = f.label :password
-      = f.password_field :password, :size=>15
-
-    .actions
-      = submit_tag "Log In"
-      &nbsp;or&nbsp;
-      = link_to "Forgot your password?", reset_password_path
-
-  .loginPanel
-    %h3 Create a new account.
-    %p By creating an account, you will be able to download and use the Learn HVAC client.
-    
-    %p= link_to "Create a new account now!", signup_path
+.container
+  #login_content{"data-state" => "login"}
+    #login_content_inner
+      .dialog_contents
+        #login_dialog.login_dialog.clearfix
+          %img.logo{:height => "40", :src => "/images/signin/new-logo-black.png", :width => "194"}/
+          %table.login_signin
+            %tr
+              %td
+                .form
+                  = form_for @user_session, :as => :user_session, :url => user_sessions_path do |f|
+                    = error_messages_for :user_session
+                    #user_name_login.login_type
+                      %p
+                        %span.overlay_wrapper
+                          = f.label :login, :class => "overlabel focus"
+                          = f.text_field :login, :class => "overlayable login", :title => "login", :autocapitalize => "off", :autocomplete => "on", :autocorrect => "off"
+                      %p
+                        %span.overlay_wrapper
+                          = f.label :password, :class => "overlabel"
+                          = f.password_field :password, :class => "pasword overlayable", :autocapitalize => "off", :autocomplete => "on", :autocorrect => "off", :title => "password"
+                    #signin_button
+                      %input{:src => "/images/signin/btn_sign-in.png", :type => "image"}
+              %td
+                = link_to image_tag('/images/signin/register.png', :width => '210', :border => '0'), signup_path
+      .help
+        %ul#help_user_login
+          %li
+            %strong Help:
+            = link_to "I can't sign in or I forgot my login/password", reset_password_path

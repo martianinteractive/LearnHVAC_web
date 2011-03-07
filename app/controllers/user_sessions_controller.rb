@@ -1,5 +1,6 @@
 class UserSessionsController < ApplicationController
   # ssl_required :new, :create, :destroy
+  layout "signin"
   before_filter :require_no_user, :only => [:new, :create]
   before_filter :require_user, :only => :destroy
   

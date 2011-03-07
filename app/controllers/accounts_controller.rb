@@ -1,5 +1,6 @@
 class AccountsController < ApplicationController
   # ssl_required :new, :create, :colleges, :states
+  layout 'registration'
   before_filter :require_no_user, :except => [:states]
   before_filter :get_role, :only => [:create]
   
@@ -27,7 +28,7 @@ class AccountsController < ApplicationController
       @colleges = College.find(:all, :conditions => [ "LOWER(value) LIKE ?", '%' + params[:term].downcase + '%' ], :order => "value ASC", :limit => 10)
     end
     
-    if @colleges.any?
+    if @colleges && @colleges.any?
       render :js => @colleges.map(&:value).to_json
     else
       render :nothing => true
@@ -42,6 +43,10 @@ class AccountsController < ApplicationController
     else
       render :nothing => true
     end
+  end
+  
+  def terms
+    render :layout => 'signin'
   end
   
   private
