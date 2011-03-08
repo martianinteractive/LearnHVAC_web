@@ -22,7 +22,7 @@ body.signup div.banner h2 { margin: 0pt; font-size: 16px; line-height: 22px; }
 body.signup div.banner h2 span { display: block; color: rgb(204, 102, 0); font-size: 12px; font-weight: normal; line-height: 1.4em; }
 body.signup div.thanks { text-align: center; overflow: hidden; margin-top: 30px; margin-bottom: 20px; }
 body.signup div.thanks p { text-align: left; }
-body.signup ul { margin: 0px 0pt 10px; padding-left: 23px; list-style-image: url("/images/signup/icon_check.png"); }
+body.signup ul { margin: 0px 0pt 10px; padding-left: 23px; }
 body.signup li { padding: 0pt 0pt 15px; color: rgb(102, 102, 102); font-size: 11px; }
 body.signup li strong { color: rgb(0, 0, 0); font-size: 13px; }
 body.signup div.footer { background-color: rgb(34, 34, 34); padding: 20px 0pt; margin-bottom: 0pt; color: rgb(204, 204, 204); font-size: 10px; line-height: 1.3em; overflow: hidden; text-align: center; }
@@ -90,3 +90,45 @@ body.signup:first-of-type div.login_overlay { border: medium none; }
 :first-child + html body.signup div.login_overlay { padding-top: 25px; padding-bottom: 20px; }
 body.signup div.dim_zum_window div.controls { display: none; }
 body.signup div.login_overlay div.form h2 { margin-top: 20px; }
+
+
+body.signup ul.ui-autocomplete { position: absolute; cursor: default; padding-left: 0;}	
+/* workarounds */
+* html .ui-autocomplete { width:1px; } /* without this, the menu expands to 100% in IE6 */
+.ui-menu {
+	list-style:none;
+	padding: 2px;
+	margin: 0;
+	display:block;
+	float: left;
+}
+.ui-menu .ui-menu {
+	margin-top: -3px;
+}
+.ui-menu .ui-menu-item {
+	margin:0;
+	padding: 0;
+	zoom: 1;
+	float: left;
+	clear: left;
+	width: 100%;
+}
+.ui-menu .ui-menu-item a {
+	text-decoration:none;
+	display:block;
+	padding:.2em .4em;
+	line-height:1.5;
+	zoom:1;
+}
+.ui-menu .ui-menu-item a.ui-state-hover,
+.ui-menu .ui-menu-item a.ui-state-active {
+	font-weight: normal;
+	font-color: #80A1CB;
+	background: #AFE0F5;
+}
+.ui-widget { font-family: Lucida Grande, Lucida Sans, Arial, sans-serif; font-size: 1.1em; }
+.ui-widget .ui-widget { font-size: 1em; }
+.ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button { font-family: Lucida Grande, Lucida Sans, Arial, sans-serif; font-size: 1em; }
+.ui-widget-content { border: 1px solid #a6c9e2; background: #fcfdfd url(../images/ui-bg_inset-hard_100_fcfdfd_1x100.png) 50% bottom repeat-x; color: #222222; }
+.ui-widget-content a { color: #222222; }
+.ui-widget-header { border: 1px solid #4297d7; background: #5c9ccc url(../images/ui-bg_gloss-wave_55_5c9ccc_500x100.png) 50% 50% repeat-x; color: #ffffff; font-weight: bold; }

@@ -20,7 +20,7 @@
     .header
       %h1.siteTitle
         %span
-        = link_to "Administration Site", "/"
+        = link_to "Administration Site", "/", :class => "title"
       %ul.global_nav
         %li.username= link_to current_user.name, profile_path
         %li= link_to "Log-out", logout_path

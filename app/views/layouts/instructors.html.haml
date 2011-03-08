@@ -19,7 +19,7 @@
     .header
       %h1.siteTitle
         %span
-        = link_to "Instructor Site", "/"
+        = link_to "Instructor Site", "/", :class => "title"
       %ul.global_nav
         - if logged_in?
           %li.username= link_to current_user.name, profile_path

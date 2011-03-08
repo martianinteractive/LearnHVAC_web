@@ -14,9 +14,9 @@
           %strong Already have a LearnHVAC account?
           %br
           = link_to "Sign in", login_path
-          
+         
         %h3.step Your Info
-        
+        %p * All fields are required  
         %table
           %tbody
             %tr
@@ -31,7 +31,7 @@
                 = f.text_field :last_name
             %tr
               %td
-                = f.label :email
+                = f.label :email, "Email"
               %td
                 = f.text_field :email
             %tr
@@ -43,7 +43,7 @@
                 (Or university, community college, organization, non-profit, group, school, etc.)
             %tr
               %td
-                = f.label :country
+                = f.label :country, "Country"
               %td
                 = f.country_select :country, ['United States', 'Canada']
             %tr#states
@@ -53,7 +53,7 @@
                 = f.text_field :state
             %tr
               %td
-                = f.label :city
+                = f.label :city, "City"
               %td
                 = f.text_field :city
                 
@@ -62,7 +62,8 @@
           %legend Instructors
           Would you like you signup as an Instructor?
           %p 
-            Instructors have additional capabilities. For example, create new scenarios, edit existing scenarios, create and manage classes, etc. 
+            Instructors have additional privileges and capabilities. For example, create new scenarios, edit existing scenarios, create and manage classes, distribute scenarios to students, share scenarios with other instructors, etc. 
+          %p If you registering as an instructor please make sure the institution above is where you are teaching.
           %br
           = f.check_box :role_code, {}, 0, 2
           = f.label :role_code, "Signup as Instructor"
@@ -93,7 +94,9 @@
           %strong
             Activation instructions
         %p.instruction
-          We will send you an activation link to your email inbox. You must click the link to complete the registration process.
+          We will send you an activation link to your email inbox. 
+        %p.instruction 
+          You MUST click the link to complete the registration process. If you don't click the link, you cannot properly sign in and use the system.
         
       %p.instruction 
         By clicking 
