@@ -31,6 +31,7 @@ class User < ActiveRecord::Base
   scope :recently_created, where(["created_at > ?", 30.days.ago])
   scope :recently_updated, where(["updated_at > ?", 30.days.ago])
   scope :recent, :limit => 10, :order => "created_at DESC"
+  scope :listed_directory, where(["list_directory = true"])
   
   before_save :set_institution, :on => :create, :if => Proc.new { |user| user.has_role?(:student) }
   after_create :create_sample_scenarios, :if => Proc.new { |user| user.has_role?(:instructor) }

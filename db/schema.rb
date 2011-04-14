@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110303202113) do
+ActiveRecord::Schema.define(:version => 20110414164922) do
 
   create_table "class_notification_emails", :force => true do |t|
     t.integer  "class_id"
@@ -182,6 +182,7 @@ ActiveRecord::Schema.define(:version => 20110303202113) do
     t.string   "country",           :default => "United States"
     t.string   "phone"
     t.string   "time_zone",         :default => "Pacific Time (US & Canada)"
+    t.boolean  "list_directory",    :default => false
   end
 
   add_index "users", ["perishable_token"], :name => "index_users_on_perishable_token"
