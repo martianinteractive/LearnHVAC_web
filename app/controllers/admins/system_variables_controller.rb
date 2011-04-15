@@ -24,6 +24,7 @@ class Admins::SystemVariablesController < Admins::ApplicationController
   def index
     params[:filter] = {} if params[:reset].present?
     @system_variables = @master_scenario.variables.filter(params[:filter]).paginate(:page => params[:page], :per_page => 25, :order => sort_clause)
+    @variables_grid = initialize_grid(Variable,:include => [:master_scenario],:per_page => 25)
   end
   
   def show

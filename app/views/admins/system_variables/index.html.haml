@@ -7,46 +7,75 @@
   %ul
     %li.ui-tabs-selected= link_to "Master Scenarios", [:admins, :master_scenarios]
     %li= link_to 'New Master Scenario', [:new, :admins, :master_scenario]
-    
+    x
   = render :partial => "admins/master_scenarios/master_scenario_menu"
   %br
     
   %div.actions_header
-    %ul
-      %li
-        = check_box_tag "select_all"
-        %label{:for => "select_all"} All
-      %li.update_status
-        = submit_tag "Enable", :name => "enable"
-        = submit_tag "Disable", :name => "disable"
-      %li
-        = submit_tag "Delete", :name => "delete"
+    = grid(@variables_grid) do |g|
+      - g.column :column_name => 'ID', :attribute_name => 'id'
+      - g.column :column_name => 'Name', :attribute_name => 'name'
+      - g.column :column_name => 'Display Name', :attribute_name => 'display_name'
+      - g.column :column_name => 'Description', :attribute_name => 'description'
+      - g.column :column_name => 'Unit system', :attribute_name => 'unit_si'
+      - g.column :column_name => 'unit_ip', :attribute_name => 'unit_ip'
+      - g.column :column_name => 'si_to_ip', :attribute_name => 'si_to_ip'
+      - g.column :column_name => 'left_label', :attribute_name => 'left_label'
+      - g.column :column_name => 'right_label', :attribute_name => 'right_label'
+      - g.column :column_name => 'subsection', :attribute_name => 'subsection'
+      - g.column :column_name => 'zone_position', :attribute_name => 'zone_position'
+      - g.column :column_name => 'fault_widget_type', :attribute_name => 'fault_widget_type'
+      - g.column :column_name => 'notes', :attribute_name => 'notes'
+      - g.column :column_name => 'component_code', :attribute_name => 'component_code'
+      - g.column :column_name => 'io_type', :attribute_name => 'io_type'
+      - g.column :column_name => 'view_type', :attribute_name => 'view_type'
+      - g.column :column_name => 'index', :attribute_name => 'index'
+      - g.column :column_name => 'lock_version', :attribute_name => 'lock_version'
+      - g.column :column_name => 'node_sequence', :attribute_name => 'node_sequence'
+      - g.column :column_name => 'low_value', :attribute_name => 'low_value'
+      - g.column :column_name => 'high_value', :attribute_name => 'high_value'
+      - g.column :column_name => 'initial_value', :attribute_name => 'initial_value'
+      - g.column :column_name => 'is_fault', :attribute_name => 'initial_value'
+      - g.column :column_name => 'is_percentage', :attribute_name => 'is_percentage'
+      - g.column :column_name => 'disabled', :attribute_name => 'disabled'
+      - g.column :column_name => 'fault_is_active', :attribute_name => 'fault_is_active'
+      - g.column :column_name => 'type', :attribute_name => 'type'
+      
+  -#   %ul
+  -#     %li
+  -#       = check_box_tag "select_all"
+  -#       %label{:for => "select_all"} All
+  -#     %li.update_status
+  -#       = submit_tag "Enable", :name => "enable"
+  -#       = submit_tag "Disable", :name => "disable"
+  -#     %li
+  -#       = submit_tag "Delete", :name => "delete"
     
-  = form_tag([:admins, @master_scenario, :system_variables], :method => :get, :class => "variables") do
-    %table.listing
-      %thead
-        %tr
-          %th
-          = sort_header_tag('index', :title => 'Index')
-          %th
-            = sort_header_tag('component_code', {:title => 'Component'}, false)
-            = filter_select_for(:component_code, Variable::COMPONENTS.to_a.map(&:reverse))
-          = sort_header_tag('name', :title => 'Name')
-          %th
-            Disabled
-            = filter_select_for(:disabled, [true, false])
-          %th 
-            Type
-            = filter_select_for(:io_type, Variable::IO_TYPES)
-          %th
-            Fault
-            = filter_select_for(:is_fault, [true, false])
-          %th
-            = submit_tag "Filter", :name => "_filter"
-            = submit_tag "Reset", :name => "reset"
-      - @system_variables.each do |system_variable|
-        = render :partial => 'system_variable', :locals => { :system_variable => system_variable }
+  -# = form_tag([:admins, @master_scenario, :system_variables], :method => :get, :class => "variables") do
+  -#   %table.listing
+  -#     %thead
+  -#       %tr
+  -#         %th
+  -#         = sort_header_tag('index', :title => 'Index')
+  -#         %th
+  -#           = sort_header_tag('component_code', {:title => 'Component'}, false)
+  -#           = filter_select_for(:component_code, Variable::COMPONENTS.to_a.map(&:reverse))
+  -#         = sort_header_tag('name', :title => 'Name')
+  -#         %th
+  -#           Disabled
+  -#           = filter_select_for(:disabled, [true, false])
+  -#         %th 
+  -#           Type
+  -#           = filter_select_for(:io_type, Variable::IO_TYPES)
+  -#         %th
+  -#           Fault
+  -#           = filter_select_for(:is_fault, [true, false])
+  -#         %th
+  -#           = submit_tag "Filter", :name => "_filter"
+  -#           = submit_tag "Reset", :name => "reset"
+  -#     -# - @system_variables.each do |system_variable|
+  -#       = render :partial => 'system_variable', :locals => { :system_variable => system_variable_grid }
 
-  %br
-  = will_paginate @system_variables, :params => params.slice(:filter)
-  %br
+  -# %br
+  -# -# = will_paginate @system_variables, :params => params.slice(:filter)
+  -# %br
