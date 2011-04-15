@@ -5,20 +5,9 @@
 
   %br
   = grid(@master_scenarios_grid) do |g|
-    - g.column :column_name => 'ID', :attribute_name => 'id', :no_filter => true 
-    
-    
-  -# %table.listing
-  -#   %thead
-  -#     %tr
-  -#       %th Name
-  -#       %th Author
-  -#       %th Client Version
-  -#   - @master_scenarios.each do |master_scenario|
-  -#     %tr
-  -#       %td= link_to master_scenario.name, admins_master_scenario_path(master_scenario)
-  -#       %td= master_scenario.user.name
-  -#       %td= link_to master_scenario.client_version.version, admins_settings_client_version_path(master_scenario.client_version) if master_scenario.client_version
-        
-  -# %br
-  -# = will_paginate @master_scenarios
+    - g.column :column_name => 'Name', :attribute_name => 'name' do |ms|
+      - link_to ms.name, admins_master_scenario_path(ms)
+    - g.column :column_name => "Author" do |ms|
+      - "#{ms.user.first_name} #{ms.user.last_name}"
+    - g.column :column_name => "Client Version", :attribute_name => 'version', :model_class => ClientVersion do |ms|
+      - link_to ms.client_version.version, admins_settings_client_version_path(ms.client_version) if ms.client_version

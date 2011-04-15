@@ -23,7 +23,9 @@ class Admins::VariablesController < Admins::ApplicationController
   
   def index
     params[:filter] = {} if params[:reset].present?
-    @scenario_variables = @scenario.variables.filter(params[:filter]).paginate(:page => params[:page], :per_page => 25, :order => sort_clause)
+    @scenario_variables_grid = initialize_grid(ScenarioVariable,
+                                               :per_page => 25,
+                                               :conditions => ["scenario_id = ?",@scenario.id])
   end
   
   def new

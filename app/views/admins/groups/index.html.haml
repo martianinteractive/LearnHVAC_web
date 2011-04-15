@@ -4,17 +4,10 @@
     %li= link_to "New Class", new_admins_class_path
   
   %br
-  %table.listing
-    %thead
-      %tr
-        %th Name
-        %th Instructor
-        %th Members
-    - @groups.each do |group|
-      %tr
-        %td= link_to group.name, admins_class_path(group)
-        %td= link_to group.creator.name, admins_user_path(group.creator, :role => group.creator.role)
-        %td= group.members.count
-  %br
-  = will_paginate @groups
-
+  = grid(@groups_grid, :show_filters => :always) do |g|
+    - g.column :column_name => 'Name' do |group|
+      - link_to group.name, admins_class_path(group)
+    - g.column :column_name => 'Instructor' do |group|
+      - link_to group.creator.name, admins_user_path(group.creator, :role => group.creator.role)
+    - g.column :column_name => 'Instructor' do |group|
+      - group.members.count

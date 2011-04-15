@@ -18,9 +18,9 @@ class Admins::MasterScenariosController < Admins::ApplicationController
   add_crumb("Master Scenarios") { |instance| instance.send :admins_master_scenarios_path }
   
   def index
-    # @master_scenarios = MasterScenario.paginate :page => params[:page],
-    # :per_page => 25
-    @master_scenarios_grid = initialize_grid(MasterScenario, :include => [:users], :per_page => 25)
+    
+    @master_scenarios_grid = initialize_grid(MasterScenario,
+                                             :include => [:user,:client_version], :per_page => 25)
   end
   
   def tag

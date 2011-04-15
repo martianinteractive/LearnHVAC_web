@@ -2,8 +2,6 @@
   %ul
     %li.ui-tabs-selected= link_to "Manage #{params[:role].pluralize.humanize}", admins_users_path("role" => params[:role])
     %li= link_to "New #{params[:role].humanize}", new_admins_user_path("role" => params[:role])
-
-
   = form_tag(search_admins_users_path(:role => params[:role]), :class => "search") do
     = label_tag :q, "Search"
     = text_field_tag :q, params[:q]
@@ -19,6 +17,8 @@
       &nbsp;&nbsp;
       = link_to "Reset", admins_users_path(:role => params[:role]) if controller.action_name == 'filter'
 
+
+
   %br
   %table#users.listing
     %thead
@@ -33,3 +33,4 @@
              
   %br
   = search_pagination_for(@users, :params => {:q => params[:q], :institution_id => params[:institution_id] })
+

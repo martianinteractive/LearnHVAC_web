@@ -6,7 +6,9 @@ class Admins::GroupsController < Admins::ApplicationController
   add_crumb("Classes") { |instance| instance.send :admins_classes_path }
   
   def index
-    @groups = Group.paginate(:page => params[:page], :per_page => 25, :include => { :members => :institution })
+    @groups_grid = initialize_grid(Group,
+                                   :include => { :members => :institution},
+                                   :per_page => 25)
   end
 
   def show
