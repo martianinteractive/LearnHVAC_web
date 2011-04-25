@@ -4,7 +4,8 @@ class Admins::InstitutionsController < Admins::ApplicationController
   cache_sweeper :institution_sweeper, :only => [:create, :update, :destroy]
   
   def index
-    @institutions = Institution.paginate :page => params[:page], :per_page => 25
+    @institution_grid = initialize_grid(Institution,
+                                        :per_page => 25)
   end
 
   def show

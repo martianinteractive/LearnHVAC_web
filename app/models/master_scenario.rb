@@ -1,5 +1,4 @@
 class MasterScenario < ActiveRecord::Base
-  acts_as_paranoid
   acts_as_taggable
   has_many :scenarios
   has_many :variables, :class_name => "SystemVariable", :foreign_key => "scenario_id"
