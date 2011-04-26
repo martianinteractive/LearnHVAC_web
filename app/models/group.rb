@@ -8,7 +8,11 @@ class Group < ActiveRecord::Base
 
   accepts_nested_attributes_for :group_scenarios, :allow_destroy => true
   
-  validates :code, :presence => true, :length => { :maximum => 200 }, :uniqueness => true
+  # uniqueness validation for code is useless.
+  # in lines 18-24, the while code finish after it does
+  # a query with the random code generated and doesn't find
+  # a group with that code
+  validates :code, :presence => true, :length => { :maximum => 200 }#, :uniqueness => true
   validates :name, :length => {:maximum => 200 }
   validates_uniqueness_of :name, :scope => :creator_id
   validates_presence_of :name, :creator, :scenarios
