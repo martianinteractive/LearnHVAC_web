@@ -24,7 +24,7 @@ describe Admins::VariablesController do
     
     it "should expose variables" do
       get :index, :scenario_id => "37"
-      assigns[:scenario_variables].should eq([mock_variable])
+      assigns[:scenario_variables_grid].should_not be_nil
     end
     
     it "should render index" do

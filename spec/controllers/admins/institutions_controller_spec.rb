@@ -9,10 +9,9 @@ describe Admins::InstitutionsController do
 
   context "GET index" do
     it "should expose institutions as @institutions and render the index template" do
-      Institution.should_receive(:paginate).and_return([institution])
       get :index
       response.should render_template(:index)
-      assigns[:institutions].should eq([institution])
+      assigns[:institution_grid].should_not be_nil
     end
   end
 

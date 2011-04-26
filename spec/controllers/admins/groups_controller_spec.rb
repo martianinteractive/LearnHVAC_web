@@ -8,10 +8,10 @@ describe Admins::GroupsController do
 
   context "GET index" do
     it "" do
-      Group.should_receive(:paginate).and_return([group])
+      # Group.should_receive(:paginate).and_return([group])
       get :index
       response.should render_template(:index)
-      assigns[:groups].should eq([group])
+      assigns[:groups_grid].should_not be_nil
     end
   end
 

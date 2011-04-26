@@ -18,10 +18,10 @@ describe Admins::SystemVariablesController do
   
   describe "GET index" do
     it "should expose the master scenario's system variables" do
-      mock_master_scenario.stub_chain(:variables, :filter, :paginate).and_return([mock_system_variable])
+      # mock_master_scenario.stub_chain(:variables, :filter, :paginate).and_return([mock_system_variable])
       MasterScenario.should_receive(:find).with('37').and_return(mock_master_scenario)
       get :index, :master_scenario_id => '37'
-      assigns[:system_variables].should eq([mock_system_variable])
+      assigns[:variables_grid].should_not be_nil
     end
     
     it "should render the index template" do

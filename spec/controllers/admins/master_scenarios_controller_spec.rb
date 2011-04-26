@@ -13,10 +13,11 @@ describe Admins::MasterScenariosController do
   
   describe "GET index" do
     it "should expose master_scenarios and render the template" do
-      MasterScenario.should_receive(:paginate).and_return([mock_master_scenario])
+      #MasterScenario.should_receive(:paginate).and_return([mock_master_scenario])
       get :index
       response.should render_template(:index)
-      assigns[:master_scenarios].should eq([mock_master_scenario])
+      #assigns[:master_scenarios].should eq([mock_master_scenario])
+      assigns[:master_scenarios_grid].should_not be_nil
     end
   end
   

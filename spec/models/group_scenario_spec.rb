@@ -11,7 +11,7 @@ describe GroupScenario do
   context do
     subject { Factory(:group_scenario) }
     it { should validate_uniqueness_of(:scenario_id).scoped_to(:group_id) }
-  end
+  endg
   
   context do
     let(:group) { Factory(:valid_group) }
@@ -19,7 +19,8 @@ describe GroupScenario do
     let(:student) { Factory(:student, :group_code => group.code) }
     let(:group_membership) { Factory(:group_membership, :group => group, :member => student, :scenario => group.scenarios.first) }
     let(:group_scenario) { Factory.build(:group_scenario, :group => group, :scenario => scenario) }
-    
+    # no members in the group
+    # that's why it doesn't change GroupMembership
     it { expect { group_scenario.save! }.to change(GroupMembership, :count).by(1) }
   end
 end

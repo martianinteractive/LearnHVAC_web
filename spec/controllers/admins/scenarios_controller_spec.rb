@@ -13,10 +13,10 @@ describe Admins::ScenariosController do
 
   describe "GET index" do
     it "should expose scenarios and render the template" do
-      Scenario.should_receive(:paginate).and_return([mock_scenario])
+      # Scenario.should_receive(:paginate).and_return([mock_scenario])
       get :index
       response.should render_template(:index)
-      assigns[:scenarios].should eq([mock_scenario])
+      assigns[:scenarios_grid].should_not be_nil
     end
   end
 
