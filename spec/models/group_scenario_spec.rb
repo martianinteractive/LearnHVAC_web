@@ -16,10 +16,13 @@ describe GroupScenario do
   context do
     let(:group) { Factory(:valid_group) }
     let(:scenario) { Factory(:valid_scenario) }
-    let(:student) { Factory(:student, :group_code => group.code) }
-    let(:group_membership) { Factory(:group_membership, :group => group, :member => student, :scenario => group.scenarios.first) }
+    let(:student) { Factory.build(:student, :group_code => group.code) }
+    let(:group_membership) { Factory.build(:group_membership, :group => group, :member => student, :scenario => group.scenarios.first) }
     let(:group_scenario) { Factory.build(:group_scenario, :group => group, :scenario => scenario) }
     
-    it { expect { group_scenario.save! }.to change(GroupMembership, :count).by(1) }
+    it {
+      group.create_memberships(student)
+      expect { group_scenario.save! }.to change(GroupMembership,:count).by(1) 
+    }
   end
 end
