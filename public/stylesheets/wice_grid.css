@@ -31,17 +31,18 @@
   vertical-align: top;
 }
 
-.wice_grid tr.wice_grid_filter_row input[type="text"]{
+
+.wice_grid input[type="text"]{
   color: #333333;
   padding: 3px 1px;
   border: 1px solid #999999;
   width: 10em;
 }
 
+
 .wice_grid tr.wice_grid_filter_row th:first_child{
   width: 5em;
 }
-
 
 .wice_grid th.filter_icons, .wice_grid th.hide_show_icon {
   text-align: right ;
