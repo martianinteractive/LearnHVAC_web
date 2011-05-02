@@ -6,6 +6,10 @@
   border-spacing: 0px
 }
 
+.wice_grid tr th, .wice_grid tr td {
+	font-size: 0.8em;
+}
+
 .wice_grid .clickable{
   cursor: pointer;
 }
@@ -36,11 +40,6 @@
   color: #333333;
   padding: 3px 1px;
   border: 1px solid #999999;
-  width: 10em;
-}
-
-
-.wice_grid tr.wice_grid_filter_row th:first_child{
   width: 5em;
 }
 
