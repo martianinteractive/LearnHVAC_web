@@ -23,6 +23,7 @@ Learnhvac::Application.routes.draw do |map|
   match 'reset_password' => 'password_resets#new', :as => 'reset_password'
   match 'profile' => 'users#show', :as => 'profile'
   match 'profile/edit' => 'users#edit', :as => 'edit_profile'
+  match 'profile/upgrade' => 'users#upgrade_guest_instructor'
  
  ## API ROUTES
  namespace :api do

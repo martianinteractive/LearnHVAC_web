@@ -23,6 +23,13 @@ class UsersController < ApplicationController
       render :action => "edit"
     end
   end
+
+  def upgrade_guest_instructor
+    user = User.find current_user
+    user.role_code = User::ROLES[:instructor]
+    user.save
+    redirect_to profile_path
+  end
   
   private
   
