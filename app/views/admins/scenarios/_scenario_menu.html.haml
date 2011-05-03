@@ -8,10 +8,10 @@
       %li
         - if @scenario.groups.empty?
           = link_to admins_scenario_path(@scenario), :confirm => 'Are you sure?', :method => :delete do
-          %button.button.large-red-button{:type => "button"} Delete Scenario
+            %button.button.large-red-button{:type => "button"} Delete Scenario
         - else
           = link_to admins_scenario_path(@scenario), :confirm => 'Are you sure? This scenario is used by one or more groups right now.', :method => :delete do
-          %button.button.large-red-button{:type => "button"} Delete Scenario
+            %button.button.large-red-button{:type => "button"} Delete Scenario
   
     - elsif @subject_buttons == :cancel_scenario
       %li

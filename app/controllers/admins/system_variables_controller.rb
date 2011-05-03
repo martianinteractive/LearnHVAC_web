@@ -24,8 +24,13 @@ class Admins::SystemVariablesController < Admins::ApplicationController
   def index
     @variables_grid = initialize_grid(SystemVariable,
                                       :per_page => 25,
-                                      :conditions => ["scenario_id = ?",@master_scenario.id]
+                                      :name => "g1",
+                                      :conditions => ["scenario_id = ?",@master_scenario.id],
+                                      :enable_export_to_csv => true,
+                                      :csv_file_name => 'variables'
                                       )
+    
+    export_grid_if_requested("g1" => "variables_grid")
   end
   
   def show

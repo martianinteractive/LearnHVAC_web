@@ -24,8 +24,13 @@ class Admins::VariablesController < Admins::ApplicationController
   def index
     params[:filter] = {} if params[:reset].present?
     @scenario_variables_grid = initialize_grid(ScenarioVariable,
+                                               :name => "g1",
                                                :per_page => 25,
-                                               :conditions => ["scenario_id = ?",@scenario.id])
+                                               :conditions => ["scenario_id =  ?",@scenario.id],
+                                               :enable_export_to_csv => true,
+                                               :csv_file_name => 'scenario_variables'
+                                               )
+    export_grid_if_requested("g1" => "scenario_variables_grid")
   end
   
   def new
