@@ -29,3 +29,7 @@
     - item.disabled? ? 'Yes' : 'No'
   - g.column :column_name => 'fault_is_active', :attribute_name => 'fault_is_active'  do |item|
     - item.fault_is_active? ? 'Yes' : 'No'
+  - g.column do |item|
+    - link_to image_tag('edit.gif'), edit_admins_scenario_variable_path(@scenario, item)
+  - g.column do |item|
+    - link_to image_tag('trashcan.gif'), admins_scenario_variable_path(@scenario, item), :confirm => 'Are you sure?', :method => :delete
