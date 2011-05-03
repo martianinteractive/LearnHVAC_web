@@ -11,7 +11,7 @@
   - g.column :column_name => 'Zone Position', :attribute_name => 'zone_position'
   - g.column :column_name => 'Fault Widget Type', :attribute_name => 'fault_widget_type'
   - g.column :column_name => 'Notes', :attribute_name => 'notes'
-  - g.column :column_name => 'Component Code', :attribute_name => 'component_code'
+  - g.column :column_name => 'Component Code', :attribute_name => 'component_code',:custom_filter => Variable::COMPONENTS.keys
   - g.column :column_name => 'IO Type', :attribute_name => 'io_type',:custom_filter => Variable::IO_TYPES
   - g.column :column_name => 'View Type', :attribute_name => 'view_type'
   - g.column :column_name => 'Index', :attribute_name => 'index'
