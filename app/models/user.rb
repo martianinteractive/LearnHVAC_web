@@ -35,7 +35,7 @@ class User < ActiveRecord::Base
   
   before_save :set_institution, :on => :create, :if => Proc.new { |user| user.has_role?(:student) }
   after_create :create_sample_scenarios, :if => Proc.new { |user| user.has_role?(:instructor) }
-  after_create :notify_signed_up
+  # after_create :notify_signed_up
 
   def self.search(role, q)
     where(["role_code = #{role} AND (first_name LIKE :q OR last_name LIKE :q OR login LIKE :q OR email LIKE :q)", {:q => '%'+q+'%'}]).includes(:institution).order('last_name DESC')
@@ -88,7 +88,7 @@ class User < ActiveRecord::Base
     Notifier.activation_confirmation(self).deliver
   end
 
-  def notify_signed_up
+  def notify_signup
     Notifier.signup_notification(self).deliver
   end
     
