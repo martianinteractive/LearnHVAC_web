@@ -22,5 +22,11 @@ class Notifier < ActionMailer::Base
       format.text { cn.body }
     end
   end
+
+  def signup_notification(user)
+    @user = user
+    mail(:to=>Site.config["admin"],:subject => "New Learn HVAC user created!")
+    
+  end
   
 end
