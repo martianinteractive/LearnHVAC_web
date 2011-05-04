@@ -15,8 +15,8 @@ class AccountsController < ApplicationController
     @account.require_agreement_acceptance!
     
     if @account.save_without_session_maintenance
-      @account.deliver_activation_instructions!
       @account.notify_signup
+      @account.deliver_activation_instructions!
       flash[:notice] = "Please check your email inbox for account activation instructions. You cannot login until you have clicked on the activation link within the mail you received."
       redirect_to @account.has_role?(:instructor) ? login_path : guests_dashboard_path(:token => @account.perishable_token)
     else

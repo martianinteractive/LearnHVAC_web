@@ -12,7 +12,7 @@ describe AccountsController do
   end
   
   context "Post :create" do
-    let(:user) {mock_model(User, :save_without_session_maintenance => true, :deliver_activation_instructions! => true, :has_role? => true, :active= => false, :role_code= => nil, :require_agreement_acceptance! => true)}
+    let(:user) {mock_model(User, :save_without_session_maintenance => true,:deliver_activation_instructions! => true, :has_role? => true, :active= =>  false, :role_code= => nil, :require_agreement_acceptance! => true, :notify_signup=>true)}
     
     before(:each) do
       ActionMailer::Base.deliveries = []
@@ -37,8 +37,9 @@ describe AccountsController do
         response.should redirect_to(login_path)
       end
       
-      it "should send an activation information mail" do
-        proc { post :create, :user => Factory.attributes_for(:user) }.should change(ActionMailer::Base.deliveries, :size).by(1)
+      it "should send an activation information mail and sign up notification
+  to the admins" do
+        proc { post :create, :user => Factory.attributes_for(:user) }.should change(ActionMailer::Base.deliveries, :size).by(2)
       end
     end
     
