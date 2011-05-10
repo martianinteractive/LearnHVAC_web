@@ -8,43 +8,46 @@
     %li= link_to "New Scenario", new_instructors_scenario_path
 
   = render :partial => "instructors/scenarios/scenario_menu"
+  = button_to_function "Export to CSV", export_to_csv_javascript(@scenario_variables_grid)
   %br
   
   %div.actions_header
-    %ul
-      %li
-        = check_box_tag "select_all"
-        %label{:for => "select_all"} All
-      %li.update_status
-        = submit_tag "Enable", :name => "enable"
-        = submit_tag "Disable", :name => "disable"
-      %li
-        = submit_tag "Delete", :name => "delete"
-  
-  = form_tag([:instructors, @scenario, :variables], :method => :get, :class => "variables") do
-    %table.listing
-      %thead
-        %tr
-          %th
-          = sort_header_tag('index', :title => 'Index')
-          %th
-            = sort_header_tag('component_code', {:title => 'Component'}, false)
-            = filter_select_for(:component_code, Variable::COMPONENTS.to_a.map(&:reverse))
-          = sort_header_tag('name', :title => 'Name')
-          %th
-            Disabled
-            = filter_select_for(:disabled, [true, false])
-          %th 
-            Type
-            = filter_select_for(:io_type, Variable::IO_TYPES)
-          %th
-            Fault
-            = filter_select_for(:is_fault, [true, false])
-          %th
-            = submit_tag "Filter", :name => "_filter"
-            = submit_tag "Reset", :name => "reset"
-      - @scenario_variables.each do |variable|
-        = render :partial => 'variable', :locals => { :variable => variable }
+    = render :partial => 'scenario_variables_grid'
 
-  %br
-  = will_paginate @scenario_variables, :params => params.slice(:filter)
+  -#   %ul
+  -#     %li
+  -#       = check_box_tag "select_all"
+  -#       %label{:for => "select_all"} All
+  -#     %li.update_status
+  -#       = submit_tag "Enable", :name => "enable"
+  -#       = submit_tag "Disable", :name => "disable"
+  -#     %li
+  -#       = submit_tag "Delete", :name => "delete"
+  
+  -# = form_tag([:instructors, @scenario, :variables], :method => :get, :class => "variables") do
+  -#   %table.listing
+  -#     %thead
+  -#       %tr
+  -#         %th
+  -#         = sort_header_tag('index', :title => 'Index')
+  -#         %th
+  -#           = sort_header_tag('component_code', {:title => 'Component'}, false)
+  -#           = filter_select_for(:component_code, Variable::COMPONENTS.to_a.map(&:reverse))
+  -#         = sort_header_tag('name', :title => 'Name')
+  -#         %th
+  -#           Disabled
+  -#           = filter_select_for(:disabled, [true, false])
+  -#         %th 
+  -#           Type
+  -#           = filter_select_for(:io_type, Variable::IO_TYPES)
+  -#         %th
+  -#           Fault
+  -#           = filter_select_for(:is_fault, [true, false])
+  -#         %th
+  -#           = submit_tag "Filter", :name => "_filter"
+  -#           = submit_tag "Reset", :name => "reset"
+  -#     - @scenario_variables.each do |variable|
+  -#       = render :partial => 'variable', :locals => { :variable => variable }
+
+  -# %br
+  -# = will_paginate @scenario_variables, :params => params.slice(:filter)

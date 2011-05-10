@@ -52,7 +52,7 @@
       = f.label :password_confirmation, "Password Confirmation"	
       = f.password_field :password_confirmation, :size=>20,  :value=>""
 
-    - if current_user.has_role?(:guest) or current_user.has_role?(:instructor)
+    - if current_user.has_role?(:guest) or current_user.has_role?(:instructor) or current_user.has_role?(:student)
       .field
         = f.label :list_directory, "Do you want your name listed in the community directory?"
         = f.check_box :list_directory

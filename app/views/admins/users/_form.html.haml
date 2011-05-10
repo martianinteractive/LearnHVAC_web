@@ -58,7 +58,7 @@
   = f.label :enabled
   = f.check_box :enabled
 
-- if @user.has_role?(:guest) or @user.has_role?(:instructor)
+- if @user.has_role?(:student) or @user.has_role?(:instructor) or @user.has_role?(:student)
   .field
     = f.label :list_directory, "Listed in the community directory?"
     = f.check_box :list_directory
