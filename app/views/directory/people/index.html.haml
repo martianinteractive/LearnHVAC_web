@@ -6,8 +6,7 @@
   - @users.each do |user|
     %tr
       %td
-        - if user.list_directory
-          = link_to user.name, directory_person_path(user)
-          %span= "scenarios #{user.created_scenarios.public.count}"
+        = link_to user.name, directory_person_path(user)
+        %span= "scenarios #{user.created_scenarios.public.count}"
 %br
 = will_paginate @users
