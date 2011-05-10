@@ -93,13 +93,13 @@
 
   .field.clearfix
     = f.label :longterm_start_date
-    = f.text_field :longterm_start_date
+    = f.text_field :longterm_start_date, {:readonly => "true"}
 
   %p{:style => "margin-top:35px;"} The date and time the real-time simulation should stop.
 
   .field.clearfix
     = f.label :longterm_stop_date
-    = f.text_field :longterm_stop_date
+    = f.text_field :longterm_stop_date, {:readonly => "true"}
 
   %p{:style => "margin-top:35px;"} Allow the student to change the start and stop time and date for the long-term simulation.
 
