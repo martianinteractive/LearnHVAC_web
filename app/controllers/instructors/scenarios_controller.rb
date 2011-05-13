@@ -19,7 +19,10 @@ class Instructors::ScenariosController < Instructors::ApplicationController
   end
 
   def new
-    @scenario = Scenario.new
+    @scenario = Scenario.new(:longterm_start_date => Time.now,
+                             :longterm_stop_date => Time.now+7.days,
+                             :realtime_start_datetime => Time.now
+                             )
     add_crumb "New Scenario", new_instructors_scenario_path
   end
 
