@@ -57,6 +57,13 @@
         = f.label :list_directory, "Do you want your name listed in the community directory?"
         = f.check_box :list_directory
 
+    - if current_user.has_role?(:guest) or current_user.has_role?(:instructor)
+      .field
+        = f.label :role, "Type of account"
+        Guest
+        = f.radio_button :role_code, User::ROLES[:guest]
+        Instructor
+        = f.radio_button :role_code, User::ROLES[:instructor]
     .actions
       = submit_tag "Update"
       &nbsp;or&nbsp;

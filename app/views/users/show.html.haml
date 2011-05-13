@@ -34,11 +34,4 @@
           
       %tr
         %th Member since:
-        %td= current_user.created_at.to_date.to_formatted_s(:long)
-      - if current_user.has_role?:guest
-        %tr
-          %th Update account to instructor:
-          %td
-            = link_to "Update!","/profile/upgrade"
-            
-        
+        %td= current_user.created_at.to_date.to_formatted_s(:long)      

@@ -17,6 +17,9 @@ class UsersController < ApplicationController
   end
   
   def update
+    if params["user"]["role_code"]
+      current_user.role_code = params["user"]["role_code"]
+    end
     if current_user.update_attributes(params[:user])
       redirect_to(profile_path, :notice => 'Your profile was successfully updated.')
     else
@@ -26,7 +29,11 @@ class UsersController < ApplicationController
 
   def upgrade_guest_instructor
     user = User.find current_user
-    user.role_code = User::ROLES[:instructor]
+    if user.has_role?:guest
+      user.role_code = User::ROLES[:instructor]
+    elsif user.has_role?:instructor
+      user.role_code = User::ROLES[:guest]
+    end
     user.save
     redirect_to profile_path
   end
