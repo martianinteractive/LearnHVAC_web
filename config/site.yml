@@ -1,17 +1,17 @@
 development:
   host: development.lhvac.com
-  from: test@lhvac.com
+  from: development@lhvac.com
   fconnect_site_id: 18322011899239412358
-  admin: jderinger@su-per-b.org,nahmane@su-per-b.org
+  admin: admin@learnhvac.org
   
 test:
   host: test.lhvac.com
   from: test@lhvac.com
   fconnect_site_id: 18322011899239412358
-  admin: jderinger@su-per-b.org,nahmane@su-per-b.org
+  admin: admin@learnhvac.org
   
 production:
   host: app.learnhvac.org
   from: app@learnhvac.org
   fconnect_site_id: 08223197587884952724
-  admin: jderinger@su-per-b.org,nahmane@su-per-b.org
+  admin: admin@learnhvac.org
