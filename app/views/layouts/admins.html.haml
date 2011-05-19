@@ -1,65 +1,46 @@
-!!! XML
 !!!
-%html{"xmlns" => "http://www.w3.org/1999/xhtml"}
+/[if lt IE 7 ] <html lang="en" class="no-js ie6">
+/[if IE 7 ] <html lang="en" class="no-js ie7">
+/[if IE 8 ] <html lang="en" class="no-js ie8">
+/[if IE 9 ] <html lang="en" class="no-js ie9">
+/ [if (gt IE 9)|!(IE)]><!
+%html.no-js{:lang => "en"}
+  / <![endif]
   %head
-    <meta content="text/html; charset=utf-8" http-equiv="Content-type" />
+    %meta{:charset => "UTF-8"}/
+    %title Learn Green Buildings Admin
+    %meta{:content => "IE=edge,chrome=1", "http-equiv" => "X-UA-Compatible"}/
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
+    %link{:href => "/favicon.ico", :rel => "shortcut icon"}/
     = csrf_meta_tag
-    %title
-      Learn HVAC Administrators
-    = include_stylesheets :application
-    = include_stylesheets :print, :media => "print"
-    = include_javascripts :application
-    = javascript_include_tag "http://www.google.com/friendconnect/script/friendconnect.js" if @show_connection
-    = javascript_include_tag :defaults
-    = include_wice_grid_assets
-    
-
+    = stylesheet_link_tag 'application'
+    = javascript_include_tag 'modernizr'
     = yield :head
-    = javascript_tag do
-      = yield :js_templates
+  %body
+    #wrapper
+      %header
+        #logo
+          Learn Green Buildings
+        #app_title
+          Administration
+        %nav
+          = generate_nav
+        #subnav
+          #welcome= "Welcome, #{current_user.name}, #{current_user.role.to_s}"
+          = link_to "Account Settings", edit_profile_path, :class => 'settings'
+          = link_to "Sign Out", logout_path, :confirm => 'Really sign out?', :method => :get, :class => 'logout'
+      #content
+        - flash.each do |name, msg|
+          %div(class=name)= msg
+        = yield
 
-  %body.bp.administration_site
-    .header
-      %h1.siteTitle
-        %span
-        = link_to "Administration Site", "/", :class => "title"
-      %ul.global_nav
-        %li.username= link_to current_user.name, profile_path
-        %li= link_to "Log-out", logout_path
-
-    .border
-      &nbsp;
-    .main
-      .dl10.navigation
-
-        %h3 General
-        %ul
-          %li
-            = link_to "Dashboard", admins_dashboard_path
-            = link_to "Settings", admins_settings_path
-            = link_to "Community Directory", directory_path
-
-        %h3 System
-        %ul
-          %li
-            = link_to "Master Scenarios", admins_master_scenarios_path
-            = link_to "Instructor Scenarios", admins_scenarios_path
-
-        %h3 Users
-        %ul
-          %li
-            = link_to "Admins", admins_users_path(:role => :admin)
-            = link_to "Inst. Managers", admins_users_path(:role => :manager)
-            = link_to "Instructors", admins_users_path(:role => :instructor)
-            = link_to "Students", admins_users_path(:role => :student)
-            = link_to "Guests", admins_users_path(:role => :guest)
-            = link_to "Institutions", admins_institutions_path
-            = link_to "Classes", admins_classes_path
-
-      .fluid
-        .content
-          = render_crumbs.html_safe
-          = display_flash
-          = yield
-          - if @show_connection
-            = render :partial => "layouts/connection"
+    %footer
+      == &copy; #{Date.today.year} Institute for the Sustainable Performance of Buildings. All rights reserved.
+    %script{:src => "//ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"}
+    :javascript
+      !window.jQuery && document.write(unescape('%3Cscript src="javascripts/jquery.js"%3E%3C/script%3E'))
+    = javascript_include_tag :defaults
+    = yield :scripts
+    /[if lt IE 7 ]
+      <script src="javascripts/dd_belatedpng.js"></script>
+      <script> DD_belatedPNG.fix('img, .png_bg');</script>

@@ -1,4 +1,26 @@
 module ApplicationHelper
+  
+  def nav_fields
+    @nav_fields ||= [
+      {:title => 'Users', :id => 'nav_users', :path => admins_users_path(:role => 'instructor'), :order => 1, :authorized_roles => [:admin]}
+    ]
+  end
+
+  def generate_nav
+    nav_items(nav_fields, @title)
+  end
+
+  def nav_items(entries, match_tab)
+    ''.html_safe.tap do |items|
+      entries.sort_by {|f| f[:order]}.each do |field|
+        if field[:authorized_roles].include?(current_user.role)
+          link_options = field[:rel].blank? ? {:id => field[:id]} : {:rel => field[:rel], :id => field[:id]}
+          link_options.merge!(field[:title] == match_tab.to_s ? {:class => 'button current'} :  {:class => 'button'})
+          items << (field[:path].blank? ? field[:title] : link_to(field[:title], field[:path], link_options))
+        end
+      end
+    end
+  end
     
   def display_flash
     return content_tag("div", flash[:notice], :class => "notice")  if flash[:notice]
@@ -28,5 +50,6 @@ module ApplicationHelper
       will_paginate collection, defaults.merge(opts)
     end
   end
+  
   
 end
