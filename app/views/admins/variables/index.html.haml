@@ -5,7 +5,7 @@
 #tabs
   %ul
     %li.ui-tabs-selected= link_to "Instructor Scenarios", admins_scenarios_path
-    %li= link_to "New Scenario", new_admins_scenario_path
+    %li= link_to "New Scenario", new_admins_scenario_path, :class => 'button'
   
   = render :partial => "admins/scenarios/scenario_menu"
   = button_to_function "Export to CSV", export_to_csv_javascript(@scenario_variables_grid)
