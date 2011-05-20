@@ -1,7 +1,7 @@
 #tabs
   %ul
-    %li.ui-tabs-selected= link_to "Manage institutions", admins_institutions_path
-    %li= link_to "New institution", new_admins_institution_path
+    -# %li.ui-tabs-selected= link_to "Manage institutions", admins_institutions_path
+    %li= link_to "New institution", new_admins_institution_path, :class => 'button'
   
   %br
   = grid(@institution_grid) do |g|

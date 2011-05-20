@@ -1,7 +1,7 @@
 #tabs
   %ul
-    %li= link_to "Instructor Scenarios", admins_scenarios_path
-    %li.ui-tabs-selected= link_to "New Scenario", new_admins_scenario_path
+    -# %li= link_to "Instructor Scenarios", admins_scenarios_path
+    %li.ui-tabs-selected= link_to "New Scenario", new_admins_scenario_path, :class => 'button'
 
   = render :partial => "scenario_menu"
     
