@@ -12,6 +12,7 @@ class AccountsController < ApplicationController
     @account = User.new(params[:user])
     @account.active = false
     @account.role_code = @role
+    @account.list_directory = true if @account.has_role?:instructor
     @account.require_agreement_acceptance!
     
     if @account.save_without_session_maintenance
