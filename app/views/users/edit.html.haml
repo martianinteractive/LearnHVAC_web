@@ -64,6 +64,9 @@
         = f.radio_button :role_code, User::ROLES[:guest]
         Instructor
         = f.radio_button :role_code, User::ROLES[:instructor]
+    - if current_user.has_role?(:instructor)
+      %input#groups{:type => 'hidden', :value => current_user.groups.length}
+      %input#scenarios{:type => 'hidden', :value => current_user.created_scenarios.length}
     .actions
       = submit_tag "Update"
       &nbsp;or&nbsp;
