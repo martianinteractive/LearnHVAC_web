@@ -1,8 +1,8 @@
 #tabs
-  %ul
-    -# %li.ui-tabs-selected= link_to "Manage #{params[:role].pluralize.humanize}", admins_users_path("role" => params[:role])
-    %li= link_to "New #{params[:role].humanize}", new_admins_user_path("role" => params[:role]), :class => 'button'
+  %p
+    = render 'menu_users'
   = form_tag(search_admins_users_path(:role => params[:role]), :class => "search") do
+    %br
     = label_tag :q, "Search"
     = text_field_tag :q, params[:q]
     = submit_tag "Search!"
@@ -25,12 +25,15 @@
       %tr
         %th Name
         %th Institution
+        %th Edit
+        %th Delete
     %tbody
       - for user in @users
         %tr
           %td= link_to user.name, admins_user_path(user, :role => params[:role])
           %td= user.institution.try(:name).try(:capitalize)
-             
+          %td= link_to image_tag('icons/edit.png'), edit_admins_user_path(user, :role => user.role)
+          %td= link_to image_tag('icons/delete.png'), admins_user_path(user, :role => user.role), :confirm => 'Are you sure?', :method => :delete
   %br
   = search_pagination_for(@users, :params => {:q => params[:q], :institution_id => params[:institution_id] })
 

@@ -25,13 +25,6 @@
           Administration
         %nav
           = generate_nav
-          = link_to 'Users', '#', :class => 'button'
-          %ul.users-list
-            %li= link_to 'Admins',admins_users_path(:role => :admin),:class => 'button'
-            %li= link_to 'Inst. Managers',admins_users_path(:role => :manager),:class => 'button'
-            %li= link_to 'Instructors',admins_users_path(:role => :instructor),:class => 'button'
-            %li= link_to 'Students',admins_users_path(:role => :student),:class => 'button'
-            %li= link_to 'Guests',admins_users_path(:role => :guest),:class => 'button'
         #subnav
           #welcome= "Welcome, #{current_user.name}, #{current_user.role.to_s}"
           = link_to "Account Settings", edit_profile_path, :class => 'settings'

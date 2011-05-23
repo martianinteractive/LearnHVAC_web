@@ -1,10 +1,11 @@
 #tabs
-  %ul
-    %li.ui-tabs-selected= link_to "Manage #{params[:role].pluralize.humanize}", admins_users_path("role" => params[:role])
-    %li= link_to "New #{params[:role].humanize}", new_admins_user_path("role" => params[:role])
+  -# %ul
+  -#   %li.ui-tabs-selected= link_to "Manage #{params[:role].pluralize.humanize}", admins_users_path("role" => params[:role])
+    
 
   .subject-buttons.ui-helper-clearfix
     %ul
+      %li= link_to "New #{params[:role].humanize}", new_admins_user_path("role" => params[:role]), :class=> 'button'
       %li
         = link_to(admins_user_path(@user, :role => params[:role])) do
           %button.button.large-green-button{:type=>"button"} Cancel

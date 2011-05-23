@@ -7,12 +7,7 @@ module ApplicationHelper
       {:title => 'Community Directory', :id => 'nav_community', :path => directory_path, :order => 1, :authorized_roles => [:admin]},
       {:title => 'Master Scenarios', :id => 'nav_master_scenario', :path => admins_master_scenarios_path, :order => 1, :authorized_roles => [:admin]},
       {:title => 'Inst. Scenarios', :id => 'nav_scenario', :path => admins_scenarios_path, :order => 1, :authorized_roles => [:admin]},
-#      {:title => 'Admins', :id => 'nav_admin', :path => admins_users_path(:role => :admin), :order => 1, :authorized_roles => [:admin]},
-#      {:title => 'Inst. Managers', :id => 'nav_inst_manager', :path => admins_users_path(:role => :manager), :order => 1, :authorized_roles => [:admin]},
-#      {:title => 'Instructors', :id => 'nav_instructors', :path => admins_users_path(:role => :instructor), :order => 1, :authorized_roles => [:admin]},
-#      {:title => 'Students', :id => 'nav_student', :path => admins_users_path(:role => :student), :order => 1, :authorized_roles => [:admin]},
-#      {:title => 'Guests', :id => 'nav_guests', :path => admins_users_path(:role => :guest), :order => 1, :authorized_roles => [:admin]},
-      # {:title => 'Users', :id => 'nav_users', :path => '#', :order => 1, :authorized_roles => [:admin]},               
+      {:title => 'Users', :id => 'nav_admin', :path => admins_users_path(:role => :admin), :order => 1, :authorized_roles => [:admin]},
       {:title => 'Institutions', :id => 'nav_institution', :path => admins_institutions_path, :order => 1, :authorized_roles => [:admin]},
       {:title => 'Classes', :id => 'nav_class', :path => admins_classes_path, :order => 1, :authorized_roles => [:admin]}]
 

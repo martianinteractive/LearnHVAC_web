@@ -1,8 +1,8 @@
 #tabs
   %ul
-    %li= link_to "Settings", admins_settings_path
-    %li.ui-tabs-selected= link_to "Desktop Application Versions", admins_settings_client_versions_path
-    %li= link_to "New Desktop Application Version", new_admins_settings_client_version_path
+    -# %li= link_to "Settings", admins_settings_path
+    -# %li.ui-tabs-selected= link_to "Desktop Application Versions", admins_settings_client_versions_path
+    %li= link_to "New Desktop Application Version", new_admins_settings_client_version_path, :class => 'button'
 
   %br
   %table.listing
