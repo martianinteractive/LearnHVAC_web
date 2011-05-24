@@ -46,6 +46,10 @@
   = f.label :role
   = f.select(:role_code, User::ROLES.keys.collect{|k| [k.to_s.gsub("_", " ").capitalize, User::ROLES[k]]})
 
+#field-groups.field
+  = f.label :group
+  = f.select(:group_code, @groups.map{|x| [x.name,x.code]}, {:include_blank => true})
+
 .field
   = f.label :institution_id
   = f.collection_select(:institution_id, Institution.all, :id, :name)

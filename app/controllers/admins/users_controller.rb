@@ -29,6 +29,7 @@ class Admins::UsersController < Admins::ApplicationController
   def new
     @user = User.new
     @user.role_code = @role
+    @groups = Group.all
     add_crumb "New #{params[:role].humanize}", new_admins_user_path(:role => params[:role])
   end
 
@@ -38,12 +39,15 @@ class Admins::UsersController < Admins::ApplicationController
   end
   
   def create
+    debugger
     @user = User.new(params[:user])
     @user.role_code = params[:user][:role_code]
     @user.enabled = params[:user][:enabled]
-
+    @user.group_code = params[:user][:group_code]
+    
     if @user.save
-      redirect_to(admins_user_path(@user, :role => params[:role], :anchor => "ui-tabs-1"), :notice => 'User was successfully created.')
+      Group.find_by_code(@user.group_code).create_memberships(@user)
+      redirect_to(admins_user_path(@user, :role => params[:role], :group=>@groups, :anchor => "ui-tabs-1"), :notice => 'User was successfully created.')
     else
       add_crumb "New #{params[:role].humanize}", new_admins_user_path(:role => params[:role])
       render :action => "new"

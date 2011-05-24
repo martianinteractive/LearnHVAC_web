@@ -1,4 +1,10 @@
 $(document).ready(function() {
+        if($('#user_role_code').val()!= 1){
+            $('#field-groups').hide();
+        }else{
+            $('#field-groups').show();
+        }
+        
 	$("#scenario_longterm_start_date").datepicker();
 	$("#scenario_longterm_stop_date").datepicker();	
 	
@@ -15,5 +21,13 @@ $(document).ready(function() {
                         $('#user_role_code_2').click();
                     }
                 }
+        });      
+        $('#user_role_code').change(function(){
+                if(this.value != 1){
+                    $('#field-groups').hide();
+                }else{
+                    $('#field-groups').show();
+                }
         });
+      
 });
