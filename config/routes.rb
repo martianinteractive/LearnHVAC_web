@@ -24,6 +24,7 @@ Learnhvac::Application.routes.draw do |map|
   match 'profile' => 'users#show', :as => 'profile'
   match 'profile/edit' => 'users#edit', :as => 'edit_profile'
   match 'profile/upgrade' => 'users#upgrade_guest_instructor'
+  match 'admins/admin/users/list_groups/:id' => 'admins/users#list_groups'
  
  ## API ROUTES
  namespace :api do

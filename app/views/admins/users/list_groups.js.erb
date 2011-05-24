@@ -1,0 +1,2 @@
+$("#group_div").html('<%=escape_javascript(select_tag "user[group_code]",
+                                         options_for_select(@groups.collect{|c|[c.name,c.code]}))%>');

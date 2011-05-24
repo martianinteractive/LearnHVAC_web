@@ -1,5 +1,6 @@
 class Admins::UsersController < Admins::ApplicationController
-  before_filter :get_role, :add_crumbs
+  before_filter :get_role, :except =>  [:list_groups]
+  before_filter :add_crumbs, :except =>  [:list_groups]
   
   cache_sweeper :user_sweeper, :only => [:create, :update, :destroy]
   
@@ -29,7 +30,7 @@ class Admins::UsersController < Admins::ApplicationController
   def new
     @user = User.new
     @user.role_code = @role
-    @groups = Group.all
+    @instructors = User.instructor.to_a
     add_crumb "New #{params[:role].humanize}", new_admins_user_path(:role => params[:role])
   end
 
@@ -39,7 +40,6 @@ class Admins::UsersController < Admins::ApplicationController
   end
   
   def create
-    debugger
     @user = User.new(params[:user])
     @user.role_code = params[:user][:role_code]
     @user.enabled = params[:user][:enabled]
@@ -84,7 +84,10 @@ class Admins::UsersController < Admins::ApplicationController
       render :nothing => true
     end
   end
-  
+
+  def list_groups
+    @groups=User.find_by_id(params[:id]).managed_groups
+  end
   
   private
   

@@ -1,8 +1,8 @@
 $(document).ready(function() {
-        if($('#user_role_code').val()!= 1){
-            $('#field-groups').hide();
+        if($('#user_role_code').value != 1){
+            $('#students').hide();
         }else{
-            $('#field-groups').show();
+            $('#students').show();
         }
         
 	$("#scenario_longterm_start_date").datepicker();
@@ -24,10 +24,21 @@ $(document).ready(function() {
         });      
         $('#user_role_code').change(function(){
                 if(this.value != 1){
-                    $('#field-groups').hide();
+                    $('#students').hide();
                 }else{
-                    $('#field-groups').show();
+                    $('#students').show();
+               }
+        });
+        $('#instructor').change(function(){
+                $.ajax({
+                type: 'get',
+                url: 'list_groups/'+this.value,
+                success: function(data) {
+                },
+                error : function(){
+                     alert("FAILURE");
                 }
+            });
         });
       
 });
