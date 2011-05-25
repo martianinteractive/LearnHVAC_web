@@ -1,5 +1,5 @@
 $(document).ready(function() {
-        if($('#user_role_code').value != 1){
+        if($('#user_role_code').val() != 1){
             $('#students').hide();
         }else{
             $('#students').show();
@@ -32,7 +32,7 @@ $(document).ready(function() {
         $('#instructor').change(function(){
                 $.ajax({
                 type: 'get',
-                url: 'list_groups/'+this.value,
+                url: '/list_groups/'+this.value,
                 success: function(data) {
                 },
                 error : function(){

@@ -1,7 +1,11 @@
 Hello, 
 
-Please click the link below to join the <%= @group.name %> group.
+Please click the link below to join the <%= @group.name %> group, leaded by the profesor <%=@group.creator.name%> of the <%=@group.creator.institution.name%>.
 
+<% if @group.goal %>
+The Goal of this class is:
+<%= @group.goal %>
+<%end%>
 <%= membership_register_url(@group.code) %>
 
 Thanks,

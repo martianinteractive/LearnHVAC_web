@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110414164922) do
+ActiveRecord::Schema.define(:version => 20110525150635) do
 
   create_table "class_notification_emails", :force => true do |t|
     t.integer  "class_id"
@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(:version => 20110414164922) do
     t.integer  "creator_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "goal"
   end
 
   add_index "groups", ["creator_id"], :name => "index_groups_on_instructor_id"
