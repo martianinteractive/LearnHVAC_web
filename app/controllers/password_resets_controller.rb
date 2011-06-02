@@ -25,6 +25,7 @@ class PasswordResetsController < ApplicationController
   def update
     @user.password = params[:user][:password]  
     @user.password_confirmation = params[:user][:password_confirmation]  
+    @user.active = true unless @user.active
     if @user.save  
       flash[:notice] = "Password successfully updated"  
       redirect_to default_path_for(@user)  
