@@ -14,4 +14,4 @@ production:
   host: app.learnhvac.org
   from: app@learnhvac.org
   fconnect_site_id: 08223197587884952724
-  admin: admin@learnhvac.org
+  admin: jderinger@su-per-b.org,nahmane@su-per-b.org
