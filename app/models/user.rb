@@ -20,8 +20,8 @@ class User < ActiveRecord::Base
   
   validates :first_name, :last_name, :role_code, :city, :state, :country, :presence => true, :length => { :maximum => 200 }, :format => { :with => /^[A-Za-z0-9\s]+$/ }
   validates_length_of :phone, :in => 7..32, :allow_blank => true
-  validates :group_code,  :presence => true, :on => :create, :if => Proc.new { |user| user.has_role?(:student) }
-  validate :group_does_exist, :if => Proc.new { |user| user.has_role?(:student) }
+  validates :group_code,  :presence => true, :on => :create, :if => Proc.new { |user| user.has_role?(:student) and user.groups.empty? }
+  validate :group_does_exist, :if => Proc.new { |user| user.has_role?(:student) and user.groups.empty?}
   validates_acceptance_of :terms_agreement, :on => :create, :if => :require_agreement, :message => "must be accepted"
   
   # Dynamically creates scopes for each role.

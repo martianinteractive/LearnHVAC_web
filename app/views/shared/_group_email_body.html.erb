@@ -1,13 +1,18 @@
 Hello, 
 
-Please click the link below to join the <%= @group.name %> group, leaded by the profesor <%=@group.creator.name%> of the <%=@group.creator.institution.name%>.
+Please click the link below to join the following class: 
 
+Class name: <%= @group.name %>
+Lead by: <%=@group.creator.name%>
+Institution: <%=@group.creator.institution.name%>
 <% if @group.goal %>
-The Goal of this class is:
-<%= @group.goal %>
+Goal: <%= @group.goal %>
 <%end%>
+
+Signup link:
 <%= membership_register_url(@group.code) %>
+
 
 Thanks,
 
-<%= @group.creator.name %>
+<%=@group.creator.name%>
