@@ -1,10 +1,9 @@
 .subject-buttons.ui-helper-clearfix
   %ul
     - if @subject_buttons == :group
-      - if @group.notification_emails.any?
-        %li
-          = link_to instructors_class_emails_path(@group) do
-            %button.button.medium-grey-button{:type => "button"} Emails
+      %li
+        = link_to instructors_class_emails_path(@group) do
+          %button.button.medium-grey-button{:type => "button"} Emails
            
       %li
         = link_to(edit_instructors_class_path(@group)) do

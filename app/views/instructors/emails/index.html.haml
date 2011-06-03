@@ -16,7 +16,7 @@
         %td= email.created_at.to_formatted_s(:long)
     - if @emails.blank?
       %tr
-        %td{:colspan => 2} No Email Invitations have been sent.
+        %td{:colspan => 2} No Email Invitations have been sent. To send one, click #{link_to "here", new_instructors_class_email_path(@group)}
   %br
   = will_paginate @emails
 
