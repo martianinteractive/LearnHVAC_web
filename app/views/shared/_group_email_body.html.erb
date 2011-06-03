@@ -1,17 +1,20 @@
 Hello, 
 
-Please click the link below to join the following class: 
+You have been invited to join a Learn HVAC class as a student. Learn HVAC is an interactive software you will be using in your course. Joining this class will allow you to access scenarios your instructor has developed. For more information, please see www.learnhvac.org
 
-Class name: <%= @group.name %>
-Lead by: <%=@group.creator.name%>
-Institution: <%=@group.creator.institution.name%>
+Name of the Professor:
+<%=@group.creator.name%>
+<%=@group.creator.institution.name%>
+
+Name of the class:
+<%= @group.name %>
+
 <% if @group.goal %>
-Goal: <%= @group.goal %>
+The Goal of this class is:
+<%= @group.goal %>
 <%end%>
 
-Signup link:
 <%= membership_register_url(@group.code) %>
-
 
 Thanks,
 
