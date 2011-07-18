@@ -1,6 +1,7 @@
 class Admins::UsersController < Admins::ApplicationController
   before_filter :get_role, :except =>  [:list_groups]
   before_filter :add_crumbs, :except =>  [:list_groups]
+  before_filter :get_list_instructors
   
   cache_sweeper :user_sweeper, :only => [:create, :update, :destroy]
   
@@ -30,7 +31,6 @@ class Admins::UsersController < Admins::ApplicationController
   def new
     @user = User.new
     @user.role_code = @role
-    @instructors = User.instructor.to_a
     add_crumb "New #{params[:role].humanize}", new_admins_user_path(:role => params[:role])
   end
 
@@ -45,8 +45,8 @@ class Admins::UsersController < Admins::ApplicationController
     @user.enabled = params[:user][:enabled]
     @user.group_code = params[:user][:group_code]
     
-    if @user.save
-      Group.find_by_code(@user.group_code).create_memberships(@user)
+    if @user.save 
+      Group.find_by_code(@user.group_code).create_memberships(@user) if @user.has_role?(:student)
       redirect_to(admins_user_path(@user, :role => params[:role], :group=>@groups, :anchor => "ui-tabs-1"), :notice => 'User was successfully created.')
     else
       add_crumb "New #{params[:role].humanize}", new_admins_user_path(:role => params[:role])

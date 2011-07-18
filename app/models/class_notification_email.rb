@@ -18,11 +18,13 @@ class ClassNotificationEmail < ActiveRecord::Base
   private
   
   def recipients_validator
-    self.recipients.gsub(/,\s*/, ",").split(",").each { |r| errors.add(:recipients, "invalid format") unless r =~ Authlogic::Regex.email }
+    self.recipients.each { |r| errors.add(:recipients, "invalid format") unless r =~ Authlogic::Regex.email }
   end
   
   def deliver_notification
-    Notifier.join_class_notification(self).deliver
+    self.recipients.each { |recipient|
+      Notifier.join_class_notification(self,recipient).deliver
+    }
   end
-  
+
 end

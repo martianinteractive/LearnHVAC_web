@@ -17,8 +17,8 @@ class Notifier < ActionMailer::Base
     mail(:to => user.email, :subject => "Activation Confirmation")
   end
   
-  def join_class_notification(cn)
-    mail(:from => cn.from, :to => cn.recipients, :subject => cn.subject) do |format|
+  def join_class_notification(cn,recipient)
+    mail(:from => cn.from, :to => recipient, :subject => cn.subject) do |format|
       format.text { cn.body }
     end
   end

@@ -40,5 +40,5 @@ $(document).ready(function() {
                 }
             });
         });
-      
+        $("#class_notification_email_recipients").fcbkcomplete({cache: true, filter_case: true, filter_hide: true, newel: true});       
 });

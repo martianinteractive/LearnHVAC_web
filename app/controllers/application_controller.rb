@@ -122,5 +122,9 @@ class ApplicationController < ActionController::Base
   def can_cache_action?
     flash_empty? and !paginated?
   end
+
+  def get_list_instructors
+    @instructors = User.instructor
+  end
   
 end

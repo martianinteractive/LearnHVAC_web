@@ -20,9 +20,8 @@
     
     .field
       = f.label :recipients, "Recipients"
-      = f.text_field :recipients
-      = image_tag('question.png', :class => 'tip', :title => 'Please enter emails separated by commas.')
-
+      = f.select :recipients, @group.members.map{ |u| [u.name, u.email]}      
+    
     .field
       = f.label :subject
       = f.text_field :subject, :value => @email.subject

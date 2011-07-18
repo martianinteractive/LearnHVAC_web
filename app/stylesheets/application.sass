@@ -429,3 +429,145 @@ fieldset.special
 
 .access-button
   margin: 20px
+
+
+/**********************************************************************************************************/
+
+/* Copyright: Guillermo Rauch <http://devthought.com/> - Distributed under MIT - Keep this message!
+
+/* TextboxList sample CSS
+
+ul.holder
+  margin: 0
+  border: 1px solid #999
+  overflow: hidden
+  height: auto !important
+  height: 1%
+  padding: 4px 5px 0
+
+*
+  &:first-child+html ul.holder, html ul.holder
+    padding-bottom: 2px
+
+/* ie7 and below
+
+ul.holder
+  li
+    float: left
+    list-style-type: none
+    margin: 0 5px 4px 0
+    white-space: nowrap
+    &.bit-box, &.bit-input input
+      font: 11px "Lucida Grande", "Verdana"
+    &.bit-box
+      -moz-border-radius: 6px
+      -webkit-border-radius: 6px
+      border-radius: 6px
+      border: 1px solid #CAD8F3
+      background: #DEE7F8
+      padding: 1px 5px 2px
+    &.bit-box-focus
+      border-color: #598BEC
+      background: #598BEC
+      color: #fff
+    &.bit-input input
+      width: auto
+      overflow: visible
+      margin: 0
+      border: 0px
+      outline: 0
+      padding: 3px 0px 2px
+      &.smallinput
+        width: 20px
+    &.bit-box
+      padding-right: 15px
+      position: relative
+      z-index: 1000
+  margin: 0 !important
+
+/* no left/right padding here please
+
+ul.holder li
+  &.bit-box a.closebutton
+    position: absolute
+    right: 4px
+    top: 5px
+    display: block
+    width: 7px
+    height: 7px
+    font-size: 1px
+    background: url('/images/close.gif')
+    &:hover
+      background-position: 7px
+  &.bit-box-focus a.closebutton
+    background-position: bottom
+    &:hover
+      background-position: bottom
+
+/* Autocompleter
+
+.facebook-auto
+  display: none
+  background: #eee
+  position: relative
+  left: 253px
+  width: 20em 
+  z-index: 1001
+
+  .default 
+    padding: 5px 7px
+    border: 1px solid #ccc
+    border-width: 0 1px 1px
+    font-family: "Lucida Grande","Verdana"
+    font-size: 10px
+
+  ul
+    display: none
+    margin: 0
+    padding: 0
+    overflow: auto
+    position: absolute
+    z-index: 9999
+    li
+      padding: 5px 12px
+      z-index: 1000
+      cursor: pointer
+      margin: 0
+      list-style-type: none
+      border: 1px solid #ccc
+      border-width: 0 1px 1px
+      font: 11px "Lucida Grande", "Verdana"
+      background-color: #eee
+      em
+        font-weight: bold
+        font-style: normal
+        background: #ccc
+      &.auto-focus
+        background: #4173CC
+        color: #fff
+        em
+          background: none
+
+.deleted
+  background-color: #4173CC !important
+  color: #ffffff !important
+
+.hidden
+  display: none
+
+#demo ul.holder li.bit-input input
+  padding: 2px 0 1px
+  border: 1px solid #999
+
+.ie6fix
+  height: 1px
+  width: 1px
+  position: absolute
+  top: 0px
+  left: 0px
+  z-index: 1
+
+.field
+  ul.holder
+    padding-left: 0 !important      
+    width: 20em

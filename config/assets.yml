@@ -12,6 +12,7 @@ javascripts:
     - public/javascripts/jquery.dataTables.min.js
     - public/javascripts/tools/tooltip.min.js
     - public/javascripts/application.js
+    - public/javascripts/jquery.fcbkcomplete.min.js
 
 stylesheets:
   application:
