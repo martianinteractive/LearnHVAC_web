@@ -1,9 +1,9 @@
 Factory.define :scenario do |scenario|
   scenario.name "test scenario"
   scenario.short_description "this is just a scenario"
-  scenario.longterm_start_date 1.day.from_now.strftime("%m/%d/%Y")
-  scenario.longterm_stop_date 3.days.from_now.strftime("%m/%d/%Y")
-  scenario.realtime_start_datetime 2.days.from_now.strftime("%m/%d/%Y")
+  scenario.longterm_start_date 1.day.from_now.to_date
+  scenario.longterm_stop_date 3.days.from_now.to_date
+  scenario.realtime_start_datetime 2.days.from_now.to_date
 end
 
 Factory.define :master_scenario do |master_scenario|
@@ -25,9 +25,9 @@ end
 Factory.define :valid_scenario, :class => Scenario do |scenario|
   scenario.name "test scenario"
   scenario.short_description "this is just a scenario"
-  scenario.longterm_start_date 1.day.from_now.strftime("%m/%d/%Y")
-  scenario.longterm_stop_date 3.days.from_now.strftime("%m/%d/%Y")
-  scenario.realtime_start_datetime 2.days.from_now.strftime("%m/%d/%Y")
   scenario.user { User.first || Factory(:user) }
   scenario.master_scenario { MasterScenario.first || Factory(:valid_master_scenario) }
+  scenario.longterm_start_date 1.day.from_now.to_date
+  scenario.longterm_stop_date 3.days.from_now.to_date
+  scenario.realtime_start_datetime 2.days.from_now.to_date
 end
