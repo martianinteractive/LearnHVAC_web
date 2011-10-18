@@ -36,6 +36,7 @@ class Admins::UsersController < Admins::ApplicationController
 
   def edit
     @user = User.find(params[:id])
+    @instructors = User.instructor.to_a
     add_crumb "Editing #{@user.name}", edit_admins_user_path(:role => params[:role])
   end
   
