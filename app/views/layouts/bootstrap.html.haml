@@ -39,25 +39,20 @@
       .topbar-inner
         .container-fluid
           %a.brand{:href => "#"} Learn Green Buildings
-          %ul.nav
-            %li.active
-              %a{:href => "#"} Home
-            %li
-              %a{:href => "#about"} About
-            %li
-              %a{:href => "#contact"} Contact
+          = main_menu
           %p.pull-right
             Logged in as
-            %a{:href => "#"} jderinger
+            = link_to current_user.login, profile_path
     .container-fluid
       .sidebar
         .well
-          = sidebar_nav
+          = sidebar_menu
       .content
         = display_flash
         / Main hero unit for a primary marketing message or call to action
         .hero-unit
           %h1 Master Scenario
           %p Vestibulum id ligula porta felis euismod semper.
+        = yield
         %footer
         %p &copy; Company 2011

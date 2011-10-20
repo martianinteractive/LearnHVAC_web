@@ -29,7 +29,33 @@ module ApplicationHelper
     end
   end
 
-  def sidebar_nav
+  def main_menu
+    content_tag :ul, main_menu_items, :class => 'nav'
+  end
+
+  def main_menu_items
+    items = ''
+    {
+      :general  => admins_dashboard_path,
+      :system   => admins_master_scenarios_path,
+      :users    => admins_users_path(:role => :user)
+    }.each_pair do |title, url|
+      li_options = {}
+      li_options.merge! :class => 'active' if is_current_item? title
+      items << content_tag(:li, link_to(title.to_s.titleize, url), li_options )
+    end
+    items.html_safe
+  end
+
+  def is_current_item?(title)
+    {
+      :general => %w[ dashboard ],
+      :system  => %w[ master_scenarios scenarios ],
+      :users   => %w[ users ]
+    }[ title ].include? controller_name
+  end
+
+  def sidebar_menu
     html = ''
     sidebar_nav_options.each_pair do |key, options|
       html << generate_sidebar_section(key.to_s.titleize, options)
