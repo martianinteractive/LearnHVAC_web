@@ -33,6 +33,14 @@ module ApplicationHelper
     content_tag :ul, main_menu_items, :class => 'nav'
   end
 
+  def sidebar_menu
+    html = ''
+    title   = current_section.to_s.titleize
+    options = sidebar_nav_options[current_section]
+    html << generate_sidebar_section(title, options)
+    html.html_safe
+  end
+
   def main_menu_items
     items = ''
     {
@@ -47,16 +55,19 @@ module ApplicationHelper
     items.html_safe
   end
 
-  def is_current_item?(title)
-    sections[ title ].include? controller_name
+
+  def generate_sidebar_section(title, options)
+    html = ''
+    html << content_tag(:h5, title)
+    html << sidebar_links(options)
   end
 
-  def sidebar_menu
-    html = ''
-    title   = current_section.to_s.titleize
-    options = sidebar_nav_options[current_section]
-    html << generate_sidebar_section(title, options)
-    html.html_safe
+  def sidebar_links(elements)
+    items = ''
+    elements.each do |element|
+      items << content_tag(:li, link_to(element[:value], element[:link]))
+    end
+    content_tag(:ul, items.html_safe).html_safe
   end
 
   def current_section
@@ -74,18 +85,8 @@ module ApplicationHelper
     }
   end
 
-  def generate_sidebar_section(title, options)
-    html = ''
-    html << content_tag(:h5, title)
-    html << sidebar_links(options)
-  end
-
-  def sidebar_links(elements)
-    items = ''
-    elements.each do |element|
-      items << content_tag(:li, link_to(element[:value], element[:link]))
-    end
-    content_tag(:ul, items.html_safe).html_safe
+  def is_current_item?(title)
+    sections[title].include? controller_name
   end
 
   def sidebar_nav_options

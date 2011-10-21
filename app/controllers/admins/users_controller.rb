@@ -1,4 +1,7 @@
 class Admins::UsersController < Admins::ApplicationController
+
+  layout 'bootstrap'
+
   before_filter :get_role, :except =>  [:list_groups]
   before_filter :add_crumbs, :except =>  [:list_groups]
   before_filter :get_list_instructors
