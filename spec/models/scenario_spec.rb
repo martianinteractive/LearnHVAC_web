@@ -20,14 +20,14 @@ describe Scenario do
     end
     
     it "should validate longterm dates" do
-      @scenario.update_attributes(:longterm_start_date => 1.day.from_now.strftime("%m/%d/%Y"), :longterm_stop_date => Time.now.strftime("%m/%d/%Y}"), :realtime_start_datetime => 25.hours.from_now)
+      @scenario.update_attributes(:longterm_start_date => 1.day.from_now.to_date, :longterm_stop_date => Date.today, :realtime_start_datetime => 25.hours.from_now)
       @scenario.should_not be_valid
       @scenario.errors[:longterm_start_date].should == ["should be set before the longterm stop date"]
       @scenario.errors[:longterm_stop_date].should == ["should be set after the longterm start date"]
       @scenario.errors[:realtime_start_datetime].should == ["should be set between start and stop dates"]
-      @scenario.update_attributes(:longterm_stop_date => 2.days.from_now.strftime("%m/%d/%Y"), :name => "scenario", :user => @user, :master_scenario => @master_scenario)
+      @scenario.update_attributes(:longterm_stop_date => 2.days.from_now.to_date, :realtime_start_datetime => 1.day.from_now.to_date, :name => "scenario", :user => @user, :master_scenario => @master_scenario)
       @scenario.should be_valid
-      @scenario.update_attributes(:realtime_start_datetime => 3.days.from_now.strftime("%m/%d/%Y}"))
+      @scenario.update_attributes(:realtime_start_datetime => 3.days.from_now.to_date)
       @scenario.should_not be_valid
       @scenario.errors[:realtime_start_datetime].should == ["should be set between start and stop dates"]
     end

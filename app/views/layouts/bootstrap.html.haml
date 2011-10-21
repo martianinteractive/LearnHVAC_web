@@ -1,0 +1,58 @@
+!!! XML
+!!!
+%html{:lang => "en"}
+  %head
+    %meta{:charset => "utf-8"}/
+    %title Learn HVAC Administrators
+    = csrf_meta_tag
+    / Le HTML5 shim, for IE6-8 support of HTML elements
+    /[if lt IE 9]
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    / Le styles
+    = stylesheet_link_tag 'bootstrap.min', 'docs', 'prettify'
+    / Le javascript
+    = javascript_include_tag "https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"
+    = javascript_include_tag "https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"
+    = javascript_include_tag "http://autobahn.tablesorter.com/jquery.tablesorter.min.js"
+    = javascript_include_tag "prettify"
+    = javascript_include_tag "bootstrap-dropdown"
+    = javascript_include_tag "bootstrap-twipsy"
+    = javascript_include_tag "bootstrap-scrollspy"
+    = javascript_include_tag "picnet.table.filter.min"
+    = javascript_include_tag "bootstrap"
+    :css
+      body {
+        padding-top: 60px;
+      }
+
+      #sortTableExample th {
+        background-color: #fff;
+      }
+
+        / Le fav and touch icons
+    %link{:href => "images/favicon.ico", :rel => "shortcut icon"}/
+    %link{:href => "images/apple-touch-icon.png", :rel => "apple-touch-icon"}/
+    %link{:href => "images/apple-touch-icon-72x72.png", :rel => "apple-touch-icon", :sizes => "72x72"}/
+    %link{:href => "images/apple-touch-icon-114x114.png", :rel => "apple-touch-icon", :sizes => "114x114"}/
+  %body
+    .topbar
+      .topbar-inner
+        .container-fluid
+          %a.brand{:href => "#"} Learn Green Buildings
+          = main_menu
+          %p.pull-right
+            Logged in as
+            = link_to current_user.login, profile_path
+    .container-fluid
+      .sidebar
+        .well
+          = sidebar_menu
+      .content
+        = display_flash
+        / Main hero unit for a primary marketing message or call to action
+        .hero-unit
+          %h1 Master Scenario
+          %p Vestibulum id ligula porta felis euismod semper.
+        = yield
+        %footer
+        %p &copy; Company 2011

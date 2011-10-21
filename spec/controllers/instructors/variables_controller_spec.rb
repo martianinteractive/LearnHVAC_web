@@ -30,7 +30,8 @@ describe Instructors::VariablesController do
     
     it "should expose scenario variables" do
       get :index, :scenario_id => "1", :id => "37"
-      assigns[:scenario_variables].should eq([mock_variable])
+      assigns[:scenario_variables_grid].should be_instance_of(Wice::WiceGrid)
+      #assigns[:scenario_variables].should eq([mock_variable])
     end
   end
   
