@@ -1,19 +1,18 @@
-#tabs
-  %ul
-    %li.ui-tabs-selected= link_to "Instructor Scenarios", admins_scenarios_path
-    %li= link_to "New Scenario", new_admins_scenario_path
-  
-  %p Scenarios created by instructors.
+= content_for :main_header do
+  %h1 Instructor Scenarios
+  %p Scenarios created by instructors
 
-  = grid(@scenarios_grid) do |g|
-    - g.column :column_name => 'ID', :attribute_name => 'id', :no_filter => true 
-    - g.column :column_name => 'Name', :attribute_name => 'name' do |scenario|
-      - link_to scenario.name, admins_scenario_path(scenario)
-    - g.column :column_name => 'Instructor', :attribute_name => 'last_name', :model_class => User do |scenario|
-      - link_to scenario.user.name, admins_user_path(scenario.user, :role => scenario.user.role)
-    - g.column :column_name => 'Master Scenario', :attribute_name => 'name', :model_class => MasterScenario do |scenario|
-      - link_to_master_scenario_for(scenario)
-    - g.column :column_name => 'Date Created', :attribute_name => 'created_at', :no_filter => true do |scenario|
-      - scenario.created_at.to_formatted_s(:long) if scenario.created_at
-    - g.column :column_name => 'Sample', :attribute_name => 'sample' do |scenario|
-      - scenario.sample? ? "Yes" : "No"
+%p.pull-right= link_to 'New Instructor Scenario', new_admins_scenario_path, :class => 'btn'
+
+= grid(@scenarios_grid) do |g|
+  - g.column :column_name => 'ID', :attribute_name => 'id', :no_filter => true 
+  - g.column :column_name => 'Name', :attribute_name => 'name' do |scenario|
+    - link_to scenario.name, admins_scenario_path(scenario)
+  - g.column :column_name => 'Instructor', :attribute_name => 'last_name', :model_class => User do |scenario|
+    - link_to scenario.user.name, admins_user_path(scenario.user, :role => scenario.user.role)
+  - g.column :column_name => 'Master Scenario', :attribute_name => 'name', :model_class => MasterScenario do |scenario|
+    - link_to_master_scenario_for(scenario)
+  - g.column :column_name => 'Date Created', :attribute_name => 'created_at', :no_filter => true do |scenario|
+    - scenario.created_at.to_formatted_s(:long) if scenario.created_at
+  - g.column :column_name => 'Sample', :attribute_name => 'sample' do |scenario|
+    - scenario.sample? ? "Yes" : "No"

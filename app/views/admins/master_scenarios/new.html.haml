@@ -1,10 +1,5 @@
-#tabs
-  %ul
-    %li= link_to "Master Scenarios", admins_master_scenarios_path
-    %li.ui-tabs-selected= link_to 'New Master Scenario', new_admins_master_scenario_path
-    
-  = render :partial => "master_scenario_menu"
+= content_for :main_header do
+  %h1 New Master Scenario
 
-  = form_for(@master_scenario, :url => admins_master_scenarios_path, :method => :post) do |f|
-    = render :partial => 'form', :locals => { :f => f }
-
+= form_for(@master_scenario, :url => admins_master_scenarios_path, :method => :post) do |f|
+  = render :partial => 'form', :locals => { :f => f }

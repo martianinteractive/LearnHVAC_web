@@ -1,4 +1,7 @@
 class Admins::ScenariosController < Admins::ApplicationController
+
+  layout 'bootstrap'
+
   before_filter :find_scenario, :only => [:show, :edit, :update, :destroy]
   
   subject_buttons :scenario, :only => :show

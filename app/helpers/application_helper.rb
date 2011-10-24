@@ -99,17 +99,9 @@ module ApplicationHelper
         {
           :link   => admins_settings_path,
           :value  => 'Settings'
-        },
-        {
-          :link   => directory_path,
-          :value  => 'Community Directory'
         }
       ],
       :system => [
-        {
-          :link   => new_admins_master_scenario_path,
-          :value  => 'New Master Scenarios'
-        },
         {
           :link   => admins_master_scenarios_path,
           :value  => 'Master Scenarios'

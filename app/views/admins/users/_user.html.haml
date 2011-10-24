@@ -3,29 +3,35 @@
   %p
     = image_tag "globe_32.png"
     = location_for(@user)
-	
+
 #inner_column
   %table
     %tr
-      %th Institution:
+      %td
+        %strong Institution:
       %td= link_to @user.institution.name, admins_institution_path(@user.institution) if @user.institution
     %tr
-      %th Login:
+      %td
+        %strong Login:
       %td= @user.login
     %tr
-      %th E-Mail:
+      %td
+        %strong E-Mail:
       %td= mail_to @user.email
     - if @user.phone.present?
       %tr
-        %th Phone:
+        %td
+          %strong Phone:
         %td= @user.phone
     %tr
-      %th Status:
+      %td
+        %strong Status:
       %td= @user.enabled? ? "Enabled" : "Disabled"
     %tr
-      %th Time Zone:
+      %td
+        %strong Time Zone:
       %td= @user.time_zone
     %tr
-      %th Created on:
+      %td
+        %strong Created on:
       %td= @user.created_at.to_formatted_s(:long)
-      

@@ -1,57 +1,50 @@
-.subject-buttons.ui-helper-clearfix
-  %ul
-    - if @subject_buttons == :master_scenario
-      %li
-        = link_to [:clone, :admins, @master_scenario], :confirm => 'Are you sure?', :method => :post do
-          %button.button.medium-grey-button{:type => "button"} Clone
-          
-      %li
-        = link_to([:edit, :admins, @master_scenario]) do
-          %button.button.medium-green-button{:type=>"button"} Edit
-    
-      %li    
-        = link_to [:admins, @master_scenario], :confirm => 'Are you sure?', :method => :delete do
-          %button.button.medium-red-button{:type => "button"} Delete
-  
-    - elsif @subject_buttons == :cancel_master_scenario
-      %li
-        - if %(edit update).include?(controller.action_name)
-          = link_to([:admins, @master_scenario]) do
-            %button.button.medium-green-button{:type => "button"} Cancel
+= content_for :main_header do
+  - if @master_scenario.new_record?
+    %h2.subject-name New Master Scenario
+  - else
+    %h2.subject-name= @master_scenario.name
+    %p.subject-description=@master_scenario.description
 
-        - elsif %(new create).include?(controller.action_name)
-          = link_to([:admins, :master_scenarios]) do
-            %button.button.medium-green-button{:type => "button"} Cancel
-    
-    - elsif @subject_buttons == :variable
-      %li
-        = link_to([:edit, :admins, @master_scenario, @system_variable]) do
-          %button.button.large-green-button{:type=>"button"} Edit Variable
-    
-      %li
-        = link_to [:admins, @master_scenario, @system_variable], :confirm => 'Are you sure?', :method => :delete do
-          %button.button.large-red-button{:type => "button"} Delete Variable
-    
-    - elsif @subject_buttons == :cancel_variable
-      %li
-        - if %(edit update).include?(controller.action_name)
-          = link_to([:admins, @master_scenario, @system_variable]) do
-            %button.button.medium-green-button{:type => "button"} Cancel
-    
-        - elsif %(new create).include?(controller.action_name)
-          = link_to([:admins, @master_scenario, :system_variables]) do
-            %button.button.medium-green-button{:type => "button"} Cancel
+%p.pull-right
+  - if @subject_buttons == :master_scenario
+    = link_to [:clone, :admins, @master_scenario], :confirm => 'Are you sure?', :method => :post, :class => 'no-decoration' do
+      %button.btn.info Clone
 
+    = link_to([:edit, :admins, @master_scenario], :class => 'no-decoration') do
+      %button.btn.success Edit
 
-- if @master_scenario.new_record?
-  %h2.subject-name New Master Scenario
+    = link_to [:admins, @master_scenario], :confirm => 'Are you sure?', :method => :delete, :class => 'no-decoration' do
+      %button.btn.danger Delete
 
-- else
-  %h2.subject-name= link_to @master_scenario.name, [:admins, @master_scenario]
-  %p.subject-description=@master_scenario.description
-  
-  #inner-tabs
-    %ul
-      %li{:class => ("ui-tabs-selected" if @inner_tabs == :master_scenario_details)}= link_to "Master Scenario Details", [:admins, @master_scenario]
-      %li{:class => ("ui-tabs-selected" if @inner_tabs == :manage_variables)}= link_to "Manage Variables", [:admins, @master_scenario, :system_variables]
-      %li{:class => ("ui-tabs-selected" if @inner_tabs == :new_variable)}= link_to 'New Variable', [:new, :admins, @master_scenario, :system_variable]
+  - elsif @subject_buttons == :cancel_master_scenario
+    %li
+      - if %(edit update).include?(controller.action_name)
+        = link_to([:admins, @master_scenario], :class => 'no-decoration') do
+          %button.btn.success Cancel
+
+      - elsif %(new create).include?(controller.action_name)
+        = link_to([:admins, :master_scenarios]) do
+          %button.btn.success Cancel
+
+  - elsif @subject_buttons == :variable
+    %li
+      = link_to([:edit, :admins, @master_scenario, @system_variable]) do
+        %button.btn.success Edit Variable
+
+    %li
+      = link_to [:admins, @master_scenario, @system_variable], :confirm => 'Are you sure?', :method => :delete do
+        %button.btn.danger Delete Variable
+
+  - elsif @subject_buttons == :cancel_variable
+    %li
+      - if %(edit update).include?(controller.action_name)
+        = link_to([:admins, @master_scenario, @system_variable]) do
+          %button.btn.success Cancel
+
+      - elsif %(new create).include?(controller.action_name)
+        = link_to([:admins, @master_scenario, :system_variables]) do
+          %button.btn.success Cancel
+
+%p
+  = link_to "Manage Variables", [:admins, @master_scenario, :system_variables], :class => 'btn'
+  = link_to 'New Variable', [:new, :admins, @master_scenario, :system_variable], :class => 'btn'

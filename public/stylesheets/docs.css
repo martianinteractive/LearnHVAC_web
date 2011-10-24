@@ -315,3 +315,6 @@ img.large-bird {
 pre.prettyprint {
   overflow: hidden;
 }
+
+/* h4x */
+a.no-decoration { text-decoration: none; }

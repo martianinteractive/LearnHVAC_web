@@ -1,9 +1,4 @@
-#tabs
-  %ul
-    %li= link_to "Instructor Scenarios", admins_scenarios_path
-    %li.ui-tabs-selected= link_to "New Scenario", new_admins_scenario_path
-
-  = render :partial => "scenario_menu"
-    
-  = form_for(@scenario, :url => admins_scenarios_path, :method => :post) do |f|
-    = render :partial => "form", :locals => { :f => f }
+= content_for :main_header do
+  %h1 New Scenario
+= form_for(@scenario, :url => admins_scenarios_path, :method => :post) do |f|
+  = render :partial => "form", :locals => { :f => f }

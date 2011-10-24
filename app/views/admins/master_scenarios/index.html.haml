@@ -1,13 +1,12 @@
-#tabs
-  %ul
-    %li.ui-tabs-selected= link_to "Master Scenarios", admins_master_scenarios_path
-    %li= link_to 'New Master Scenario', new_admins_master_scenario_path
+= content_for :main_header do
+  %h1 Master Scenarios
 
-  %br
-  = grid(@master_scenarios_grid) do |g|
-    - g.column :column_name => 'Name', :attribute_name => 'name' do |ms|
-      - link_to ms.name, admins_master_scenario_path(ms)
-    - g.column :column_name => "Author" do |ms|
-      - "#{ms.user.first_name} #{ms.user.last_name}"
-    - g.column :column_name => "Client Version", :attribute_name => 'version', :model_class => ClientVersion do |ms|
-      - link_to ms.client_version.version, admins_settings_client_version_path(ms.client_version) if ms.client_version
+%p.pull-right= link_to 'New Master Scenario', new_admins_master_scenario_path, :class => 'btn'
+
+= grid(@master_scenarios_grid) do |g|
+  - g.column :column_name => 'Name', :attribute_name => 'name' do |ms|
+    - link_to ms.name, admins_master_scenario_path(ms)
+  - g.column :column_name => "Author" do |ms|
+    - "#{ms.user.first_name} #{ms.user.last_name}"
+  - g.column :column_name => "Client Version", :attribute_name => 'version', :model_class => ClientVersion do |ms|
+    - link_to ms.client_version.version, admins_settings_client_version_path(ms.client_version) if ms.client_version
