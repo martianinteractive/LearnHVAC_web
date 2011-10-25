@@ -21,7 +21,7 @@ class Admins::MasterScenariosController < Admins::ApplicationController
   add_crumb("Master Scenarios") { |instance| instance.send :admins_master_scenarios_path }
 
   def index
-    @master_scenarios = MasterScenario.all
+    @master_scenarios = MasterScenario.all(:include => [:user, :client_version])
   end
 
   def tag

@@ -55,7 +55,6 @@ module ApplicationHelper
     items.html_safe
   end
 
-
   def generate_sidebar_section(title, options)
     html = ''
     html << content_tag(:h5, title)
@@ -80,7 +79,7 @@ module ApplicationHelper
   def sections
     @sections ||= {
       :general => %w[ dashboard ],
-      :system  => %w[ master_scenarios scenarios ],
+      :system  => %w[ master_scenarios scenarios variables ],
       :users   => %w[ users ]
     }
   end

@@ -3,16 +3,16 @@ class Admins::ScenariosController < Admins::ApplicationController
   layout 'bootstrap'
 
   before_filter :find_scenario, :only => [:show, :edit, :update, :destroy]
-  
+
   subject_buttons :scenario, :only => :show
   subject_buttons :cancel_scenario, :only => [:new, :edit, :create, :update]
-  
+
   inner_tabs :scenario_details
-  
+
   add_crumb("Instructor Scenarios") { |instance| instance.send :admins_scenarios_path }
-  
+
   def index
-    @scenarios_grid = initialize_grid(Scenario, :include => [:users, :master_scenario], :per_page => 30)
+    @scenarios = Scenario.all(:include => [:users, :master_scenario])
   end
 
   def list
@@ -60,9 +60,9 @@ class Admins::ScenariosController < Admins::ApplicationController
     @scenario.destroy
     redirect_to(admins_scenarios_url)
   end
- 
+
   private
-  
+
   def find_scenario
     @scenario = Scenario.find(params[:id])
   end
