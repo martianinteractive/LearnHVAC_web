@@ -21,9 +21,7 @@ class Admins::MasterScenariosController < Admins::ApplicationController
   add_crumb("Master Scenarios") { |instance| instance.send :admins_master_scenarios_path }
 
   def index
-
-    @master_scenarios_grid = initialize_grid(MasterScenario,
-                                             :include => [:user,:client_version], :per_page => 25)
+    @master_scenarios = MasterScenario.all
   end
 
   def tag
