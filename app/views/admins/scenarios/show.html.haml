@@ -7,9 +7,10 @@
     - if @scenario.master_scenario.blank?
       %p
         %em The master scenario used to create this scenario has been deleted.
+
 = render :partial => "scenario_menu"
 
-%table.zebra-strip
+%table.zebra-striped
   %tr
     %td
       %strong Author:

@@ -1,14 +1,13 @@
-- content_for :js_templates do
-  ~ render :partial => "shared/variables_js", 
+= content_for :main_header do
+  %h1= @scenario.name
+  %p Variables
+
+= content_for :js_templates do
+  ~ render :partial => "shared/variables_js",
            :locals => { :status_path => update_status_admins_scenario_variables_path(@scenario), :drop_path => drop_admins_scenario_variables_path(@scenario) }
 
-#tabs
-  %ul
-    %li.ui-tabs-selected= link_to "Instructor Scenarios", admins_scenarios_path
-    %li= link_to "New Scenario", new_admins_scenario_path
-  
-  = render :partial => "admins/scenarios/scenario_menu"
-  = button_to_function "Export to CSV", export_to_csv_javascript(@scenario_variables_grid)
-  %br
-  %div.actions_header
-    = render :partial => 'scenario_variables_grid'
+= render :partial => "admins/scenarios/scenario_menu"
+/= button_to_function "Export to CSV", export_to_csv_javascript(@scenario_variables_grid), :class => 'btn'
+
+.actions_header
+  = render :partial => 'scenario_variables_grid'

@@ -1,72 +1,67 @@
-#tabs
-  %ul
-    %li.ui-tabs-selected= link_to "Instructor Scenarios", admins_scenarios_path
-    %li= link_to "New Scenario", new_admins_scenario_path
-    
-  = render :partial => "/admins/scenarios/scenario_menu"
-              
-  #inner_column
-    - unless IndividualMembership.find_by_member_id_and_scenario_id(current_user.id, @scenario.id)
-      %fieldset.special
-        %legend Grant Me Access
-        %p After clicking the access button you will be able to access this scenario from the desktop application. 
-        .access-button.subject-buttons
-          = link_to [:admins, @scenario, :accesses], :method => :post do
-            %button.button.large-plus-button{:type => "button"} Access
-        
-    
-    - if @scenario.public?
-      %p 
-        This scenario is 
-        %b public
-        and can be accessed by any user in the system.
+= content_for :main_header do
+  %h1= @scenario.name
+  %h2 Manage Access
 
-    - else
-      %p
-        This scenario is
-        %b private
-        and can only be accessed by the instructor and:
+= render :partial => "admins/scenarios/scenario_menu"
 
-      %h3 Groups
-      - if @scenario.groups.empty?
-        %b This scenario hasn't been yet assigned to a group.
-        %br
-        %br
-      - else
-        %table.listing
-          %thead
-            %tr
-              %th Name
-              %th Students
-              %th Members
-              %th Code
-          - @scenario.groups.each do |group|
-            %tr
-              %td= link_to group.name, admins_class_path(group)
-              %td= group.members.count
-              %td= group.scenarios.count
-              %td= group.code  
-              
-      - if @memberships.any?
-        %h3 People
-        %table
-          %thead
-            %tr
-              %th Name
-              %th Institution
-              %th Email
-              %th Role
-              %th 
-              %th
-            - @memberships.each do |membership|
-              - member = membership.member
-              %tr
-                %td= link_to member.name, admins_user_path(member, :role => member.role)
-                %td= link_to member.institution.name, admins_institution_path(member.institution) if member.institution
-                %td= mail_to member.email
-                %td= member.role
-                %td= link_to image_tag("trashcan.gif"), admins_scenario_access_path(@scenario, membership), :method => :delete, :confirm => "Are you sure?"
-                %td= content_tag(:em, "Pending Email Confirmation") unless member.active?
-                
-        %br
-        = will_paginate @memberships
+- unless IndividualMembership.find_by_member_id_and_scenario_id(current_user.id, @scenario.id)
+  .alert-message.block-message
+    %h4 Grant Me Access
+    %p After clicking the access button you will be able to access this scenario from the desktop application.
+    %div= link_to '+ Access', [:admins, @scenario, :accesses], :method => :post, :class => 'btn success'
+
+- if @scenario.public?
+  %p
+    This scenario is
+    %b public
+    and can be accessed by any user in the system.
+- else
+  %p
+    This scenario is
+    %b private
+    and can only be accessed by the instructor and:
+    %b Groups
+
+- if @scenario.groups.empty?
+  %h4 This scenario hasn't been yet assigned to a group.
+- else
+  %table.zebra-striped
+    %thead
+      %tr
+        %th Name
+        %th Students
+        %th Members
+        %th Code
+    %tbody
+      - @scenario.groups.each do |group|
+        %tr
+          %td= link_to group.name, admins_class_path(group)
+          %td= group.members.count
+          %td= group.scenarios.count
+          %td= group.code
+
+
+- if @memberships.any?
+  %h3 People
+  %table.zebra-striped
+    %thead
+      %tr
+        %th Name
+        %th Institution
+        %th Email
+        %th Role
+        %th
+        %th
+    %tbody
+      - @memberships.each do |membership|
+        - member = membership.member
+        %tr
+          %td= link_to member.name, admins_user_path(member, :role => member.role)
+          %td= link_to member.institution.name, admins_institution_path(member.institution) if member.institution
+          %td= mail_to member.email
+          %td= member.role
+          %td= link_to image_tag("trashcan.gif"), admins_scenario_access_path(@scenario, membership), :method => :delete, :confirm => "Are you sure?"
+          %td= content_tag(:em, "Pending Email Confirmation") unless member.active?
+
+  %br/
+  = will_paginate @memberships

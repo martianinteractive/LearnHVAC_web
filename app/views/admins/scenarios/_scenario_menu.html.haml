@@ -1,40 +1,40 @@
-= link_to "Manage Variables", admins_scenario_variables_path(@scenario), :class => 'btn'
-= link_to 'Manage Access', [:admins, @scenario, :accesses], :class => 'btn'
-= link_to 'New Variable', new_admins_scenario_variable_path(@scenario), :class => 'btn'
+.well
+  = link_to 'Manage Access', [:admins, @scenario, :accesses], :class => 'btn'
+  = link_to "Manage Variables", admins_scenario_variables_path(@scenario), :class => 'btn'
+  = link_to 'New Variable', new_admins_scenario_variable_path(@scenario), :class => 'btn'
+  %p.pull-right
+    - if @subject_buttons == :scenario
+      = link_to(edit_admins_scenario_path(@scenario), :class => 'no-decoration') do
+        %button.btn.success Edit Scenario
 
-%p.pull-right
-  - if @subject_buttons == :scenario
-    = link_to(edit_admins_scenario_path(@scenario), :class => 'no-decoration') do
-      %button.btn.success Edit Scenario
+      - if @scenario.groups.empty?
+        = link_to admins_scenario_path(@scenario), :confirm => 'Are you sure?', :method => :delete, :class => 'no-decoration' do
+          %button.btn.danger Delete Scenario
+      - else
+        = link_to admins_scenario_path(@scenario), :confirm => 'Are you sure? This scenario is used by one or more groups right now.', :method => :delete, :class => 'no-decoration' do
+          %button.btn.danger Delete Scenario
 
-    - if @scenario.groups.empty?
-      = link_to admins_scenario_path(@scenario), :confirm => 'Are you sure?', :method => :delete, :class => 'no-decoration' do
-        %button.btn.danger Delete Scenario
-    - else
-      = link_to admins_scenario_path(@scenario), :confirm => 'Are you sure? This scenario is used by one or more groups right now.', :method => :delete, :class => 'no-decoration' do
-        %button.btn.danger Delete Scenario
+    - elsif @subject_buttons == :cancel_scenario
+      - if %(edit update).include?(controller.action_name)
+        = link_to(admins_scenario_path(@scenario), :class => 'no-decoration') do
+          %button.btn.success Cancel
 
-  - elsif @subject_buttons == :cancel_scenario
-    - if %(edit update).include?(controller.action_name)
-      = link_to(admins_scenario_path(@scenario), :class => 'no-decoration') do
-        %button.btn.success Cancel
+      - elsif %(new create).include?(controller.action_name)
+        = link_to(admins_scenarios_path, :class => 'no-decoration') do
+          %button.btn.success Cancel
 
-    - elsif %(new create).include?(controller.action_name)
-      = link_to(admins_scenarios_path, :class => 'no-decoration') do
-        %button.btn.success Cancel
+    - elsif @subject_buttons == :variable
+      = link_to(edit_admins_scenario_variable_path(@scenario, @scenario_variable), :class => 'no-decoration') do
+        %button.btn.success Edit Variable
 
-  - elsif @subject_buttons == :variable
-    = link_to(edit_admins_scenario_variable_path(@scenario, @scenario_variable), :class => 'no-decoration') do
-      %button.btn.success Edit Variable
+      = link_to admins_scenario_variable_path(@scenario, @scenario_variable, :class => 'no-decoration'), :confirm => 'Are you sure?', :method => :delete do
+        %button.btn.danger Delete Variable
 
-    = link_to admins_scenario_variable_path(@scenario, @scenario_variable, :class => 'no-decoration'), :confirm => 'Are you sure?', :method => :delete do
-      %button.btn.danger Delete Variable
+    - elsif @subject_buttons == :cancel_variable
+      - if %(edit update).include?(controller.action_name)
+        = link_to(admins_scenario_variable_path(@scenario, @scenario_variable), :class => 'no-decoration') do
+          %button.btn.success Cancel
 
-  - elsif @subject_buttons == :cancel_variable
-    - if %(edit update).include?(controller.action_name)
-      = link_to(admins_scenario_variable_path(@scenario, @scenario_variable), :class => 'no-decoration') do
-        %button.btn.success Cancel
-
-    - elsif %(new create).include?(controller.action_name)
-      = link_to(admins_scenario_variables_path(@scenario), :class => 'no-decoration') do
-        %button.btn.success Cancel
+      - elsif %(new create).include?(controller.action_name)
+        = link_to(admins_scenario_variables_path(@scenario), :class => 'no-decoration') do
+          %button.btn.success Cancel
