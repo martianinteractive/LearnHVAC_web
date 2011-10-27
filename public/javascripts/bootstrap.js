@@ -30,15 +30,11 @@ function translate(element, x, y)
 }
 
 
-$(document).ready(function(){
+$(document).ready(function() {
 
   $('#filterbutton').click(function() {
-    // $('#filterbutton').slideDown('fast', function() {
-    //   // Animation complete.
-    // });
-  $('#filter_panel').toggle();
+    $('#filter_panel').toggle();
   });
-
 
   $('#sortTableExample').tableFilter();
 

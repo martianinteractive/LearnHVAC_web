@@ -1,7 +1,10 @@
 .well
+  - if controller_name == 'variables' and action_name == 'index'
+    %button{:id => 'filterbutton', :class => 'btn primary'} Filter
   = link_to 'Manage Access', [:admins, @scenario, :accesses], :class => 'btn'
   = link_to "Manage Variables", admins_scenario_variables_path(@scenario), :class => 'btn'
   = link_to 'New Variable', new_admins_scenario_variable_path(@scenario), :class => 'btn'
+
   %p.pull-right
     - if @subject_buttons == :scenario
       = link_to(edit_admins_scenario_path(@scenario), :class => 'no-decoration') do
@@ -38,3 +41,24 @@
       - elsif %(new create).include?(controller.action_name)
         = link_to(admins_scenario_variables_path(@scenario), :class => 'no-decoration') do
           %button.btn.success Cancel
+
+#filter_panel.well.hide
+  = form_for :filter, :url => admins_scenario_variables_path([@scenario]), :html => {:method => :get} do |f|
+    %fieldset
+      .clearfix
+        %label Display options:
+        .input
+          %ul.inputs-list
+            %li
+              %label
+                = f.check_box :disabled
+                %span Disabled variables
+            %li
+              %label
+                = f.check_box :is_fault
+                %span Fault variables
+            %li
+              %label
+                = f.check_box :fault_is_active
+                %span Fault is active
+        .input= f.submit 'Apply', :class => 'btn info'
