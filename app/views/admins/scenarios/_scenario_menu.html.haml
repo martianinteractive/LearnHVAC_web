@@ -51,14 +51,14 @@
           %ul.inputs-list
             %li
               %label
-                = f.check_box :disabled
+                = check_box_tag :disabled, 1, params[:disabled]
                 %span Disabled variables
             %li
               %label
-                = f.check_box :is_fault
+                = check_box_tag :is_fault, 1, params[:is_fault]
                 %span Fault variables
             %li
               %label
-                = f.check_box :fault_is_active
+                = check_box_tag :fault_is_active, 1, params[:fault_is_active]
                 %span Fault is active
         .input= f.submit 'Apply', :class => 'btn info'
