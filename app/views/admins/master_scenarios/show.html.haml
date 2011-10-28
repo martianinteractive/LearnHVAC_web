@@ -1,3 +1,6 @@
+= content_for :main_header do
+  %h1= @master_scenario.name
+  %p= @master_scenario.description
 = render :partial => 'master_scenario_menu'
 
 %table
