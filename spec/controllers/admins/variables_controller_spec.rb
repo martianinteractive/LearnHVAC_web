@@ -35,9 +35,11 @@ describe Admins::VariablesController do
     end
 
     it "should render index as csv" do
+      mock_scenario.stub_chain(:variables, :filter, :first, :fields_for_csv_from_options).and_return([])
       Scenario.should_receive(:find).with('37').and_return(mock_scenario(:variables => [mock_variable]))
       get :index, :scenario_id => "37", :format => :csv
       response.headers["Content-Type"].should match("text/csv")
+      response.should be_ok
     end
   end
 

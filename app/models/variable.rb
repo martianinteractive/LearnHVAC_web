@@ -21,22 +21,4 @@ class Variable < ActiveRecord::Base
     COMPONENTS[read_attribute(:component_code)]
   end
 
-  def to_csv(options = Hash.new)
-    defaults = {:only => Array.new, :except => Array.new}
-    defaults.merge! options
-    if defaults[:only].any?
-      keys = defaults[:only]
-    elsif defaults[:except].any?
-      keys = attributes.keys - defaults[:except]
-    elsif defaults[:only].empty? and defaults[:except].empty?
-      keys = attributes.keys
-    end
-    engine = RUBY_VERSION < "1.9" ? FCSV : CSV
-    engine.generate do |csv|
-      row = []
-      keys.each { |attr| row << self.send(attr) }
-      csv << row
-    end
-  end
-
 end

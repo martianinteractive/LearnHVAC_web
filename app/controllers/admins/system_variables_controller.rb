@@ -28,15 +28,7 @@ class Admins::SystemVariablesController < Admins::ApplicationController
     @system_variables = @master_scenario.variables
     respond_to do |wants|
       wants.html
-      # wants.csv { render :csv => @system_variables }
-      wants.csv do
-        response.headers['Content-Type'] = 'text/csv'
-        keys = SystemVariable.columns_hash.keys - [:type]
-        csv = keys.join ','
-        csv << "\n"
-        csv << @system_variables.map {|variable| variable.to_csv :only => keys}.join
-        render :text => csv
-      end
+      wants.csv {render :csv => @system_variables, :except => [:type]}
     end
   end
 
