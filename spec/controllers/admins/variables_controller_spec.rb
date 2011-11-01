@@ -19,7 +19,9 @@ describe Admins::VariablesController do
 
   context "GET index" do
     before do
+      mock_scenario.stub_chain(:variables, :filter).and_return([mock_variable])
       mock_scenario.stub_chain(:variables, :filter, :paginate).and_return([mock_variable])
+      mock_variable.stub(:to_csv).and_return(mock_variable)
     end
 
     it "should expose variables" do
@@ -30,6 +32,12 @@ describe Admins::VariablesController do
     it "should render index" do
       get :index, :scenario_id => "37"
       response.should render_template(:index)
+    end
+
+    it "should render index as csv" do
+      Scenario.should_receive(:find).with('37').and_return(mock_scenario(:variables => [mock_variable]))
+      get :index, :scenario_id => "37", :format => :csv
+      response.headers["Content-Type"].should match("text/csv")
     end
   end
 

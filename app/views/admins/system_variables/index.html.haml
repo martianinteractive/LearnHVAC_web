@@ -8,7 +8,6 @@
                         :drop_path => drop_admins_master_scenario_system_variables_path(@master_scenario) }
 
 = render :partial => "admins/master_scenarios/master_scenario_menu"
-/= button_to_function "Export to CSV", export_to_csv_javascript(@variables_grid), :class => 'btn'
 
 %div.actions_header
   = render :partial => 'variables_grid'

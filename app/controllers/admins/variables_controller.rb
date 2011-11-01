@@ -27,6 +27,18 @@ class Admins::VariablesController < Admins::ApplicationController
   def index
     params[:filter] = {} if params[:reset].present?
     @scenario_variables = @scenario.variables.filter params[:filter]
+    respond_to do |wants|
+      wants.html
+      # wants.csv { render :csv => @scenario_variables }
+      wants.csv do
+        response.headers['Content-Type'] = 'text/csv'
+        keys = Variable.columns_hash.keys
+        csv = keys.join ','
+        csv << "\n"
+        csv << @scenario_variables.map {|variable| variable.to_csv :only => keys}.join
+        render :text => csv
+      end
+    end
   end
 
   def new
