@@ -10,6 +10,9 @@
       = link_to [:admins, @master_scenario], :confirm => 'Are you sure?', :method => :delete, :class => 'no-decoration' do
         %button.btn.danger Delete
 
+      - if controller_name == 'system_variables' and action_name == 'index'
+        = link_to 'Export to CSV', admins_master_scenario_system_variables_path(@master_scenario, :format => :csv), :class => 'btn primary'
+
     - elsif @subject_buttons == :cancel_master_scenario
       - if %(edit update).include?(controller.action_name)
         = link_to([:admins, @master_scenario], :class => 'no-decoration') do

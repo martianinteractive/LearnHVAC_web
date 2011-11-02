@@ -7,7 +7,6 @@
            :locals => { :status_path => update_status_admins_scenario_variables_path(@scenario), :drop_path => drop_admins_scenario_variables_path(@scenario) }
 
 = render :partial => "admins/scenarios/scenario_menu"
-/= button_to_function "Export to CSV", export_to_csv_javascript(@scenario_variables_grid), :class => 'btn'
 
 .actions_header
   = render :partial => 'scenario_variables_grid'

@@ -8,6 +8,7 @@ class Variable < ActiveRecord::Base
   validates_numericality_of :low_value, :initial_value, :high_value
   validates :io_type, :inclusion => { :in => IO_TYPES }
 
+  # - Class Methods -
   def self.filter(opts)
     opts ||= {}
     opts.each { |k, v| opts[k] = eval(v) if %w(true false).include?(v) }
@@ -15,7 +16,9 @@ class Variable < ActiveRecord::Base
     where(opts)
   end
 
+  # - Instance Methods -
   def component
     COMPONENTS[read_attribute(:component_code)]
   end
+
 end

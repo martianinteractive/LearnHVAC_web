@@ -17,6 +17,8 @@
         = link_to admins_scenario_path(@scenario), :confirm => 'Are you sure? This scenario is used by one or more groups right now.', :method => :delete, :class => 'no-decoration' do
           %button.btn.danger Delete Scenario
 
+      - if controller_name == 'variables' and action_name == 'index'
+        = link_to 'Export to CSV', admins_scenario_variables_path(@scenario, :format => :csv), :class => 'btn primary'
     - elsif @subject_buttons == :cancel_scenario
       - if %(edit update).include?(controller.action_name)
         = link_to(admins_scenario_path(@scenario), :class => 'no-decoration') do

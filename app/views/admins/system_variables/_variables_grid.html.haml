@@ -1,60 +1,46 @@
 %table#sortTableExample.zebra-striped
   %thead
-    %tr
-      %th.yellow ID
+    %tr.ro1
+      %th.yellow Code
       %th.yellow Name
-      %th.yellow Display Name
-      %th.yellow Unit System
+      %th.yellow Display
+      %th.green Unit SI
       %th.green Unit Ip
-      %th.green Si To Ip
-      %th.green Left Label
-      %th.green Right Label
-      %th.blue Subsectino
-      %th.blue Zone Position
-      %th.blue Fault Widget Type
-      %th.blue Notes
-      %th.orange Component Code
-      %th.orange IO Type
-      %th.orange View Type
+      %th.blue Low
+      %th.blue High
+      %th.blue Initial
+      %th.orange
+        Fault
+        = succeed "Type" do
+          %br/
+      %th.orange
+        Left
+        = succeed "Label" do
+          %br/
+      %th.orange
+        Right
+        = succeed "Label" do
+          %br/
+      %th.orange Subsection
+      %th.orange
+        Zone
+        = succeed "Position" do
+          %br/
       %th.orange Index
-      %th.orange Lock Version
-      %th.orange Node Sequence
-      %th.orange Low Value
-      %th.orange High Value
-      %th.orange Initial Value
-      %th.orange Is Fault
-      %th.orange Is Percentage
-      %th.orange Disabled
-      %th.orange Fault Is Active
-      %th.orange
-      %th.orange
-    %tbody
-      - @system_variables.each do |variable|
-        %tr
-          %td= variable.id
-          %td= link_to variable.name, admins_master_scenario_system_variable_path(@master_scenario, variable)
-          %td= variable.display_name
-          %td= variable.unit_si
-          %td= variable.unit_ip
-          %td= variable.si_to_ip
-          %td= variable.left_label
-          %td= variable.right_label
-          %td= variable.subsection
-          %td= variable.zone_position
-          %td= variable.fault_widget_type
-          %td= variable.notes
-          %td= variable.component_code#, :custom_filter => Variable::COMPONENTS.key
-          %td= variable.io_type#,:custom_filter => Variable::IO_TYPE
-          %td= variable.view_type
-          %td= variable.index
-          %td= variable.lock_version
-          %td= variable.node_sequence
-          %td= variable.low_value
-          %td= variable.high_value
-          %td= variable.initial_value
-          %td= variable.is_fault? ? 'Yes' : 'No'
-          %td= variable.is_percentage? ? 'Yes' : 'No'
-          %td= variable.disabled? ? 'Yes' : 'No'
-          %td= variable.fault_is_active? ? 'Yes' : 'No'
-          %td= link_to image_tag("edit.gif"), edit_admins_master_scenario_system_variable_path(@master_scenario, variable)
-          %td= link_to image_tag("trashcan.gif"), admins_master_scenario_system_variable_path(@master_scenario, variable), :confirm => 'Are you sure?', :method => :delete
+  %tbody
+    - @system_variables.each do |variable|
+      %tr.ro1
+        %td= link_to variable.component_code, admins_master_scenario_system_variable_path(@master_scenario, variable)
+        %td= variable.name
+        %td= variable.display_name
+        %td= variable.unit_si
+        %td= variable.unit_ip
+        %td= variable.low_value
+        %td= variable.high_value
+        %td= variable.initial_value
+        %td= variable.fault_widget_type
+        %td= variable.left_label
+        %td= variable.right_label
+        %td= variable.subsection
+        %td= variable.zone_position
+        %td= variable.index

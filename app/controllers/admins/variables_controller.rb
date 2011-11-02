@@ -27,6 +27,10 @@ class Admins::VariablesController < Admins::ApplicationController
   def index
     params[:filter] = {} if params[:reset].present?
     @scenario_variables = @scenario.variables.filter params[:filter]
+    respond_to do |wants|
+      wants.html
+      wants.csv {render :csv => @scenario_variables}
+    end
   end
 
   def new

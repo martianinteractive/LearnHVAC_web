@@ -26,6 +26,10 @@ class Admins::SystemVariablesController < Admins::ApplicationController
 
   def index
     @system_variables = @master_scenario.variables
+    respond_to do |wants|
+      wants.html
+      wants.csv {render :csv => @system_variables, :except => [:type]}
+    end
   end
 
   def show
