@@ -34,9 +34,9 @@ module ApplicationHelper
   end
 
   def sidebar_menu
-    html = ''
+    html    = ''
     title   = current_section.to_s.titleize
-    options = sidebar_nav_options[current_section]
+    options = sidebar_nav_options[current_namespace][current_section]
     html << generate_sidebar_section(title, options)
     html.html_safe
   end
@@ -44,12 +44,23 @@ module ApplicationHelper
   def main_menu_items
     items = ''
     {
-      :general  => admins_dashboard_path,
-      :system   => admins_master_scenarios_path,
-      :users    => admins_users_path(:role => :user)
-    }.each_pair do |title, url|
+      :admins => {
+        :general  => admins_dashboard_path,
+        :system   => admins_master_scenarios_path,
+        :users    => admins_users_path(:role => :user)
+      },
+      :instructors => {
+        :dashboard  => instructors_dashboard_path,
+        :scenarios  => instructors_scenarios_path,
+        :classes    => instructors_classes_path
+      }
+    }[current_namespace].each_pair do |title, url|
       li_options = {}
-      li_options.merge! :class => 'active' if is_current_item? title
+      if :classes === title
+        li_options.merge! :class => 'active' if is_current_item? :groups
+      else
+        li_options.merge! :class => 'active' if is_current_item? title
+      end
       items << content_tag(:li, link_to(title.to_s.titleize, url), li_options )
     end
     items.html_safe
@@ -69,77 +80,120 @@ module ApplicationHelper
     content_tag(:ul, items.html_safe).html_safe
   end
 
+  def current_namespace
+    namespace = params[:controller].match(/\w+/)[0]
+    @current_namespace ||= namespace.to_sym if namespace
+  end
+
   def current_section
-    sections.each_pair do |section, controllers|
-      @current_section = section if controllers.include? controller_name
+    sections[current_namespace].each_pair do |section,controllers|
+      @current_section ||= section if controllers.include? controller_name
     end
     @current_section
   end
 
   def sections
     @sections ||= {
-      :general => %w[ dashboard ],
-      :system  => %w[ access master_scenarios scenarios system_variables variables ],
-      :users   => %w[ users ]
+      :admins => {
+        :general => %w[ dashboard ],
+        :system  => %w[ access master_scenarios scenarios system_variables variables ],
+        :users   => %w[ users ]
+      },
+      :instructors => {
+        :dashboard  => %w[ dashboards ],
+        :scenarios  => %w[ scenarios ],
+        :groups     => %w[ groups ]
+      }
     }
   end
 
-  def is_current_item?(title)
-    sections[title].include? controller_name
+  def is_current_item?(name)
+    controllers = sections[current_namespace][name]
+    controllers.include? controller_name if controllers
   end
 
   def sidebar_nav_options
     @sidebar_nav_options = {
-      :general => [
-        {
-          :link   => admins_dashboard_path,
-          :value  => 'Dashboard'
-        },
-        {
-          :link   => admins_settings_path,
-          :value  => 'Settings'
-        }
-      ],
-      :system => [
-        {
-          :link   => admins_master_scenarios_path,
-          :value  => 'Master Scenarios'
-        },
-        {
-          :link   => admins_scenarios_path,
-          :value  => 'Instructor Scenarios'
-        }
-      ],
-      :users => [
-        {
-          :link   => admins_users_path(:role => :admin),
-          :value  => 'Admins'
-        },
-        {
-          :link   => admins_users_path(:role => :manager),
-          :value  => 'Inst. Managers'
-        },
-        {
-          :link   => admins_users_path(:role => :instructor),
-          :value  => 'Instructors'
-        },
-        {
-          :link   => admins_users_path(:role => :student),
-          :value  => 'Students'
-        },
-        {
-          :link   => admins_users_path(:role => :guest),
-          :value  => 'Guests'
-        },
-        {
-          :link   => admins_institutions_path,
-          :value  => 'Institutions'
-        },
-        {
-          :link   => admins_classes_path,
-          :value  => 'Classes'
-        }
-      ]
+      :admins => {
+        :general => [
+          {
+            :link   => admins_dashboard_path,
+            :value  => 'Dashboard'
+          },
+          {
+            :link   => admins_settings_path,
+            :value  => 'Settings'
+          }
+        ],
+        :system => [
+          {
+            :link   => admins_master_scenarios_path,
+            :value  => 'Master Scenarios'
+          },
+          {
+            :link   => admins_scenarios_path,
+            :value  => 'Instructor Scenarios'
+          }
+        ],
+        :users => [
+          {
+            :link   => admins_users_path(:role => :admin),
+            :value  => 'Admins'
+          },
+          {
+            :link   => admins_users_path(:role => :manager),
+            :value  => 'Inst. Managers'
+          },
+          {
+            :link   => admins_users_path(:role => :instructor),
+            :value  => 'Instructors'
+          },
+          {
+            :link   => admins_users_path(:role => :student),
+            :value  => 'Students'
+          },
+          {
+            :link   => admins_users_path(:role => :guest),
+            :value  => 'Guests'
+          },
+          {
+            :link   => admins_institutions_path,
+            :value  => 'Institutions'
+          },
+          {
+            :link   => admins_classes_path,
+            :value  => 'Classes'
+          }
+        ]
+      },
+      :instructors => {
+        :dashboard => [
+          {
+            :link   => '#',
+            :value  => 'Classes'
+          }
+        ],
+        :scenarios => [
+          {
+            :link   => '#',
+            :value  => 'Scenarios'
+          },
+          {
+            :link   => '#',
+            :value  => 'New Scenario'
+          }
+        ],
+        :groups => [
+          {
+            :link   => '#',
+            :value  => 'Classes'
+          },
+          {
+            :link   => '#',
+            :value  => 'New Class'
+          }
+        ]
+      }
     }
   end
 
