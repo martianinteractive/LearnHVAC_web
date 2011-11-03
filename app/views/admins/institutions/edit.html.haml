@@ -1,9 +1,11 @@
-%h2= "Editing #{formatted_institution_name}" 
-%hr
+= content_for :main_header do
+  %h1= @institution.name
+  %h4 Edit
 
 = form_for(@institution, :url => admins_institution_path(@institution), :method => :put) do |f|
-  = render :partial => "form", :locals => { :f => f }
-  .actions
-    = submit_tag "Update"
-    &nbsp;or&nbsp;
-    = link_to 'Cancel', :back
+  %fieldset
+    = render :partial => "form", :locals => { :f => f }
+    .actions
+      = f.submit "Update", :class => 'btn primary'
+      or
+      = link_to 'Cancel', :back, :class => 'btn'

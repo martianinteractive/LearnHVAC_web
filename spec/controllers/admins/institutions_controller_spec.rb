@@ -11,7 +11,7 @@ describe Admins::InstitutionsController do
     it "should expose institutions as @institutions and render the index template" do
       get :index
       response.should render_template(:index)
-      assigns[:institution_grid].should_not be_nil
+      assigns[:institutions].should_not be_nil
     end
   end
 

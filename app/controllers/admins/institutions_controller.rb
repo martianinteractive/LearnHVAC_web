@@ -1,11 +1,13 @@
 class Admins::InstitutionsController < Admins::ApplicationController
+
+  layout 'bootstrap'
+
   add_crumb("Institutions") { |instance| instance.send :admins_institutions_path }
-  
+
   cache_sweeper :institution_sweeper, :only => [:create, :update, :destroy]
-  
+
   def index
-    @institution_grid = initialize_grid(Institution,
-                                        :per_page => 25)
+    @institutions = Institution.all
   end
 
   def show
@@ -49,5 +51,5 @@ class Admins::InstitutionsController < Admins::ApplicationController
     @institution.destroy
     redirect_to(admins_institutions_url)
   end
-  
+
 end

@@ -1,13 +1,16 @@
-#tabs
-  %ul
-    %li.ui-tabs-selected= link_to "Manage institutions", admins_institutions_path
-    %li= link_to "New institution", new_admins_institution_path
-  
-  %br
-  = grid(@institution_grid) do |g|
-    - g.column :column_name => 'Name', :attribute_name => 'name' do |institution|
-      - link_to formatted_institution_name(institution), admins_institution_path(institution)
-    - g.column :column_name => 'Users' do |institution|
-      - institution.users.count
-    - g.column :column_name => "Category" do |institution|
-      - institution.category.try(:titleize)
+= content_for :main_header do
+  %h1 Institutions
+
+%p.pull-right= link_to "New institution", new_admins_institution_path, :class => 'btn'
+%table.zebra-striped
+  %thead
+    %tr
+      %th Name
+      %th Users
+      %th Category
+  %tbody
+    - @institutions.each do |institution|
+      %tr
+        %td= link_to formatted_institution_name(institution), admins_institution_path(institution)
+        %td= institution.users.count
+        %td= institution.category.try(:titleize)

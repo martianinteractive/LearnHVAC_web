@@ -1,28 +1,25 @@
-%h2= formatted_institution_name(@institution)
-%p
-  = link_to 'Edit', edit_admins_institution_path(@institution)
-  &nbsp;|&nbsp;
-  = link_to 'Delete', admins_institution_path(@institution), :confirm => 'Are you sure?', :method => :delete
-  &nbsp;|&nbsp;
-  = link_to 'Back', admins_institutions_path
+= content_for :main_header do
+  %h1= @institution.name
 
-%hr
-%p
-  %b
-    Members:
+.well
+  %p
+    = link_to 'Edit', edit_admins_institution_path(@institution), :class => 'btn success'
+    = link_to 'Delete', admins_institution_path(@institution), :confirm => 'Are you sure?', :method => :delete, :class => 'btn danger'
+    = link_to 'Back', admins_institutions_path, :class => 'btn primary'
 
-%table
-  %tr
-    %th Name
-    %th Login
-    %th Role
-
-    - for user in @users
+%div
+  %h3 Members:
+  %table
+    %thead
       %tr
-        %td= link_to user.name, admins_user_path(user)
-        %td= user.login
-        %td= user.role.to_s.capitalize
+        %th Name
+        %th Login
+        %th Role
+    %tbody
+      - for user in @users
+        %tr
+          %td= link_to user.name, admins_user_path(user)
+          %td= user.login
+          %td= user.role.to_s.capitalize
 
-
-%br
 = will_paginate @users

@@ -97,7 +97,7 @@ module ApplicationHelper
       :admins => {
         :general => %w[ dashboard settings ],
         :system  => %w[ access master_scenarios scenarios system_variables variables ],
-        :users   => %w[ users groups ]
+        :users   => %w[ users groups institutions ]
       },
       :instructors => {
         :dashboard  => %w[ dashboards ],
