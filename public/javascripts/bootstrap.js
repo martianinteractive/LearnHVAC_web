@@ -32,6 +32,8 @@ function translate(element, x, y)
 
 $(document).ready(function() {
 
+  $('.alert-message').delay(3000).slideUp();
+
   $('#filterbutton').click(function() {
     $('#filter_panel').toggle();
   });
@@ -60,7 +62,7 @@ $(document).ready(function() {
   // =============================
   // Please do not carry these styles over to your projects, it's merely here to prevent button clicks form taking you away from your spot on page
 
-  $('ul.tabs a, ul.pills a, .pagination a, .alert-message .btn, a.close').click(function (e) {
+  $('ul.tabs a, ul.pills a, .pagination a, a.close').click(function (e) {
     e.preventDefault()
   })
 

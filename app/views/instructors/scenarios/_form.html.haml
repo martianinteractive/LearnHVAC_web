@@ -1,151 +1,122 @@
 = f.error_messages
 
-.field.clearfix
+.clearfix
   = f.label :name, "Scenario name"
-  = f.text_field :name
+  .input= f.text_field :name, :class => 'xxlarge'
 
 - if @scenario.new_record?
-  %fieldset
-    %p
-      Select a master scenario to model your scenario from.
+  .clearfix
+    %p Select a master scenario to model your scenario from.
+    = f.label :master_scenario_id, "Master Scenario"
+    .input= f.select :master_scenario_id, MasterScenario.select("name, id").collect { |ms| [ ms.name.capitalize, ms.id ] }, {:prompt => "Please select..."}, :class => 'xxlarge'
 
-    .field.clearfix
-      = f.label :master_scenario_id, "Master Scenario"
-      = f.select :master_scenario_id, MasterScenario.select("name, id").collect { |ms| [ ms.name.capitalize, ms.id ] }, {:prompt => "Please select..."}
+.clearfix
+  %p Description shown when student views available scenarios.
+  = f.label :short_description
+  .input= f.text_field :short_description, :class => 'xxlarge'
 
+.clearfix
+  %p Enter a longer description describing scenario in detail.
+  = f.label :description, "Full description"
+  .input= f.text_area :description, :rows => '3', :class => 'xxlarge'
 
-%fieldset
-  %p 
-    Description shown when student views available scenarios.
+.clearfix
+  = f.label :goal
+  .input= f.text_area :goal, :rows => '3', :class => 'xxlarge'
 
-  .field.clearfix
-    = f.label :short_description
-    = f.text_field :short_description
-
-%fieldset
-  %p
-    Enter a longer description describing scenario in detail.
-
-  .field.clearfix
-    = f.label :description, "Full description"
-    = f.text_area :description
-
-%fieldset
-
-  .field.clearfix
-    = f.label :goal
-    = f.text_area :goal
-
-
-%fieldset
+.clearfix
   %legend Dificulty
-  
   %p Select a level of difficulty for this scenario. 1 = easy, 5 = very difficult.
-
-  .field.clearfix
   = f.label :level
-  = f.select :level, [1, 2, 3, 4, 5]
-
+  .input= f.select :level, [1, 2, 3, 4, 5], :class => 'xxlarge'
 
 %h3 Inputs &amp; Faults
 
-%fieldset
+.clearfix
   %legend Inputs visible?
-  
   %p Allow students to see PUBLIC input values during simulation.
+  = f.label :inputs_visible
+  .input
+    %ul.inputs-list
+      %li
+        %label= f.check_box :inputs_visible
 
-  .field.clearfix
-    = f.label :inputs_visible
-    = f.check_box :inputs_visible
-
-%fieldset
+.clearfix
   %legend Inputs enabled?
-
   %p Allow student to enter PUBLIC input values during simulation.
+  = f.label :inputs_enabled
+  .input
+    %ul.inputs-list
+      %li
+        %label= f.check_box :inputs_enabled
 
-  .field.clearfix
-    = f.label :inputs_enabled
-    = f.check_box :inputs_enabled
-
-%fieldset
+.clearfix
   %legend Faults visible?
- 
   %p Allow student to see PUBLIC fault values during simulation.
+  = f.label :faults_visible
+  .input
+    %ul.inputs-list
+      %li
+        %label= f.check_box :faults_visible
 
-  .field.clearfix
-    = f.label :faults_visible
-    = f.check_box :faults_visible
-
-%fieldset
+.clearfix
   %legend Faults enabled?
-
   %p Allow student to enter PUBLIC fault values during simulation.
+  = f.label :faults_enabled
+  .input
+    %ul.inputs-list
+      %li
+        %label= f.check_box :faults_enabled
 
-  .field.clearfix
-    = f.label :faults_enabled
-    = f.check_box :faults_enabled
-
-
-%fieldset
+.clearfix
   %legend Long-term Simulation
-
   %p The date and time the real-time simulation should start.
-
-  .field.clearfix
-    = f.label :longterm_start_date
-    = f.datetime_select :longterm_start_date, :discard_year =>true, :discard_minute => true, :discard_hour => true, :default => {:year => Time.now.year }
+  = f.label :longterm_start_date
+  .input= f.datetime_select :longterm_start_date, :discard_year =>true, :discard_minute => true, :discard_hour => true, :default => {:year => Time.now.year }, :class => 'xxlarge'
 
   %p{:style => "margin-top:35px;"} The date and time the real-time simulation should stop.
-
-  .field.clearfix
-    = f.label :longterm_stop_date
-    = f.datetime_select :longterm_stop_date, :discard_year =>true, :discard_minute => true, :discard_hour => true, :default => {:year => Date.current.year }
+  = f.label :longterm_stop_date
+  .input= f.datetime_select :longterm_stop_date, :discard_year =>true, :discard_minute => true, :discard_hour => true, :default => {:year => Date.current.year }, :class => 'xxlarge'
 
   %p{:style => "margin-top:35px;"} Allow the student to change the start and stop time and date for the long-term simulation.
+  = f.label :allow_longterm_date_change
+  .input
+    %ul.inputs-list
+      %li
+        %label= f.check_box :allow_longterm_date_change
 
-  .field.clearfix
-    = f.label :allow_longterm_date_change
-    = f.check_box :allow_longterm_date_change
-
-%fieldset
+.clearfix
   %legend Real-time Simulation
-
   %p The date and time the real-time simulation should start at.
- 
-  .field.clearfix    
-    = f.label :realtime_start_datetime
-    = f.datetime_select :realtime_start_datetime, :discard_year =>true, :discard_minute => true, :datetime_separator => "At: ", :default => {:year => Date.current.year }
-
+  = f.label :realtime_start_datetime
+  .input= f.datetime_select :realtime_start_datetime, {:discard_year => true, :discard_minute => true, :datetime_separator => "At: ", :default => {:year => Date.current.year }}, :class => 'medium'
   %p{:style => "margin-top:35px;"} Allow the student to change the start time and date for the short-term simulation.
+  = f.label :allow_realtime_datetime_change
+  .input
+    %ul.inputs-list
+      %li
+        %label= f.check_box :allow_realtime_datetime_change
 
-  .field.clearfix
-    = f.label :allow_realtime_datetime_change
-    = f.check_box :allow_realtime_datetime_change
-
-
-%fieldset
+.clearfix
   %p Allow student to view Heating Coil and Cooling Coil valve information
-
-.field.clearfix
   = f.label :valve_info_enabled
-  = f.check_box :valve_info_enabled
-  
-%fieldset
+  .input
+    %ul.inputs-list
+      %li
+        %label= f.check_box :valve_info_enabled
+
+.clearfix
   %p Allow student to view the debug window button.
-  
-.field.clearfix
   = f.label :student_debug_access
-  = f.check_box :student_debug_access
+  .input
+    %ul.inputs-list
+      %li
+        %label= f.check_box :student_debug_access
 
-%fieldset
+.clearfix
   %p Allow all users to view this scenario.
-
-.field.clearfix
   = f.label :public, "Share"
-  = f.check_box :public
-
-
-.actions
-  = f.submit
-  &nbsp;or&nbsp;
-  = link_to 'Cancel', instructors_scenarios_path
+  .input
+    %ul.inputs-list
+      %li
+        %label= f.check_box :public

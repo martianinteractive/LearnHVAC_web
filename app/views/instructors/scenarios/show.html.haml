@@ -1,63 +1,86 @@
-#tabs
-  %ul
-    %li.ui-tabs-selected= link_to "Scenarios", instructors_scenarios_path
-    %li= link_to "New Scenario", new_instructors_scenario_path
+= content_for :main_header do
+  - if @scenario.new_record?
+    %h1 New Scenario
 
-  = render :partial => "scenario_menu"
-  #inner_column
-    %table
-      %tr
-        %th Author:
-        %td= @scenario.user.name
-      %tr
-        %th Created on:
-        %td= @scenario.created_at.to_formatted_s(:long)
-      %tr
-        %th Client version:
-        %td
-          - if @scenario.client_version
-            = @scenario.client_version.version
-          - else
-            %em No client selected.
-      %tr
-        %th Level:
-        %td= @scenario.level
-      %tr
-        %th Inputs visible:
-        %td= @scenario.inputs_visible
-      %tr
-        %th Inputs enabled:
-        %td= @scenario.inputs_enabled
-      %tr
-        %th Faults visible:
-        %td= @scenario.faults_visible
-      %tr
-        %th Faults enabled:
-        %td= @scenario.faults_enabled
-      %tr
-        %th Longterm start date:
-        %td= @scenario.longterm_start_date
-      %tr
-        %th Longterm stop date:
-        %td= @scenario.longterm_stop_date
-      %tr
-        %th Allow longterm date change:
-        %td= @scenario.allow_longterm_date_change
-      %tr
-        %th Realtime start datetime:
-        %td= @scenario.realtime_start_datetime
-      %tr
-        %th Allow realtime datetime change:
-        %td= @scenario.allow_realtime_datetime_change
-      %tr
-        %th Valve info enabled:
-        %td= @scenario.valve_info_enabled
-      %tr
-        %th Student debug access:
-        %td= @scenario.student_debug_access
-      %tr
-        %th Short description:
-        %td= @scenario.short_description
-      %tr
-        %th Goal:
-        %td= @scenario.goal
+  - else
+    %h1= @scenario.name
+    %p= @scenario.description
+    - if @scenario.master_scenario.blank?
+      %p.subject-description
+        %em The master scenario used to create this scenario has been deleted.
+
+= render :partial => "scenario_menu"
+
+%table
+  %tr
+    %td
+      %strong Author:
+    %td= @scenario.user.name
+  %tr
+    %td
+      %strong Created on:
+    %td= @scenario.created_at.to_formatted_s(:long)
+  %tr
+    %td
+      %strong Client version:
+    %td
+      - if @scenario.client_version
+        = @scenario.client_version.version
+      - else
+        %em No client selected.
+  %tr
+    %td
+      %strong Level:
+    %td= @scenario.level
+  %tr
+    %td
+      %strong Inputs visible:
+    %td= @scenario.inputs_visible
+  %tr
+    %td
+      %strong Inputs enabled:
+    %td= @scenario.inputs_enabled
+  %tr
+    %td
+      %strong Faults visible:
+    %td= @scenario.faults_visible
+  %tr
+    %td
+      %strong Faults enabled:
+    %td= @scenario.faults_enabled
+  %tr
+    %td
+      %strong Longterm start date:
+    %td= @scenario.longterm_start_date
+  %tr
+    %td
+      %strong Longterm stop date:
+    %td= @scenario.longterm_stop_date
+  %tr
+    %td
+      %strong Allow longterm date change:
+    %td= @scenario.allow_longterm_date_change
+  %tr
+    %td
+      %strong Realtime start datetime:
+    %td= @scenario.realtime_start_datetime
+  %tr
+    %td
+      %strong Allow realtime datetime change:
+    %td= @scenario.allow_realtime_datetime_change
+  %tr
+    %td
+      %strong Valve info enabled:
+    %td= @scenario.valve_info_enabled
+  %tr
+    %td
+      %strong Student debug access:
+    %td= @scenario.student_debug_access
+  %tr
+    %td
+      %strong Short description:
+    %td= @scenario.short_description
+  %tr
+    %td
+      %strong Goal:
+    %td= @scenario.goal
