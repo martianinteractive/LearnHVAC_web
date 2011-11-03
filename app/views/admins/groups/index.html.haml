@@ -1,13 +1,17 @@
-#tabs
-  %ul
-    %li.ui-tabs-selected= link_to "Classes", admins_classes_path
-    %li= link_to "New Class", new_admins_class_path
-  
-  %br
-  = grid(@groups_grid, :show_filters => :always) do |g|
-    - g.column :column_name => 'Name' do |group|
-      - link_to group.name, admins_class_path(group)
-    - g.column :column_name => 'Instructor' do |group|
-      - link_to group.creator.name, admins_user_path(group.creator, :role => group.creator.role)
-    - g.column :column_name => 'Instructor' do |group|
-      - group.members.count
+= content_for :main_header do
+  %h1 Classes
+
+%p.pull-right= link_to 'New Class', new_admins_class_path, :class => 'btn'
+
+%table.zebra-striped
+  %thead
+    %tr
+      %th Name
+      %th Instructor
+      %th Members
+  %tbody
+    - @groups.each do |group|
+      %tr
+        %td= link_to group.name, admins_class_path(group)
+        %td= link_to group.creator.name, admins_user_path(group.creator, :role => group.creator.role)
+        %td= group.members.count

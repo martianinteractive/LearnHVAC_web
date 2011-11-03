@@ -1,12 +1,8 @@
-#tabs
-  %ul
-    %li.ui-tabs-selected= link_to "Settings", admins_settings_path
+= content_for :main_header do
+  %h1 Settings
 
-  #page_header
-    #subject_info
-      %h3= link_to "Educational Entity", admins_settings_educational_entities_path
-      %p Add/Edit or delete educational entities.
-      
-      %h3= link_to "Desktop Application Versions", admins_settings_client_versions_path
-      %p Manage versions of the desktop software
-      
+%p= link_to "Educational Entities", admins_settings_educational_entities_path, :class => 'btn'
+%p Add/Edit or delete educational entities.
+
+%p= link_to "Desktop Application Versions", admins_settings_client_versions_path, :class => 'btn'
+%p Manage versions of the desktop software

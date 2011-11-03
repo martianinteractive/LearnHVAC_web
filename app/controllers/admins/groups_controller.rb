@@ -1,14 +1,15 @@
 class Admins::GroupsController < Admins::ApplicationController
+
+  layout 'bootstrap'
+
   before_filter :build_instructor, :only => [:new, :create]
-  
+
   cache_sweeper :group_sweeper, :only => [:create, :update, :destroy]
-  
+
   add_crumb("Classes") { |instance| instance.send :admins_classes_path }
-  
+
   def index
-    @groups_grid = initialize_grid(Group,
-                                   :include => { :members => :institution},
-                                   :per_page => 25)
+    @groups = Group.all :include => {:members => :institution}
   end
 
   def show
@@ -16,12 +17,14 @@ class Admins::GroupsController < Admins::ApplicationController
   end
 
   def new
-    @group = Group.new
+    @group              = Group.new
+    @created_scenarios  = @instructor.created_scenarios
     add_crumb "New Group", new_admins_class_path
   end
 
   def edit
-    @group = Group.find(params[:id])
+    @group              = Group.find(params[:id])
+    @created_scenarios  = @group.creator.created_scenarios
     add_crumb "Editing #{@group.name}", edit_admins_class_path(@group)
   end
 
@@ -50,15 +53,15 @@ class Admins::GroupsController < Admins::ApplicationController
   def destroy
     @group = Group.find(params[:id])
     @group.destroy
-    
+
     redirect_to(admins_classes_path)
   end
-  
+
   private
-  
+
   def build_instructor
     @instructor = User.find(params[:group][:creator_id]) if params[:group] and params[:group][:creator_id].present?
-    @instructor ||= User.new 
+    @instructor ||= User.new
   end
-  
+
 end

@@ -7,11 +7,10 @@ describe Admins::GroupsController do
   before{ login_as(:admin) }
 
   context "GET index" do
-    it "" do
-      # Group.should_receive(:paginate).and_return([group])
+    it "should expose groups and render the template" do
       get :index
       response.should render_template(:index)
-      assigns[:groups_grid].should_not be_nil
+      assigns[:groups].should_not be_nil
     end
   end
 
@@ -37,9 +36,11 @@ describe Admins::GroupsController do
     it "" do
       Group.should_receive(:find).with("37").and_return(group)
       group.should_receive(:name)
+      group.stub_chain(:creator, :created_scenarios).and_return([])
       get :edit, :id => '37'
       response.should render_template(:edit)
       assigns(:group).should eq(group)
+      assigns(:created_scenarios).should_not be_nil
     end
   end
 
