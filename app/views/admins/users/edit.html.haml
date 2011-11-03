@@ -1,18 +1,14 @@
-#tabs
-  %ul
-    %li.ui-tabs-selected= link_to "Manage #{params[:role].pluralize.humanize}", admins_users_path("role" => params[:role])
-    %li= link_to "New #{params[:role].humanize}", new_admins_user_path("role" => params[:role])
+= content_for :main_header do
+  %h1= @user.name
+  %h4 Edit
 
-  .subject-buttons.ui-helper-clearfix
-    %ul
-      %li
-        = link_to(admins_user_path(@user, :role => params[:role])) do
-          %button.button.large-green-button{:type=>"button"} Cancel
+.well
+  = link_to 'Cancel', admins_user_path(@user, :role => params[:role]), :class => 'btn success'
 
-
-  = form_for(@user, :url => admins_user_path(@user, :role => params[:role]), :method => :put) do |f|
-    = render :partial => "form", :locals => { :f => f }
+= form_for(@user, :url => admins_user_path(@user, :role => params[:role]), :method => :put) do |f|
+  %fieldset
+    = render :partial => "form", :locals => {:f => f}
     .actions
-      = submit_tag "Update"
-      &nbsp;or&nbsp;
-      = link_to 'Cancel', :back
+      = f.submit "Update", :class => 'btn primary'
+      or
+      = link_to 'Cancel', :back, :class => 'btn'

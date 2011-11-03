@@ -4,14 +4,14 @@ $(document).ready(function() {
         }else{
             $('#students').show();
         }
-        
-	$("#scenario_longterm_start_date").datepicker();
-	$("#scenario_longterm_stop_date").datepicker();	
-	
-	$(function() {
-		$("#tabs").no_ajax_tabs();
-		$("#inner-tabs").no_ajax_tabs();
-	});
+
+  $("#scenario_longterm_start_date").datepicker();
+  $("#scenario_longterm_stop_date").datepicker();
+
+  $(function() {
+    $("#tabs").no_ajax_tabs();
+    $("#inner-tabs").no_ajax_tabs();
+  });
         $('#user_role_code_0').click(function(){
                 groups = $('#groups');
                 scenarios = $('#scenarios');
@@ -21,7 +21,7 @@ $(document).ready(function() {
                         $('#user_role_code_2').click();
                     }
                 }
-        });      
+        });
         $('#user_role_code').change(function(){
                 if(this.value != 1){
                     $('#students').hide();
@@ -40,5 +40,5 @@ $(document).ready(function() {
                 }
             });
         });
-        $("#class_notification_email_recipients").fcbkcomplete({cache: true, filter_case: true, filter_hide: true, newel: true});       
+        $("#class_notification_email_recipients").fcbkcomplete({cache: true, filter_case: true, filter_hide: true, newel: true});
 });

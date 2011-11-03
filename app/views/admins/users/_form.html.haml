@@ -2,71 +2,77 @@
   = render :partial => 'shared/user_form_js', :locals => { :u => @user }
 
 = error_messages_for 'user'
-.field
+.clearfix
   = f.label :login
-  = f.text_field :login
+  .input= f.text_field :login, :class => 'xxlarge'
 
-.field
+.clearfix
   = f.label :first_name, "First Name"
-  = f.text_field :first_name
+  .input= f.text_field :first_name, :class => 'xxlarge'
 
-.field
+.clearfix
   = f.label :last_name, "Last Name"
-  = f.text_field :last_name
+  .input= f.text_field :last_name, :class => 'xxlarge'
 
-.field
+.clearfix
   = f.label :country
-  = f.country_select :country, ['United States', 'Canada']
+  .input= f.country_select :country, ['United States', 'Canada'], :class => 'xxlarge'
 
-.field#states
+.clearfix#states
   = f.label :state, "State/Region"
-  = f.text_field :state
+  .input= f.text_field :state, :class => 'xxlarge'
 
-.field
+.clearfix
   = f.label :city
-  = f.text_field :city
+  .input= f.text_field :city, :class => 'xxlarge'
 
-.field
+.clearfix
   = f.label :email
-  = f.text_field :email
-  
-.field
+  .input= f.text_field :email, :class => 'xxlarge'
+
+.clearfix
   = f.label :phone
-  = f.text_field :phone
+  .input= f.text_field :phone, :class => 'xxlarge'
 
-.field
+.clearfix
   = f.label :password
-  = f.password_field :password, :size=>20,  :value=>""
+  .input= f.password_field :password, :size => 20,  :value => "", :class => 'xxlarge'
 
-.field
-  = f.label :password_confirmation, "Password Confirmation"	
-  = f.password_field :password_confirmation, :size=>20,  :value=>""
+.clearfix
+  = f.label :password_confirmation, "Password Confirmation"
+  .input= f.password_field :password_confirmation, :size=>20,  :value=>"", :class => 'xxlarge'
 
-.field
+.clearfix
   = f.label :role
-  = f.select(:role_code, User::ROLES.keys.collect{|k| [k.to_s.gsub("_", " ").capitalize, User::ROLES[k]]})
+  .input= f.select :role_code, User::ROLES.keys.collect {|k| [k.to_s.gsub("_", " ").capitalize, User::ROLES[k]]}, {}, :class => 'xlarge'
 
 #students
-  .field
+  .clearfix
     = label_tag :instructor
-    = select_tag(:instructor, options_from_collection_for_select(@instructors, "id", "name"),{:include_blank => true})
-  .field
+    .input= select_tag :instructor, options_from_collection_for_select(@instructors, "id", "name"),{:include_blank => true, :class => 'xlarge'}
+  .clearfix
     = f.label :group
     #group_div
-      = f.select(:group_code,[])
-.field
+      .input= f.select :group_code,[], {}, :class => 'xlarge'
+.clearfix
   = f.label :institution_id
-  = f.collection_select(:institution_id, Institution.all, :id, :name)
-  
-.field
-  = f.label :time_zone
-  = f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones
+  .input= f.collection_select :institution_id, Institution.all, :id, :name, {}, :class => 'xlarge'
 
-.field
+.clearfix
+  = f.label :time_zone
+  .input= f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones, {}, :class => 'xlarge'
+
+.clearfix
   = f.label :enabled
-  = f.check_box :enabled
+  .input
+    %ul.inputs-list
+      %li
+        %label= f.check_box :enabled
 
 - if @user.has_role?(:student) or @user.has_role?(:instructor) or @user.has_role?(:student)
-  .field
+  .clearfix
     = f.label :list_directory, "Listed in the community directory?"
-    = f.check_box :list_directory
+    .input
+      %ul.inputs-list
+        %li
+          %label= f.check_box :list_directory

@@ -1,37 +1,36 @@
 #location.ui-widget.ui-widget-content.ui-corner-all
-  %h4 location
+  %h4 Location
   %p
     = image_tag "globe_32.png"
     = location_for(@user)
 
-#inner_column
-  %table
+%table
+  %tr
+    %td
+      %strong Institution:
+    %td= link_to @user.institution.name, admins_institution_path(@user.institution) if @user.institution
+  %tr
+    %td
+      %strong Login:
+    %td= @user.login
+  %tr
+    %td
+      %strong E-Mail:
+    %td= mail_to @user.email
+  - if @user.phone.present?
     %tr
       %td
-        %strong Institution:
-      %td= link_to @user.institution.name, admins_institution_path(@user.institution) if @user.institution
-    %tr
-      %td
-        %strong Login:
-      %td= @user.login
-    %tr
-      %td
-        %strong E-Mail:
-      %td= mail_to @user.email
-    - if @user.phone.present?
-      %tr
-        %td
-          %strong Phone:
-        %td= @user.phone
-    %tr
-      %td
-        %strong Status:
-      %td= @user.enabled? ? "Enabled" : "Disabled"
-    %tr
-      %td
-        %strong Time Zone:
-      %td= @user.time_zone
-    %tr
-      %td
-        %strong Created on:
-      %td= @user.created_at.to_formatted_s(:long)
+        %strong Phone:
+      %td= @user.phone
+  %tr
+    %td
+      %strong Status:
+    %td= @user.enabled? ? "Enabled" : "Disabled"
+  %tr
+    %td
+      %strong Time Zone:
+    %td= @user.time_zone
+  %tr
+    %td
+      %strong Created on:
+    %td= @user.created_at.to_formatted_s(:long)

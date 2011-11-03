@@ -1,11 +1,11 @@
 = content_for :main_header do
   %h1= @user.name
 
-%p.pull-right
-  = link_to(edit_admins_user_path(@user, :role => @user.role), :class => 'no-decoration') do
-    %button.btn.success Edit
-  = link_to admins_user_path(@user, :role => @user.role), :confirm => 'Are you sure?', :method => :delete, :class => 'no-decoration' do
-    %button.btn.danger Delete
+.well
+  %p
+    = link_to 'Edit', edit_admins_user_path(@user, :role => @user.role), :class => 'btn success'
+    &nbsp;
+    = link_to 'Delete', admins_user_path(@user, :role => @user.role), :confirm => 'Are you sure?', :method => :delete, :class => 'btn danger'
 
 - unless @user.has_role?(:student)
   = render @user
