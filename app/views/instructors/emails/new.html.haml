@@ -1,37 +1,32 @@
-- content_for :head do
-  - javascript_tag do
-    $(document).ready(function() { $(".tip").tooltip(); });
-    
-#tabs
-  %ul
-    %li= link_to @group.name, instructors_class_path(@group)
-    %li= link_to "Emails", instructors_class_emails_path(@group)
-    %li.ui-tabs-selected= link_to "New Email", new_instructors_class_email_path(@group)
+= content_for :main_header do
+  %h1 New Email
+  %p= @group.name
 
-  = form_for(@email, :url => instructors_class_emails_path(@group), :method => :post) do |f|
+= form_for(@email, :url => instructors_class_emails_path(@group), :method => :post) do |f|
+  %fieldset
     = f.error_messages
-    .instructions
-      %p Use this form to invite students to join the #{@group.name} group. 
+
+    %legend
+      %p Use this form to invite students to join the #{@group.name} group.
       %p Please enter their email addresses separated by a comma.
 
-    .field
+    .clearfix
       = f.label :from
-      = f.text_field :from, :disabled => true
-    
-    .field
-      = f.label :recipients, "Recipients"
-      = f.select :recipients, @group.members.map{ |u| [u.name, u.email]}      
-    
-    .field
-      = f.label :subject
-      = f.text_field :subject, :value => @email.subject
+      .input= f.text_field :from, :disabled => true, :class => 'xxlarge'
 
-    .field
+    .clearfix
+      = f.label :recipients, "Recipients"
+      .input= f.select :recipients, @group.members.map { |u| [u.name, u.email]}, :class => 'xxlarge'
+
+    .clearfix
+      = f.label :subject
+      .input= f.text_field :subject, :value => @email.subject, :class => 'xxlarge'
+
+    .clearfix
       = f.label :body
-      = f.text_area :body, :value => (@email.body || render(:partial => 'shared/group_email_body')), :size => '100x100', :class => "class_email"
-      
+      .input= f.text_area :body, :value => (@email.body || render(:partial => 'shared/group_email_body')), :rows => '10', :class => 'xxlarge'
+
     .actions
-      = f.submit "Send"
-      &nbsp;or&nbsp;
-      = link_to 'Cancel', instructors_class_path(@group)
-      
+      = f.submit "Send", :class => 'btn primary'
+      or
+      = link_to 'Cancel', instructors_class_path(@group), :class => 'btn'

@@ -1,15 +1,14 @@
-#tabs
-  %ul
-    %li= link_to @group.name, instructors_class_path(@group)
-    %li.ui-tabs-selected= link_to "Emails", instructors_class_emails_path(@group)
-    %li= link_to "New Email", new_instructors_class_email_path(@group)
-  
-  %br
-  %table.listing
-    %thead
-      %tr
-        %th Subject
-        %th Sent At
+= content_for :main_header do
+  %h1 Emails
+  %p= @group.name
+
+
+%table.zebra-striped
+  %thead
+    %tr
+      %th Subject
+      %th Sent At
+  %tbody
     - @emails.each do |email|
       %tr
         %td= link_to email.subject, instructors_class_email_path(@group, email)
@@ -17,6 +16,6 @@
     - if @emails.blank?
       %tr
         %td{:colspan => 2} No Email Invitations have been sent. To send one, click #{link_to "here", new_instructors_class_email_path(@group)}
-  %br
-  = will_paginate @emails
 
+%br/
+= will_paginate @emails

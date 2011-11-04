@@ -35,7 +35,8 @@ module ApplicationHelper
 
   def sidebar_menu
     html    = ''
-    title   = current_section.to_s.titleize
+    title   = 'Classes' if current_section == :groups
+    title   ||= current_section.to_s.titleize
     options = sidebar_nav_options[current_namespace][current_section]
     html << generate_sidebar_section(title, options)
     html.html_safe
@@ -102,7 +103,7 @@ module ApplicationHelper
       :instructors => {
         :dashboard  => %w[ dashboards ],
         :scenarios  => %w[ scenarios access variables ],
-        :groups     => %w[ groups ]
+        :groups     => %w[ groups emails ]
       }
     }
   end

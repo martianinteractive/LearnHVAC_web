@@ -1,31 +1,29 @@
-#tabs
-  %ul
-    %li= link_to @group.name, instructors_class_path(@group)
-    %li= link_to "Emails", instructors_class_emails_path(@group)
-    %li= link_to "New Email", new_instructors_class_email_path(@group)
-    
-  #page_header
-    #subject_actions
-      
-    #subject_info
-      %h2= @email.subject
-      .subject_details
-        Sent at:
-        = @email.created_at.to_formatted_s(:long)
-    
-  #inner_column
-    %table
-      %tr
-        %th From:
-        %td= @email.from
-      %tr
-        %th Subject:
-        %td= @email.subject
-      %tr
-        %th Recipients:
-        %td= @email.recipients
-        
-    
-    .class_email
-      %b Sent email
-      = simple_format @email.body
+= content_for :main_header do
+  %h1 Email
+  %p= @email.subject
+
+.well
+  = link_to 'View Class', instructors_class_path(@group), :class => 'btn'
+  = link_to "Emails", instructors_class_emails_path(@group), :class => 'btn'
+  = link_to "New Email", new_instructors_class_email_path(@group), :class => 'btn'
+
+%p
+  Sent at:
+  %i= @email.created_at.to_formatted_s(:long)
+
+%table
+  %tr
+    %td
+      %strong From:
+    %td= @email.from
+  %tr
+    %td
+      %strong Subject:
+    %td= @email.subject
+  %tr
+    %td
+      %strong Recipients:
+    %td= @email.recipients
+
+%strong Sent email
+%div= simple_format @email.body
