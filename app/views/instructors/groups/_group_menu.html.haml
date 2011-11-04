@@ -1,30 +1,12 @@
-.subject-buttons.ui-helper-clearfix
-  %ul
-    - if @subject_buttons == :group
-      %li
-        = link_to instructors_class_emails_path(@group) do
-          %button.button.medium-grey-button{:type => "button"} Emails
-           
-      %li
-        = link_to(edit_instructors_class_path(@group)) do
-          %button.button.medium-green-button{:type => "button"} Edit
-    
-      %li    
-        = link_to instructors_class_path(@group), :confirm => 'Are you sure?', :method => :delete do
-          %button.button.medium-red-button{:type => "button"} Delete
-  
-    - elsif @subject_buttons == :cancel_group
-      %li
-        - if %(edit update).include?(controller.action_name)
-          = link_to(instructors_class_path(@group)) do
-            %button.button.medium-green-button{:type => "button"} Cancel
+.well
+  - if @subject_buttons == :group
+    = link_to 'Emails', instructors_class_emails_path(@group), :class => 'btn'
+    = link_to 'Edit', edit_instructors_class_path(@group), :class => 'btn success'
+    = link_to 'Delete', instructors_class_path(@group), :confirm => 'Are you sure?', :method => :delete, :class => 'btn danger'
 
-        - elsif %(new create).include?(controller.action_name)
-          = link_to(instructors_classes_path) do
-            %button.button.medium-green-button{:type => "button"} Cancel
-    
-- if @group.new_record?
-  %h2.subject-name New Class
+  - elsif @subject_buttons == :cancel_group
+    - if %(edit update).include?(controller.action_name)
+      %p.pull-right= link_to 'Cancel', instructors_class_path(@group), :class => 'btn success'
 
-- else
-  %h2.subject-name= link_to @group.name, instructors_class_path(@group)
+    - elsif %(new create).include?(controller.action_name)
+      %p.pull-right= link_to 'Cancel', instructors_classes_path, :class => 'btn success'

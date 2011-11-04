@@ -1,26 +1,25 @@
-#tabs
-  %ul
-    %li.ui-tabs-selected= link_to "Classes", instructors_classes_path
-    %li= link_to "New Class", new_instructors_class_path
+= content_for :main_header do
+  %h1 Classes
 
-  %br
-  - if @groups.any?  
-    %table.listing
-      %thead
-        %tr
-          %th Name
-          %th Members
-          %th Shared Scenarios
-          %th Created on
+- if @groups.any?
+  %table.zebra-striped
+    %thead
+      %tr
+        %th Name
+        %th Members
+        %th Shared Scenarios
+        %th Created on
+    %tbody
       - @groups.each do |group|
         %tr
           %td= link_to group.name, instructors_class_path(group)
           %td= group.members.count
           %td= group.group_scenarios.count
           %td= group.created_at.to_formatted_s(:long)
-    %br
-    = will_paginate @groups
-  - else
-    %p 
-      You have no classes.
-      = link_to("Add a new class", new_instructors_class_path) << "."
+  %br/
+  = will_paginate @groups
+- else
+  %p
+    You have no classes.
+    %br/
+    = link_to "Add a new class", new_instructors_class_path, :class => 'btn'

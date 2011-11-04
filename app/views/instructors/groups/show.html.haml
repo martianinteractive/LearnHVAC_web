@@ -1,71 +1,57 @@
-- content_for :head do
-  = javascript_tag do
-    :plain
-      $(document).ready(function() { 
-        $(".sub-tabs").tabs();
-      });
+= content_for :main_header do
+  %h1= @group.name
 
-#tabs
-  %ul
-    %li.ui-tabs-selected= link_to "Classes", instructors_classes_path
-    %li= link_to "New Class", new_instructors_class_path
-    
-  = render :partial => 'group_menu'
-  
-  .sub-tabs
-    %ul
-      %li
-        %a{:href => "#cl-details"} Class Details
-      %li
-        %a{:href => "#cl-members"} Members
-      %li
-        %a{:href => "#cl-scenarios"} Scenarios
-  
-    %div#cl-details.tab-pane
-      %table
+= render :partial => 'group_menu'
+
+%div#cl-details.tab-pane
+  %table
+    %tbody
+      %tr
+        %td
+          %strong Invitation URL:
+        %td
+          %p Use the invitation URL to let your students join this group.
+          %p You may copy and paste it on an email or use the #{link_to "online form", new_instructors_class_email_path(@group)} to invite them.
+          %input{:type => "text", :value => membership_register_url(@group.code), :style => "width: 400px", :spellcheck => false}
+
+%h4 Members
+%div#cl-members.tab-pane
+  - if @group.members.empty?
+    %p There are no members registered under this group.
+  - else
+    %table.zebra-striped
+      %thead
         %tr
-          %th Invitation URL:
-          %td
-            %p Use the invitation URL to let your students join this group. 
-            %p You may copy and paste it on an email or use the #{link_to "online form", new_instructors_class_email_path(@group)} to invite them.
+          %th Name
+          %th Institution
+          %th Email
+          %th
+          %th
+      %tbody
+        - @group.members.each do |member|
+          %tr
+            %td= link_to_if member.has_role?(:student), member.name, instructors_class_student_path(@group, member)
+            %td= member.institution.name if member.institution
+            %td= mail_to member.email
+            %td
+              - if member.has_role?(:student)
+                = link_to image_tag("trashcan.gif"), instructors_class_membership_path(member, :class_id => @group), :confirm => 'Are you sure?', :method => :delete
+            %td= content_tag(:em, "Pending Email Confirmation") unless member.active?
 
-            %input{:type => "text", :value => membership_register_url(@group.code), :style => "width: 400px", :spellcheck => false}
-    
-    %div#cl-members.tab-pane
-      - if @group.members.empty?
-        %p There are no members registered under this group.
-      - else
-        %table
-          %thead
-            %tr
-              %th Name
-              %th Institution
-              %th Email
-              %th
-              %th
-          - @group.members.each do |member|
-            %tr
-              %td= link_to_if member.has_role?(:student), member.name, instructors_class_student_path(@group, member)
-              %td= member.institution.name if member.institution
-              %td= mail_to member.email
-              %td
-                - if member.has_role?(:student)
-                  =link_to image_tag("trashcan.gif"), instructors_class_membership_path(member, :class_id => @group), :confirm => 'Are you sure?', :method => :delete
-              %td= content_tag(:em, "Pending Email Confirmation") unless member.active?    
-
-
-    #div#cl-scenarios.tab-pane
-      - if @group.group_scenarios.empty?
-        %p There are no scenarios on this group.
-      - else
-        %table
-          %thead
-            %tr
-              %th Name
-              %th Variables
-              %th Created on
-          - @group.scenarios.each do |scenario|
-            %tr
-              %td= link_to scenario.name, instructors_scenario_path(scenario)
-              %td= scenario.variables.count
-              %td= scenario.created_at.to_formatted_s(:long)
+%h4 Scenarios
+%div
+  - if @group.group_scenarios.empty?
+    %p There are no scenarios on this group.
+  - else
+    %table.zebra-striped
+      %thead
+        %tr
+          %th Name
+          %th Variables
+          %th Created on
+      %tbody
+        - @group.scenarios.each do |scenario|
+          %tr
+            %td= link_to scenario.name, instructors_scenario_path(scenario)
+            %td= scenario.variables.count
+            %td= scenario.created_at.to_formatted_s(:long)
