@@ -1,35 +1,46 @@
-= grid(@scenario_variables_grid,:upper_pagination_panel => true) do |g|
-  - g.column :column_name => 'ID', :no_filter => true, :attribute_name => 'id'
-  - g.column :column_name => 'Name', :attribute_name => 'name'
-  - g.column :column_name => 'Display Name', :attribute_name => 'display_name'
-  - g.column :column_name => 'Description', :attribute_name => 'description'
-  - g.column :column_name => 'Unit system', :attribute_name => 'unit_si'
-  - g.column :column_name => 'Unit Ip', :attribute_name => 'unit_ip'
-  - g.column :column_name => 'si_to_ip', :attribute_name => 'si_to_ip'
-  - g.column :column_name => 'Left Label', :attribute_name => 'left_label'
-  - g.column :column_name => 'Right Label', :attribute_name => 'right_label'
-  - g.column :column_name => 'Subsection', :attribute_name => 'subsection'
-  - g.column :column_name => 'Zone Position', :attribute_name => 'zone_position'
-  - g.column :column_name => 'Fault Widget Type', :attribute_name => 'fault_widget_type'
-  - g.column :column_name => 'Notes', :attribute_name => 'notes'
-  - g.column :column_name => 'Component Code', :attribute_name => 'component_code',:custom_filter => Variable::COMPONENTS.keys
-  - g.column :column_name => 'IO Type', :attribute_name => 'io_type',:custom_filter => Variable::IO_TYPES
-  - g.column :column_name => 'View Type', :attribute_name => 'view_type'
-  - g.column :column_name => 'Index', :attribute_name => 'index'
-  - g.column :column_name => 'Lock Version', :attribute_name => 'lock_version'
-  - g.column :column_name => 'Node Sequence', :attribute_name => 'node_sequence'
-  - g.column :column_name => 'Low Value', :attribute_name => 'low_value'
-  - g.column :column_name => 'High Value', :attribute_name => 'high_value'
-  - g.column :column_name => 'Initial Value', :attribute_name => 'initial_value'
-  - g.column :column_name => 'Is Fault', :attribute_name => 'is_fault'  do |item|
-    - item.is_fault? ? 'Yes' : 'No'
-  - g.column :column_name => 'is_percentage', :attribute_name => 'is_percentage' do |item|
-    - item.is_percentage? ? 'Yes' : 'No'
-  - g.column :column_name => 'disabled', :attribute_name => 'disabled'  do |item|
-    - item.disabled? ? 'Yes' : 'No'
-  - g.column :column_name => 'fault_is_active', :attribute_name => 'fault_is_active'  do |item|
-    - item.fault_is_active? ? 'Yes' : 'No'
-  - g.column do |item|
-    - link_to image_tag('edit.gif'), edit_admins_scenario_variable_path(@scenario, item)
-  - g.column do |item|
-    - link_to image_tag('trashcan.gif'), admins_scenario_variable_path(@scenario, item), :confirm => 'Are you sure?', :method => :delete
+%table#sortTableExample.zebra-striped
+  %thead
+    %tr.ro1
+      %th.yellow Code
+      %th.yellow Name
+      %th.yellow Display
+      %th.green Unit SI
+      %th.green Unit Ip
+      %th.blue Low
+      %th.blue High
+      %th.blue Initial
+      %th.orange
+        Fault
+        = succeed "Type" do
+          %br/
+      %th.orange
+        Left
+        = succeed "Label" do
+          %br/
+      %th.orange
+        Right
+        = succeed "Label" do
+          %br/
+      %th.orange Subsection
+      %th.orange
+        Zone
+        = succeed "Position" do
+          %br/
+      %th.orange Index
+  %tbody
+    - @scenario_variables.each do |variable|
+      %tr.ro1
+        %td= link_to variable.component_code, instructors_scenario_variable_path(@scenario, variable)
+        %td= variable.name
+        %td= variable.display_name
+        %td= variable.unit_si
+        %td= variable.unit_ip
+        %td= variable.low_value
+        %td= variable.high_value
+        %td= variable.initial_value
+        %td= variable.fault_widget_type
+        %td= variable.left_label
+        %td= variable.right_label
+        %td= variable.subsection
+        %td= variable.zone_position
+        %td= variable.index

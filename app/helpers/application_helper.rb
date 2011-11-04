@@ -101,7 +101,7 @@ module ApplicationHelper
       },
       :instructors => {
         :dashboard  => %w[ dashboards ],
-        :scenarios  => %w[ scenarios ],
+        :scenarios  => %w[ scenarios access variables ],
         :groups     => %w[ groups ]
       }
     }

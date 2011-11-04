@@ -1,100 +1,102 @@
 = f.error_messages
-.field
-  = f.label :name  
-  = f.text_field :name
 
-.field
-  = f.label :display_name  
-  = f.text_field :display_name
+.clearfix
+  = f.label :name
+  .input= f.text_field :name, :class => 'xxlarge'
 
-.field
-  = f.label :description  
-  = f.text_area :description
+.clearfix
+  = f.label :display_name
+  .input= f.text_field :display_name, :class => 'xxlarge'
 
-.field
-  = f.label :component_code, "Component"  
-  = f.select :component_code, SystemVariable::COMPONENTS.keys.collect { |comp| [SystemVariable::COMPONENTS[comp], comp] }, {:prompt => "Please select..."}
+.clearfix
+  = f.label :description
+  .input= f.text_area :description, :rows => '3', :class => 'xxlarge'
 
-.field
-  = f.label :io_type, "I/O Type"  
-  = f.select :io_type, ScenarioVariable::IO_TYPES.collect {|type| [ type.to_s.capitalize, type ] }, {:prompt => "Please select..."}
+.clearfix
+  = f.label :component_code, "Component"
+  .input= f.select :component_code, SystemVariable::COMPONENTS.keys.collect { |comp| [SystemVariable::COMPONENTS[comp], comp] }, {:prompt => "Please select..."}, :class => 'xxlarge'
 
-.field
-  = f.label :index  
-  = f.text_field :index
+.clearfix
+  = f.label :io_type, "I/O Type"
+  .input= f.select :io_type, ScenarioVariable::IO_TYPES.collect {|type| [ type.to_s.capitalize, type ] }, {:prompt => "Please select..."}, :class => 'xxlarge'
 
-.field
-  = f.label :unit_si  
-  = f.text_field :unit_si
+.clearfix
+  = f.label :index
+  .input= f.text_field :index, :class => 'xxlarge'
 
-.field
-  = f.label :unit_ip  
-  = f.text_field :unit_ip
+.clearfix
+  = f.label :unit_si
+  .input= f.text_field :unit_si, :class => 'xxlarge'
 
+.clearfix
+  = f.label :unit_ip
+  .input= f.text_field :unit_ip, :class => 'xxlarge'
 
-.field
+.clearfix
   = f.label :si_to_ip
-  = f.text_field :si_to_ip
+  .input= f.text_field :si_to_ip, :class => 'xxlarge'
 
-
-.field
+.clearfix
   = f.label :low_value
-  = f.text_field :low_value
+  .input= f.text_field :low_value, :class => 'xxlarge'
 
-.field
+.clearfix
   = f.label :high_value
-  = f.text_field :high_value
+  .input= f.text_field :high_value, :class => 'xxlarge'
 
-.field
+.clearfix
   = f.label :initial_value
-  = f.text_field :initial_value
+  .input= f.text_field :initial_value, :class => 'xxlarge'
 
-.field
-  = f.label :notes  
-  = f.text_area :notes
+.clearfix
+  = f.label :notes
+  .input= f.text_area :notes, :rows => '3', :class => 'xxlarge'
 
-%fieldset
-  %legend
-    Fault Information
+.clearfix
+  %legend Fault Information
+  = f.label :is_fault
+  .input
+    %ul.inputs-list
+      %li
+        %label= f.check_box :is_fault
 
-  .field
-    = f.label :is_fault
-    = f.check_box :is_fault
+.clearfix
+  = f.label :fault_is_active, "Fault active?"
+  .input
+    %ul.inputs-list
+      %li
+        %label= f.check_box :fault_is_active
 
-  .field
-    = f.label :fault_is_active, "Fault active?"
-    = f.check_box :fault_is_active
+.clearfix
+  = f.label :fault_widget_type
+  .input= f.text_field :fault_widget_type, :class => 'xxlarge'
 
-  .field
-    = f.label :fault_widget_type  
-    = f.text_field :fault_widget_type
+.clearfix
+  = f.label :disabled
+  .input
+    %ul.inputs-list
+      %li
+        %label= f.check_box :disabled
 
-  .field
-    = f.label :disabled
-    = f.check_box :disabled
+.clearfix
+  = f.label :subsection
+  .input= f.text_field :subsection, :class => 'xxlarge'
 
-  .field
-    = f.label :subsection  
-    = f.text_field :subsection
+.clearfix
+  = f.label :left_label
+  .input= f.text_field :left_label, :class => 'xxlarge'
 
-  .field
-    = f.label :left_label  
-    = f.text_field :left_label
+.clearfix
+  = f.label :right_label
+  .input= f.text_field :right_label, :class => 'xxlarge'
 
-  .field
-    = f.label :right_label  
-    = f.text_field :right_label
+.clearfix
+  = f.label :zone_position
+  .input= f.text_field :zone_position, :class => 'xxlarge'
 
-  .field
-    = f.label :zone_position  
-    = f.text_field :zone_position
-
-  .field
-    = f.label :is_percentage  
-    = f.check_box :is_percentage
-
-.actions
-  = f.submit
-  &nbsp;or&nbsp;
-  = link_to 'Cancel', instructors_scenario_variables_path(@scenario)
-%br
+.clearfix
+  = f.label :is_percentage
+  .input
+    %ul.inputs-list
+      %li
+        %label= f.check_box :is_percentage

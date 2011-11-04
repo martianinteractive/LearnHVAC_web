@@ -1,15 +1,18 @@
 .well
-  = link_to "Manage Variables", instructors_scenario_variables_path(@scenario), :class => 'btn'
   = link_to 'Manage Access', [:instructors, @scenario, :accesses], :class => 'btn'
+  = link_to "Manage Variables", instructors_scenario_variables_path(@scenario), :class => 'btn'
   = link_to 'New Variable', new_instructors_scenario_variable_path(@scenario), :class => 'btn'
 
   %p.pull-right
     - if @subject_buttons == :scenario
-      = link_to 'Edit Scenario', edit_instructors_scenario_path(@scenario), :class => 'btn success'
+      = link_to 'Edit Scenario', edit_instructors_scenario_path(@scenario), :class => 'btn success small'
       - if @scenario.groups.empty?
-        = link_to 'Delete Scenario', instructors_scenario_path(@scenario), :confirm => 'Are you sure?', :method => :delete, :class => 'btn danger'
+        = link_to 'Delete Scenario', instructors_scenario_path(@scenario), :confirm => 'Are you sure?', :method => :delete, :class => 'btn danger small'
       - else
         = link_to instructors_scenario_path(@scenario), :confirm => 'Are you sure? This scenario is used by one or more groups right now.', :method => :delete, :class => 'btn danger'
+
+      - if controller_name == 'variables' and action_name == 'index'
+        = link_to 'Export to CSV', instructors_scenario_variables_path(@scenario, :format => :csv), :class => 'btn primary small'
 
     - elsif @subject_buttons == :cancel_scenario
       - if %(edit update).include?(controller.action_name)

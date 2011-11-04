@@ -1,9 +1,12 @@
-#tabs
-  %ul
-    %li.ui-tabs-selected= link_to "Scenarios", instructors_scenarios_path
-    %li= link_to "New Scenario", new_instructors_scenario_path
+= content_for :main_header do
+  %h1= @scenario_variable.name
 
-  = render :partial => "instructors/scenarios/scenario_menu"
+= render :partial => "instructors/scenarios/scenario_menu"
 
-  = form_for([@scenario, @scenario_variable], :url => instructors_scenario_variable_path(@scenario, @scenario_variable), :method => :put) do |f|
+= form_for([@scenario, @scenario_variable], :url => instructors_scenario_variable_path(@scenario, @scenario_variable), :method => :put) do |f|
+  %fieldset
     = render :partial => "form", :locals => { :f => f }
+    .actions
+      = f.submit 'Update', :class => 'btn primary'
+      or
+      = link_to 'Cancel', :back, :class => 'btn'
