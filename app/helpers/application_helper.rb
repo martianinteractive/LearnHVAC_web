@@ -83,11 +83,18 @@ module ApplicationHelper
 
   def current_namespace
     namespace = params[:controller].match(/\w+/)[0]
-    @current_namespace ||= namespace.to_sym if namespace
+    if current_user
+      @current_namespace = current_user.role.to_s.pluralize.to_sym
+    elsif namespace
+      @current_namespace = namespace.to_sym
+    else
+      @current_namespace = :guest
+    end
+    @current_namespace
   end
 
   def current_section
-    sections[current_namespace].each_pair do |section,controllers|
+    sections[current_namespace].each_pair do |section, controllers|
       @current_section ||= section if controllers.include? controller_name
     end
     @current_section
@@ -96,14 +103,16 @@ module ApplicationHelper
   def sections
     @sections ||= {
       :admins => {
-        :general => %w[ dashboard settings ],
+        :general => %w[ dashboard dashboards settings ],
         :system  => %w[ access master_scenarios scenarios system_variables variables ],
-        :users   => %w[ users groups institutions ]
+        :users   => %w[ users groups institutions ],
+        :profile => %w[ users ]
       },
       :instructors => {
         :dashboard  => %w[ dashboards ],
         :scenarios  => %w[ scenarios access variables ],
-        :groups     => %w[ groups emails ]
+        :groups     => %w[ groups emails ],
+        :profile => %w[ users ]
       }
     }
   end
@@ -116,6 +125,12 @@ module ApplicationHelper
   def sidebar_nav_options
     @sidebar_nav_options = {
       :admins => {
+        :profile => [
+          {
+            :link   => admins_dashboard_path,
+            :value  => 'Dashboard'
+          }
+        ],
         :general => [
           {
             :link   => admins_dashboard_path,
@@ -168,6 +183,12 @@ module ApplicationHelper
         ]
       },
       :instructors => {
+        :profile => [
+          {
+            :link   => instructors_dashboard_path,
+            :value  => 'Dashboard'
+          }
+        ],
         :dashboard => [
           {
             :link   => instructors_scenarios_path,

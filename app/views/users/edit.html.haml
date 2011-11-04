@@ -1,73 +1,70 @@
-#tabs
-  %ul
-    %li.ui-tabs-selected= link_to current_user.role.to_s.capitalize, profile_path
-  
-  .subject-buttons.ui-helper-clearfix
-    %ul
-      %li
-        = link_to(profile_path) do
-          %button.button.medium-grey-button{:type => "button"} Cancel
-  
-  %h2 Edit your profile
-  
-  = form_for(current_user, :url => user_path(current_user), :method => :put) do |f|
-    = error_messages_for 'current_user'
-    .field
-      = f.label :login
-      = f.text_field :login
+= content_for :main_header do
+  %h1= current_user.name
+  %p Edit your profile
 
-    .field
-      = f.label :first_name, "First Name"
-      = f.text_field :first_name
+.well
+  %p.pull-right= link_to 'Cancel', profile_path, :class => 'btn success'
 
-    .field
-      = f.label :last_name, "Last Name"
-      = f.text_field :last_name
+= form_for(current_user, :url => user_path(current_user), :method => :put) do |f|
 
-    .field
-      = f.label :country
-      = f.country_select :country, ['United States', 'Canada']
+  = error_messages_for 'current_user'
 
-    .field#states
-      = f.label :state, "State/Region"
-      = f.text_field :state
+  .clearfix
+    = f.label :login
+    .input= f.text_field :login, :class => 'xxlarge'
 
-    .field
-      = f.label :city
-      = f.text_field :city
-      
-    .field
-      = f.label :time_zone
-      = f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones
-      
-    .field
-      = f.label :email
-      = f.text_field :email
+  .clearfix
+    = f.label :first_name, "First Name"
+    .input= f.text_field :first_name, :class => 'xxlarge'
 
-    .field
-      = f.label :password
-      = f.password_field :password, :size=>20,  :value=>""
+  .clearfix
+    = f.label :last_name, "Last Name"
+    .input= f.text_field :last_name, :class => 'xxlarge'
 
-    .field
-      = f.label :password_confirmation, "Password Confirmation"	
-      = f.password_field :password_confirmation, :size=>20,  :value=>""
+  .clearfix
+    = f.label :country
+    .input= f.country_select :country, ['United States', 'Canada'], {}, :class => 'xxlarge'
 
-    - if current_user.has_role?(:guest) or current_user.has_role?(:instructor) or current_user.has_role?(:student)
-      .field
-        = f.label :list_directory, "Do you want your name listed in the community directory?"
-        = f.check_box :list_directory
+  .clearfix#states
+    = f.label :state, "State/Region"
+    .input= f.text_field :state, :class => 'xxlarge'
 
-    - if current_user.has_role?(:guest) or current_user.has_role?(:instructor)
-      .field
-        = f.label :role, "Type of account"
-        Guest
-        = f.radio_button :role_code, User::ROLES[:guest]
-        Instructor
-        = f.radio_button :role_code, User::ROLES[:instructor]
-    - if current_user.has_role?(:instructor)
-      %input#groups{:type => 'hidden', :value => current_user.groups.length}
-      %input#scenarios{:type => 'hidden', :value => current_user.created_scenarios.length}
-    .actions
-      = submit_tag "Update"
-      &nbsp;or&nbsp;
-      = link_to 'Cancel', profile_path
+  .clearfix
+    = f.label :city
+    .input= f.text_field :city, :class => 'xxlarge'
+
+  .clearfix
+    = f.label :time_zone
+    .input= f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones, {}, :class => 'xxlarge'
+
+  .clearfix
+    = f.label :email
+    .input= f.text_field :email, :class => 'xxlarge'
+
+  .clearfix
+    = f.label :password
+    .input= f.password_field :password, :size=>20,  :value=>"", :class => 'xxlarge'
+
+  .clearfix
+    = f.label :password_confirmation, "Password Confirmation"
+    .input= f.password_field :password_confirmation, :size=>20,  :value=>"", :class => 'xxlarge'
+
+  - if current_user.has_role?(:guest) or current_user.has_role?(:instructor) or current_user.has_role?(:student)
+    .clearfix
+      = f.label :list_directory, "Do you want your name listed in the community directory?"
+      = f.check_box :list_directory
+
+  - if current_user.has_role?(:guest) or current_user.has_role?(:instructor)
+    .clearfix
+      = f.label :role, "Type of account"
+      Guest
+      = f.radio_button :role_code, User::ROLES[:guest]
+      Instructor
+      = f.radio_button :role_code, User::ROLES[:instructor]
+  - if current_user.has_role?(:instructor)
+    %input#groups{:type => 'hidden', :value => current_user.groups.length}
+    %input#scenarios{:type => 'hidden', :value => current_user.created_scenarios.length}
+  .actions
+    = f.submit "Update", :class => 'btn primary'
+    or
+    = link_to 'Cancel', profile_path, :class => 'btn'
