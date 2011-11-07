@@ -1,6 +1,5 @@
-Learnhvac::Application.routes.draw do |map|
+Learnhvac::Application.routes.draw do
   
-  Jammit::Routes.draw(map)
   resources :accounts, :only => [:create]
   resources :user_sessions
   resources :password_resets

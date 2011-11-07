@@ -1,5 +1,6 @@
 .DS_Store
 log/*.log
+.sass-cache/
 tmp/**/*
 config/database.yml
 config/newrelic.yml

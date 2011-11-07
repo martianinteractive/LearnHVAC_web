@@ -1,3 +1,18 @@
+//= require jquery
+//= require jquery_ujs
+//= require jquery.tablesorter
+//= require bootstrap
+//= require bootstrap-twipsy
+//= require bootstrap-alerts
+//= require bootstrap-dropdown
+//= require bootstrap-modal
+//= require bootstrap-popover
+//= require bootstrap-scrollspy
+//= require bootstrap-tabs
+//= require jquery.dataTables.min
+//= require_self
+//= require_tree .
+
 $(document).ready(function() {
         if($('#user_role_code').val() != 1){
             $('#students').hide();
