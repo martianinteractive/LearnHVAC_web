@@ -1,10 +1,8 @@
-#location.ui-widget.ui-widget-content.ui-corner-all
-  %h4 Location
-  %p
-    = image_tag "globe_32.png"
-    = location_for(@user)
-
 %table
+  %tr
+    %td
+      %strong Location:
+    %td= location_for @user
   %tr
     %td
       %strong Institution:

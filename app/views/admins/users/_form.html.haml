@@ -1,4 +1,4 @@
-- content_for :head do
+= content_for :head do
   = render :partial => 'shared/user_form_js', :locals => { :u => @user }
 
 = error_messages_for 'user'
@@ -16,7 +16,7 @@
 
 .clearfix
   = f.label :country
-  .input= f.country_select :country, ['United States', 'Canada'], :class => 'xxlarge'
+  .input= f.country_select :country, ['United States', 'Canada'], {}, :class => 'xxlarge'
 
 .clearfix#states
   = f.label :state, "State/Region"
@@ -32,7 +32,7 @@
 
 .clearfix
   = f.label :phone
-  .input= f.text_field :phone, :class => 'xxlarge'
+  .input= f.phone_field :phone, :class => 'xxlarge'
 
 .clearfix
   = f.label :password
@@ -44,23 +44,20 @@
 
 .clearfix
   = f.label :role
-  .input= f.select :role_code, User::ROLES.keys.collect {|k| [k.to_s.gsub("_", " ").capitalize, User::ROLES[k]]}, {}, :class => 'xlarge'
+  .input= f.select :role_code, User::ROLES.keys.collect {|k| [k.to_s.gsub("_", " ").capitalize, User::ROLES[k]]}, {}, :class => 'xxlarge'
 
-#students
-  .clearfix
-    = label_tag :instructor
-    .input= select_tag :instructor, options_from_collection_for_select(@instructors, "id", "name"),{:include_blank => true, :class => 'xlarge'}
-  .clearfix
-    = f.label :group
-    #group_div
-      .input= f.select :group_code,[], {}, :class => 'xlarge'
+.clearfix
+  = f.label :group
+  #group_div
+    .input= f.collection_select :group_code, @groups, :code, :name, {:include_blank => true}, :class => 'xxlarge'
+
 .clearfix
   = f.label :institution_id
-  .input= f.collection_select :institution_id, Institution.all, :id, :name, {}, :class => 'xlarge'
+  .input= f.collection_select :institution_id, Institution.all, :id, :name, {}, :class => 'xxlarge'
 
 .clearfix
   = f.label :time_zone
-  .input= f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones, {}, :class => 'xlarge'
+  .input= f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones, {}, :class => 'xxlarge'
 
 .clearfix
   = f.label :enabled

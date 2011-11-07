@@ -1,3 +1,19 @@
+//= require jquery
+//= require jquery-ui
+//= require jquery_ujs
+//= require jquery.dataTables.min
+//= require jquery.tablesorter
+//= require jquery.fcbkcomplete.min
+//= require prettify
+//= require bootstrap-twipsy
+//= require bootstrap-alerts
+//= require bootstrap-dropdown
+//= require bootstrap-modal
+//= require bootstrap-popover
+//= require bootstrap-scrollspy
+//= require bootstrap-tabs
+//= require picnet.table.filter.min
+
 $(function () { prettyPrint() });
 
 $(document).scroll(function(){
@@ -42,13 +58,13 @@ $(document).ready(function() {
 
   // table sort example
   // ==================
-
-  $("#sortTableExample").tablesorter( { sortList: [[ 1, 0 ]] } )
-
+  var table = $('#sortTableExample');
+  if ( 0 < table.legnth ) {
+    table.tablesorter( { sortList: [[ 1, 0 ]] } );
+  }
 
   // add on logic
   // ============
-
   $('.add-on :checkbox').click(function () {
     if ($(this).attr('checked')) {
       $(this).parents('.add-on').addClass('active')
@@ -61,9 +77,8 @@ $(document).ready(function() {
   // Disable certain links in docs
   // =============================
   // Please do not carry these styles over to your projects, it's merely here to prevent button clicks form taking you away from your spot on page
-
   $('ul.tabs a, ul.pills a, .pagination a, a.close').click(function (e) {
-    e.preventDefault()
+    e.preventDefault();
   })
 
   // Copy code blocks in docs
@@ -76,7 +91,6 @@ $(document).ready(function() {
 
   // POSITION STATIC TWIPSIES
   // ========================
-
   $(window).bind( 'load resize', function () {
     $(".twipsies a").each(function () {
        $(this)
