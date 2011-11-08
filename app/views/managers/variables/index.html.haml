@@ -1,29 +1,51 @@
-#tabs
-  %ul
-    %li= link_to @scenario.name, managers_scenario_path(@scenario) 
-    %li.ui-tabs-selected= link_to "Variables", managers_scenario_variables_path(@scenario)
-    
-  %br
-  %table.listing
-    %thead
-      %tr
-        = sort_header_tag('index', :title => 'Index')
-        = sort_header_tag('component_code', :title => 'Component')
-        = sort_header_tag('name', :title => 'Name')
-        = sort_header_tag('io_type', :title => 'Type')
-        %th Low
-        %th Initial
-        %th High
-        %th 
-    - @scenario_variables.each do |scenario_variable|
-      %tr
-        %td= scenario_variable.index
-        %td= scenario_variable.component
-        %td= link_to scenario_variable.name, managers_scenario_variable_path(@scenario, scenario_variable)
-        %td= scenario_variable.io_type.to_s.upcase
-        %td= scenario_variable.low_value
-        %td= scenario_variable.initial_value
-        %td= scenario_variable.high_value
+= content_for :main_header do
+  %h1= @scenario.name
+  %h4 Variables
 
-  %br
-  = will_paginate @scenario_variables
+
+%table#sortTableExample.zebra-striped
+  %thead
+    %tr.ro1
+      %th.yellow Code
+      %th.yellow Name
+      %th.yellow Display
+      %th.green Unit SI
+      %th.green Unit Ip
+      %th.blue Low
+      %th.blue High
+      %th.blue Initial
+      %th.orange
+        Fault
+        = succeed "Type" do
+          %br/
+      %th.orange
+        Left
+        = succeed "Label" do
+          %br/
+      %th.orange
+        Right
+        = succeed "Label" do
+          %br/
+      %th.orange Subsection
+      %th.orange
+        Zone
+        = succeed "Position" do
+          %br/
+      %th.orange Index
+  %tbody
+    - @scenario_variables.each do |variable|
+      %tr.ro1
+        %td= link_to variable.component_code, managers_scenario_variable_path(@scenario, variable)
+        %td= variable.name
+        %td= variable.display_name
+        %td= variable.unit_si
+        %td= variable.unit_ip
+        %td= variable.low_value
+        %td= variable.high_value
+        %td= variable.initial_value
+        %td= variable.fault_widget_type
+        %td= variable.left_label
+        %td= variable.right_label
+        %td= variable.subsection
+        %td= variable.zone_position
+        %td= variable.index

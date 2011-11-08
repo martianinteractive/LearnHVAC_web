@@ -123,7 +123,7 @@ module ApplicationHelper
       :managers => {
         :dashboard    => %w[ dashboards ],
         :groups       => %w[ groups ],
-        :scenarios    => %w[ scenarios ],
+        :scenarios    => %w[ scenarios variables access ],
         :instructors  => %w[ instructors ]
       }
     }

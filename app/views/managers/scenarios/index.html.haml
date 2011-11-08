@@ -1,15 +1,14 @@
-#tabs
-  %ul
-    %li.ui-tabs-selected= link_to "Scenarios", managers_scenarios_path
+= content_for :main_header do
+  %h1 Scenarios
 
-  %br
-  %table.listing
-    %thead
-      %tr
-        %th Name
-        %th Instructor
-        %th Master Scenario
-        %th Created on
+%table.zebra-striped
+  %thead
+    %tr
+      %th Name
+      %th Instructor
+      %th Master Scenario
+      %th Created on
+  %tbody
     - @scenarios.each do |scenario|
       %tr
         %td= link_to scenario.name, managers_scenario_path(scenario)
@@ -17,5 +16,5 @@
         %td= scenario.master_scenario.try(:name)
         %td= scenario.created_at.to_formatted_s(:long)
 
-  %br
-  = will_paginate @scenarios
+%br/
+= will_paginate @scenarios

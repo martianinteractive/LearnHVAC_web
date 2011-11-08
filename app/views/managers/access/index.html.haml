@@ -1,70 +1,70 @@
-#tabs
-  %ul
-    %li= link_to @scenario.name, managers_scenario_path(@scenario)
-    %li.ui-tabs-selected= link_to "Access", [:managers, @scenario, :accesses]
-    
-  #page_header
-    #subject_info
-      %h2 Who has access?
-      .subject_details= "Instructor: #{@scenario.user.name}"
+= content_for :main_header do
+  %h1= @scenario.name
+  %h4 Access
 
-  #inner_column
-    - unless current_user.individual_scenarios.where('memberships.scenario_id' => @scenario.id).first
-      %p
-        Allow me to 
-        = link_to "download", [:managers, @scenario, :accesses], :method => :post
-        this scenario.
-        
-    - if @scenario.public?
-      %p 
-        This scenario is 
-        %b public
-        and can be accessed by any user in the system.
+.well
+  = link_to 'Back', managers_scenario_path(@scenario), :class => 'btn primary'
 
-    - else
-      %p
-        This scenario is
-        %b private
-        and can only be accessed by the instructor and:
+%div
+  %h2 Who has access?
+  .subject_details= "Instructor: #{@scenario.user.name}"
 
-      %h3 Groups
-      - if @scenario.groups.empty?
-        %b This scenario hasn't been yet assigned to a group.
-      - else
-        %table.listing
-          %thead
-            %tr
-              %th Name
-              %th Students
-              %th Members
-              %th Code
-          - @scenario.groups.each do |group|
-            %tr
-              %td= link_to group.name, managers_class_path(group)
-              %td= group.members.count
-              %td= group.scenarios.count
-              %td= group.code
-              
-      - if @memberships.any?
-        %h3 People
-        %table
-          %thead
-            %tr
-              %th Name
-              %th Institution
-              %th Email
-              %th Role
-              %th 
-              %th
-            - @memberships.each do |membership|
-              - member = membership.member
-              %tr
-                %td= member.name
-                %td= member.institution.try(:name)
-                %td= mail_to member.email
-                %td= member.role
-                %td= link_to(image_tag("trashcan.gif"), managers_scenario_access_path(@scenario, membership), :method => :delete, :confirm => "Are you sure?") unless member.has_role?(:admin)
-                %td= content_tag(:em, "Pending Email Confirmation") unless member.active?
-                
-        %br
-        = will_paginate @memberships 
+- unless current_user.individual_scenarios.where('memberships.scenario_id' => @scenario.id).first
+  %p
+    Allow me to
+    = link_to "download", [:managers, @scenario, :accesses], :method => :post
+    this scenario.
+
+- if @scenario.public?
+  %p
+    This scenario is
+    %b public
+    and can be accessed by any user in the system.
+
+- else
+  %p
+    This scenario is
+    %b private
+    and can only be accessed by the instructor and:
+
+  %h3 Groups
+  - if @scenario.groups.empty?
+    %b This scenario hasn't been yet assigned to a group.
+  - else
+    %table.zebra-striped
+      %thead
+        %tr
+          %th Name
+          %th Students
+          %th Members
+          %th Code
+      - @scenario.groups.each do |group|
+        %tr
+          %td= link_to group.name, managers_class_path(group)
+          %td= group.members.count
+          %td= group.scenarios.count
+          %td= group.code
+
+  - if @memberships.any?
+    %h3 People
+    %table.zebra-striped
+      %thead
+        %tr
+          %th Name
+          %th Institution
+          %th Email
+          %th Role
+          %th
+          %th
+        - @memberships.each do |membership|
+          - member = membership.member
+          %tr
+            %td= member.name
+            %td= member.institution.try(:name)
+            %td= mail_to member.email
+            %td= member.role
+            %td= link_to(image_tag("trashcan.gif"), managers_scenario_access_path(@scenario, membership), :method => :delete, :confirm => "Are you sure?") unless member.has_role?(:admin)
+            %td= content_tag(:em, "Pending Email Confirmation") unless member.active?
+
+    %br/
+    = will_paginate @memberships

@@ -4,83 +4,82 @@
 
 = render :partial => "admins/scenarios/scenario_menu"
 
-#location.ui-widget.ui-widget-content.ui-corner-all
+%div
   %h4 Description
   %p= @scenario_variable.description
   %h4 Notes
   %p= @scenario_variable.notes
 
-#inner_column
-  %table
-    %tr
-      %td
-        %strong Index:
-      %td= @scenario_variable.index
-    %tr
-      %td
-        %strong I/O type:
-      %td= @scenario_variable.io_type
-    %tr
-      %td
-        %strong Component:
-      %td= @scenario_variable.component
-    %tr
-      %td
-        %strong Low value:
-      %td= @scenario_variable.low_value
-    %tr
-      %td
-        %strong Initial value:
-      %td= @scenario_variable.initial_value
-    %tr
-      %td
-        %strong High value:
-      %td= @scenario_variable.high_value
-    %tr
-      %td
-        %strong Unit SI:
-      %td= @scenario_variable.unit_si
-    %tr
-      %td
-        %strong Initial IP:
-      %td= @scenario_variable.unit_ip
-    %tr
-      %td
-        %strong SI to IP:
-      %td= @scenario_variable.si_to_ip
-    %tr
-      %td
-        %strong Fault?:
-      %td= @scenario_variable.is_fault
-    %tr
-      %td
-        %strong Left label:
-      %td= @scenario_variable.left_label
-    %tr
-      %td
-        %strong Right label:
-      %td= @scenario_variable.right_label
-    %tr
-      %td
-        %strong Subsection:
-      %td= @scenario_variable.subsection
-    %tr
-      %td
-        %strong Zone position:
-      %td= @scenario_variable.zone_position
-    %tr
-      %td
-        %strong Is percentage:
-      %td= @scenario_variable.is_percentage
-    %tr
-      %td
-        %strong Fault widget type:
-      %td= @scenario_variable.fault_widget_type
-    %tr
-      %td
-        %strong Lock version:
-      %td= @scenario_variable.lock_version
-    %tr
-      %td
-        %strong Notes sequence:
-      %td= @scenario_variable.node_sequence
+%table
+  %tr
+    %td
+      %strong Index:
+    %td= @scenario_variable.index
+  %tr
+    %td
+      %strong I/O type:
+    %td= @scenario_variable.io_type
+  %tr
+    %td
+      %strong Component:
+    %td= @scenario_variable.component
+  %tr
+    %td
+      %strong Low value:
+    %td= @scenario_variable.low_value
+  %tr
+    %td
+      %strong Initial value:
+    %td= @scenario_variable.initial_value
+  %tr
+    %td
+      %strong High value:
+    %td= @scenario_variable.high_value
+  %tr
+    %td
+      %strong Unit SI:
+    %td= @scenario_variable.unit_si
+  %tr
+    %td
+      %strong Initial IP:
+    %td= @scenario_variable.unit_ip
+  %tr
+    %td
+      %strong SI to IP:
+    %td= @scenario_variable.si_to_ip
+  %tr
+    %td
+      %strong Fault?:
+    %td= @scenario_variable.is_fault
+  %tr
+    %td
+      %strong Left label:
+    %td= @scenario_variable.left_label
+  %tr
+    %td
+      %strong Right label:
+    %td= @scenario_variable.right_label
+  %tr
+    %td
+      %strong Subsection:
+    %td= @scenario_variable.subsection
+  %tr
+    %td
+      %strong Zone position:
+    %td= @scenario_variable.zone_position
+  %tr
+    %td
+      %strong Is percentage:
+    %td= @scenario_variable.is_percentage
+  %tr
+    %td
+      %strong Fault widget type:
+    %td= @scenario_variable.fault_widget_type
+  %tr
+    %td
+      %strong Lock version:
+    %td= @scenario_variable.lock_version
+  %tr
+    %td
+      %strong Notes sequence:
+    %td= @scenario_variable.node_sequence
