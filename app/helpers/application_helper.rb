@@ -54,6 +54,12 @@ module ApplicationHelper
         :dashboard  => instructors_dashboard_path,
         :scenarios  => instructors_scenarios_path,
         :classes    => instructors_classes_path
+      },
+      :managers => {
+        :dashboard    => managers_dashboard_path,
+        :instructors  => managers_instructors_path,
+        :classes      => managers_classes_path,
+        :scenarios    => managers_scenarios_path
       }
     }[current_namespace].each_pair do |title, url|
       li_options = {}
@@ -113,6 +119,12 @@ module ApplicationHelper
         :scenarios  => %w[ scenarios access variables ],
         :groups     => %w[ groups emails ],
         :profile => %w[ users ]
+      },
+      :managers => {
+        :dashboard    => %w[ dashboards ],
+        :groups       => %w[ groups ],
+        :scenarios    => %w[ scenarios ],
+        :instructors  => %w[ instructors ]
       }
     }
   end
@@ -217,6 +229,52 @@ module ApplicationHelper
           {
             :link   => '#',
             :value  => 'New Class'
+          }
+        ]
+      },
+      :managers => {
+        :dashboard => [
+          {
+            :link   => managers_instructors_path,
+            :value  => 'Instructors'
+          },
+          {
+            :link   => managers_classes_path,
+            :value  => 'Classes'
+          },
+          {
+            :link   => managers_scenarios_path,
+            :value  => 'Scenarios'
+          }
+        ],
+        :instructors => [
+          {
+            :link   => managers_instructors_path,
+            :value  => 'Instructors'
+          },
+          {
+            :link   => new_managers_instructor_path,
+            :value  => 'New Instructor'
+          }
+        ],
+        :groups => [
+          {
+            :link   => managers_classes_path,
+            :value  => 'Classes'
+          },
+          {
+            :link   => new_managers_class_path,
+            :value  => 'New Class'
+          }
+        ],
+        :scenarios => [
+          {
+            :link   => managers_scenarios_path,
+            :value  => 'Scenarios'
+          },
+          {
+            :link   => new_managers_scenario_path,
+            :value  => 'New Scenario'
           }
         ]
       }
