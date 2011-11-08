@@ -1,11 +1,10 @@
-#tabs
-  %ul
-    %li= link_to "Instructors", managers_instructors_path
-    %li.ui-tabs-selected= link_to "New Instructor", new_managers_instructor_path
+= content_for :main_header do
+  %h1 New Instructor
 
-  = form_for(@instructor, :url => managers_instructors_path, :method => :post) do |f|
+= form_for(@instructor, :url => managers_instructors_path, :method => :post) do |f|
+  %fieldset
     = render :partial => 'form', :locals => { :f => f }
     .actions
-      = submit_tag "Create Instructor"
-      &nbsp;or&nbsp;
-      = link_to 'Cancel', managers_instructors_path
+      = f.submit "Create Instructor", :class => 'btn primary'
+      or
+      = link_to 'Cancel', managers_instructors_path, :class => 'btn'

@@ -1,11 +1,11 @@
-#tabs
-  %ul
-    %li= link_to "Instructors", managers_instructors_path
-    %li= link_to "New Instructor", new_managers_instructor_path
+= content_for :main_header do
+  %h1= @instructor.name
+  %h4 Edit
 
-  = form_for(@instructor, :url => managers_instructor_path(@instructor), :method => :put) do |f|
+= form_for(@instructor, :url => managers_instructor_path(@instructor), :method => :put) do |f|
+  %fieldset
     = render :partial => 'form', :locals => { :f => f }
     .actions
-      = submit_tag "Update"
-      &nbsp;or&nbsp;
-      = link_to 'Cancel', managers_instructors_path
+      = f.submit "Update", :class => 'btn primary'
+      or
+      = link_to 'Cancel', managers_instructors_path, :class => 'btn'

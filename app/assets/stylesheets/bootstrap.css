@@ -1,0 +1,12 @@
+/*
+*= require bootstrap.min
+*= require_self
+*/
+
+body {
+  padding-top: 60px;
+}
+
+#sortTableExample th {
+  background-color: #fff;
+}

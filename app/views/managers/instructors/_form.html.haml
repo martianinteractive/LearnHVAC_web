@@ -1,43 +1,43 @@
-- content_for :head do
+= content_for :head do
   = render :partial => 'shared/user_form_js', :locals => { :u => @instructor }
-  
+
 = error_messages_for 'instructor'
-.field
+.clearfix
   = f.label :login
-  = f.text_field :login
+  .input= f.text_field :login, :class => 'xxlarge'
 
-.field
+.clearfix
   = f.label :first_name, "First Name"
-  = f.text_field :first_name
+  .input= f.text_field :first_name, :class => 'xxlarge'
 
-.field
+.clearfix
   = f.label :last_name, "Last Name"
-  = f.text_field :last_name
+  .input= f.text_field :last_name, :class => 'xxlarge'
 
-.field
+.clearfix
   = f.label :country
-  = f.country_select :country, ['United States', 'Canada']
+  .input= f.country_select :country, ['United States', 'Canada'], {}, :class => 'xxlarge'
 
-.field#states
+.clearfix#states
   = f.label :state, "State/Region"
-  = f.text_field :state
+  .input= f.text_field :state, :class => 'xxlarge'
 
-.field
+.clearfix
   = f.label :city
-  = f.text_field :city
+  .input= f.text_field :city, :class => 'xxlarge'
 
-.field
+.clearfix
   = f.label :email
-  = f.text_field :email
-  
-.field
+  .input= f.text_field :email, :class => 'xxlarge'
+
+.clearfix
   = f.label :phone
-  = f.text_field :phone
+  .input= f.text_field :phone, :class => 'xxlarge'
 
-.field
+.clearfix
   = f.label :password
-  = f.password_field :password, :size=>20,  :value=>""
+  .input= f.password_field :password, :size=>20,  :value=>"", :class => 'xxlarge'
 
-.field
-  = f.label :password_confirmation, "Password Confirmation"	
-  = f.password_field :password_confirmation, :size=>20,  :value=>""
+.clearfix
+  = f.label :password_confirmation, "Password Confirmation"
+  .input= f.password_field :password_confirmation, :size=>20,  :value=>"", :class => 'xxlarge'

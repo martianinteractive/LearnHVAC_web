@@ -1,22 +1,18 @@
-#tabs
-  %ul
-    %li= link_to "Instructors", managers_instructors_path
-    %li= link_to "New Instructor", new_managers_instructor_path
-
-  %br
-  %table#users.listing
-    %thead
+= content_for :main_header do
+  %h1 Instructors
+%table.zebra-striped
+  %thead
+    %tr
+      %th Name
+      %th Email
+      %th Groups
+      %th Scenarios
+  %tbody
+    - for instructor in @instructors
       %tr
-        %th Name
-        %th Email
-        %th Groups
-        %th Scenarios
-    %tbody
-      - for instructor in @instructors
-        %tr
-          %td= link_to instructor.name, managers_instructor_path(instructor)
-          %td= instructor.email
-          %td= instructor.managed_groups.count
-          %td= instructor.created_scenarios.count
-  %br
-  = will_paginate @instructors
+        %td= link_to instructor.name, managers_instructor_path(instructor)
+        %td= instructor.email
+        %td= instructor.managed_groups.count
+        %td= instructor.created_scenarios.count
+%br/
+= will_paginate @instructors

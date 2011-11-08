@@ -1,39 +1,35 @@
-#tabs
-  %ul
-    %li= link_to "Instructors", managers_instructors_path
-    %li= link_to "New Instructor", new_managers_instructor_path
+= content_for :main_header do
+  %h1= @instructor.name
+  %p Instructor at #{@instructor.institution.name}
 
-  #page_header
-    #subject_actions
-      = link_to 'Edit', edit_managers_instructor_path(@instructor)
-      &nbsp;
-      = link_to 'Delete', managers_instructor_path(@instructor), :confirm => 'Are you sure?', :method => :delete
+.well
+  = link_to 'Edit', edit_managers_instructor_path(@instructor), :class => 'btn success'
+  &nbsp;&nbsp;
+  = link_to 'Delete', managers_instructor_path(@instructor), :confirm => 'Are you sure?', :method => :delete, :class => 'btn danger'
 
-    #subject_info
-      %h2= @instructor.name
-      .subject_details= "Instructor at #{@instructor.institution.name}"
-
-  #location.ui-widget.ui-widget-content.ui-corner-all
-    %h4 location
-    %p
-      = image_tag "globe_32.png"
-      = location_for(@instructor)
-
-  #inner_column
-    %table
-      %tr
-        %th Login:
-        %td= @instructor.login
-      %tr
-        %th E-Mail:
-        %td= mail_to @instructor.email
-      - if @instructor.phone.present?
-        %tr
-          %th Phone:
-          %td= @instructor.phone
-      %tr
-        %th Status:
-        %td= @instructor.enabled? ? "Enabled" : "Disabled"
-      %tr
-        %th Created on:
-        %td= @instructor.created_at.to_formatted_s(:long)
+%table
+  %tr
+    %td
+      %strong Location:
+    %td= location_for @instructor
+  %tr
+    %td
+      %strong Login:
+    %td= @instructor.login
+  %tr
+    %td
+      %strong E-Mail:
+    %td= mail_to @instructor.email
+  - if @instructor.phone.present?
+    %tr
+      %td
+        %strong Phone:
+      %td= @instructor.phone
+  %tr
+    %td
+      %strong Status:
+    %td= @instructor.enabled? ? "Enabled" : "Disabled"
+  %tr
+    %td
+      %strong Created on:
+    %td= @instructor.created_at.to_formatted_s(:long)
