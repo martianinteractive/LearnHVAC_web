@@ -3,7 +3,11 @@ require File.dirname(__FILE__) + "/../../spec_helper"
 describe Managers::GroupsController do
   let(:current_user) { Factory.stub(:manager) }
 
-  before { controller.stub(:current_user).and_return(current_user) }
+  before do
+    controller.stub(:current_user).and_return(current_user)
+    controller.stub_chain(:current_user, :institution, :scenarios).and_return([])
+  end
+
 
   def mock_group(stubs={})
     @mock_group ||= mock_model(Group, {:name => 'bla'}.merge(stubs))
@@ -38,10 +42,11 @@ describe Managers::GroupsController do
   end
 
   context "GET new" do
-    it "should expose group" do
+    it "should expose variables" do
       Group.should_receive(:new).and_return(mock_group)
       get :new
       assigns[:group].should eq(mock_group)
+      assigns[:scenarios].should_not be_nil
     end
 
     it "should render the new template" do
@@ -71,10 +76,11 @@ describe Managers::GroupsController do
     context "unsuccessfully" do
       before { mock_group.stub(:save).and_return(false) }
 
-      it "should expose group" do
+      it "should expose variables" do
         Group.should_receive(:new).with({"name" => "bla"}).and_return(mock_group)
         post :create, :group => {:name => "bla"}
         assigns[:group].should eq(mock_group)
+        assigns[:scenarios].should_not be_nil
       end
 
       it "should render the new template" do
@@ -107,10 +113,11 @@ describe Managers::GroupsController do
     context "unsuccessfully" do
       before { mock_group.stub(:update_attributes).and_return(false) }
 
-      it "should expose group" do
+      it "should expose variables" do
         mock_group.should_receive(:update_attributes).and_return(false)
         put :update, :id => "37", :group => {}
         assigns[:group].should eq(mock_group)
+        assigns[:scenarios].should_not be_nil
       end
 
       it "should render the edit template" do

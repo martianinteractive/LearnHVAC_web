@@ -1,39 +1,19 @@
-- content_for :js_templates do
+= content_for :js_templates do
   :plain
-    $(document).ready(function() { 
-      $("#group_creator_id").change(function() { 
-        $.get("#{list_managers_scenarios_path}", { user_id: $(this).val() }, function(r) { $("#group_scenario_ids_").html(r) }) 
-      }) 
+    $(document).ready(function() {
+      $("#group_creator_id").change(function() {
+        $.get("#{list_managers_scenarios_path}", { user_id: $(this).val() }, function(r) { $("#group_scenario_ids_").html(r) })
+      })
     })
 
-#tabs
-  %ul
-    %li= link_to "Classes", managers_classes_path
-    %li.ui-tabs-selected= link_to "New Class", new_managers_class_path
-    
-  = form_for(@group, :url => managers_classes_path, :method => :post) do |f|
-    = f.error_messages
-    .instructions
-      %p To create a new class, enter the name of the class, then select an instructor. A list of available scenarios for that instructions will appear on the scenario menu. You may select more that one scenario to share. (Use Control+click to select more than one).
+= content_for :main_header do
+  %h1 New Class
+  %p To create a new class, enter the name of the class, then select an instructor. A list of available scenarios for that instructions will appear on the scenario menu. You may select more that one scenario to share. (Use Control+click to select more than one).
 
-    .field
-      = f.label :name
-      = f.text_field :name
-
-    .field 
-      = f.label :creator
-      = f.select :creator_id, current_user.institution.users.instructor.collect {|user| [ user.name, user.id ] }, { :prompt => 'Please select ...'}
-
-    .field
-      = f.label :goal
-      = f.text_area :goal
-
-    .field
-      = f.label :scenarios
-      %br
-      = select_tag "group[scenario_ids][]", options_from_collection_for_select(@instructor.created_scenarios, :id, :name, @group.scenario_ids.map(&:to_i) || []), :multiple => true
-
+= form_for(@group, :url => managers_classes_path, :method => :post) do |f|
+  %fieldset
+    = render 'form', :f => f
     .actions
-      = submit_tag "Create"
-      &nbsp;or&nbsp;
-      = link_to 'Cancel', :back
+      = f.submit 'Create', :class => 'btn primary'
+      or
+      = link_to 'Cancel', :back, :class => 'btn'

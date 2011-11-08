@@ -4,6 +4,7 @@ class Managers::GroupsController < Managers::ApplicationController
 
   before_filter :find_group, :only => [:show, :edit, :update, :destroy]
   before_filter :build_instructor, :only => [:new, :create]
+  before_filter :load_scenarios, :except => [:index, :show, :destroy]
 
   cache_sweeper :group_sweeper, :only => [:create, :update, :destroy]
 
@@ -49,8 +50,11 @@ class Managers::GroupsController < Managers::ApplicationController
     redirect_to(managers_class_path)
   end
 
-
   private
+
+  def load_scenarios
+    @scenarios = current_user.institution ? current_user.institution.scenarios : []
+  end
 
   def find_group
     @group = current_user.institution.groups.find(params[:id], :readonly => false)
