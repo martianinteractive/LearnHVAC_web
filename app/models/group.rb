@@ -7,7 +7,7 @@ class Group < ActiveRecord::Base
   has_many :notification_emails,  :class_name => "ClassNotificationEmail", :foreign_key => "class_id"
 
   accepts_nested_attributes_for :group_scenarios, :allow_destroy => true
-  
+
   # uniqueness validation for code is useless.
   # in lines 18-24, the while code finish after it does
   # a query with the random code generated and doesn't find
@@ -16,7 +16,7 @@ class Group < ActiveRecord::Base
   validates :name, :length => {:maximum => 200 }
   validates_uniqueness_of :name, :scope => :creator_id
   validates_presence_of :name, :creator, :scenarios
-  
+
   before_validation(:on => :create) do
     rcode = secure_rand
     while(rcode)
@@ -24,16 +24,16 @@ class Group < ActiveRecord::Base
       rcode = Group.find_by_code(rcode) ? secure_rand : false
     end
   end
-  
+
   def create_memberships(user)
     scenarios.each { |s| memberships.create(:member => user, :scenario => s) }
     memberships.where(:member_id => user.id)
   end
-  
+
   private
-  
+
   def secure_rand
-    ActiveSupport::SecureRandom.hex(3)
+    SecureRandom.hex(3)
   end
-    
+
 end
