@@ -18,7 +18,7 @@ describe Admins::InstitutionsController do
   describe "GET show" do
     it "should expose an institution as @institution and render the show template" do
       Institution.stub(:find).with("37").and_return(institution)
-      institution.should_receive(:users).and_return([mock, mock])
+      institution.stub_chain(:users, :paginate).and_return([mock, mock])
       get :show, :id => "37"
       response.should render_template(:show)
       assigns(:institution).should be(institution)
@@ -123,16 +123,16 @@ describe Admins::InstitutionsController do
       end
     end
   end
-  
+
   describe "DELETE destroy" do
     let(:institution) { mock_model(Institution, :destroy => true) }
-    
+
     it "should destroy the requested institution" do
       Institution.should_receive(:find).with('37').and_return(institution)
       institution.should_receive(:destroy)
       delete :destroy, :id => '37'
     end
-    
+
     it "should redirect to the index" do
       Institution.stub!(:find).and_return(institution)
       delete :destroy, :id => '37'

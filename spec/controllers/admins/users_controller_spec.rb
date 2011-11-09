@@ -15,12 +15,12 @@ describe Admins::UsersController do
     end
 
     it "should expose users" do
-      get :index, :role => 'admin', :requirements=>{:role => /[a-z]/}
+      get :index, :role => 'admin'
       assigns[:users].should eq([mock_user])
     end
 
     it "should render template" do
-      get :index, :role => 'admin', :requirements=>{:role => /[a-z]/}
+      get :index, :role => 'admin'
       response.should render_template(:index)
     end
   end
@@ -31,12 +31,12 @@ describe Admins::UsersController do
     end
 
     it "should expose users" do
-      post :search, :q => "love", :role => 'admin', :requirements=>{:role => /[a-z]/} 
+      post :search, :q => "love", :role => 'admin'
       assigns[:users].should eq([mock_user])
     end
 
     it "should render index template" do
-      post :search, :q => "love", :role => 'admin', :requirements=>{:role => /[a-z]/} 
+      post :search, :q => "love", :role => 'admin'
       response.should render_template(:index)
     end
   end
@@ -47,12 +47,12 @@ describe Admins::UsersController do
     end
 
     it "should expose user" do
-      post :filter, :institution_id => "1", :role => 'instructor', :requirements=>{:role => /[a-z]/}
+      post :filter, :institution_id => "1", :role => 'instructor'
       assigns[:users].should eq([mock_user])
     end
 
     it "should render the index template" do
-      post :filter, :institution_id => "1", :role => 'instructor', :requirements=>{:role => /[a-z]/}
+      post :filter, :institution_id => "1", :role => 'instructor'
       response.should render_template(:index)
     end
   end
@@ -61,12 +61,12 @@ describe Admins::UsersController do
     before { User.stub(:find).with('1').and_return(mock_user) }
 
     it "assigns the requested user as @user" do
-      get :show, :id => "1", :role => 'admin', :requirements=>{:role => /[a-z]/}
-      assigns[:user].should eq(mock_user)
+      get :show, :id => "1", :role => 'admin'
+      assigns(:user).should eq(mock_user)
     end
 
     it "should render the show tempalte" do
-      get :show, :id => "1", :role => 'student', :requirements => { :role => /[a-z]/ }
+      get :show, :id => "1", :role => 'student'
       response.should render_template(:show)
     end
   end
@@ -75,12 +75,14 @@ describe Admins::UsersController do
     before { User.stub(:find).with("1").and_return(mock_user) }
 
     it "assigns the requested user as @user" do
-      get :edit, :id => "1", :role => 'admin', :requirements=>{:role => /[a-z]/}
-      assigns[:user].should eq(mock_user)
+      get :edit, :id => "1", :role => 'admin'
+      [:user, :instructors, :groups].each do |var|
+        assigns(var).should_not be_nil
+      end
     end
 
     it "should render the edit template" do
-      get :edit, :id => "1", :role => 'admin', :requirements=>{:role => /[a-z]/}
+      get :edit, :id => "1", :role => 'admin'
       response.should render_template(:edit)
     end
   end
@@ -101,12 +103,12 @@ describe Admins::UsersController do
       end
 
       it "should expose user" do
-        post :create, :user => {:this => 'params'}, :role => "student", :requirements=>{:role => /[a-z]/}
+        post :create, :user => {:this => 'params'}, :role => "student"
         assigns[:user].should eq(mock_user)
       end
 
       it "should redirect" do
-        post :create, :user => {:this => 'params'}, :role => "student", :requirements=>{:role => /[a-z]/}
+        post :create, :user => {:this => 'params'}, :role => "student"
         response.should redirect_to(admins_user_path(assigns[:user], :role => "student", :anchor => "ui-tabs-1"))
       end
     end
@@ -118,12 +120,12 @@ describe Admins::UsersController do
       end
 
       it "should expose the user" do
-        post :create, :user => {:this => 'params'}, :role => "student", :requirements=>{:role => /[a-z]/}
+        post :create, :user => {:this => 'params'}, :role => "student"
         assigns[:user].should eq(mock_user)
       end
 
       it "should render the new teplate" do
-        post :create, :user => {:this => 'params'}, :role => "student", :requirements=>{:role => /[a-z]/}
+        post :create, :user => {:this => 'params'}, :role => "student"
         response.should render_template(:new)
       end
     end
@@ -137,12 +139,12 @@ describe Admins::UsersController do
       end
 
       it "should expose user" do
-        put :update, :id => "1", :user => { :first_name => "Joe" }, :role => "guest", :requirements=>{:role => /[a-z]/}
+        put :update, :id => "1", :user => { :first_name => "Joe" }, :role => "guest"
         assigns[:user].should eq(mock_user)
       end
 
       it "should redirect" do
-        put :update, :id => "1", :user => { :first_name => "Joe" }, :role => "guest", :requirements=>{:role => /[a-z]/}
+        put :update, :id => "1", :user => { :first_name => "Joe" }, :role => "guest"
         response.should redirect_to(admins_user_path(assigns[:user], :role => "guest"))
       end
     end
@@ -154,12 +156,12 @@ describe Admins::UsersController do
       end
 
       it "should expose user" do
-        put :update, :id => "1", :user => { :first_name => "Joe" }, :role => "guest", :requirements=>{:role => /[a-z]/}
+        put :update, :id => "1", :user => { :first_name => "Joe" }, :role => "guest"
         assigns[:user].should eq(mock_user)
       end
 
       it "should render edit" do
-        put :update, :id => "1", :user => { :first_name => "Joe" }, :role => "guest", :requirements=>{:role => /[a-z]/}
+        put :update, :id => "1", :user => { :first_name => "Joe" }, :role => "guest"
         response.should render_template(:edit)
       end
     end
@@ -172,17 +174,17 @@ describe Admins::UsersController do
     end
 
     it "should expose user" do
-      delete :destroy, :id => '1', :role => "guest", :requirements=>{:role => /[a-z]/}
+      delete :destroy, :id => '1', :role => "guest"
       assigns[:user].should eq(mock_user)
     end
 
     it "should delete" do
       mock_user.should_receive(:destroy).and_return(true)
-      delete :destroy, :id => '1', :role => "guest", :requirements=>{:role => /[a-z]/}
+      delete :destroy, :id => '1', :role => "guest"
     end
 
     it "should redirect" do
-      delete :destroy, :id => '1', :role => "guest", :requirements=>{:role => /[a-z]/}
+      delete :destroy, :id => '1', :role => "guest"
       response.should redirect_to(admins_users_path(:role => 'guest'))
     end
   end

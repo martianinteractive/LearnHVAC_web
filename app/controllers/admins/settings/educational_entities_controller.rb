@@ -1,10 +1,10 @@
 class Admins::Settings::EducationalEntitiesController < Admins::Settings::BaseController
   add_crumb("Educational Entities") { |instance| instance.send :admins_settings_educational_entities_path }
-  
+
   def index
     @colleges = College.paginate :page => params[:page], :per_page => 50, :order => "value ASC"
   end
-  
+
   def search
     @colleges = College.search(params[:q]).paginate(:page => params[:page], :per_page => 50)
     render :action => :index
@@ -27,7 +27,7 @@ class Admins::Settings::EducationalEntitiesController < Admins::Settings::BaseCo
 
   def create
     @college = College.new(params[:college])
-    
+
     if @college.save
       redirect_to(admins_settings_educational_entity_path(@college), :notice => 'College was successfully created.')
     else
@@ -37,7 +37,7 @@ class Admins::Settings::EducationalEntitiesController < Admins::Settings::BaseCo
 
   def update
     @college = College.find(params[:id])
-    
+
     if @college.update_attributes(params[:college])
       redirect_to(admins_settings_educational_entity_path(@college), :notice => 'College was successfully updated.')
     else
@@ -46,7 +46,7 @@ class Admins::Settings::EducationalEntitiesController < Admins::Settings::BaseCo
   end
 
   def destroy
-    @college = College.find(params[:id])    
+    @college = College.find(params[:id])
     @college.destroy
     redirect_to(admins_settings_educational_entities_path, :notice => "College was successfully deleted.")
   end

@@ -6,25 +6,25 @@ describe Admins::Settings::EducationalEntitiesController do
   before(:each) do
     controller.stub!(:current_user).and_return(current_user)
   end
-  
+
   def mock_college(stubs={})
     @mock_college ||= mock_model(College, stubs)
   end
-  
+
   describe "GET search" do
     it "should expose colleges that match the query" do
-      College.should_receive(:search).with('bla').and_return([mock_college])
+      College.stub_chain(:search, :paginate).and_return([mock_college])
       get :search, :q => 'bla'
       assigns[:colleges].should eq([mock_college])
     end
-    
+
     it "should render the index template" do
-      College.stub!(:search).and_return([mock_college])
+      College.stub_chain(:search, :paginate).and_return([mock_college])
       get :search, :q => 'bla'
       response.should render_template(:index)
     end
   end
-  
+
   describe "GET index" do
     it "should expose colleges and render the template" do
       College.should_receive(:paginate).and_return([mock_college])
@@ -33,7 +33,7 @@ describe Admins::Settings::EducationalEntitiesController do
       assigns[:colleges].should eq([mock_college])
     end
   end
-  
+
   describe "GET show" do
     it "should expose college and render the show template" do
       College.should_receive(:find).with('37').and_return(mock_college({:value => 'bla'}))
