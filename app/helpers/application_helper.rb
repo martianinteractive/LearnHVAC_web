@@ -60,6 +60,9 @@ module ApplicationHelper
         :instructors  => managers_instructors_path,
         :classes      => managers_classes_path,
         :scenarios    => managers_scenarios_path
+      },
+      :students => {
+        :classes => students_classes_path
       }
     }[current_namespace].each_pair do |title, url|
       li_options = {}
@@ -125,6 +128,10 @@ module ApplicationHelper
         :groups       => %w[ groups ],
         :scenarios    => %w[ scenarios variables access ],
         :instructors  => %w[ instructors ]
+      },
+      :students => {
+        :groups => %w[ groups ],
+        :profile => %w[ users ]
       }
     }
   end
@@ -229,6 +236,20 @@ module ApplicationHelper
           {
             :link   => '#',
             :value  => 'New Class'
+          }
+        ]
+      },
+      :students => {
+        :groups => [
+          {
+            :link => students_classes_path,
+            :value => 'Classes'
+          }
+        ],
+        :profile => [
+          {
+            :link => students_classes_path,
+            :value => 'Classes'
           }
         ]
       },

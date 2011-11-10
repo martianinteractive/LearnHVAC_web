@@ -1,21 +1,18 @@
-#tabs
-  %ul
-    %li.ui-tabs-selected= link_to "Classes", students_classes_path
+= content_for :main_header do
+  %h1 Classes
+  %p You are a member of the following groups.
 
-  .instructions
-    You are a member of the following groups.
-
-  %br
-  %table.listing
-    %thead
-      %tr
-        %th Name
-        %th Lead By
-        %th Member since
+%table.zebra-striped
+  %thead
+    %tr
+      %th Name
+      %th Lead By
+      %th Member since
+  %tbody
     - @groups.each do |group|
       %tr
         %td= link_to group.name, students_class_path(group)
         %td= group.creator.name
         %td= group.memberships.where(:member_id => current_user.id).first.created_at.to_formatted_s(:long)
-  %br
-  = will_paginate @groups
+%br/
+= will_paginate @groups
