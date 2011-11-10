@@ -1,4 +1,4 @@
-- content_for :head do
+= content_for :head do
   = render :partial => 'shared/user_form_js', :locals => { :u => @account, :autocomplete => true }
 
 .leftcolumn
@@ -8,15 +8,15 @@
   .contents
     = form_for @account, :url => accounts_path, :html => { :class => "signup" } do |f|
       = error_messages_for :account
-      
+
       .account.section
         .sign_in
           %strong Already have a LearnHVAC account?
           %br
           = link_to "Sign in", login_path
-         
+
         %h3.step Your Info
-        %p * All fields are required  
+        %p * All fields are required
         %table
           %tbody
             %tr
@@ -37,7 +37,7 @@
             %tr
               %td
                 = f.label :institution_name, "Institution"
-              %td    
+              %td
                 = f.text_field :institution_name
                 %br
                 (Or university, community college, organization, non-profit, group, school, etc.)
@@ -46,31 +46,31 @@
                 = f.label :country, "Country"
               %td
                 = f.country_select :country, ['United States', 'Canada']
-            %tr#states
+            %tr
               %td
                 = f.label :state, "State/Region"
-              %td
+              %td#states
                 = f.text_field :state
             %tr
               %td
                 = f.label :city, "City"
               %td
                 = f.text_field :city
-                
-                
+
+
         %fieldset
           %legend Instructors
           Would you like you signup as an Instructor?
-          %p 
-            Instructors have additional privileges and capabilities. For example, create new scenarios, edit existing scenarios, create and manage classes, distribute scenarios to students, share scenarios with other instructors, etc. 
+          %p
+            Instructors have additional privileges and capabilities. For example, create new scenarios, edit existing scenarios, create and manage classes, distribute scenarios to students, share scenarios with other instructors, etc.
           %p If you registering as an instructor please make sure the institution above is where you are teaching.
           %br
           = f.check_box :role_code, {}, 2, 0
           = f.label :role_code, "Signup as Instructor"
-          
+
         %fieldset.credentials
           %legend Now choose a username &amp; password
-      
+
           #username_entry
             %p.field
               = f.label :login
@@ -78,31 +78,31 @@
               = f.text_field :login
               %br
               %span#username_hint This is what you’ll use to sign in.
-               
+
             %p.field
               = f.label :password
               %br
               = f.password_field :password
-               
+
             %p.field
               = f.label :password_confirmation, "Enter your password again for verification"
               %br
               = f.password_field :password_confirmation
-  
+
       .activation_instructions
         %p.instruction
           %strong
             Activation instructions
         %p.instruction
-          We will send you an activation link to your email inbox. 
-        %p.instruction 
+          We will send you an activation link to your email inbox.
+        %p.instruction
           You MUST click the link to complete the registration process. If you don't click the link, you cannot properly sign in and use the system.
-        
-      %p.instruction 
-        By clicking 
+
+      %p.instruction
+        By clicking
         %strong Create my account
         you agree to the
         = link_to "Terms of Use", terms_path
-      
+
       %input{:alt => "Create my account", :src => "images/signup/btn-createaccount.png", :type => "image"}
-  
+

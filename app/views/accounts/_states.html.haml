@@ -1,5 +1,4 @@
-= label_tag 'State/Region'
 - if @states.any?
-  .input= select_tag 'user[state]', options_for_select(@states.collect(&:value).insert(0, ""), params[:current]), :class => 'xxlarge'
+  = select_tag 'user[state]', options_for_select(@states.collect(&:value).insert(0, ""), params[:current]), :class => 'xxlarge'
 - else
-  .input= text_field_tag 'user[state]', params[:current], :class => 'xxlarge'
+  = text_field_tag 'user[state]', params[:current], :class => 'xxlarge'

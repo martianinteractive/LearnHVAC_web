@@ -3,13 +3,11 @@
 
 .well= link_to 'Edit', edit_profile_path, :class => 'btn success'
 
-#location.ui-widget.ui-widget-content.ui-corner-all
-  %h4 Location
-  %p
-    = image_tag "globe_32.png"
-    = location_for(current_user)
-
 %table
+  %tr
+    %td
+      %strong Location:
+    %td= location_for current_user
   %tr
     %td
       %strong Login:

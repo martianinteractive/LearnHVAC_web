@@ -1,3 +1,5 @@
+= content_for :head do
+  = render :partial => 'shared/user_form_js', :locals => {:u => @current_user, :autocomplete => true}
 = content_for :main_header do
   %h1= current_user.name
   %p Edit your profile
@@ -25,9 +27,9 @@
     = f.label :country
     .input= f.country_select :country, ['United States', 'Canada'], {}, :class => 'xxlarge'
 
-  .clearfix#states
+  .clearfix
     = f.label :state, "State/Region"
-    .input= f.text_field :state, :class => 'xxlarge'
+    #states.input= f.text_field :state, :class => 'xxlarge'
 
   .clearfix
     = f.label :city
@@ -52,7 +54,10 @@
   - if current_user.has_role?(:guest) or current_user.has_role?(:instructor) or current_user.has_role?(:student)
     .clearfix
       = f.label :list_directory, "Do you want your name listed in the community directory?"
-      = f.check_box :list_directory
+      .input
+        %ul.inputs-list
+          %li
+            %label= f.check_box :list_directory
 
   - if current_user.has_role?(:guest) or current_user.has_role?(:instructor)
     .clearfix
@@ -65,6 +70,6 @@
     %input#groups{:type => 'hidden', :value => current_user.groups.length}
     %input#scenarios{:type => 'hidden', :value => current_user.created_scenarios.length}
   .actions
-    = f.submit "Update", :class => 'btn primary'
+    = f.submit 'Update', :class => 'btn primary'
     or
     = link_to 'Cancel', profile_path, :class => 'btn'
