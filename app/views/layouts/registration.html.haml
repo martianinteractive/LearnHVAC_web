@@ -1,23 +1,21 @@
 !!!
 %html{:lang => "en", "xml:lang" => "en", :xmlns => "http://www.w3.org/1999/xhtml"}
   %head
-    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "content-type"}
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "content-type"}/
     %title Signup for Learn HVAC
-    = include_javascripts :application
+    = stylesheet_link_tag 'signup'
+    = javascript_include_tag :application
     = yield :head
-    %link{:href => "/stylesheets/signup.css", :media => "screen", :rel => "stylesheet", :type => "text/css"}
   %body.signup
     .javascript_required
       .wrapper
         .header
           .container
-            .logo
-              %img{:alt => "LearnHVAC", :height => "40", :src => "images/new_logo.png", :width => "194"}
+            .logo= image_tag "new_logo.png", :width => "194", :height => "40", :alt => "LearnHVAC"
       .container
         .rightcolumn
-          .thanks
-            %img{:alt => "", :height => "300", :src => "images/signup/attention_students.png", :width => "310"}
-        = yield   
+          .thanks= image_tag "attention_students.png", :width => '310', :height => '300'
+        = yield
       .clear.both
       .footer
         .container
