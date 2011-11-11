@@ -17,22 +17,26 @@ describe Admins::SystemVariablesController do
   end
 
   describe "GET index" do
+
     it "should expose the master scenario's system variables" do
       MasterScenario.should_receive(:find).with('37').and_return(mock_master_scenario)
+      mock_master_scenario.stub_chain(:variables, :filter).and_return([mock_system_variable])
       get :index, :master_scenario_id => '37'
       assigns[:system_variables].should_not be_nil
     end
 
     it "should render the index template" do
-      mock_master_scenario.stub_chain(:variables, :filter, :paginate).and_return([mock_system_variable])
+      mock_master_scenario.stub_chain(:variables, :filter).and_return([mock_system_variable])
       MasterScenario.stub!(:find).and_return(mock_master_scenario)
       get :index, :master_scenario_id => '37'
       response.should render_template(:index)
     end
 
     it "should render a CSV template" do
-      mock_master_scenario.stub_chain(:variables, :first, :fields_for_csv_from_options).and_return([])
-      MasterScenario.should_receive(:find).with('37').and_return(mock_master_scenario(:variables => [mock_system_variable]))
+      MasterScenario.should_receive(:find).with('37').and_return(mock_master_scenario)
+      mock_master_scenario.stub_chain(:variables, :filter).and_return([mock_system_variable])
+      mock_system_variable.stub_chain(:fields_for_csv_from_options).and_return([])
+      mock_system_variable.stub_chain(:to_csv).and_return('')
       get :index, :master_scenario_id => '37', :format => :csv
       response.headers["Content-Type"].should match("text/csv")
       response.should be_ok
