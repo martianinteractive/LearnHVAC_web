@@ -1,13 +1,11 @@
 class Admins::VariablesController < Admins::ApplicationController
 
-  layout 'bootstrap'
-
   helper :sort
   include SortHelper
 
   before_filter :find_scenario, :add_crumbs
   before_filter :find_scenario_variable, :only => [:show, :edit, :update]
-  before_filter :initialize_variables_sort, :only => [:index]
+  before_filter :initialize_variables_sort, :load_variables_filters, :only => [:index]
 
   cache_sweeper :scenario_variable_sweeper, :only => [:create, :update, :update_status, :destroy, :drop]
 
@@ -25,8 +23,7 @@ class Admins::VariablesController < Admins::ApplicationController
   respond_to :js, :only => [:update_status, :drop]
 
   def index
-    params[:filter] = {} if params[:reset].present?
-    @scenario_variables = @scenario.variables.filter params[:filter]
+    @scenario_variables = @scenario.variables.filter @filters
     respond_to do |wants|
       wants.html
       wants.csv {render :csv => @scenario_variables}
