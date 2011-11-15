@@ -23,6 +23,7 @@ Learnhvac::Application.routes.draw do
   match 'profile' => 'users#show', :as => 'profile'
   match 'profile/edit' => 'users#edit', :as => 'edit_profile'
   match 'profile/upgrade' => 'users#upgrade_guest_instructor'
+  match 'profile/destroy' => 'users#destroy', :as => 'destroy_profile'
   match 'list_groups/:id' => 'admins/users#list_groups'
 
 

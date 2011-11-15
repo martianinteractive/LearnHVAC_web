@@ -41,6 +41,12 @@ class UsersController < ApplicationController
     redirect_to profile_path
   end
 
+  def destroy
+    current_user.destroy
+    reset_session
+    redirect_to login_path
+  end
+
   private
 
   def set_layout
