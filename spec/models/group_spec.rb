@@ -8,7 +8,6 @@ describe Group do
   it { should have_many(:members).through(:memberships) }
   it { should have_many(:group_scenarios).dependent(:destroy) }
   it { should have_many(:scenarios).through(:group_scenarios) }
-  it { should have_many(:notification_emails) }
 
   it { should validate_presence_of(:name) }
   it { should validate_uniqueness_of(:name).scoped_to(:creator_id) }

@@ -10,18 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110525150635) do
-
-  create_table "class_notification_emails", :force => true do |t|
-    t.integer  "class_id"
-    t.string   "recipients"
-    t.string   "subject"
-    t.text     "body"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "class_notification_emails", ["class_id"], :name => "index_class_notification_emails_on_class_id"
+ActiveRecord::Schema.define(:version => 20111116201338) do
 
   create_table "client_versions", :force => true do |t|
     t.string   "version"
