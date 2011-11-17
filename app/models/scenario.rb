@@ -26,6 +26,7 @@ class Scenario < ActiveRecord::Base
   scope :public, where(:public => true)
   scope :with_unread_alerts, where("scenario_alerts.read" => false)
   scope :sample, where(:sample => true)
+  scope :shared, where(:shared => true)
 
   def clone_for(user)
     clon_atts = attributes.except("id", "created_at", "updated_at", "user_id", "sample")

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111116201338) do
+ActiveRecord::Schema.define(:version => 20111116212340) do
 
   create_table "client_versions", :force => true do |t|
     t.string   "version"
@@ -117,6 +117,7 @@ ActiveRecord::Schema.define(:version => 20111116201338) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "sample",                         :default => false
+    t.boolean  "shared",                         :default => false
   end
 
   add_index "scenarios", ["desktop_id"], :name => "index_scenarios_on_desktop_id"
