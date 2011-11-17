@@ -19,9 +19,10 @@
         %td= scenario.id
         %td= link_to scenario.name, admins_scenario_path(scenario)
         %td= link_to scenario.user.name, admins_user_path(scenario.user, :role => scenario.user.role)
-        - if scenario.master_scenario
-          %td= link_to scenario.master_scenario.name, admins_master_scenario_path(scenario.master_scenario)
-        - else
-          No master scenario
+        %td
+          - if scenario.master_scenario.blank?
+            No master scenario
+          - else
+            = link_to scenario.master_scenario.name, admins_master_scenario_path(scenario.master_scenario)
         %td= scenario.created_at.to_formatted_s :long
         %td= scenario.sample? ? "Yes" : "No"
