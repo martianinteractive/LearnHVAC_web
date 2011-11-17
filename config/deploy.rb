@@ -13,6 +13,11 @@ set :rails_env, "production"
 # ssh_options[:port] = 8888
 set :use_sudo, false
 
+$:.unshift(File.expand_path('./lib', ENV['rvm_path']))  # Add RVM's lib directory to the load path.
+require "rvm/capistrano"                                # Load RVM's capistrano plugin.
+set :rvm_ruby_string, '1.9.2'                           # Set rvm env.
+set :rvm_type, :user                                    # Specify that rvm is a local installation.
+
 task :production do
   role :app, "app.learnhvac.org"
   role :web, "app.learnhvac.org"
