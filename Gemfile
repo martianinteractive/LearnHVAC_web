@@ -17,15 +17,14 @@ gem "exception_notification", :git => "http://github.com/rails/exception_notific
 gem "wice_grid", '3.0.0.pre1'
 
 group :test do
-	gem "rspec-rails"
+  gem "rspec-rails"
   gem "shoulda-matchers"
-	gem "factory_girl_rails", "1.0.1"
-	gem "ZenTest"
-	gem "autotest-rails"
+  gem "factory_girl_rails", "1.0.1"
+  gem "ZenTest"
+  gem "autotest-rails"
 end
 
 group :development, :development_cached do
-  gem "ruby-debug" if RUBY_VERSION == "1.8.7"
-  gem "ruby-debug19" if RUBY_VERSION == "1.9.1"
+  gem "ruby-debug19"
   gem "hirb"
 end
