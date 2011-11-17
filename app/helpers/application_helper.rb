@@ -124,7 +124,7 @@ module ApplicationHelper
       },
       :instructors => {
         :dashboard  => %w[ dashboards ],
-        :scenarios  => %w[ scenarios access variables ],
+        :scenarios  => %w[ scenarios shared_scenarios access variables ],
         :groups     => %w[ groups emails ],
         :profile => %w[ users ]
       },
@@ -227,6 +227,10 @@ module ApplicationHelper
           {
             :link   => instructors_scenarios_path,
             :value  => 'Scenarios'
+          },
+          {
+            :link   => instructors_shared_scenarios_path,
+            :value  => 'Shared Scenarios'
           },
           {
             :link   => new_instructors_scenario_path,
