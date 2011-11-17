@@ -48,30 +48,19 @@ module ApplicationHelper
   end
 
   def is_current_item?(title)
-    sections[ title ].include? controller_name
+    {
+      :general => %w[ dashboard ],
+      :system  => %w[ master_scenarios scenarios ],
+      :users   => %w[ users ]
+    }[ title ].include? controller_name
   end
 
   def sidebar_menu
     html = ''
-    title   = current_section.to_s.titleize
-    options = sidebar_nav_options[current_section]
-    html << generate_sidebar_section(title, options)
-    html.html_safe
-  end
-
-  def current_section
-    sections.each_pair do |section, controllers|
-      @current_section = section if controllers.include? controller_name
+    sidebar_nav_options.each_pair do |key, options|
+      html << generate_sidebar_section(key.to_s.titleize, options)
     end
-    @current_section
-  end
-
-  def sections
-    @sections ||= {
-      :general => %w[ dashboard ],
-      :system  => %w[ master_scenarios scenarios ],
-      :users   => %w[ users ]
-    }
+    html.html_safe
   end
 
   def generate_sidebar_section(title, options)
