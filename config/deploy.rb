@@ -5,18 +5,23 @@ set :keep_releases, 5
 set :deploy_via, :remote_cache
 set :git_shallow_clone, 1
 set :repository,  "git@github.com:martianinteractive/LearnHVAC_web.git"
-set :branch, 'master'
 set :scm, 'git'
 set :user, 'deploy'
-set :deploy_to, "/var/www/app.learnhvac.org"
 set :rails_env, "production"
 # ssh_options[:port] = 8888
 set :use_sudo, false
+role :app, "app.learnhvac.org"
+role :web, "app.learnhvac.org"
+role :db,  "app.learnhvac.org", :primary => true
 
 task :production do
-  role :app, "app.learnhvac.org"
-  role :web, "app.learnhvac.org"
-  role :db,  "app.learnhvac.org", :primary => true
+  set :deploy_to, "/var/www/app.learnhvac.org"
+  set :branch, 'master'
+end
+
+task :staging do
+  set :deploy_to, "/var/www/staging.learnhvac.org"
+  set :branch, 'staging'
 end
 
 namespace(:deploy) do
