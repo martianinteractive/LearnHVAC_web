@@ -15,7 +15,6 @@ gem "compass"
 gem "capistrano"
 gem "exception_notification", :git => "http://github.com/rails/exception_notification.git", :require => 'exception_notifier'
 gem "wice_grid", '3.0.0.pre1'
-gem "fastercsv" if RUBY_VERSION < "1.9"
 gem 'jquery-rails'
 
 # Gems used only for assets and not required
@@ -36,6 +35,5 @@ end
 
 group :development, :development_cached do
   gem "ruby-debug" if RUBY_VERSION < "1.9"
-  gem "ruby-debug19" if RUBY_VERSION >= "1.9"
   gem "hirb"
 end
