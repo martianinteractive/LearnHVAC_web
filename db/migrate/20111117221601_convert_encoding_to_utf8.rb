@@ -1,4 +1,4 @@
-class ConvertToUtf8 < ActiveRecord::Migration
+class ConvertEncodingToUtf8 < ActiveRecord::Migration
 
   def self.up
     db_config = ActiveRecord::Base.connection.instance_values["config"]

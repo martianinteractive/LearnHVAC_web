@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -10,18 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110525150635) do
-
-  create_table "class_notification_emails", :force => true do |t|
-    t.integer  "class_id"
-    t.string   "recipients"
-    t.string   "subject"
-    t.text     "body"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "class_notification_emails", ["class_id"], :name => "index_class_notification_emails_on_class_id"
+ActiveRecord::Schema.define(:version => 20111117221601) do
 
   create_table "client_versions", :force => true do |t|
     t.string   "version"
@@ -128,6 +118,7 @@ ActiveRecord::Schema.define(:version => 20110525150635) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "sample",                         :default => false
+    t.boolean  "shared",                         :default => false
   end
 
   add_index "scenarios", ["desktop_id"], :name => "index_scenarios_on_desktop_id"
