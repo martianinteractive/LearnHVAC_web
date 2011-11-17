@@ -34,6 +34,5 @@ group :test do
 end
 
 group :development, :development_cached do
-  gem "ruby-debug" if RUBY_VERSION < "1.9"
   gem "hirb"
 end
