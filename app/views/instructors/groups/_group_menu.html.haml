@@ -1,6 +1,7 @@
 .well
   - if @subject_buttons == :group
-    = link_to 'Emails', instructors_class_emails_path(@group), :class => 'btn'
+    - unless @group.members.empty?
+      = mail_to @group.members.map(&:email), 'New Email', :subject => "New notification from #{@group.name}", :class => 'btn'
     = link_to 'Edit', edit_instructors_class_path(@group), :class => 'btn success'
     = link_to 'Delete', instructors_class_path(@group), :confirm => 'Are you sure?', :method => :delete, :class => 'btn danger'
 

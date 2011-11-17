@@ -1,7 +1,6 @@
 .well
   = link_to 'Manage Access', [:instructors, @scenario, :accesses], :class => 'btn'
   = link_to "Manage Variables", instructors_scenario_variables_path(@scenario), :class => 'btn'
-  = link_to 'New Variable', new_instructors_scenario_variable_path(@scenario), :class => 'btn'
 
   %p.pull-right
     - if @subject_buttons == :scenario

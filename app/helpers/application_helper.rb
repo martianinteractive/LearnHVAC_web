@@ -1,5 +1,10 @@
 module ApplicationHelper
 
+  def mail_to(email_address, name = nil, html_options = {})
+    email_address = email_address.join ',' if email_address.is_a? Array
+    super(email_address, name, html_options)
+  end
+
   def display_flash
     return content_tag("div", flash[:notice], :class => "alert-message success")  if flash[:notice]
     return content_tag("div", flash[:error], :class => "alert-message error")  if flash[:error]

@@ -51,14 +51,6 @@
     = f.label :password_confirmation, "Password Confirmation"
     .input= f.password_field :password_confirmation, :size=>20,  :value=>"", :class => 'xxlarge'
 
-  - if current_user.has_role?(:guest) or current_user.has_role?(:instructor) or current_user.has_role?(:student)
-    .clearfix
-      = f.label :list_directory, "Do you want your name listed in the community directory?"
-      .input
-        %ul.inputs-list
-          %li
-            %label= f.check_box :list_directory
-
   - if current_user.has_role?(:guest) or current_user.has_role?(:instructor)
     .clearfix
       = f.label :role, "Type of account"

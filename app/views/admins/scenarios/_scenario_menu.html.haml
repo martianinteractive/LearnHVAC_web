@@ -7,42 +7,30 @@
 
   %p.pull-right
     - if @subject_buttons == :scenario
-      = link_to(edit_admins_scenario_path(@scenario), :class => 'no-decoration') do
-        %button.btn.success Edit Scenario
-
+      = link_to 'Edit Scenario', edit_admins_scenario_path(@scenario), :class => 'btn small success'
       - if @scenario.groups.empty?
-        = link_to admins_scenario_path(@scenario), :confirm => 'Are you sure?', :method => :delete, :class => 'no-decoration' do
-          %button.btn.danger Delete Scenario
+        = link_to 'Delete Scenario', admins_scenario_path(@scenario), :confirm => 'Are you sure?', :method => :delete, :class => 'btn small danger'
       - else
-        = link_to admins_scenario_path(@scenario), :confirm => 'Are you sure? This scenario is used by one or more groups right now.', :method => :delete, :class => 'no-decoration' do
-          %button.btn.danger Delete Scenario
+        = link_to 'Delete Scenario', admins_scenario_path(@scenario), :confirm => 'Are you sure? This scenario is used by one or more groups right now.', :method => :delete, :class => 'btn small danger'
 
       - if controller_name == 'variables' and action_name == 'index'
-        = link_to 'Export to CSV', admins_scenario_variables_path(@scenario, :format => :csv), :class => 'btn primary'
+        = link_to 'Export to CSV', admins_scenario_variables_path(@scenario, :format => :csv), :class => 'btn small primary'
+
     - elsif @subject_buttons == :cancel_scenario
       - if %(edit update).include?(controller.action_name)
-        = link_to(admins_scenario_path(@scenario), :class => 'no-decoration') do
-          %button.btn.success Cancel
-
+        = link_to 'Cancel', admins_scenario_path(@scenario), :class => 'btn small success'
       - elsif %(new create).include?(controller.action_name)
-        = link_to(admins_scenarios_path, :class => 'no-decoration') do
-          %button.btn.success Cancel
+        = link_to 'Cancel', admins_scenarios_path, :class => 'btn small success'
 
     - elsif @subject_buttons == :variable
-      = link_to(edit_admins_scenario_variable_path(@scenario, @scenario_variable), :class => 'no-decoration') do
-        %button.btn.success Edit Variable
-
-      = link_to admins_scenario_variable_path(@scenario, @scenario_variable, :class => 'no-decoration'), :confirm => 'Are you sure?', :method => :delete do
-        %button.btn.danger Delete Variable
+      = link_to 'Edit Variable', edit_admins_scenario_variable_path(@scenario, @scenario_variable), :class => 'btn small success'
+      = link_to 'Delete Variable', admins_scenario_variable_path(@scenario, @scenario_variable, :class => 'no-decoration'), :confirm => 'Are you sure?', :method => :delete, :class => 'btn small danger'
 
     - elsif @subject_buttons == :cancel_variable
       - if %(edit update).include?(controller.action_name)
-        = link_to(admins_scenario_variable_path(@scenario, @scenario_variable), :class => 'no-decoration') do
-          %button.btn.success Cancel
-
+        = link_to 'Cancel', admins_scenario_variable_path(@scenario, @scenario_variable), :class => 'btn small success'
       - elsif %(new create).include?(controller.action_name)
-        = link_to(admins_scenario_variables_path(@scenario), :class => 'no-decoration') do
-          %button.btn.success Cancel
+        = link_to 'Cancel', admins_scenario_variables_path(@scenario), :class => 'btn small success'
 
 #filter_panel.well.hide
   = form_for :filter, :url => admins_scenario_variables_path([@scenario]), :html => {:method => :get} do |f|

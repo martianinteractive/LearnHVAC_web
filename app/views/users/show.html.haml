@@ -1,7 +1,13 @@
 = content_for :main_header do
   %h1= current_user.name
 
-.well= link_to 'Edit', edit_profile_path, :class => 'btn success'
+.well
+  %p.pull-right
+    = link_to 'Edit', edit_profile_path, :class => 'btn success'
+    - if current_user.has_role? :instructor
+      = link_to 'Delete my account', destroy_profile_path, :confirm => 'Are you sure you want to delete your account? This action will also destroy all your classes and scenarios.', :class => 'btn danger'
+    - else
+      = link_to 'Delete my account', destroy_profile_path, :confirm => 'Are you sure?', :class => 'btn danger'
 
 %table
   %tr

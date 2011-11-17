@@ -59,7 +59,7 @@ $(document).ready(function() {
   // table sort example
   // ==================
   var table = $('#sortTableExample');
-  if ( 0 < table.legnth ) {
+  if ( 0 < table.length ) {
     table.tablesorter( { sortList: [[ 1, 0 ]] } );
   }
 

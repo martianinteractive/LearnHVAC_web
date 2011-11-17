@@ -4,7 +4,6 @@ class Group < ActiveRecord::Base
   has_many :members,              :through => :memberships, :uniq => true
   has_many :group_scenarios,      :dependent => :destroy
   has_many :scenarios,            :through => :group_scenarios
-  has_many :notification_emails,  :class_name => "ClassNotificationEmail", :foreign_key => "class_id"
 
   accepts_nested_attributes_for :group_scenarios, :allow_destroy => true
 

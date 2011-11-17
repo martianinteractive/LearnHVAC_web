@@ -7,7 +7,7 @@ class Admins::SystemVariablesController < Admins::ApplicationController
 
   before_filter :find_master_scenario, :add_crumbs
   before_filter :find_system_variable, :only => [:show, :edit, :update]
-  before_filter :initialize_variables_sort, :only => [:index]
+  before_filter :initialize_variables_sort, :load_variables_filters, :only => [:index]
 
   cache_sweeper :system_variable_sweeper, :only => [:create, :update, :update_status, :destroy, :drop]
 
@@ -25,7 +25,7 @@ class Admins::SystemVariablesController < Admins::ApplicationController
   respond_to :js, :only => [:update_status, :drop]
 
   def index
-    @system_variables = @master_scenario.variables
+    @system_variables = @master_scenario.variables.filter @filters
     respond_to do |wants|
       wants.html
       wants.csv {render :csv => @system_variables, :except => [:type]}
