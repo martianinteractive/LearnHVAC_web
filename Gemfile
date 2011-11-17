@@ -17,6 +17,10 @@ gem "exception_notification", :git => "http://github.com/rails/exception_notific
 gem "wice_grid", '3.0.0.pre1'
 gem 'jquery-rails'
 
+group :production do
+  gem 'therubyracer'
+end
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
