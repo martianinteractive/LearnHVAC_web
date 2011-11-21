@@ -10,8 +10,12 @@ class Instructors::SharedScenariosController < ApplicationController
   end
 
   def clone
-    @scenario.clone_for current_user
-    flash[:notice] = 'Scenario successfully cloned.'
+    new_scenario = @scenario.clone_for current_user
+    if new_scenario.persisted?
+      flash[:notice] = 'Scenario successfully cloned.'
+    else
+      flash[:error] = "Scenario can't be clonned because it doesn't have a master scenario."
+    end
     redirect_to instructors_shared_scenarios_path
   end
 
