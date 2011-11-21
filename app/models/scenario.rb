@@ -1,26 +1,32 @@
 class Scenario < ActiveRecord::Base
+
+  # - Relationships -
+  belongs_to :original_author,  :class_name => 'User'
   belongs_to :user
   belongs_to :master_scenario
   belongs_to :client_version,   :foreign_key => "desktop_id"
   has_many :variables,          :class_name => "ScenarioVariable", :dependent => :destroy
-  has_many :alerts,             :class_name => "ScenarioAlert"
   has_many :group_scenarios,    :dependent => :destroy
   has_many :groups,             :through => :group_scenarios
   has_many :memberships,        :dependent => :destroy
   has_many :users,              :through => :memberships, :source => :member
   has_many :individual_memberships
   has_many :group_memberships
+  #has_many :alerts,             :class_name => "ScenarioAlert"
 
+  # - Validations -
   validates_presence_of :user, :longterm_start_date, :longterm_stop_date, :realtime_start_datetime
   validates_presence_of :master_scenario, :on => :create
   validates :name, :presence => true, :length => {:within => 1..180}
   validate :longterm_validator
 
+  # - Callbacks -
   before_create :set_client_version
   after_create :copy_variables
   after_create :create_creator_membership
   before_update :reassign_creator_membership, :if => :user_id_changed?
 
+  # - Scopes -
   scope :recently_created, where(["scenarios.created_at > ?", 30.days.ago.utc])
   scope :recently_updated, where(["scenarios.updated_at > ?", 30.days.ago.utc])
   scope :public, where(:public => true)
@@ -28,9 +34,29 @@ class Scenario < ActiveRecord::Base
   scope :sample, where(:sample => true)
   scope :shared, where(:shared => true)
 
-  def clone_for(user)
-    clon_atts = attributes.except("id", "created_at", "updated_at", "user_id", "sample")
-    clon = Scenario.create(clon_atts.merge(:user => user))
+  # - Instance Methods -
+  def is_a_clone?
+    original_author_id.present?
+  end
+
+  def clone_for(new_user)
+    unless new_user.has_role? :instructor
+      raise ArgumentError, "Instructor expected. Got #{new_user.role.to_s.titleize}"
+    end
+    clon_atts = attributes.except("id", "created_at", "updated_at", "user_id", "sample", "shared")
+    clon_atts.merge!(:user_id => new_user.id, :original_author_id => user.id)
+    new_scenario = self.class.create clon_atts
+    clone_variables_for new_scenario
+    new_scenario
+  end
+
+  def clone_variables_for(scenario)
+    query = <<-SQL
+    INSERT INTO `variables` (`name`, `display_name`, `description`, `unit_si`, `unit_ip`, `si_to_ip`, `left_label`, `right_label`, `subsection`, `zone_position`, `fault_widget_type`, `notes`, `component_code`, `io_type`, `view_type`, `index`, `lock_version`, `node_sequence`, `low_value`, `high_value`, `initial_value`, `is_fault`, `is_percentage`, `disabled`, `fault_is_active`, `type`, `scenario_id`)
+    SELECT `name`, `display_name`, `description`, `unit_si`, `unit_ip`, `si_to_ip`, `left_label`, `right_label`, `subsection`, `zone_position`, `fault_widget_type`, `notes`, `component_code`, `io_type`, `view_type`, `index`, `lock_version`, `node_sequence`, `low_value`, `high_value`, `initial_value`, `is_fault`, `is_percentage`, `disabled`, `fault_is_active`, `type`, #{scenario.id} FROM `variables` WHERE `variables`.`scenario_id` = #{id} AND `variables`.`type` IN ('ScenarioVariable')
+    SQL
+    ActiveRecord::Base.connection.execute query
+    scenario.variables
   end
 
   private
@@ -40,6 +66,7 @@ class Scenario < ActiveRecord::Base
   end
 
   def copy_variables
+    return if is_a_clone?
     master_scenario.variables.each do |sys_var|
       variables.create sys_var.attributes.except("id", "created_at", "updated_at", "scenario_id")
     end

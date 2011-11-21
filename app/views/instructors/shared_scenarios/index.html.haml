@@ -5,22 +5,24 @@
   %thead
     %tr
       %th Name
-      %th Master Scenario
+      %th Instructor
+      %th Original Author
       %th Created on
       %th Desktop Application
       %th
   - @scenarios.each do |scenario|
     %tr
       %td= link_to scenario.name, instructors_scenario_path(scenario)
+      %td= scenario.user.name
       %td
-        - if scenario.master_scenario
-          = scenario.master_scenario.name
+        - if scenario.original_author
+          = scenario.original_author.name
         - else
-          %em deleted
+          %em This scenario has not been cloned.
       %td= scenario.created_at.to_formatted_s(:long)
       %td
         - if scenario.client_version
-          = link_to scenario.client_version.url, :class => 'btn'
+          = link_to 'Download', scenario.client_version.url, :class => 'btn primary'
         - else
-          Not available for  download
+          Not available for download
       %td= link_to 'Clone', instructors_shared_scenario_clone_path(scenario), :class => 'btn success'

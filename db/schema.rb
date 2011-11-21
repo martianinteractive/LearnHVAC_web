@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -10,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111116212340) do
+ActiveRecord::Schema.define(:version => 20111121185109) do
 
   create_table "client_versions", :force => true do |t|
     t.string   "version"
@@ -99,7 +100,7 @@ ActiveRecord::Schema.define(:version => 20111116212340) do
     t.text     "description"
     t.string   "goal"
     t.date     "longterm_start_date",            :default => '2010-01-01'
-    t.date     "longterm_stop_date",             :default => '2010-07-31'
+    t.date     "longterm_stop_date",             :default => '2010-08-31'
     t.datetime "realtime_start_datetime",        :default => '2010-01-15 00:00:00'
     t.integer  "level",                          :default => 1
     t.boolean  "public",                         :default => false
@@ -118,6 +119,7 @@ ActiveRecord::Schema.define(:version => 20111116212340) do
     t.datetime "updated_at"
     t.boolean  "sample",                         :default => false
     t.boolean  "shared",                         :default => false
+    t.integer  "original_author_id"
   end
 
   add_index "scenarios", ["desktop_id"], :name => "index_scenarios_on_desktop_id"

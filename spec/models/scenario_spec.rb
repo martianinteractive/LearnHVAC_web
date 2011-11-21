@@ -2,11 +2,65 @@ require File.dirname(__FILE__) + "/../spec_helper"
 
 describe Scenario do
 
+  # - Relationships -
+  it { should belong_to :original_author                       }
+  it { should belong_to :user                                  }
+  it { should belong_to :master_scenario                       }
+  it { should belong_to :client_version                        }
+  it { should have_many(:variables).dependent(:destroy)        }
+  it { should have_many(:group_scenarios).dependent(:destroy)  }
+  it { should have_many(:groups).through(:group_scenarios)     }
+  it { should have_many(:memberships).dependent(:destroy)      }
+  it { should have_many(:users).through(:memberships)          }
+  it { should have_many :individual_memberships                }
+  it { should have_many :group_memberships                     }
+  #it { should have_many :alerts                                }
+
+  it "should know when is a clone" do
+    instructor1 = Factory(:instructor)
+    instructor2 = Factory(:instructor)
+    scenario = Factory(:valid_scenario, :user => instructor1)
+    new_scenario = scenario.clone_for instructor2
+    new_scenario.is_a_clone?.should be_true
+  end
+
   before(:each) do
     @user            = Factory(:instructor)
     @admin           = Factory(:admin)
     @master_scenario = Factory(:master_scenario, :user => @admin)
     @scenario        = Factory.build(:scenario, :user => @user, :master_scenario => @master_scenario)
+  end
+
+  context "Cloning" do
+
+    let(:scenario)    { Factory(:valid_scenario)  }
+    let(:instructor)  { Factory(:instructor)      }
+
+    it "should clone itself for another user" do
+      expect {
+        scenario.clone_for instructor
+      }.to change(instructor.created_scenarios, :count).by(1)
+    end
+
+    it "should assign the same master scenario to the new cloned scenario" do
+      new_scenario = scenario.clone_for instructor
+      new_scenario.master_scenario.should eq(scenario.master_scenario)
+    end
+
+    it "should clone its variables for another user" do
+      new_scenario = scenario.clone_for instructor
+      new_scenario.variables.count.should eq(scenario.variables.count)
+    end
+
+    it "should raise an exception if the given user is not an instructor" do
+      expect { scenario.clone_for @admin }.to raise_error(/Instructor expected/)
+    end
+
+    it "should not be shared by default when clonned" do
+      new_scenario = scenario.clone_for instructor
+      new_scenario.should_not be_shared
+    end
+
   end
 
   context "Validations" do
@@ -50,6 +104,7 @@ describe Scenario do
 
   context "scopes" do
     before(:each) do
+      Scenario.delete_all
       @public_scenario    = Factory(:scenario, :user => @user, :master_scenario => @master_scenario, :public => true)
       @public_scenario2   = Factory(:scenario, :user => @user, :master_scenario => @master_scenario, :public => true)
       @private_sceneario  = Factory(:scenario, :user => @user, :master_scenario => @master_scenario, :public => false)
