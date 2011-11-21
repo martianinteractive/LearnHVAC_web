@@ -115,8 +115,16 @@
 
 .clearfix
   %p Allow all users to view this scenario.
-  = f.label :public, "Share"
+  = f.label :public
   .input
     %ul.inputs-list
       %li
         %label= f.check_box :public
+
+.clearfix
+  %p Mark this scenario as shared?
+  = f.label :shared, "Shared?"
+  .input
+    %ul.inputs-list
+      %li
+        %label= f.check_box :shared

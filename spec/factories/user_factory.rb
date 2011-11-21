@@ -29,10 +29,10 @@ Factory.define :student, :class => User do |user|
 end
 
 Factory.define :instructor, :class => User do |user|
-  user.login 'joeyb'
+  user.login {Factory.next :login}
   user.first_name 'Joe'
   user.last_name 'Boe'
-  user.email 'jboe@builder.com'
+  user.email {Factory.next :email}
   user.password 'jboe333'
   user.password_confirmation 'jboe333'
   user.role_code 2
@@ -102,4 +102,12 @@ Factory.define :ucla_user, :class => User do |user|
   user.state 'Maryland'
   user.terms_agreement "1"
   user.institution { Factory(:institution, :name => "UCLA") }
+end
+
+Factory.sequence :email do |n|
+  "chuck#{n}@norris.com"
+end
+
+Factory.sequence :login do |n|
+  "chuck#{n}"
 end

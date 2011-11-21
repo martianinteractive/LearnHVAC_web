@@ -21,7 +21,7 @@
         %td= link_to scenario.user.name, admins_user_path(scenario.user, :role => scenario.user.role)
         %td
           - if scenario.master_scenario.blank?
-            No master scenario
+            %em deleted
           - else
             = link_to scenario.master_scenario.name, admins_master_scenario_path(scenario.master_scenario)
         %td= scenario.created_at.to_formatted_s :long

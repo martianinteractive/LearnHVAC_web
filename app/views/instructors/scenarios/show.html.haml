@@ -12,6 +12,11 @@
 = render :partial => "scenario_menu"
 
 %table
+  - if @scenario.original_author
+    %tr
+      %td
+        %strong Original Author:
+      %td= @scenario.original_author.name
   %tr
     %td
       %strong Author:

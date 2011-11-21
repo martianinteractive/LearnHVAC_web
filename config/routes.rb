@@ -48,8 +48,11 @@ Learnhvac::Application.routes.draw do
   namespace :instructors do
     resources :accounts, :only => [:create]
     resources :students, :only => [:show]
-    resource :dashboard, :only => [:show]
+    resource  :dashboard, :only => [:show]
     resources :client_versions
+    resources :shared_scenarios, :only => :index do
+      get :clone
+    end
 
     resources :scenarios do
       resources :alerts, :only => [:index, :show, :update]

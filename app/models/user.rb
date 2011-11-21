@@ -49,7 +49,7 @@ class User < ActiveRecord::Base
   end
 
   def role
-    ROLES.index(read_attribute(:role_code))
+    ROLES.key role_code
   end
 
   def has_role?(_role)
