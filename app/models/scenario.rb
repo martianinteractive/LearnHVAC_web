@@ -45,8 +45,10 @@ class Scenario < ActiveRecord::Base
     end
     clon_atts = attributes.except("id", "created_at", "updated_at", "user_id", "sample", "shared")
     clon_atts.merge!(:user_id => new_user.id, :original_author_id => user.id)
-    new_scenario = self.class.create clon_atts
-    clone_variables_for new_scenario
+    new_scenario = self.class.new clon_atts
+    if new_scenario.save
+      clone_variables_for new_scenario
+    end
     new_scenario
   end
 

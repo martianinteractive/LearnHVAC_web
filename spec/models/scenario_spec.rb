@@ -61,6 +61,12 @@ describe Scenario do
       new_scenario.should_not be_shared
     end
 
+    it "should not clone if the clonning scenario has no master scenario" do
+      scenario.master_scenario = nil
+      new_scenario = scenario.clone_for instructor
+      new_scenario.should_not be_valid
+    end
+
   end
 
   context "Validations" do

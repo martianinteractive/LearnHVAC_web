@@ -45,8 +45,18 @@ describe Instructors::SharedScenariosController do
 
     it "shows an error message when the scenario belongs to the current user" do
       scenario.user = current_user
+      scenario.save
       get :clone, :shared_scenario_id => scenario.id
       flash[:error].should eq("You can't clone your own scenario.")
+    end
+
+    it "shows an error message when the clonning scenario has no master scenario" do
+      @fancy_instructor = Factory(:instructor)
+      @fancy_scenario   = Factory(:valid_scenario, :user => @fancy_instructor)
+      @fancy_scenario.master_scenario = nil
+      @fancy_scenario.save
+      get :clone, :shared_scenario_id => @fancy_scenario.id
+      flash[:error].should eq("Scenario can't be clonned because it doesn't have a master scenario.")
     end
 
   end
