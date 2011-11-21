@@ -38,4 +38,5 @@ group :development, :development_cached do
   gem "ruby-debug" if RUBY_VERSION < "1.9"
   gem "ruby-debug19" if RUBY_VERSION >= "1.9"
   gem "hirb"
+  gem "ruby-debug19"
 end
