@@ -39,5 +39,4 @@ end
 
 group :development, :development_cached do
   gem "hirb"
-  gem "ruby-debug19"
 end
