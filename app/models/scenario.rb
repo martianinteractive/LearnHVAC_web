@@ -55,7 +55,7 @@ class Scenario < ActiveRecord::Base
   def clone_variables_for(scenario)
     query = <<-SQL
     INSERT INTO `variables` (`name`, `display_name`, `description`, `unit_si`, `unit_ip`, `si_to_ip`, `left_label`, `right_label`, `subsection`, `zone_position`, `fault_widget_type`, `notes`, `component_code`, `io_type`, `view_type`, `index`, `lock_version`, `node_sequence`, `low_value`, `high_value`, `initial_value`, `is_fault`, `is_percentage`, `disabled`, `fault_is_active`, `type`, `scenario_id`)
-    SELECT `name`, `display_name`, `description`, `unit_si`, `unit_ip`, `si_to_ip`, `left_label`, `right_label`, `subsection`, `zone_position`, `fault_widget_type`, `notes`, `component_code`, `io_type`, `view_type`, `index`, `lock_version`, `node_sequence`, `low_value`, `high_value`, `initial_value`, `is_fault`, `is_percentage`, `disabled`, `fault_is_active`, `type`, #{scenario.id} FROM `variables` WHERE `variables`.`scenario_id` = #{id} AND `variables`.`type` IN ('ScenarioVariable')
+    SELECT `name`, `display_name`, `description`, `unit_si`, `unit_ip`, `si_to_ip`, `left_label`, `right_label`, `subsection`, `zone_position`, `fault_widget_type`, `notes`, `component_code`, `io_type`, `view_type`, `index`, `lock_version`, `node_sequence`, `low_value`, `high_value`, `initial_value`, `is_fault`, `is_percentage`, `disabled`, `fault_is_active`, 'ScenarioVariable', #{scenario.id} FROM `variables` WHERE `variables`.`scenario_id` = #{id} AND `variables`.`type` IN ('ScenarioVariable')
     SQL
     ActiveRecord::Base.connection.execute query
     scenario.variables
@@ -69,9 +69,11 @@ class Scenario < ActiveRecord::Base
 
   def copy_variables
     return if is_a_clone?
-    master_scenario.variables.each do |sys_var|
-      variables.create sys_var.attributes.except("id", "created_at", "updated_at", "scenario_id")
-    end
+    query = <<-SQL
+    INSERT INTO `variables` (`name`, `display_name`, `description`, `unit_si`, `unit_ip`, `si_to_ip`, `left_label`, `right_label`, `subsection`, `zone_position`, `fault_widget_type`, `notes`, `component_code`, `io_type`, `view_type`, `index`, `lock_version`, `node_sequence`, `low_value`, `high_value`, `initial_value`, `is_fault`, `is_percentage`, `disabled`, `fault_is_active`, `type`, `scenario_id`)
+    SELECT `name`, `display_name`, `description`, `unit_si`, `unit_ip`, `si_to_ip`, `left_label`, `right_label`, `subsection`, `zone_position`, `fault_widget_type`, `notes`, `component_code`, `io_type`, `view_type`, `index`, `lock_version`, `node_sequence`, `low_value`, `high_value`, `initial_value`, `is_fault`, `is_percentage`, `disabled`, `fault_is_active`, 'ScenarioVariable', #{id} FROM `variables` WHERE `variables`.`scenario_id` = #{master_scenario_id} AND `variables`.`type` IN ('SystemVariable')
+    SQL
+    ActiveRecord::Base.connection.execute query
   end
 
   def longterm_validator
