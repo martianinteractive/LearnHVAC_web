@@ -97,6 +97,7 @@ GEM
       railties (~> 3.0)
       thor (~> 0.14)
     json (1.6.1)
+    libv8 (3.3.10.4)
     linecache19 (0.5.12)
       ruby_core_source (>= 0.1.4)
     mail (2.3.0)
