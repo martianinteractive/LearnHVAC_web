@@ -6,6 +6,7 @@ config/database.yml
 config/newrelic.yml
 db/*.sqlite3
 public/minified/*
+public/stylesheets/*
 .bundle/environment.rb
 .rvmrc
 vendor/cache/*
