@@ -29,6 +29,14 @@
         %em No client selected.
   %tr
     %td
+      %strong Master Scenario
+    %td
+      - if @scenario.master_scenario
+        = link_to @scenario.master_scenario.name, instructors_scenario_path(@scenario.master_scenario)
+      - else
+        %em Deleted
+  %tr
+    %td
       %strong Level:
     %td= @scenario.level
   %tr
