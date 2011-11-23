@@ -2,22 +2,20 @@
   %thead
     %tr.ro1
       %th.yellow Code
-      %th.yellow Name
-      %th.yellow Display
-      %th.green Unit SI
-      %th.green Unit Ip
-      %th.blue Low
-      %th.blue High
-      %th.blue Initial
-      %th.orange
+      %th.yellow Unit SI
+      %th.yellow Unit Ip
+      %th.green Low
+      %th.green High
+      %th.green Initial
+      %th.blue
         Fault
         = succeed "Type" do
           %br/
-      %th.orange
+      %th.blue
         Left
         = succeed "Label" do
           %br/
-      %th.orange
+      %th.blue
         Right
         = succeed "Label" do
           %br/
@@ -30,9 +28,7 @@
   %tbody
     - @scenario_variables.each do |variable|
       %tr.ro1
-        %td= link_to variable.component_code, instructors_scenario_variable_path(@scenario, variable)
-        %td= variable.name
-        %td= variable.display_name
+        %td= link_to variable.component_code, instructors_scenario_variable_path(@scenario, variable), :rel => 'popover', :title => variable.name, 'data-content' => variable.display_name
         %td= variable.unit_si
         %td= variable.unit_ip
         %td= variable.low_value

@@ -16,37 +16,10 @@
 
 $(function () { prettyPrint() });
 
-$(document).scroll(function(){
-
-    var tableThead = $("#sortTableExample thead");
-    if ( 0 < tableThead.length ) {
-        var delta = $(window).scrollTop() - tableThead.offset().top + 38;
-        if(delta > 0)
-        {
-            translate($("#sortTableExample th"),0,delta-2);
-        }
-        else
-        {
-            translate($("#sortTableExample th"),0,0);
-        }
-    }
-});
-
-function translate(element, x, y)
-{
-    var translation = "translate(" + x + "px," + y + "px)"
-
-    element.css({
-        "transform": translation,
-        "-ms-transform": translation,
-        "-webkit-transform": translation,
-        "-o-transform": translation,
-        "-moz-transform": translation
-    });
-}
-
-
 $(document).ready(function() {
+
+  popoverSettings = {};
+  $('a[rel="popover"]').popover(popoverSettings);
 
   $('.alert-message').delay(3000).slideUp();
 
@@ -104,3 +77,32 @@ $(document).ready(function() {
       })
   })
 });
+
+$(document).scroll(function(){
+
+  var tableThead = $("#sortTableExample thead");
+  if ( 0 < tableThead.length ) {
+      var delta = $(window).scrollTop() - tableThead.offset().top + 38;
+      if(delta > 0)
+      {
+          translate($("#sortTableExample th"),0,delta-2);
+      }
+      else
+      {
+          translate($("#sortTableExample th"),0,0);
+      }
+  }
+});
+
+function translate(element, x, y)
+{
+    var translation = "translate(" + x + "px," + y + "px)"
+
+    element.css({
+        "transform": translation,
+        "-ms-transform": translation,
+        "-webkit-transform": translation,
+        "-o-transform": translation,
+        "-moz-transform": translation
+    });
+}

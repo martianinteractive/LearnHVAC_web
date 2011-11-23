@@ -1,7 +1,7 @@
 = content_for :main_header do
   %h1= @scenario.name
   %p Manage Variables
-- content_for :js_templates do
+= content_for :js_templates do
   ~ render :partial => "shared/variables_js",
            :locals => { :status_path => update_status_instructors_scenario_variables_path(@scenario), :drop_path => drop_instructors_scenario_variables_path(@scenario) }
 
