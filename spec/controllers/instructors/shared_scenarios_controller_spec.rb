@@ -43,11 +43,12 @@ describe Instructors::SharedScenariosController do
       response.should redirect_to(instructors_shared_scenarios_path)
     end
 
-    it "shows an error message when the scenario belongs to the current user" do
-      scenario.user = current_user
-      scenario.save
-      get :clone, :shared_scenario_id => scenario.id
-      flash[:error].should eq("You can't clone your own scenario.")
+    it "shows an error message when the current user tries to clone one of his own scenarios" do
+      @awesome_scenario = Factory(:valid_scenario, :user => current_user)
+      @awesome_scenario.master_scenario = Factory(:valid_master_scenario)
+      @awesome_scenario.save
+      get :clone, :shared_scenario_id => @awesome_scenario.id
+      flash[:error].should eq("Scenario could not be clonned.")
     end
 
     it "shows an error message when the clonning scenario has no master scenario" do
@@ -56,8 +57,9 @@ describe Instructors::SharedScenariosController do
       @fancy_scenario.master_scenario = nil
       @fancy_scenario.save
       get :clone, :shared_scenario_id => @fancy_scenario.id
-      flash[:error].should eq("Scenario can't be clonned because it doesn't have a master scenario.")
+      flash[:error].should eq("Scenario could not be clonned.")
     end
+
 
   end
 

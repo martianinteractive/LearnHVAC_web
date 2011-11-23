@@ -4,17 +4,17 @@ class Instructors::SharedScenariosController < ApplicationController
 
   before_filter :load_scenarios, :only => :index
   before_filter :load_scenario,  :only => :clone
-  before_filter :validate_clonning, :only => :clone
+  #before_filter :validate_clonning, :only => :clone
 
   def index
   end
 
   def clone
-    new_scenario = @scenario.clone_for current_user
-    if new_scenario.persisted?
+    @new_scenario = @scenario.clone_for current_user
+    if @new_scenario.persisted?
       flash[:notice] = 'Scenario successfully cloned.'
     else
-      flash[:error] = "Scenario can't be clonned because it doesn't have a master scenario."
+      flash[:error] = 'Scenario could not be clonned.'
     end
     redirect_to instructors_shared_scenarios_path
   end

@@ -31,7 +31,7 @@ describe Scenario do
     @scenario        = Factory.build(:scenario, :user => @user, :master_scenario => @master_scenario)
   end
 
-  context "Cloning" do
+  context "Clonning" do
 
     let(:scenario)    { Factory(:valid_scenario)  }
     let(:instructor)  { Factory(:instructor)      }
@@ -65,6 +65,13 @@ describe Scenario do
       scenario.master_scenario = nil
       new_scenario = scenario.clone_for instructor
       new_scenario.should_not be_valid
+    end
+
+    it "should not perform clonation when the given user is the owner" do
+      scenario.user = instructor
+      new_scenario  = scenario.clone_for instructor
+      new_scenario.should_not be_valid
+      new_scenario.errors.full_messages.should include("User can't be the same as the original author")
     end
 
   end

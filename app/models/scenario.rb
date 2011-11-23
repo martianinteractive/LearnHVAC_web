@@ -19,6 +19,7 @@ class Scenario < ActiveRecord::Base
   validates_presence_of :master_scenario, :on => :create
   validates :name, :presence => true, :length => {:within => 1..180}
   validate :longterm_validator
+  validate :user_cannot_be_same_as_original_author, :on => :create
 
   # - Callbacks -
   before_create :set_client_version
@@ -35,6 +36,10 @@ class Scenario < ActiveRecord::Base
   scope :shared, where(:shared => true)
 
   # - Instance Methods -
+  def user_cannot_be_same_as_original_author
+    errors.add(:user, "can't be the same as the original author") if user == original_author
+  end
+
   def is_a_clone?
     original_author_id.present?
   end
