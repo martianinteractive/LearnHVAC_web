@@ -1,4 +1,4 @@
-class Admins::MasterScenariosController < Admins::ApplicationController 
+class Admins::MasterScenariosController < Admins::ApplicationController
 
   layout 'bootstrap'
 
@@ -7,11 +7,11 @@ class Admins::MasterScenariosController < Admins::ApplicationController
   cache_sweeper :master_scenario_sweeper, :only => [ :create, :update, :clone, :destroy ]
 
   caches_action :index,
-                :cache_path => proc { |c| c.send(:admins_master_scenarios_path) }, 
+                :cache_path => proc { |c| c.send(:admins_master_scenarios_path) },
                 :if => proc { |c| c.send(:can_cache_action?) }
 
   caches_action :show,
-                :cache_path => proc { |c| c.send(:admins_master_scenario_path, @scenario) },
+                :cache_path => proc { |c| c.send(:admins_master_scenario_path, @master_scenario) },
                 :if => proc { |c| c.send(:can_cache_action?) }
 
   subject_buttons :master_scenario, :only => [:show]
