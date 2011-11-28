@@ -1,24 +1,25 @@
-#tabs
-  %ul
-    %li= link_to "Settings", admins_settings_path
-    %li= link_to "Desktop Application Versions", admins_settings_client_versions_path
-    %li= link_to "New Desktop Application Version", new_admins_settings_client_version_path
-    
-  #page_header
-    #subject_actions
-      = link_to 'Edit', edit_admins_settings_client_version_path(@client_version)
-      &nbsp;|&nbsp;
-      = link_to 'Delete Version', admins_settings_client_version_path(@client_version), :confirm => 'Are you sure?', :method => :delete
+= content_for :main_header do
+  %h1 Client Version #{@client_version.version}
 
-    #subject_info
-      %h2= @client_version.version
-      .subject_details="Release date: #{@client_version.release_date}"
-      
-  #inner_column
-    %table
-      %tr
-        %th URL:
-        %td= link_to @client_version.url, @client_version.url
-      %tr
-        %th Description:
-        %td= @client_version.description
+.well
+  #subject_actions
+    = link_to 'Edit', edit_admins_settings_client_version_path(@client_version), :class => 'btn success'
+    = link_to 'Delete Version', admins_settings_client_version_path(@client_version), :confirm => 'Are you sure?', :method => :delete, :class => 'btn danger'
+
+%table
+  %tr
+    %td
+      %strong Version:
+    %td= @client_version.version
+  %tr
+    %td
+      %strong Release date:
+    %td= @client_version.release_date
+  %tr
+    %td
+      %strong URL:
+    %td= link_to @client_version.url, @client_version.url
+  %tr
+    %td
+      %strong Description:
+    %td= @client_version.description

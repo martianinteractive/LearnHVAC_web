@@ -1,12 +1,10 @@
-#tabs
-  %ul
-    %li= link_to "Settings", admins_settings_path
-    %li= link_to "Educational Entities", admins_settings_educational_entities_path
-    %li.ui-tabs-selected= link_to "New Educational Entity", new_admins_settings_educational_entity_path
-    
-  = form_for(@college,:url => admins_settings_educational_entities_path, :method => :post) do |f|
-    = render :partial => "form", :locals => { :f => f }
+= content_for :main_header do
+  %h1 New Educational Entity
+
+= form_for(@college,:url => admins_settings_educational_entities_path, :method => :post) do |f|
+  %fieldset
+    = render :partial => 'form', :locals => {:f => f}
     .actions
-      = submit_tag "Create"
-      &nbsp;or&nbsp;
-      = link_to 'Cancel', admins_settings_educational_entities_path
+      = f.submit 'Create', :class => 'btn primary'
+      or
+      = link_to 'Cancel', admins_settings_educational_entities_path, :class => 'btn'
