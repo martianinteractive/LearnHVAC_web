@@ -27,9 +27,9 @@
           %li= link_to "Log-out", logout_path
         - else
           %li= link_to "Sign Up", signup_path
-      
+
     .border
-      &nbsp; 
+      &nbsp;
     .main
       .dl10.navigation
         - if logged_in?
@@ -37,10 +37,9 @@
             %li
               = link_to "Your Classes", students_classes_path
               = link_to "Community Directory", directory_path
-        
+
       .fluid
         .content
-          = render_crumbs.html_safe
           = display_flash
           = yield
           = render :partial => "layouts/connection" if @show_connection

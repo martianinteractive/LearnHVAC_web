@@ -6,8 +6,6 @@ class Admins::GroupsController < Admins::ApplicationController
 
   cache_sweeper :group_sweeper, :only => [:create, :update, :destroy]
 
-  add_crumb("Classes") { |instance| instance.send :admins_classes_path }
-
   def index
     @groups = Group.all :include => {:members => :institution}
   end
@@ -19,13 +17,11 @@ class Admins::GroupsController < Admins::ApplicationController
   def new
     @group              = Group.new
     @created_scenarios  = @instructor.created_scenarios
-    add_crumb "New Group", new_admins_class_path
   end
 
   def edit
     @group              = Group.find(params[:id])
     @created_scenarios  = @group.creator.created_scenarios
-    add_crumb "Editing #{@group.name}", edit_admins_class_path(@group)
   end
 
   def create
@@ -34,7 +30,6 @@ class Admins::GroupsController < Admins::ApplicationController
     if @group.save
       redirect_to(admins_class_path(@group), :notice => 'Group was successfully created.')
     else
-      add_crumb "New Group", new_admins_class_path
       render :action => "new"
     end
   end
@@ -45,7 +40,6 @@ class Admins::GroupsController < Admins::ApplicationController
     if @group.update_attributes(params[:group])
       redirect_to(admins_class_path(@group), :notice => 'Group was successfully updated.')
     else
-      add_crumb "Editing #{@group.name}", edit_admins_class_path(@group)
       render :action => "edit"
     end
   end

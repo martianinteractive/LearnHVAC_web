@@ -6,8 +6,6 @@ class Instructors::GroupsController < Instructors::ApplicationController
 
   cache_sweeper :group_sweeper, :only => [:create, :update, :destroy]
 
-  add_crumb("Classes") { |instance| instance.send :instructors_classes_path }
-
   subject_buttons :group, :only => [:show]
   subject_buttons :cancel_group, :only => [:new, :edit, :create, :update]
 
@@ -18,16 +16,13 @@ class Instructors::GroupsController < Instructors::ApplicationController
   end
 
   def show
-    add_crumb @group.name, instructors_class_path(@group)
   end
 
   def new
     @group = current_user.managed_groups.build
-    add_crumb "New Class", new_instructors_class_path
   end
 
   def edit
-    add_crumb "Editing #{@group.name}", edit_instructors_class_path
   end
 
   def create
@@ -38,7 +33,6 @@ class Instructors::GroupsController < Instructors::ApplicationController
       redirect_to(instructors_class_path(@group), :notice => 'Group was successfully created.')
     else
       render :action => "new"
-      add_crumb "New Group", new_instructors_class_path
     end
   end
 
@@ -47,7 +41,6 @@ class Instructors::GroupsController < Instructors::ApplicationController
       redirect_to(instructors_class_path(@group), :notice => 'Group was successfully updated.')
     else
       render :action => "edit"
-      add_crumb "Editing #{@group.name}", edit_instructors_class_path
     end
   end
 

@@ -3,7 +3,6 @@ class Admins::UsersController < Admins::ApplicationController
   layout 'bootstrap'
 
   before_filter :get_role, :except =>  [:list_groups]
-  before_filter :add_crumbs, :except =>  [:list_groups]
   before_filter :get_list_instructors
 
   cache_sweeper :user_sweeper, :only => [:create, :update, :destroy]
@@ -28,21 +27,18 @@ class Admins::UsersController < Admins::ApplicationController
 
   def show
     @user = User.find(params[:id])
-    add_crumb @user.name, admins_user_path(@user)
   end
 
   def new
     @user           = User.new
     @user.role_code = @role
     @groups         = Group.all
-    add_crumb "New #{params[:role].humanize}", new_admins_user_path(:role => params[:role])
   end
 
   def edit
     @user         = User.find(params[:id])
     @instructors  = User.instructor.to_a
     @groups       = Group.all
-    add_crumb "Editing #{@user.name}", edit_admins_user_path(:role => params[:role])
   end
 
   def create
@@ -55,7 +51,6 @@ class Admins::UsersController < Admins::ApplicationController
       Group.find_by_code(@user.group_code).create_memberships(@user) if @user.has_role?(:student)
       redirect_to(admins_user_path(@user, :role => params[:role], :group=>@groups, :anchor => "ui-tabs-1"), :notice => 'User was successfully created.')
     else
-      add_crumb "New #{params[:role].humanize}", new_admins_user_path(:role => params[:role])
       render :action => "new"
     end
   end
@@ -68,7 +63,6 @@ class Admins::UsersController < Admins::ApplicationController
     if @user.update_attributes(params[:user])
       redirect_to(admins_user_path(@user, :role => params[:role]), :notice => 'User was successfully updated.')
     else
-      add_crumb "Editing #{@user.name}", edit_admins_user_path(:role => params[:role])
       render :action => "edit"
     end
   end
@@ -100,10 +94,6 @@ class Admins::UsersController < Admins::ApplicationController
   def get_role
     raise ArgumentError, "role parameter is required" unless params[:role]
     @role = User::ROLES[params[:role].to_sym]
-  end
-
-  def add_crumbs
-    add_crumb params[:role].pluralize.humanize, admins_users_path(:role => params[:role])
   end
 
 end

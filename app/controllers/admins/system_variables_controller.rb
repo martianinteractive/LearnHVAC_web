@@ -5,7 +5,7 @@ class Admins::SystemVariablesController < Admins::ApplicationController
   helper :sort
   include SortHelper
 
-  before_filter :find_master_scenario, :add_crumbs
+  before_filter :find_master_scenario
   before_filter :find_system_variable, :only => [:show, :edit, :update]
   before_filter :initialize_variables_sort, :load_variables_filters, :only => [:index]
 
@@ -40,7 +40,6 @@ class Admins::SystemVariablesController < Admins::ApplicationController
   end
 
   def edit
-    add_crumb "Editing #{@system_variable.name}", edit_admins_master_scenario_system_variable_path(@master_scenario, @system_variable)
   end
 
   def create
@@ -88,12 +87,6 @@ class Admins::SystemVariablesController < Admins::ApplicationController
   end
 
   private
-
-  def add_crumbs
-    add_crumb "Master Scenarios", admins_master_scenarios_path
-    add_crumb @master_scenario.name, admins_master_scenario_path(@master_scenario)
-    add_crumb "System Variables", admins_master_scenario_system_variables_path(@master_scenario)
-  end
 
   def find_master_scenario
     @master_scenario = MasterScenario.find(params[:master_scenario_id])

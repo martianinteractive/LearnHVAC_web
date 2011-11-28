@@ -3,7 +3,7 @@ class Admins::VariablesController < Admins::ApplicationController
   helper :sort
   include SortHelper
 
-  before_filter :find_scenario, :add_crumbs
+  before_filter :find_scenario
   before_filter :find_scenario_variable, :only => [:show, :edit, :update]
   before_filter :initialize_variables_sort, :load_variables_filters, :only => [:index]
 
@@ -38,7 +38,6 @@ class Admins::VariablesController < Admins::ApplicationController
   end
 
   def edit
-    add_crumb "Edit", edit_admins_scenario_variable_path(@scenario, @scenario_variable)
   end
 
   def create
@@ -76,19 +75,12 @@ class Admins::VariablesController < Admins::ApplicationController
 
   private
 
-  def add_crumbs
-    add_crumb "Instructor Scenarios", admins_scenarios_path
-    add_crumb @scenario.name, admins_scenario_path(@scenario)
-    add_crumb "Variables", admins_scenario_variables_path(@scenario)
-  end
-
   def find_scenario
     @scenario = Scenario.find(params[:scenario_id])
   end
 
   def find_scenario_variable
     @scenario_variable = @scenario.variables.find(params[:id])
-    add_crumb @scenario_variable.name, admins_scenario_variable_path(@scenario, @scenario_variable)
   end
 
   def can_cache_variables?

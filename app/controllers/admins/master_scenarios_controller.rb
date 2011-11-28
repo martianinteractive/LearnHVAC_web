@@ -18,7 +18,6 @@ class Admins::MasterScenariosController < Admins::ApplicationController
   subject_buttons :cancel_master_scenario, :only => [ :new, :edit, :create, :update ]
   inner_tabs :master_scenario_details, :only => [ :show, :edit ]
 
-  add_crumb("Master Scenarios") { |instance| instance.send :admins_master_scenarios_path }
 
   def index
     @master_scenarios = MasterScenario.all(:include => [:user, :client_version])
@@ -29,16 +28,13 @@ class Admins::MasterScenariosController < Admins::ApplicationController
   end
 
   def show
-    add_crumb @master_scenario.name, admins_master_scenario_path(@master_scenario)
   end
 
   def new
     @master_scenario = MasterScenario.new
-    add_crumb "New Scenario", new_admins_master_scenario_path
   end
 
   def edit
-    add_crumb "Editing #{@master_scenario.name}", edit_admins_master_scenario_path(@master_scenario)
   end
 
   def clone
@@ -54,7 +50,6 @@ class Admins::MasterScenariosController < Admins::ApplicationController
     if @master_scenario.save
       redirect_to([:admins, @master_scenario], :notice => "Scenario was succesfully created.")
     else
-      add_crumb "New Scenario", new_admins_master_scenario_path
       render :action => "new"
     end
   end
@@ -63,7 +58,6 @@ class Admins::MasterScenariosController < Admins::ApplicationController
     if @master_scenario.update_attributes(params[:master_scenario])
       redirect_to([:admins, @master_scenario], :notice => "Scenario was succesfully updated.")
     else
-      add_crumb "Editing #{@master_scenario.name}", edit_admins_master_scenario_path(@master_scenario)
       render :action => "edit"
     end
   end
