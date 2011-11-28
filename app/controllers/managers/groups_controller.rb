@@ -8,23 +8,18 @@ class Managers::GroupsController < Managers::ApplicationController
 
   cache_sweeper :group_sweeper, :only => [:create, :update, :destroy]
 
-  add_crumb("Classes") { |instance| instance.send :managers_classes_path }
-
   def index
     @groups = current_user.institution.groups.paginate :page => params[:page], :per_page => 25, :order => "users.last_name", :include => :members
   end
 
   def show
-    add_crumb @group.name, managers_class_path
   end
 
   def new
     @group = Group.new(:creator => @instructor)
-    add_crumb "New Group", new_managers_class_path
   end
 
   def edit
-    add_crumb "Editing #{@group.name}", edit_managers_class_path
   end
 
   def create

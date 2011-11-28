@@ -2,7 +2,7 @@ class Managers::AccessController < Managers::ApplicationController
 
   layout 'bootstrap'
 
-  before_filter :find_scenario, :add_crumbs
+  before_filter :find_scenario
 
   cache_sweeper :membership_sweeper, :only => [:create, :destroy]
 
@@ -32,12 +32,6 @@ class Managers::AccessController < Managers::ApplicationController
 
   def find_scenario
     @scenario = current_user.institution.scenarios.find(params[:scenario_id])
-  end
-
-  def add_crumbs
-    add_crumb "Scenarios", [:managers, :scenarios]
-    add_crumb @scenario.name, [:managers, @scenario]
-    add_crumb "Manage Access", [:managers, @scenario, :accesses]
   end
 
 end

@@ -1,5 +1,4 @@
 class Admins::Settings::EducationalEntitiesController < Admins::Settings::BaseController
-  add_crumb("Educational Entities") { |instance| instance.send :admins_settings_educational_entities_path }
 
   def index
     @colleges = College.paginate :page => params[:page], :per_page => 50, :order => "value ASC"
@@ -12,17 +11,14 @@ class Admins::Settings::EducationalEntitiesController < Admins::Settings::BaseCo
 
   def new
     @college = College.new
-    add_crumb "New Entity", new_admins_settings_educational_entity_path
   end
 
   def show
     @college = College.find(params[:id])
-    add_crumb @college.value, admins_settings_educational_entity_path(@college)
   end
 
   def edit
     @college = College.find(params[:id])
-    add_crumb "Editing #{@college.value}", edit_admins_settings_educational_entity_path(@college)
   end
 
   def create

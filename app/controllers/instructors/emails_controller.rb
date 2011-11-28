@@ -6,7 +6,6 @@ class Instructors::EmailsController < Instructors::ApplicationController
 
   def index
     @emails = @group.notification_emails.paginate(:page => params[:page], :per_page => 25, :order => "id desc")
-    add_crumb "Emails", instructors_class_emails_path(@group)
   end
 
   def show
@@ -15,7 +14,6 @@ class Instructors::EmailsController < Instructors::ApplicationController
 
   def new
     @email = @group.notification_emails.new
-    add_crumb "New Email", new_instructors_class_email_path(@group)
   end
 
   def create
@@ -32,7 +30,6 @@ class Instructors::EmailsController < Instructors::ApplicationController
 
   def find_group
     @group = current_user.managed_groups.find(params[:class_id])
-    add_crumb @group.name, instructors_class_path(@group)
   end
 
 end

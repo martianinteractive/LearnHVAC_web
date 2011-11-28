@@ -9,7 +9,6 @@ class Admins::ScenariosController < Admins::ApplicationController
 
   inner_tabs :scenario_details
 
-  add_crumb("Instructor Scenarios") { |instance| instance.send :admins_scenarios_path }
 
   def index
     @scenarios = Scenario.all(:include => [:users, :master_scenario])
@@ -22,7 +21,6 @@ class Admins::ScenariosController < Admins::ApplicationController
   end
 
   def show
-    add_crumb @scenario.name, admins_scenario_path(@scenario)
   end
 
   def new
@@ -30,11 +28,9 @@ class Admins::ScenariosController < Admins::ApplicationController
                              :longterm_stop_date => Time.now+7.days,
                              :realtime_start_datetime => Time.now
                              )
-    add_crumb "New Scenario", new_admins_scenario_path
   end
 
   def edit
-    add_crumb "Editing #{@scenario.name}", edit_admins_scenario_path(@scenario)
   end
 
   def create
@@ -51,7 +47,6 @@ class Admins::ScenariosController < Admins::ApplicationController
     if @scenario.update_attributes(params[:scenario])
       redirect_to(admins_scenario_path(@scenario), :notice => 'Scenarios was succesfully udpated.')
     else
-      add_crumb "Editing #{@scenario.name}", edit_admins_scenario_path(@scenario)
       render :action => "edit"
     end
   end
