@@ -69,7 +69,6 @@ Learnhvac::Application.routes.draw do
     resources :classes, :controller => :groups do
       resources :students, :only => [:index, :show]
       resources :memberships, :only => [:destroy]
-      resources :emails
     end
   end
 
