@@ -1,12 +1,9 @@
-#tabs
-  %ul
-    %li= link_to "Settings", admins_settings_path
-    %li= link_to "Educational Entities", admins_settings_educational_entities_path
-    %li= link_to "New Educational Entity", new_admins_settings_educational_entity_path
-
-  = form_for(@college,:url => admins_settings_educational_entity_path(@college), :method => :put) do |f|
-    = render :partial => "form", :locals => { :f => f }
-    .actions
-      = submit_tag "Update"
-      &nbsp;or&nbsp;
-      = link_to 'Cancel', :back
+= content_for :main_header do
+  %h1= @college.value
+  %h3 Edit
+= form_for(@college,:url => admins_settings_educational_entity_path(@college), :method => :put) do |f|
+  = render :partial => 'form', :locals => {:f => f}
+  .actions
+    = f.submit "Update", :class => 'btn primary'
+    or
+    = link_to 'Cancel', admins_settings_educational_entities_path, :class => 'btn'

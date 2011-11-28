@@ -1,21 +1,17 @@
 = f.error_messages
-.field
+
+.clearfix
   = f.label :version
-  = f.text_field :version
+  .input= f.text_field :version, :class => 'xxlarge'
 
-.field 
+.clearfix
   = f.label :url
-  = f.text_field :url
+  .input= f.text_field :url, :class => 'xxlarge'
 
-.field 
+.clearfix
   = f.label :release_date
-  = f.date_select :release_date
+  .input= f.date_select :release_date, {}, :class => 'medium'
 
-.field
+.clearfix
   = f.label :description
-  = f.text_area :description
-
-.actions
-  = f.submit
-  &nbsp;or&nbsp;
-  = link_to 'Cancel', :back
+  .input= f.text_area :description, :rows => '3', :class => 'xxlarge'
