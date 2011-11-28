@@ -117,7 +117,7 @@ module ApplicationHelper
   def sections
     @sections ||= {
       :admins => {
-        :general => %w[ dashboard dashboards settings ],
+        :general => %w[ dashboard dashboards settings client_versions educational_entities ],
         :system  => %w[ access master_scenarios scenarios system_variables variables ],
         :users   => %w[ users groups institutions ],
         :profile => %w[ users ]
