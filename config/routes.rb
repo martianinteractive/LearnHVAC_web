@@ -18,7 +18,6 @@ Learnhvac::Application.routes.draw do
   match 'classes/register/(:code)' => 'memberships#create', :as => 'membership_register'
   match 'admins/master_scenarios/tagged/:tag' => "admins/master_scenarios#tag", :as => 'master_scenarios_tag'
   match 'admins/dashboard' => 'admins/dashboard#show', :as => 'admins_dashboard'
-  match 'directory' => 'directory/dashboard#index', :as => 'directory'
   match 'reset_password' => 'password_resets#new', :as => 'reset_password'
   match 'profile' => 'users#show', :as => 'profile'
   match 'profile/edit' => 'users#edit', :as => 'edit_profile'
@@ -27,21 +26,10 @@ Learnhvac::Application.routes.draw do
   match 'list_groups/:id' => 'admins/users#list_groups'
 
 
- ## API ROUTES
- namespace :api do
-   resources :scenarios
-   match 'users/user.:format' => 'users#show'
- end
-
-  ## Directory Routes.
-  namespace :directory do
-    resources :people, :only => [:index, :show]
-
-    resources :institutions, :only => [:index, :show] do
-      resources :scenarios, :only => [:show] do
-        resources :variables, :only => [:index, :show]
-      end
-    end
+  ## API ROUTES
+  namespace :api do
+    resources :scenarios
+    match 'users/user.:format' => 'users#show'
   end
 
   ## Instructors Routes
