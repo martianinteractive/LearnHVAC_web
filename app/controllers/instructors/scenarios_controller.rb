@@ -55,7 +55,17 @@ class Instructors::ScenariosController < Instructors::ApplicationController
   private
 
   def find_scenario
-    @scenario = current_user.created_scenarios.find(params[:id])
+    if @scenario = Scenario.find(params[:id])
+      if current_user != @scenario.user
+        unless @scenario.shared?
+          flash[:warning] = 'You are not allowed to access to that scenario.'
+          redirect_to instructors_scenarios_path
+        end
+      end
+    else
+      flash[:error] = 'The scenario you are looking for does not exist.'
+      redirect_to instructors_scenarios_path
+    end
   end
 
 end
