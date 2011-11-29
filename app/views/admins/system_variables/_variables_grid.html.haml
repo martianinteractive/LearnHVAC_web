@@ -30,7 +30,8 @@
   %tbody
     - @system_variables.each do |variable|
       %tr.ro1
-        %td= link_to variable.component_code, admins_master_scenario_system_variable_path(@master_scenario, variable)
+        %td= link_to variable.component_code, admins_master_scenario_system_variable_path(@master_scenario, variable), :rel => 'popover', :title => variable.name, 'data-content' => variable.display_name
+
         %td= variable.name
         %td= variable.display_name
         %td= variable.unit_si
