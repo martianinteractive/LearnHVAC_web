@@ -40,3 +40,7 @@ end
 group :development, :development_cached do
   gem "hirb"
 end
+
+group :development, :test do
+  gem 'ruby-debug19'
+end
