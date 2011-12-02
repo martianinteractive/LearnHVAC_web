@@ -28,17 +28,15 @@
           %li= link_to "Log-out", logout_path
         - else
           %li= link_to "Sign Up", signup_path
-      
+
     .border
-      &nbsp; 
+      &nbsp;
     .main
       .dl10.navigation
         %h3 Community
         %ul
           %li
             = link_to "Dashboard", guests_dashboard_path(:token => params[:token])
-            - if logged_in?
-              = link_to "Directory", directory_path
 
       .fluid
         .content
