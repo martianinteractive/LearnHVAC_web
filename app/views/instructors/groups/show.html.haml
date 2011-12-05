@@ -10,9 +10,11 @@
         %td
           %strong Invitation URL:
         %td
-          %p Use the invitation URL to let your students join this group.
-          %p You may copy and paste it on an email or use the #{link_to "online form", new_instructors_class_email_path(@group)} to invite them.
-          %input{:type => "text", :value => membership_register_url(@group.code), :style => "width: 400px", :spellcheck => false}
+          %p
+            Use the invitation URL to let your students join this group.
+            %br/
+            You may copy and paste it on an email to invite them.
+            %input{:type => "text", :value => membership_register_url(@group.code), :style => "width: 400px", :spellcheck => false}
 
 %h4 Members
 %div#cl-members.tab-pane
