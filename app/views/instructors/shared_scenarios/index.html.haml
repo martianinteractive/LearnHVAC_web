@@ -1,6 +1,15 @@
 = content_for :main_header do
   %h1 Shared Scenarios
 
+- if @new_scenario && @new_scenario.errors.any?
+  .alert-message.block-message.error
+    %ul
+      - @new_scenario.errors.full_messages.each do |message|
+        - if message.match(/Master scenario can't be blank/)
+          %li This scenario can't be cloned because it doesn't have a master scenario.
+        - else
+          %li= message
+
 %table.zebra-striped
   %thead
     %tr
@@ -25,4 +34,4 @@
           = link_to 'Download', scenario.client_version.url, :class => 'btn primary'
         - else
           Not available for download
-      %td= link_to 'Clone', instructors_shared_scenario_clone_path(scenario), :class => 'btn success'
+      %td= link_to 'Clone', instructors_shared_scenario_clone_path(scenario), :confirm => 'Are you sure?', :class => 'btn success'

@@ -67,13 +67,6 @@ describe Scenario do
       new_scenario.should_not be_valid
     end
 
-    it "should not perform clonation when the given user is the owner" do
-      scenario.user = instructor
-      new_scenario  = scenario.clone_for instructor
-      new_scenario.should_not be_valid
-      new_scenario.errors.full_messages.should include("User can't be the same as the original author")
-    end
-
   end
 
   context "Validations" do

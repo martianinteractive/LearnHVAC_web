@@ -19,7 +19,6 @@ class Scenario < ActiveRecord::Base
   validates_presence_of :master_scenario, :on => :create
   validates :name, :presence => true, :length => {:within => 1..180}
   validate :longterm_validator
-  validate :user_cannot_be_same_as_original_author, :on => :create
 
   # - Callbacks -
   before_create :set_client_version
@@ -36,10 +35,6 @@ class Scenario < ActiveRecord::Base
   scope :shared, where(:shared => true)
 
   # - Instance Methods -
-  def user_cannot_be_same_as_original_author
-    errors.add(:user, "can't be the same as the original author") if user == original_author
-  end
-
   def is_a_clone?
     original_author_id.present?
   end
@@ -48,9 +43,9 @@ class Scenario < ActiveRecord::Base
     unless new_user.has_role? :instructor
       raise ArgumentError, "Instructor expected. Got #{new_user.role.to_s.titleize}"
     end
-    clon_atts = attributes.except("id", "created_at", "updated_at", "user_id", "sample", "shared")
-    clon_atts.merge!(:user_id => new_user.id, :original_author_id => user.id)
-    new_scenario = self.class.new clon_atts
+    clone_atts = attributes.except("id", "created_at", "updated_at", "user_id", "sample", "shared")
+    clone_atts.merge!(:user_id => new_user.id, :original_author_id => user.id)
+    new_scenario = self.class.new clone_atts
     if new_scenario.save
       clone_variables_for new_scenario
     end
