@@ -2,7 +2,6 @@
   %h1= @scenario.name
   %h4 Variables
 
-
 %table#sortTableExample.zebra-striped
   %thead
     %tr.ro1
@@ -14,23 +13,11 @@
       %th.blue Low
       %th.blue High
       %th.blue Initial
-      %th.orange
-        Fault
-        = succeed "Type" do
-          %br/
-      %th.orange
-        Left
-        = succeed "Label" do
-          %br/
-      %th.orange
-        Right
-        = succeed "Label" do
-          %br/
+      %th.orange Fault Widget
+      %th.orange Left Label
+      %th.orange Right Label
       %th.orange Subsection
-      %th.orange
-        Zone
-        = succeed "Position" do
-          %br/
+      %th.orange Zone Position
       %th.orange Index
   %tbody
     - @scenario_variables.each do |variable|
