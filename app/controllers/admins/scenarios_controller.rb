@@ -11,7 +11,7 @@ class Admins::ScenariosController < Admins::ApplicationController
 
 
   def index
-    @scenarios = Scenario.all(:include => [:users, :master_scenario])
+    @scenarios = Scenario.all(:include => [:master_scenario])
   end
 
   def list
