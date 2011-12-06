@@ -4,6 +4,7 @@ class Admins::UsersController < Admins::ApplicationController
 
   before_filter :get_role, :except =>  [:list_groups]
   before_filter :get_list_instructors
+  before_filter :load_groups, :only => [:new, :edit, :create, :update]
 
   cache_sweeper :user_sweeper, :only => [:create, :update, :destroy]
 
@@ -90,6 +91,10 @@ class Admins::UsersController < Admins::ApplicationController
   end
 
   private
+
+  def load_groups
+    @groups = Group.order('name ASC')
+  end
 
   def get_role
     raise ArgumentError, "role parameter is required" unless params[:role]
