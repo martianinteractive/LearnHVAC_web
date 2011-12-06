@@ -49,7 +49,8 @@ class Instructors::ScenariosController < Instructors::ApplicationController
 
   def destroy
     @scenario.destroy
-    redirect_to(instructors_scenarios_url)
+    flash[:warning] = 'Scenario successfully deleted.'
+    redirect_to(instructors_scenarios_path)
   end
 
   private
