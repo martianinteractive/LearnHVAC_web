@@ -5,13 +5,23 @@
 %table.zebra-striped
   %thead
     %tr
-      %th
-      %th All
-      %th Recently Added
-      %th Recently Updated
+      %th Name
+      %th Master Scenario
+      %th Created On
+      %th People With Access
   %tbody
-    %tr
-      %td Scenarios
-      %td= current_user.created_scenarios.count
-      %td= current_user.created_scenarios.recently_created.count
-      %td= current_user.created_scenarios.recently_updated.count
+    - if 0 < @scenarios.count
+      - @scenarios.each do |scenario|
+        %tr
+          %td= link_to scenario.name, instructors_scenario_path(scenario)
+          %td
+            - if scenario.master_scenario
+              = scenario.master_scenario.name
+            - else
+              %em Master Scenario was deleted
+          %td= scenario.created_at.to_formatted_s(:long)
+          %td= scenario.users.count
+    - else
+      %tr
+        %td{:colspan => '4', :style => 'text-align: center;'}
+          %em No scenarios
