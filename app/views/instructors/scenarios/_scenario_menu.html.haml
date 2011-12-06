@@ -1,4 +1,6 @@
 .well
+  - if controller_name == 'variables' and action_name == 'index'
+    %button{:id => 'filterbutton', :class => 'btn primary'} Filter
   = link_to 'Manage Access', [:instructors, @scenario, :accesses], :class => 'btn'
   = link_to "Manage Variables", instructors_scenario_variables_path(@scenario), :class => 'btn'
 
@@ -28,3 +30,24 @@
         = link_to 'Cancel', instructors_scenario_variable_path(@scenario, @scenario_variable), :class => 'btn success'
       - elsif %(new create).include?(controller.action_name)
         = link_to 'Cancel', instructors_scenario_variables_path(@scenario), :class => 'btn success'
+
+#filter_panel.well.hide
+  = form_for :filter, :url => instructors_scenario_variables_path([@scenario]), :html => {:method => :get} do |f|
+    %fieldset
+      .clearfix
+        %label Display options:
+        .input
+          %ul.inputs-list
+            %li
+              %label
+                = check_box_tag :disabled, 1, params[:disabled]
+                %span Disabled variables
+            %li
+              %label
+                = check_box_tag :is_fault, 1, params[:is_fault]
+                %span Fault variables
+            %li
+              %label
+                = check_box_tag :fault_is_active, 1, params[:fault_is_active]
+                %span Fault is active
+        .input= f.submit 'Apply', :class => 'btn info'
