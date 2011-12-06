@@ -1,7 +1,8 @@
 class Variable < ActiveRecord::Base
 
-  IO_TYPES    = ['INPUT', 'OUTPUT', 'PARAMETER']
-  COMPONENTS  = {
+  IO_TYPES            = %w[INPUT OUTPUT PARAMETER]
+  FAULT_WIDGET_TYPES  = %w[Checkbox Slider]
+  COMPONENTS          = {
     "CC"  => "Cooling Coil",
     "HC"  => "Heating Coil",
     "MX"  => "Mixing Box",

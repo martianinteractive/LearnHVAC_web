@@ -11,7 +11,7 @@ class Admins::ScenariosController < Admins::ApplicationController
 
 
   def index
-    @scenarios = Scenario.all(:include => [:users, :master_scenario])
+    @scenarios = Scenario.all(:include => [:master_scenario])
   end
 
   def list
@@ -53,6 +53,7 @@ class Admins::ScenariosController < Admins::ApplicationController
 
   def destroy
     @scenario.destroy
+    flash[:warning] = 'Scenario successfully deleted.'
     redirect_to(admins_scenarios_url)
   end
 

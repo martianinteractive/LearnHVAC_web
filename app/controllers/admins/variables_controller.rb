@@ -26,7 +26,7 @@ class Admins::VariablesController < Admins::ApplicationController
     @scenario_variables = @scenario.variables.filter @filters
     respond_to do |wants|
       wants.html
-      wants.csv {render :csv => @scenario_variables}
+      wants.csv { render :csv => @scenario_variables }
     end
   end
 

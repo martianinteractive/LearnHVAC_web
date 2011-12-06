@@ -7,7 +7,6 @@
       %th Name
       %th Master Scenario
       %th Created on
-      %th Desktop Application
   - @scenarios.each do |scenario|
     %tr
       %td= link_to scenario.name, instructors_scenario_path(scenario)
@@ -17,10 +16,5 @@
         - else
           %em deleted
       %td= scenario.created_at.to_formatted_s(:long)
-      %td
-        - if scenario.client_version
-          = link_to 'Download', scenario.client_version.url, :class => 'btn primary'
-        - else
-          Not available for  download
 
 = will_paginate @scenarios

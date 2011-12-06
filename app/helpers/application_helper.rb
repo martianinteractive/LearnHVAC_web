@@ -6,9 +6,9 @@ module ApplicationHelper
   end
 
   def display_flash
-    return content_tag("div", flash[:notice], :class => "alert-message success")  if flash[:notice]
-    return content_tag("div", flash[:error], :class => "alert-message error")  if flash[:error]
-    return content_tag("div", flash[:warning], :class => "alert-message warning") if flash[:warning]
+    return content_tag("div", flash[:notice], :class => "flash alert-message success")  if flash[:notice]
+    return content_tag("div", flash[:error], :class => "flash alert-message error")  if flash[:error]
+    return content_tag("div", flash[:warning], :class => "flash alert-message warning") if flash[:warning]
   end
 
   def generate_html(form_builder, method, options = {})

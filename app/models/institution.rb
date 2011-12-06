@@ -15,7 +15,7 @@ class Institution < ActiveRecord::Base
   }
 
   def category
-    CATEGORIES.index(read_attribute(:category_code))
+    CATEGORIES.key read_attribute(:category_code)
   end
 
 end

@@ -21,7 +21,7 @@ $(document).ready(function() {
   popoverSettings = {};
   $('a[rel="popover"]').popover(popoverSettings);
 
-  $('.alert-message').delay(3000).slideUp();
+  $('.flash.alert-message').delay(3000).slideUp();
 
   $('#filterbutton').click(function() {
     $('#filter_panel').toggle();
