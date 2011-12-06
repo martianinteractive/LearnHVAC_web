@@ -69,7 +69,7 @@
 
 .clearfix
   = f.label :fault_widget_type
-  .input= f.text_field :fault_widget_type, :class => 'xxlarge'
+  .input= f.select :fault_widget_type, Variable::FAULT_WIDGET_TYPES, :include_blank => true, :class => 'xxlarge'
 
 .clearfix
   = f.label :disabled
