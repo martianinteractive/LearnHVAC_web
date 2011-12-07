@@ -26,7 +26,7 @@ class Instructors::SharedScenariosController < ApplicationController
   end
 
   def load_scenarios
-    @scenarios = Scenario.shared
+    @scenarios = Scenario.shared.paginate :per_page => 25, :page => params[:page]
   end
 
 end

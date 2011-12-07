@@ -20,7 +20,7 @@ class Admins::MasterScenariosController < Admins::ApplicationController
 
 
   def index
-    @master_scenarios = MasterScenario.all(:include => [:user, :client_version])
+    @master_scenarios = MasterScenario.paginate(:page => params[:page], :per_page => 25, :include => [:user, :client_version])
   end
 
   def tag

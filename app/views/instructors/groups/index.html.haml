@@ -16,7 +16,7 @@
           %td= group.members.count
           %td= group.group_scenarios.count
           %td= group.created_at.to_formatted_s(:long)
-  %br/
+
   = will_paginate @groups
 - else
   %p

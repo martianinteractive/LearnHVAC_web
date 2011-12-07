@@ -29,3 +29,4 @@
           %em This scenario has not been cloned.
       %td= scenario.created_at.to_formatted_s(:long)
       %td= link_to 'Clone', instructors_shared_scenario_clone_path(scenario), :confirm => 'Are you sure?', :class => 'btn success'
+= will_paginate @scenarios

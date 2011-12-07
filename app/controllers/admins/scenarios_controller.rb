@@ -11,7 +11,7 @@ class Admins::ScenariosController < Admins::ApplicationController
 
 
   def index
-    @scenarios = Scenario.all(:include => [:master_scenario])
+    @scenarios = Scenario.paginate(:page => params[:page], :per_page => 25, :include => [:user, :master_scenario])
   end
 
   def list

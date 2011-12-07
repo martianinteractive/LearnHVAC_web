@@ -15,3 +15,5 @@
         %td= link_to scenario.name, admins_master_scenario_path(scenario)
         %td= scenario.user.name
         %td= link_to scenario.client_version.version, admins_settings_client_version_path(scenario.client_version) if scenario.client_version
+
+= will_paginate @master_scenarios
