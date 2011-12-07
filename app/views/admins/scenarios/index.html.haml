@@ -26,3 +26,4 @@
             = link_to scenario.master_scenario.name, admins_master_scenario_path(scenario.master_scenario)
         %td= scenario.created_at.to_formatted_s :long
         %td= scenario.sample? ? "Yes" : "No"
+= will_paginate @scenarios
