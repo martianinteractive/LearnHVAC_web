@@ -15,7 +15,7 @@ class Instructors::SharedScenariosController < ApplicationController
       redirect_to instructors_scenario_path(@new_scenario)
     else
       flash[:error] = 'Scenario could not be clonned.'
-      render :index
+      redirect_to :back
     end
   end
 

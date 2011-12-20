@@ -7,7 +7,9 @@
     %p= @scenario.description
     - if @scenario.master_scenario.blank?
       %p.subject-description
-        %em The master scenario used to create this scenario has been deleted.
+        %em
+          You won't be able to clone this scenario because the master scenario
+          used to create this scenario has been deleted.
 
 = render :partial => "scenario_menu"
 
