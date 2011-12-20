@@ -42,5 +42,5 @@ group :development, :development_cached do
 end
 
 group :development, :test do
-  gem 'ruby-debug19'
+  gem "pry"
 end
