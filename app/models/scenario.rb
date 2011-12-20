@@ -35,6 +35,10 @@ class Scenario < ActiveRecord::Base
   scope :shared, where(:shared => true)
 
   # - Instance Methods -
+  def belongs_to_user?(user)
+    self.user.eql? user
+  end
+
   def is_a_clone?
     original_author_id.present?
   end

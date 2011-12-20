@@ -16,6 +16,14 @@ describe Scenario do
   it { should have_many :group_memberships                     }
   #it { should have_many :alerts                                }
 
+  it "should know who is its owner" do
+    owner       = Factory(:instructor)
+    instructor  = Factory(:instructor)
+    scenario    = Factory(:valid_scenario, :user => owner)
+    scenario.belongs_to_user?(owner).should be_true
+    scenario.belongs_to_user?(instructor).should be_false
+  end
+
   it "should know when is a clone" do
     instructor1 = Factory(:instructor)
     instructor2 = Factory(:instructor)

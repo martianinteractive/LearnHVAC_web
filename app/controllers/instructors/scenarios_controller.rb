@@ -3,6 +3,8 @@ class Instructors::ScenariosController < Instructors::ApplicationController
   layout 'bootstrap'
 
   before_filter :find_scenario, :only => [:show, :edit, :access, :update, :destroy]
+  before_filter :protect_scenario_update_or_delete, :only => [:edit, :update, :destroy]
+  before_filter :protect_scenario_access, :only => :show
 
   cache_sweeper :scenario_sweeper, :only => [:create, :update, :destroy]
 
@@ -19,10 +21,11 @@ class Instructors::ScenariosController < Instructors::ApplicationController
   end
 
   def new
-    @scenario = Scenario.new(:longterm_start_date => Time.now,
-                             :longterm_stop_date => Time.now+7.days,
-                             :realtime_start_datetime => Time.now
-                             )
+    @scenario = Scenario.new(
+                  :longterm_start_date     => Time.now,
+                  :longterm_stop_date      => Time.now + 7.days,
+                  :realtime_start_datetime => Time.now
+                )
   end
 
   def edit
@@ -56,15 +59,19 @@ class Instructors::ScenariosController < Instructors::ApplicationController
   private
 
   def find_scenario
-    if @scenario = Scenario.find(params[:id])
-      if current_user != @scenario.user
-        unless @scenario.shared?
-          flash[:warning] = 'You are not allowed to access to that scenario.'
-          redirect_to instructors_scenarios_path
-        end
-      end
-    else
-      flash[:error] = 'The scenario you are looking for does not exist.'
+    @scenario = Scenario.find params[:id]
+  end
+
+  def protect_scenario_access
+    unless @scenario.belongs_to_user? current_user or @scenario.shared?
+      flash[:warning] = "Access forbidden for this scenario."
+      redirect_to instructors_scenarios_path
+    end
+  end
+
+  def protect_scenario_update_or_delete
+    unless @scenario.belongs_to_user? current_user
+      flash[:warning] = "You are not allowed to access to that scenario."
       redirect_to instructors_scenarios_path
     end
   end

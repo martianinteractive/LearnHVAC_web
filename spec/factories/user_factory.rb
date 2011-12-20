@@ -29,10 +29,10 @@ Factory.define :student, :class => User do |user|
 end
 
 Factory.define :instructor, :class => User do |user|
-  user.login {Factory.next :login}
+  user.login { Factory.next :login }
+  user.email { Factory.next :email }
   user.first_name 'Joe'
   user.last_name 'Boe'
-  user.email {Factory.next :email}
   user.password 'jboe333'
   user.password_confirmation 'jboe333'
   user.role_code 2
@@ -59,10 +59,10 @@ Factory.define :manager, :class => User do |user|
 end
 
 Factory.define :admin, :class => User do |user|
-  user.login 'tonyal'
+  user.login { Factory.next :login }
   user.first_name 'tonya'
   user.last_name 'love'
-  user.email 'tolove@builder.com'
+  user.email { Factory.next :email }
   user.password 'blawasdf'
   user.password_confirmation 'blawasdf'
   user.role_code 4
