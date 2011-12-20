@@ -5,7 +5,6 @@ gem "haml"
 gem "compass"
 gem "fancy-buttons"
 gem 'authlogic', :git => 'git://github.com/odorcicd/authlogic.git', :branch => 'rails3'
-gem "mysql2"
 gem "will_paginate", "~> 3.0.2"
 gem 'acts-as-taggable-on'
 gem "addressable"
@@ -30,11 +29,12 @@ group :assets do
 end
 
 group :test do
-  gem "rspec-rails"
+  gem "rspec-rails", "~> 2.7.0"
   gem "shoulda-matchers"
   gem "factory_girl_rails", "1.0.1"
   gem "ZenTest"
   gem "autotest-rails"
+  gem 'database_cleaner'
 end
 
 group :development, :development_cached do
@@ -42,5 +42,5 @@ group :development, :development_cached do
 end
 
 group :development, :test do
-  gem 'ruby-debug19'
+  gem 'pry', '0.9.8.0pre1'
 end
