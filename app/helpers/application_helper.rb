@@ -142,7 +142,8 @@ module ApplicationHelper
         :profile => %w[ users ]
       },
       :guests => {
-        :dashboard => %w[ dashboard ]
+        :dashboard => %w[ dashboard ],
+        :profile => %w[ users ]
       }
     }
   end
@@ -156,8 +157,16 @@ module ApplicationHelper
     @sidebar_nav_options = {
       :guests => {
         :dashboard => [
-          :link  => guests_dashboard_path,
-          :value => 'Dashboard'
+          {
+            :link  => guests_dashboard_path,
+            :value => 'Dashboard'
+          }
+        ],
+        :profile => [
+          {
+            :link  => guests_dashboard_path,
+            :value => 'Dashboard'
+          }
         ]
       },
       :admins => {
