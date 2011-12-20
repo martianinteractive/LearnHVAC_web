@@ -1,22 +1,18 @@
-#tabs
-  %ul
-    %li.ui-tabs-selected= link_to "Desktop Application Versions", instructors_client_versions_path
-    
+= content_for :main_header do
+  %h1 Dashboard
   %p You may download and install the desktop application by clicking on the download button below. The desktop application contains a few sample scenarios. These samples scenarios are useful for testing an exploring the software's capabilities.
-  
-  %br
-  %table.listing
-    %thead
-      %tr
-        %th Version
-        %th URL
-        %th Release Date
-    %tbody
-      - @client_versions.each do |version|
-        %tr
-          %td= version.version
-          %td= button_to "Download", version.url
-          %td= version.release_date
-  %br
-  = will_paginate @client_versions
 
+%table.zebra-striped
+  %thead
+    %tr
+      %th Version
+      %th URL
+      %th Release Date
+  %tbody
+    - @client_versions.each do |version|
+      %tr
+        %td= version.version
+        %td= link_to "Download", version.url, :class => 'btn success'
+        %td= version.release_date
+
+= will_paginate @client_versions

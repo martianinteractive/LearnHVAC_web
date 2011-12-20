@@ -68,6 +68,9 @@ module ApplicationHelper
       },
       :students => {
         :classes => students_classes_path
+      },
+      :guests => {
+        :dashboard => guests_dashboard_path
       }
     }[current_namespace].each_pair do |title, url|
       li_options = {}
@@ -137,6 +140,9 @@ module ApplicationHelper
       :students => {
         :groups => %w[ groups ],
         :profile => %w[ users ]
+      },
+      :guests => {
+        :dashboard => %w[ dashboard ]
       }
     }
   end
@@ -148,6 +154,12 @@ module ApplicationHelper
 
   def sidebar_nav_options
     @sidebar_nav_options = {
+      :guests => {
+        :dashboard => [
+          :link  => guests_dashboard_path,
+          :value => 'Dashboard'
+        ]
+      },
       :admins => {
         :profile => [
           {
