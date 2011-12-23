@@ -6,4 +6,4 @@
   .input= f.text_area :goal, :rows => '3', :class => 'xxlarge'
 .clearfix
   = f.label :scenarios
-  .input= select_tag "group[scenario_ids][]", options_from_collection_for_select(current_user.created_scenarios, :id, :name, @group.scenario_ids.map(&:to_i)), :class => 'xxlarge'
+  .input= select_tag "group[scenario_ids][]", options_from_collection_for_select(current_user.created_scenarios.order('name ASC'), :id, :name, @group.scenario_ids.map(&:to_i)), :class => 'xxlarge'

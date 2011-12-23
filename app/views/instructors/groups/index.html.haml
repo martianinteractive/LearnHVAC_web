@@ -2,6 +2,8 @@
   %h1 Classes
 
 - if @groups.any?
+  .well
+    %p.pull-right= link_to 'Add a new class', new_instructors_class_path, :class => 'btn'
   %table.zebra-striped
     %thead
       %tr
