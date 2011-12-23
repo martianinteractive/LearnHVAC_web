@@ -260,11 +260,11 @@ module ApplicationHelper
         ],
         :groups => [
           {
-            :link   => '#',
+            :link   => instructors_classes_path,
             :value  => 'Classes'
           },
           {
-            :link   => '#',
+            :link   => new_instructors_class_path,
             :value  => 'New Class'
           }
         ]
