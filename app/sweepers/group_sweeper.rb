@@ -31,7 +31,7 @@ class GroupSweeper < ActionController::Caching::Sweeper
   end
 
   def expire_group_scenarios(group)
-    namespaces = User::ROLES.keys - [:guest]
+    namespaces = User::ROLES.keys - [:guest, :student]
     namespaces.each do |namespace|
       namespace = namespace.to_s.pluralize
       group.scenarios.each do |scenario|
