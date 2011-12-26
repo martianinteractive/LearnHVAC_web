@@ -42,5 +42,5 @@ group :development, :development_cached do
 end
 
 group :development, :test do
-  gem 'pry', '0.9.8.0pre1'
+  gem 'pry', '0.9.8pre2'
 end
