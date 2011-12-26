@@ -50,7 +50,7 @@ class Admins::UsersController < Admins::ApplicationController
 
     if @user.save
       Group.find_by_code(@user.group_code).create_memberships(@user) if @user.has_role?(:student)
-      redirect_to(admins_user_path(@user, :role => params[:role], :group=>@groups, :anchor => "ui-tabs-1"), :notice => 'User was successfully created.')
+      redirect_to(admins_user_path(@user, :role => params[:role]), :notice => 'User was successfully created.')
     else
       render :action => "new"
     end

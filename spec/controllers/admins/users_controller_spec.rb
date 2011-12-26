@@ -109,7 +109,7 @@ describe Admins::UsersController do
 
       it "should redirect" do
         post :create, :user => {:this => 'params'}, :role => "student"
-        response.should redirect_to(admins_user_path(assigns[:user], :role => "student", :anchor => "ui-tabs-1"))
+        response.should redirect_to(admins_user_path(assigns[:user], :role => "student"))
       end
     end
 

@@ -36,7 +36,6 @@ describe Admins::InstitutionsController do
   describe "GET edit" do
     it "" do
       Institution.stub(:find).with("37").and_return(institution)
-      institution.should_receive(:name)
       get :edit, :id => "37"
       response.should render_template(:edit)
       assigns[:institution].should be(institution)
@@ -117,7 +116,6 @@ describe Admins::InstitutionsController do
 
       it "should render the edit template" do
         Institution.stub!(:find).and_return(institution)
-        institution.should_receive(:name)
         put :update, :id => '1'
         response.should render_template('edit')
       end

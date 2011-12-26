@@ -46,7 +46,7 @@ describe Instructors::SharedScenariosController do
     it "shows an error message when the clonning scenario has no master scenario" do
       @request.env["HTTP_REFERER"] = 'http://www.example.com'
       @fancy_instructor            = Factory(:instructor)
-      @fancy_scenario              = Factory(:valid_scenario, :user = > @fancy_instructor)
+      @fancy_scenario              = Factory(:valid_scenario, :user => @fancy_instructor)
       @fancy_scenario.master_scenario.destroy
       get :clone, :shared_scenario_id => @fancy_scenario.id
       flash[:error].should eq("Scenario could not be clonned.")

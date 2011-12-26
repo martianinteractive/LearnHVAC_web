@@ -35,7 +35,6 @@ describe Admins::GroupsController do
   context "GET edit" do
     it "" do
       Group.should_receive(:find).with("37").and_return(group)
-      group.should_receive(:name)
       group.stub_chain(:creator, :created_scenarios).and_return([])
       get :edit, :id => '37'
       response.should render_template(:edit)
