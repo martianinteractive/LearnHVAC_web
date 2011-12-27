@@ -35,6 +35,7 @@ group :test do
   gem "ZenTest"
   gem "autotest-rails"
   gem 'database_cleaner'
+  gem 'capybara-webkit'
 end
 
 group :development, :development_cached do

@@ -12,8 +12,13 @@ RSpec.configure do |config|
   # config.mock_with :rspec
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
   config.use_transactional_fixtures = true
+
+  # - DatabaseCleaner -
   DatabaseCleaner.strategy = :truncation
   DatabaseCleaner.clean
+
+  # - Capybara -
+  Capybara.javascript_driver = :webkit
 end
 
 

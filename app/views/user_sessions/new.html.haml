@@ -20,7 +20,7 @@
                           = f.label :password, :class => "overlabel"
                           = f.password_field :password, :class => "pasword overlayable", :autocapitalize => "off", :autocomplete => "on", :autocorrect => "off", :title => "password"
                     #signin_button
-                      %input{:src => "/images/signin/btn_sign-in.png", :type => "image"}
+                      %input{:src => "/images/signin/btn_sign-in.png", :type => "image", :value => 'Sign In'}
               %td
                 = link_to image_tag('/images/signin/register.png', :width => '210', :border => '0'), signup_path
       .help
