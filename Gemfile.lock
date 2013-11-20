@@ -60,10 +60,12 @@ GEM
       net-sftp (>= 2.0.0)
       net-ssh (>= 2.0.14)
       net-ssh-gateway (>= 1.0.0)
+    carmen (0.1.1)
     closure-compiler (1.1.1)
     columnize (0.3.4)
     compass (0.10.6)
       haml (>= 3.0.4)
+    crummy (1.8.0)
     diff-lcs (1.1.2)
     erubis (2.6.6)
       abstract (>= 1.0.0)
@@ -161,7 +163,9 @@ DEPENDENCIES
   autotest-rails
   builder
   capistrano
+  carmen (= 0.1.1)
   compass
+  crummy (= 1.8.0)
   exception_notification!
   factory_girl_rails (= 1.0.1)
   fancy-buttons
