@@ -134,8 +134,8 @@ Learnhvac::Application.routes.draw do
       resources :memberships, :only => [:destroy]
     end
     
-    scope ":role" do
-      resources :users, :requirements => { :role => /[a-z]/ }  do 
+    scope ":role", :constraints => { :role => /[a-z]+/ } do
+      resources :users do
         collection do
           post :search
           post :filter
