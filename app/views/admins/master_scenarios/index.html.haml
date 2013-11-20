@@ -5,9 +5,9 @@
 
   %br
   = grid(@master_scenarios_grid) do |g|
-    - g.column :column_name => 'Name', :attribute_name => 'name' do |ms|
+    - g.column :name => 'Name', :attribute => 'name' do |ms|
       - link_to ms.name, admins_master_scenario_path(ms)
-    - g.column :column_name => "Author" do |ms|
+    - g.column :name => "Author" do |ms|
       - "#{ms.user.first_name} #{ms.user.last_name}"
-    - g.column :column_name => "Client Version", :attribute_name => 'version', :model_class => ClientVersion do |ms|
+    - g.column :name => "Client Version", :attribute => 'version', :model => ClientVersion do |ms|
       - link_to ms.client_version.version, admins_settings_client_version_path(ms.client_version) if ms.client_version

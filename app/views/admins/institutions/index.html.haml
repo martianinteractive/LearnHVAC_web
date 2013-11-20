@@ -5,9 +5,9 @@
   
   %br
   = grid(@institution_grid) do |g|
-    - g.column :column_name => 'Name', :attribute_name => 'name' do |institution|
+    - g.column :name => 'Name', :attribute => 'name' do |institution|
       - link_to formatted_institution_name(institution), admins_institution_path(institution)
-    - g.column :column_name => 'Users' do |institution|
+    - g.column :name => 'Users' do |institution|
       - institution.users.count
-    - g.column :column_name => "Category" do |institution|
+    - g.column :name => "Category" do |institution|
       - institution.category.try(:titleize)
