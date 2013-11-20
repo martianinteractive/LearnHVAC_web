@@ -16,7 +16,7 @@ end
 module AuthlogicTestHelper
  def login_as(user)
    current_user = Factory.stub(user)
-   controller.stub!(:current_user).and_return(current_user)
+   controller.stub(:current_user).and_return(current_user)
  end
  
  def user_logout

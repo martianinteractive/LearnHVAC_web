@@ -4,7 +4,7 @@ describe Admins::MasterScenariosController do
   let(:current_user) { Factory.stub(:admin) }
   
   before(:each) do
-    controller.stub!(:current_user).and_return(current_user)
+    controller.stub(:current_user).and_return(current_user)
   end
   
   def mock_master_scenario(stubs={})
@@ -67,7 +67,7 @@ describe Admins::MasterScenariosController do
       end
       
       it "should redirect to the master scenario" do
-        MasterScenario.stub!(:new).and_return(mock_master_scenario({:user= => current_user, :save => true}))
+        MasterScenario.stub(:new).and_return(mock_master_scenario({:user= => current_user, :save => true}))
         post :create, :master_scenario => {}
         response.should redirect_to(admins_master_scenario_url(assigns[:master_scenario]))
       end
@@ -84,7 +84,7 @@ describe Admins::MasterScenariosController do
       end
       
       it "should redirect to the master scenario" do
-        MasterScenario.stub!(:new).and_return(mock_master_scenario({:save => false, :user= => current_user}))
+        MasterScenario.stub(:new).and_return(mock_master_scenario({:save => false, :user= => current_user}))
         post :create, :master_scenario => {}
         response.should render_template(:new)
       end
@@ -102,7 +102,7 @@ describe Admins::MasterScenariosController do
       end    
       
       it "should redirect to master scenario" do
-        MasterScenario.stub!(:find).and_return(mock_master_scenario({:update_attributes => true}))
+        MasterScenario.stub(:find).and_return(mock_master_scenario({:update_attributes => true}))
         put :update, :id => '37'
         response.should redirect_to(admins_master_scenario_url(assigns[:master_scenario]))
       end
@@ -118,7 +118,7 @@ describe Admins::MasterScenariosController do
       end    
       
       it "should redirect to master scenario" do
-        MasterScenario.stub!(:find).and_return(mock_master_scenario({:name => 'bla', :update_attributes => false}))
+        MasterScenario.stub(:find).and_return(mock_master_scenario({:name => 'bla', :update_attributes => false}))
         put :update, :id => '37'
         response.should render_template(:edit)
       end
@@ -134,7 +134,7 @@ describe Admins::MasterScenariosController do
     end
     
     it "should redirect to index" do
-      MasterScenario.stub!(:find).and_return(mock_master_scenario)
+      MasterScenario.stub(:find).and_return(mock_master_scenario)
       delete :destroy, :id => '37'
       response.should redirect_to(admins_master_scenarios_url)
     end

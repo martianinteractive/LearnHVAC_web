@@ -5,7 +5,7 @@ describe Admins::SystemVariablesController do
   let(:current_user) { Factory.stub(:admin) }
   
   before(:each) do
-    controller.stub!(:current_user).and_return(current_user)
+    controller.stub(:current_user).and_return(current_user)
   end
   
   def mock_system_variable(stubs={})
@@ -26,7 +26,7 @@ describe Admins::SystemVariablesController do
     
     it "should render the index template" do
       mock_master_scenario.stub_chain(:variables, :filter, :paginate).and_return([mock_system_variable])
-      MasterScenario.stub!(:find).and_return(mock_master_scenario)
+      MasterScenario.stub(:find).and_return(mock_master_scenario)
       get :index, :master_scenario_id => '37'
       response.should render_template(:index)
     end
@@ -42,7 +42,7 @@ describe Admins::SystemVariablesController do
     
     it "should expose the master scenario" do
       mock_master_scenario.stub_chain(:variables, :find).and_return(mock_system_variable)
-      MasterScenario.stub!(:find).with('37').and_return(mock_master_scenario)
+      MasterScenario.stub(:find).with('37').and_return(mock_master_scenario)
       get :show, :master_scenario_id => '37', :id => '1'
       assigns[:master_scenario].should eq(mock_master_scenario)
     end
@@ -66,7 +66,7 @@ describe Admins::SystemVariablesController do
   
   describe "GET edit" do
     it "should expose the system variable" do
-      mock_system_variable.stub!(:name)
+      mock_system_variable.stub(:name)
       mock_master_scenario.stub_chain(:variables, :find).and_return(mock_system_variable)
       MasterScenario.should_receive(:find).with('37').and_return(mock_master_scenario)
       get :edit, :master_scenario_id => '37', :id => '1'
@@ -74,7 +74,7 @@ describe Admins::SystemVariablesController do
     end
     
     it "should expose the master scenario" do
-      mock_system_variable.stub!(:name)
+      mock_system_variable.stub(:name)
       mock_master_scenario.stub_chain(:variables, :find).and_return(mock_system_variable)
       MasterScenario.should_receive(:find).with('37').and_return(mock_master_scenario)
       get :edit, :master_scenario_id => '37', :id => '1'
@@ -156,7 +156,7 @@ describe Admins::SystemVariablesController do
       end
       
       it "should redirect to the updated system variable" do
-        MasterScenario.stub!(:find).and_return(mock_master_scenario)
+        MasterScenario.stub(:find).and_return(mock_master_scenario)
         mock_master_scenario.stub_chain(:variables, :find).and_return(mock_system_variable({:update_attributes => true}))
         put :update, :master_scenario_id => '37', :id => '1'
         response.should redirect_to(admins_master_scenario_system_variable_path(assigns[:master_scenario], assigns[:system_variable]))
@@ -172,7 +172,7 @@ describe Admins::SystemVariablesController do
       end
       
       it "should redirect to the updated system variable" do
-        MasterScenario.stub!(:find).and_return(mock_master_scenario)
+        MasterScenario.stub(:find).and_return(mock_master_scenario)
         mock_master_scenario.stub_chain(:variables, :find).and_return(mock_system_variable({:update_attributes => false}))
         put :update, :master_scenario_id => '37', :id => '1'
         response.should render_template(:edit)
@@ -204,8 +204,8 @@ describe Admins::SystemVariablesController do
       end
       
       it "should redirect back" do
-        MasterScenario.stub!(:find).and_return(mock_master_scenario)
-        SystemVariable.stub!(:find).and_return(mock_system_variable)
+        MasterScenario.stub(:find).and_return(mock_master_scenario)
+        SystemVariable.stub(:find).and_return(mock_system_variable)
         delete :destroy, :master_scenario_id => '37', :id => '1'
         response.should redirect_to(admins_master_scenario_system_variables_path(assigns[:master_scenario], assigns[:system_variable]))
       end

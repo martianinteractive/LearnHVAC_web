@@ -4,7 +4,7 @@ describe Admins::Settings::ClientVersionsController do
   let(:current_user) { Factory.stub(:admin) }
   
   before(:each) do
-    controller.stub!(:current_user).and_return(current_user)
+    controller.stub(:current_user).and_return(current_user)
   end
   
   def mock_client_version(stubs={})
@@ -57,7 +57,7 @@ describe Admins::Settings::ClientVersionsController do
       end
 
       it "should redirect to the master client_version" do
-        ClientVersion.stub!(:new).and_return(mock_client_version({:user= => current_user, :save => true}))
+        ClientVersion.stub(:new).and_return(mock_client_version({:user= => current_user, :save => true}))
         post :create, :client_version => {}
         response.should redirect_to(admins_settings_client_version_url(assigns[:client_version]))
       end
@@ -72,7 +72,7 @@ describe Admins::Settings::ClientVersionsController do
       end
 
       it "should redirect to the client_version" do
-        ClientVersion.stub!(:new).and_return(mock_client_version({:save => false}))
+        ClientVersion.stub(:new).and_return(mock_client_version({:save => false}))
         post :create, :client_version => {}
         response.should render_template(:new)
       end
@@ -89,7 +89,7 @@ describe Admins::Settings::ClientVersionsController do
       end
 
       it "should redirect to client_version" do
-        ClientVersion.stub!(:find).and_return(mock_client_version({:update_attributes => true}))
+        ClientVersion.stub(:find).and_return(mock_client_version({:update_attributes => true}))
         put :update, :id => '37'
         response.should redirect_to(admins_settings_client_version_url(assigns[:client_version]))
       end
@@ -104,7 +104,7 @@ describe Admins::Settings::ClientVersionsController do
       end
 
       it "should redirect to client_version" do
-        ClientVersion.stub!(:find).and_return(mock_client_version({:name => 'bla', :update_attributes => false}))
+        ClientVersion.stub(:find).and_return(mock_client_version({:name => 'bla', :update_attributes => false}))
         put :update, :id => '37'
         response.should render_template(:edit)
       end
@@ -119,7 +119,7 @@ describe Admins::Settings::ClientVersionsController do
     end
 
     it "should redirect to index" do
-      ClientVersion.stub!(:find).and_return(mock_client_version)
+      ClientVersion.stub(:find).and_return(mock_client_version)
       delete :destroy, :id => '37'
       response.should redirect_to(admins_settings_client_versions_path)
     end

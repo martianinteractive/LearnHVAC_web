@@ -1,10 +1,10 @@
 source 'http://rubygems.org'
-gem 'rails', '3.1.12'
+gem 'rails', '3.2.15'
 gem "mysql2"
-gem "haml"
+gem "haml", '3.1.4'
 gem "compass"
 gem "fancy-buttons"
-gem 'authlogic', :git => 'git://github.com/odorcicd/authlogic.git', :branch => 'rails3'
+gem 'authlogic'
 gem "mysql2"
 gem "will_paginate", "~> 3.0.5"
 gem 'acts-as-taggable-on'
@@ -20,6 +20,7 @@ gem 'crummy', '1.8.0'
 gem 'dynamic_form'
 gem 'country_select'
 gem 'query_trace'
+gem 'sass'
 
 group :test do
   gem "rspec-rails"

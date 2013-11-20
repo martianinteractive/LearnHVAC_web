@@ -4,7 +4,7 @@ describe Admins::ScenariosController do
   let(:current_user) { Factory.stub(:admin) }
 
   before(:each) do
-    controller.stub!(:current_user).and_return(current_user)
+    controller.stub(:current_user).and_return(current_user)
   end
 
   def mock_scenario(stubs={})
@@ -73,7 +73,7 @@ describe Admins::ScenariosController do
       end
 
       it "should redirect to the master scenario" do
-        Scenario.stub!(:new).and_return(mock_scenario({:user= => current_user, :save => true}))
+        Scenario.stub(:new).and_return(mock_scenario({:user= => current_user, :save => true}))
         post :create, :scenario => {}
         response.should redirect_to(admins_scenario_url(assigns[:scenario]))
       end
@@ -88,7 +88,7 @@ describe Admins::ScenariosController do
       end
 
       it "should redirect to the scenario" do
-        Scenario.stub!(:new).and_return(mock_scenario({:save => false}))
+        Scenario.stub(:new).and_return(mock_scenario({:save => false}))
         post :create, :scenario => {}
         response.should render_template(:new)
       end
@@ -105,7 +105,7 @@ describe Admins::ScenariosController do
       end
 
       it "should redirect to scenario" do
-        Scenario.stub!(:find).and_return(mock_scenario({:update_attributes => true}))
+        Scenario.stub(:find).and_return(mock_scenario({:update_attributes => true}))
         put :update, :id => '37'
         response.should redirect_to(admins_scenario_url(assigns[:scenario]))
       end
@@ -120,7 +120,7 @@ describe Admins::ScenariosController do
       end
 
       it "should redirect to scenario" do
-        Scenario.stub!(:find).and_return(mock_scenario({:name => 'bla', :update_attributes => false}))
+        Scenario.stub(:find).and_return(mock_scenario({:name => 'bla', :update_attributes => false}))
         put :update, :id => '37'
         response.should render_template(:edit)
       end
@@ -135,7 +135,7 @@ describe Admins::ScenariosController do
     end
 
     it "should redirect to index" do
-      Scenario.stub!(:find).and_return(mock_scenario)
+      Scenario.stub(:find).and_return(mock_scenario)
       delete :destroy, :id => '37'
       response.should redirect_to(admins_scenarios_url)
     end

@@ -4,7 +4,7 @@ describe Admins::MembershipsController do
   let(:current_user) { Factory.stub(:admin) }
   
   before(:each) do
-    controller.stub!(:current_user).and_return(current_user)
+    controller.stub(:current_user).and_return(current_user)
   end
   
   def mock_group(stubs={})

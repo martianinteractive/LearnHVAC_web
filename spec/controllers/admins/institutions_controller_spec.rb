@@ -18,7 +18,7 @@ describe Admins::InstitutionsController do
   describe "GET show" do
     it "should expose an institution as @institution and render the show template" do
       Institution.stub(:find).with("37").and_return(institution)
-      institution.should_receive(:users).and_return([mock, mock])
+      institution.should_receive(:users).and_return([double, double])
       get :show, :id => "37"
       response.should render_template(:show)
       assigns(:institution).should be(institution)
@@ -54,7 +54,7 @@ describe Admins::InstitutionsController do
       end
 
       it "redirects to the created institution" do
-        Institution.stub!(:new).and_return(mock_model(Institution, :save => true))
+        Institution.stub(:new).and_return(mock_model(Institution, :save => true))
         post :create, :group => {}
         response.should redirect_to(admins_institution_url(assigns(:institution)))
       end
@@ -64,13 +64,13 @@ describe Admins::InstitutionsController do
       let(:institution) { mock_model(Institution, :save => false) }
 
       it "should expose the institution" do
-        Institution.stub!(:new).with('these' => 'params').and_return(institution)
+        Institution.stub(:new).with('these' => 'params').and_return(institution)
         post :create, :institution => {:these => 'params'}
         assigns[:institution].should eq(institution)
       end
 
       it "re-renders the 'new' template" do
-        Institution.stub!(:new).with('these' => 'params').and_return(institution)
+        Institution.stub(:new).with('these' => 'params').and_return(institution)
         post :create, :institution => {:these => 'params'}
         response.should render_template('new')
       end
@@ -88,13 +88,13 @@ describe Admins::InstitutionsController do
       end
 
       it "should expose the requested institution" do
-        Institution.stub!(:find).and_return(institution)
+        Institution.stub(:find).and_return(institution)
         put :update, :id => '1'
         assigns[:institution].should eq(institution)
       end
 
       it "should redirect to the institution" do
-        Institution.stub!(:find).and_return(institution)
+        Institution.stub(:find).and_return(institution)
         put :update, :id => '1'
         response.should redirect_to(admins_institution_url(assigns[:institution]))
       end
@@ -110,13 +110,13 @@ describe Admins::InstitutionsController do
       end
 
       it "should expose the requested institution" do
-        Institution.stub!(:find).and_return(institution)
+        Institution.stub(:find).and_return(institution)
         put :update, :id => '1'
         assigns[:institution].should eq(institution)
       end
 
       it "should render the edit template" do
-        Institution.stub!(:find).and_return(institution)
+        Institution.stub(:find).and_return(institution)
         institution.should_receive(:name)
         put :update, :id => '1'
         response.should render_template('edit')
@@ -134,7 +134,7 @@ describe Admins::InstitutionsController do
     end
     
     it "should redirect to the index" do
-      Institution.stub!(:find).and_return(institution)
+      Institution.stub(:find).and_return(institution)
       delete :destroy, :id => '37'
       response.should redirect_to(admins_institutions_url)
     end

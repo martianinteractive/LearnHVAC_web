@@ -5,8 +5,8 @@ describe Admins::VariablesController do
   let(:current_user) { Factory.stub(:admin) }
   
   before do
-    controller.stub!(:current_user).and_return(current_user)
-    Scenario.stub!(:find).with('37').and_return(mock_scenario)
+    controller.stub(:current_user).and_return(current_user)
+    Scenario.stub(:find).with('37').and_return(mock_scenario)
   end
   
   def mock_variable(stubs={})
