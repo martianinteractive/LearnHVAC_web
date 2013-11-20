@@ -25,7 +25,7 @@ class Admins::UsersController < Admins::ApplicationController
   
   def show
     @user = User.find(params[:id])
-    add_crumb @user.name, admins_user_path(@user)
+    add_crumb @user.name, admins_user_path(@user, :role => params[:role])
   end
 
   def new

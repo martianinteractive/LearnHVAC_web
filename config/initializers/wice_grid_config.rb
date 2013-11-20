@@ -1,13 +1,5 @@
 if defined?(Wice::Defaults)
 
-  Wice::Defaults::JS_FRAMEWORK = :jquery
-  # Wice::Defaults::JS_FRAMEWORK = :prototype
-
-  # Style of the view helper.
-  # +false+ is a usual view helper.
-  # +true+ will allow to embed erb content in column (cell) definitions.
-  Wice::Defaults::ERB_MODE = false
-
   # Default number of rows to show per page.
   Wice::Defaults::PER_PAGE = 20
 
@@ -23,30 +15,11 @@ if defined?(Wice::Defaults)
   # for filter related icons (filter icon, reset icon, show/hide icon), otherwise an additional table column is added.
   Wice::Defaults::REUSE_LAST_COLUMN_FOR_FILTER_ICONS = true
 
-  Wice::Defaults::SHOW_HIDE_FILTER_ICON = 'icons/grid/page_white_find.png'
-
-
-  # Icon to trigger filtering.
-  Wice::Defaults::FILTER_ICON = 'icons/grid/table_refresh.png'
-
-  # Icon to reset the filter.
-  Wice::Defaults::RESET_ICON = "icons/grid/table.png"
-
-  # Icon to reset the filter.
-  Wice::Defaults::TOGGLE_MULTI_SELECT_ICON = "/images/icons/grid/expand.png"
-
-  # CSV Export icon.
-  Wice::Defaults::CSV_EXPORT_ICON = "/images/icons/grid/page_white_excel.png"
-
-  # Tick-All icon for the action column.
-  Wice::Defaults::TICK_ALL_ICON = "/images/icons/grid/tick_all.png"
-
-  # Untick-All icon for the action column.
-  Wice::Defaults::UNTICK_ALL_ICON = "/images/icons/grid/untick_all.png"
-
   # The label of the first option of a custom dropdown list meaning 'All items'
   Wice::Defaults::CUSTOM_FILTER_ALL_LABEL = '--'
 
+  # A list of classes for the table tag of the grid
+  Wice::Defaults::DEFAULT_TABLE_CLASSES = ['table', 'table-bordered', 'table-striped']
 
   # Allow switching between a single and multiple selection modes in custom filters (dropdown boxes)
   Wice::Defaults::ALLOW_MULTIPLE_SELECTION = true
@@ -54,8 +27,11 @@ if defined?(Wice::Defaults)
   # Show the upper pagination panel by default or not
   Wice::Defaults::SHOW_UPPER_PAGINATION_PANEL = false
 
-  # Enabling CSV export by default
+  # Disabling CSV export by default
   Wice::Defaults::ENABLE_EXPORT_TO_CSV = false
+
+  # Default CSV field separator
+  Wice::Defaults::CSV_FIELD_SEPARATOR = ','
 
 
   # The strategy when to show the filter.
@@ -104,9 +80,6 @@ if defined?(Wice::Defaults)
   # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
   #                               Saving Queries                              #
 
-  # Icon to delete a saved query
-  Wice::Defaults::DELETE_QUERY_ICON = 'icons/grid/delete.png'
-
   # ActiveRecord model to store queries. Read the documentation for details
   # QUERY_STORE_MODEL = 'WiceGridSerializedQuery'
   Wice::Defaults::QUERY_STORE_MODEL = 'WiceGridSerializedQuery'
@@ -137,16 +110,36 @@ if defined?(Wice::Defaults)
   # format defined by +DATETIME_FORMAT+ and must generate a DateTime object.
   # In many cases <tt>Time.zone.parse</tt> is enough, for instance,  <tt>%Y-%m-%d</tt>. If you change the format, make sure to check this code
   # and modify it if needed.
-  Wice::Defaults::DATETIME_PARSER = lambda{|datetime_string| Time.zone.parse(datetime_string) }
+  Wice::Defaults::DATETIME_PARSER = lambda{|datetime_string|
+    if datetime_string.blank?
+      nil
+    elsif Time.zone
+      Time.zone.parse(datetime_string)
+    else
+      Time.parse(datetime_string)
+    end
+  }
+
+  # The range of years to display in jQuery Datepicker.
+  # It can always be changed dynamically with the following javascript:
+  #  $( ".hasDatepicker" ).datepicker( "option", "yearRange", "2000:2042" );
+  Wice::Defaults::DATEPICKER_YEAR_RANGE = (from = Date.current.year - 10).to_s + ':' + (from + 15).to_s
+
 
   # With Calendar helpers enabled the parameter sent is the string displayed. This lambda will be given a date string in the
   # format defined by +DATETIME+ and must generate a Date object.
   # In many cases <tt>Date.parse</tt> is enough, for instance,  <tt>%Y-%m-%d</tt>. If you change the format, make sure to check this code
   # and modify it if needed.
-  Wice::Defaults::DATE_PARSER = lambda{|date_string| Date.parse(date_string) }
+  Wice::Defaults::DATE_PARSER = lambda{|date_string|
+    if date_string.blank?
+      nil
+    else
+      Date.parse(date_string)
+    end
+  }
 
   # Icon to popup the calendar.
-  Wice::Defaults::CALENDAR_ICON = "/images/icons/grid/calendar_view_month.png"
+  Wice::Defaults::CALENDAR_ICON = "/assets/icons/grid/calendar_view_month.png"
 
   # popup calendar will be shown relative to the popup trigger element or to the mouse pointer
   Wice::Defaults::POPUP_PLACEMENT_STRATEGY = :trigger # :pointer

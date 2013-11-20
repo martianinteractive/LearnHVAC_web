@@ -4,7 +4,7 @@ describe UsersController do
   
   let(:current_user) { Factory(:user) }
   
-  before { controller.stub!(:current_user).and_return(current_user) }
+  before { controller.stub(:current_user).and_return(current_user) }
   
   describe "GET profile" do
     it "" do

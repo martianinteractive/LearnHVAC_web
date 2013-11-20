@@ -29,4 +29,9 @@ module ApplicationHelper
     end
   end
   
+  def include_wice_grid_assets
+    javascript_include_tag('wice_grid') +
+      stylesheet_link_tag('wice_grid')
+  end
+  
 end

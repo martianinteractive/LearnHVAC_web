@@ -5,7 +5,7 @@ describe Students::GroupsController do
   let(:group) { mock_model(Group, :name => "test") }
   let(:current_user) { Factory.stub(:student) }
   
-  before { controller.stub!(:current_user).and_return(current_user) }
+  before { controller.stub(:current_user).and_return(current_user) }
   
   context "GET index" do
     before { current_user.stub_chain(:groups, :paginate).and_return([group]) }
@@ -21,7 +21,7 @@ describe Students::GroupsController do
     end
     
     it "" do
-      current_user.should_receive(:groups).and_return([stub, stub])
+      current_user.should_receive(:groups).and_return([double, double])
       get :index
     end
   end

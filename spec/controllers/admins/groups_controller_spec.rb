@@ -54,7 +54,7 @@ describe Admins::GroupsController do
       end
 
       it "redirects to the created group" do
-        Group.stub!(:new).and_return(mock_model(Group, :save => true))
+        Group.stub(:new).and_return(mock_model(Group, :save => true))
         post :create, :group => {}
         response.should redirect_to(admins_class_path(assigns(:group)))
       end
@@ -64,14 +64,14 @@ describe Admins::GroupsController do
       let(:group) { mock_model(Group, :save => false) }
 
       it "should expose a newly created but unsaved invoice as @group" do
-        Group.stub!(:new).with({'these' => 'params'}).and_return(group)
+        Group.stub(:new).with({'these' => 'params'}).and_return(group)
         post :create, :group => {:these => 'params'}
         assigns(:group).should equal(group)
 
       end
 
       it "should re-render the 'new' template" do
-        Group.stub!(:new).with({'these' => 'params'}).and_return(group)
+        Group.stub(:new).with({'these' => 'params'}).and_return(group)
         post :create, :group => {:these => 'params'}
         response.should render_template(:new)
       end
@@ -90,13 +90,13 @@ describe Admins::GroupsController do
       end
 
       it "should expose the requested invoice as @group" do
-        Group.stub!(:find).and_return(group)
+        Group.stub(:find).and_return(group)
         put :update, :id => "1"
         assigns(:group).should equal(group)
       end
 
       it "redirects to the group" do
-        Group.stub!(:find).and_return(group)
+        Group.stub(:find).and_return(group)
         put :update, :id => '37', :group => { }
         response.should redirect_to(admins_class_path(group))
       end
@@ -106,7 +106,7 @@ describe Admins::GroupsController do
       let(:group) { mock_model(Group, :update_attributes => false, :name => 'bla') }
 
       it "should re-render the 'edit' template" do
-        Group.stub!(:find).and_return(group)
+        Group.stub(:find).and_return(group)
         put :update, :id => "1"
         response.should render_template('edit')
       end
@@ -124,7 +124,7 @@ describe Admins::GroupsController do
     end
 
     it "should redirect to the invoices list" do
-      Group.stub!(:find).and_return(group)
+      Group.stub(:find).and_return(group)
       delete :destroy, :id => "1"
       response.should redirect_to(admins_classes_path)
     end

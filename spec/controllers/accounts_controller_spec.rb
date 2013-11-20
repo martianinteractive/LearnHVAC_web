@@ -38,13 +38,13 @@ describe AccountsController do
       end
 
       it "should assign a role" do
-         User.stub!(:new).and_return(user)
+         User.stub(:new).and_return(user)
          user.should_receive(:role_code=).with(2)
          post :create, :user => {:role_code => User::ROLES[:instructor]}
       end
 
       it "should redirect to the login action" do
-        User.stub!(:new).and_return(user)
+        User.stub(:new).and_return(user)
         post :create, :user => {}
         response.should redirect_to(login_path)
       end
@@ -69,13 +69,13 @@ describe AccountsController do
       }
 
       it "should expose a newly created but unsaved user as @account" do
-        User.stub!(:new).with({'role_code' => '2'}).and_return(user)
+        User.stub(:new).with({'role_code' => '2'}).and_return(user)
         post :create, :user => {:role_code => '2'}
         assigns(:account).should equal(user)
       end
 
       it "should re-render the new template" do
-        User.stub!(:new).with({'role_code' => '2'}).and_return(user)
+        User.stub(:new).with({'role_code' => '2'}).and_return(user)
         post :create, :user => {:role_code => '2'}
         response.should render_template('new')
       end     

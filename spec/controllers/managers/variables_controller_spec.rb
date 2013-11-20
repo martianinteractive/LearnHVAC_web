@@ -4,7 +4,7 @@ describe Managers::VariablesController do
   let(:current_user) { Factory.stub(:manager) }
   
   before(:each) do
-    controller.stub!(:current_user).and_return(current_user)
+    controller.stub(:current_user).and_return(current_user)
     current_user.stub_chain(:institution, :scenarios, :find).with("37").and_return(mock_scenario)
   end
   

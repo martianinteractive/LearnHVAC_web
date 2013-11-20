@@ -1,5 +1,4 @@
 class AccountsController < ApplicationController
-  # ssl_required :new, :create, :colleges, :states
   layout 'registration'
   before_filter :require_no_user, :except => [:states]
   before_filter :get_role, :only => [:create]

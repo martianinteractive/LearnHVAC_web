@@ -6,14 +6,14 @@
   %p Scenarios created by instructors.
 
   = grid(@scenarios_grid) do |g|
-    - g.column :column_name => 'ID', :attribute_name => 'id', :no_filter => true 
-    - g.column :column_name => 'Name', :attribute_name => 'name' do |scenario|
+    - g.column :name => 'ID', :attribute => 'id', :filter => false 
+    - g.column :name => 'Name', :attribute => 'name' do |scenario|
       - link_to scenario.name, admins_scenario_path(scenario)
-    - g.column :column_name => 'Instructor', :attribute_name => 'last_name', :model_class => User do |scenario|
+    - g.column :name => 'Instructor', :attribute => 'last_name', :model => User do |scenario|
       - link_to scenario.user.name, admins_user_path(scenario.user, :role => scenario.user.role)
-    - g.column :column_name => 'Master Scenario', :attribute_name => 'name', :model_class => MasterScenario do |scenario|
+    - g.column :name => 'Master Scenario', :attribute => 'name', :model => MasterScenario do |scenario|
       - link_to_master_scenario_for(scenario)
-    - g.column :column_name => 'Date Created', :attribute_name => 'created_at', :no_filter => true do |scenario|
+    - g.column :name => 'Date Created', :attribute => 'created_at', :filter => false do |scenario|
       - scenario.created_at.to_formatted_s(:long) if scenario.created_at
-    - g.column :column_name => 'Sample', :attribute_name => 'sample' do |scenario|
+    - g.column :name => 'Sample', :attribute => 'sample' do |scenario|
       - scenario.sample? ? "Yes" : "No"

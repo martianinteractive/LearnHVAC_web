@@ -33,7 +33,7 @@ class Group < ActiveRecord::Base
   private
   
   def secure_rand
-    ActiveSupport::SecureRandom.hex(3)
+    SecureRandom.hex(3)
   end
     
 end

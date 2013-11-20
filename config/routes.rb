@@ -1,6 +1,5 @@
-Learnhvac::Application.routes.draw do |map|
+Learnhvac::Application.routes.draw do
   
-  Jammit::Routes.draw(map)
   resources :accounts, :only => [:create]
   resources :user_sessions
   resources :password_resets
@@ -135,8 +134,8 @@ Learnhvac::Application.routes.draw do |map|
       resources :memberships, :only => [:destroy]
     end
     
-    scope ":role" do
-      resources :users, :requirements => { :role => /[a-z]/ }  do 
+    scope ":role", :constraints => { :role => /[a-z]+/ } do
+      resources :users do
         collection do
           post :search
           post :filter

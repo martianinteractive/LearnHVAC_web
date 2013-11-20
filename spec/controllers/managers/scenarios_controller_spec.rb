@@ -4,7 +4,7 @@ describe Managers::ScenariosController do
   let(:current_user) { Factory.stub(:manager) }
 
   before(:each) do
-    controller.stub!(:current_user).and_return(current_user)
+    controller.stub(:current_user).and_return(current_user)
   end
 
   def mock_scenario(stubs={})
