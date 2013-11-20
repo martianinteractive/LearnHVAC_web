@@ -18,6 +18,7 @@ gem "wice_grid", '3.0.0.pre1'
 gem 'carmen', '0.1.1'
 gem 'crummy', '1.8.0'
 gem 'dynamic_form'
+gem 'country_select'
 gem 'query_trace'
 
 group :test do

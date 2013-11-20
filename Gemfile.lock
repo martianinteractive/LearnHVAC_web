@@ -65,6 +65,7 @@ GEM
     columnize (0.3.4)
     compass (0.10.6)
       haml (>= 3.0.4)
+    country_select (1.2.0)
     crummy (1.8.0)
     diff-lcs (1.1.2)
     dynamic_form (1.1.4)
@@ -168,6 +169,7 @@ DEPENDENCIES
   capistrano
   carmen (= 0.1.1)
   compass
+  country_select
   crummy (= 1.8.0)
   dynamic_form
   exception_notification!
