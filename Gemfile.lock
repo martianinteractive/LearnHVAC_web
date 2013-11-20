@@ -101,6 +101,8 @@ GEM
       net-ssh (>= 1.99.1)
     open4 (1.0.1)
     polyglot (0.3.1)
+    query_trace (0.1.1)
+      activerecord
     rack (1.2.2)
     rack-mount (0.6.14)
       rack (>= 1.0.0)
@@ -175,6 +177,7 @@ DEPENDENCIES
   hirb
   jammit
   mysql2
+  query_trace
   rails (= 3.0.6)
   rspec-rails
   ruby-debug19
